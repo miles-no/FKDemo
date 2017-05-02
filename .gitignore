@@ -1,0 +1,28 @@
+.idea
+*.iml
+*.ipr
+*.iws
+target
+
+atlassian-ide-plugin.xml
+ansible/temp.tar
+out
+*.log
+.DS_Store
+.project
+.settings
+.classpath
+.externalToolBuilders
+*.jtl
+node_modules
+docs/target
+
+# Gradle
+/build
+*/build
+/.gradle
+.gradletasknamecache
+
+# Default IntelliJ Idea gradle war artifact output
+/classes/artifacts
+/dataimport

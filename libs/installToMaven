@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mvn install:install-file -Dfile=./ojdbc6-11.2.0.4.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.4 -Dpackaging=jar
+
+mvn install:install-file -Dfile=./obsidian-4.1.jar -DgroupId=com.carfey -DartifactId=obsidian -Dversion=4.1 -Dpackaging=jar
