@@ -13,18 +13,18 @@ public class SystemConfig {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator = "SEQ")
     @SequenceGenerator(name="SEQ", sequenceName="IM_SYSTEM_CONFIG_SEQ")
-    private long Id;
+    private long id;
     @Column(name="NAME")
     private String name;
     @Column(name="VALUE")
     private String value;
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        id = id;
     }
 
     public String getName() {

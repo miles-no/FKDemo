@@ -99,7 +99,7 @@ public class InvoiceOrder {
      * 
      * @return
      *     possible object is
-     *     {@link InvoiceOrderInfo110 }
+     *     {@link no.fjordkraft.im.if320.models.InvoiceOrderInfo110 }
      *     
      */
     public InvoiceOrderInfo110 getInvoiceOrderInfo110() {
@@ -111,7 +111,7 @@ public class InvoiceOrder {
      * 
      * @param value
      *     allowed object is
-     *     {@link InvoiceOrderInfo110 }
+     *     {@link no.fjordkraft.im.if320.models.InvoiceOrderInfo110 }
      *     
      */
     public void setInvoiceOrderInfo110(InvoiceOrderInfo110 value) {
@@ -123,7 +123,7 @@ public class InvoiceOrder {
      * 
      * @return
      *     possible object is
-     *     {@link ReadingInfo111 }
+     *     {@link no.fjordkraft.im.if320.models.ReadingInfo111 }
      *     
      */
     public ReadingInfo111 getReadingInfo111() {
@@ -135,7 +135,7 @@ public class InvoiceOrder {
      * 
      * @param value
      *     allowed object is
-     *     {@link ReadingInfo111 }
+     *     {@link no.fjordkraft.im.if320.models.ReadingInfo111 }
      *     
      */
     public void setReadingInfo111(ReadingInfo111 value) {
@@ -147,7 +147,7 @@ public class InvoiceOrder {
      * 
      * @return
      *     possible object is
-     *     {@link LastReading112 }
+     *     {@link no.fjordkraft.im.if320.models.LastReading112 }
      *     
      */
     public LastReading112 getLastReading112() {
@@ -159,7 +159,7 @@ public class InvoiceOrder {
      * 
      * @param value
      *     allowed object is
-     *     {@link LastReading112 }
+     *     {@link no.fjordkraft.im.if320.models.LastReading112 }
      *     
      */
     public void setLastReading112(LastReading112 value) {
@@ -171,7 +171,7 @@ public class InvoiceOrder {
      * 
      * @return
      *     possible object is
-     *     {@link InvoiceOrderAmounts113 }
+     *     {@link no.fjordkraft.im.if320.models.InvoiceOrderAmounts113 }
      *     
      */
     public InvoiceOrderAmounts113 getInvoiceOrderAmounts113() {
@@ -183,7 +183,7 @@ public class InvoiceOrder {
      * 
      * @param value
      *     allowed object is
-     *     {@link InvoiceOrderAmounts113 }
+     *     {@link no.fjordkraft.im.if320.models.InvoiceOrderAmounts113 }
      *     
      */
     public void setInvoiceOrderAmounts113(InvoiceOrderAmounts113 value) {
@@ -195,7 +195,7 @@ public class InvoiceOrder {
      * 
      * @return
      *     possible object is
-     *     {@link VatSpecInvoiceOrder114 }
+     *     {@link no.fjordkraft.im.if320.models.VatSpecInvoiceOrder114 }
      *     
      */
     public VatSpecInvoiceOrder114 getVatSpecInvoiceOrder114() {
@@ -207,7 +207,7 @@ public class InvoiceOrder {
      * 
      * @param value
      *     allowed object is
-     *     {@link VatSpecInvoiceOrder114 }
+     *     {@link no.fjordkraft.im.if320.models.VatSpecInvoiceOrder114 }
      *     
      */
     public void setVatSpecInvoiceOrder114(VatSpecInvoiceOrder114 value) {
@@ -232,7 +232,7 @@ public class InvoiceOrder {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link PriceInfo116 }
+     * {@link no.fjordkraft.im.if320.models.PriceInfo116 }
      * 
      * 
      */
@@ -248,7 +248,7 @@ public class InvoiceOrder {
      * 
      * @return
      *     possible object is
-     *     {@link SupplyPointInfo117 }
+     *     {@link no.fjordkraft.im.if320.models.SupplyPointInfo117 }
      *     
      */
     public SupplyPointInfo117 getSupplyPointInfo117() {
@@ -260,7 +260,7 @@ public class InvoiceOrder {
      * 
      * @param value
      *     allowed object is
-     *     {@link SupplyPointInfo117 }
+     *     {@link no.fjordkraft.im.if320.models.SupplyPointInfo117 }
      *     
      */
     public void setSupplyPointInfo117(SupplyPointInfo117 value) {
@@ -272,7 +272,7 @@ public class InvoiceOrder {
      * 
      * @return
      *     possible object is
-     *     {@link ProductParameters118 }
+     *     {@link no.fjordkraft.im.if320.models.ProductParameters118 }
      *     
      */
     public ProductParameters118 getProductParameters118() {
@@ -284,7 +284,7 @@ public class InvoiceOrder {
      * 
      * @param value
      *     allowed object is
-     *     {@link ProductParameters118 }
+     *     {@link no.fjordkraft.im.if320.models.ProductParameters118 }
      *     
      */
     public void setProductParameters118(ProductParameters118 value) {
@@ -309,7 +309,7 @@ public class InvoiceOrder {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link InvoiceLine120 }
+     * {@link no.fjordkraft.im.if320.models.InvoiceLine120 }
      * 
      * 
      */
@@ -325,7 +325,7 @@ public class InvoiceOrder {
      * 
      * @return
      *     possible object is
-     *     {@link YearlyConsumption123 }
+     *     {@link no.fjordkraft.im.if320.models.YearlyConsumption123 }
      *     
      */
     public YearlyConsumption123 getYearlyConsumption123() {
@@ -337,7 +337,7 @@ public class InvoiceOrder {
      * 
      * @param value
      *     allowed object is
-     *     {@link YearlyConsumption123 }
+     *     {@link no.fjordkraft.im.if320.models.YearlyConsumption123 }
      *     
      */
     public void setYearlyConsumption123(YearlyConsumption123 value) {
@@ -362,7 +362,7 @@ public class InvoiceOrder {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link GenInfoInvoiceOrder125 }
+     * {@link no.fjordkraft.im.if320.models.GenInfoInvoiceOrder125 }
      * 
      * 
      */
@@ -378,7 +378,7 @@ public class InvoiceOrder {
      * 
      * @return
      *     possible object is
-     *     {@link ConsumptionPillars132 }
+     *     {@link no.fjordkraft.im.if320.models.ConsumptionPillars132 }
      *     
      */
     public ConsumptionPillars132 getConsumptionPillars132() {
@@ -390,7 +390,7 @@ public class InvoiceOrder {
      * 
      * @param value
      *     allowed object is
-     *     {@link ConsumptionPillars132 }
+     *     {@link no.fjordkraft.im.if320.models.ConsumptionPillars132 }
      *     
      */
     public void setConsumptionPillars132(ConsumptionPillars132 value) {
@@ -402,7 +402,7 @@ public class InvoiceOrder {
      * 
      * @return
      *     possible object is
-     *     {@link InvoiceOrderEndRecord134 }
+     *     {@link no.fjordkraft.im.if320.models.InvoiceOrderEndRecord134 }
      *     
      */
     public InvoiceOrderEndRecord134 getInvoiceOrderEndRecord134() {
@@ -414,7 +414,7 @@ public class InvoiceOrder {
      * 
      * @param value
      *     allowed object is
-     *     {@link InvoiceOrderEndRecord134 }
+     *     {@link no.fjordkraft.im.if320.models.InvoiceOrderEndRecord134 }
      *     
      */
     public void setInvoiceOrderEndRecord134(InvoiceOrderEndRecord134 value) {

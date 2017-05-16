@@ -34,15 +34,19 @@ public class GenericPreprocessor extends BasePreprocessor {
         String folderName = baseFolder.substring(0, baseFolder.indexOf('.'));
         String basePath = configRepository.getConfigValue(IMConstants.DESTINATION_PATH);
         String pdfGeneratedFolderName = configRepository.getConfigValue(IMConstants.PDF_GENERATED_FOLDER_NAME);
-        String attachmentPDFFolderName = configRepository.getConfigValue(IMConstants.ATTACHMENT_PDF_FOLDER_NAME);
 
-        File f = new File(basePath + folderName + File.separator + invoiceNumber);
-        f.mkdir();
-        File generatedPDFFile = new File(f,pdfGeneratedFolderName);
+        File baseFile = new File(basePath + folderName + File.separator + invoiceNumber);
+        baseFile.mkdir();
+        File generatedPDFFile = new File(baseFile, pdfGeneratedFolderName);
         generatedPDFFile.mkdir();
-        File attachmentPDFFile =  new File(f,attachmentPDFFolderName);
-        attachmentPDFFile.mkdir();
-        request.setPathToAttachmentPDF(attachmentPDFFile.getAbsolutePath());
-        logger.debug("generatedPDFFolder "+ generatedPDFFile.getAbsolutePath() + " attachmentPDFFile "  + attachmentPDFFile.getAbsolutePath() );
+
+        String processedXmlFolderName  = configRepository.getConfigValue(IMConstants.PROCESSED_XML_FOLDER_NAME);
+        File processedXmlFile = new File(baseFile,processedXmlFolderName);
+        processedXmlFile.mkdir();
+        request.setPathToProcessedXml(processedXmlFile.getAbsolutePath());
+
+        logger.debug("generatedPDFFolder "+ generatedPDFFile.getAbsolutePath() + " attachmentPDFFile "  + processedXmlFile + processedXmlFile.getAbsolutePath() );
     }
+
+
 }

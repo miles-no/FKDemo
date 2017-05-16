@@ -865,7 +865,7 @@ public class MainInvoiceInfo101 {
      * 
      * @return
      *     possible object is
-     *     {@link Transactions }
+     *     {@link no.fjordkraft.im.if320.models.Transactions }
      *     
      */
     public Transactions getTransactions() {
@@ -877,7 +877,7 @@ public class MainInvoiceInfo101 {
      * 
      * @param value
      *     allowed object is
-     *     {@link Transactions }
+     *     {@link no.fjordkraft.im.if320.models.Transactions }
      *     
      */
     public void setTransactions(Transactions value) {

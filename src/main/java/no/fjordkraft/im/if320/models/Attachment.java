@@ -49,7 +49,7 @@ public class Attachment {
      * 
      * @return
      *     possible object is
-     *     {@link FAKTURA }
+     *     {@link no.fjordkraft.im.if320.models.FAKTURA }
      *     
      */
     public FAKTURA getFAKTURA() {
@@ -61,7 +61,7 @@ public class Attachment {
      * 
      * @param value
      *     allowed object is
-     *     {@link FAKTURA }
+     *     {@link no.fjordkraft.im.if320.models.FAKTURA }
      *     
      */
     public void setFAKTURA(FAKTURA value) {

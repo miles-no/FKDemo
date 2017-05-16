@@ -36,10 +36,6 @@ public class TransferFileServiceImpl implements TransferFileService {
     private SystemConfigRepository systemConfigRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(InvoiceFeedWatcherJob.class);
-    //static final String DESTINATION_PATH = "destinationPath";
-    /*static final String PDF_GENERATED_FOLDER_NAME = "pdfGeneratedFolderName";
-    static final String ATTACHMENT_PDF_FOLDER_NAME = "attachmentPDFFolderName";*/
-
 
     @Transactional
     public void saveIMSystemBatchInput() {
@@ -75,11 +71,8 @@ public class TransferFileServiceImpl implements TransferFileService {
     void createOutputFolders(String filename){
         String destinationPath = systemConfigRepository.getConfigValue(IMConstants.DESTINATION_PATH);
         String folderName = filename.substring(0, filename.indexOf('.'));
-        new File(new File(destinationPath) , folderName).mkdir();
-        /*String pdfGeneratedFolderName = systemConfigRepository.getConfigValue(PDF_GENERATED_FOLDER_NAME);
-        new File(destinationPath + folderName + File.separator + pdfGeneratedFolderName).mkdir();
-        String attachmentPDFFolderName = systemConfigRepository.getConfigValue(ATTACHMENT_PDF_FOLDER_NAME);
-        new File(destinationPath + folderName + File.separator + attachmentPDFFolderName).mkdir();*/
+        File baseFolder = new File(new File(destinationPath) , folderName);
+        baseFolder.mkdir();
     }
 
     public TransferFileRepository getTransferFileRepository() {

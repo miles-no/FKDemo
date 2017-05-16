@@ -23,12 +23,9 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
 
-        /*String destinationPath = "E:\\XMLTOPDF\\ExampleCode\\Output\\";//systemConfigRepository.getConfigValue(IMConstants.DESTINATION_PATH);
-        String folderName = "20170321_FKAS_39142654_statement.xml".substring(0, "20170321_FKAS_39142654_statement.xml".indexOf('.'));
-        new File(new File(destinationPath) , folderName).mkdir();*/
     }
 
-    @Bean
+    /*@Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
             String[] beanNames = ctx.getBeanDefinitionNames();
@@ -38,6 +35,6 @@ public class Application {
             }
 
         };
-    }
+    }*/
 
 }

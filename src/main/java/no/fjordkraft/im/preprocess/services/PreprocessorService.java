@@ -2,6 +2,7 @@ package no.fjordkraft.im.preprocess.services;
 
 import no.fjordkraft.im.if320.models.Statement;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -13,5 +14,5 @@ public interface PreprocessorService {
 
     public Statement unmarshallStatement(InputStream inputStream);
 
-    public void preprocess();
+    public void preprocess() throws IOException;
 }

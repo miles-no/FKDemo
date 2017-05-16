@@ -19,7 +19,7 @@ public class AppConfig {
     @Bean
     public SpringSchedulerStarter getSpringSchedulerStarter() {return new SpringSchedulerStarter();}
 
-    @Bean
+    @Bean(name="marshaller")
     public Marshaller getJaxb2Marshaller() {
 
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();

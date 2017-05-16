@@ -393,7 +393,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InterestRate }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.InterestRate }
      * 
      */
     public InterestRate createInterestRate() {
@@ -401,7 +401,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Distribution }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.Distribution }
      * 
      */
     public Distribution createDistribution() {
@@ -409,7 +409,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Distributions }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.Distributions }
      * 
      */
     public Distributions createDistributions() {
@@ -417,7 +417,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Transaction }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.Transaction }
      * 
      */
     public Transaction createTransaction() {
@@ -425,7 +425,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Transactions }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.Transactions }
      * 
      */
     public Transactions createTransactions() {
@@ -433,7 +433,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InvoiceOrderInfo110 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.InvoiceOrderInfo110 }
      * 
      */
     public InvoiceOrderInfo110 createInvoiceOrderInfo110() {
@@ -441,7 +441,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ReadingInfo111 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.ReadingInfo111 }
      * 
      */
     public ReadingInfo111 createReadingInfo111() {
@@ -449,7 +449,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LastReading112 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.LastReading112 }
      * 
      */
     public LastReading112 createLastReading112() {
@@ -457,7 +457,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InvoiceOrderAmounts113 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.InvoiceOrderAmounts113 }
      * 
      */
     public InvoiceOrderAmounts113 createInvoiceOrderAmounts113() {
@@ -465,7 +465,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link VatSpecInvoiceOrder114 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.VatSpecInvoiceOrder114 }
      * 
      */
     public VatSpecInvoiceOrder114 createVatSpecInvoiceOrder114() {
@@ -473,7 +473,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PriceInfo116 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.PriceInfo116 }
      * 
      */
     public PriceInfo116 createPriceInfo116() {
@@ -481,7 +481,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SupplyPointInfo117 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.SupplyPointInfo117 }
      * 
      */
     public SupplyPointInfo117 createSupplyPointInfo117() {
@@ -489,7 +489,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ProductParameters118 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.ProductParameters118 }
      * 
      */
     public ProductParameters118 createProductParameters118() {
@@ -497,7 +497,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InvoiceLine120 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.InvoiceLine120 }
      * 
      */
     public InvoiceLine120 createInvoiceLine120() {
@@ -505,7 +505,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link YearlyConsumption123 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.YearlyConsumption123 }
      * 
      */
     public YearlyConsumption123 createYearlyConsumption123() {
@@ -513,7 +513,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GenInfoInvoiceOrder125 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.GenInfoInvoiceOrder125 }
      * 
      */
     public GenInfoInvoiceOrder125 createGenInfoInvoiceOrder125() {
@@ -521,7 +521,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ConsumptionPillars132 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.ConsumptionPillars132 }
      * 
      */
     public ConsumptionPillars132 createConsumptionPillars132() {
@@ -529,7 +529,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InvoiceOrderEndRecord134 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.InvoiceOrderEndRecord134 }
      * 
      */
     public InvoiceOrderEndRecord134 createInvoiceOrderEndRecord134() {
@@ -537,7 +537,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MainInvoiceInfo101 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.MainInvoiceInfo101 }
      * 
      */
     public MainInvoiceInfo101 createMainInvoiceInfo101() {
@@ -545,7 +545,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CustomerInfo103 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.CustomerInfo103 }
      * 
      */
     public CustomerInfo103 createCustomerInfo103() {
@@ -553,7 +553,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InvoiceAgreementInfo105 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.InvoiceAgreementInfo105 }
      * 
      */
     public InvoiceAgreementInfo105 createInvoiceAgreementInfo105() {
@@ -561,7 +561,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PassThroughInvoiceInfo109 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.PassThroughInvoiceInfo109 }
      * 
      */
     public PassThroughInvoiceInfo109 createPassThroughInvoiceInfo109() {
@@ -569,7 +569,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InvoiceOrder }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.InvoiceOrder }
      * 
      */
     public InvoiceOrder createInvoiceOrder() {
@@ -577,7 +577,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link VatSpecInvoice142 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.VatSpecInvoice142 }
      * 
      */
     public VatSpecInvoice142 createVatSpecInvoice142() {
@@ -585,7 +585,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InvoiceEndRecord199 }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.InvoiceEndRecord199 }
      * 
      */
     public InvoiceEndRecord199 createInvoiceEndRecord199() {
@@ -593,7 +593,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Invoice }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.Invoice }
      * 
      */
     public Invoice createInvoice() {
@@ -601,7 +601,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link VEDLEGGEMUXML }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.VEDLEGGEMUXML }
      * 
      */
     public VEDLEGGEMUXML createVEDLEGGEMUXML() {
@@ -609,7 +609,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FAKTURA }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.FAKTURA }
      * 
      */
     public FAKTURA createFAKTURA() {
@@ -617,7 +617,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Attachment }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.Attachment }
      * 
      */
     public Attachment createAttachment() {
@@ -625,7 +625,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CurrentInterestRates }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.CurrentInterestRates }
      * 
      */
     public CurrentInterestRates createCurrentInterestRates() {
@@ -633,7 +633,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Attachments }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.Attachments }
      * 
      */
     public Attachments createAttachments() {
@@ -641,7 +641,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AccountType }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.AccountType }
      * 
      */
     public AccountType createAccountType() {
@@ -649,7 +649,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AccountCategory }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.AccountCategory }
      * 
      */
     public AccountCategory createAccountCategory() {
@@ -657,7 +657,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Statement }
+     * Create an instance of {@link no.fjordkraft.im.if320.models.Statement }
      * 
      */
     public Statement createStatement() {

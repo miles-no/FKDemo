@@ -32,20 +32,13 @@ public class StatementServiceImpl implements StatementService {
 
     public void splitSystemBatchInputFile() {
         StopWatch stopWatch = new StopWatch(getClass().getSimpleName());
-        Long transferFileID = -1l;
         stopWatch.start("Statement Splitter");
         SystemBatchInput systemBatchInput = null;
         try {
             InputStream inputStream = null;
-            //FileInputStream fileInputStream = null;
-            //File targetFile = new File("src/main/resources/targetFile.tmp");
-
             systemBatchInput = systemBatchInputRepository.readSingleSystemBatchInputFile(String.valueOf(SystemBatchInputStatusEnum.PENDING.getStatus()));
             if(null != systemBatchInput) {
                 inputStream = new ByteArrayInputStream(systemBatchInput.getPayload().getBytes(StandardCharsets.ISO_8859_1));
-                //FileUtils.copyInputStreamToFile(inputStream, targetFile);
-                //fileInputStream = new FileInputStream(targetFile);
-                transferFileID = systemBatchInput.getId();
                 updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSING.getStatus());
                 statementSplitter.batchFileSplit(inputStream, systemBatchInput.getFilename(), systemBatchInput);
                 updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSED.getStatus());
@@ -63,7 +56,6 @@ public class StatementServiceImpl implements StatementService {
     }
 
     void updateStatusOfIMSystemBatchInput(SystemBatchInput systemBatchInput , String status) {
-        //SystemBatchInput imSystemBatchInput = systemBatchInputRepository.findOne(id);
         systemBatchInput.setStatus(status);
         systemBatchInput.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         systemBatchInputRepository.save(systemBatchInput);

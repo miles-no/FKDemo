@@ -8,4 +8,5 @@ public interface IMConstants {
     static final String DESTINATION_PATH = "destinationPath";
     static final String PDF_GENERATED_FOLDER_NAME = "pdfGeneratedFolderName";
     static final String ATTACHMENT_PDF_FOLDER_NAME = "attachmentPDFFolderName";
+    static final String PROCESSED_XML_FOLDER_NAME = "processedxmlfoldername";
 }

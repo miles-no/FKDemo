@@ -25,9 +25,9 @@ import java.util.List;
  * Created by bhavi on 5/8/2017.
  */
 @Service
-public class PreprocessServiceImpl implements PreprocessorService {
+public class PreprocessorServiceImpl implements PreprocessorService {
 
-    private static final Logger logger = LoggerFactory.getLogger(PreprocessServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(PreprocessorServiceImpl.class);
 
     @Autowired
     Unmarshaller unMarshaller;
@@ -83,8 +83,14 @@ public class PreprocessServiceImpl implements PreprocessorService {
         return statement;
     }
 
+    private void decodeAndUnmarshalEHFAttachment(Statement statement){
+        for(Attachment attachment : statement.getAttachments().getAttachment()){
+
+        }
+    }
+
     @Transactional
-    public void preprocess(){
+    public void preprocess() throws IOException {
         StopWatch stopwatch = new StopWatch("Preprocessing");
         stopwatch.start();
         List<no.fjordkraft.im.model.Statement> statementList = statementRepository.readStatements(StatementStatusEnum.PENDING.name());

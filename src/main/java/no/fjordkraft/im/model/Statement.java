@@ -14,7 +14,7 @@ public class Statement {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator = "SEQ")
     @SequenceGenerator(name="SEQ", sequenceName="IM_STATEMENT_SEQ")
-    private Long Id;
+    private Long id;
 
     /*@Column(name="SI_ID")
     private Long siId;*/
@@ -55,11 +55,11 @@ public class Statement {
     private Integer pdfAttachment;
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        id = id;
     }
 
     /*public Long getSiId() {

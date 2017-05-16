@@ -49,7 +49,7 @@ public class CurrentInterestRates {
      * 
      * @return
      *     possible object is
-     *     {@link InterestRate }
+     *     {@link no.fjordkraft.im.if320.models.InterestRate }
      *     
      */
     public InterestRate getInterestRate() {
@@ -61,7 +61,7 @@ public class CurrentInterestRates {
      * 
      * @param value
      *     allowed object is
-     *     {@link InterestRate }
+     *     {@link no.fjordkraft.im.if320.models.InterestRate }
      *     
      */
     public void setInterestRate(InterestRate value) {

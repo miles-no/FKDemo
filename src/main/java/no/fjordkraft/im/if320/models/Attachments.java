@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-		"attachmentList","attachment"
+        "attachmentList","attachment"
 })
 @XmlRootElement(name = "Attachments")
 public class Attachments {
@@ -67,7 +67,7 @@ public class Attachments {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Attachment }
+     * {@link no.fjordkraft.im.if320.models.Attachment }
      * 
      * 
      */

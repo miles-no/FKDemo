@@ -13,7 +13,7 @@ public class SystemBatchInput {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator = "SEQ")
     @SequenceGenerator(name="SEQ", sequenceName="IM_SYSTEM_BATCH_INPUT_SEQ")
-    private Long Id;
+    private Long id;
 
     @Column(name="TF_ID")
     private Long tfId;
@@ -32,11 +32,11 @@ public class SystemBatchInput {
     private Timestamp updateTime;
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        id = id;
     }
 
     public Long getTfId() {

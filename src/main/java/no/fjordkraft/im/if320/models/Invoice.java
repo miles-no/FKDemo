@@ -8,11 +8,8 @@
 
 package no.fjordkraft.im.if320.models;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -48,7 +45,11 @@ import javax.xml.bind.annotation.XmlType;
     "passThroughInvoiceInfo109",
     "invoiceOrder",
     "vatSpecInvoice142",
-    "invoiceEndRecord199"
+    "invoiceEndRecord199",
+    "messageTimestamp",
+    "invoiceHeader",
+    "invoiceDetails",
+    "invoiceSummary"
 })
 @XmlRootElement(name = "Invoice")
 public class Invoice {
@@ -68,12 +69,28 @@ public class Invoice {
     @XmlElement(name = "InvoiceEndRecord-199", required = true)
     protected InvoiceEndRecord199 invoiceEndRecord199;
 
+    @XmlElement(name = "MessageTimestamp", required = true)
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar messageTimestamp;
+    @XmlElement(name = "InvoiceHeader", required = true)
+    protected InvoiceHeader invoiceHeader;
+    @XmlElement(name = "InvoiceDetails", required = true)
+    protected InvoiceDetails invoiceDetails;
+    @XmlElement(name = "InvoiceSummary", required = true)
+    protected InvoiceSummary invoiceSummary;
+    @XmlAttribute(name = "MessageOwner")
+    protected String messageOwner;
+    @XmlAttribute(name = "MessageType")
+    protected String messageType;
+    @XmlAttribute(name = "MessageVersion")
+    protected Float messageVersion;
+
     /**
      * Gets the value of the mainInvoiceInfo101 property.
      * 
      * @return
      *     possible object is
-     *     {@link MainInvoiceInfo101 }
+     *     {@link no.fjordkraft.im.if320.models.MainInvoiceInfo101 }
      *     
      */
     public MainInvoiceInfo101 getMainInvoiceInfo101() {
@@ -85,7 +102,7 @@ public class Invoice {
      * 
      * @param value
      *     allowed object is
-     *     {@link MainInvoiceInfo101 }
+     *     {@link no.fjordkraft.im.if320.models.MainInvoiceInfo101 }
      *     
      */
     public void setMainInvoiceInfo101(MainInvoiceInfo101 value) {
@@ -97,7 +114,7 @@ public class Invoice {
      * 
      * @return
      *     possible object is
-     *     {@link CustomerInfo103 }
+     *     {@link no.fjordkraft.im.if320.models.CustomerInfo103 }
      *     
      */
     public CustomerInfo103 getCustomerInfo103() {
@@ -109,7 +126,7 @@ public class Invoice {
      * 
      * @param value
      *     allowed object is
-     *     {@link CustomerInfo103 }
+     *     {@link no.fjordkraft.im.if320.models.CustomerInfo103 }
      *     
      */
     public void setCustomerInfo103(CustomerInfo103 value) {
@@ -121,7 +138,7 @@ public class Invoice {
      * 
      * @return
      *     possible object is
-     *     {@link InvoiceAgreementInfo105 }
+     *     {@link no.fjordkraft.im.if320.models.InvoiceAgreementInfo105 }
      *     
      */
     public InvoiceAgreementInfo105 getInvoiceAgreementInfo105() {
@@ -133,7 +150,7 @@ public class Invoice {
      * 
      * @param value
      *     allowed object is
-     *     {@link InvoiceAgreementInfo105 }
+     *     {@link no.fjordkraft.im.if320.models.InvoiceAgreementInfo105 }
      *     
      */
     public void setInvoiceAgreementInfo105(InvoiceAgreementInfo105 value) {
@@ -145,7 +162,7 @@ public class Invoice {
      * 
      * @return
      *     possible object is
-     *     {@link PassThroughInvoiceInfo109 }
+     *     {@link no.fjordkraft.im.if320.models.PassThroughInvoiceInfo109 }
      *     
      */
     public PassThroughInvoiceInfo109 getPassThroughInvoiceInfo109() {
@@ -157,7 +174,7 @@ public class Invoice {
      * 
      * @param value
      *     allowed object is
-     *     {@link PassThroughInvoiceInfo109 }
+     *     {@link no.fjordkraft.im.if320.models.PassThroughInvoiceInfo109 }
      *     
      */
     public void setPassThroughInvoiceInfo109(PassThroughInvoiceInfo109 value) {
@@ -169,7 +186,7 @@ public class Invoice {
      * 
      * @return
      *     possible object is
-     *     {@link InvoiceOrder }
+     *     {@link no.fjordkraft.im.if320.models.InvoiceOrder }
      *     
      */
     public InvoiceOrder getInvoiceOrder() {
@@ -181,7 +198,7 @@ public class Invoice {
      * 
      * @param value
      *     allowed object is
-     *     {@link InvoiceOrder }
+     *     {@link no.fjordkraft.im.if320.models.InvoiceOrder }
      *     
      */
     public void setInvoiceOrder(InvoiceOrder value) {
@@ -193,7 +210,7 @@ public class Invoice {
      * 
      * @return
      *     possible object is
-     *     {@link VatSpecInvoice142 }
+     *     {@link no.fjordkraft.im.if320.models.VatSpecInvoice142 }
      *     
      */
     public VatSpecInvoice142 getVatSpecInvoice142() {
@@ -205,7 +222,7 @@ public class Invoice {
      * 
      * @param value
      *     allowed object is
-     *     {@link VatSpecInvoice142 }
+     *     {@link no.fjordkraft.im.if320.models.VatSpecInvoice142 }
      *     
      */
     public void setVatSpecInvoice142(VatSpecInvoice142 value) {
@@ -217,7 +234,7 @@ public class Invoice {
      * 
      * @return
      *     possible object is
-     *     {@link InvoiceEndRecord199 }
+     *     {@link no.fjordkraft.im.if320.models.InvoiceEndRecord199 }
      *     
      */
     public InvoiceEndRecord199 getInvoiceEndRecord199() {
@@ -229,11 +246,179 @@ public class Invoice {
      * 
      * @param value
      *     allowed object is
-     *     {@link InvoiceEndRecord199 }
+     *     {@link no.fjordkraft.im.if320.models.InvoiceEndRecord199 }
      *     
      */
     public void setInvoiceEndRecord199(InvoiceEndRecord199 value) {
         this.invoiceEndRecord199 = value;
+    }
+
+    /**
+     * Gets the value of the messageTimestamp property.
+     *
+     * @return
+     *     possible object is
+     *     {@link javax.xml.datatype.XMLGregorianCalendar }
+     *
+     */
+    public XMLGregorianCalendar getMessageTimestamp() {
+        return messageTimestamp;
+    }
+
+    /**
+     * Sets the value of the messageTimestamp property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link javax.xml.datatype.XMLGregorianCalendar }
+     *
+     */
+    public void setMessageTimestamp(XMLGregorianCalendar value) {
+        this.messageTimestamp = value;
+    }
+
+    /**
+     * Gets the value of the invoiceHeader property.
+     *
+     * @return
+     *     possible object is
+     *     {@link no.fjordkraft.im.if320.models.InvoiceHeader }
+     *
+     */
+    public InvoiceHeader getInvoiceHeader() {
+        return invoiceHeader;
+    }
+
+    /**
+     * Sets the value of the invoiceHeader property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link no.fjordkraft.im.if320.models.InvoiceHeader }
+     *
+     */
+    public void setInvoiceHeader(InvoiceHeader value) {
+        this.invoiceHeader = value;
+    }
+
+    /**
+     * Gets the value of the invoiceDetails property.
+     *
+     * @return
+     *     possible object is
+     *     {@link no.fjordkraft.im.if320.models.InvoiceDetails }
+     *
+     */
+    public InvoiceDetails getInvoiceDetails() {
+        return invoiceDetails;
+    }
+
+    /**
+     * Sets the value of the invoiceDetails property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link no.fjordkraft.im.if320.models.InvoiceDetails }
+     *
+     */
+    public void setInvoiceDetails(InvoiceDetails value) {
+        this.invoiceDetails = value;
+    }
+
+    /**
+     * Gets the value of the invoiceSummary property.
+     *
+     * @return
+     *     possible object is
+     *     {@link no.fjordkraft.im.if320.models.InvoiceSummary }
+     *
+     */
+    public InvoiceSummary getInvoiceSummary() {
+        return invoiceSummary;
+    }
+
+    /**
+     * Sets the value of the invoiceSummary property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link no.fjordkraft.im.if320.models.InvoiceSummary }
+     *
+     */
+    public void setInvoiceSummary(InvoiceSummary value) {
+        this.invoiceSummary = value;
+    }
+
+    /**
+     * Gets the value of the messageOwner property.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getMessageOwner() {
+        return messageOwner;
+    }
+
+    /**
+     * Sets the value of the messageOwner property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setMessageOwner(String value) {
+        this.messageOwner = value;
+    }
+
+    /**
+     * Gets the value of the messageType property.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getMessageType() {
+        return messageType;
+    }
+
+    /**
+     * Sets the value of the messageType property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setMessageType(String value) {
+        this.messageType = value;
+    }
+
+    /**
+     * Gets the value of the messageVersion property.
+     *
+     * @return
+     *     possible object is
+     *     {@link Float }
+     *
+     */
+    public Float getMessageVersion() {
+        return messageVersion;
+    }
+
+    /**
+     * Sets the value of the messageVersion property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link Float }
+     *
+     */
+    public void setMessageVersion(Float value) {
+        this.messageVersion = value;
     }
 
 }

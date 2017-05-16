@@ -30,9 +30,11 @@ public class PDFAttachmentRemover extends BasePreprocessor {
                 Attachment attachment = iterator.next();
                 if ("PDF".equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
                     iterator.remove();
+                } else if ("PDFEHF".equals(attachment.getFAKTURA().getVEDLEGGFORMAT()) || "PDFE2B".equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
+                    attachment.getFAKTURA().setVEDLEGGPDF(null);
+
                 }
             }
-            System.out.println(request.getStatement().getAttachments().getAttachment().size());
         }
     }
 }

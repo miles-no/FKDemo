@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ClassUtils;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,9 +34,19 @@ public class PreprocessorEngineImpl implements PreprocessorEngine {
 
     @PostConstruct
     public void init() {
-       // System.out.println(preprocessorList);
        Collections.sort(preprocessorList);
-       System.out.println(preprocessorList);
+    }
+
+    @Override
+    public void registerPreprocessor() {
+
+    }
+
+    @Override
+    public void execute(PreprocessRequest request) throws IOException {
+          for(Preprocessor preprocessor:preprocessorList){
+              preprocessor.preprocess(request);
+          }
     }
 
     public List<Preprocessor> getPreprocessorList() {
@@ -46,15 +57,5 @@ public class PreprocessorEngineImpl implements PreprocessorEngine {
         this.preprocessorList = preprocessorList;
     }
 
-    @Override
-    public void registerPreprocessor() {
 
-    }
-
-    @Override
-    public void execute(PreprocessRequest request) {
-          for(Preprocessor preprocessor:preprocessorList){
-              preprocessor.preprocess(request);
-          }
-    }
 }

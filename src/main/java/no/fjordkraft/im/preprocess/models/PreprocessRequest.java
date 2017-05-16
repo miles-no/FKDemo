@@ -11,6 +11,8 @@ public class PreprocessRequest<T,K> {
 
     String pathToAttachmentPDF;
 
+    String pathToProcessedXml;
+
     public T getStatement() {
         return statement;
     }
@@ -33,5 +35,13 @@ public class PreprocessRequest<T,K> {
 
     public void setPathToAttachmentPDF(String pathToAttachmentPDF) {
         this.pathToAttachmentPDF = pathToAttachmentPDF;
+    }
+
+    public String getPathToProcessedXml() {
+        return pathToProcessedXml;
+    }
+
+    public void setPathToProcessedXml(String pathToProcessedXml) {
+        this.pathToProcessedXml = pathToProcessedXml;
     }
 }

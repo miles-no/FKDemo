@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlMixed;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -39,14 +40,15 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "content"
+    "distribution"
 })
 @XmlRootElement(name = "Distributions")
 public class Distributions {
 
-    @XmlElementRef(name = "Distribution", type = Distribution.class, required = false)
-    @XmlMixed
-    protected List<Object> content;
+    /*@XmlElementRef(name = "Distribution", type = Distribution.class, required = false)
+    @XmlMixed*/
+	@XmlElement(name = "Distribution", required = true)
+    protected List<Distribution> distribution;
 
     /**
      * Gets the value of the content property.
@@ -66,16 +68,16 @@ public class Distributions {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Distribution }
+     * {@link no.fjordkraft.im.if320.models.Distribution }
      * {@link String }
      * 
      * 
      */
-    public List<Object> getContent() {
-        if (content == null) {
-            content = new ArrayList<Object>();
+    public List<Distribution> getDistribution() {
+        if (distribution == null) {
+        	distribution = new ArrayList<Distribution>();
         }
-        return this.content;
+        return this.distribution;
     }
 
 }

@@ -55,8 +55,12 @@ import javax.xml.bind.annotation.XmlType;
     "fakturamerkeso",
     "vedleggformat",
     "vedleggemuxml",
+    //"vedlegge2BObj",
     "vedlegge2B",
-    "vedleggpdf"
+    "vedleggpdf",
+    "vedlegge2BObj",
+    "vedleggehf",
+    "vedleggehfObj"
 })
 @XmlRootElement(name = "FAKTURA")
 public class FAKTURA {
@@ -83,6 +87,12 @@ public class FAKTURA {
     protected String vedlegge2B;
     @XmlElement(name = "VEDLEGG_PDF")
     protected String vedleggpdf;
+    @XmlElement(name = "VEDLEGG_E2B", required = true)
+    protected VEDLEGGE2B vedlegge2BObj;
+    @XmlElement(name = "VEDLEGG_EHF", required = true)
+    protected VEDLEGGEHF vedleggehfObj;
+    @XmlElement(name = "VEDLEGG_EHF", required = true)
+    protected String vedleggehf;
 
     /**
      * Gets the value of the aktor property.
@@ -265,7 +275,7 @@ public class FAKTURA {
      * 
      * @return
      *     possible object is
-     *     {@link VEDLEGGEMUXML }
+     *     {@link no.fjordkraft.im.if320.models.VEDLEGGEMUXML }
      *     
      */
     public VEDLEGGEMUXML getVEDLEGGEMUXML() {
@@ -277,7 +287,7 @@ public class FAKTURA {
      * 
      * @param value
      *     allowed object is
-     *     {@link VEDLEGGEMUXML }
+     *     {@link no.fjordkraft.im.if320.models.VEDLEGGEMUXML }
      *     
      */
     public void setVEDLEGGEMUXML(VEDLEGGEMUXML value) {
@@ -332,4 +342,67 @@ public class FAKTURA {
         this.vedleggpdf = value;
     }
 
+    /**
+     * Gets the value of the vedlegge2B property.
+     *
+     * @return
+     *     possible object is
+     *     {@link no.fjordkraft.im.if320.models.VEDLEGGE2B }
+     *
+     *//*
+    public VEDLEGGE2B getVEDLEGGE2B() {
+        return vedlegge2BObj;
+    }
+
+    *//**
+     * Sets the value of the vedlegge2B property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link no.fjordkraft.im.if320.models.VEDLEGGE2B }
+     *
+     *//*
+    public void setVEDLEGGE2B(VEDLEGGE2B value) {
+        this.vedlegge2BObj = value;
+    }*/
+
+    public VEDLEGGE2B getVedlegge2BObj() {
+        return vedlegge2BObj;
+    }
+
+    public void setVedlegge2BObj(VEDLEGGE2B vedlegge2BObj) {
+        this.vedlegge2BObj = vedlegge2BObj;
+    }
+
+    public String getVedlegge2B() {
+        return vedlegge2B;
+    }
+
+    public void setVedlegge2B(String vedlegge2B) {
+        this.vedlegge2B = vedlegge2B;
+    }
+
+    public String getVedleggpdf() {
+        return vedleggpdf;
+    }
+
+    public void setVedleggpdf(String vedleggpdf) {
+        this.vedleggpdf = vedleggpdf;
+    }
+
+    public VEDLEGGEHF getVedleggehfObj() {
+        return vedleggehfObj;
+    }
+
+    public void setVedleggehfObj(VEDLEGGEHF vedleggehfObj) {
+        this.vedleggehfObj = vedleggehfObj;
+    }
+
+    public String getVedleggehf() {
+        return vedleggehf;
+    }
+
+    public void setVedleggehf(String vedleggehf) {
+        this.vedleggehf = vedleggehf;
+    }
 }

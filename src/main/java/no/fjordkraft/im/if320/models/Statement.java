@@ -973,7 +973,7 @@ public class Statement {
      * 
      * @return
      *     possible object is
-     *     {@link CurrentInterestRates }
+     *     {@link no.fjordkraft.im.if320.models.CurrentInterestRates }
      *     
      */
     public CurrentInterestRates getCurrentInterestRates() {
@@ -985,7 +985,7 @@ public class Statement {
      * 
      * @param value
      *     allowed object is
-     *     {@link CurrentInterestRates }
+     *     {@link no.fjordkraft.im.if320.models.CurrentInterestRates }
      *     
      */
     public void setCurrentInterestRates(CurrentInterestRates value) {
@@ -1021,7 +1021,7 @@ public class Statement {
      * 
      * @return
      *     possible object is
-     *     {@link Transactions }
+     *     {@link no.fjordkraft.im.if320.models.Transactions }
      *     
      */
     public Transactions getTransactions() {
@@ -1033,7 +1033,7 @@ public class Statement {
      * 
      * @param value
      *     allowed object is
-     *     {@link Transactions }
+     *     {@link no.fjordkraft.im.if320.models.Transactions }
      *     
      */
     public void setTransactions(Transactions value) {
@@ -1093,7 +1093,7 @@ public class Statement {
      * 
      * @return
      *     possible object is
-     *     {@link Attachments }
+     *     {@link no.fjordkraft.im.if320.models.Attachments }
      *     
      */
     public Attachments getAttachments() {
@@ -1105,7 +1105,7 @@ public class Statement {
      * 
      * @param value
      *     allowed object is
-     *     {@link Attachments }
+     *     {@link no.fjordkraft.im.if320.models.Attachments }
      *     
      */
     public void setAttachments(Attachments value) {
@@ -1317,7 +1317,7 @@ public class Statement {
      * 
      * @return
      *     possible object is
-     *     {@link AccountType }
+     *     {@link no.fjordkraft.im.if320.models.AccountType }
      *     
      */
     public AccountType getAccountType() {
@@ -1329,7 +1329,7 @@ public class Statement {
      * 
      * @param value
      *     allowed object is
-     *     {@link AccountType }
+     *     {@link no.fjordkraft.im.if320.models.AccountType }
      *     
      */
     public void setAccountType(AccountType value) {
@@ -1341,7 +1341,7 @@ public class Statement {
      * 
      * @return
      *     possible object is
-     *     {@link AccountCategory }
+     *     {@link no.fjordkraft.im.if320.models.AccountCategory }
      *     
      */
     public AccountCategory getAccountCategory() {
@@ -1353,7 +1353,7 @@ public class Statement {
      * 
      * @param value
      *     allowed object is
-     *     {@link AccountCategory }
+     *     {@link no.fjordkraft.im.if320.models.AccountCategory }
      *     
      */
     public void setAccountCategory(AccountCategory value) {

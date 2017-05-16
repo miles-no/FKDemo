@@ -361,7 +361,7 @@ public class Transaction {
      * 
      * @return
      *     possible object is
-     *     {@link Distributions }
+     *     {@link no.fjordkraft.im.if320.models.Distributions }
      *     
      */
     public Distributions getDistributions() {
@@ -373,7 +373,7 @@ public class Transaction {
      * 
      * @param value
      *     allowed object is
-     *     {@link Distributions }
+     *     {@link no.fjordkraft.im.if320.models.Distributions }
      *     
      */
     public void setDistributions(Distributions value) {
