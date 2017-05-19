@@ -85,7 +85,8 @@ public class Attachments {
 	public void setAttachmentList(List<String> attachmentList) {
 		this.attachmentList = attachmentList;
 	}
-    
-    
 
+    public void setAttachment(List<Attachment> attachment) {
+        this.attachment = attachment;
+    }
 }

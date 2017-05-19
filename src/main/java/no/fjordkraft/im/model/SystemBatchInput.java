@@ -17,6 +17,10 @@ public class SystemBatchInput {
 
     @Column(name="TF_ID")
     private Long tfId;
+
+    @Column(name="BRAND")
+    private String brand;
+
     @Column(name="FILENAME")
     private String filename;
 
@@ -85,5 +89,13 @@ public class SystemBatchInput {
 
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

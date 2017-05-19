@@ -17,4 +17,8 @@ public interface StatementRepository extends JpaRepository<Statement,Long> {
 
     @Query("select s from Statement s where rownum <= 25 and s.status = :status order by s.createTime asc")
     List<Statement> readStatements(@Param("status") String status);
+
+    @Query("select s from Statement s where s.statementId = :statementOcr")
+    Statement readStatementByStatementOCR(@Param("statementOcr") String statementOcr);
+
 }

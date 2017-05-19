@@ -53,6 +53,7 @@ public class TransferFileServiceImpl implements TransferFileService {
     void saveSingleIMSysteBatchInput(TransferFile transferFile) {
         SystemBatchInput imSystemBatchInput = new SystemBatchInput();
         imSystemBatchInput.setTfId(transferFile.getId());
+        imSystemBatchInput.setBrand(transferFile.getBrand());
         imSystemBatchInput.setFilename(transferFile.getFileName());
         imSystemBatchInput.setPayload(transferFile.getFileContent());
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());

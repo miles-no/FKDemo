@@ -36,6 +36,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element ref="{}PaymentTypeStatus"/&gt;
  *         &lt;element ref="{}EInvoiceId"/&gt;
  *         &lt;element ref="{}NationalId"/&gt;
+ *         &lt;element ref="{}Barcode"/&gt;
  *         &lt;element ref="{}Name"/&gt;
  *         &lt;element ref="{}CareOfName"/&gt;
  *         &lt;element ref="{}Address"/&gt;
@@ -101,6 +102,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "paymentTypeStatus",
     "eInvoiceId",
     "nationalId",
+    "barcode",
     "name",
     "careOfName",
     "address",
@@ -169,6 +171,8 @@ public class Statement {
     protected String eInvoiceId;
     @XmlElement(name = "NationalId")
     protected int nationalId;
+    @XmlElement(name = "Barcode", required = true)
+    protected long barcode;
     @XmlElement(name = "Name", required = true)
     protected String name;
     @XmlElement(name = "CareOfName", required = true)
@@ -1424,4 +1428,11 @@ public class Statement {
         this.creditedInvoice = value;
     }
 
+    public long getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(long barcode) {
+        this.barcode = barcode;
+    }
 }

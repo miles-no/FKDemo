@@ -40,6 +40,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element ref="{}GenInfoInvoiceOrder-125" maxOccurs="unbounded" minOccurs="0"/&gt;
  *         &lt;element ref="{}ConsumptionPillars-132"/&gt;
  *         &lt;element ref="{}InvoiceOrderEndRecord-134"/&gt;
+ *         &lt;element ref="{}Consumptions"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -62,6 +63,7 @@ import javax.xml.bind.annotation.XmlType;
     "yearlyConsumption123",
     "genInfoInvoiceOrder125",
     "consumptionPillars132",
+        "consumptions",
     "invoiceOrderEndRecord134"
 })
 @XmlRootElement(name = "InvoiceOrder")
@@ -93,6 +95,8 @@ public class InvoiceOrder {
     protected ConsumptionPillars132 consumptionPillars132;
     @XmlElement(name = "InvoiceOrderEndRecord-134", required = true)
     protected InvoiceOrderEndRecord134 invoiceOrderEndRecord134;
+    @XmlElement(name = "Consumptions", required = true)
+    protected Consumptions consumptions;
 
     /**
      * Gets the value of the invoiceOrderInfo110 property.
@@ -421,4 +425,11 @@ public class InvoiceOrder {
         this.invoiceOrderEndRecord134 = value;
     }
 
+    public Consumptions getConsumptions() {
+        return consumptions;
+    }
+
+    public void setConsumptions(Consumptions consumptions) {
+        this.consumptions = consumptions;
+    }
 }
