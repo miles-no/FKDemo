@@ -41,6 +41,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element ref="{}FreeText"/&gt;
  *         &lt;element ref="{}Distributions"/&gt;
  *         &lt;element ref="{}CollectionFeeForStatements"/&gt;
+ *         &lt;element ref="{}StartDate"/&gt;
+ *         &lt;element ref="{}EndDate"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -64,7 +66,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "url",
     "freeText",
     "distributions",
-    "collectionFeeForStatements"
+    "collectionFeeForStatements",
+    "startDate",
+    "endDate"
 })
 @XmlRootElement(name = "Transaction")
 public class Transaction {
@@ -99,6 +103,12 @@ public class Transaction {
     protected Distributions distributions;
     @XmlElement(name = "CollectionFeeForStatements", required = true)
     protected String collectionFeeForStatements;
+    @XmlElement(name = "StartDate", required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar startDate;
+    @XmlElement(name = "EndDate", required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar endDate;
 
     /**
      * Gets the value of the transactionId property.
@@ -404,4 +414,19 @@ public class Transaction {
         this.collectionFeeForStatements = value;
     }
 
+    public XMLGregorianCalendar getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(XMLGregorianCalendar startDate) {
+        this.startDate = startDate;
+    }
+
+    public XMLGregorianCalendar getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(XMLGregorianCalendar endDate) {
+        this.endDate = endDate;
+    }
 }

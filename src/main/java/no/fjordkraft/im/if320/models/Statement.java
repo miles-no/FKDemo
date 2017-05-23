@@ -66,6 +66,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element ref="{}CurrentInterestRates"/&gt;
  *         &lt;element ref="{}OutstandingClaims"/&gt;
  *         &lt;element ref="{}Transactions"/&gt;
+ *         &lt;element ref="{}TransactionGroup"/&gt;
  *         &lt;element ref="{}LineItems"/&gt;
  *         &lt;element ref="{}InstalmentAccounts"/&gt;
  *         &lt;element ref="{}Attachments"/&gt;
@@ -132,6 +133,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "currentInterestRates",
     "outstandingClaims",
     "transactions",
+    "transactionGroup",
     "lineItems",
     "instalmentAccounts",
     "attachments",
@@ -233,6 +235,8 @@ public class Statement {
     protected String outstandingClaims;
     @XmlElement(name = "Transactions", required = true)
     protected Transactions transactions;
+    @XmlElement(name = "TransactionGroup", required = true)
+    protected  TransactionGroup transactionGroup;
     @XmlElement(name = "LineItems", required = true)
     protected String lineItems;
     @XmlElement(name = "InstalmentAccounts", required = true)
@@ -1434,5 +1438,13 @@ public class Statement {
 
     public void setBarcode(long barcode) {
         this.barcode = barcode;
+    }
+
+    public TransactionGroup getTransactionGroup() {
+        return transactionGroup;
+    }
+
+    public void setTransactionGroup(TransactionGroup transactionGroup) {
+        this.transactionGroup = transactionGroup;
     }
 }

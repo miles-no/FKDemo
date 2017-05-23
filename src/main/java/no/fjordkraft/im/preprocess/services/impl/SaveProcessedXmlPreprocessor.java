@@ -1,6 +1,6 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
-import no.fjordkraft.im.if320.models.Statement;
+import no.fjordkraft.im.if320.models.*;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.repository.SystemConfigRepository;
@@ -19,6 +19,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by bhavi on 5/15/2017.
@@ -27,7 +30,7 @@ import java.io.IOException;
 @PreprocessorInfo(order=100)
 public class SaveProcessedXmlPreprocessor  extends BasePreprocessor {
 
-    private static final Logger logger = LoggerFactory.getLogger(PDFAttachmentRemover.class);
+    private static final Logger logger = LoggerFactory.getLogger(SaveProcessedXmlPreprocessor.class);
 
     @Autowired
     @Qualifier("marshaller")
@@ -45,6 +48,4 @@ public class SaveProcessedXmlPreprocessor  extends BasePreprocessor {
 
 
     }
-
-
 }
