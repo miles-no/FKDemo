@@ -95,7 +95,6 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             statement.setStatus(StatementStatusEnum.PRE_PROCESSING.getStatus());
             updateStatementEntity(statement);
             PreprocessorTask preprocessorTask = applicationContext.getBean(PreprocessorTask.class,statement);
-            //preprocessorTask.setStatement(statement);
             taskExecutor.execute(preprocessorTask);
         }
         stopwatch.stop();

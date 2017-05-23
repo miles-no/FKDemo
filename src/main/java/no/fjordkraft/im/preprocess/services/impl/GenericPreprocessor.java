@@ -1,6 +1,8 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
+import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.*;
+import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.repository.SystemConfigRepository;
@@ -12,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.Unmarshaller;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
-import sun.security.pkcs11.wrapper.Constants;
 
 import javax.xml.transform.stream.StreamSource;
 import java.io.ByteArrayInputStream;
@@ -38,29 +39,34 @@ public class GenericPreprocessor extends BasePreprocessor {
     Unmarshaller unMarshaller;
 
     @Override
-    public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) throws IOException {
-        StopWatch stopWatch = new StopWatch();
-        stopWatch.start("Unmarshall Attachments");
-        String invoiceNumber = request.getEntity().getInvoiceNumber();
-        String baseFolder = request.getEntity().getSystemBatchInput().getFilename();
-        String folderName = baseFolder.substring(0, baseFolder.indexOf('.'));
-        String basePath = configRepository.getConfigValue(IMConstants.DESTINATION_PATH);
-        String pdfGeneratedFolderName = configRepository.getConfigValue(IMConstants.PDF_GENERATED_FOLDER_NAME);
+    public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
 
-        File baseFile = new File(basePath + folderName + File.separator + invoiceNumber);
-        baseFile.mkdir();
-        File generatedPDFFile = new File(baseFile, pdfGeneratedFolderName);
-        generatedPDFFile.mkdir();
+        try {
+            StopWatch stopWatch = new StopWatch();
+            stopWatch.start("Unmarshall Attachments");
+            String invoiceNumber = request.getEntity().getInvoiceNumber();
+            String baseFolder = request.getEntity().getSystemBatchInput().getFilename();
+            String folderName = baseFolder.substring(0, baseFolder.indexOf('.'));
+            String basePath = configRepository.getConfigValue(IMConstants.DESTINATION_PATH);
+            String pdfGeneratedFolderName = configRepository.getConfigValue(IMConstants.PDF_GENERATED_FOLDER_NAME);
 
-        String processedXmlFolderName  = configRepository.getConfigValue(IMConstants.PROCESSED_XML_FOLDER_NAME);
-        File processedXmlFile = new File(baseFile,processedXmlFolderName);
-        processedXmlFile.mkdir();
-        request.setPathToProcessedXml(processedXmlFile.getAbsolutePath());
-        unmarshallAttachments(request.getStatement());
-        decodeAndUnmarshalEHFAttachment(request.getStatement());
-        stopWatch.stop();
-        logger.debug("generatedPDFFolder "+ generatedPDFFile.getAbsolutePath() + " attachmentPDFFile "  + processedXmlFile + processedXmlFile.getAbsolutePath() );
-        logger.debug("TIme taken for unmarshalling of attachment of statement with id  "+ request.getEntity().getId() + stopWatch.prettyPrint() );
+            File baseFile = new File(basePath + folderName + File.separator + invoiceNumber);
+            baseFile.mkdir();
+            File generatedPDFFile = new File(baseFile, pdfGeneratedFolderName);
+            generatedPDFFile.mkdir();
+
+            String processedXmlFolderName = configRepository.getConfigValue(IMConstants.PROCESSED_XML_FOLDER_NAME);
+            File processedXmlFile = new File(baseFile, processedXmlFolderName);
+            processedXmlFile.mkdir();
+            request.setPathToProcessedXml(processedXmlFile.getAbsolutePath());
+            unmarshallAttachments(request.getStatement());
+            decodeAndUnmarshalEHFAttachment(request.getStatement());
+            stopWatch.stop();
+            logger.debug("generatedPDFFolder " + generatedPDFFile.getAbsolutePath() + " attachmentPDFFile " + processedXmlFile + processedXmlFile.getAbsolutePath());
+            logger.debug("TIme taken for unmarshalling of attachment of statement with id  " + request.getEntity().getId() + stopWatch.prettyPrint());
+        } catch (Exception e) {
+            throw new PreprocessorException(e);
+        }
     }
 
 

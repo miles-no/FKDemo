@@ -16,6 +16,7 @@ import org.springframework.util.ClassUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -43,7 +44,7 @@ public class PreprocessorEngineImpl implements PreprocessorEngine {
     }
 
     @Override
-    public void execute(PreprocessRequest request) throws IOException {
+    public void execute(PreprocessRequest request) {
           for(Preprocessor preprocessor:preprocessorList){
               preprocessor.preprocess(request);
           }

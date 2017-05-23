@@ -27,7 +27,7 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
     TransactionGroupRepository transactionGroupRepository;
 
     @Override
-    public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) throws IOException {
+    public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
         Map<Long, Transaction> kraftTransactions = new HashMap<Long, Transaction>();
         Map<NettTransaction, Transaction> nettTransactions = new HashMap<NettTransaction, Transaction>();
         Map<String, Transaction> diverseRabatter = new HashMap<String, Transaction>();

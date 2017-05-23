@@ -4,23 +4,15 @@ import no.fjordkraft.im.if320.models.Attachment;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.model.InvoicePdf;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
-import no.fjordkraft.im.preprocess.services.Preprocessor;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 
 
 import no.fjordkraft.im.repository.InvoicePdfRepository;
-import no.fjordkraft.im.repository.SystemConfigRepository;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 /**
  * Created by bhavi on 5/8/2017.
