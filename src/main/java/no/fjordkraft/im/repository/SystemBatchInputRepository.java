@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by miles on 5/5/2017.
  */
@@ -14,4 +16,7 @@ public interface SystemBatchInputRepository extends JpaRepository<SystemBatchInp
 
     @Query("select s from SystemBatchInput s where rownum <= 1 and s.status = :status order by s.id asc")
     SystemBatchInput readSingleSystemBatchInputFile(@Param("status") String status);
+
+    @Query("select s from SystemBatchInput s where rownum <= 5 and s.status = :status order by s.id asc")
+    List<SystemBatchInput> readSystemBatchInputFile(@Param("status") String status);
 }

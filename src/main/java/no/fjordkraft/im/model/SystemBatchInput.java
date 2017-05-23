@@ -25,7 +25,7 @@ public class SystemBatchInput {
     private String filename;
 
     @Basic(fetch = FetchType.LAZY)
-    @Column(name="PAYLOAD")
+    @Column(name="PAYLOAD",updatable = false)
     @Lob
     private String payload;
     @Column(name="STATUS")

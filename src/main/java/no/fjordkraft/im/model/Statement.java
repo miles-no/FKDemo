@@ -23,7 +23,8 @@ public class Statement {
     @JoinColumn(name="SI_ID")
     private  SystemBatchInput systemBatchInput;
 
-    @Column(name="PAYLOAD")
+    @Column(name="PAYLOAD", updatable=false)
+    @Basic(fetch = FetchType.LAZY)
     @Lob
     private String payload;
 

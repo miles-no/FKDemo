@@ -6,6 +6,7 @@ import no.fjordkraft.im.model.TransferFile;
 import no.fjordkraft.im.repository.SystemBatchInputRepository;
 import no.fjordkraft.im.repository.SystemConfigRepository;
 import no.fjordkraft.im.repository.TransferFileRepository;
+import no.fjordkraft.im.services.SystemBatchInputService;
 import no.fjordkraft.im.services.TransferFileService;
 import no.fjordkraft.im.statusEnum.SystemBatchInputStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StopWatch;
 
 import java.io.File;
 import java.sql.Timestamp;
@@ -35,33 +37,28 @@ public class TransferFileServiceImpl implements TransferFileService {
     @Autowired
     private SystemConfigRepository systemConfigRepository;
 
+    @Autowired
+    private SystemBatchInputService systemBatchInputService;
+
     private static final Logger logger = LoggerFactory.getLogger(InvoiceFeedWatcherJob.class);
 
     @Transactional
     public void saveIMSystemBatchInput() {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
         List<TransferFile> transferFiles = transferFileRepository.readPendingTransferFiles("PENDING");
         logger.debug("Files to be read "+ transferFiles.size());
         if (null != transferFiles) {
             for(TransferFile singleTransferFile: transferFiles) {
-                saveSingleIMSysteBatchInput(singleTransferFile);
+                systemBatchInputService.saveSingleIMSysteBatchInput(singleTransferFile);
                 createOutputFolders(singleTransferFile.getFileName());
                 updateTransferFileStatus(singleTransferFile.getId(), "DONE");
             }
+            logger.debug("moved files " + transferFiles.size() + " " + stopWatch.prettyPrint());
         }
     }
 
-    void saveSingleIMSysteBatchInput(TransferFile transferFile) {
-        SystemBatchInput imSystemBatchInput = new SystemBatchInput();
-        imSystemBatchInput.setTfId(transferFile.getId());
-        imSystemBatchInput.setBrand(transferFile.getBrand());
-        imSystemBatchInput.setFilename(transferFile.getFileName());
-        imSystemBatchInput.setPayload(transferFile.getFileContent());
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        imSystemBatchInput.setCreateTime(timestamp);
-        imSystemBatchInput.setUpdateTime(timestamp);
-        imSystemBatchInput.setStatus(SystemBatchInputStatusEnum.PENDING.getStatus());
-        systemBatchInputRepository.save(imSystemBatchInput);
-    }
+
 
     void updateTransferFileStatus(Long id, String status) {
         TransferFile transferFile = transferFileRepository.findOne(id);
@@ -84,12 +81,12 @@ public class TransferFileServiceImpl implements TransferFileService {
         this.transferFileRepository = transferFileRepository;
     }
 
-    public SystemBatchInputRepository getSystemBatchInputRepository() {
-        return systemBatchInputRepository;
+    public SystemBatchInputService getSystemBatchInputService() {
+        return systemBatchInputService;
     }
 
-    public void setSystemBatchInputRepository(SystemBatchInputRepository systemBatchInputRepository) {
-        this.systemBatchInputRepository = systemBatchInputRepository;
+    public void setSystemBatchInputService(SystemBatchInputService systemBatchInputService) {
+        this.systemBatchInputService = systemBatchInputService;
     }
 
     public SystemConfigRepository getSystemConfigRepository() {

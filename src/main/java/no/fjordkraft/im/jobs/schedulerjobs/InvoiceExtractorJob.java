@@ -42,7 +42,7 @@ public class InvoiceExtractorJob  implements InterruptableJob {
 
     public void execute(Context context) {
         logger.debug("InvoiceExtractor job invoked " );
-        statementService.splitSystemBatchInputFile();
+        statementService.fetchAndSplit();
     }
 
     @Override

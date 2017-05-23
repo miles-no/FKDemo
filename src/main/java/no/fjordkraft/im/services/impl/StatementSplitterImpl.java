@@ -7,6 +7,7 @@ package no.fjordkraft.im.services.impl;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.model.SystemBatchInput;
 import no.fjordkraft.im.repository.StatementRepository;
+import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.services.StatementSplitter;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import org.apache.commons.io.FileUtils;
@@ -34,29 +35,26 @@ public class StatementSplitterImpl implements StatementSplitter {
     @Autowired
     StatementRepository statementRepository;
 
-    @Override
-    public void batchFileSplit(InputStream inputStream, String filename, SystemBatchInput systemBatchInput) throws XMLStreamException, IOException {
+    @Autowired
+    StatementService statementService;
 
-        StopWatch stopWatch = new StopWatch("StatementSplitterImpl::batchFileSplit");
-        stopWatch.start();
+    @Override
+    public void batchFileSplit(InputStream inputStream, String filename, SystemBatchInput systemBatchInput) throws Exception {
+
         XMLInputFactory factory = XMLInputFactory.newInstance();
         XMLEventReader eventReader = factory.createXMLEventReader(inputStream);
         splitAndSaveInDB(eventReader, systemBatchInput);
-        //long endTime = System.currentTimeMillis();
-        stopWatch.stop();
-        logger.debug(stopWatch.prettyPrint());
+
     }
 
-    private void splitAndSaveInDB(XMLEventReader eventReader, SystemBatchInput systemBatchInput) throws IOException {
+    private void splitAndSaveInDB(XMLEventReader eventReader, SystemBatchInput systemBatchInput) throws Exception {
+        String tempFilePath = "src/main/resources/"+systemBatchInput.getId()+".xml";
         try {
             Statement imStatement;
             XMLEventWriter writer = null;
-            //XMLEventFactory eventFactory = XMLEventFactory.newInstance();
             XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
-            //int i = 1;
             boolean isStatementOcr = false;
-            //String brandCode = "";
-            String tempFilePath = "src/main/resources/statementTargetFile.tmp";
+
             imStatement = new Statement();
             imStatement.setSystemBatchInput(systemBatchInput);
             while (eventReader.hasNext()) {
@@ -85,7 +83,8 @@ public class StatementSplitterImpl implements StatementSplitter {
                             writer.close();
                             writer = null;
                             //imStatement.setStatementType(brandCode);
-                            saveIMStatementinDB(new File(tempFilePath), imStatement);
+                            statementService.saveIMStatementinDB(new File(tempFilePath), imStatement);
+
                             imStatement = new Statement();
                             imStatement.setSystemBatchInput(systemBatchInput);
                         } else if (writer != null) {
@@ -108,23 +107,15 @@ public class StatementSplitterImpl implements StatementSplitter {
                             writer.add(event);
                 }
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (XMLStreamException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            logger.debug("Exception while splitting the file "+systemBatchInput.getId() + " "+ systemBatchInput.getFilename(),e);
+            throw e;
+        } finally {
+            File f = new File(tempFilePath);
+            if(f !=null && f.exists()){
+                logger.debug("deleting file with name "+ f.getAbsolutePath());
+                f.delete();
+            }
         }
-    }
-
-    void saveIMStatementinDB(File statementFile, Statement imStatement) throws IOException {
-        //Statement statement = new Statement();
-        String xml = FileUtils.readFileToString(statementFile, StandardCharsets.ISO_8859_1);
-
-        //statement.setSiId(imStatement.getSiId());
-        //statement.setStatementId(imStatement.getStatementId());
-        imStatement.setPayload(xml);
-        imStatement.setStatus(StatementStatusEnum.PENDING.getStatus());
-        imStatement.setCreateTime(new Timestamp(System.currentTimeMillis()));
-        imStatement.setUdateTime(new Timestamp(System.currentTimeMillis()));
-        statementRepository.save(imStatement);
     }
 }

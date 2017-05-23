@@ -34,18 +34,18 @@ public class BarcodePreprocessor extends BasePreprocessor {
     @Autowired
     BarcodeConfigRepository barcodeConfigRepository;
 
-    @Autowired
-    StatementRepository statementRepository;
+    /*@Autowired
+    StatementRepository statementRepository;*/
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) throws IOException {
 
-        String statementOcr = String.valueOf(request.getStatement().getStatementOcrNumber());
-        no.fjordkraft.im.model.Statement statement = statementRepository.readStatementByStatementOCR(statementOcr);
+        //String statementOcr = String.valueOf(request.getStatement().getStatementOcrNumber());
+        no.fjordkraft.im.model.Statement statement = request.getEntity();//statementRepository.readStatementByStatementOCR(statementOcr);
         BarcodeConfig barcodeConfig = barcodeConfigRepository.getBarcodeConfigBrand(statement.getSystemBatchInput().getBrand());
         String barcode = BARCODE_PREFIX + barcodeConfig.getAgreementNumber() + barcodeConfig.getServiceLevel()
                 +barcodeConfig.getPrefixKID() + request.getStatement().getAccountNumber();
-
+        logger.debug("Barcode for statementId "+ statement.getId() + " is "+ barcode);
         request.getStatement().setBarcode(Long.parseLong(barcode));
     }
 }

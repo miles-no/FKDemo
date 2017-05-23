@@ -14,7 +14,7 @@ import java.io.InputStream;
 public interface StatementSplitter {
     //void batchFileSplit(InputStream inputStream, String destinationPath, Long si_id) throws XMLStreamException, IOException;
 
-    void batchFileSplit(InputStream inputStream, String destinationPath, SystemBatchInput systemBatchInput) throws XMLStreamException, IOException;
+    void batchFileSplit(InputStream inputStream, String destinationPath, SystemBatchInput systemBatchInput) throws Exception;
 
 
 }
