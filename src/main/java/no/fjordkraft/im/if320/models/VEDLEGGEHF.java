@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "VEDLEGG_EHF")
 public class VEDLEGGEHF {
 
- /*@XmlElement(name = "Invoice", namespace = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" ,required = true)
+ @XmlElement(name = "Invoice", namespace = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" ,required = true)
  protected oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice invoice;
 
 public oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice getInvoice() {
@@ -49,7 +49,7 @@ public oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice getInvoice() {
 
 public void setInvoice(oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice invoice) {
 	this.invoice = invoice;
-}*/
+}
 
  
 

@@ -26,3 +26,5 @@ docs/target
 # Default IntelliJ Idea gradle war artifact output
 /classes/artifacts
 /dataimport
+*.logs
+*birt*
