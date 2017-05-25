@@ -1,16 +1,12 @@
 package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.jobs.schedulerjobs.InvoiceFeedWatcherJob;
-import no.fjordkraft.im.model.SystemBatchInput;
 import no.fjordkraft.im.model.TransferFile;
-import no.fjordkraft.im.repository.SystemBatchInputRepository;
-import no.fjordkraft.im.repository.SystemConfigRepository;
 import no.fjordkraft.im.repository.TransferFileRepository;
+import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.SystemBatchInputService;
 import no.fjordkraft.im.services.TransferFileService;
-import no.fjordkraft.im.statusEnum.SystemBatchInputStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
-import org.apache.tomcat.util.descriptor.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 
 import java.io.File;
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -32,10 +27,7 @@ public class TransferFileServiceImpl implements TransferFileService {
     private TransferFileRepository transferFileRepository;
 
     @Autowired
-    private SystemBatchInputRepository systemBatchInputRepository;
-
-    @Autowired
-    private SystemConfigRepository systemConfigRepository;
+    private ConfigService configService;
 
     @Autowired
     private SystemBatchInputService systemBatchInputService;
@@ -67,7 +59,7 @@ public class TransferFileServiceImpl implements TransferFileService {
     }
 
     void createOutputFolders(String filename){
-        String destinationPath = systemConfigRepository.getConfigValue(IMConstants.DESTINATION_PATH);
+        String destinationPath =configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
         String folderName = filename.substring(0, filename.indexOf('.'));
         File baseFolder = new File(new File(destinationPath) , folderName);
         baseFolder.mkdir();
@@ -89,11 +81,11 @@ public class TransferFileServiceImpl implements TransferFileService {
         this.systemBatchInputService = systemBatchInputService;
     }
 
-    public SystemConfigRepository getSystemConfigRepository() {
-        return systemConfigRepository;
+    public ConfigService getConfigService() {
+        return configService;
     }
 
-    public void setSystemConfigRepository(SystemConfigRepository systemConfigRepository) {
-        this.systemConfigRepository = systemConfigRepository;
+    public void setConfigService(ConfigService configService) {
+        this.configService = configService;
     }
 }

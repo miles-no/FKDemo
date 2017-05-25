@@ -147,4 +147,15 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         imStatement.setUdateTime(new Timestamp(System.currentTimeMillis()));
         statementRepository.saveAndFlush(imStatement);
     }
+
+    @Transactional()
+    public void saveIMStatementinDB(String xml, Statement imStatement) throws IOException {
+       // String xml = FileUtils.readFileToString(statementFile, StandardCharsets.ISO_8859_1);
+
+        imStatement.setPayload(xml);
+        imStatement.setStatus(StatementStatusEnum.PENDING.getStatus());
+        imStatement.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        imStatement.setUdateTime(new Timestamp(System.currentTimeMillis()));
+        statementRepository.saveAndFlush(imStatement);
+    }
 }

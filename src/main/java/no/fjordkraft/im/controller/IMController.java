@@ -53,13 +53,14 @@ public class IMController {
 
     static int index=10;
 
-    static String baseDirectory = "E:\\\\FuelKraft\\\\invoice_manager\\\\if320-samples";
+    //static String baseDirectory = "E:\\\\FuelKraft\\\\invoice_manager\\\\if320-samples";
+    static String baseDirectory = "E:\\FuelKraft\\bigfile";
 
     @Autowired
     InvoicePdfRepository invoicePdfRepository;
 
     @RequestMapping("/")
-    public String index() throws IOException {
+    public String index() throws Exception {
         try {
             StreamSource source = new StreamSource(new File("E:\\\\Tutorial\\\\workspace\\\\birtworkspace\\\\Parser\\\\StatementFile1.xml"));
             Statement stmt = (Statement)unMarshaller.unmarshal(source);

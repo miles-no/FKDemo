@@ -1,19 +1,15 @@
 package no.fjordkraft.im.services.impl;
 
-import com.itextpdf.text.FontFactory;
-import no.fjordkraft.im.controller.IMController;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.repository.StatementRepository;
-import no.fjordkraft.im.repository.SystemConfigRepository;
+import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.PDFGenerator;
 import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.task.PDFGeneratorTask;
 import no.fjordkraft.im.util.IMConstants;
 import org.eclipse.birt.core.exception.BirtException;
-import org.eclipse.birt.core.framework.Platform;
 import org.eclipse.birt.report.engine.api.*;
-import org.eclipse.core.internal.registry.RegistryProviderFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -27,13 +23,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 
-
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.sql.Timestamp;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.logging.Level;
 
 /**
  * Created by miles on 5/12/2017.
@@ -44,7 +37,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     private static final Logger logger = LoggerFactory.getLogger(PDFGeneratorImpl.class);
 
     @Autowired
-    SystemConfigRepository systemConfigRepository;
+    private ConfigService configService;
 
     @Autowired
     StatementRepository statementRepository;
@@ -59,23 +52,31 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     @Qualifier("PDFGeneratorExecutor")
     TaskExecutor taskExecutor;
 
-    String outputDirectoryPath;
-    String pdfGeneratedFolderName;
-    String xmlFolderName;
+    private String outputDirectoryPath;
+    private String pdfGeneratedFolderName;
+    private String xmlFolderName;
 
-    ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
-    public PDFGeneratorImpl(SystemConfigRepository systemConfigRepository) {
-        this.systemConfigRepository = systemConfigRepository;
-        outputDirectoryPath = systemConfigRepository.getConfigValue(IMConstants.DESTINATION_PATH);
-        pdfGeneratedFolderName = systemConfigRepository.getConfigValue(IMConstants.PDF_GENERATED_FOLDER_NAME);
-        xmlFolderName = systemConfigRepository.getConfigValue(IMConstants.PROCESSED_XML_FOLDER_NAME);
+    private String birtRPTPath;
+
+    public PDFGeneratorImpl(ConfigService configService) {
+        this.configService = configService;
+    }
+
+    @PostConstruct
+    public void initIt() throws Exception {
+        outputDirectoryPath = configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
+        pdfGeneratedFolderName = configService.getString(IMConstants.GENERATED_PDF_FOLDER_NAME);
+        xmlFolderName = configService.getString(IMConstants.PROCESSED_XML_FOLDER_NAME);
+        birtRPTPath = configService.getString(IMConstants.BIRT_RPTDESIGN_PATH);
     }
 
     @Override
     @Transactional
     public void generateInvoicePDF() throws InterruptedException {
-        List<Statement> statements = statementRepository.readStatements(StatementStatusEnum.PRE_PROCESSED.getStatus());
+        Long numOfThreads = configService.getLong(IMConstants.NUM_OF_THREAD_PDFGENERATOR);
+        List<Statement> statements = statementRepository.readStatements(numOfThreads, StatementStatusEnum.PRE_PROCESSED.getStatus());
         logger.debug("Generate invoice pdf for "+ statements.size() + " statements");
         for(Statement statement:statements) {
             statement.getSystemBatchInput().getFilename();
@@ -121,10 +122,10 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         long startTime = System.currentTimeMillis();
         try {
             //String xmlFilePath = "D:\\XMLTOPDF\\new_pdf\\multipleAttachmentsWithChartData.xml";
-            String xmlFilePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + invoiceNumber
-                    + File.separator + xmlFolderName + File.separator + "statement.xml";
+            String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + invoiceNumber + File.separator ;
+            String xmlFilePath =  basePath + xmlFolderName + File.separator + "statement.xml";
             //String reportDesignFilePath = "E:\\FuelKraft\\invoice_manager\\statementReport.rptdesign";
-            String reportDesignFilePath = "E:\\FuelKraft\\invoice_manager\\statementReport_barcode.rptdesign";
+            String reportDesignFilePath = birtRPTPath + File.separator + "statementReport_barcode.rptdesign";
 
 
             IReportRunnable runnable = reportEngine.openReportDesign(reportDesignFilePath);
@@ -134,8 +135,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             PDFRenderOption options = new PDFRenderOption();
             options.setEmbededFont(true);
             options.setOutputFormat("pdf");
-            options.setOutputFileName(outPutDirectoryPath + File.separator + statementFolderName + File.separator
-                    + invoiceNumber + File.separator + pdfGeneratedFolderName + File.separator + invoiceNumber + ".pdf");
+            options.setOutputFileName(basePath + pdfGeneratedFolderName + File.separator + invoiceNumber + ".pdf");
 
             task.setRenderOption(options);
             task.run();

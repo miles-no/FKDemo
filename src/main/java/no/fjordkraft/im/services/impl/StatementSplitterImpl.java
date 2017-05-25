@@ -57,15 +57,18 @@ public class StatementSplitterImpl implements StatementSplitter {
 
             imStatement = new Statement();
             imStatement.setSystemBatchInput(systemBatchInput);
+            StringWriter stringOut = null;
             while (eventReader.hasNext()) {
                 XMLEvent event = eventReader.nextEvent();
                 switch (event.getEventType()) {
                     case XMLStreamConstants.START_ELEMENT:
+                        //stringOut = new StringWriter();
                         StartElement startElement = event.asStartElement();
                         String qName = startElement.getName().getLocalPart();
                         if (("Statement").equalsIgnoreCase(qName)) {
+                            stringOut = new StringWriter();
                             writer = outputFactory
-                                    .createXMLEventWriter(new FileOutputStream(tempFilePath));
+                                    .createXMLEventWriter(stringOut);
                             writer.add(event);
                         } else if (qName.equalsIgnoreCase("StatementOcrNumber")) {
                             isStatementOcr = true;
@@ -83,8 +86,9 @@ public class StatementSplitterImpl implements StatementSplitter {
                             writer.close();
                             writer = null;
                             //imStatement.setStatementType(brandCode);
-                            statementService.saveIMStatementinDB(new File(tempFilePath), imStatement);
-
+                            statementService.saveIMStatementinDB(stringOut.toString(), imStatement);
+                            stringOut.getBuffer().setLength(0);
+                            //stringOut = null;
                             imStatement = new Statement();
                             imStatement.setSystemBatchInput(systemBatchInput);
                         } else if (writer != null) {

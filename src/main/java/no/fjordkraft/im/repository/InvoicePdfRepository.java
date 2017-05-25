@@ -1,7 +1,6 @@
 package no.fjordkraft.im.repository;
 
 import no.fjordkraft.im.model.InvoicePdf;
-import no.fjordkraft.im.model.SystemConfig;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

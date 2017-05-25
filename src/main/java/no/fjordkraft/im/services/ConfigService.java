@@ -21,4 +21,10 @@ public interface ConfigService {
 
     Boolean getBoolean(String key);
 
+    public Long getLong(String key);
+
+    void clearCache();
+
+    Config updateConfig(String key, String value);
+
 }

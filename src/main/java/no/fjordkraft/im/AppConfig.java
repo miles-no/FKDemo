@@ -3,7 +3,9 @@ package no.fjordkraft.im;
 import com.carfey.ops.job.di.SpringSchedulerStarter;
 import com.itextpdf.text.FontFactory;
 import no.fjordkraft.im.configuration.DbPlaceholderConfigurer;
+import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.util.IMConstants;
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.birt.core.exception.BirtException;
 import org.eclipse.birt.core.framework.Platform;
 import org.eclipse.birt.report.engine.api.EngineConfig;
@@ -11,6 +13,7 @@ import org.eclipse.birt.report.engine.api.IReportEngine;
 import org.eclipse.birt.report.engine.api.IReportEngineFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -22,6 +25,7 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.StopWatch;
 
+import java.io.File;
 import java.util.concurrent.Executor;
 import java.util.logging.Level;
 
@@ -32,7 +36,6 @@ import java.util.logging.Level;
 public class AppConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(AppConfig.class);
-
 
     @Bean
     public SpringSchedulerStarter getSpringSchedulerStarter() {return new SpringSchedulerStarter();}
@@ -55,32 +58,36 @@ public class AppConfig {
 
     }
 
+
     @Bean(name="FileSplitterExecutor")
-    public TaskExecutor getFileSplitterExecutor() {
+    public TaskExecutor getFileSplitterExecutor(ConfigService configService) {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(5);
-        executor.setMaxPoolSize(5);
-        executor.setQueueCapacity(500);
+        int maxPool = configService.getInteger(IMConstants.NUM_OF_THREAD_FILESPLITTER);
+        executor.setMaxPoolSize(maxPool);
+        executor.setQueueCapacity(Integer.valueOf(IMConstants.MAX_QUEUE_CAPACITY));
         executor.initialize();
         return executor;
     }
 
     @Bean(name="PreprocessorExecutor")
-     public TaskExecutor getPreprocessorExecutor() {
+     public TaskExecutor getPreprocessorExecutor(ConfigService configService) {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        int maxPool = configService.getInteger(IMConstants.NUM_OF_THREAD_PREPROCESSOR);
         executor.setCorePoolSize(10);
-        executor.setMaxPoolSize(35);
-        executor.setQueueCapacity(500);
+        executor.setMaxPoolSize(maxPool);
+        executor.setQueueCapacity((Integer.valueOf(IMConstants.MAX_QUEUE_CAPACITY)));
         executor.initialize();
         return executor;
     }
 
     @Bean(name="PDFGeneratorExecutor")
-    public TaskExecutor getPDFGeneratorExecutor() {
+    public TaskExecutor getPDFGeneratorExecutor(ConfigService configService) {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        int maxPool = configService.getInteger(IMConstants.NUM_OF_THREAD_PDFGENERATOR);
         executor.setCorePoolSize(10);
-        executor.setMaxPoolSize(35);
-        executor.setQueueCapacity(500);
+        executor.setMaxPoolSize(maxPool);
+        executor.setQueueCapacity((Integer.valueOf(IMConstants.MAX_QUEUE_CAPACITY)));
         executor.initialize();
         return executor;
     }
@@ -88,21 +95,25 @@ public class AppConfig {
 
 
     @Bean(name="BirtEngine")
-    public IReportEngine getBirtEngine() throws BirtException {
+    public IReportEngine getBirtEngine(ConfigService configService) throws BirtException {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("Initializing Birt engine");
-        FontFactory.register("E:\\FuelKraft\\font\\TrueType_FjorkraftNeoSans\\FjordkraftNeoSan.ttf", "Fjordkraft Neo Sans");
-        FontFactory.register("E:\\FuelKraft\\font\\TrueType_FjorkraftNeoSans\\FjordkraftNeoSanMed.ttf", "Fjordkraft Neo Sans Medium");
-        FontFactory.register("E:\\FuelKraft\\font\\TrueType_FjorkraftNeoSans\\FjordNeoSanLigIta.ttf", "Fjordkraft Neo Sans Lt It");
-        FontFactory.register("E:\\FuelKraft\\font\\TrueType_FjorkraftNeoSans\\FjordkraftNeoSanBol.ttf", "Fjordkraft Neo Sans Bd");
-        FontFactory.register("E:\\FuelKraft\\font\\TrueType_FjorkraftNeoSans\\FjordNeoSanBolIta.ttf", "Fjordkraft Neo Sans Bd It");
-        FontFactory.register("E:\\FuelKraft\\font\\TrueType_FjorkraftNeoSans\\FjordNeoSanMedIta.ttf", "Fjordkraft Neo Sans Med It");
-        FontFactory.register("E:\\FuelKraft\\font\\TrueType_FjorkraftNeoSans\\FjordNeoSanIta.ttf", "Fjordkraft Neo Sans It");
-        FontFactory.register("E:\\FuelKraft\\font\\TrueType_FjorkraftNeoSans\\FjordkraftNeoSanLig.ttf ", "Fjordkraft Neo Sans Lt");
+        String fontPath = configService.getString(IMConstants.CUSTOM_FONT_PATH);
+        FontFactory.register(fontPath+ File.separator + "FjordkraftNeoSan.ttf", "Fjordkraft Neo Sans");
+        FontFactory.register(fontPath+ File.separator + "FjordkraftNeoSanMed.ttf", "Fjordkraft Neo Sans Medium");
+        FontFactory.register(fontPath+ File.separator + "FjordNeoSanLigIta.ttf", "Fjordkraft Neo Sans Lt It");
+        FontFactory.register(fontPath+ File.separator + "FjordkraftNeoSanBol.ttf", "Fjordkraft Neo Sans Bd");
+        FontFactory.register(fontPath+ File.separator + "FjordNeoSanBolIta.ttf", "Fjordkraft Neo Sans Bd It");
+        FontFactory.register(fontPath+ File.separator + "FjordNeoSanMedIta.ttf", "Fjordkraft Neo Sans Med It");
+        FontFactory.register(fontPath+ File.separator + "FjordNeoSanIta.ttf", "Fjordkraft Neo Sans It");
+        FontFactory.register(fontPath+ File.separator + "FjordkraftNeoSanLig.ttf ", "Fjordkraft Neo Sans Lt");
         EngineConfig engineConfig = new EngineConfig();
         IReportEngine engine = null;
-        engineConfig.setEngineHome(IMConstants.BIRT_ENGINE_HOME_PATH);
-        engineConfig.setLogConfig(IMConstants.BIRT_ENGINE_LOG_PATH, Level.FINE);
+        //engineConfig.setEngineHome(IMConstants.BIRT_ENGINE_HOME_PATH);
+        String logPath = configService.getString(IMConstants.BIRT_ENGINE_LOG_PATH);
+        if(StringUtils.isNotEmpty(logPath)) {
+            engineConfig.setLogConfig(logPath, Level.FINE);
+        }
 
         Platform.startup(engineConfig);
         IReportEngineFactory factory = (IReportEngineFactory) Platform

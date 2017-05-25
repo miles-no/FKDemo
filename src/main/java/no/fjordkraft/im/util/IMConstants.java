@@ -5,14 +5,20 @@ package no.fjordkraft.im.util;
  */
 public interface IMConstants {
 
-    static final String DESTINATION_PATH = "destinationPath";
-    static final String PDF_GENERATED_FOLDER_NAME = "pdfGeneratedFolderName";
-    static final String ATTACHMENT_PDF_FOLDER_NAME = "attachmentPDFFolderName";
-    static final String BIRT_ENGINE_HOME_PATH = "birtEngineHomePath";
-    static final String BIRT_ENGINE_LOG_PATH = "birtEngineLogPath";
-    static final String PROCESSED_XML_FOLDER_NAME = "processedXmlFolderName";
-    static final String NETT = "NETT";
-    static final String KRAFT = "Kraft";
-    static final String RABATTER = "rabatter";
-    static final String DIVERSE = "diverse";
+    String BASE_DESTINATION_FOLDER_PATH = "base.destination.dir";
+    String GENERATED_PDF_FOLDER_NAME = "generated.pdf.folder.name";
+    String ATTACHMENT_PDF_FOLDER_NAME = "attachment.pdf.folder.name";
+    String BIRT_ENGINE_HOME_PATH = "birt.EngineHomePath";
+    String BIRT_ENGINE_LOG_PATH = "birt.log.path";
+    String PROCESSED_XML_FOLDER_NAME = "processedxml.folder.name";
+    String NETT = "NETT";
+    String KRAFT = "Kraft";
+    String RABATTER = "rabatter";
+    String DIVERSE = "diverse";
+    String CUSTOM_FONT_PATH="fjordkraft.custom.fonts.path";
+    String NUM_OF_THREAD_FILESPLITTER ="num.thread.file.splitter";
+    String NUM_OF_THREAD_PREPROCESSOR ="num.thread.preprocess";
+    String NUM_OF_THREAD_PDFGENERATOR ="num.thread.pdf.generator";
+    String MAX_QUEUE_CAPACITY="500";
+    String BIRT_RPTDESIGN_PATH = "birt.layout.file.path";
 }

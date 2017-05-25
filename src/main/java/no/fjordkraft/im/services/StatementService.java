@@ -27,4 +27,6 @@ public interface StatementService {
 
     void saveIMStatementinDB(File statementFile, Statement imStatement) throws IOException;
 
+    public void saveIMStatementinDB(String xml, Statement imStatement) throws IOException;
+
 }

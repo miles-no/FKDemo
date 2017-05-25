@@ -10,12 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "config")
+@Table(name = "IM_CONFIG")
 public class Config {
 
     @Id
-    @Column(name = "key")
-    private String key;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "value")
     private String value;
@@ -23,17 +23,17 @@ public class Config {
     public Config() {
     }
 
-    public Config(String key, String value) {
-        this.key = key;
+    public Config(String name, String value) {
+        this.name = name;
         this.value = value;
     }
 
-    public String getKey() {
-        return key;
+    public String getName() {
+        return name;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getValue() {
@@ -48,8 +48,8 @@ public class Config {
     public String toString() {
         StringBuilder b = new StringBuilder();
         b.append("Config[");
-        b.append("key=");
-        b.append(key);
+        b.append("name=");
+        b.append(name);
         b.append(", value=");
         b.append(value);
         b.append("]");

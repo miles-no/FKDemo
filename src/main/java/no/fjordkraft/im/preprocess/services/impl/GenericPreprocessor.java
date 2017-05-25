@@ -2,10 +2,9 @@ package no.fjordkraft.im.preprocess.services.impl;
 
 import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.*;
-import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
-import no.fjordkraft.im.repository.SystemConfigRepository;
+import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.util.IMConstants;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
@@ -33,10 +32,10 @@ public class GenericPreprocessor extends BasePreprocessor {
     private static final Logger logger = LoggerFactory.getLogger(PDFAttachmentExtractor.class);
 
     @Autowired
-    public SystemConfigRepository configRepository;
+    private ConfigService configService;
 
     @Autowired
-    Unmarshaller unMarshaller;
+    private Unmarshaller unMarshaller;
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
@@ -47,15 +46,15 @@ public class GenericPreprocessor extends BasePreprocessor {
             String invoiceNumber = request.getEntity().getInvoiceNumber();
             String baseFolder = request.getEntity().getSystemBatchInput().getFilename();
             String folderName = baseFolder.substring(0, baseFolder.indexOf('.'));
-            String basePath = configRepository.getConfigValue(IMConstants.DESTINATION_PATH);
-            String pdfGeneratedFolderName = configRepository.getConfigValue(IMConstants.PDF_GENERATED_FOLDER_NAME);
+            String basePath = configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
+            String pdfGeneratedFolderName = configService.getString(IMConstants.GENERATED_PDF_FOLDER_NAME);
 
             File baseFile = new File(basePath + folderName + File.separator + invoiceNumber);
             baseFile.mkdir();
             File generatedPDFFile = new File(baseFile, pdfGeneratedFolderName);
             generatedPDFFile.mkdir();
 
-            String processedXmlFolderName = configRepository.getConfigValue(IMConstants.PROCESSED_XML_FOLDER_NAME);
+            String processedXmlFolderName = configService.getString(IMConstants.PROCESSED_XML_FOLDER_NAME);
             File processedXmlFile = new File(baseFile, processedXmlFolderName);
             processedXmlFile.mkdir();
             request.setPathToProcessedXml(processedXmlFile.getAbsolutePath());
@@ -65,6 +64,7 @@ public class GenericPreprocessor extends BasePreprocessor {
             logger.debug("generatedPDFFolder " + generatedPDFFile.getAbsolutePath() + " attachmentPDFFile " + processedXmlFile + processedXmlFile.getAbsolutePath());
             logger.debug("TIme taken for unmarshalling of attachment of statement with id  " + request.getEntity().getId() + stopWatch.prettyPrint());
         } catch (Exception e) {
+            logger.debug("Exception in generic preprocessor",e);
             throw new PreprocessorException(e);
         }
     }
@@ -75,13 +75,11 @@ public class GenericPreprocessor extends BasePreprocessor {
             data = data.replaceAll("&lt;!\\[CDATA\\[", "");
             data = data.replaceAll("\\]\\]&gt;","" );
             data = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n" + data;
-            //Unmarshaller unmarshaller =  jaxbContext2.createUnmarshaller();
             StreamSource source = new StreamSource(new ByteArrayInputStream(data.getBytes(StandardCharsets.ISO_8859_1)));
             FAKTURA faktura = (FAKTURA)unMarshaller.unmarshal(source);
             Attachment attachment = new Attachment();
             attachment.setFAKTURA(faktura);
             statement.getAttachments().getAttachment().add(attachment);
-            System.out.println(faktura);
         }
         statement.getAttachments().setAttachmentList(null);
         return statement;
