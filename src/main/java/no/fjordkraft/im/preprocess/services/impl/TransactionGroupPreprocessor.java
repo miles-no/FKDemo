@@ -3,17 +3,12 @@ package no.fjordkraft.im.preprocess.services.impl;
 import no.fjordkraft.im.if320.models.*;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.if320.models.TransactionGroup;
-import no.fjordkraft.im.model.*;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
-import no.fjordkraft.im.repository.TransactionGroupRepository;
 import no.fjordkraft.im.util.IMConstants;
 import org.apache.commons.collections4.map.MultiValueMap;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
 
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -23,163 +18,60 @@ import java.util.*;
 @PreprocessorInfo(order=6)
 public class TransactionGroupPreprocessor  extends BasePreprocessor{
 
-    @Autowired
-    TransactionGroupRepository transactionGroupRepository;
-
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
-        Map<Long, Transaction> kraftTransactions = new HashMap<Long, Transaction>();
-        Map<NettTransaction, Transaction> nettTransactions = new HashMap<NettTransaction, Transaction>();
-        Map<String, Transaction> diverseRabatter = new HashMap<String, Transaction>();
-
         List<Transaction> transactions = request.getStatement().getTransactions().getTransaction();
         List<Attachment> attachments = request.getStatement().getAttachments().getAttachment();
-
-        TransactionGroup transactionGroup = new TransactionGroup();
         List<Transaction> processedTransaction = new ArrayList<Transaction>();
+        TransactionGroup transactionGroup = new TransactionGroup();
+
+        List<Transaction> kraftTransaction = new ArrayList<Transaction>();
+        List<Transaction> nettTransaction =  new ArrayList<Transaction>();
         List<Distribution> distributions = new ArrayList<Distribution>();
         Distribution distribuion = null;
-        String referenceNumber = null;
-        Long meter = null;
-        boolean meterFound = false;
-        NettTransaction nettTransaction = null;
-        Transaction existingTransactionInMap = null;
 
-        Iterator mapIterator = null;
-        List<no.fjordkraft.im.model.TransactionGroup> diverseList = transactionGroupRepository.queryTransactionGroupByName(IMConstants.DIVERSE);
-        List<no.fjordkraft.im.model.TransactionGroup> rabatterList = transactionGroupRepository.queryTransactionGroupByName(IMConstants.RABATTER);
+        for(Transaction transaction:transactions) {
+            if (null != transaction.getDistributions()) {
+                distributions = transaction.getDistributions().getDistribution();
 
-        for(Transaction singleTransaction:transactions){
-            if (null != singleTransaction.getDistributions()) {
-                distributions = singleTransaction.getDistributions().getDistribution();
-
-                if(!distributions.isEmpty()){
+                if (!distributions.isEmpty()) {
                     distribuion = distributions.get(0);
                     if (IMConstants.KRAFT.equals(distribuion.getName())) {
-                        referenceNumber = singleTransaction.getReference();
+                        for(Attachment attachment:attachments) {
+                            if(transaction.getReference().equals(attachment.getFAKTURA().getFAKTURANR())) {
 
-                        if (null != referenceNumber) {
-                            for (Attachment singleAttachment : attachments) {
-                                if (singleAttachment.getFAKTURA().getFAKTURANR().equals(referenceNumber)) {
-                                    meter = singleAttachment.getFAKTURA().getMAALEPUNKT();
-                                    meterFound = true;
-                                    break;
+                                ReadingInfo111 readingInfo111 = attachment.getFAKTURA().getVEDLEGGEMUXML()
+                                        .getInvoice().getInvoiceOrder().getReadingInfo111();
+                                if(null != readingInfo111) {
+                                    transaction.setStartDate(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice()
+                                            .getInvoiceOrder().getReadingInfo111().getStartDate());
+
+                                    transaction.setEndDate(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice()
+                                            .getInvoiceOrder().getReadingInfo111().getEndDate());
                                 }
-                            }
-                            if (meterFound && kraftTransactions.isEmpty()) {
-                                kraftTransactions.put(meter, createTransactionEntry(false, singleTransaction, existingTransactionInMap));
-                                meterFound = false;
-                            } else if(meterFound){
-                                existingTransactionInMap = kraftTransactions.get(meter);
-                                if(null != existingTransactionInMap) {
-                                    kraftTransactions.put(meter, createTransactionEntry(true, singleTransaction, existingTransactionInMap));
-                                }else {
-                                    kraftTransactions.put(meter, createTransactionEntry(false, singleTransaction, existingTransactionInMap));
-                                }
-                                meterFound = false;
                             }
                         }
+                        kraftTransaction.add(createTransactionEntry(transaction, IMConstants.KRAFT));
                     } else if(IMConstants.NETT.equals(distribuion.getName())) {
-                        if(nettTransactions.isEmpty()) {
-                            nettTransaction = new NettTransaction();
-                            nettTransaction.setTransactionCategory(singleTransaction.getTransactionCategory());
-                            nettTransaction.setFreeText(singleTransaction.getFreeText());
-                            nettTransactions.put(nettTransaction, createTransactionEntry(false, singleTransaction, existingTransactionInMap));
-                        } else {
-                            nettTransaction = new NettTransaction();
-                            nettTransaction.setTransactionCategory(singleTransaction.getTransactionCategory());
-                            nettTransaction.setFreeText(singleTransaction.getFreeText());
-
-                            existingTransactionInMap = nettTransactions.get(nettTransaction);
-                            if(null != existingTransactionInMap) {
-                                nettTransactions.put(nettTransaction, createTransactionEntry(true, singleTransaction, existingTransactionInMap));
-                            } else {
-                                nettTransaction = new NettTransaction();
-                                nettTransaction.setTransactionCategory(singleTransaction.getTransactionCategory());
-                                nettTransaction.setFreeText(singleTransaction.getFreeText());
-                                nettTransactions.put(nettTransaction, createTransactionEntry(false, singleTransaction, existingTransactionInMap));
-                            }
-                        }
+                        nettTransaction.add(createTransactionEntry(transaction, IMConstants.NETT));
                     }
                 }
             }
         }
-
-        for(Transaction transaction:transactions) {
-            for(no.fjordkraft.im.model.TransactionGroup rabatter:rabatterList) {
-                if(rabatter.getTransactionCategory().equals(transaction.getTransactionCategory())) {
-                    diverseRabatter.put(IMConstants.RABATTER, createDiverseRabatterTransactionEntry(diverseRabatter, transaction, rabatter, IMConstants.RABATTER));
-                }
-            }
-            for(no.fjordkraft.im.model.TransactionGroup diverse:diverseList) {
-                if(diverse.getTransactionCategory().equals(transaction.getTransactionCategory())) {
-                    diverseRabatter.put(IMConstants.DIVERSE, createDiverseRabatterTransactionEntry(diverseRabatter, transaction, diverse, IMConstants.DIVERSE));
-                }
-            }
-        }
-
-        mapIterator = kraftTransactions.entrySet().iterator();
-        while(mapIterator.hasNext()) {
-            Map.Entry pair = (Map.Entry)mapIterator.next();
-            processedTransaction.add((Transaction) pair.getValue());
-        }
-
-        mapIterator = nettTransactions.entrySet().iterator();
-        while(mapIterator.hasNext()) {
-            Map.Entry pair = (Map.Entry) mapIterator.next();
-            processedTransaction.add((Transaction) pair.getValue());
-        }
-
-        processedTransaction = groupProcessedTransaction(processedTransaction);
-        mapIterator = diverseRabatter.entrySet().iterator();
-        while(mapIterator.hasNext()) {
-            Map.Entry pair = (Map.Entry) mapIterator.next();
-            processedTransaction.add((Transaction) pair.getValue());
-        }
-
-        transactionGroup.setTransaction(processedTransaction);
+        processedTransaction.addAll(kraftTransaction);
+        processedTransaction.addAll(nettTransaction);
+        transactionGroup.setTransaction(groupProcessedTransaction(processedTransaction));
         request.getStatement().setTransactionGroup(transactionGroup);
     }
 
-    private Transaction createTransactionEntry(boolean update, Transaction singleTransaction, Transaction existingTransactionInMap) {
-        Transaction transactionToMap = new Transaction();
-        float newAamount;
-
-        transactionToMap.setTransactionCategory(singleTransaction.getTransactionCategory().substring(3));
-        transactionToMap.setFreeText(singleTransaction.getFreeText());
-        if(update){
-            newAamount = existingTransactionInMap.getAmountWithVat() + singleTransaction.getAmountWithVat();
-            transactionToMap.setAmountWithVat(newAamount);
-        }else {
-            transactionToMap.setAmountWithVat(singleTransaction.getAmountWithVat());
-        }
-        return transactionToMap;
-    }
-
-    private Transaction createDiverseRabatterTransactionEntry(Map<String, Transaction> diverseRabatter, Transaction transaction,
-                                                              no.fjordkraft.im.model.TransactionGroup group, String groupName) {
-        Map<String, Transaction> existingElement = new HashMap<String, Transaction>();
+    private Transaction createTransactionEntry(Transaction transaction, String type) {
         Transaction resultTransaction = new Transaction();
-        float newAmount;
-        Iterator existingElementIterator;
-
-        resultTransaction.setTransactionCategory(group.getLabel());
-        if(diverseRabatter.isEmpty()) {
-            resultTransaction.setAmountWithVat(transaction.getAmountWithVat());
-        } else {
-            existingElement = (Map<String, Transaction>) diverseRabatter.get(groupName);
-            if(null == existingElement || existingElement.isEmpty()) {
-                resultTransaction.setAmountWithVat(transaction.getAmountWithVat());
-            } else {
-                existingElementIterator = existingElement.entrySet().iterator();
-                while(existingElementIterator.hasNext()) {
-                    Map.Entry entry = (Map.Entry) existingElementIterator.next();
-                    resultTransaction = (Transaction) entry.getValue();
-                    newAmount = resultTransaction.getAmountWithVat() + transaction.getAmountWithVat();
-                    resultTransaction.setAmountWithVat(newAmount);
-                }
-            }
-        }
+        resultTransaction.setTransactionType(type);
+        resultTransaction.setTransactionCategory(transaction.getTransactionCategory().substring(3));
+        resultTransaction.setFreeText(transaction.getFreeText());
+        resultTransaction.setAmountWithVat(transaction.getAmountWithVat()*IMConstants.NEGATIVE);
+        resultTransaction.setStartDate(transaction.getStartDate());
+        resultTransaction.setEndDate(transaction.getEndDate());
         return resultTransaction;
     }
 

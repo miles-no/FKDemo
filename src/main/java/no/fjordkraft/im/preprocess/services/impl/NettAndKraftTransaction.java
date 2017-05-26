@@ -3,7 +3,7 @@ package no.fjordkraft.im.preprocess.services.impl;
 /**
  * Created by miles on 5/22/2017.
  */
-public class NettTransaction {
+public class NettAndKraftTransaction {
     private String transactionCategory;
     private String freeText;
 
@@ -31,10 +31,10 @@ public class NettTransaction {
     }
 
     public boolean equals(Object obj){
-        if (obj instanceof NettTransaction) {
-            NettTransaction nettTransaction = (NettTransaction) obj;
-            return (nettTransaction.transactionCategory.equals(this.transactionCategory)
-                    && nettTransaction.freeText.equals(this.freeText));
+        if (obj instanceof NettAndKraftTransaction) {
+            NettAndKraftTransaction nettAndKraftTransaction = (NettAndKraftTransaction) obj;
+            return (nettAndKraftTransaction.transactionCategory.equals(this.transactionCategory)
+                    && nettAndKraftTransaction.freeText.equals(this.freeText));
         } else {
             return false;
         }

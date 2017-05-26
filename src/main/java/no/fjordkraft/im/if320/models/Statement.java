@@ -67,6 +67,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element ref="{}OutstandingClaims"/&gt;
  *         &lt;element ref="{}Transactions"/&gt;
  *         &lt;element ref="{}TransactionGroup"/&gt;
+ *         &lt;element ref="{}PieChart"/&gt;
  *         &lt;element ref="{}LineItems"/&gt;
  *         &lt;element ref="{}InstalmentAccounts"/&gt;
  *         &lt;element ref="{}Attachments"/&gt;
@@ -134,6 +135,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "outstandingClaims",
     "transactions",
     "transactionGroup",
+    "pieChart",
     "lineItems",
     "instalmentAccounts",
     "attachments",
@@ -237,6 +239,8 @@ public class Statement {
     protected Transactions transactions;
     @XmlElement(name = "TransactionGroup", required = true)
     protected  TransactionGroup transactionGroup;
+    @XmlElement(name = "PieChart", required = true)
+    protected PieChart pieChart;
     @XmlElement(name = "LineItems", required = true)
     protected String lineItems;
     @XmlElement(name = "InstalmentAccounts", required = true)
@@ -1446,5 +1450,21 @@ public class Statement {
 
     public void setTransactionGroup(TransactionGroup transactionGroup) {
         this.transactionGroup = transactionGroup;
+    }
+
+    public String geteInvoiceId() {
+        return eInvoiceId;
+    }
+
+    public void seteInvoiceId(String eInvoiceId) {
+        this.eInvoiceId = eInvoiceId;
+    }
+
+    public PieChart getPieChart() {
+        return pieChart;
+    }
+
+    public void setPieChart(PieChart pieChart) {
+        this.pieChart = pieChart;
     }
 }
