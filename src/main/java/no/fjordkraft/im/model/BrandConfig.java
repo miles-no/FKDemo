@@ -6,8 +6,8 @@ import javax.persistence.*;
  * Created by miles on 5/18/2017.
  */
 @Entity
-@Table(name="IM_BARCODE_CONFIG")
-public class BarcodeConfig {
+@Table(name="IM_BRAND_CONFIG")
+public class BrandConfig {
 
     @Column(name="ID")
     @Id
@@ -29,6 +29,9 @@ public class BarcodeConfig {
 
     @Column(name="PREFIX_KID")
     private String prefixKID;
+
+    @Column(name="KONTONUMMER")
+    private String kontonummer;
 
     public String getBrand() {
         return brand;
@@ -76,5 +79,13 @@ public class BarcodeConfig {
 
     public void setPrefixKID(String prefixKID) {
         this.prefixKID = prefixKID;
+    }
+
+    public String getKontonummer() {
+        return kontonummer;
+    }
+
+    public void setKontonummer(String kontonummer) {
+        this.kontonummer = kontonummer;
     }
 }

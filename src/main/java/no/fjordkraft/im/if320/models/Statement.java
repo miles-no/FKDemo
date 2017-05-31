@@ -52,6 +52,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element ref="{}AccountNumber"/&gt;
  *         &lt;element ref="{}SequenceNumber"/&gt;
  *         &lt;element ref="{}StatementOcrNumber"/&gt;
+ *         &lt;element ref="{}Kontonummer"/&gt;
  *         &lt;element ref="{}DueDate"/&gt;
  *         &lt;element ref="{}IngoingBalance"/&gt;
  *         &lt;element ref="{}OutgoingBalance"/&gt;
@@ -120,6 +121,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "accountNumber",
     "sequenceNumber",
     "statementOcrNumber",
+    "kontonummer",
     "dueDate",
     "ingoingBalance",
     "outgoingBalance",
@@ -208,6 +210,8 @@ public class Statement {
     protected byte sequenceNumber;
     @XmlElement(name = "StatementOcrNumber")
     protected long statementOcrNumber;
+    @XmlElement(name = "Kontonummer")
+    protected String kontonummer;
     @XmlElement(name = "DueDate", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dueDate;
@@ -1466,5 +1470,13 @@ public class Statement {
 
     public void setPieChart(PieChart pieChart) {
         this.pieChart = pieChart;
+    }
+
+    public String getKontonummer() {
+        return kontonummer;
+    }
+
+    public void setKontonummer(String kontonummer) {
+        this.kontonummer = kontonummer;
     }
 }

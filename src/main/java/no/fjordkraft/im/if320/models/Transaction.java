@@ -28,6 +28,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element ref="{}TransactionId"/&gt;
+ *         &lt;element ref="{}TransactionSequence"/&gt;
  *         &lt;element ref="{}ParentTransactionId"/&gt;
  *         &lt;element ref="{}TransactionType"/&gt;
  *         &lt;element ref="{}TransactionCategory"/&gt;
@@ -54,6 +55,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "transactionId",
+    "transactionSequence",
     "parentTransactionId",
     "transactionType",
     "transactionCategory",
@@ -75,6 +77,8 @@ public class Transaction {
 
     @XmlElement(name = "TransactionId")
     protected int transactionId;
+    @XmlElement(name = "TransactionSequence")
+    protected int transactionSequence;
     @XmlElement(name = "ParentTransactionId", required = true)
     protected String parentTransactionId;
     @XmlElement(name = "TransactionType", required = true)
@@ -428,5 +432,13 @@ public class Transaction {
 
     public void setEndDate(XMLGregorianCalendar endDate) {
         this.endDate = endDate;
+    }
+
+    public int getTransactionSequence() {
+        return transactionSequence;
+    }
+
+    public void setTransactionSequence(int transactionSequence) {
+        this.transactionSequence = transactionSequence;
     }
 }

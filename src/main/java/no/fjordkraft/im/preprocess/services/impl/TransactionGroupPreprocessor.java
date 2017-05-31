@@ -62,6 +62,7 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
         processedTransaction.addAll(nettTransaction);
         transactionGroup.setTransaction(groupProcessedTransaction(processedTransaction));
         request.getStatement().setTransactionGroup(transactionGroup);
+        request.getStatement().setTotalVatAmount(IMConstants.NEGATIVE*request.getStatement().getTotalVatAmount());
     }
 
     private Transaction createTransactionEntry(Transaction transaction, String type) {
@@ -76,10 +77,11 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
     }
 
     private List<Transaction> groupProcessedTransaction(List<Transaction> processedTransaction) {
-        List<Transaction> transaction = new ArrayList<Transaction>();
+        List<Transaction> transactions = new ArrayList<Transaction>();
         MultiValueMap multiValueMap = new MultiValueMap();
         Iterator mapIterator = null;
         List<Transaction> transactionList = null;
+        int i = 1;
 
         for(Transaction individualTransaction:processedTransaction) {
             multiValueMap.put(individualTransaction.getFreeText(), individualTransaction);
@@ -89,8 +91,11 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
         while(mapIterator.hasNext()) {
             Map.Entry entry = (Map.Entry) mapIterator.next();
             transactionList = (List<Transaction>) entry.getValue();
-            transaction.addAll(transactionList);
+            for(Transaction transaction:transactionList) {
+                transaction.setTransactionSequence(i++);
+                transactions.add(transaction);
+            }
         }
-        return transaction;
+        return transactions;
     }
 }

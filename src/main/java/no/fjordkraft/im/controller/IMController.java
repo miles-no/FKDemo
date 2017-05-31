@@ -69,7 +69,7 @@ public class IMController {
     @Autowired
     InvoicePdfRepository invoicePdfRepository;
 
-    @RequestMapping("/")
+    /*@RequestMapping("/")
     public String index() throws Exception {
         try {
             StreamSource source = new StreamSource(new File("E:\\\\Tutorial\\\\workspace\\\\birtworkspace\\\\Parser\\\\StatementFile1.xml"));
@@ -83,16 +83,16 @@ public class IMController {
         PreprocessRequest<Statement, Object> request = new PreprocessRequest<Statement, Object>();
         request.setStatement(stmt);
         preprocessorEngine.execute(request);
-        /*Employee emp = new Employee();
+        *//*Employee emp = new Employee();
         emp.setEmpId(4);
         emp.setEmpAge(30);
         emp.setEmpName("Aniket");
         emp.setEmpSalary(300000);
         emp.setEmpAddress("mumbai");
-        employeeRepository.save(emp);*/
+        employeeRepository.save(emp);*//*
 
         return "Greetings from Spring Boot!";
-    }
+    }*/
 
     @RequestMapping(value = "savetransferfile",method = RequestMethod.GET)
     public void saveTransferFile(@RequestParam("filepath") String filePath) throws IOException {
@@ -154,55 +154,76 @@ public class IMController {
         StatusCount status = null;
         Long sum = 0l;
 
-        Map<String, Long> failed = new HashMap<String, Long>();
-        Iterator mapIterator = null;
+        Map<String, Long> statusMap = new HashMap<String, Long>();
+        //Initialze statusMap
+        statusMap.put(UIStatementStatusEnum.PENDING.getStatus(), 0l);
+        statusMap.put(UIStatementStatusEnum.PRE_PROCESSING.getStatus(), 0l);
+        statusMap.put(UIStatementStatusEnum.PROCESSING.getStatus(), 0l);
+        statusMap.put(UIStatementStatusEnum.MERGING.getStatus(), 0l);
+        statusMap.put(UIStatementStatusEnum.READY.getStatus(), 0l);
+        statusMap.put(UIStatementStatusEnum.FAILED.getStatus(), 0l);
 
         for(StatusCount statusCount:statusCounts) {
             status = new StatusCount();
             if(statusCount.getStatus().equals(StatementStatusEnum.PENDING.getStatus())) {
-                status.setStatus(UIStatementStatusEnum.PENDING.getStatus());
-                status.setCount(statusCount.getCount());
-                uiStatusCount.add(status);
+                statusMap.put(UIStatementStatusEnum.PENDING.getStatus(), statusCount.getCount());
             } else if(statusCount.getStatus().equals(StatementStatusEnum.PRE_PROCESSING.getStatus())){
-                status.setStatus(UIStatementStatusEnum.PRE_PROCESSING.getStatus());
-                status.setCount(statusCount.getCount());
-                uiStatusCount.add(status);
-            } else if(statusCount.getStatus().equals(StatementStatusEnum.PRE_PROCESSED.getStatus())){
-                status.setStatus(UIStatementStatusEnum.PROCESSING.getStatus());
-                status.setCount(statusCount.getCount());
-                uiStatusCount.add(status);
-            } else if(statusCount.getStatus().equals(StatementStatusEnum.PDF_PROCESSED.getStatus())) {
-                status.setStatus(UIStatementStatusEnum.MERGING.getStatus());
-                status.setCount(statusCount.getCount());
-                uiStatusCount.add(status);
-            } else if(statusCount.getStatus().equals(StatementStatusEnum.INVOICE_PROCESSED.getStatus())) {
-                status.setStatus(UIStatementStatusEnum.READY.getStatus());
-                status.setCount(statusCount.getCount());
-                uiStatusCount.add(status);
+                statusMap.put(UIStatementStatusEnum.PRE_PROCESSING.getStatus(), statusCount.getCount());
+            } else if(statusCount.getStatus().equals(StatementStatusEnum.PRE_PROCESSED.getStatus())
+                    || statusCount.getStatus().equals(StatementStatusEnum.PDF_PROCESSING.getStatus())){
+                sum = statusMap.get(UIStatementStatusEnum.PROCESSING.getStatus());
+                sum += statusCount.getCount();
+                statusMap.put(UIStatementStatusEnum.PROCESSING.getStatus(), sum);
+            } else if(statusCount.getStatus().equals(StatementStatusEnum.PDF_PROCESSED.getStatus())
+                    || statusCount.getStatus().equals(StatementStatusEnum.INVOICE_PROCESSING.getStatus())) {
+                sum = statusMap.get(UIStatementStatusEnum.MERGING.getStatus());
+                sum += statusCount.getCount();
+                statusMap.put(UIStatementStatusEnum.MERGING.getStatus(), sum);
+            } else if(statusCount.getStatus().equals(StatementStatusEnum.INVOICE_PROCESSED.getStatus())
+                    || statusCount.getStatus().equals(StatementStatusEnum.DELIVERY_PENDING.getStatus())) {
+                sum = statusMap.get(UIStatementStatusEnum.READY.getStatus());
+                sum += statusCount.getCount();
+                statusMap.put(UIStatementStatusEnum.READY.getStatus(), sum);
             } else if(statusCount.getStatus().equals(StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus()) ||
                     statusCount.getStatus().equals(StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus()) ||
                     statusCount.getStatus().equals(StatementStatusEnum.INVOICE_PROCESSING_FAILED.getStatus()) ||
                     statusCount.getStatus().equals(StatementStatusEnum.DELIVERY_FAILED.getStatus())) {
 
-                if(failed.isEmpty()) {
-                    failed.put(UIStatementStatusEnum.FAILED.getStatus(), statusCount.getCount());
-                } else {
-                    sum = failed.get(UIStatementStatusEnum.FAILED.getStatus());
-                    sum += statusCount.getCount();
-                    failed.put(UIStatementStatusEnum.FAILED.getStatus(), sum);
-                }
+                sum = statusMap.get(UIStatementStatusEnum.FAILED.getStatus());
+                sum += statusCount.getCount();
+                statusMap.put(UIStatementStatusEnum.FAILED.getStatus(), sum);
             }
         }
-        if(!failed.isEmpty()) {
-            status = new StatusCount();
-            mapIterator = failed.entrySet().iterator();
-            while (mapIterator.hasNext()) {
-                Map.Entry entry = (Map.Entry) mapIterator.next();
-                status.setStatus(UIStatementStatusEnum.FAILED.getStatus());
-                status.setCount((Long) entry.getValue());
-            }
-            uiStatusCount.add(status);
-        }
+
+        status = new StatusCount();
+        status.setStatus(UIStatementStatusEnum.PENDING.getStatus());
+        status.setCount(statusMap.get(UIStatementStatusEnum.PENDING.getStatus()));
+        uiStatusCount.add(0, status);
+
+        status = new StatusCount();
+        status.setStatus(UIStatementStatusEnum.PRE_PROCESSING.getStatus());
+        status.setCount(statusMap.get(UIStatementStatusEnum.PRE_PROCESSING.getStatus()));
+        uiStatusCount.add(1, status);
+
+        status = new StatusCount();
+        status.setStatus(UIStatementStatusEnum.PROCESSING.getStatus());
+        status.setCount(statusMap.get(UIStatementStatusEnum.PROCESSING.getStatus()));
+        uiStatusCount.add(2, status);
+
+        status = new StatusCount();
+        status.setStatus(UIStatementStatusEnum.MERGING.getStatus());
+        status.setCount(statusMap.get(UIStatementStatusEnum.MERGING.getStatus()));
+        uiStatusCount.add(3, status);
+
+        status = new StatusCount();
+        status.setStatus(UIStatementStatusEnum.READY.getStatus());
+        status.setCount(statusMap.get(UIStatementStatusEnum.READY.getStatus()));
+        uiStatusCount.add(4, status);
+
+        status = new StatusCount();
+        status.setStatus(UIStatementStatusEnum.FAILED.getStatus());
+        status.setCount(statusMap.get(UIStatementStatusEnum.FAILED.getStatus()));
+        uiStatusCount.add(5, status);
 
         return uiStatusCount;
     }

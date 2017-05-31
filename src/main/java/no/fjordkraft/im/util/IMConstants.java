@@ -29,4 +29,5 @@ public interface IMConstants {
     static final char FALSE = '0';
     static final String BARCODE_PREFIX = "2";
     static final int NEGATIVE = -1;
+    static final String EMPTY_STRING = "";
 }

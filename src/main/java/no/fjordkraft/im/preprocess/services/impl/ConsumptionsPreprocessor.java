@@ -5,6 +5,7 @@ import no.fjordkraft.im.if320.models.*;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
+import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -41,19 +42,21 @@ public class ConsumptionsPreprocessor extends BasePreprocessor{
                         for(int i=1; i<=12 ; i++) {
                             Consumption consumption = new Consumption();
                             try {
-                                consumption.setConsumptionSequence(i);
-
                                 Method periodDescriptionMethod = ConsumptionPillars132.class.getMethod("getPeriodDescription" + i);
-                                consumption.setPeriodDescription(periodDescriptionMethod.invoke(consumptionPillars132).toString());
+                                if(!IMConstants.EMPTY_STRING.equals(periodDescriptionMethod.invoke(consumptionPillars132).toString())) {
 
-                                Method lastYearConsumptionMethod = ConsumptionPillars132.class.getMethod("getLastYearConsumption" + i);
-                                Object lastYearConsumption = lastYearConsumptionMethod.invoke(consumptionPillars132);
-                                consumption.setLastYearConsumption(null != lastYearConsumption ? Float.valueOf(lastYearConsumption.toString()) : 0.0f);
+                                    consumption.setConsumptionSequence(i);
+                                    consumption.setPeriodDescription(periodDescriptionMethod.invoke(consumptionPillars132).toString());
 
-                                Method thisYearConsumptionMethod = ConsumptionPillars132.class.getMethod("getThisYearConsumption" + i);
-                                Object thisYearConsumption = thisYearConsumptionMethod.invoke(consumptionPillars132);
-                                consumption.setThisYearConsumption(null != thisYearConsumption ? Float.valueOf(thisYearConsumption.toString()) : 0.0f);
-                                consumptions.add(consumption);
+                                    Method lastYearConsumptionMethod = ConsumptionPillars132.class.getMethod("getLastYearConsumption" + i);
+                                    Object lastYearConsumption = lastYearConsumptionMethod.invoke(consumptionPillars132);
+                                    consumption.setLastYearConsumption(null != lastYearConsumption ? Float.valueOf(lastYearConsumption.toString()) : 0.0f);
+
+                                    Method thisYearConsumptionMethod = ConsumptionPillars132.class.getMethod("getThisYearConsumption" + i);
+                                    Object thisYearConsumption = thisYearConsumptionMethod.invoke(consumptionPillars132);
+                                    consumption.setThisYearConsumption(null != thisYearConsumption ? Float.valueOf(thisYearConsumption.toString()) : 0.0f);
+                                    consumptions.add(consumption);
+                                }
 
                             } catch (Exception e) {
                                 logger.debug("Exception in consumption preprocessor",e);
