@@ -1,0 +1,100 @@
+@import 'base';
+.invoice-manager-overview{
+    .odometer.odometer-theme-plaza{
+        font-size: 3em;
+        .odometer-inside{
+            .odometer-digit{
+                font-weight: bold;
+                color: $brand-color;
+            }
+            .odometer-formatting-mark{
+                color: $brand-color;
+            }
+        }
+    }
+    @media (min-width: 992px){
+        .flex-container {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            > [class*='col-'] {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+            }
+            .vertical-align-in-flex {
+                justify-content: center;
+            }
+        }
+    }
+    @media (max-width: 992px){
+        .overview-duration-view{
+            margin-top: 2em;
+        }
+        .hide-rows-small-screen{
+            display:none;
+        }
+    }    
+    .current-system-status{
+        .state-cards{
+            .state-card{
+                    /***For Angular material Cards Starts***/
+                    md-card{
+                            .md-headline{
+                            font-size: 1.25em;
+                        }
+                    md-card-content{
+                        padding-bottom: 0;
+                        .odometer.odometer-theme-plaza{
+                            font-size: 3em;
+                            .odometer-inside{
+                                .odometer-digit{
+                                    color: white;
+                                }
+                                .odometer-formatting-mark{
+                                    color: white;
+                                }
+                            }
+                        }
+                    }
+                    md-card-actions{
+                        margin: 0;
+                        margin-bottom: 0;
+                    }
+                }
+                /***For Angular material Cards Ends***/
+                /***For Bootstrap Cards Starts***/
+                .card{
+                    color: white;
+                    .card-text{
+                        .odometer.odometer-theme-plaza{
+                            font-size: 3em;
+                            background-color: inherit;
+                            color: white;
+                            .odometer-digit{
+                                color: white;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+                /***For Bootstrap Cards Ends***/
+            }
+        }
+    }
+    .definative-period-overview{
+        .overview-graphs{
+            margin-top: 7em;
+        }
+    }
+}

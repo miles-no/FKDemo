@@ -1,0 +1,84 @@
+<div class="row invoice-manager-overview" ng-controller="landingPageController" ng-init="init()">
+    <div class="row current-system-status flex-container">
+        <div class="col-md-offset-1 col-md-3 vertical-align-in-flex">
+            <div class="row">
+                <div class="col-md-12  text-center">
+                    <div>
+                        <span odometer="totalInvoices" odometer-options="{theme: 'plaza', duration: 3000,animation : 'count'}"/>
+                    </div>
+                    <label >Total Invoice</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 state-cards">
+            <div ng-include="'templates/state-overview.html'"></div>          
+        </div>
+    </div>
+    <hr class="section-breaker">
+    <!--<div class="overview-duration container">
+        <div class="col-md-2 col-md-offset-6 ">
+            <ui-select  ng-model="overview.selected" theme="bootstrap" title="Choose Overview Period">
+                <ui-select-match placeholder="Select Filter">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices  repeat="eachOverview in possibleOverviews" position='down'>
+                    <div ng-bind-html="eachOverview.name | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>-->
+    <div class="row definative-period-overview">
+         <div class="col-md-offset-1 col-md-3 overview-duration">
+              <div class="row">
+                  <div class="form-group col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                     <ui-select  ng-model="overview.selected" theme="bootstrap" title="Choose Overview Period" on-select="onOverviewSelect($item, $model)">
+                          <ui-select-match placeholder="Select Filter">{{$select.selected.name}}</ui-select-match>
+                          <ui-select-choices  repeat="eachOverview in possibleOverviews" position='down'>
+                             <div ng-bind-html="eachOverview.name | highlight: $select.search"></div>
+                          </ui-select-choices>
+                      </ui-select>
+                  </div>
+              </div>
+              <div class="hide-rows-small-screen">
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+              </div>
+              <div class="row">
+                 <div class="form-group col-md-6 col-md-offset-3 text-center">
+                      <div>
+                         <span odometer="overviewCount" odometer-options="{theme: 'plaza', duration: 3000,animation : 'count'}"/>
+                      </div>
+                     <label >{{overview.selected.name}}'s Invoices</label>
+                  </div>
+              </div>
+          </div>
+        <div class="col-md-8 overview-graphs">
+            <div class="row">
+                <div class="col-md-5 text-center">
+                    <canvas id="divisionsByBrand"
+                            class="chart chart-bar"
+                            chart-data="brandOverview.data"
+                            chart-labels="brandOverview.labels"
+                            chart-colors="colors">
+                    </canvas>
+                    <label class="row">Brands</label>
+                </div>
+                <div class="col-md-offset-1 col-md-5 text-center">
+                    <div class="form-group">
+                        <canvas id="processingInvoices"
+                                class="chart chart-doughnut"
+                                chart-data="locationOverview.data"
+                                chart-labels="locationOverview.labels"
+                                chart-colors="colors"
+                                chart-options="locationOverview.options">
+                        </canvas>
+                        <label class="row">Locations</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

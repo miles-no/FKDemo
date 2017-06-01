@@ -1,0 +1,48 @@
+{
+  "name": "invoicemanager",
+  "version": "0.0.1",
+  "description": "Sample Springboot Poc",
+  "main": "index.js",
+  "keywords": [
+    "invoice",
+    "manager",
+    "mvn",
+    "gulp",
+    "Fjordkraft"
+  ],
+  "author": "Kshitij Bahul",
+  "license": "ISC",
+  "dependencies": {
+    "@uirouter/angularjs": "1.0.3",
+    "angular": "1.5.8",
+    "angular-animate": "1.5.8",
+    "angular-sanitize": "1.5.8",
+    "angular-aria": "1.5.8",
+    "angular-chart.js": "1.1.1",
+    "angular-material": "1.1.4",
+    "angular-messages": "1.5.8",
+    "angular-odometer-js": "0.1.2",
+    "angular-route": "1.5.8",
+    "angular-ui-bootstrap": "2.5.0",
+    "body-parser": "1.17.2",
+    "express": "4.15.3",
+    "font-awesome": "4.7.0",
+    "gulp": "3.9.1",
+    "gulp-clean": "0.3.2",
+    "gulp-concat": "2.6.1",
+    "gulp-connect": "5.0.0",
+    "gulp-sass": "3.1.0",
+    "lodash": "4.17.4",
+    "odometer": "0.4.8",
+    "ui-select": "0.19.8"
+  },
+  "scripts": {
+    "build": "gulp",
+    "local": "gulp local"
+  },
+  "devDependencies": {
+    "angular-moment": "1.0.1",
+    "angular-smart-table": "2.1.8",
+    "angularjs-datepicker": "2.1.19"
+  }
+}

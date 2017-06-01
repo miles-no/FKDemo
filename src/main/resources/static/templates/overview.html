@@ -1,0 +1,86 @@
+<div ng-controller="overviewController" ng-init="init()">
+    <div class="col-md-12 overview-filters">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-sm-2">State</label>
+                <div class="com-md-8">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Filter</label>
+                <div class="com-md-8">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-sm-2">From</label>
+                <div class="com-md-8">
+                    <input type="date">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Invoice</label>
+                <div class="com-md-8">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Brand</label>
+                <div class="com-md-8">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-sm-2">To</label>
+                <datepicker class="com-md-8">
+                    <input type="text"ng-model="date1">
+                </datepicker>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 overview-details">
+        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table">
+			<thead>
+                <tr>
+                    <th st-sort="firstName">Customer id</th>
+                    <th st-sort="lastName">Account No</th>
+                    <th st-sort="birthDate">MeterId</th>
+                    <th st-sort="balance">Type</th>
+                    <th st-sort="firstName">Amount</th>
+                    <th st-sort="lastName">Invoice Date</th>
+                    <th st-sort="birthDate">Due Date</th>
+                    <th >Links</th>
+                </tr>
+                </thead>
+			<tbody>
+                <tr ng-repeat="row in displayedCollection">
+                    <td>{{row.firstName}}</td>
+                    <td>{{row.lastName}}</td>
+                    <td>{{row.birthDate}}</td>
+                    <td>{{row.balance}}</td>
+                    <td>{{row.firstName}}</td>
+                    <td>{{row.lastName}}</td>
+                    <td>{{row.birthDate}}</td>
+                    <td>
+                        <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+                            <i class="glyphicon glyphicon-remove-circle">
+                            </i>
+                        </button>
+                    </td>
+                </tr>
+			</tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="100%" class="text-center">
+                        <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+            </tfoot>
+		</table>
+    </div>
+</div>

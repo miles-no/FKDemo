@@ -1,0 +1,28 @@
+@import 'base';
+.bg-brand-color{
+  background-color: $brand-color;
+}
+.bg-dark-purple-color{
+  background-color: #4527a0;
+}
+.bg-dark-red-color{
+  background-color: #c41331;
+}
+.bg-dark-green-color{
+  background-color: #268965;
+}
+.odometer.odometer-theme-plaza{
+  background-color: inherit;
+}
+// .ui-select-container.open{
+//   input.form-control:focus{
+//     border-color: $brand-color;
+//   }
+// }
+.ui-select-bootstrap{ 
+  .ui-select-choices-row.active{
+    >span{
+      background-color : $brand-color;
+    }
+  }
+}
