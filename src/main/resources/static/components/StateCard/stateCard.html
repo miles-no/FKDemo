@@ -2,7 +2,7 @@
     <md-card md-theme="$ctrl.theme" md-theme-watch> 
         <md-card-title layout="row">
             <md-card-title-text layout-align="start">
-                <span class="md-headline" layout-align="center">{{$ctrl.processingState.status}}</span>
+                <span class="md-headline" layout-align="center">{{$ctrl.processingState.name}}</span>
             </md-card-title-text>
             <div layout-align="end" >
                 <i class="fa fa-info-circle" uib-tooltip="Records in the system which are {{$ctrl.processingState.state}}" aria-hidden="true"></i>
@@ -10,7 +10,7 @@
         </md-card-title>
         <md-card-content>
             <div> 
-            <span odometer="$ctrl.processingState.count" odometer-options="$ctrl.odometerOptions"/>
+            <span odometer="$ctrl.processingState.value" odometer-options="$ctrl.odometerOptions"/>
             </div>
         </md-card-content>    
         <md-card-actions layout="row" >

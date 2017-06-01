@@ -43,7 +43,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
         },
     ]
     let prepareChartDataForObject = function(chartObject,chartData){
-        _.forEach(chartData,(eachData)=>{
+        _.forEach(chartData,function(eachData){
             chartObject.labels.push(eachData.name)
             chartObject.data.push(eachData.value)
         })
@@ -51,8 +51,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
     let getOverviewDetails = function(item){
         $http.get(`/getOverviewData/${item.valueFrom.format('YYYY-MM-DD HH:mm:ss')}/${item.valueTo.format('YYYY-MM-DD HH:mm:ss')}`).then(
         function success(result){
-            console.log(item,model);
-            $scope.overviewCount = result.data.TOTAL.value
+            $scope.overviewCount = result.data.TOTAL[0].value
             prepareChartDataForObject($scope.brandOverview,result.data.STATUS_BY_BRAND);
             prepareChartDataForObject($scope.locationOverview,result.data.STATUS_BY_CITY);
         },function error(error){
@@ -62,26 +61,29 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
     $scope.getStates = function(){
         $http.get('/getStatementCountByStatus').then(
             function success(result){
-                $scope.totalInvoices =0;
+
                 $scope.processingStates = result.data;
                 _.forEach($scope.processingStates,function(eachState){
                     if (eachState.name==='PRE_PROCESSING'){
                         eachState.theme ='dark-blue';
                     }
-                    if (eachState.status==='MERGING'){
-                        eachState.name ='dark-purple';
+                    if (eachState.name==='MERGING'){
+                        eachState.theme ='dark-purple';
                     }
-                    if (eachState.status==='FAILED'){
-                        eachState.name ='dark-red';
+                    if (eachState.name==='FAILED'){
+                        eachState.theme ='dark-red';
                     }
-                    if (eachState.status==='READY'){
-                        eachState.name ='dark-green';
+                    if (eachState.name==='READY'){
+                        eachState.theme ='dark-green';
                     }
-                    if (eachState.status==='PROCESSING'){
-                        eachState.name ='dark-orange';
+                    if (eachState.name==='PROCESSING'){
+                        eachState.theme ='dark-orange';
                     }
-                    if (eachState.status==='PENDING'){
-                        eachState.name ='dark-grey';
+                    if (eachState.name==='PENDING'){
+                        eachState.theme ='dark-grey';
+                    }
+                    if (eachState.name==='Total'){
+                        $scope.totalInvoices =eachState.value;
                     }
                     //$scope.totalInvoices = $scope.totalInvoices + eachState.count;
                     eachState.name = _.capitalize(eachState.name);
@@ -97,6 +99,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
         $scope.name='Kshitij';
         $scope.getStates();
         $scope.overview.selected = $scope.possibleOverviews[0];
+        getOverviewDetails($scope.overview.selected);
     }
     
     $scope.onOverviewSelect = function(item,model){
@@ -107,5 +110,5 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
     $interval(function(){
         console.log('Came in here $interval',$scope.testValueChange);
         $scope.getStates();
-    },10000)
+    },100000)
 });
