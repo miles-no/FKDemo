@@ -4253,8 +4253,10 @@ dataSetRow["InvoiceNo"]</expression>
             <detail>
                 <grid id="399">
                     <property name="pageBreakAfter">always</property>
-                    <property name="height">7.09375in</property>
-                    <column id="400"/>
+                    <property name="height">10.15625in</property>
+                    <column id="400">
+                        <property name="paddingRight">10pt</property>
+                    </column>
                     <column id="401">
                         <property name="width">2in</property>
                     </column>
@@ -4397,24 +4399,98 @@ dataSetRow["InvoiceNo"]</expression>
                             <property name="colSpan">1</property>
                             <property name="rowSpan">5</property>
                             <property name="borderBottomStyle">none</property>
-                            <property name="borderLeftStyle">none</property>
+                            <property name="borderLeftColor">#808080</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">medium</property>
                             <property name="borderRightStyle">none</property>
                             <property name="borderTopStyle">none</property>
+                            <property name="paddingLeft">10pt</property>
                             <grid id="467">
                                 <property name="paddingLeft">10pt</property>
                                 <column id="468"/>
                                 <row id="469">
-                                    <cell id="470"/>
+                                    <cell id="470">
+                                        <image id="658">
+                                            <property name="borderBottomStyle">none</property>
+                                            <property name="borderLeftStyle">none</property>
+                                            <property name="borderRightStyle">none</property>
+                                            <property name="borderTopStyle">none</property>
+                                            <property name="paddingLeft">10pt</property>
+                                            <property name="height">0.28125in</property>
+                                            <property name="width">1.4479166666666667in</property>
+                                            <property name="source">embed</property>
+                                            <property name="imageName">blackAndWhite.png</property>
+                                        </image>
+                                    </cell>
+                                </row>
+                                <row id="656">
+                                    <cell id="657">
+                                        <label id="663">
+                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontSize">8pt</property>
+                                            <property name="borderBottomStyle">none</property>
+                                            <property name="borderLeftStyle">none</property>
+                                            <property name="borderRightStyle">none</property>
+                                            <property name="borderTopStyle">none</property>
+                                            <property name="paddingLeft">10pt</property>
+                                            <text-property name="text">Spørsmål til faktura?</text-property>
+                                        </label>
+                                    </cell>
+                                </row>
+                                <row id="661">
+                                    <cell id="662">
+                                        <label id="664">
+                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontSize">13pt</property>
+                                            <property name="fontWeight">bold</property>
+                                            <property name="borderBottomStyle">none</property>
+                                            <property name="borderLeftStyle">none</property>
+                                            <property name="borderRightStyle">none</property>
+                                            <property name="borderTopStyle">none</property>
+                                            <property name="paddingLeft">10pt</property>
+                                            <text-property name="text">Tlf. 06100</text-property>
+                                        </label>
+                                    </cell>
+                                </row>
+                                <row id="659">
+                                    <cell id="660">
+                                        <text id="666">
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                            <property name="fontSize">8pt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="borderBottomColor">#000000</property>
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">1px</property>
+                                            <property name="borderLeftStyle">none</property>
+                                            <property name="borderRightStyle">none</property>
+                                            <property name="borderTopStyle">none</property>
+                                            <property name="paddingLeft">10pt</property>
+                                            <property name="paddingBottom">15pt</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[<B>(man-fre 08-20)</B>
+<br /><br />
+Spørsmål om nettleien eller
+måleravlesninger, ta kontakt
+med din lokale netteier:
+<br /><br />
+<B>BKK Nett</B><br />
+<B>Tlf. 05123</B>]]></text-property>
+                                        </text>
+                                    </cell>
                                 </row>
                                 <row id="471">
                                     <cell id="472">
                                         <text id="473">
-                                            <property name="backgroundColor">#C0C0C0</property>
+                                            <property name="backgroundColor">#FFFFFF</property>
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                            <property name="fontSize">9pt</property>
-                                            <property name="paddingTop">20pt</property>
+                                            <property name="fontSize">8pt</property>
+                                            <property name="borderBottomStyle">none</property>
+                                            <property name="borderLeftStyle">none</property>
+                                            <property name="borderRightStyle">none</property>
+                                            <property name="borderTopStyle">none</property>
+                                            <property name="paddingTop">15pt</property>
                                             <property name="paddingLeft">10pt</property>
-                                            <property name="paddingBottom">20pt</property>
+                                            <property name="paddingBottom">0pt</property>
                                             <property name="paddingRight">5pt</property>
                                             <property name="contentType">html</property>
                                             <text-property name="content"><![CDATA[<B><U>Full oversikt på Min side:</U></B>
@@ -4489,10 +4565,13 @@ gjeldende satser.]]></text-property>
                         <property name="borderLeftStyle">none</property>
                         <property name="borderRightStyle">none</property>
                         <property name="borderTopStyle">none</property>
-                        <property name="marginTop">10pt</property>
+                        <property name="marginTop">1pt</property>
+                        <property name="paddingTop">10pt</property>
+                        <property name="height">2.5833333333333335in</property>
                         <cell id="406">
                             <label id="455">
                                 <property name="backgroundColor">#C0C0C0</property>
+                                <property name="backgroundRepeat">no-repeat</property>
                                 <property name="fontWeight">bold</property>
                                 <property name="borderLeftColor">#808080</property>
                                 <property name="borderLeftStyle">solid</property>
@@ -4702,7 +4781,7 @@ gjeldende satser.]]></text-property>
                         </cell>
                     </row>
                     <row id="408">
-                        <property name="height">1.6145833333333333in</property>
+                        <property name="height">2.2708333333333335in</property>
                         <cell id="409"/>
                     </row>
                     <row id="411">
@@ -6248,7 +6327,7 @@ så ofte du ønsker til din netteier.]]></text-property>
                         </cell>
                     </row>
                     <row id="414">
-                        <property name="height">1.375in</property>
+                        <property name="height">2.375in</property>
                         <cell id="415"/>
                     </row>
                 </grid>
@@ -8565,6 +8644,43 @@ så ofte du ønsker til din netteier.]]></text-property>
                 7qtlgWisiGDkGURyMQUla0ODNNcNK572xAubx+OpgSVGV+GQhvt1d2Pp0UWAkcezsvHC5vF46sDGEdxb
                 s4lcbdu3iozu5gYRgPrqNwPNGISV3wv0rFy8sHk8nlzqtoun5vG0Ml7YPB6Px9NWeGHzeDweT1vhhc3j
                 8Xg8bYUXNo/H4/G0EUR/B8rnOtAjBISDAAAAAElFTkSuQmCC
+</property>
+        </structure>
+        <structure>
+            <property name="name">blackAndWhite.png</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAALEAAAAtCAYAAADhjYr9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+                YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAagSURBVHhe7ZndjVxFEIXJBGTEA4g3EM8W70AAQAJABCaD
+                DcFksClsChuCncKmMOizKOnoUP1Td+6M5477k0qevV39f7q67vVnp8Xi4CwRLw7PEvHi8CwRLw7PEvHi
+                8Owm4peXl9PT09MH4/dicS02i/j5+fn01x9/nn747vvTl59/kdqPr19/8MF3sbgUZRE/Pj52hdsyBE2U
+                Xiz2ZlrEpAgIMRNoxX756eeVbix2ZUrEpANfvXqVinKLffv1NyvFWOzGUMQ9ASPGh4eHVJA8owyfrC5t
+                LiEv9qArYq79TIQ8Izee5Z+3b9ODQG69Uov7Jr5YvX/37r8n+9MV8e+//vY/4ZEXbxEedbIXQr5eVOEA
+                /f3mTdOO+gLJRuth97XR9eP3rcJeZ9q51JibIkYIew+iJeTZU4p4W+mJG6lMoMLg963ia07AULQMu1V6
+                HwAuQVPEfpLY/D2ufo822Ew0Jn/WOiMjIgdedqvcg4izfSLwMBe+TGUwb/YLzW15T2qK2IVGXrsXDFjb
+                nomOLIDWGZnm7DoXFvRWuQcRj+bgcGOqvwafWVIR+0CwPaJwQDT29kcn0A8Vp3bPMd0C9yBiD1AjUVb9
+                M1IR++kYnaYteG7MBvZQX6wiYA4I7WO9/Bs/5s5Cho3GFWR1e/Uzf0/hqiJmTWKeYQ4+2YsxY9FAwjpR
+                P5sTt3JrHSnXMTKnGEvU0XH6nNV/do9TEftAtnxBGMEGaR/02UN9sQpaL0tdWFwfjxopCIuawcb36mK6
+                fjP+YRURs+EeGPxFHEH6jeYWQh75YczLhebaUYv59HzUWjm0MyXikcC24Bt5LRF7XTZtZsMw/zbOBs7U
+                jc2r9IVVROwRjX40WhI9tbxlcVizssxcaIcSMZPlOac7C/s8i6soi2K3ImIfR88Qhs6VSOQ+RD/aDONZ
+                zC3rS/1d4DxTtAwLMoFGRA2ywxP9YoxDhR+fMn0+WTu6v8xVy+LLBBYfB+I2wqKfMPqjDXwzXWVsEjER
+                ScsZjMMz9XEhe7n34agvFouQGSdYF8DrBiyml3HwAsbsm6blLHirzMn68jXhby1nLoqWYZBF9xBL4O3i
+                PyuQDP9SpHs30o5T9c/YJGIvxxwv9zbYoF65o74zpgLxssDnwZXsuI8KS59jPWb6qooYIfpB2tJuFQ9i
+                2qfPc7SvVf+MT1rEPgbPeYHrVX30O7M+x3r4mmVRuypiz4MRdMbeIu615/Mc7WvVP2OTiD0HyxbFcx2/
+                4lxAo8Grb/i3zAXidQMfgwpfUR8saD3P8Cs466sqYjXWu5UibBUx9Tgovk5u2h7rr2X83aPqn7H5xY5n
+                DJ5J6ltwQK7GxuHjAgZfmNHg1Rer0KrrY7ikiGf6OkfEvc+gW0TsUb5n2t6MdpSqf8ZmEZ+Lb+qoD/XF
+                KrTqzggL1AcLWs8zZvo6R8RYa/xVEftNi/EySD3M83Btr6qdPbS2RCzPMxFwRasPFrSeZ/jnuCz/rorY
+                x9/66lAVsbfrUb7XXlU7e2htSsSjSW/BFyrbVEV9sQqtui6s7ErufU7U51iPmc2qipg0zj+vZf9BUBWx
+                +mJ+MA4hYh8kC7UnWXSjzx7uX6FV169N5kkuHzBOvzpV6Poc6+GHIXsRq4oYvF3MX2w/SRFnIstezraS
+                iWeE+mMVWnWZp0cy/ualBrH6FxZMX2K9bIT3RftsGkLkX3+ZmhEx+JcPTA9jVcR+cGmfNhgn6+Lz2FPE
+                0Rfmh6dFKmLwhel9wqmQCYfNG6H+WIVe3ewlpmWebnj5iEpf2KyIszXV/aqK2IU1snNEnN0kYVlqlNEU
+                sU8cmxHbiCxq0NcIr1NhVHdGXFm+7D4zVARSOTSZGGK/qiJG/B6N1faMxPSV3XjYaJxBU8RAI97wOUL2
+                6xKbPW1sKOPBMkH18D4zSBOij9gkfjPm1iHbOqasLzaSv1kPNh5ROqP+OIxRHm0BQuF3PJ8JGtQht8af
+                MWL85hllrEu0R7+B96VpTQvWg/bi4MRaaLs9uiLO3n4xOtDccAQTyU42bTPpS+P9Lu6Lroihl7NwerKI
+                EVCWRV8MAc+c0nPx8XMAF/fFUMQwkzPG9YH18ikMAc9caRX0KuU6xrjWvO/Ktb84BlMiBqJmKwGvGAK/
+                RARGvFl/ahyeShq0OAbTIgbyVyJcliePjDqjN9VzyKKu2rXSl8X1KYk4QMxc3yPhYPjge+kXuDhg+taM
+                8fc1+l98PDaJ2CHCkeOqrai3uBa7iHix+JgsES8OzxLx4vAsES8Ozun0L+gTkqMq505vAAAAAElFTkSu
+                QmCC
 </property>
         </structure>
     </list-property>

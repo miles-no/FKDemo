@@ -142,6 +142,9 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         statementEntity.setCustomerId(customerId.toString());
         statementEntity.setAccountNumber(accountNumber.toString());
         statementEntity.setInvoiceNumber(invoiceNumber);
+        statementEntity.setCity(statement.getCity());
+        statementEntity.setVersion(statement.getVersion());
+        statementEntity.setDistributionMethod(statement.getDistributionMethod());
         statementEntity.setUdateTime(new Timestamp(System.currentTimeMillis()));
         logger.debug("updating statement  "+ statementEntity.getId() + " statementOcr " + statementOcr + " customerId " + customerId + " accountNumber "+ accountNumber + " invoiceNumber "+  invoiceNumber );
         return statementEntity;

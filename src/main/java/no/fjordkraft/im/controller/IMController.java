@@ -18,6 +18,7 @@ import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.repository.TransferFileRepository;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.statusEnum.UIStatementStatusEnum;
+import no.fjordkraft.im.util.IMConstants;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -35,6 +36,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.*;
 
 @RestController
@@ -165,67 +167,108 @@ public class IMController {
 
         for(StatusCount statusCount:statusCounts) {
             status = new StatusCount();
-            if(statusCount.getStatus().equals(StatementStatusEnum.PENDING.getStatus())) {
-                statusMap.put(UIStatementStatusEnum.PENDING.getStatus(), statusCount.getCount());
-            } else if(statusCount.getStatus().equals(StatementStatusEnum.PRE_PROCESSING.getStatus())){
-                statusMap.put(UIStatementStatusEnum.PRE_PROCESSING.getStatus(), statusCount.getCount());
-            } else if(statusCount.getStatus().equals(StatementStatusEnum.PRE_PROCESSED.getStatus())
-                    || statusCount.getStatus().equals(StatementStatusEnum.PDF_PROCESSING.getStatus())){
+            if(statusCount.getName().equals(StatementStatusEnum.PENDING.getStatus())) {
+                statusMap.put(UIStatementStatusEnum.PENDING.getStatus(), statusCount.getValue());
+            } else if(statusCount.getName().equals(StatementStatusEnum.PRE_PROCESSING.getStatus())){
+                statusMap.put(UIStatementStatusEnum.PRE_PROCESSING.getStatus(), statusCount.getValue());
+            } else if(statusCount.getName().equals(StatementStatusEnum.PRE_PROCESSED.getStatus())
+                    || statusCount.getName().equals(StatementStatusEnum.PDF_PROCESSING.getStatus())){
                 sum = statusMap.get(UIStatementStatusEnum.PROCESSING.getStatus());
-                sum += statusCount.getCount();
+                sum += statusCount.getValue();
                 statusMap.put(UIStatementStatusEnum.PROCESSING.getStatus(), sum);
-            } else if(statusCount.getStatus().equals(StatementStatusEnum.PDF_PROCESSED.getStatus())
-                    || statusCount.getStatus().equals(StatementStatusEnum.INVOICE_PROCESSING.getStatus())) {
+            } else if(statusCount.getName().equals(StatementStatusEnum.PDF_PROCESSED.getStatus())
+                    || statusCount.getName().equals(StatementStatusEnum.INVOICE_PROCESSING.getStatus())) {
                 sum = statusMap.get(UIStatementStatusEnum.MERGING.getStatus());
-                sum += statusCount.getCount();
+                sum += statusCount.getValue();
                 statusMap.put(UIStatementStatusEnum.MERGING.getStatus(), sum);
-            } else if(statusCount.getStatus().equals(StatementStatusEnum.INVOICE_PROCESSED.getStatus())
-                    || statusCount.getStatus().equals(StatementStatusEnum.DELIVERY_PENDING.getStatus())) {
+            } else if(statusCount.getName().equals(StatementStatusEnum.INVOICE_PROCESSED.getStatus())
+                    || statusCount.getName().equals(StatementStatusEnum.DELIVERY_PENDING.getStatus())) {
                 sum = statusMap.get(UIStatementStatusEnum.READY.getStatus());
-                sum += statusCount.getCount();
+                sum += statusCount.getValue();
                 statusMap.put(UIStatementStatusEnum.READY.getStatus(), sum);
-            } else if(statusCount.getStatus().equals(StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus()) ||
-                    statusCount.getStatus().equals(StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus()) ||
-                    statusCount.getStatus().equals(StatementStatusEnum.INVOICE_PROCESSING_FAILED.getStatus()) ||
-                    statusCount.getStatus().equals(StatementStatusEnum.DELIVERY_FAILED.getStatus())) {
+            } else if(statusCount.getName().equals(StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus()) ||
+                    statusCount.getName().equals(StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus()) ||
+                    statusCount.getName().equals(StatementStatusEnum.INVOICE_PROCESSING_FAILED.getStatus()) ||
+                    statusCount.getName().equals(StatementStatusEnum.DELIVERY_FAILED.getStatus())) {
 
                 sum = statusMap.get(UIStatementStatusEnum.FAILED.getStatus());
-                sum += statusCount.getCount();
+                sum += statusCount.getValue();
                 statusMap.put(UIStatementStatusEnum.FAILED.getStatus(), sum);
             }
         }
 
         status = new StatusCount();
-        status.setStatus(UIStatementStatusEnum.PENDING.getStatus());
-        status.setCount(statusMap.get(UIStatementStatusEnum.PENDING.getStatus()));
+        status.setName(UIStatementStatusEnum.PENDING.getStatus());
+        status.setValue(statusMap.get(UIStatementStatusEnum.PENDING.getStatus()));
         uiStatusCount.add(0, status);
 
         status = new StatusCount();
-        status.setStatus(UIStatementStatusEnum.PRE_PROCESSING.getStatus());
-        status.setCount(statusMap.get(UIStatementStatusEnum.PRE_PROCESSING.getStatus()));
+        status.setName(UIStatementStatusEnum.PRE_PROCESSING.getStatus());
+        status.setValue(statusMap.get(UIStatementStatusEnum.PRE_PROCESSING.getStatus()));
         uiStatusCount.add(1, status);
 
         status = new StatusCount();
-        status.setStatus(UIStatementStatusEnum.PROCESSING.getStatus());
-        status.setCount(statusMap.get(UIStatementStatusEnum.PROCESSING.getStatus()));
+        status.setName(UIStatementStatusEnum.PROCESSING.getStatus());
+        status.setValue(statusMap.get(UIStatementStatusEnum.PROCESSING.getStatus()));
         uiStatusCount.add(2, status);
 
         status = new StatusCount();
-        status.setStatus(UIStatementStatusEnum.MERGING.getStatus());
-        status.setCount(statusMap.get(UIStatementStatusEnum.MERGING.getStatus()));
+        status.setName(UIStatementStatusEnum.MERGING.getStatus());
+        status.setValue(statusMap.get(UIStatementStatusEnum.MERGING.getStatus()));
         uiStatusCount.add(3, status);
 
         status = new StatusCount();
-        status.setStatus(UIStatementStatusEnum.READY.getStatus());
-        status.setCount(statusMap.get(UIStatementStatusEnum.READY.getStatus()));
+        status.setName(UIStatementStatusEnum.READY.getStatus());
+        status.setValue(statusMap.get(UIStatementStatusEnum.READY.getStatus()));
         uiStatusCount.add(4, status);
 
         status = new StatusCount();
-        status.setStatus(UIStatementStatusEnum.FAILED.getStatus());
-        status.setCount(statusMap.get(UIStatementStatusEnum.FAILED.getStatus()));
+        status.setName(UIStatementStatusEnum.FAILED.getStatus());
+        status.setValue(statusMap.get(UIStatementStatusEnum.FAILED.getStatus()));
         uiStatusCount.add(5, status);
 
+        status = new StatusCount();
+        status.setName("Total");
+        status.setValue(statementRepository.getTotalInvoiceCount());
+        uiStatusCount.add(6, status);
+
         return uiStatusCount;
+    }
+
+    @RequestMapping(value = "getStatementCountByCity/{fromTime}/{toTime}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<StatusCount> getStatusByCity(@PathVariable("fromTime") Timestamp fromTime, @PathVariable("toTime") Timestamp toTime) {
+        return statementRepository.getStatusByCity(fromTime, toTime);
+    }
+
+    @RequestMapping(value = "getStatementCountByBrand/{fromTime}/{toTime}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<StatusCount> getStatusByBrand(@PathVariable("fromTime") Timestamp fromTime, @PathVariable("toTime") Timestamp toTime) {
+        return statementRepository.getStatusByBrand(fromTime, toTime);
+    }
+
+    @RequestMapping(value = "getInvoiceCountByTime/{fromTime}/{toTime}",method = RequestMethod.GET)
+    public StatusCount getInvoiceCountByTime(@PathVariable("fromTime") Timestamp fromTime, @PathVariable("toTime") Timestamp toTime) {
+        Long count = statementRepository.getInvoiceCountByTime(fromTime, toTime);
+        StatusCount statusCount = new StatusCount();
+        statusCount.setName("Total");
+        statusCount.setValue(count);
+        return statusCount;
+    }
+
+    @RequestMapping(value = "getOverviewData/{fromTime}/{toTime}", method = RequestMethod.GET)
+    public Map<String, List<StatusCount>> getOverviewData(@PathVariable("fromTime") Timestamp fromTime, @PathVariable("toTime") Timestamp toTime) {
+        Map<String, List<StatusCount>> map = new HashMap<String, List<StatusCount>>();
+        List<StatusCount> totalInvoice = new ArrayList<>();
+        totalInvoice.add(getInvoiceCountByTime(fromTime, toTime));
+        List<StatusCount> statusByCity = getStatusByCity(fromTime, toTime);
+        List<StatusCount> statusByBrand = getStatusByBrand(fromTime, toTime);
+
+        map.put(IMConstants.TOTAL, totalInvoice);
+        map.put(IMConstants.STATUS_BY_CITY, statusByCity);
+        map.put(IMConstants.STATUS_BY_BRAND, statusByBrand);
+
+        return map;
     }
 
 }

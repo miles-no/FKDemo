@@ -10,29 +10,29 @@ import javax.persistence.GeneratedValue;
  */
 public class StatusCount {
 
-    private String status;
-    private Long count;
+    private String name;
+    private Long value;
 
     public StatusCount(){}
 
-    public StatusCount(String status, Long count) {
-        this.status = status;
-        this.count = count;
+    public StatusCount(String name, Long value) {
+        this.name = name;
+        this.value = value;
     }
 
-    public String getStatus() {
-        return status;
+    public String getName() {
+        return name;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Long getCount() {
-        return count;
+    public Long getValue() {
+        return value;
     }
 
-    public void setCount(Long count) {
-        this.count = count;
+    public void setValue(Long value) {
+        this.value = value;
     }
 }

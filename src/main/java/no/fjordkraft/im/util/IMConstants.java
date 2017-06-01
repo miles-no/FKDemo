@@ -30,4 +30,7 @@ public interface IMConstants {
     static final String BARCODE_PREFIX = "2";
     static final int NEGATIVE = -1;
     static final String EMPTY_STRING = "";
+    static final String TOTAL = "TOTAL";
+    static final String STATUS_BY_CITY = "STATUS_BY_CITY";
+    static final String STATUS_BY_BRAND = "STATUS_BY_BRAND";
 }

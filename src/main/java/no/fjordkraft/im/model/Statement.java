@@ -55,6 +55,15 @@ public class Statement {
     @Column(name="PDF_ATTACHMENT")
     private Integer pdfAttachment;
 
+    @Column(name="CITY")
+    private String city;
+
+    @Column(name="VERSION")
+    private Byte version;
+
+    @Column(name="DISTRIBUTION_METHOD")
+    private String distributionMethod;
+
     public Long getId() {
         return id;
     }
@@ -157,5 +166,29 @@ public class Statement {
 
     public void setSystemBatchInput(SystemBatchInput systemBatchInput) {
         this.systemBatchInput = systemBatchInput;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Byte getVersion() {
+        return version;
+    }
+
+    public void setVersion(Byte version) {
+        this.version = version;
+    }
+
+    public String getDistributionMethod() {
+        return distributionMethod;
+    }
+
+    public void setDistributionMethod(String distributionMethod) {
+        this.distributionMethod = distributionMethod;
     }
 }
