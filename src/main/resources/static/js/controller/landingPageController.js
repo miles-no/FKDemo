@@ -33,22 +33,22 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
         },
         {
             "name":"Yesterday",
-            "valueFrom" :dayStart.subtract(1,'days'),
-            "valueTo" :dayEnd.subtract(1,'days')
+            "valueFrom" :moment().hour(0).minute(0).second(0).subtract(1,'days'),
+            "valueTo" : moment().hour(23).minute(59).second(59).subtract(1,'days')
         },
         {
             "name":"This Week",
-            "valueFrom" :dayStart.startOf('week'),
+            "valueFrom" :moment().hour(0).minute(0).second(0).startOf('week'),
             "valueTo" :dayEnd
         },
         {
             "name":"This Fortnight",
-            "valueFrom" :dayStart.subtract(14,'days'),
+            "valueFrom" :moment().hour(0).minute(0).second(0).subtract(14,'days'),
             "valueTo" :dayEnd
         },
         {
             "name":"This Month",
-            "valueFrom" :dayStart.startOf('month'),
+            "valueFrom" :moment().hour(0).minute(0).second(0).startOf('month'),
             "valueTo" :dayEnd
         },
     ]
@@ -130,5 +130,5 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
     $interval(function(){
         console.log('Came in here $interval',$scope.testValueChange);
         $scope.getStates();
-    },100000)
+    },50000)
 });
