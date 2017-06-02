@@ -84,7 +84,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
 
                 $scope.processingStates = result.data;
                 _.forEach($scope.processingStates,function(eachState){
-                    if (eachState.name==='PRE_PROCESSING'){
+                    if (eachState.name==='PRE-PROCESSING'){
                         eachState.theme ='dark-blue';
                     }
                     if (eachState.name==='MERGING'){
