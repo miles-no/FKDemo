@@ -27,22 +27,33 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
             "valueTo" :dayEnd
         },
         {
-            "name":"Last Hour"
+            "name":"Last Hour",
+            "valueFrom" :moment().subtract(1,'hours'),
+            "valueTo" :moment()
         },
         {
-            "name":"Yesterday"
+            "name":"Yesterday",
+            "valueFrom" :dayStart.subtract(1,'days'),
+            "valueTo" :dayEnd.subtract(1,'days')
         },
         {
-            "name":"This Week"
+            "name":"This Week",
+            "valueFrom" :dayStart.startOf('week'),
+            "valueTo" :dayEnd
         },
         {
-            "name":"This Fortnight"
+            "name":"This Fortnight",
+            "valueFrom" :dayStart.subtract(14,'days'),
+            "valueTo" :dayEnd
         },
         {
-            "name":"This Month"
+            "name":"This Month",
+            "valueFrom" :dayStart.startOf('month'),
+            "valueTo" :dayEnd
         },
     ]
     let prepareChartDataForObject = function(chartObject,chartData){
+
         _.forEach(chartData,function(eachData){
             chartObject.labels.push(eachData.name)
             chartObject.data.push(eachData.value)
@@ -51,7 +62,16 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
     let getOverviewDetails = function(item){
         $http.get(`/getOverviewData/${item.valueFrom.format('YYYY-MM-DD HH:mm:ss')}/${item.valueTo.format('YYYY-MM-DD HH:mm:ss')}`).then(
         function success(result){
-            $scope.overviewCount = result.data.TOTAL[0].value
+            $scope.overviewCount = result.data.TOTAL[0].value;
+            $scope.locationOverview ={
+                data: [],
+                labels : [],
+                options: {legend: {display: true}}
+            };
+            $scope.brandOverview = {
+                data: [],
+                labels : []
+            };
             prepareChartDataForObject($scope.brandOverview,result.data.STATUS_BY_BRAND);
             prepareChartDataForObject($scope.locationOverview,result.data.STATUS_BY_CITY);
         },function error(error){
