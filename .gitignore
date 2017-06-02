@@ -15,7 +15,9 @@ out
 .externalToolBuilders
 *.jtl
 node_modules
+node
 docs/target
+dist
 
 # Gradle
 /build
