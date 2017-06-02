@@ -6,7 +6,7 @@ package no.fjordkraft.im.statusEnum;
 public enum UIStatementStatusEnum {
 
     PENDING("PENDING"),
-    PRE_PROCESSING("PRE_PROCESSING"),
+    PRE_PROCESSING("PRE-PROCESSING"),
     PROCESSING("PROCESSING"),
     MERGING("MERGING"),
     READY("READY"),

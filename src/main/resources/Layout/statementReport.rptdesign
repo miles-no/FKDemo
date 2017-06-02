@@ -2734,7 +2734,7 @@ dataSetRow["TransactionCategory"]</expression>
                             <structure>
                                 <property name="name">AmountWithVat</property>
                                 <text-property name="displayName">AmountWithVat</text-property>
-                                <expression name="expression" type="javascript">getFormattedAmount(dataSetRow["AmountWithVat"])</expression>
+                                <expression name="expression" type="javascript">formatMoney(dataSetRow["AmountWithVat"], 2, '', '.', ',')</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
@@ -2862,7 +2862,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                             <structure>
                                                 <property name="name">TotalVatAmount</property>
                                                 <text-property name="displayName">TotalVatAmount</text-property>
-                                                <expression name="expression" type="javascript">"(Herav MVA " + dataSetRow["TotalVatAmount"] + ")"</expression>
+                                                <expression name="expression" type="javascript">"(Herav MVA " + formatMoney(dataSetRow["TotalVatAmount"], 2, '', '.', ',') + ")"</expression>
                                                 <property name="dataType">string</property>
                                                 <property name="allowExport">true</property>
                                             </structure>
@@ -2879,7 +2879,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                             <structure>
                                                 <property name="name">CurrentClaim</property>
                                                 <text-property name="displayName">CurrentClaim</text-property>
-                                                <expression name="expression" type="javascript">getFormattedAmount(dataSetRow["CurrentClaim"])</expression>
+                                                <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                                 <property name="dataType">string</property>
                                                 <property name="allowExport">true</property>
                                             </structure>
@@ -2932,7 +2932,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                             <structure>
                                 <property name="name">CurrentClaim</property>
                                 <text-property name="displayName">CurrentClaim</text-property>
-                                <expression name="expression" type="javascript">getFormattedAmount(dataSetRow["CurrentClaim"])</expression>
+                                <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
@@ -3916,7 +3916,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
         <Visible>false</Visible>
       </Label>
       <DataDefinition>
-        <Definition>row[&quot;Type&quot;] + &quot;: &quot; + row[&quot;Amount&quot;] + &quot;,00&quot;</Definition>
+        <Definition>row[&quot;Type&quot;] + &quot;: &quot; + formatMoney(row[&quot;Amount&quot;], 2, '', '.', ',')</Definition>
       </DataDefinition>
       <SeriesIdentifier></SeriesIdentifier>
       <DataPoint>
@@ -3996,8 +3996,9 @@ if(null == dataSetRow["StartDate"]) {&#13;
                 <structure>
                     <property name="name">AmountWithVat</property>
                     <text-property name="displayName">AmountWithVat</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["AmountWithVat"]</expression>
+                    <expression name="expression" type="javascript">formatMoney(dataSetRow["AmountWithVat"], 2, '', '.', ',')</expression>
                     <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
                 </structure>
                 <structure>
                     <property name="name">FreeText</property>
@@ -4027,8 +4028,9 @@ if(null == dataSetRow["StartDate"]) {&#13;
                 <structure>
                     <property name="name">CurrentClaim</property>
                     <text-property name="displayName">CurrentClaim</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
+                    <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                     <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
                 </structure>
                 <structure>
                     <property name="name">TotalVatAmount</property>
@@ -4182,7 +4184,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                 <structure>
                                     <property name="name">TotalVatAmount</property>
                                     <text-property name="displayName">TotalVatAmount</text-property>
-                                    <expression name="expression" type="javascript">"(Herav MVA " + dataSetRow["TotalVatAmount"] + ")"</expression>
+                                    <expression name="expression" type="javascript">"(Herav MVA " + formatMoney(dataSetRow["TotalVatAmount"], 2, '', '.', ',') + ")"</expression>
                                     <property name="dataType">string</property>
                                     <property name="allowExport">true</property>
                                 </structure>
@@ -4622,28 +4624,28 @@ gjeldende satser.]]></text-property>
                                     <structure>
                                         <property name="name">GrossPrice</property>
                                         <text-property name="displayName">StromInfo::GrossPrice</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["GrossPrice"] + " " + dataSetRow["StromInfo::PriceDenomination"]</expression>
+                                        <expression name="expression" type="javascript">formatMoney(dataSetRow["GrossPrice"], 2, '', '.', ',') + " " + dataSetRow["StromInfo::PriceDenomination"]</expression>
                                         <property name="dataType">string</property>
                                         <property name="allowExport">true</property>
                                     </structure>
                                     <structure>
                                         <property name="name">TotalGross</property>
                                         <text-property name="displayName">StromInfo::TotalGross</text-property>
-                                        <expression name="expression" type="javascript">getFormattedAmount(dataSetRow["TotalGross"])</expression>
+                                        <expression name="expression" type="javascript">formatMoney(dataSetRow["TotalGross"], 2, '', '.', ',')</expression>
                                         <property name="dataType">string</property>
                                         <property name="allowExport">true</property>
                                     </structure>
                                     <structure>
                                         <property name="name">StromInfo::GrossTotal</property>
                                         <text-property name="displayName">StromInfo::GrossTotal</text-property>
-                                        <expression name="expression" type="javascript">getFormattedAmount(dataSetRow["StromInfo::GrossTotal"])</expression>
+                                        <expression name="expression" type="javascript">formatMoney(dataSetRow["StromInfo::GrossTotal"], 2, '', '.', ',')</expression>
                                         <property name="dataType">string</property>
                                         <property name="allowExport">true</property>
                                     </structure>
                                     <structure>
                                         <property name="name">StromInfo::VatTotal</property>
                                         <text-property name="displayName">StromInfo::VatTotal</text-property>
-                                        <expression name="expression" type="javascript">"(Herav MVA " + dataSetRow["StromInfo::VatTotal"] + ")"</expression>
+                                        <expression name="expression" type="javascript">"(Herav MVA " + formatMoney(dataSetRow["StromInfo::VatTotal"], 2, '', '.', ',') + ")"</expression>
                                         <property name="dataType">string</property>
                                         <property name="allowExport">true</property>
                                     </structure>
