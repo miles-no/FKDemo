@@ -106,7 +106,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
                         $scope.totalInvoices =eachState.value;
                     }
                     //$scope.totalInvoices = $scope.totalInvoices + eachState.count;
-                    eachState.name = _.capitalize(eachState.name);
+                    eachState.name = _.capitalize(_.camelCase(eachState.name));
                     return eachState;
                 })
             },function error(error){
@@ -130,5 +130,5 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
     $interval(function(){
         console.log('Came in here $interval',$scope.testValueChange);
         $scope.getStates();
-    },50000)
+    },5000)
 });
