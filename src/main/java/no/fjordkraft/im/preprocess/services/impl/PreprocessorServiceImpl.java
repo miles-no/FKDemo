@@ -28,6 +28,7 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -138,6 +139,8 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         Integer customerId = statement.getNationalId();
         Long accountNumber = statement.getAccountNumber();
         String invoiceNumber = accountNumber + ""+ statement.getSequenceNumber();
+        Date invoiceDate = statement.getStatementDate().toGregorianCalendar().getTime();
+        Date dueDate = statement.getDueDate().toGregorianCalendar().getTime();
         statementEntity.setStatementId(statementOcr.toString());
         statementEntity.setCustomerId(customerId.toString());
         statementEntity.setAccountNumber(accountNumber.toString());
@@ -145,6 +148,9 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         statementEntity.setCity(statement.getCity());
         statementEntity.setVersion(statement.getVersion());
         statementEntity.setDistributionMethod(statement.getDistributionMethod());
+        statementEntity.setAmount(statement.getCurrentClaim());
+        statementEntity.setInvoiceDate(invoiceDate);
+        statementEntity.setDueDate(dueDate);
         statementEntity.setUdateTime(new Timestamp(System.currentTimeMillis()));
         logger.debug("updating statement  "+ statementEntity.getId() + " statementOcr " + statementOcr + " customerId " + customerId + " accountNumber "+ accountNumber + " invoiceNumber "+  invoiceNumber );
         return statementEntity;

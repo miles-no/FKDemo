@@ -1,6 +1,8 @@
 package no.fjordkraft.im.model;
 
 import javax.persistence.*;
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.Date;
 import java.sql.Timestamp;
 
 /**
@@ -63,6 +65,15 @@ public class Statement {
 
     @Column(name="DISTRIBUTION_METHOD")
     private String distributionMethod;
+
+    @Column(name="AMOUNT")
+    private float amount;
+
+    @Column(name="INVOICE_DATE")
+    private Date invoiceDate;
+
+    @Column(name="DUE_DATE")
+    private Date dueDate;
 
     public Long getId() {
         return id;
@@ -190,5 +201,29 @@ public class Statement {
 
     public void setDistributionMethod(String distributionMethod) {
         this.distributionMethod = distributionMethod;
+    }
+
+    public float getAmount() {
+        return amount;
+    }
+
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
+
+    public Date getInvoiceDate() {
+        return invoiceDate;
+    }
+
+    public void setInvoiceDate(Date invoiceDate) {
+        this.invoiceDate = invoiceDate;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 }
