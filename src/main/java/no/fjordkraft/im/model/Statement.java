@@ -25,10 +25,13 @@ public class Statement {
     @JoinColumn(name="SI_ID")
     private  SystemBatchInput systemBatchInput;
 
-    @Column(name="PAYLOAD", updatable=false)
+    /*@Column(name="PAYLOAD", updatable=false)
     @Basic(fetch = FetchType.LAZY)
     @Lob
-    private String payload;
+    private String payload;*/
+
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, mappedBy = "statement", fetch = FetchType.LAZY)
+    private StatementPayload statementPayload;
 
     @Column(name="STATUS")
     private String status;
@@ -91,13 +94,13 @@ public class Statement {
         this.siId = siId;
     }*/
 
-    public String getPayload() {
+    /*public String getPayload() {
         return payload;
     }
 
     public void setPayload(String payload) {
         this.payload = payload;
-    }
+    }*/
 
     public String getStatus() {
         return status;
@@ -225,5 +228,13 @@ public class Statement {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public StatementPayload getStatementPayload() {
+        return statementPayload;
+    }
+
+    public void setStatementPayload(StatementPayload statementPayload) {
+        this.statementPayload = statementPayload;
     }
 }

@@ -24,16 +24,20 @@ public class SystemBatchInput {
     @Column(name="FILENAME")
     private String filename;
 
-    @Basic(fetch = FetchType.LAZY)
+    /*@Basic(fetch = FetchType.LAZY)
     @Column(name="PAYLOAD",updatable = false)
     @Lob
-    private String payload;
+    private String payload;*/
+
     @Column(name="STATUS")
     private String status;
     @Column(name="CREATE_TIME")
     private Timestamp createTime;
     @Column(name="UPDATE_TIME")
     private Timestamp updateTime;
+
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, mappedBy = "systemBatchInput", fetch = FetchType.LAZY)
+    private SystemBatchInputPayload systemBatchInputPayload;
 
     public Long getId() {
         return id;
@@ -59,13 +63,13 @@ public class SystemBatchInput {
         this.filename = filename;
     }
 
-    public String getPayload() {
+    /*public String getPayload() {
         return payload;
     }
 
     public void setPayload(String payload) {
         this.payload = payload;
-    }
+    }*/
 
     public String getStatus() {
         return status;
@@ -97,5 +101,13 @@ public class SystemBatchInput {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public SystemBatchInputPayload getSystemBatchInputPayload() {
+        return systemBatchInputPayload;
+    }
+
+    public void setSystemBatchInputPayload(SystemBatchInputPayload systemBatchInputPayload) {
+        this.systemBatchInputPayload = systemBatchInputPayload;
     }
 }

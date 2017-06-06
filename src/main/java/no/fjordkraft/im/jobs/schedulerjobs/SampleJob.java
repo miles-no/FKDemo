@@ -18,13 +18,13 @@ import java.util.Date;
  * Created by bhavi on 5/5/2017.
  */
 
-@JobInfo(name = "SampleJob",
+/*@JobInfo(name = "SampleJob",
         schedule = "0/1 * * * ?",
         manualAllowed = true,
         checkForWorkingDay = false,
         editAllowed = true,
         status = JobStatus.enabled
-)
+)*/
 @Description("Checks for new emails in email-table, sends emails and updates the status in the email table")
 @Configuration(knownParameters = {
         @Parameter(name = "jobhash", required = true, type = Type.STRING)

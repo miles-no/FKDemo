@@ -2,6 +2,7 @@ package no.fjordkraft.im;
 
 import com.carfey.ops.job.di.SpringSchedulerStarter;
 import com.itextpdf.text.FontFactory;
+import liquibase.integration.spring.SpringLiquibase;
 import no.fjordkraft.im.configuration.DbPlaceholderConfigurer;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.util.IMConstants;
@@ -13,19 +14,26 @@ import org.eclipse.birt.report.engine.api.IReportEngine;
 import org.eclipse.birt.report.engine.api.IReportEngineFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.oxm.Marshaller;
 import org.springframework.oxm.Unmarshaller;
 import org.springframework.oxm.castor.CastorMarshaller;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.util.Assert;
 import org.springframework.util.StopWatch;
 
+import javax.sql.DataSource;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.logging.Level;
 
@@ -36,6 +44,12 @@ import java.util.logging.Level;
 public class AppConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(AppConfig.class);
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     @Bean
     public SpringSchedulerStarter getSpringSchedulerStarter() {return new SpringSchedulerStarter();}
@@ -92,6 +106,31 @@ public class AppConfig {
         return executor;
     }
 
+    @Bean
+    public SpringLiquibase liquibase() {
+
+        // Locate change log file
+        String changelogFile = "classpath:liquidbase/db-changelog.xml";
+        Resource resource = resourceLoader.getResource(changelogFile);
+        Assert.state(resource.exists(), "Unable to find file: " + changelogFile);
+
+        // Configure Liquibase
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog(changelogFile);
+        liquibase.setContexts("test,dev,prod");
+        liquibase.setDataSource(dataSource);
+        //liquibase.setDefaultSchema("mySchema");
+        liquibase.setDropFirst(false);
+        liquibase.setShouldRun(true);
+
+        // Verbose logging
+        Map<String, String> params = new HashMap<>();
+        params.put("verbose", "true");
+        liquibase.setChangeLogParameters(params);
+
+        return liquibase;
+    }
+
 
 
     @Bean(name="BirtEngine")
@@ -99,14 +138,18 @@ public class AppConfig {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("Initializing Birt engine");
         String fontPath = configService.getString(IMConstants.CUSTOM_FONT_PATH);
-        FontFactory.register(fontPath+ File.separator + "FjordkraftNeoSan.ttf", "Fjordkraft Neo Sans");
-        FontFactory.register(fontPath+ File.separator + "FjordkraftNeoSanMed.ttf", "Fjordkraft Neo Sans Medium");
-        FontFactory.register(fontPath+ File.separator + "FjordNeoSanLigIta.ttf", "Fjordkraft Neo Sans Lt It");
-        FontFactory.register(fontPath+ File.separator + "FjordkraftNeoSanBol.ttf", "Fjordkraft Neo Sans Bd");
-        FontFactory.register(fontPath+ File.separator + "FjordNeoSanBolIta.ttf", "Fjordkraft Neo Sans Bd It");
-        FontFactory.register(fontPath+ File.separator + "FjordNeoSanMedIta.ttf", "Fjordkraft Neo Sans Med It");
-        FontFactory.register(fontPath+ File.separator + "FjordNeoSanIta.ttf", "Fjordkraft Neo Sans It");
-        FontFactory.register(fontPath+ File.separator + "FjordkraftNeoSanLig.ttf ", "Fjordkraft Neo Sans Lt");
+        try {
+            FontFactory.register(fontPath + File.separator + "FjordkraftNeoSan.ttf", "Fjordkraft Neo Sans");
+            FontFactory.register(fontPath + File.separator + "FjordkraftNeoSanMed.ttf", "Fjordkraft Neo Sans Medium");
+            FontFactory.register(fontPath + File.separator + "FjordNeoSanLigIta.ttf", "Fjordkraft Neo Sans Lt It");
+            FontFactory.register(fontPath + File.separator + "FjordkraftNeoSanBol.ttf", "Fjordkraft Neo Sans Bd");
+            FontFactory.register(fontPath + File.separator + "FjordNeoSanBolIta.ttf", "Fjordkraft Neo Sans Bd It");
+            FontFactory.register(fontPath + File.separator + "FjordNeoSanMedIta.ttf", "Fjordkraft Neo Sans Med It");
+            FontFactory.register(fontPath + File.separator + "FjordNeoSanIta.ttf", "Fjordkraft Neo Sans It");
+            FontFactory.register(fontPath + File.separator + "FjordkraftNeoSanLig.ttf ", "Fjordkraft Neo Sans Lt");
+        } catch(Exception e) {
+            logger.error("Exception registering Fonts",e);
+        }
         EngineConfig engineConfig = new EngineConfig();
         IReportEngine engine = null;
         //engineConfig.setEngineHome(IMConstants.BIRT_ENGINE_HOME_PATH);

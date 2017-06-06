@@ -1,6 +1,7 @@
 package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.model.Statement;
+import no.fjordkraft.im.model.StatementPayload;
 import no.fjordkraft.im.model.SystemBatchInput;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.repository.SystemBatchInputRepository;
@@ -64,7 +65,8 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
             InputStream inputStream = null;
             systemBatchInput = systemBatchInputRepository.readSingleSystemBatchInputFile(String.valueOf(SystemBatchInputStatusEnum.PENDING.getStatus()));
             if(null != systemBatchInput) {
-                inputStream = new ByteArrayInputStream(systemBatchInput.getPayload().getBytes(StandardCharsets.ISO_8859_1));
+                String payload = systemBatchInput.getSystemBatchInputPayload().getPayload();
+                inputStream = new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1));
                 systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSING.getStatus());
                 statementSplitter.batchFileSplit(inputStream, systemBatchInput.getFilename(), systemBatchInput);
                 systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSED.getStatus());
@@ -95,6 +97,7 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         if(null != systemBatchInputList &&  systemBatchInputList.size()>0) {
             logger.debug("Fetch and split "+systemBatchInputList.size()+ " files");
             for(SystemBatchInput systemBatchInput:systemBatchInputList){
+                systemBatchInput.getSystemBatchInputPayload();
                 systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSING.getStatus());
                 SplitterTask splitterTask = applicationContext.getBean(SplitterTask.class,systemBatchInput);
                 taskExecutor.execute(splitterTask);
@@ -108,12 +111,13 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("SplitStatementFile with systemBatchInputId " + systemBatchInput.getId() + " Filename " + systemBatchInput.getFilename() );
         try {
-            InputStream inputStream = new ByteArrayInputStream(systemBatchInput.getPayload().getBytes(StandardCharsets.ISO_8859_1));
+            String payload = systemBatchInput.getSystemBatchInputPayload().getPayload();
+            InputStream inputStream = new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1));
             statementSplitter.batchFileSplit(inputStream, systemBatchInput.getFilename(), systemBatchInput);
             systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSED.getStatus());
             logger.debug("File split successful for file " + systemBatchInput.getFilename() + " with id " + systemBatchInput.getId()+ stopWatch.prettyPrint());
         } catch (Exception e) {
-            logger.error("Exception while splitting file "+ systemBatchInput.getFilename()+ " id "+ systemBatchInput.getId());
+            logger.error("Exception while splitting file "+ systemBatchInput.getFilename()+ " id "+ systemBatchInput.getId(),e);
             systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.FAILED.getStatus());
         }
         stopWatch.stop();
@@ -141,10 +145,14 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     public void saveIMStatementinDB(File statementFile, Statement imStatement) throws IOException {
         String xml = FileUtils.readFileToString(statementFile, StandardCharsets.ISO_8859_1);
 
-        imStatement.setPayload(xml);
+        //imStatement.setPayload(xml);
         imStatement.setStatus(StatementStatusEnum.PENDING.getStatus());
         imStatement.setCreateTime(new Timestamp(System.currentTimeMillis()));
         imStatement.setUdateTime(new Timestamp(System.currentTimeMillis()));
+
+        StatementPayload statementPayload = new StatementPayload();
+        statementPayload.setPayload(xml);
+        statementPayload.setStatement(imStatement);
         statementRepository.saveAndFlush(imStatement);
     }
 
@@ -152,10 +160,16 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     public void saveIMStatementinDB(String xml, Statement imStatement) throws IOException {
        // String xml = FileUtils.readFileToString(statementFile, StandardCharsets.ISO_8859_1);
 
-        imStatement.setPayload(xml);
+        //imStatement.setPayload(xml);
         imStatement.setStatus(StatementStatusEnum.PENDING.getStatus());
         imStatement.setCreateTime(new Timestamp(System.currentTimeMillis()));
         imStatement.setUdateTime(new Timestamp(System.currentTimeMillis()));
+
+        StatementPayload statementPayload = new StatementPayload();
+        statementPayload.setPayload(xml);
+        statementPayload.setStatement(imStatement);
+
+        imStatement.setStatementPayload(statementPayload);
         statementRepository.saveAndFlush(imStatement);
     }
 }

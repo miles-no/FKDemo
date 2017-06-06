@@ -93,6 +93,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         logger.debug("Preprocessing "+ statementList.size() + " statements");
         for(no.fjordkraft.im.model.Statement statement:statementList) {
             statement.getSystemBatchInput().getFilename();
+            statement.getStatementPayload();
             statement.setStatus(StatementStatusEnum.PRE_PROCESSING.getStatus());
             updateStatementEntity(statement);
             PreprocessorTask preprocessorTask = applicationContext.getBean(PreprocessorTask.class,statement);
@@ -109,7 +110,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         try {
             //statement.getSystemBatchInput().getFilename();
             logger.debug("Preprocessing statement with id " + statement.getId());
-            String payload = statement.getPayload();
+            String payload = statement.getStatementPayload().getPayload();
             statement.getSystemBatchInput().getFilename();
             Statement if320statement = unmarshallStatement(new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1)));
             updateStatementEntity(getUpdatedStatementEntity(if320statement, statement));

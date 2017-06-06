@@ -1,6 +1,7 @@
 package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.model.SystemBatchInput;
+import no.fjordkraft.im.model.SystemBatchInputPayload;
 import no.fjordkraft.im.model.TransferFile;
 import no.fjordkraft.im.repository.SystemBatchInputRepository;
 import no.fjordkraft.im.services.SystemBatchInputService;
@@ -34,11 +35,17 @@ public class SystemBatchInputServiceImpl implements SystemBatchInputService {
         imSystemBatchInput.setTfId(transferFile.getId());
         imSystemBatchInput.setBrand(transferFile.getBrand());
         imSystemBatchInput.setFilename(transferFile.getFileName());
-        imSystemBatchInput.setPayload(transferFile.getFileContent());
+
+
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         imSystemBatchInput.setCreateTime(timestamp);
         imSystemBatchInput.setUpdateTime(timestamp);
         imSystemBatchInput.setStatus(SystemBatchInputStatusEnum.PENDING.getStatus());
+        SystemBatchInputPayload systemBatchInputPayload = new SystemBatchInputPayload();
+        systemBatchInputPayload.setPayload(transferFile.getFileContent());
+        systemBatchInputPayload.setSystemBatchInput(imSystemBatchInput);
+        imSystemBatchInput.setSystemBatchInputPayload(systemBatchInputPayload);
+        //imSystemBatchInput.setPayload(transferFile.getFileContent());
         systemBatchInputRepository.save(imSystemBatchInput);
     }
 }
