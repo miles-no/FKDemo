@@ -1,15 +1,15 @@
-<div ng-controller="overviewController" ng-init="init()">
+<div ng-controller="drillDownController" ng-init="init()">
     <div class="col-md-12 overview-filters">
         <div class="col-md-4">
             <div class="row form-group">
                 <label class="control-label col-md-2">State</label>
                 <div class="col-md-6">
                     <ui-select multiple ng-model="states" theme="bootstrap" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
-                          <ui-select-match placeholder="Select Filter">{{$item.name}}</ui-select-match>
-                          <ui-select-choices  repeat="eachOverview in possibleStates" position='down'>
-                             <div ng-bind-html="eachOverview.name | highlight: $select.search"></div>
-                          </ui-select-choices>
-                      </ui-select>
+                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
+                        <ui-select-choices  repeat="eachOverview in possibleStates" position='down'>
+                            <div ng-bind-html="eachOverview | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
                 </div>
             </div>
             <div class="row form-group">
@@ -34,8 +34,13 @@
             </div>
             <div class="row form-group">
                 <label class="control-label col-md-2">Brand</label>
-                <div class="col-md-8">
-                    <input type="text">
+                <div class="col-md-6">
+                    <ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
+                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
+                        <ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>
+                            <div ng-bind-html="eachBrand | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
                 </div>
             </div>
         </div>
@@ -53,9 +58,16 @@
         <table st-table="displayedCollection" st-safe-src="rowCollection" class="table">
 			<thead>
                 <tr>
-                    <!--<th>
-                        <input placeholder="search firstname" st-search="firstName"/>
-                    </th>-->
+                    <th>
+                        <!--<input placeholder="search firstname" st-search="firstName"/>-->
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Search </label>
+                            <div class="col-md-8">
+                            <input placeholder="search firstname" st-search="firstName">
+                            <!--<circulartimepicker ng-model="date1"></circulartimepicker>-->
+                            </div>
+                        </div>
+                    </th>
                 </tr>
                 <tr>
                     <th st-sort="firstName">Customer id</th>

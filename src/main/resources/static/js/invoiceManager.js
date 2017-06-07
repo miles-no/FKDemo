@@ -32,7 +32,7 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
         })
         .state('overview',{
             url: '/overview',
-            templateUrl: 'templates/overview.html',
+            templateUrl: 'templates/drill-down.html',
             params : {
                 processingState : null,
                 dates : null

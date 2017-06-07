@@ -33,3 +33,29 @@ table {
     }
   }
 }
+.ng-flat-datepicker {
+  table{
+    tbody {
+      tr.days{ 
+          .day-item:hover{
+            background-color: $brand-color;  
+          }
+      }
+      tr {
+        td.day-item.isSelected{
+          background-color: $brand-color;
+        }
+      }
+    }
+  }
+  .ng-flat-datepicker-table-header-bckgrnd {
+    background-color: $brand-color;
+  }
+  .day-item.isSelected{
+    background-color: $brand-color;
+  }
+  .ng-flat-datepicker-custom-select-title{
+    border-color: $brand-color
+  }
+}
+

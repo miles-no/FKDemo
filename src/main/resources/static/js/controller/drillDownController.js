@@ -4,7 +4,7 @@
 
 var app = angular.module('invoiceManagerApp');
 
-app.controller('overviewController',function($scope,$http,moment,$rootScope,$stateParams){
+app.controller('drillDownController',function($scope,$http,moment,$rootScope,$stateParams){
     
     let dummyData = {"firstName": "Name ","lastName":"Last Name ","birthDate":moment().format('LLL'),"balance": 22.5};
     $scope.rowCollection = [];
@@ -12,7 +12,9 @@ app.controller('overviewController',function($scope,$http,moment,$rootScope,$sta
     $scope.states =[];
     $scope.datepickerConfig ={
         "dateFormat" :'YYYY-MM-DD HH:mm:ss',
-        "minDate" : moment().subtract(20,'years')
+        "minDate" : moment().subtract(20,'years'),
+        "maxDate" : moment()
+
     }
     $scope.onStateSelect = function(item,model){
         console.log('onStateSelect ',item,model,$scope.states)
@@ -27,7 +29,7 @@ app.controller('overviewController',function($scope,$http,moment,$rootScope,$sta
     }
     $scope.getOverviewDetails = function(){
         let queryParams = {
-            "states":$scope.states,
+            "states":_.join($scope.states,','),
             "fromDate" :$scope.fromDate,
             "toDate" : $scope.toDate
         }

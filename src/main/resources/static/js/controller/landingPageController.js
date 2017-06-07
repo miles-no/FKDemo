@@ -84,8 +84,9 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment,
             function success(result){
 
                 $scope.processingStates = result.data;
-                $rootScope.states = _.cloneDeep($scope.processingStates);
+                //$rootScope.states = _.cloneDeep($scope.processingStates);
                 _.forEach($scope.processingStates,function(eachState){
+                    $rootScope.states.push(eachState.name);
                     if (eachState.name==='PRE-PROCESSING'){
                         eachState.theme ='dark-blue';
                     }
@@ -119,6 +120,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment,
     $scope.init = function(){
         $scope.colors = ['#FF5500', '#A1D490','#00ADF9','#D792E8','#2B66B3'];
         $rootScope.brands =[];
+        $rootScope.states =[];
         $scope.getStates();
         
         $scope.overview.selected = $scope.possibleOverviews[0];
