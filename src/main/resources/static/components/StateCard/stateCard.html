@@ -15,7 +15,7 @@
         </md-card-content>    
         <md-card-actions layout="row" >
                 <md-card-title layout-align="end">
-                    <i class="fa fa-external-link" uib-tooltip="View invoices which are {{$ctrl.processingState.state}}" aria-hidden="true"></i>
+                    <i ng-click="$ctrl.openDetailedView()" class="fa fa-external-link" uib-tooltip="View invoices which are {{$ctrl.processingState.state}}" aria-hidden="true"></i>
                 </md-card-title>
         </md-card-actions>
     </md-card>

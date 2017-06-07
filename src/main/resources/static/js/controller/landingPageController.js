@@ -4,7 +4,7 @@
 'use strict';
 var app = angular.module('invoiceManagerApp');
 //const colors = require('js/utils/color');
-app.controller('landingPageController',function($scope,$http,$interval,_,moment){
+app.controller('landingPageController',function($scope,$http,$interval,_,moment,$rootScope){
     $scope.overview ={};
     var dayStart = moment().hour(0).minute(0).second(0);
     var dayEnd = moment().hour(23).minute(59).second(59);
@@ -74,6 +74,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
             };
             prepareChartDataForObject($scope.brandOverview,result.data.STATUS_BY_BRAND);
             prepareChartDataForObject($scope.locationOverview,result.data.STATUS_BY_CITY);
+            $rootScope.brands && $rootScope.brands.length && $rootScope.brands.length>0 ? '' : $rootScope.brands = _.cloneDeep($scope.brandOverview.labels);
         },function error(error){
             console.log(`in Error ${error}`);
         });
@@ -83,6 +84,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
             function success(result){
 
                 $scope.processingStates = result.data;
+                $rootScope.states = _.cloneDeep($scope.processingStates);
                 _.forEach($scope.processingStates,function(eachState){
                     if (eachState.name==='PRE-PROCESSING'){
                         eachState.theme ='dark-blue';
@@ -116,8 +118,9 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment)
     
     $scope.init = function(){
         $scope.colors = ['#FF5500', '#A1D490','#00ADF9','#D792E8','#2B66B3'];
-        $scope.name='Kshitij';
+        $rootScope.brands =[];
         $scope.getStates();
+        
         $scope.overview.selected = $scope.possibleOverviews[0];
         getOverviewDetails($scope.overview.selected);
     }

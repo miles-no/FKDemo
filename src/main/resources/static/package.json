@@ -41,8 +41,10 @@
     "local": "gulp local"
   },
   "devDependencies": {
+    "angular-circular-timepicker": "0.3.0",
     "angular-moment": "1.0.1",
     "angular-smart-table": "2.1.8",
-    "angularjs-datepicker": "2.1.19"
+    "font-awesome-animation": "0.0.10",
+    "ng-flat-datepicker": "0.1.4"
   }
 }
