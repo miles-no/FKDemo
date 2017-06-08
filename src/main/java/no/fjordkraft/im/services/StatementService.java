@@ -1,13 +1,13 @@
 package no.fjordkraft.im.services;
 
+import no.fjordkraft.im.domain.RestStatement;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.model.SystemBatchInput;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -28,5 +28,9 @@ public interface StatementService {
     void saveIMStatementinDB(File statementFile, Statement imStatement) throws IOException;
 
     public void saveIMStatementinDB(String xml, Statement imStatement) throws IOException;
+
+    public void updateStatement(Statement statement, StatementStatusEnum status);
+
+    public List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime);
 
 }

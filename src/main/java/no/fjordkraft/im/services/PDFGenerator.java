@@ -1,7 +1,6 @@
 package no.fjordkraft.im.services;
 
 import no.fjordkraft.im.model.Statement;
-import org.eclipse.birt.report.engine.api.EngineException;
 
 /**
  * Created by miles on 5/12/2017.

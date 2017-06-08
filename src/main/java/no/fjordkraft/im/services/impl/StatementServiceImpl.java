@@ -1,8 +1,10 @@
 package no.fjordkraft.im.services.impl;
 
+import no.fjordkraft.im.domain.RestStatement;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.model.StatementPayload;
 import no.fjordkraft.im.model.SystemBatchInput;
+import no.fjordkraft.im.repository.StatementDetailRepository;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.repository.SystemBatchInputRepository;
 import no.fjordkraft.im.services.StatementService;
@@ -25,11 +27,15 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 
-import java.io.*;
+import javax.annotation.Resource;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 /**
  * Created by bhavi on 5/9/2017.
@@ -54,6 +60,9 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
 
     @Autowired
     SystemBatchInputService systemBatchInputService;
+
+    @Resource
+    StatementDetailRepository statementDetailRepository;
 
     ApplicationContext applicationContext;
 
@@ -130,6 +139,13 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         statementRepository.saveAndFlush(statement);
     }
 
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void updateStatement(Statement statement, StatementStatusEnum status){
+        statement.setStatus(status.getStatus());
+        statement.setUdateTime(new Timestamp(System.currentTimeMillis()));
+        statementRepository.saveAndFlush(statement);
+    }
+
 
     public List<Statement> getStatementsByStatus(StatementStatusEnum statementStatusEnum){
         return statementRepository.readStatements(statementStatusEnum.name());
@@ -171,5 +187,34 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
 
         imStatement.setStatementPayload(statementPayload);
         statementRepository.saveAndFlush(imStatement);
+    }
+
+    @Override
+    public List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime) {
+        List<Statement> statementList = statementDetailRepository.getDetails(page, size, status, fromTime, toTime);
+
+        List<RestStatement> restStatementList = new ArrayList<>();
+
+        if(null != statementList) {
+            for (Statement statement : statementList) {
+                RestStatement restStatement = new RestStatement();
+                restStatement.setId(statement.getId());
+                restStatement.setStatus(statement.getStatus());
+                restStatement.setUdateTime(statement.getUdateTime());
+                restStatement.setPdfAttachment(statement.getPdfAttachment());
+                restStatement.setAccountNumber(statement.getAccountNumber());
+                restStatement.setAmount(statement.getAmount());
+                restStatement.setInvoiceNumber(statement.getInvoiceNumber());
+                restStatement.setCustomerId(statement.getCustomerId());
+                restStatement.setDistributionMethod(statement.getDistributionMethod());
+                restStatement.setVersion(statement.getVersion());
+                restStatement.setCity(statement.getCity());
+                restStatement.setStatementId(statement.getStatementId());
+                restStatement.setDueDate(statement.getDueDate());
+                restStatement.setCreateTime(statement.getCreateTime());
+                restStatementList.add(restStatement);
+            }
+        }
+        return restStatementList;
     }
 }

@@ -3,6 +3,7 @@ package no.fjordkraft.im.services.impl;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.ConfigService;
+import no.fjordkraft.im.services.InvoiceGenerator;
 import no.fjordkraft.im.services.PDFGenerator;
 import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
@@ -51,6 +52,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     @Autowired
     @Qualifier("PDFGeneratorExecutor")
     TaskExecutor taskExecutor;
+
+    @Autowired
+    InvoiceGenerator invoiceGenerator;
 
     private String outputDirectoryPath;
     private String pdfGeneratedFolderName;
@@ -103,7 +107,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             statement.setStatus(StatementStatusEnum.PDF_PROCESSED.getStatus());
             statement.setUdateTime(new Timestamp(System.currentTimeMillis()));
             statementService.updateStatement(statement);
-
+            invoiceGenerator.generateInvoice(statement);
         } catch (Exception e) {
             logger.debug("Exception in PDF Generator for statement"+ statement.getId(),e);
             statement.setStatus(StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus());
@@ -125,12 +129,13 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + invoiceNumber + File.separator ;
             String xmlFilePath =  basePath + xmlFolderName + File.separator + "statement.xml";
             //String reportDesignFilePath = "E:\\FuelKraft\\invoice_manager\\statementReport.rptdesign";
-            String reportDesignFilePath = birtRPTPath + File.separator + "statementReport_barcode.rptdesign";
+            String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
 
-
+            String campaignFilePath = configService.getString(IMConstants.CAMPAIGN_FILE_PATH) ;
             IReportRunnable runnable = reportEngine.openReportDesign(reportDesignFilePath);
             IRunAndRenderTask task  = reportEngine.createRunAndRenderTask(runnable);
             task.setParameterValue("sourcexml", xmlFilePath);
+            task.setParameterValue("campaignImage", campaignFilePath);
             //task.setParameterValue("imageurl", "file:///D:/XMLTOPDF/Screenshot_1.png");
             PDFRenderOption options = new PDFRenderOption();
             options.setEmbededFont(true);

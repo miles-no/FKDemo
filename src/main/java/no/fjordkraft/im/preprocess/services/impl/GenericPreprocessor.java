@@ -48,6 +48,7 @@ public class GenericPreprocessor extends BasePreprocessor {
             String folderName = baseFolder.substring(0, baseFolder.indexOf('.'));
             String basePath = configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
             String pdfGeneratedFolderName = configService.getString(IMConstants.GENERATED_PDF_FOLDER_NAME);
+            String mergePdfFolderName = configService.getString(IMConstants.GENERATED_INVOICE_FOLDER_NAME);
 
             File baseFile = new File(basePath + folderName + File.separator + invoiceNumber);
             baseFile.mkdir();
@@ -57,6 +58,10 @@ public class GenericPreprocessor extends BasePreprocessor {
             String processedXmlFolderName = configService.getString(IMConstants.PROCESSED_XML_FOLDER_NAME);
             File processedXmlFile = new File(baseFile, processedXmlFolderName);
             processedXmlFile.mkdir();
+
+            File mergePdfFile = new File(baseFile, mergePdfFolderName);
+            mergePdfFile.mkdir();
+
             request.setPathToProcessedXml(processedXmlFile.getAbsolutePath());
             unmarshallAttachments(request.getStatement());
             decodeAndUnmarshalEHFAttachment(request.getStatement());

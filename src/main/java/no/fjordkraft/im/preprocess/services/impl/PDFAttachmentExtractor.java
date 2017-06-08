@@ -3,10 +3,8 @@ package no.fjordkraft.im.preprocess.services.impl;
 import no.fjordkraft.im.if320.models.Attachment;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.model.InvoicePdf;
-import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
-
-
+import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.repository.InvoicePdfRepository;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
@@ -30,6 +28,7 @@ public class PDFAttachmentExtractor extends BasePreprocessor {
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
         Statement stmt = request.getStatement();
+        int count = 0;
         for(Attachment attachment : stmt.getAttachments().getAttachment()){
             if("PDF".equals(attachment.getFAKTURA().getVEDLEGGFORMAT()) || "PDFEHF".equals(attachment.getFAKTURA().getVEDLEGGFORMAT()) || "PDFE2B".equals(attachment.getFAKTURA().getVEDLEGGFORMAT())){
                 InvoicePdf invoicePdf = new InvoicePdf();
@@ -38,9 +37,11 @@ public class PDFAttachmentExtractor extends BasePreprocessor {
                 invoicePdf.setType(attachment.getFAKTURA().getVEDLEGGFORMAT());
                 invoicePdf.setStatement(request.getEntity());
                 invoicePdf = invoicePdfRepository.saveAndFlush(invoicePdf);
+                count++;
                 logger.debug("Save pdf of type "+invoicePdf.getType() + " with id "+invoicePdf.getId() + " statement id "+request.getEntity().getId() );
             }
         }
+        request.getEntity().setPdfAttachment(count);
     }
 
     public InvoicePdfRepository getInvoicePdfRepository() {
