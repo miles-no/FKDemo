@@ -1,6 +1,8 @@
 package no.fjordkraft.im.repository;
 
+import no.fjordkraft.im.domain.RestInvoicePdf;
 import no.fjordkraft.im.domain.RestStatement;
+import no.fjordkraft.im.model.InvoicePdf;
 import no.fjordkraft.im.model.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -27,7 +31,7 @@ public class StatementDetailRepository {
                 "and " +
                 "(:fromTime is null or s.createTime >= :fromTime) " +
                 "and " +
-                "(:toTime is null or s.createTime <= :toTime)",Statement.class)
+                "(:toTime is null or s.createTime <= :toTime) order by s.createTime",Statement.class)
                 .setFirstResult(page)
                 .setMaxResults(size)
                 .setParameter("status", status)
@@ -55,4 +59,20 @@ public class StatementDetailRepository {
         List<Statement> statementList = query.getResultList();
         return statementList;
     }*/
+
+    public List<RestInvoicePdf> getInvoicePdfs(Collection<Long> ids) {
+        //Query query = entityManager.createNativeQuery("Select ID,STATEMENT_ID statementId, type type from im_invoice_pdfs where statement_id in (:ids)").setParameter("ids",ids);
+        Query query = entityManager.createQuery("Select id,statement.id, type from InvoicePdf ip where statement.id in (:ids)").setParameter("ids",ids);
+
+        List<Object[]> rows = query.getResultList();
+        List<RestInvoicePdf> restInvoicePdfList = new ArrayList<RestInvoicePdf>();
+        for(Object[] row : rows){
+            RestInvoicePdf invoicePdf = new RestInvoicePdf();
+            invoicePdf.setId(Long.valueOf(row[0].toString()));
+            invoicePdf.setStatementId(Long.valueOf(row[1].toString()));
+            invoicePdf.setType(row[2].toString());
+            restInvoicePdfList.add(invoicePdf);
+        }
+        return restInvoicePdfList;
+    }
 }

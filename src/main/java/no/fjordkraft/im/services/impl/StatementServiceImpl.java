@@ -1,6 +1,8 @@
 package no.fjordkraft.im.services.impl;
 
+import no.fjordkraft.im.domain.RestInvoicePdf;
 import no.fjordkraft.im.domain.RestStatement;
+import no.fjordkraft.im.model.InvoicePdf;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.model.StatementPayload;
 import no.fjordkraft.im.model.SystemBatchInput;
@@ -35,7 +37,9 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by bhavi on 5/9/2017.
@@ -194,7 +198,8 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         List<Statement> statementList = statementDetailRepository.getDetails(page, size, status, fromTime, toTime);
 
         List<RestStatement> restStatementList = new ArrayList<>();
-
+        //List<Long> statementIdList =  new ArrayList<>();
+        Map<Long,RestStatement> statementMap = new HashMap<Long,RestStatement>();
         if(null != statementList) {
             for (Statement statement : statementList) {
                 RestStatement restStatement = new RestStatement();
@@ -213,7 +218,16 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
                 restStatement.setDueDate(statement.getDueDate());
                 restStatement.setCreateTime(statement.getCreateTime());
                 restStatementList.add(restStatement);
+                //statementIdList.add(statement.getId());
+                statementMap.put(statement.getId(),restStatement);
             }
+        }
+
+        List<RestInvoicePdf> invoicePdfList = statementDetailRepository.getInvoicePdfs(statementMap.keySet());
+
+        for(RestInvoicePdf restInvoicePdf : invoicePdfList) {
+            RestStatement restStatement = statementMap.get(restInvoicePdf.getStatementId());
+            restStatement.getInvoicePdfList().add(restInvoicePdf);
         }
         return restStatementList;
     }

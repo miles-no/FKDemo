@@ -1,11 +1,14 @@
 package no.fjordkraft.im.domain;
 
+import no.fjordkraft.im.model.InvoicePdf;
 import no.fjordkraft.im.model.StatementPayload;
 import no.fjordkraft.im.model.SystemBatchInput;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by bhavi on 6/8/2017.
@@ -44,6 +47,8 @@ public class RestStatement {
     private Date invoiceDate;
 
     private Date dueDate;
+
+    private List<RestInvoicePdf> invoicePdfList;
 
     public Long getId() {
         return id;
@@ -171,5 +176,16 @@ public class RestStatement {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public List<RestInvoicePdf> getInvoicePdfList() {
+        if(null == invoicePdfList) {
+            invoicePdfList = new ArrayList<>();
+        }
+        return invoicePdfList;
+    }
+
+    public void setInvoicePdfList(List<InvoicePdf> RestInvoicePdf) {
+        this.invoicePdfList = invoicePdfList;
     }
 }
