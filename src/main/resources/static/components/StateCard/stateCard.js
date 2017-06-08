@@ -5,7 +5,7 @@ function stateCardController($interval,$state){
         console.log('In the component here ',ctrl,ctrl.theme,ctrl.odometerOptions,ctrl.processingState);
     ctrl.openDetailedView = function(){
         console.log('Entered openDetailedView ');
-        $state.go('overview',{"processingState": ctrl.processingState});
+        $state.go('overview',{"processingState": ctrl.processingState.name});
     }    
 }
 app.component('stateCard',{

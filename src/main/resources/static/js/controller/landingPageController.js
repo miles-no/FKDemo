@@ -80,13 +80,12 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment,
         });
     }
     $scope.getStates = function(){
+        let getStateNames = $rootScope.states && $rootScope.states.length ==0 ? true: false
         $http.get('/getStatementCountByStatus').then(
             function success(result){
-
                 $scope.processingStates = result.data;
-                //$rootScope.states = _.cloneDeep($scope.processingStates);
                 _.forEach($scope.processingStates,function(eachState){
-                    $rootScope.states.push(eachState.name);
+                    getStateNames ?(eachState.name==='Total' ? '' :$rootScope.states.push(eachState.name)): '';
                     if (eachState.name==='PRE-PROCESSING'){
                         eachState.theme ='dark-blue';
                     }
@@ -109,7 +108,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment,
                         $scope.totalInvoices =eachState.value;
                     }
                     //$scope.totalInvoices = $scope.totalInvoices + eachState.count;
-                    eachState.name = _.capitalize(_.camelCase(eachState.name));
+                    eachState.label = _.capitalize(_.camelCase(eachState.name));
                     return eachState;
                 })
             },function error(error){
@@ -132,8 +131,12 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment,
         getOverviewDetails(item);
     }
     $scope.testValueChange = 5400;
-    $interval(function(){
+    let refreshDashbord=$interval(function(){
         console.log('Came in here $interval',$scope.testValueChange);
         $scope.getStates();
     },5000)
+    $scope.$on('$destroy', function () { 
+        console.log('Came in here $destroy');
+        $interval.cancel(refreshDashbord)
+    });
 });
