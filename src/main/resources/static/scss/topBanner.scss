@@ -18,6 +18,12 @@
           font-weight: bold;
         }
       }
+      .status-indicator{
+        margin-top: 0.7em;
+        .fa-circle,.fa-pause-circle{
+          color: white;
+        }
+      }
     }
   }
 }

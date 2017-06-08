@@ -13,8 +13,11 @@
 <link rel="stylesheet" href="node_modules/odometer/themes/odometer-theme-train-station.css" />
 <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css" />
 <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" href="node_modules/font-awesome-animation/dist/font-awesome-animation.min.css" />
 <link rel="stylesheet" href="node_modules/ui-select/dist/select.min.css"/>
-<link rel="stylesheet" href="node_modules/angularjs-datepicker/dist/angular-datepicker.min.css"/>
+<!--<link rel="stylesheet" href="node_modules/angular-circular-timepicker/dist/stylesheets/angular.circular.timepicker.css"/>-->
+<link rel="stylesheet" href="node_modules/ng-flat-datepicker/dist/ng-flat-datepicker.min.css"/>
+<!-- App CSS Here  -->
 <link rel="stylesheet" href="dist/css/app.css" />
 <!-- CSS Ends here -->
 
@@ -36,7 +39,8 @@
 <script src="node_modules/moment/min/moment.min.js"></script>
 <script src="node_modules/angular-moment/angular-moment.min.js"></script>
 <script src="node_modules/angular-smart-table/dist/smart-table.min.js"></script>
-<script src="node_modules/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
+<!--<script src="node_modules/angular-circular-timepicker/dist/javascript/angular.circular.timepicker.js"></script>-->
+<script src="node_modules/ng-flat-datepicker/dist/ng-flat-datepicker.min.js"></script>
 
 <!-- Dependencies End here -->
 <script src="dist/js/app.js"></script>
@@ -52,11 +56,17 @@
                                 <img class="img-responsive" src="assets/images/svg/fjordkraftlogo.svg" ui-sref="home">
                             </h1>
                         </div>
-                        <!--<ul class="nav navbar-nav">
-                            <li><a ui-sref-active="active" ui-sref="overview">Overview</a></li>
-                        </ul>-->
+                        <div class="col-md-8">
+                            <ul class="nav navbar-nav">
+                                <li><a ui-sref-active="active" ui-sref="overview">Overview</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-2 text-right status-indicator">
+                            <i class="fa fa-pause-circle faa-burst animated fa-2x" aria-hidden="true"></i>
+                            <!--<i class="fa fa-circle faa-burst animated fa-2x" aria-hidden="true"></i>-->
+                        </div>
                     </div>
-
                 </div>
             </nav>
         </div>

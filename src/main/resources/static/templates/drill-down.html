@@ -1,0 +1,109 @@
+<div ng-controller="drillDownController" ng-init="init()">
+    <div class="col-md-12 overview-filters">
+        <div class="col-md-4">
+            <div class="row form-group">
+                <label class="control-label col-md-2">State</label>
+                <div class="col-md-6">
+                    <ui-select multiple ng-model="states" theme="bootstrap" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
+                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
+                        <ui-select-choices  repeat="eachOverview in possibleStates" position='down'>
+                            <div ng-bind-html="eachOverview | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="control-label col-md-2">Filter</label>
+                <div class="col-md-8">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row form-group">
+                <label class="control-label col-md-2">From</label>
+                <div class="col-md-8">
+                    <input type="text" ng-model="fromDate"  datepicker-config ="datepickerConfig" ng-flat-datepicker>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="control-label col-md-2">Invoice</label>
+                <div class="col-md-8">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="control-label col-md-2">Brand</label>
+                <div class="col-md-6">
+                    <ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
+                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
+                        <ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>
+                            <div ng-bind-html="eachBrand | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-md-2">To</label>
+                <div class="col-md-8">
+                   <input type="text" ng-model="toDate"  datepicker-config ="datepickerConfig" ng-flat-datepicker>
+                   <!--<circulartimepicker ng-model="date1"></circulartimepicker>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 overview-details">
+        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table">
+			<thead>
+                <tr>
+                    <th>
+                        <!--<input placeholder="search firstname" st-search="firstName"/>-->
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Search </label>
+                            <div class="col-md-8">
+                            <input placeholder="search firstname" st-search="firstName">
+                            <!--<circulartimepicker ng-model="date1"></circulartimepicker>-->
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th st-sort="firstName">Customer id</th>
+                    <th st-sort="lastName">Account No</th>
+                    <th st-sort="birthDate">MeterId</th>
+                    <th st-sort="balance">Type</th>
+                    <th st-sort="firstName">Amount</th>
+                    <th st-sort="lastName">Invoice Date</th>
+                    <th st-sort="birthDate">Due Date</th>
+                    <th >Links</th>
+                </tr>
+            </thead>
+			<tbody>
+                <tr ng-repeat="row in displayedCollection">
+                    <td>{{row.firstName}}</td>
+                    <td>{{row.lastName}}</td>
+                    <td>{{row.birthDate}}</td>
+                    <td>{{row.balance}}</td>
+                    <td>{{row.firstName}}</td>
+                    <td>{{row.lastName}}</td>
+                    <td>{{row.birthDate}}</td>
+                    <td>
+                        <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+                            <i class="glyphicon glyphicon-remove-circle">
+                            </i>
+                        </button>
+                    </td>
+                </tr>
+			</tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="100%" class="text-center">
+                        <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+            </tfoot>
+		</table>
+    </div>
+</div>

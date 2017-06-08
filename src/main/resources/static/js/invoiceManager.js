@@ -13,7 +13,8 @@ let dependencies = [
         'ngSanitize',
         'angularMoment',
         'smart-table',
-        '720kb.datepicker'
+        'ngFlatDatepicker',
+        // 'angular.circular.timepicker'
     ];
 
 var invoiceManager = angular.module('invoiceManagerApp',dependencies);
@@ -31,7 +32,11 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
         })
         .state('overview',{
             url: '/overview',
-            templateUrl: 'templates/overview.html'
+            templateUrl: 'templates/drill-down.html',
+            params : {
+                processingState : null,
+                dates : null
+            }
         });
     $urlRouterProvider.otherwise('/home');
 });
