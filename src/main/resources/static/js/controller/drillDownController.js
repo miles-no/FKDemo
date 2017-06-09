@@ -10,8 +10,9 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
     $scope.rowCollection = [];
     $scope.searchResults = [];
     $scope.states =[];
+    $scope.brands =[];
     $scope.datepickerConfig ={
-        "dateFormat" :'YYYY-MM-DD HH:mm:ss',
+        "dateFormat" :'YYYY-MM-DD',
         "minDate" : moment().subtract(20,'years'),
         "maxDate" : moment().add(1,'days')
 
@@ -23,13 +24,28 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
     }
     $scope.onStateRemoval = function(item,model){
         console.log('onStateRemoval ',item,model,$scope.states)
-        $scope.states = _.remove($scope.states,function(eachSelectedState){
-            return eachSelectedState.$$hashKey === item.$$hashKey;
+         _.remove($scope.states,function(eachSelectedState){
+            return eachSelectedState === item;
         });
+        $scope.getOverviewDetails();
     }
+    $scope.onBrandSelect = function(item,model){
+        console.log('onStateSelect ',item,model,$scope.states)
+        $scope.brands.push(item);
+        $scope.getOverviewDetails();
+    }
+    $scope.onBrandRemoval = function(item,model){
+        console.log('onStateRemoval ',item,model,$scope.states)
+         _.remove($scope.brands,function(eachSelectedBrand){
+            return eachSelectedBrand === item;
+        });
+        $scope.getOverviewDetails();
+    }
+    
     $scope.getOverviewDetails = function(){
         let queryParams = {
             "states":_.join($scope.states,','),
+            "brands":_.join($scope.brands,','),
             "fromDate" :$scope.fromDate,
             "toDate" : $scope.toDate,
             "page":1 ,
@@ -42,7 +58,7 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
         });
     }
     $scope.getForamttedDate = function(date){
-        return (date ? moment(date) : moment()).format('YYYY-MM-DD HH:mm:ss');
+        return (date ? moment(date) : moment()).format('YYYY-MM-DD');
     }
     $scope.getInvoiceFile = function(invoiceId){
         
@@ -70,9 +86,10 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
     }
     $scope.init = function(){
         console.log($rootScope,$stateParams);
-        $scope.fromDate = moment().hour(0).minute(0).second(0).format('YYYY-MM-DD HH:mm:ss');
-        $scope.toDate= moment().hour(23).minute(59).second(59).format('YYYY-MM-DD HH:mm:ss');
+        $scope.fromDate = moment().hour(0).minute(0).second(0).format('YYYY-MM-DD');
+        $scope.toDate= moment().hour(23).minute(59).second(59).format('YYYY-MM-DD');
         $scope.possibleStates = $rootScope.states;
+        $scope.possibleBrands = $rootScope.brands;
         !$scope.possibleStates || ($scope.possibleStates && $scope.possibleStates.length)== 0 ? $scope.possibleStates = ["PENDING","PRE-PROCESSING","PROCESSING","MERGING","READY","FAILED"] :'';
         $stateParams && $stateParams.processingState ? $scope.states.push($stateParams.processingState) :'';
         $scope.states && $scope.states.length>0 ? $scope.getOverviewDetails() :'';

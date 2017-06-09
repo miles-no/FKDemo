@@ -5,7 +5,7 @@
                 <span class="md-headline" layout-align="center">{{$ctrl.processingState.label}}</span>
             </md-card-title-text>
             <div layout-align="end" >
-                <i class="fa fa-info-circle" uib-tooltip="Records in the system which are {{$ctrl.processingState.state}}" aria-hidden="true"></i>
+                <i class="fa fa-info-circle" uib-tooltip="Records in the system which are {{$ctrl.processingState.label}}" aria-hidden="true"></i>
             </div>
         </md-card-title>
         <md-card-content>
@@ -15,7 +15,7 @@
         </md-card-content>    
         <md-card-actions layout="row" >
                 <md-card-title layout-align="end">
-                    <i ng-click="$ctrl.openDetailedView()" class="fa fa-external-link" uib-tooltip="View invoices which are {{$ctrl.processingState.state}}" aria-hidden="true"></i>
+                    <i ng-click="$ctrl.openDetailedView()" class="fa fa-external-link" uib-tooltip="View invoices which are {{$ctrl.processingState.label}}" aria-hidden="true"></i>
                 </md-card-title>
         </md-card-actions>
     </md-card>

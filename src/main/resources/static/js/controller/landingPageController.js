@@ -60,7 +60,8 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment,
         })
     }
     let getOverviewDetails = function(item){
-        $http.get(`/getOverviewData/${item.valueFrom.format('YYYY-MM-DD HH:mm:ss')}/${item.valueTo.format('YYYY-MM-DD HH:mm:ss')}`).then(
+        $http.get(`/dashboard/all`,{params : {fromTime: item.valueFrom.format('YYYY-MM-DD HH:mm:ss'),toTime: item.valueTo.format('YYYY-MM-DD HH:mm:ss')}}).then(
+            
         function success(result){
             $scope.overviewCount = result.data.TOTAL[0].value;
             $scope.locationOverview ={
@@ -81,7 +82,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment,
     }
     $scope.getStates = function(){
         let getStateNames = $rootScope.states && $rootScope.states.length ==0 ? true: false
-        $http.get('/getStatementCountByStatus').then(
+        $http.get('/dashboard/status').then(
             function success(result){
                 $scope.processingStates = result.data;
                 _.forEach($scope.processingStates,function(eachState){
@@ -122,7 +123,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment,
         $rootScope.states =[];
         $scope.getStates();
         
-        $scope.overview.selected = $scope.possibleOverviews[0];
+        $scope.overview.selected = $scope.possibleOverviews[5];
         getOverviewDetails($scope.overview.selected);
     }
     
