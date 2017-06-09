@@ -35,7 +35,7 @@
             <div class="row form-group">
                 <label class="control-label col-md-2">Brand</label>
                 <div class="col-md-6">
-                    <ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
+                    <ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="onBrandRemoval($item, $model)"on-select="onBrandSelect($item, $model)">
                         <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
                         <ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>
                             <div ng-bind-html="eachBrand | highlight: $select.search"></div>
@@ -70,10 +70,11 @@
                 <tr>
                     <th st-sort="customerId">Customer id</th>
                     <th st-sort="accountNumber">Account No</th>
-                    <th >MeterId</th>
-                    <th >Type</th>
+                    <th >Invoice No</th>
+                    <th >Distribution Method</th>
                     <th st-sort="amount">Amount</th>
-                    <th >Invoice Date</th>
+                    <!--<th >Invoice Date</th>-->
+                    <th >City</th>
                     <th st-sort="dueDate">Due Date</th>
                     <th >Links</th>
                 </tr>
@@ -82,10 +83,10 @@
                 <tr ng-repeat="row in displayedCollection">
                     <td>{{row.customerId}}</td>
                     <td>{{row.accountNumber}}</td>
-                    <td>Meter ID placeholder</td>
-                    <td>Type placeholder</td>
+                    <td>{{row.invoiceNumber}}</td>
+                    <td>{{row.distributionMethod}}</td>
                     <td>{{row.amount}}</td>
-                    <td>{{getForamttedDate()}}</td>
+                    <td>{{row.city}}</td>
                     <td>{{getForamttedDate(row.dueDate)}}</td>
                     <td>
                         <!--<button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
