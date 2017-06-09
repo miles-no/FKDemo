@@ -126,6 +126,7 @@ public class IMDashboardController {
     }
 
     @RequestMapping(value = "time",method = RequestMethod.GET)
+    @ResponseBody
     public StatusCount getInvoiceCountByTime(@RequestParam("fromTime") Timestamp fromTime, @RequestParam("toTime") Timestamp toTime) {
         Long count = statementRepository.getInvoiceCountByTime(fromTime, toTime);
         StatusCount statusCount = new StatusCount();
@@ -135,6 +136,7 @@ public class IMDashboardController {
     }
 
     @RequestMapping(value = "all", method = RequestMethod.GET)
+    @ResponseBody
     public Map<String, List<StatusCount>> getOverviewData(@RequestParam("fromTime") Timestamp fromTime, @RequestParam("toTime") Timestamp toTime) {
         Map<String, List<StatusCount>> map = new HashMap<String, List<StatusCount>>();
         List<StatusCount> totalInvoice = new ArrayList<>();
