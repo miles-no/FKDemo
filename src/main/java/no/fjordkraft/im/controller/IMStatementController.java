@@ -31,14 +31,14 @@ public class IMStatementController {
 
     @RequestMapping(value = "details", method = RequestMethod.GET)
     @ResponseBody
-    List<RestStatement> getDetails(@RequestParam(value = "status",required=false) String status,
+    List<RestStatement> getDetails(@RequestParam(value = "states",required=false) String status,
                                @RequestParam(value = "fromTime", required=false) Timestamp fromTime,
                                @RequestParam(value = "toTime", required=false) Timestamp toTime,
                                @RequestParam(value = "customerID", required=false) String customerID,
                                @RequestParam(value = "brand", required=false) String brand,
                                @RequestParam(value = "page") int page,
                                @RequestParam(value = "size") int size) {
-       return statementService.getDetails(page, size, status, fromTime, toTime);
+       return statementService.getDetails(page, size, status, fromTime, toTime, brand, customerID);
     }
 
     @RequestMapping(value = "/pdf/{id}", method = RequestMethod.GET)

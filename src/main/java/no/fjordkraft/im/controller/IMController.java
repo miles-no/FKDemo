@@ -148,7 +148,7 @@ public class IMController {
         return new ResponseEntity<>(invoicePdf.getPayload(), headers, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "getStatementCountByStatus", method = RequestMethod.GET)
+    /*@RequestMapping(value = "getStatementCountByStatus", method = RequestMethod.GET)
     @ResponseBody
     public List<StatusCount> getStatementCountByStatus() {
         List<StatusCount> statusCounts = statementRepository.getStatementStatus();
@@ -269,6 +269,6 @@ public class IMController {
         map.put(IMConstants.STATUS_BY_BRAND, statusByBrand);
 
         return map;
-    }
+    }*/
 
 }

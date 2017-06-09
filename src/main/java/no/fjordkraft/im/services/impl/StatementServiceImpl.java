@@ -14,7 +14,9 @@ import no.fjordkraft.im.services.StatementSplitter;
 import no.fjordkraft.im.services.SystemBatchInputService;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.statusEnum.SystemBatchInputStatusEnum;
+import no.fjordkraft.im.statusEnum.UIStatementStatusEnum;
 import no.fjordkraft.im.task.SplitterTask;
+import no.fjordkraft.im.util.IMConstants;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -130,7 +132,7 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
             systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSED.getStatus());
             logger.debug("File split successful for file " + systemBatchInput.getFilename() + " with id " + systemBatchInput.getId()+ stopWatch.prettyPrint());
         } catch (Exception e) {
-            logger.error("Exception while splitting file "+ systemBatchInput.getFilename()+ " id "+ systemBatchInput.getId(),e);
+            logger.error("Exception while splitting file " + systemBatchInput.getFilename() + " id " + systemBatchInput.getId(), e);
             systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.FAILED.getStatus());
         }
         stopWatch.stop();
@@ -194,8 +196,12 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     }
 
     @Override
-    public List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime) {
-        List<Statement> statementList = statementDetailRepository.getDetails(page, size, status, fromTime, toTime);
+    public List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime,
+                                          String brand, String customerID) {
+        String mappedStatus = mapStatus(status);
+
+        List<Statement> statementList = statementDetailRepository.getDetails(page, size, mappedStatus, fromTime, toTime,
+                brand, customerID);
 
         List<RestStatement> restStatementList = new ArrayList<>();
         //List<Long> statementIdList =  new ArrayList<>();
@@ -223,12 +229,52 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
             }
         }
 
-        List<RestInvoicePdf> invoicePdfList = statementDetailRepository.getInvoicePdfs(statementMap.keySet());
+        if(!statementMap.isEmpty()) {
+            List<RestInvoicePdf> invoicePdfList = statementDetailRepository.getInvoicePdfs(statementMap.keySet());
 
-        for(RestInvoicePdf restInvoicePdf : invoicePdfList) {
-            RestStatement restStatement = statementMap.get(restInvoicePdf.getStatementId());
-            restStatement.getInvoicePdfList().add(restInvoicePdf);
+            for (RestInvoicePdf restInvoicePdf : invoicePdfList) {
+                RestStatement restStatement = statementMap.get(restInvoicePdf.getStatementId());
+                restStatement.getInvoicePdfList().add(restInvoicePdf);
+            }
         }
         return restStatementList;
+    }
+
+    private String mapStatus(String states) {
+        String[] statusList = states.split(",");
+        StringBuffer mappedStatusList = new StringBuffer();
+
+        for(String status:statusList) {
+            if(!mappedStatusList.toString().equals(IMConstants.EMPTY_STRING)) {
+                mappedStatusList.append(",");
+            }
+            if(UIStatementStatusEnum.PENDING.getStatus().equals(status)) {
+                mappedStatusList.append(StatementStatusEnum.PENDING.getStatus());
+            } else if(UIStatementStatusEnum.PRE_PROCESSING.getStatus().equals(status)) {
+                mappedStatusList.append(StatementStatusEnum.PRE_PROCESSING.getStatus());
+            } else if(UIStatementStatusEnum.PROCESSING.getStatus().equals(status)) {
+                mappedStatusList.append(StatementStatusEnum.PRE_PROCESSED.getStatus());
+                mappedStatusList.append(",");
+                mappedStatusList.append(StatementStatusEnum.PDF_PROCESSING.getStatus());
+            } else if(UIStatementStatusEnum.MERGING.getStatus().equals(status)) {
+                mappedStatusList.append(StatementStatusEnum.PDF_PROCESSED.getStatus());
+                mappedStatusList.append(",");
+                mappedStatusList.append(StatementStatusEnum.INVOICE_PROCESSING.getStatus());
+            } else if(UIStatementStatusEnum.READY.getStatus().equals(status)) {
+                mappedStatusList.append(StatementStatusEnum.INVOICE_PROCESSED.getStatus());
+                mappedStatusList.append(",");
+                mappedStatusList.append(StatementStatusEnum.DELIVERY_PENDING.getStatus());
+            } else if(UIStatementStatusEnum.FAILED.getStatus().equals(status)) {
+                mappedStatusList.append(StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus());
+                mappedStatusList.append(",");
+                mappedStatusList.append(StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus());
+                mappedStatusList.append(",");
+                mappedStatusList.append(StatementStatusEnum.INVOICE_PROCESSING_FAILED.getStatus());
+                mappedStatusList.append(",");
+                mappedStatusList.append(StatementStatusEnum.DELIVERY_FAILED.getStatus());
+            }
+        }
+
+        return mappedStatusList.toString();
     }
 }

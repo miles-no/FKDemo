@@ -48,6 +48,8 @@ public class RestStatement {
 
     private Date dueDate;
 
+    private String brand;
+
     private List<RestInvoicePdf> invoicePdfList;
 
     public Long getId() {
@@ -187,5 +189,13 @@ public class RestStatement {
 
     public void setInvoicePdfList(List<InvoicePdf> RestInvoicePdf) {
         this.invoicePdfList = invoicePdfList;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

@@ -4,11 +4,14 @@ import no.fjordkraft.im.domain.RestInvoicePdf;
 import no.fjordkraft.im.domain.RestStatement;
 import no.fjordkraft.im.model.InvoicePdf;
 import no.fjordkraft.im.model.Statement;
+import no.fjordkraft.im.statusEnum.StatementStatusEnum;
+import no.fjordkraft.im.statusEnum.UIStatementStatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,42 +26,44 @@ public class StatementDetailRepository {
     @Autowired
     private EntityManager entityManager;
 
-    public List<Statement> getDetails(int page, int size, String status, Timestamp fromTime,
-                                Timestamp toTime){
+    final static String AND = " and ";
+    final static String OR = " or ";
 
-        Query query = entityManager.createQuery("select s from Statement s where " +
-                "(:status is null or s.status = :status) " +
-                "and " +
-                "(:fromTime is null or s.createTime >= :fromTime) " +
-                "and " +
-                "(:toTime is null or s.createTime <= :toTime) order by s.createTime",Statement.class)
+    @Transactional
+    public List<Statement> getDetails(int page, int size, String status, Timestamp fromTime,
+                                Timestamp toTime, String brand, String customerID){
+
+        StringBuffer selectQuery = new StringBuffer();
+        selectQuery.append("select s from Statement s join s.systemBatchInput where ");
+        if(null != status ) {
+            selectQuery.append(addConditionForQueryValue(status, "s.status"));
+            selectQuery.append(AND);
+        }
+        if(null != brand) {
+            selectQuery.append(addConditionForQueryValue(brand, "s.systemBatchInput.brand"));
+            selectQuery.append(AND);
+        }
+        selectQuery.append("(:customerID is null or s.customerId = :customerID) ");
+        selectQuery.append(AND);
+        selectQuery.append("(:fromTime is null or s.createTime >= :fromTime) ");
+        selectQuery.append(AND);
+        selectQuery.append("(:toTime is null or s.createTime <= :toTime) ");
+        selectQuery.append("order by s.createTime desc");
+
+        Query query = entityManager.createQuery(selectQuery.toString(), Statement.class)
                 .setFirstResult(page)
                 .setMaxResults(size)
-                .setParameter("status", status)
                 .setParameter("fromTime", fromTime)
-                .setParameter("toTime", toTime);
+                .setParameter("toTime", toTime)
+                .setParameter("customerID", customerID);
 
         List<Statement> statementList = query.getResultList();
         return statementList;
     }
 
-    /*public List<Statement> getInvoicePdfs(Timestamp toTime){
-
-        Query query = entityManager.createQuery("select s from Statement s where " +
-                "(:status is null or s.status = :status) " +
-                "and " +
-                "(:fromTime is null or s.createTime >= :fromTime) " +
-                "and " +
-                "(:toTime is null or s.createTime <= :toTime)",Statement.class)
-                .setFirstResult(page)
-                .setMaxResults(size)
-                .setParameter("status", status)
-                .setParameter("fromTime", fromTime)
-                .setParameter("toTime", toTime);
-
-        List<Statement> statementList = query.getResultList();
-        return statementList;
-    }*/
+    private String addConditionForQueryValue(String value, String name) {
+        return "(" + name + " in " + "(" + value + "))";
+    }
 
     public List<RestInvoicePdf> getInvoicePdfs(Collection<Long> ids) {
         //Query query = entityManager.createNativeQuery("Select ID,STATEMENT_ID statementId, type type from im_invoice_pdfs where statement_id in (:ids)").setParameter("ids",ids);

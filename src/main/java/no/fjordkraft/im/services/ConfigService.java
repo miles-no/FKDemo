@@ -27,4 +27,8 @@ public interface ConfigService {
 
     Config updateConfig(String key, String value);
 
+    void saveConfig(String key, String value);
+
+    void deleteConfig(String key);
+
 }

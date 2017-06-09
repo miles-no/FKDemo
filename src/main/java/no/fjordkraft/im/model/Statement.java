@@ -78,6 +78,9 @@ public class Statement {
     @Column(name="DUE_DATE")
     private Date dueDate;
 
+    @Transient
+    private String brand;
+
     public Long getId() {
         return id;
     }
@@ -236,5 +239,13 @@ public class Statement {
 
     public void setStatementPayload(StatementPayload statementPayload) {
         this.statementPayload = statementPayload;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

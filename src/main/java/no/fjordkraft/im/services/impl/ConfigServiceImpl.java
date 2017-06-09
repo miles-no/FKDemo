@@ -128,6 +128,19 @@ public class ConfigServiceImpl implements ConfigService {
     }
 
     @Override
+    public void saveConfig(String key, String value) {
+        Config config = new Config();
+        config.setName(key);
+        config.setValue(value);
+        configRepository.save(config);
+    }
+
+    @Override
+    public void deleteConfig(String key) {
+        configRepository.delete(key);
+    }
+
+    @Override
     public synchronized void clearCache() {
         cache.clear();
         lastCacheRefresh = System.currentTimeMillis();
