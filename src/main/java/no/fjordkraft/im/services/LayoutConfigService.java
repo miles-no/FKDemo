@@ -1,6 +1,6 @@
 package no.fjordkraft.im.services;
 
-import no.fjordkraft.im.model.rest.RestLayoutConfig;
+import no.fjordkraft.im.domain.RestLayoutConfig;
 
 import java.io.IOException;
 

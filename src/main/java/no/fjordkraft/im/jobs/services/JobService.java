@@ -2,7 +2,6 @@ package no.fjordkraft.im.jobs.services;
 
 
 import no.fjordkraft.im.jobs.domain.Job;
-import no.fjordkraft.im.jobs.domain.JobFetchRequest;
 
 import java.util.List;
 

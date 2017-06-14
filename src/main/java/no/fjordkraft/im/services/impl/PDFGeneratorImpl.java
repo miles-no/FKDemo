@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,13 +81,18 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     @Transactional
     public void generateInvoicePDF() throws InterruptedException {
         Long numOfThreads = configService.getLong(IMConstants.NUM_OF_THREAD_PDFGENERATOR);
+
+        if(taskExecutor instanceof ThreadPoolTaskExecutor) {
+            ThreadPoolTaskExecutor executor = (ThreadPoolTaskExecutor)taskExecutor;
+            logger.debug("PDF generator thread queue count " + executor.getThreadPoolExecutor().getQueue().size() +" active threads "+ executor.getActiveCount() + "max pool size "+executor.getMaxPoolSize()+ " :: "+executor.getThreadPoolExecutor().getActiveCount());
+        }
+
         List<Statement> statements = statementRepository.readStatements(numOfThreads, StatementStatusEnum.PRE_PROCESSED.getStatus());
         logger.debug("Generate invoice pdf for "+ statements.size() + " statements");
+
         for(Statement statement:statements) {
             statement.getSystemBatchInput().getFilename();
-            statement.setStatus(StatementStatusEnum.PDF_PROCESSING.getStatus());
-            statement.setUdateTime(new Timestamp(System.currentTimeMillis()));
-            statementService.updateStatement(statement);
+            statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING);
             PDFGeneratorTask pdfGeneratorTask = applicationContext.getBean(PDFGeneratorTask.class,statement);
             taskExecutor.execute(pdfGeneratorTask);
         }
@@ -96,7 +102,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void generateInvoicePDFSingleStatement(Statement statement) {
         StopWatch stopWatch = new StopWatch();
-        stopWatch.start("PDF Generator for statement "+ statement.getId());
+        stopWatch.start("PDF generation for statement "+ statement.getId());
         try {
 
             String systemBatchInputFileName = "";
@@ -104,18 +110,14 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             systemBatchInputFileName = statement.getSystemBatchInput().getFilename();
             subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
             birtEnginePDFGenerator(statement.getId(), outputDirectoryPath, subFolderName, statement.getInvoiceNumber(), pdfGeneratedFolderName, xmlFolderName);
-            statement.setStatus(StatementStatusEnum.PDF_PROCESSED.getStatus());
-            statement.setUdateTime(new Timestamp(System.currentTimeMillis()));
-            statementService.updateStatement(statement);
+            statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSED);
             invoiceGenerator.generateInvoice(statement);
         } catch (Exception e) {
-            logger.debug("Exception in PDF Generator for statement"+ statement.getId(),e);
-            statement.setStatus(StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus());
-            statement.setUdateTime(new Timestamp(System.currentTimeMillis()));
-            statementService.updateStatement(statement);
+            logger.debug("Exception in PDF generation for statement"+ statement.getId(),e);
+            statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING_FAILED);
         }
         stopWatch.stop();
-        logger.debug("PDF Generator for statement completed statementId"+ statement.getId());
+        logger.debug("PDF generated for statement with statementId"+ statement.getId()+ "completed");
         logger.debug(stopWatch.prettyPrint());
     }
 
@@ -149,11 +151,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             throw e;
         }
 
-        //engine.destroy();
-        //Platform.shutdown();
-        //RegistryProviderFactory.releaseDefault();
         long endTime = System.currentTimeMillis();
-        System.out.println("Time to execute report "+ (endTime-startTime)+ " milli seconds " + (endTime-startTime)/1000+ "  seconds ");
+        logger.debug("Time to execute report " + (endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
 
     }
 

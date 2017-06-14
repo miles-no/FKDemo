@@ -1,15 +1,16 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
 import no.fjordkraft.im.if320.models.*;
-import no.fjordkraft.im.if320.models.Statement;
-import no.fjordkraft.im.if320.models.TransactionGroup;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.util.IMConstants;
 import org.apache.commons.collections4.map.MultiValueMap;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by miles on 5/19/2017.

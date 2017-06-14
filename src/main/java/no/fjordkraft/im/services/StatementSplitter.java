@@ -2,10 +2,6 @@ package no.fjordkraft.im.services;
 
 import no.fjordkraft.im.model.SystemBatchInput;
 
-import javax.xml.stream.XMLStreamException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 
 /**

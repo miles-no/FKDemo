@@ -1,6 +1,6 @@
 package no.fjordkraft.im.controller;
 
-import no.fjordkraft.im.model.rest.RestLayoutConfig;
+import no.fjordkraft.im.domain.RestLayoutConfig;
 import no.fjordkraft.im.services.impl.LayoutConfigServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

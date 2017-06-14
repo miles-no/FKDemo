@@ -3,20 +3,22 @@ package no.fjordkraft.im;
 /**
  * Created by bhavik on 4/28/2017.
  */
-import java.io.File;
-import java.util.Arrays;
 
-import no.fjordkraft.im.util.IMConstants;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@ServletComponentScan("no.fjordkraft.im")
-@SpringBootApplication
+//@ServletComponentScan({"no.fjordkraft.security","no.fjordkraft.im"})
+//@SpringBootApplication(scanBasePackages = {"no.fjordkraft.security","no.fjordkraft.im","no.fjordkraft.security.jpa.repository"} )
+//@EnableJpaRepositories(basePackages = {"no.fjordkraft.im","no.fjordkraft.security.jpa.repository"})
+//@EntityScan(basePackages={"no.fjordkraft.im","no.fjordkraft.security"})
+
+@ServletComponentScan({"no.fjordkraft.im"})
+@SpringBootApplication(scanBasePackages = {"no.fjordkraft.im"})
+@EnableJpaRepositories(basePackages = {"no.fjordkraft.im"})
+//@EntityScan(basePackages={"no.fjordkraft.im","no.fjordkraft.security"})
 //@EnableScheduling
 public class Application {
 

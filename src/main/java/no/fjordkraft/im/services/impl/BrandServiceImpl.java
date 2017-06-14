@@ -5,8 +5,9 @@ import no.fjordkraft.im.repository.BrandConfigRepository;
 import no.fjordkraft.im.services.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class BrandServiceImpl implements BrandService {
     @Autowired
     BrandConfigRepository brandConfigRepository;
 
-    @Transactional
+    @Transactional(readOnly=true)
     @Override
     public List<BrandConfig> getBrandConfigs() {
         List<BrandConfig> brandConfigList = new ArrayList<>();
@@ -28,11 +29,13 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
+    @Transactional
     public void saveBrandConfig(BrandConfig brandConfig) {
         brandConfigRepository.saveAndFlush(brandConfig);
     }
 
     @Override
+    @Transactional
     public void updateBrandConfig(BrandConfig brandConfig) {
         BrandConfig config = new BrandConfig();
         config = brandConfigRepository.findOne(brandConfig.getId());
@@ -45,11 +48,13 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
+    @Transactional
     public void deleteBrandConfig(Long id) {
         brandConfigRepository.delete(id);
     }
 
     @Override
+    @Transactional(readOnly=true)
     public BrandConfig getBrandConfigByName(String brand) {
         return brandConfigRepository.getBarcodeConfigByBrand(brand);
     }

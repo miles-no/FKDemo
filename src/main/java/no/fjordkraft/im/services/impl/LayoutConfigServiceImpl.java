@@ -2,15 +2,14 @@ package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.model.LayoutConfig;
 import no.fjordkraft.im.model.LayoutPayload;
-import no.fjordkraft.im.model.rest.RestLayoutConfig;
+import no.fjordkraft.im.domain.RestLayoutConfig;
 import no.fjordkraft.im.repository.LayoutConfigRepository;
 import no.fjordkraft.im.services.LayoutConfigService;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -26,6 +25,7 @@ public class LayoutConfigServiceImpl implements LayoutConfigService {
     LayoutConfigRepository layoutConfigRepository;
 
     @Override
+    @Transactional
     public void saveLayoutConfig(RestLayoutConfig restLayoutConfig) throws IOException {
         List<LayoutPayload> layoutPayloadList = new ArrayList<>();
         LayoutPayload layoutPayload = new LayoutPayload();
@@ -53,6 +53,7 @@ public class LayoutConfigServiceImpl implements LayoutConfigService {
     }
 
     @Override
+    @Transactional
     public void updateLayoutConfig(RestLayoutConfig restLayoutConfig) throws IOException {
 
         LayoutConfig layoutConfig = layoutConfigRepository.findOne(restLayoutConfig.getId());
@@ -78,6 +79,7 @@ public class LayoutConfigServiceImpl implements LayoutConfigService {
     }
 
     @Override
+    @Transactional
     public void updateNewLayoutVersion(RestLayoutConfig restLayoutConfig) throws IOException {
         LayoutConfig layoutConfig = layoutConfigRepository.findOne(restLayoutConfig.getId());
         List<LayoutPayload> layoutPayloadList = layoutConfig.getLayoutPayload();

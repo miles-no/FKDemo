@@ -2,7 +2,6 @@ package no.fjordkraft.im.preprocess.services.impl;
 
 import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.*;
-import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.util.IMConstants;
@@ -10,8 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;

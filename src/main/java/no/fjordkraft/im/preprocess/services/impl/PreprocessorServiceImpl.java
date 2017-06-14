@@ -1,7 +1,5 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
-import no.fjordkraft.im.if320.models.Attachment;
-import no.fjordkraft.im.if320.models.FAKTURA;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.services.PreprocessorEngine;
@@ -19,6 +17,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.oxm.Unmarshaller;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,6 +54,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
     @Autowired
     StatementService statementService;
 
+    @Autowired
     ApplicationContext applicationContext;
 
     @Override
@@ -63,7 +63,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             InputStream inputStream = new FileInputStream(path);
             return unmarshallStatement(inputStream);
         } catch(Exception e){
-            e.printStackTrace();
+            logger.error("Exception while unmarshalling statement " + path, e);
             throw e;
         }
     }
@@ -73,29 +73,28 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         try {
             Reader reader = new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1);
             StreamSource source = new StreamSource(reader);
-            System.out.println(unMarshaller.supports(Statement.class));
             Statement stmt = (Statement)unMarshaller.unmarshal(source);
-            System.out.println(stmt);
             return stmt;
         } catch(Exception e){
-            e.printStackTrace();
+            logger.error("Exception while unmarshalling statement ",e);
             throw e;
         }
-
     }
-
 
     @Transactional
     public void preprocess() throws IOException {
         StopWatch stopwatch = new StopWatch("Preprocessing");
         stopwatch.start();
         List<no.fjordkraft.im.model.Statement> statementList = statementRepository.readStatements(StatementStatusEnum.PENDING.name());
-        logger.debug("Preprocessing "+ statementList.size() + " statements");
+        logger.debug("Preprocessing started for "+ statementList.size() + " statements");
+        if(taskExecutor instanceof ThreadPoolTaskExecutor) {
+            ThreadPoolTaskExecutor executor = (ThreadPoolTaskExecutor)taskExecutor;
+            logger.debug("Processor Thread queue count " + executor.getThreadPoolExecutor().getQueue().size() +" active threads "+ executor.getActiveCount() + "max pool size "+executor.getMaxPoolSize()+ " :: "+executor.getThreadPoolExecutor().getActiveCount());
+        }
         for(no.fjordkraft.im.model.Statement statement:statementList) {
             statement.getSystemBatchInput().getFilename();
             statement.getStatementPayload();
-            statement.setStatus(StatementStatusEnum.PRE_PROCESSING.getStatus());
-            updateStatementEntity(statement);
+            statementService.updateStatement(statement,StatementStatusEnum.PRE_PROCESSING);
             PreprocessorTask preprocessorTask = applicationContext.getBean(PreprocessorTask.class,statement);
             taskExecutor.execute(preprocessorTask);
         }
@@ -108,30 +107,25 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         StopWatch stopwatch = new StopWatch("Preprocessing");
         stopwatch.start();
         try {
-            //statement.getSystemBatchInput().getFilename();
             logger.debug("Preprocessing statement with id " + statement.getId());
             String payload = statement.getStatementPayload().getPayload();
             statement.getSystemBatchInput().getFilename();
             Statement if320statement = unmarshallStatement(new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1)));
-            updateStatementEntity(getUpdatedStatementEntity(if320statement, statement));
+            statementService.updateStatement(getUpdatedStatementEntity(if320statement, statement));
+
             PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request = new PreprocessRequest();
             request.setStatement(if320statement);
             request.setEntity(statement);
+
             preprocessorEngine.execute(request);
-            statement.setStatus(StatementStatusEnum.PRE_PROCESSED.getStatus());
-            statement.setUdateTime(new Timestamp(System.currentTimeMillis()));
-            updateStatementEntity(statement);
+            statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
         } catch (Exception e) {
             logger.error("Exception in preprocessor task for statement with id "+statement.getId().toString(), e);
-            statement.setStatus(StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus());
-            statement.setUdateTime(new Timestamp(System.currentTimeMillis()));
-            statementService.updateStatement(statement);
+            statementService.updateStatement(statement,StatementStatusEnum.PRE_PROCESSING_FAILED);
         }
         stopwatch.stop();
         logger.debug("Preprocessing completed for statement with id "+ statement.getId());
         logger.debug(stopwatch.prettyPrint());
-
-
     }
 
 
@@ -155,10 +149,6 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         statementEntity.setUdateTime(new Timestamp(System.currentTimeMillis()));
         logger.debug("updating statement  "+ statementEntity.getId() + " statementOcr " + statementOcr + " customerId " + customerId + " accountNumber "+ accountNumber + " invoiceNumber "+  invoiceNumber );
         return statementEntity;
-    }
-
-    private void updateStatementEntity(no.fjordkraft.im.model.Statement statementEntity){
-        statementService.updateStatement(statementEntity);
     }
 
     @Override

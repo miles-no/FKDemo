@@ -1,9 +1,9 @@
 package no.fjordkraft.im;
 
 import com.carfey.ops.job.di.SpringSchedulerStarter;
+//import com.ibm.icu.util.ULocale;
 import com.itextpdf.text.FontFactory;
 import liquibase.integration.spring.SpringLiquibase;
-import no.fjordkraft.im.configuration.DbPlaceholderConfigurer;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.util.IMConstants;
 import org.apache.commons.lang3.StringUtils;
@@ -15,16 +15,14 @@ import org.eclipse.birt.report.engine.api.IReportEngineFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.oxm.Marshaller;
 import org.springframework.oxm.Unmarshaller;
-import org.springframework.oxm.castor.CastorMarshaller;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.Assert;
@@ -32,9 +30,10 @@ import org.springframework.util.StopWatch;
 
 import javax.sql.DataSource;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Executor;
 import java.util.logging.Level;
 
 /**
@@ -51,8 +50,14 @@ public class AppConfig {
     @Autowired
     private ResourceLoader resourceLoader;
 
-    @Bean
-    public SpringSchedulerStarter getSpringSchedulerStarter() {return new SpringSchedulerStarter();}
+    @Bean(name="SpringSchedulerStarter")
+    @DependsOn("liquidbase")
+    public SpringSchedulerStarter getSpringSchedulerStarter() {
+        logger.debug("Initializing obsidian");
+        SpringSchedulerStarter s = new SpringSchedulerStarter();
+        return s;
+    }
+
 
     @Bean(name="marshaller")
     public Marshaller getJaxb2Marshaller() {
@@ -85,6 +90,7 @@ public class AppConfig {
     }
 
     @Bean(name="PreprocessorExecutor")
+    @DependsOn("BirtEngine")
      public TaskExecutor getPreprocessorExecutor(ConfigService configService) {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         int maxPool = configService.getInteger(IMConstants.NUM_OF_THREAD_PREPROCESSOR);
@@ -96,6 +102,7 @@ public class AppConfig {
     }
 
     @Bean(name="PDFGeneratorExecutor")
+    @DependsOn("BirtEngine")
     public TaskExecutor getPDFGeneratorExecutor(ConfigService configService) {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         int maxPool = configService.getInteger(IMConstants.NUM_OF_THREAD_PDFGENERATOR);
@@ -106,8 +113,10 @@ public class AppConfig {
         return executor;
     }
 
-    @Bean
-    public SpringLiquibase liquibase() {
+    @Bean(name="liquidbase")
+    public SpringLiquibase liquibase() throws SQLException {
+
+        Connection conn = dataSource.getConnection();
 
         // Locate change log file
         String changelogFile = "classpath:liquidbase/db-changelog.xml";
@@ -124,7 +133,7 @@ public class AppConfig {
         liquibase.setShouldRun(true);
 
         // Verbose logging
-        Map<String, String> params = new HashMap<>();
+        Map<String, String> params = new HashMap<String, String>();
         params.put("verbose", "true");
         liquibase.setChangeLogParameters(params);
 
@@ -132,10 +141,11 @@ public class AppConfig {
     }
 
 
-
     @Bean(name="BirtEngine")
+    @DependsOn("liquidbase")
     public IReportEngine getBirtEngine(ConfigService configService) throws BirtException {
         StopWatch stopWatch = new StopWatch();
+     //   System.out.print("ULocale.getDefault(ULocale.Category.FORMAT) :: "+ULocale.getDefault(ULocale.Category.FORMAT));
         stopWatch.start("Initializing Birt engine");
         String fontPath = configService.getString(IMConstants.CUSTOM_FONT_PATH);
         try {
@@ -154,7 +164,7 @@ public class AppConfig {
         IReportEngine engine = null;
         //engineConfig.setEngineHome(IMConstants.BIRT_ENGINE_HOME_PATH);
         String logPath = configService.getString(IMConstants.BIRT_ENGINE_LOG_PATH);
-        if(StringUtils.isNotEmpty(logPath)) {
+       if(StringUtils.isNotEmpty(logPath)) {
             engineConfig.setLogConfig(logPath, Level.FINE);
         }
 

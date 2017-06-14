@@ -1,4 +1,4 @@
-package no.fjordkraft.im.model.rest;
+package no.fjordkraft.im.domain;
 
 import java.io.InputStream;
 

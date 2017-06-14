@@ -9,23 +9,19 @@ import no.fjordkraft.im.model.SystemBatchInput;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.services.StatementSplitter;
-import no.fjordkraft.im.statusEnum.StatementStatusEnum;
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StopWatch;
-
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.sql.Timestamp;
 
 import javax.xml.stream.*;
 import javax.xml.stream.events.Characters;
 import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
+import java.io.File;
+import java.io.InputStream;
+import java.io.StringWriter;
 
 @Service
 public class StatementSplitterImpl implements StatementSplitter {

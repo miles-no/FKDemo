@@ -1,7 +1,7 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
 import no.fjordkraft.im.exceptions.PreprocessorException;
-import no.fjordkraft.im.if320.models.*;
+import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import org.slf4j.Logger;
@@ -15,10 +15,6 @@ import org.springframework.util.StopWatch;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by bhavi on 5/15/2017.

@@ -9,15 +9,10 @@ import com.carfey.ops.job.param.Type;
 import no.fjordkraft.im.jobs.domain.JobInfo;
 import no.fjordkraft.im.jobs.domain.JobStatus;
 import no.fjordkraft.im.services.StatementService;
-import no.fjordkraft.im.services.impl.StatementServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by bhavi on 5/9/2017.

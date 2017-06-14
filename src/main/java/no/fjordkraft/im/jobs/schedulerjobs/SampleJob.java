@@ -6,10 +6,6 @@ import com.carfey.ops.job.param.Configuration;
 import com.carfey.ops.job.param.Description;
 import com.carfey.ops.job.param.Parameter;
 import com.carfey.ops.job.param.Type;
-import no.fjordkraft.im.jobs.domain.JobInfo;
-import no.fjordkraft.im.jobs.domain.JobStatus;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;

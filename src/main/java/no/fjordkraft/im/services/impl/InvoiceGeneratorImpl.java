@@ -17,7 +17,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StopWatch;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -49,14 +51,20 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     private String controlFileDirectory;
     private String controlFileName;
 
-    @Override
-    @Transactional
-    public void generateInvoice(Statement statement) {
+    @PostConstruct
+    public void setConfig(){
         outputDirectoryPath = configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
         pdfGeneratedFolderName = configService.getString(IMConstants.GENERATED_PDF_FOLDER_NAME);
         invoiceGeneratedFolderName = configService.getString(IMConstants.GENERATED_INVOICE_FOLDER_NAME);
         controlFileDirectory = configService.getString(IMConstants.CONTROL_FILE_PATH);
         controlFileName = configService.getString(IMConstants.CONTROL_FILE_NAME);
+    }
+
+    @Override
+    @Transactional
+    public void generateInvoice(Statement statement) {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start("PDF merging for statement with id "+ statement.getId());
 
         String systemBatchInputFileName = statement.getSystemBatchInput().getFilename();
         String subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
@@ -90,36 +98,29 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             }
             pdfCombineUsingJava.close();
 
-            saveInvoicePDFs(invoiceGeneratedFilePath, statement);
-            /*statement.setStatus(StatementStatusEnum.INVOICE_PROCESSED.getStatus());
-            statementService.updateStatement(statement);*/
+            InvoicePdf invoicePdf = saveInvoicePDFs(invoiceGeneratedFilePath, statement);
+            invoicePdfRepository.saveAndFlush(invoicePdf);
+
             statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
-            //updateStatementStatus(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus());
+            stopWatch.stop();
+            logger.debug(stopWatch.prettyPrint());
             logger.info("End of Invoice generation for invoice number: " + statement.getInvoiceNumber()+ " statement id "+ statement.getId());
 
         } catch (Exception ex) {
             statement.setStatus(StatementStatusEnum.INVOICE_PROCESSING_FAILED.getStatus());
             statementService.updateStatement(statement);
             logger.error("Exception in pdf merging",ex);
-            //updateStatementStatus(statement.getId(), StatementStatusEnum.INVOICE_PROCESSING_FAILED.getStatus());
-           // throw new RuntimeException(ex);
         }
     }
 
-    /*private void updateStatementStatus(Long id, String status) {
-        Statement statement = statementRepository.findOne(id);
-        statement.setStatus(status);
-        statement.setUdateTime(new Timestamp(System.currentTimeMillis()));
-        statementService.updateStatement(statement);
-    }*/
 
-    private void saveInvoicePDFs(String invoiceGeneratedFilePath, Statement statement) throws IOException {
+    private InvoicePdf saveInvoicePDFs(String invoiceGeneratedFilePath, Statement statement) throws IOException {
         File invoiceFile = new File(invoiceGeneratedFilePath);
         byte[] byteArray = Files.readAllBytes(invoiceFile.toPath());
         InvoicePdf invoicePdf = new InvoicePdf();
         invoicePdf.setStatement(statement);
         invoicePdf.setPayload(byteArray);
         invoicePdf.setType(IMConstants.INVOICE_PDF);
-        invoicePdfRepository.saveAndFlush(invoicePdf);
+        return invoicePdf;
     }
 }

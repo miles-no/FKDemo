@@ -18,17 +18,9 @@ public class Statement {
     @SequenceGenerator(name="SEQ", sequenceName="IM_STATEMENT_SEQ")
     private Long id;
 
-    /*@Column(name="SI_ID")
-    private Long siId;*/
-
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name="SI_ID")
     private  SystemBatchInput systemBatchInput;
-
-    /*@Column(name="PAYLOAD", updatable=false)
-    @Basic(fetch = FetchType.LAZY)
-    @Lob
-    private String payload;*/
 
     @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, mappedBy = "statement", fetch = FetchType.LAZY)
     private StatementPayload statementPayload;
@@ -88,22 +80,6 @@ public class Statement {
     public void setId(Long id) {
         id = id;
     }
-
-    /*public Long getSiId() {
-        return siId;
-    }
-
-    public void setSiId(Long siId) {
-        this.siId = siId;
-    }*/
-
-    /*public String getPayload() {
-        return payload;
-    }
-
-    public void setPayload(String payload) {
-        this.payload = payload;
-    }*/
 
     public String getStatus() {
         return status;

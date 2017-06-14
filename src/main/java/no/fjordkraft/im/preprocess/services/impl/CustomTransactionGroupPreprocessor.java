@@ -1,6 +1,5 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
-import no.fjordkraft.im.if320.models.Attachment;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.if320.models.Transaction;
 import no.fjordkraft.im.if320.models.TransactionGroup;
@@ -11,8 +10,10 @@ import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by miles on 5/23/2017.

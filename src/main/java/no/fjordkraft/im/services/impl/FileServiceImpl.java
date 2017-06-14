@@ -1,6 +1,7 @@
 package no.fjordkraft.im.services.impl;
 
 import com.google.common.collect.Lists;
+import no.fjordkraft.im.exceptions.FileNotFoundException;
 import no.fjordkraft.im.services.FileService;
 import org.apache.commons.io.filefilter.RegexFileFilter;
 import org.apache.commons.lang3.StringUtils;
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import no.fjordkraft.im.exceptions.FileNotFoundException;
 
 @Component(value = "fileService")
 public class FileServiceImpl implements FileService {

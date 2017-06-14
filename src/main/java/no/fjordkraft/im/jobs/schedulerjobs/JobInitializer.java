@@ -4,15 +4,20 @@ package no.fjordkraft.im.jobs.schedulerjobs;
 import no.fjordkraft.im.jobs.domain.Job;
 import no.fjordkraft.im.jobs.domain.JobInfo;
 import no.fjordkraft.im.jobs.services.JobService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.context.ServletContextAware;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -23,24 +28,19 @@ import java.util.List;
 import java.util.Set;
 
 //@Service
-@WebListener
-public class JobInitializer implements ServletContextListener, ServletContextAware {
+//@WebListener
+@Service
+@DependsOn("SpringSchedulerStarter")
+public class JobInitializer {
 
     private static String BASE_PACKAGE = "no.fjordkraft";
 
     private boolean initialized = false;
 
+    private static final Logger logger = LoggerFactory.getLogger(JobInitializer.class);
     @Autowired
     private JobService jobService;
 
-    @Override
-    public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("----Spring context initialized");
-    }
-
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-    }
 
     @PreDestroy
     public void predestroy() {
@@ -49,19 +49,9 @@ public class JobInitializer implements ServletContextListener, ServletContextAwa
         }
     }
 
-    @Override
-    public void setServletContext(ServletContext servletContext) {
-        //if (correctContext(servletContext)) {
-            init();
-        //}
-    }
-
-    private boolean correctContext(ServletContext servletContext) {
-       // log.debug("contextPath: " + servletContext.getContextPath() + " " + servletContext);
-        return "/afijob".equals(servletContext.getContextPath());
-    }
-
+    @PostConstruct
     private void init() {
+        logger.debug("JobInitializer invoked");
         if (jobService == null) {
             //log.error("JobInitializer:init: jobService is null");
             return;

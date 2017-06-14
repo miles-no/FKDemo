@@ -9,7 +9,6 @@ import com.carfey.ops.job.param.Type;
 import no.fjordkraft.im.jobs.domain.JobInfo;
 import no.fjordkraft.im.jobs.domain.JobStatus;
 import no.fjordkraft.im.services.PDFGenerator;
-import no.fjordkraft.im.services.StatementService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

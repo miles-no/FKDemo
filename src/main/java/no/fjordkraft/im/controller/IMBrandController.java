@@ -1,6 +1,7 @@
 package no.fjordkraft.im.controller;
 
 import no.fjordkraft.im.model.BrandConfig;
+import no.fjordkraft.im.services.BrandService;
 import no.fjordkraft.im.services.impl.BrandServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ import java.util.List;
 public class IMBrandController {
 
     @Autowired
-    BrandServiceImpl brandService;
+    BrandService brandService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
@@ -50,6 +51,7 @@ public class IMBrandController {
     void deleteBrandConfig(@RequestParam(value="id") Long id) {
         brandService.deleteBrandConfig(id);
     }
+
 
     @RequestMapping(value = "{brandName}", method = RequestMethod.GET)
     @ResponseBody

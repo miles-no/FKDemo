@@ -1,13 +1,14 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
-import com.fasterxml.jackson.databind.deser.Deserializers;
-import no.fjordkraft.im.if320.models.*;
+import no.fjordkraft.im.if320.models.DistributionDetails;
+import no.fjordkraft.im.if320.models.PieChart;
+import no.fjordkraft.im.if320.models.Statement;
+import no.fjordkraft.im.if320.models.Transaction;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

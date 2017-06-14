@@ -4,9 +4,6 @@ import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.preprocess.services.Preprocessor;
 
-import javax.annotation.processing.Processor;
-import java.lang.annotation.Annotation;
-
 /**
  * Created by bhavi on 5/8/2017.
  */

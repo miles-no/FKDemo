@@ -1,17 +1,13 @@
 package no.fjordkraft.im.repository;
 
 import no.fjordkraft.im.domain.RestInvoicePdf;
-import no.fjordkraft.im.domain.RestStatement;
-import no.fjordkraft.im.model.InvoicePdf;
 import no.fjordkraft.im.model.Statement;
-import no.fjordkraft.im.statusEnum.StatementStatusEnum;
-import no.fjordkraft.im.statusEnum.UIStatementStatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,7 +25,7 @@ public class StatementDetailRepository {
     final static String AND = " and ";
     final static String OR = " or ";
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Statement> getDetails(int page, int size, String status, Timestamp fromTime,
                                 Timestamp toTime, String brand, String customerID){
 

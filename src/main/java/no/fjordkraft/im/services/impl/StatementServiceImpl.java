@@ -196,6 +196,7 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime,
                                           String brand, String customerID) {
         String mappedStatus = mapStatus(status);
@@ -241,6 +242,7 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Long getCountByStatus(String status) {
         String mappedStatus = mapStatus(status);
         return statementDetailRepository.getCountByStatus(mappedStatus);
