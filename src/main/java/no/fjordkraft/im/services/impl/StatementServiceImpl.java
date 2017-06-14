@@ -248,6 +248,9 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     }
 
     private String mapBrand(String brands) {
+        if(null == brands) {
+            return null;
+        }
         String[] brandList = brands.split(",");
         StringBuffer mappedBrand = new StringBuffer();
 
@@ -261,6 +264,9 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     }
 
     private String mapStatus(String states) {
+        if(null == states) {
+            return null;
+        }
         String[] statusList = states.split(",");
         StringBuffer mappedStatusList = new StringBuffer();
 
