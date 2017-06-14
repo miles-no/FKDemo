@@ -199,9 +199,10 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     public List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime,
                                           String brand, String customerID) {
         String mappedStatus = mapStatus(status);
+        String mappedBrand = mapBrand(brand);
 
         List<Statement> statementList = statementDetailRepository.getDetails(page, size, mappedStatus, fromTime, toTime,
-                brand, customerID);
+                mappedBrand, customerID);
 
         List<RestStatement> restStatementList = new ArrayList<>();
         //List<Long> statementIdList =  new ArrayList<>();
@@ -244,6 +245,19 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     public Long getCountByStatus(String status) {
         String mappedStatus = mapStatus(status);
         return statementDetailRepository.getCountByStatus(mappedStatus);
+    }
+
+    private String mapBrand(String brands) {
+        String[] brandList = brands.split(",");
+        StringBuffer mappedBrand = new StringBuffer();
+
+        for(String brand:brandList) {
+            if(!mappedBrand.toString().equals(IMConstants.EMPTY_STRING)) {
+                mappedBrand.append(",");
+            }
+            mappedBrand.append("'" + brand + "'");
+        }
+        return mappedBrand.toString();
     }
 
     private String mapStatus(String states) {
