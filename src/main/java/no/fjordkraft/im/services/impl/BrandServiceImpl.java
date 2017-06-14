@@ -58,4 +58,9 @@ public class BrandServiceImpl implements BrandService {
     public BrandConfig getBrandConfigByName(String brand) {
         return brandConfigRepository.getBarcodeConfigByBrand(brand);
     }
+
+    @Override
+    public List<String> getAllBrands() {
+        return brandConfigRepository.getAllBrands();
+    }
 }

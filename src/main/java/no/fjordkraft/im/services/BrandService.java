@@ -20,4 +20,5 @@ public interface BrandService {
     void deleteBrandConfig(Long id);
 
     BrandConfig getBrandConfigByName(String brand);
+    List<String> getAllBrands();
 }

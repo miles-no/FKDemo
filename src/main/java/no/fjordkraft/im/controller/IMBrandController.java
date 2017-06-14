@@ -60,4 +60,10 @@ public class IMBrandController {
         brandConfig = brandService.getBrandConfigByName(brand);
         return brandConfig;
     }
+
+    @RequestMapping(value = "brand", method = RequestMethod.GET)
+    @ResponseBody
+    List<String> getAllBrands() {
+        return brandService.getAllBrands();
+    }
 }
