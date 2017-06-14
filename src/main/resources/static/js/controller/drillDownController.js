@@ -4,7 +4,7 @@
 
 var app = angular.module('invoiceManagerApp');
 
-app.controller('drillDownController',function($scope,$http,moment,$rootScope,$stateParams){
+app.controller('drillDownController',function($scope,$http,moment,$rootScope,$stateParams,ModalService){
     
     let dummyData = {"firstName": "Name ","lastName":"Last Name ","birthDate":moment().format('LLL'),"balance": 22.5};
     $scope.rowCollection = [];
@@ -44,13 +44,13 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
     
     $scope.getOverviewDetails = function(){
         let queryParams = {
-            "states":_.join($scope.states,','),
-            "brands":_.join($scope.brands,','),
             "fromDate" :$scope.fromDate,
             "toDate" : $scope.toDate,
             "page":1 ,
-            "size":10
+            "size":20
         }
+        $scope.states && $scope.states.length >0 ? queryParams.states = _.join($scope.states,',') :'';
+        $scope.brands && $scope.brands.length >0 ? queryParams.brand = _.join($scope.brands,',') :'';
         $http.get('/statement/details',{params:queryParams}).then(function success(result){
             $scope.searchResults = result.data
         },function error(error){
@@ -62,24 +62,36 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
     }
     $scope.getInvoiceFile = function(invoiceId){
         
-        $http.get('/statement/pdf/'+invoiceId).success(function(response,status,headers){
+        $http.get('/statement/pdf/'+invoiceId,{responseType: 'arraybuffer'}).success(function(response,status,headers){
             
             console.log(response,headers);
-            var a = document.createElement("a");
-	        a.style = "display: none";
-	        document.body.appendChild(a);
+           
             var file = new Blob([response], {type: 'application/pdf'});
 	        var fileURL = URL.createObjectURL(file);
-	        //a.href = fileURL;
-            a.href = 'http://localhost:8090/statement/pdf/'+invoiceId;
-	        a.download = 'invoice_'+invoiceId;
-	        a.click();
-            //window.open('localhost:8090/statement/pdf/'+invoiceId);
+            ModalService.showModal({
+                templateUrl: 'templates/pdf-display-modal.html',
+                controller: 'pdfDisplayController',
+                inputs:{
+                    pdfUrl :fileURL
+                }
+            }).then(function(modal){
+                modal.element.modal();
+                modal.close.then(function(result){
+                    console.log('The modal got closed');
+                });
+            });
         }).error(
             function(error){
                 console.log(error);
             }
         );
+    }
+    const getAllBrands = function(){
+        $http.get('/brand/config/brand').then(function success(result){
+            $scope.possibleBrands = result.data;
+        },function error(error){
+            console.log('Could not get the brands');
+        });
     }
     $scope.isInvoicePDF = function (file){
         return file.type=='INVOICE_PDF';
@@ -88,10 +100,10 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
         console.log($rootScope,$stateParams);
         $scope.fromDate = moment().hour(0).minute(0).second(0).format('YYYY-MM-DD');
         $scope.toDate= moment().hour(23).minute(59).second(59).format('YYYY-MM-DD');
+        getAllBrands();
         $scope.possibleStates = $rootScope.states;
-        $scope.possibleBrands = $rootScope.brands;
         !$scope.possibleStates || ($scope.possibleStates && $scope.possibleStates.length)== 0 ? $scope.possibleStates = ["PENDING","PRE-PROCESSING","PROCESSING","MERGING","READY","FAILED"] :'';
         $stateParams && $stateParams.processingState ? $scope.states.push($stateParams.processingState) :'';
-        $scope.states && $scope.states.length>0 ? $scope.getOverviewDetails() :'';
+        $scope.getOverviewDetails();
     }
 });

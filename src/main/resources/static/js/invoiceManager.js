@@ -14,6 +14,7 @@ let dependencies = [
         'angularMoment',
         'smart-table',
         'ngFlatDatepicker',
+        'angularModalService'
         // 'angular.circular.timepicker'
     ];
 
@@ -51,4 +52,5 @@ invoiceManager.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('dark-green').backgroundPalette('green').dark();
   $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
 });
+
 
