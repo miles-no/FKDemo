@@ -51,7 +51,7 @@ public class AppConfig {
     private ResourceLoader resourceLoader;
 
     @Bean(name="SpringSchedulerStarter")
-    @DependsOn("liquidbase")
+    @DependsOn("liquibase")
     public SpringSchedulerStarter getSpringSchedulerStarter() {
         logger.debug("Initializing obsidian");
         SpringSchedulerStarter s = new SpringSchedulerStarter();
@@ -113,7 +113,7 @@ public class AppConfig {
         return executor;
     }
 
-    @Bean(name="liquidbase")
+    @Bean(name="liquibase")
     public SpringLiquibase liquibase() throws SQLException {
 
         Connection conn = dataSource.getConnection();
@@ -142,7 +142,7 @@ public class AppConfig {
 
 
     @Bean(name="BirtEngine")
-    @DependsOn("liquidbase")
+    @DependsOn("liquibase")
     public IReportEngine getBirtEngine(ConfigService configService) throws BirtException {
         StopWatch stopWatch = new StopWatch();
      //   System.out.print("ULocale.getDefault(ULocale.Category.FORMAT) :: "+ULocale.getDefault(ULocale.Category.FORMAT));
