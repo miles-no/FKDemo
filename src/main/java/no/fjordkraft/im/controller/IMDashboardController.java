@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * Created by miles on 6/7/2017.
  */
-@Controller
+@RestController
 @RequestMapping("/dashboard")
 public class IMDashboardController {
 

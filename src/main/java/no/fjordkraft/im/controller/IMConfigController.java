@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by miles on 6/5/2017.
  */
-@Controller
+@RestController
 @RequestMapping("/config")
 public class IMConfigController {
 

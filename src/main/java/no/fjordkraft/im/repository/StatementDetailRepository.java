@@ -80,4 +80,11 @@ public class StatementDetailRepository {
         }
         return restInvoicePdfList;
     }
+
+    @Transactional
+    public Long getCountByStatus(String status) {
+        String sql = "select count(s) from Statement s where s.status in (" + status + ")";
+        Query query = entityManager.createQuery(sql);
+        return (Long) query.getSingleResult();
+    }
 }

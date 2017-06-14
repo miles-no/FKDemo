@@ -1,7 +1,7 @@
 package no.fjordkraft.im.controller;
 
 import no.fjordkraft.im.model.BrandConfig;
-import no.fjordkraft.im.services.impl.IMBrandServiceImpl;
+import no.fjordkraft.im.services.impl.BrandServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +12,12 @@ import java.util.List;
 /**
  * Created by miles on 6/5/2017.
  */
-@Controller
+@RestController
 @RequestMapping("/brand/config")
 public class IMBrandController {
 
     @Autowired
-    IMBrandServiceImpl brandService;
+    BrandServiceImpl brandService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody

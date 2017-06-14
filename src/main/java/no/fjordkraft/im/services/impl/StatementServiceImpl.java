@@ -240,6 +240,12 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         return restStatementList;
     }
 
+    @Override
+    public Long getCountByStatus(String status) {
+        String mappedStatus = mapStatus(status);
+        return statementDetailRepository.getCountByStatus(mappedStatus);
+    }
+
     private String mapStatus(String states) {
         String[] statusList = states.split(",");
         StringBuffer mappedStatusList = new StringBuffer();
@@ -249,29 +255,29 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
                 mappedStatusList.append(",");
             }
             if(UIStatementStatusEnum.PENDING.getStatus().equals(status)) {
-                mappedStatusList.append(StatementStatusEnum.PENDING.getStatus());
+                mappedStatusList.append("'" + StatementStatusEnum.PENDING.getStatus() + "'");
             } else if(UIStatementStatusEnum.PRE_PROCESSING.getStatus().equals(status)) {
-                mappedStatusList.append(StatementStatusEnum.PRE_PROCESSING.getStatus());
+                mappedStatusList.append("'" + StatementStatusEnum.PRE_PROCESSING.getStatus() + "'");
             } else if(UIStatementStatusEnum.PROCESSING.getStatus().equals(status)) {
-                mappedStatusList.append(StatementStatusEnum.PRE_PROCESSED.getStatus());
+                mappedStatusList.append("'" + StatementStatusEnum.PRE_PROCESSED.getStatus() + "'");
                 mappedStatusList.append(",");
-                mappedStatusList.append(StatementStatusEnum.PDF_PROCESSING.getStatus());
+                mappedStatusList.append("'" + StatementStatusEnum.PDF_PROCESSING.getStatus()+ "'");
             } else if(UIStatementStatusEnum.MERGING.getStatus().equals(status)) {
-                mappedStatusList.append(StatementStatusEnum.PDF_PROCESSED.getStatus());
+                mappedStatusList.append("'" + StatementStatusEnum.PDF_PROCESSED.getStatus() + "'");
                 mappedStatusList.append(",");
-                mappedStatusList.append(StatementStatusEnum.INVOICE_PROCESSING.getStatus());
+                mappedStatusList.append("'" + StatementStatusEnum.INVOICE_PROCESSING.getStatus() + "'");
             } else if(UIStatementStatusEnum.READY.getStatus().equals(status)) {
-                mappedStatusList.append(StatementStatusEnum.INVOICE_PROCESSED.getStatus());
+                mappedStatusList.append("'" + StatementStatusEnum.INVOICE_PROCESSED.getStatus() + "'");
                 mappedStatusList.append(",");
-                mappedStatusList.append(StatementStatusEnum.DELIVERY_PENDING.getStatus());
+                mappedStatusList.append("'" + StatementStatusEnum.DELIVERY_PENDING.getStatus() + "'");
             } else if(UIStatementStatusEnum.FAILED.getStatus().equals(status)) {
-                mappedStatusList.append(StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus());
+                mappedStatusList.append("'" + StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus() + "'");
                 mappedStatusList.append(",");
-                mappedStatusList.append(StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus());
+                mappedStatusList.append("'" + StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus() + "'");
                 mappedStatusList.append(",");
-                mappedStatusList.append(StatementStatusEnum.INVOICE_PROCESSING_FAILED.getStatus());
+                mappedStatusList.append("'" + StatementStatusEnum.INVOICE_PROCESSING_FAILED.getStatus() + "'");
                 mappedStatusList.append(",");
-                mappedStatusList.append(StatementStatusEnum.DELIVERY_FAILED.getStatus());
+                mappedStatusList.append("'" + StatementStatusEnum.DELIVERY_FAILED.getStatus() + "'");
             }
         }
 

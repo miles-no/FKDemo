@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by miles on 6/7/2017.
  */
-@Controller
+@RestController
 @RequestMapping("/statement")
 public class IMStatementController {
 
@@ -39,6 +39,12 @@ public class IMStatementController {
                                @RequestParam(value = "page") int page,
                                @RequestParam(value = "size") int size) {
        return statementService.getDetails(page, size, status, fromTime, toTime, brand, customerID);
+    }
+
+    @RequestMapping(value = "count", method = RequestMethod.GET)
+    @ResponseBody
+    Long getCountByStatus(@RequestParam(value = "states",required=false) String status) {
+        return statementService.getCountByStatus(status);
     }
 
     @RequestMapping(value = "/pdf/{id}", method = RequestMethod.GET)

@@ -2,7 +2,7 @@ package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.model.BrandConfig;
 import no.fjordkraft.im.repository.BrandConfigRepository;
-import no.fjordkraft.im.services.IMBrandService;
+import no.fjordkraft.im.services.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * Created by miles on 6/5/2017.
  */
 @Service
-public class IMBrandServiceImpl implements IMBrandService {
+public class BrandServiceImpl implements BrandService {
 
     @Autowired
     BrandConfigRepository brandConfigRepository;
