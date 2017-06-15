@@ -12,10 +12,16 @@
                     </ui-select>
                 </div>
             </div>
-            <div class="row form-group">
+            <!--<div class="row form-group">
                 <label class="control-label col-md-2">Filter</label>
                 <div class="col-md-8">
                     <input type="text">
+                </div>
+            </div>-->
+            <div class="row form-group">
+                <label class="control-label col-md-2">Invoice</label>
+                <div class="col-md-8">
+                    <input type="text" ng-model="invoiceNumber" ng-change="getOverviewDetails()">
                 </div>
             </div>
         </div>
@@ -23,13 +29,7 @@
             <div class="row form-group">
                 <label class="control-label col-md-2">From</label>
                 <div class="col-md-8">
-                    <input type="text" ng-model="fromDate"  datepicker-config ="datepickerConfig" ng-flat-datepicker>
-                </div>
-            </div>
-            <div class="row form-group">
-                <label class="control-label col-md-2">Invoice</label>
-                <div class="col-md-8">
-                    <input type="text">
+                    <input type="text" ng-model="fromDate"  datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">
                 </div>
             </div>
             <div class="row form-group">
@@ -48,7 +48,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">To</label>
                 <div class="col-md-8">
-                   <input type="text" ng-model="toDate"  datepicker-config ="datepickerConfig" ng-flat-datepicker>
+                   <input type="text" ng-model="toDate"  datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">
                    <!--<circulartimepicker ng-model="date1"></circulartimepicker>-->
                 </div>
             </div>

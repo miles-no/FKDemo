@@ -44,13 +44,14 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
     
     $scope.getOverviewDetails = function(){
         let queryParams = {
-            "fromDate" :$scope.fromDate,
-            "toDate" : $scope.toDate,
+            "fromTime" :moment($scope.fromDate).format('YYYY-MM-DD HH:mm:ss'),
+            "toTime" : moment($scope.toDate).hour(23).minute(59).second(59).format('YYYY-MM-DD HH:mm:ss'),
             "page":1 ,
-            "size":20
+            "size":150
         }
         $scope.states && $scope.states.length >0 ? queryParams.states = _.join($scope.states,',') :'';
         $scope.brands && $scope.brands.length >0 ? queryParams.brand = _.join($scope.brands,',') :'';
+        $scope.invoiceNumber ? queryParams.invoiceNumber = $scope.invoiceNumber :'';
         $http.get('/statement/details',{params:queryParams}).then(function success(result){
             $scope.searchResults = result.data
         },function error(error){
@@ -98,7 +99,7 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
     }
     $scope.init = function(){
         console.log($rootScope,$stateParams);
-        $scope.fromDate = moment().hour(0).minute(0).second(0).format('YYYY-MM-DD');
+        $scope.fromDate = moment().subtract(1,'months').hour(0).minute(0).second(0).format('YYYY-MM-DD');
         $scope.toDate= moment().hour(23).minute(59).second(59).format('YYYY-MM-DD');
         getAllBrands();
         $scope.possibleStates = $rootScope.states;
