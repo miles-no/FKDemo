@@ -46,7 +46,7 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
         let queryParams = {
             "fromTime" :moment($scope.fromDate).format('YYYY-MM-DD HH:mm:ss'),
             "toTime" : moment($scope.toDate).hour(23).minute(59).second(59).format('YYYY-MM-DD HH:mm:ss'),
-            "page":1 ,
+            "page":0 ,
             "size":150
         }
         $scope.states && $scope.states.length >0 ? queryParams.states = _.join($scope.states,',') :'';
