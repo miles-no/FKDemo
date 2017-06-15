@@ -27,7 +27,7 @@ public class StatementDetailRepository {
 
     @Transactional(readOnly = true)
     public List<Statement> getDetails(int page, int size, String status, Timestamp fromTime,
-                                Timestamp toTime, String brand, String customerID){
+                                Timestamp toTime, String brand, String customerID, String invoiceNumber){
 
         StringBuffer selectQuery = new StringBuffer();
         selectQuery.append("select s from Statement s join s.systemBatchInput where ");
@@ -39,6 +39,8 @@ public class StatementDetailRepository {
             selectQuery.append(addConditionForQueryValue(brand, "s.systemBatchInput.brand"));
             selectQuery.append(AND);
         }
+        selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
+        selectQuery.append(AND);
         selectQuery.append("(:customerID is null or s.customerId = :customerID) ");
         selectQuery.append(AND);
         selectQuery.append("(:fromTime is null or s.createTime >= :fromTime) ");
@@ -51,7 +53,8 @@ public class StatementDetailRepository {
                 .setMaxResults(size)
                 .setParameter("fromTime", fromTime)
                 .setParameter("toTime", toTime)
-                .setParameter("customerID", customerID);
+                .setParameter("customerID", customerID)
+                .setParameter("invoiceNumber", '%' + invoiceNumber + '%');
 
         List<Statement> statementList = query.getResultList();
         return statementList;

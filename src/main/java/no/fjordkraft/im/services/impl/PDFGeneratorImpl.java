@@ -10,6 +10,7 @@ import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.task.PDFGeneratorTask;
 import no.fjordkraft.im.util.IMConstants;
 import org.eclipse.birt.core.exception.BirtException;
+import org.eclipse.birt.core.framework.Platform;
 import org.eclipse.birt.report.engine.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 
 import javax.annotation.PostConstruct;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -51,6 +55,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     StatementService statementService;
 
     @Autowired
+    LayoutConfigServiceImpl layoutConfigService;
+
+    @Autowired
     @Qualifier("PDFGeneratorExecutor")
     TaskExecutor taskExecutor;
 
@@ -64,6 +71,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     private ApplicationContext applicationContext;
 
     private String birtRPTPath;
+    private String birtResourcePath;
 
     public PDFGeneratorImpl(ConfigService configService) {
         this.configService = configService;
@@ -75,6 +83,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         pdfGeneratedFolderName = configService.getString(IMConstants.GENERATED_PDF_FOLDER_NAME);
         xmlFolderName = configService.getString(IMConstants.PROCESSED_XML_FOLDER_NAME);
         birtRPTPath = configService.getString(IMConstants.BIRT_RPTDESIGN_PATH);
+        birtResourcePath = configService.getString(IMConstants.BIRT_RESOURCE_PATH);
     }
 
     @Override
@@ -113,7 +122,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSED);
             invoiceGenerator.generateInvoice(statement);
         } catch (Exception e) {
-            logger.debug("Exception in PDF generation for statement"+ statement.getId(),e);
+            logger.debug("Exception in PDF generation for statement" + statement.getId(),e);
             statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING_FAILED);
         }
         stopWatch.stop();
@@ -122,19 +131,31 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     }
 
     public void birtEnginePDFGenerator(Long id, String outPutDirectoryPath, String statementFolderName, String invoiceNumber,
-                                       String pdfGeneratedFolderName, String xmlFolderName) throws EngineException {
+                                       String pdfGeneratedFolderName, String xmlFolderName) throws BirtException {
         logger.debug("Generating Invoice PDF for Statement ID: " + id);
 
         long startTime = System.currentTimeMillis();
         try {
+            EngineConfig engineConfig = new EngineConfig();
+            engineConfig.setResourcePath(birtResourcePath);
+            Platform.startup(engineConfig);
+            IReportEngineFactory factory = (IReportEngineFactory) Platform
+                    .createFactoryObject( IReportEngineFactory.EXTENSION_REPORT_ENGINE_FACTORY );
+            reportEngine = factory.createReportEngine(engineConfig);
+
             //String xmlFilePath = "D:\\XMLTOPDF\\new_pdf\\multipleAttachmentsWithChartData.xml";
             String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + invoiceNumber + File.separator ;
             String xmlFilePath =  basePath + xmlFolderName + File.separator + "statement.xml";
             //String reportDesignFilePath = "E:\\FuelKraft\\invoice_manager\\statementReport.rptdesign";
             String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
 
+            String rptDesign = layoutConfigService.getRptDesignFile();
+            InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(StandardCharsets.ISO_8859_1));
+
             String campaignFilePath = configService.getString(IMConstants.CAMPAIGN_FILE_PATH) ;
-            IReportRunnable runnable = reportEngine.openReportDesign(reportDesignFilePath);
+            //IReportRunnable runnable = reportEngine.openReportDesign(reportDesignFilePath);
+            IReportRunnable runnable = reportEngine.openReportDesign(designStream);
+
             IRunAndRenderTask task  = reportEngine.createRunAndRenderTask(runnable);
             task.setParameterValue("sourcexml", xmlFilePath);
             task.setParameterValue("campaignImage", campaignFilePath);

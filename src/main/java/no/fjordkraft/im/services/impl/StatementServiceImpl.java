@@ -198,12 +198,12 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     @Override
     @Transactional(readOnly = true)
     public List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime,
-                                          String brand, String customerID) {
+                                          String brand, String customerID, String invoiceNumber) {
         String mappedStatus = mapStatus(status);
         String mappedBrand = mapBrand(brand);
 
         List<Statement> statementList = statementDetailRepository.getDetails(page, size, mappedStatus, fromTime, toTime,
-                mappedBrand, customerID);
+                mappedBrand, customerID, invoiceNumber);
 
         List<RestStatement> restStatementList = new ArrayList<>();
         //List<Long> statementIdList =  new ArrayList<>();

@@ -32,7 +32,7 @@ public interface StatementService {
     public void updateStatement(Statement statement, StatementStatusEnum status);
 
     public List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime,
-                                          String brand, String customerID);
+                                          String brand, String customerID, String invoice);
 
     public Long getCountByStatus(String status);
 

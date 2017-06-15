@@ -39,4 +39,5 @@ public interface IMConstants {
     static final String INVOICE_PDF = "INVOICE_PDF";
     static final String ATTACH_PDF = "ATTACH_PDF";
     static final String CAMPAIGN_FILE_PATH = "campaign.file.path";
+    static final String BIRT_RESOURCE_PATH = "birt.resource.path";
 }

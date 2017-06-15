@@ -36,9 +36,10 @@ public class IMStatementController {
                                @RequestParam(value = "toTime", required=false) Timestamp toTime,
                                @RequestParam(value = "customerID", required=false) String customerID,
                                @RequestParam(value = "brand", required=false) String brand,
+                               @RequestParam(value = "invoiceNumber", required=false) String invoiceNumber,
                                @RequestParam(value = "page") int page,
                                @RequestParam(value = "size") int size) {
-       return statementService.getDetails(page, size, status, fromTime, toTime, brand, customerID);
+       return statementService.getDetails(page, size, status, fromTime, toTime, brand, customerID, invoiceNumber);
     }
 
     @RequestMapping(value = "count", method = RequestMethod.GET)
