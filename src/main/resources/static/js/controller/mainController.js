@@ -4,8 +4,13 @@
 
 var app = angular.module('invoiceManagerApp');
 
-app.controller('mainController',function($scope,$http){
+app.controller('mainController',function($scope,$rootScope){
     $scope.init = function(){
       console.log('Here in mainController')  ;
     };
+    $scope.isDashbordLive = true;
+    $rootScope.isDashbordLive = $scope.isDashbordLive;
+    $scope.toggleDashbordLive = function(){
+      $scope.isDashbordLive = !$scope.isDashbordLive;
+    }
 });
