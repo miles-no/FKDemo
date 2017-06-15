@@ -54,7 +54,7 @@ public class StatementDetailRepository {
                 .setParameter("fromTime", fromTime)
                 .setParameter("toTime", toTime)
                 .setParameter("customerID", customerID)
-                .setParameter("invoiceNumber", '%' + invoiceNumber + '%');
+                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'));
 
         List<Statement> statementList = query.getResultList();
         return statementList;
