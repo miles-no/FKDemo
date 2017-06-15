@@ -48,6 +48,7 @@
     "bootstrap": "3.3.7",
     "font-awesome-animation": "0.0.10",
     "jquery": "3.2.1",
-    "ng-flat-datepicker": "0.1.4"
+    "ng-flat-datepicker": "0.1.4",
+    "nodemon": "1.11.0"
   }
 }

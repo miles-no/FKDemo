@@ -5,7 +5,8 @@ var concat = require('gulp-concat');
 var clean = require('gulp-clean');
 var connect = require('gulp-connect');
 var path = require('path');
-
+var nodemon = require('nodemon');
+ 
 gulp.task('sass', function(){
     console.log('In the css task',path.join(__dirname,'/dist/css'));
     return gulp.src(path.join(__dirname,'/scss/**/*.scss'))
@@ -38,7 +39,7 @@ gulp.task('combineAppJs',function(){
 });
 gulp.task('connect',function(){
     connect.server({
-        port : 8090,
+        port : 8091,
         livereload: true
     });
 });
@@ -46,5 +47,12 @@ gulp.task('watch',function(){
     gulp.watch(path.join(__dirname,'/scss/**/*.scss'),['sass']);
     gulp.watch([path.join(__dirname,'/js/**/*.js'),path.join(__dirname,'/components/**/*.js')],['cleanJsFiles','combineAppJs']);
 });
+gulp.task('runExpress',function(cb){
+    var started = false;
+    return nodemon({
+        script: 'server.js'
+    }).once('start',cb)
+});
+
 gulp.task('default',['testGulp','cleanAppFiles','sass','combineAppJs']);
-gulp.task('local',['testGulp','cleanAppFiles','sass','combineAppJs','connect','watch']);
+gulp.task('local',['testGulp','cleanAppFiles','sass','combineAppJs','runExpress','watch']);
