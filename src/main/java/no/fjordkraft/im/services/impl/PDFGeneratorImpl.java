@@ -101,19 +101,18 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
         for(Statement statement:statements) {
             statement.getSystemBatchInput().getFilename();
-            statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING);
             PDFGeneratorTask pdfGeneratorTask = applicationContext.getBean(PDFGeneratorTask.class,statement);
             taskExecutor.execute(pdfGeneratorTask);
         }
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional()
     public void generateInvoicePDFSingleStatement(Statement statement) {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("PDF generation for statement "+ statement.getId());
         try {
-
+            statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING);
             String systemBatchInputFileName = "";
             String subFolderName = "";
             systemBatchInputFileName = statement.getSystemBatchInput().getFilename();
@@ -122,7 +121,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSED);
             invoiceGenerator.generateInvoice(statement);
         } catch (Exception e) {
-            logger.debug("Exception in PDF generation for statement" + statement.getId(),e);
+            logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING_FAILED);
         }
         stopWatch.stop();

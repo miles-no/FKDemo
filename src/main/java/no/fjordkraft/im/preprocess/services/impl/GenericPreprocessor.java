@@ -69,7 +69,7 @@ public class GenericPreprocessor extends BasePreprocessor {
             logger.debug("generatedPDFFolder " + generatedPDFFile.getAbsolutePath() + " attachmentPDFFile " + processedXmlFile + processedXmlFile.getAbsolutePath());
             logger.debug("TIme taken for unmarshalling of attachment of statement with id  " + request.getEntity().getId() + stopWatch.prettyPrint());
         } catch (Exception e) {
-            logger.debug("Exception in generic preprocessor",e);
+            logger.error("Exception in generic preprocessor",e);
             throw new PreprocessorException(e);
         }
     }

@@ -40,7 +40,7 @@ public class SaveProcessedXmlPreprocessor  extends BasePreprocessor {
             stopWatch.stop();
             logger.debug(stopWatch.prettyPrint());
         }catch (Exception e) {
-            logger.debug("Exception in save processed xml",e);
+            logger.error("Exception in save processed xml",e);
             throw new PreprocessorException("Exception while saving processed xml",e);
         }
 

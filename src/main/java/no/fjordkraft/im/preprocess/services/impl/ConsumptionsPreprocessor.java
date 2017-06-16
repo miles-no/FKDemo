@@ -56,7 +56,7 @@ public class ConsumptionsPreprocessor extends BasePreprocessor{
                                 }
 
                             } catch (Exception e) {
-                                logger.debug("Exception in consumption preprocessor",e);
+                                logger.error("Exception in consumption preprocessor",e);
                                 throw new PreprocessorException(e);
                             }
                         }

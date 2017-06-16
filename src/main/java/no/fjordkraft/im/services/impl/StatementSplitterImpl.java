@@ -108,7 +108,7 @@ public class StatementSplitterImpl implements StatementSplitter {
                 }
             }
         } catch (Exception e) {
-            logger.debug("Exception while splitting the file "+systemBatchInput.getId() + " "+ systemBatchInput.getFilename(),e);
+            logger.error("Exception while splitting the file "+systemBatchInput.getId() + " "+ systemBatchInput.getFilename(),e);
             throw e;
         } finally {
             File f = new File(tempFilePath);

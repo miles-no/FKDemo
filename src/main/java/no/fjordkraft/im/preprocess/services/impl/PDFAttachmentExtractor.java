@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by bhavi on 5/8/2017.
@@ -26,6 +27,7 @@ public class PDFAttachmentExtractor extends BasePreprocessor {
     private InvoicePdfRepository invoicePdfRepository;
 
     @Override
+    @Transactional
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
         Statement stmt = request.getStatement();
         int count = 0;
