@@ -9,6 +9,7 @@ import no.fjordkraft.im.repository.InvoicePdfRepository;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.InvoiceGenerator;
+import no.fjordkraft.im.services.InvoiceService;
 import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
@@ -40,7 +41,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     StatementRepository statementRepository;
 
     @Autowired
-    InvoicePdfRepository invoicePdfRepository;
+    InvoiceService invoiceService;
 
     @Autowired
     StatementService statementService;
@@ -99,7 +100,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             pdfCombineUsingJava.close();
 
             InvoicePdf invoicePdf = saveInvoicePDFs(invoiceGeneratedFilePath, statement);
-            invoicePdfRepository.saveAndFlush(invoicePdf);
+            invoiceService.saveInvoicePdf(invoicePdf);
 
             statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
             stopWatch.stop();

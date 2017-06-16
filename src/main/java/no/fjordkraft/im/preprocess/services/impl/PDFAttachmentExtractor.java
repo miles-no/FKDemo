@@ -6,6 +6,7 @@ import no.fjordkraft.im.model.InvoicePdf;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.repository.InvoicePdfRepository;
+import no.fjordkraft.im.services.InvoiceService;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +25,9 @@ public class PDFAttachmentExtractor extends BasePreprocessor {
     private static final Logger logger = LoggerFactory.getLogger(PDFAttachmentExtractor.class);
 
     @Autowired
-    private InvoicePdfRepository invoicePdfRepository;
+    private InvoiceService invoiceService;
 
     @Override
-    @Transactional
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
         Statement stmt = request.getStatement();
         int count = 0;
@@ -38,7 +38,7 @@ public class PDFAttachmentExtractor extends BasePreprocessor {
                 invoicePdf.setPayload(decoded);
                 invoicePdf.setType(attachment.getFAKTURA().getVEDLEGGFORMAT());
                 invoicePdf.setStatement(request.getEntity());
-                invoicePdf = invoicePdfRepository.saveAndFlush(invoicePdf);
+                invoicePdf = invoiceService.saveInvoicePdf(invoicePdf);
                 count++;
                 logger.debug("Save pdf of type "+invoicePdf.getType() + " with id "+invoicePdf.getId() + " statement id "+request.getEntity().getId() );
             }
@@ -46,11 +46,11 @@ public class PDFAttachmentExtractor extends BasePreprocessor {
         request.getEntity().setPdfAttachment(count);
     }
 
-    public InvoicePdfRepository getInvoicePdfRepository() {
-        return invoicePdfRepository;
+    public InvoiceService getInvoiceService() {
+        return invoiceService;
     }
 
-    public void setInvoicePdfRepository(InvoicePdfRepository invoicePdfRepository) {
-        this.invoicePdfRepository = invoicePdfRepository;
+    public void setInvoiceService(InvoiceService invoiceService) {
+        this.invoiceService = invoiceService;
     }
 }

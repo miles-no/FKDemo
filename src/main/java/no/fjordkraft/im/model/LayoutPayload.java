@@ -16,7 +16,7 @@ public class LayoutPayload {
     private Long id;
 
     @ManyToOne(targetEntity=LayoutConfig.class, cascade=CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name="LAYOUT_ID", nullable=false)
+    @JoinColumn(name="CONFIG_ID", nullable=false)
     private LayoutConfig layoutConfig;
 
     @Column(name="PAYLOAD", updatable=true)

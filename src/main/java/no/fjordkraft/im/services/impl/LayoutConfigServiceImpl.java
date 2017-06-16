@@ -110,5 +110,12 @@ public class LayoutConfigServiceImpl implements LayoutConfigService {
         return layoutPayload.get(0).getPayload();
     }
 
+    @Override
+    public String getRptDesignFileByBrand(String brand) {
+        LayoutConfig layoutConfig = layoutConfigRepository.getLayoutConfigByBrand(brand);
+        List<LayoutPayload> layoutPayload = layoutConfig.getLayoutPayload();
+        return layoutPayload.get(0).getPayload();
+    }
+
 
 }

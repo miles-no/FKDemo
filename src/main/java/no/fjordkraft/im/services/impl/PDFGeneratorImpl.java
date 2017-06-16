@@ -117,7 +117,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             String subFolderName = "";
             systemBatchInputFileName = statement.getSystemBatchInput().getFilename();
             subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
-            birtEnginePDFGenerator(statement.getId(), outputDirectoryPath, subFolderName, statement.getInvoiceNumber(), pdfGeneratedFolderName, xmlFolderName);
+            birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName, pdfGeneratedFolderName, xmlFolderName);
             statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSED);
             invoiceGenerator.generateInvoice(statement);
         } catch (Exception e) {
@@ -129,9 +129,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         logger.debug(stopWatch.prettyPrint());
     }
 
-    public void birtEnginePDFGenerator(Long id, String outPutDirectoryPath, String statementFolderName, String invoiceNumber,
+    public void birtEnginePDFGenerator(Statement statement, String outPutDirectoryPath, String statementFolderName,
                                        String pdfGeneratedFolderName, String xmlFolderName) throws BirtException {
-        logger.debug("Generating Invoice PDF for Statement ID: " + id);
+        logger.debug("Generating Invoice PDF for Statement ID: " + statement.getId());
 
         long startTime = System.currentTimeMillis();
         try {
@@ -143,12 +143,12 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             reportEngine = factory.createReportEngine(engineConfig);
 
             //String xmlFilePath = "D:\\XMLTOPDF\\new_pdf\\multipleAttachmentsWithChartData.xml";
-            String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + invoiceNumber + File.separator ;
+            String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + statement.getInvoiceNumber() + File.separator ;
             String xmlFilePath =  basePath + xmlFolderName + File.separator + "statement.xml";
             //String reportDesignFilePath = "E:\\FuelKraft\\invoice_manager\\statementReport.rptdesign";
-            String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
+            //String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
 
-            String rptDesign = layoutConfigService.getRptDesignFile();
+            String rptDesign = layoutConfigService.getRptDesignFileByBrand(statement.getSystemBatchInput().getBrand());
             InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(StandardCharsets.ISO_8859_1));
 
             String campaignFilePath = configService.getString(IMConstants.CAMPAIGN_FILE_PATH) ;
@@ -162,7 +162,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             PDFRenderOption options = new PDFRenderOption();
             options.setEmbededFont(true);
             options.setOutputFormat("pdf");
-            options.setOutputFileName(basePath + pdfGeneratedFolderName + File.separator + invoiceNumber + ".pdf");
+            options.setOutputFileName(basePath + pdfGeneratedFolderName + File.separator + statement.getInvoiceNumber() + ".pdf");
 
             task.setRenderOption(options);
             task.run();

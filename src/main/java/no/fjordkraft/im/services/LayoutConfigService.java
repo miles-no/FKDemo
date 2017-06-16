@@ -13,4 +13,5 @@ public interface LayoutConfigService {
     void updateLayoutConfig(RestLayoutConfig restLayoutConfig) throws IOException;
     void updateNewLayoutVersion(RestLayoutConfig restLayoutConfig) throws IOException;
     String getRptDesignFile();
+    public String getRptDesignFileByBrand(String brand);
 }
