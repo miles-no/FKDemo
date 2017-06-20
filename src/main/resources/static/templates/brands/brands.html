@@ -1,0 +1,51 @@
+<div class="manage-brands" ng-controller="ManageBrandsController" ng-init="getBrands()">
+    <div class="col-md-6">
+        <div class="row form-group">
+            <label class="control-label col-md-2">Brand</label>
+            <div class="col-md-6">
+                <ui-select multiple ng-model="selectedBrands" theme="bootstrap" title="Choose brand" on-remove="onBrandRemoval($item, $model)"on-select="onBrandSelect($item, $model)">
+                    <ui-select-match placeholder="Select Filter">{{$item.brand}}</ui-select-match>
+                    <ui-select-choices  repeat="eachBrand in brands" position='down'>
+                        <div ng-bind-html="eachBrand.brand | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table st-table="displayedCollection" st-safe-src="searchResults" class="table table-align table-striped">
+            <thead>
+            <tr>
+                <th st-sort="Brand">Brand</th>
+                <th>Agreement No</th>
+                <th >Service Level No</th>
+                <th >Prefix KID</th>
+                <th>Kontonummer</th>
+                <th>Use Barcode</th>
+                <th width="40px"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="brand in allBrands" ng-click="updateBrand(brand);">
+                <td>{{brand.brand}}</td>
+                <td>{{brand.agreementNumber}}</td>
+                <td>{{brand.serviceLevel}}</td>
+                <td>{{brand.prefixKID}}</td>
+                <td>{{brand.kontonummer}}</td>
+                <td><i ng-class="{'fa fa-check-circle greenIcon': brand.useEABarcode === '1' , 'fa fa-times-circle redIcon': brand.useEABarcode === '0'}"></i></td>
+                <td ng-click="deleteBrands(brand, $event)"><i class="fa fa-minus-circle redIcon"></i></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="100%" class="text-center">
+                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="add-brand">
+            <button ng-click="addBrand()" class="addBtn">Add Brand</button><!-- modal opens upon clicking of add brand -->
+        </div>
+    </div>
+</div>

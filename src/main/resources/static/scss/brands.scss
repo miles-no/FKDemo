@@ -1,0 +1,14 @@
+.manage-brands{
+  .checkbox-align{
+    margin-top: 10px;
+  }
+  .table-align{
+    th,tr,td{
+      text-align: center;
+      outline: none;
+    }
+    tr.active td{
+      background: skyblue;
+    }
+  }
+}

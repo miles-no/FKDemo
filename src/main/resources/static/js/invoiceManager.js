@@ -38,7 +38,10 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
                 processingState : null,
                 dates : null
             }
-        });
+        }).state('listBrands',{
+        url: '/brands',
+        templateUrl: 'templates/brands/brands.html'
+      });
     $urlRouterProvider.otherwise('/home');
 });
 

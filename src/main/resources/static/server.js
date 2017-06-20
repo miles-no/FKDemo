@@ -69,6 +69,15 @@ app.get('/brand/config/brand', function(req, res) {
   })
 });
 
+app.get('/brand/config', function(req, res) {
+  request({
+    url: `${apiUrl}/brand/config`
+},function(error,response,body){
+  console.log('/brand/config',body);
+  res.send(body);
+})
+});
+
 app.get('/dashboard/all', function(req, res) {
   var fromTime = req.query.fromTime;
   var toTime = req.query.toTime;

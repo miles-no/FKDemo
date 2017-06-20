@@ -2,9 +2,68 @@
 .bg-brand-color{
   background-color: $brand-color;
 }
+.modal-wrapper {
+  width: 70%;
+  margin: 5vh auto 0;
+  .modal-dialog {
+    max-width: 100%;
+  }
+  &.manage-brand {
+    max-width:80%;
+    margin: 10px auto;
+    .modal-content-container{
+      background: white;
+      border-radius: 6px;
+    }
+  }
+  &.modal-without-header{
+    .modal-body-content {
+      height:88vh;
+    }
+  }
+  &.modal-with-header{
+    .modal-body-content {
+      height: 80vh;
+    }
+  }
+  .close-modal {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    height: 45px;
+    width: 45px;
+    font-size: 45px;
+    color: red;
+    background: white;
+    line-height: 40px;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    text-align: center;
+    border-radius: 50%;
+  }
+}
 .ninety-perc-height
 {
   height:90vh;
+}
+.redIcon{
+  color: red;
+  font-size: 23px;
+}
+.greenIcon{
+  color: green;
+  font-size: 23px;
+}
+.addBtn{
+  background: #ff5500;
+  border-radius: 10px;
+  color: #ffffff;
+  font-weight: bold;
+  float: right;
+  width: 125px;
+  height: 32px;
+  outline:none;
 }
 .cover-space{
   width:100%;
