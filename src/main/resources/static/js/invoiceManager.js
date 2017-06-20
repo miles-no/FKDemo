@@ -40,7 +40,10 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
             }
         }).state('listBrands',{
         url: '/brands',
-        templateUrl: 'templates/brands/brands.html'
+        templateUrl: 'js/brands/brands.html'
+      }).state('listGrid',{
+        url: '/grid',
+        templateUrl: 'js/grids/grid.html'
       });
     $urlRouterProvider.otherwise('/home');
 });

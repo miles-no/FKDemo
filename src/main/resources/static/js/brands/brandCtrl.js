@@ -59,14 +59,14 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
 
   $scope.deleteBrands = function (brand, $event) {
     $event.stopPropagation();
-    $http.delete('/brand/config', brand).then(function () {
+    $http.delete('/brand/config', brand.id).then(function () {
       $scope.getBrands()
     })
   }
 
   function showModal (brandInfo, type) {
     ModalService.showModal({
-      templateUrl: 'templates/brands/manage-brands.html',
+      templateUrl: 'js/brands/manage-brands.html',
       controller: 'ManageBrandsPopupController',
       inputs: {
         options: {

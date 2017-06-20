@@ -1,0 +1,45 @@
+<div class="manage-brands" ng-controller="GridsController" ng-init="getGrids()">
+    <div class="col-md-6">
+        <div class="row form-group">
+            <label class="control-label col-md-2">Grid</label>
+            <div class="col-md-6">
+                <ui-select multiple ng-model="selectedGrids" theme="bootstrap" title="Choose Grid" on-remove="onGridRemoval($item, $model)"on-select="onGridSelect($item, $model)">
+                    <ui-select-match placeholder="Select Filter">{{$item.brand}}</ui-select-match>
+                    <ui-select-choices  repeat="eachGrid in grids" position='down'>
+                        <div ng-bind-html="eachGrid.brand | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table st-table="displayedCollection" st-safe-src="searchResults" class="table table-align table-striped">
+            <thead>
+            <tr>
+                <th st-sort="Brand">Brand</th>
+                <th>E-mail Address</th>
+                <th >Phone No</th>
+                <th width="40px"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="gridItem in allGrids" ng-click="updateGrid(gridItem);">
+                    <td>{{gridItem.brand}}</td>
+                    <td>{{gridItem.email}}</td>
+                    <td>{{gridItem.phone}}</td>
+                    <td ng-click="deleteGrid(gridItem, $event)"><i class="fa fa-minus-circle redIcon"></i></td>
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="100%" class="text-center">
+                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="add-brand">
+            <button ng-click="addGrid()" class="addBtn">Add Grid</button><!-- modal opens upon clicking of add brand -->
+        </div>
+    </div>
+</div>
