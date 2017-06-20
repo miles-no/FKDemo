@@ -42,7 +42,7 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
         url: '/brands',
         templateUrl: 'js/brands/brands.html'
       }).state('listGrid',{
-        url: '/grid',
+        url: '/grids',
         templateUrl: 'js/grids/grid.html'
       });
     $urlRouterProvider.otherwise('/home');
