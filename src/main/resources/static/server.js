@@ -5,8 +5,12 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var request = require('request');
+var bodyParser = require('body-parser');
 const appConfig = require('./appconfig');
+
 const apiUrl = `${appConfig.api_server_host}:${appConfig.api_server_port}`;
+app.use('/',express.static('./'));
+app.use(bodyParser.json());
 app.listen(appConfig.application_port,function(){
   console.log('Started Express !!!',appConfig,apiUrl);
 });
@@ -19,7 +23,7 @@ app.listen(appConfig.application_port,function(){
     res.send(body);
   })
 });*/
-app.use('/',express.static('./'));
+
 
 app.get('/statement/details', function(req, res) {
   var fromTime = req.query.fromTime;
@@ -73,10 +77,10 @@ app.get('/brand/config/brand', function(req, res) {
 app.get('/brand/config', function(req, res) {
   request({
     url: `${apiUrl}/brand/config`
-},function(error,response,body){
-  console.log('/brand/config',body);
-  res.send(body);
-})
+  },function(error,response,body){
+    console.log('/brand/config',body);
+    res.send(body);
+  })
 });
 
 app.get('/grid/config', function(req, res) {
@@ -87,16 +91,6 @@ app.get('/grid/config', function(req, res) {
   res.send(body);
 })
 });
-
-
-app.post('/brand/config', function(req, res) {
-  request({
-    url: `${apiUrl}/brand/config`
-},function(error,response,body){
-})
-});
-
-
 
 app.get('/dashboard/all', function(req, res) {
   var fromTime = req.query.fromTime;
@@ -122,4 +116,16 @@ app.get('/dashboard/status', function(req, res) {
     res.send(body);
   })
 });
-
+/******Brand Crud*****/
+app.post('/brand/config',function(req,res,next){
+   console.log('Here in POST /brand/config :: ',req.body);
+  request({
+    url :`${apiUrl}/brand/config`,
+    method : 'POST',
+    json : req.body
+  },function(error,response,body){
+    console.log('Here in :: ',error,response.request.body);
+    console.log('Here in /brand/config POST :: ',body);
+    res.send(body);
+  });
+});
