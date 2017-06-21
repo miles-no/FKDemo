@@ -37,6 +37,7 @@ app.get('/statement/details', function(req, res) {
       page:page
     }//params to be added
   },function(error,response,body){
+    console.log('/statement/details ::',body);
     res.send(body);
   })
 });
@@ -64,7 +65,7 @@ app.get('/brand/config/brand', function(req, res) {
   request({
     url: `${apiUrl}/brand/config/brand`
   },function(error,response,body){
-    console.log('Here in !!!!!!!!!!!',body);
+    console.log('/brand/config/brand ::',body);
     res.send(body);
   })
 });
@@ -116,7 +117,8 @@ app.get('/dashboard/status', function(req, res) {
   request({
     url: `${apiUrl}/dashboard/status`
   },function(error,response,body){
-    console.log('Here in !!!!!!!!!!!',body);
+    console.log('Here in :: ',response.request.uri);
+    console.log('Here in /dashboard/status :: ',body);
     res.send(body);
   })
 });
