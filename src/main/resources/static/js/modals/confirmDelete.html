@@ -1,0 +1,15 @@
+<div class="modal fade {{options.classes.body}}  modal-wrapper" ng-class="{'modal-without-header': !options.header, 'modal-with-header': options.header}">
+    <div ng-if="!options.header" class="close-modal " ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</div>
+    <div class="modal-dialog modal-content-container">
+        <div class="modal-header" ng-if="options.header">
+            <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">{{options.header}}</h4>
+        </div>
+        <div class="modal-body {{options.classes.modalBody}}"  >
+            {{options.body.bodyContent}} {{options.body.brand.brand}}
+        </div>
+        <div class="modal-footer">
+            <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal">{{btns.name}}</button>
+        </div>
+    </div>
+</div>

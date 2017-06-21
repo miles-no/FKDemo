@@ -3,13 +3,10 @@
   background-color: $brand-color;
 }
 .modal-wrapper {
-  width: 70%;
-  margin: 5vh auto 0;
   .modal-dialog {
     max-width: 100%;
   }
   &.manage-brand {
-    max-width:80%;
     margin: 10px auto;
     .modal-content-container{
       background: white;
@@ -47,24 +44,26 @@
 {
   height:90vh;
 }
+//
+//.btn{
+//  float : right;
+//  background: $brand-color;
+//  &:hover,&:active,&:focus{
+//    background: $btn-click-color;
+//  }
+//}
 .redIcon{
   color: red;
   font-size: 19px;
 }
 .greenIcon{
-  color: green;
   font-size: 19px;
+  &.available{
+    color: green;
+  }
+
 }
-.addBtn{
-  background: #ff5500;
-  border-radius: 10px;
-  color: #ffffff;
-  font-weight: bold;
-  float: right;
-  width: 125px;
-  height: 32px;
-  outline:none;
-}
+
 .cover-space{
   width:100%;
   height: 100%;

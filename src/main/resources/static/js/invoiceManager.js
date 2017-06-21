@@ -44,6 +44,9 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
       }).state('listGrid',{
         url: '/grids',
         templateUrl: 'js/grids/grid.html'
+      }).state('templates',{
+        url: '/templates',
+        templateUrl: 'js/templates/list.html'
       });
     $urlRouterProvider.otherwise('/home');
 });

@@ -47,24 +47,30 @@
 
 <!-- Dependencies End here -->
 <script src="dist/js/app.js"></script>
-
 <body>
     <div ng-app="invoiceManagerApp" class= "invoice-manager">
         <div  class="top-rim" ng-controller="mainController">
             <nav class="navbar navbar-inverse bg-brand-color">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-2 brand-logo">
-                            <h1>
-                                <img class="img-responsive" src="assets/images/svg/fjordkraftlogo.svg" ui-sref="home">
-                            </h1>
+                        <div class="col-md-3 brand-logo" >
+                            <div class="col-sm-2"><i class="fa fa-bars" ng-click="showMenu = true"></i></div>
+                            <div class="col-sm-10"><img class="img-responsive" src="assets/images/svg/fjordkraftlogo.svg" ui-sref="home"></div>
                         </div>
-                        <div class="col-md-8">
-                            <!--<ul class="nav navbar-nav">
-                                <li><a ui-sref-active="active" ui-sref="overview">Overview</a></li>
-                            </ul>-->
+                        <div class="left-panel-navbar" ng-show="showMenu">
+                            <ul>
+                                <li class="fuelLogo">
+                                    <img src="assets/images/svg/fjordkraftlogo.svg" ng-click="navigateTo('home')">
+                                    <i class="fa fa-times" ng-click="showMenu = !showMenu"></i>
+                                </li>
+                                <li><span ng-class="{'active': activeMenu == 'home'}" ng-click="navigateTo('home')">Dashboard</span></li>
+                                <li><span ng-class="{'active': activeMenu == 'overview'}" ng-click="navigateTo('overview')">Overview</span></li>
+                                <li><span ng-class="{'active': activeMenu == 'listBrands'}" ng-click="navigateTo('listBrands')">Brands</span></li>
+                                <li><span ng-class="{'active': activeMenu == 'listGrid'}" ng-click="navigateTo('listGrid')">Grids</span></li>
+                                <li><span ng-class="{'active': activeMenu == 'templates'}" ng-click="navigateTo('templates')">Templates</span></li>
+                            </ul>
                         </div>
-                        
+
                         <!--<div class="col-md-2 text-right status-indicator">
                             <div class="">
                                 <i ng-show="isDashbordLive" ng-click="toggleDashbordLive()" class="fa fa-pause-circle fa-2x faa-flash animated" aria-hidden="true"  ng-class="{'hidden':!isDashbordLive}"></i>

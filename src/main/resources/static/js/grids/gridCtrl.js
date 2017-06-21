@@ -52,12 +52,47 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
     })
   }
 
+  //$scope.deleteGrid = function (grid, $event) {
+  //  $event.stopPropagation();
+  //  $http.delete('/grid/config', grid.id).then(function () {
+  //    $scope.getGrids()
+  //  })
+  //}
+
   $scope.deleteGrid = function (grid, $event) {
     $event.stopPropagation();
-    $http.delete('/grid/config', grid.id).then(function () {
-      $scope.getGrids()
+    ModalService.showModal({
+      templateUrl: 'js/modals/confirmDelete.html',
+      controller:'popupController',
+      inputs:{
+        options:{
+          body:{
+            bodyContent: 'Please confirm to delete ',
+            brand: grid
+          },
+          header: "Delete Brand",
+          conFirmBtnText : [
+            {name: 'cancel'},
+            {name: "Delete" }
+          ],
+          classes: {
+            modalBody: '',
+            body: 'manage-brand'
+          }
+        }
+      }
+    }).then(function(modal){
+      modal.element.modal();
+      modal.close.then(function(result){
+        if(result=='Delete'){
+          $http.delete('/grid/config/'+grid.id).then(function () {
+            $scope.getGrids();
+          })
+        }
+      })
     })
   }
+
 
   function showModal (gridInfo, type) {
     ModalService.showModal({

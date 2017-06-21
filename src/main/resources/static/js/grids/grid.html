@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="col-md-12">
-        <table st-table="displayedCollection" st-safe-src="searchResults" class="table">
+        <table st-table="displayedCollection" st-safe-src="searchResults" class="table table-align">
             <thead>
             <tr>
                 <th st-sort="Brand">Brand</th>
@@ -27,13 +27,13 @@
                     <td>{{gridItem.brand}}</td>
                     <td>{{gridItem.email}}</td>
                     <td>{{gridItem.phone}}</td>
-                    <td ng-click="deleteGrid(gridItem, $event)"><i class="fa fa-minus-circle redIcon"></i></td>
+                    <td ng-click="deleteGrid(gridItem, $event)"><i class="fa fa-trash-o redIcon"></i></td>
                 </tr>
             </tbody>
             <tfoot>
             <tr>
                 <td colspan="100%" class="text-center">
-                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                    <paginator page-size=pageSize total-pages=totalPages on-page-change="onPageChanged(result)"></paginator>
                 </td>
             </tr>
             </tfoot>

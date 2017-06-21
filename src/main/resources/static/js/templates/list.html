@@ -1,0 +1,95 @@
+<div class="manage-brands" ng-controller="listCtrl">
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-md-5">Brand</label>
+                <div class="col-md-7">
+                    <ui-select multiple ng-model="states" theme="bootstrap" title="Choose Brand" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
+                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
+                        <ui-select-choices  repeat="eachOverview in possibleStates" position='down'>
+                            <div ng-bind-html="eachOverview | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-5">Distribution</label>
+                <div class="col-md-7">
+                    <ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="on($item, $model)"on-select="onBrandSelect($item, $model)">
+                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
+                        <ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>
+                            <div ng-bind-html="eachBrand | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-md-5">Legal Part Class</label>
+                <div class="col-md-7">
+                    <ui-select multiple ng-model="states" theme="bootstrap" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
+                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
+                        <ui-select-choices  repeat="eachOverview in possibleStates" position='down'>
+                            <div ng-bind-html="eachOverview | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-5">Credit Limit</label>
+                <div class="col-md-7">
+                    <ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="onBrandRemoval($item, $model)"on-select="onBrandSelect($item, $model)">
+                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
+                        <ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>
+                            <div ng-bind-html="eachBrand | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row form-group">
+                <label class="control-label col-md-5">Account Category</label>
+                <div class="col-md-7">
+                    <input type="text" ng-model="fromDate"  datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table st-table="displayedCollection" st-safe-src="searchResults" class="table table-align">
+            <thead>
+            <tr>
+                <th st-sort="Brand">Brand</th>
+                <th>Legal Part Class</th>
+                <th >Account Category</th>
+                <th >Credit Limit</th>
+                <th >Distribution Method</th>
+                <th >Last Updated</th>
+                <th >Last 5 Updated</th>
+                <th >Preview</th>
+                <th width="40px"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="gridItem in allGrids" ng-click="updateGrid(gridItem);">
+                <td>{{gridItem.brand}}</td>
+                <td>{{gridItem.email}}</td>
+                <td>{{gridItem.phone}}</td>
+                <td ng-click="deleteGrid(gridItem, $event)"><i class="fa fa-trash-o redIcon"></i></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="100%" class="text-center">
+                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="add-brand">
+            <button ng-click="addGrid()" class="btn btn-primary">Add Template</button><!-- modal opens upon clicking of add brand -->
+        </div>
+    </div>
+</div>

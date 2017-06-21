@@ -1,14 +1,18 @@
 .invoice-manager {
   .top-rim{
     .navbar{
+      height:80px;
       .brand-logo{
-        h1{
-          font-size: 0.5em;
+        i{
+          font-size: 37px;
+          color: white;
+          padding-top: 22px;
         }
         img{
-          width : auto;
-          max-height: 5em;
+          max-height: 4em;
           cursor: pointer;
+          margin-top: 12px;
+          margin-left: -54px;
         }
       }
       .navbar-nav{
@@ -22,6 +26,62 @@
         margin-top: 0.7em;
         .fa-circle,.fa-pause-circle,.fa-play-circle{
           color: white;
+        }
+      }
+
+      .left-panel-navbar {
+        z-index: 10000000;
+        position: fixed;
+        left:0;
+        top:0;
+        width:300px;
+        bottom: 0;
+        background:black;
+        transition: all .3s ease-in-out;
+        &.ng-hide{
+          left:-300px;
+        }
+
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          li{
+            &.fuelLogo{
+              img{
+                width: 66%;
+                margin: 30px 0 30px 10px;
+                display: inline;
+              }
+              i{
+                font-size: 50px;
+                color: white;
+                display: inline;
+                width: 10%;
+                right: 25px;
+                position: absolute;
+                margin-top: 0;
+                -webkit-text-stroke: 7px black;
+              }
+            }
+            display: block;
+            span{
+              padding: 10px 15px;
+              color:white;
+              display: block;
+              font-size: 18px;
+              outline: none;
+              &:hover {
+                background: orange;
+                text-decoration: none;
+              }
+              &.active {
+                background: orange;
+                text-decoration: none;
+              }
+            }
+
+          }
         }
       }
     }

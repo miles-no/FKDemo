@@ -11,7 +11,7 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
     useEABarcode: 0
   }
   $scope.selectedBrands = []
-
+  $scope.allBrands = []
   function showSelectedBrands () {
     $scope.allBrands = []
     if ($scope.selectedBrands.length > 0) {
@@ -41,7 +41,7 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
   }
   $scope.getBrands = function () {
     $http.get('/brand/config').then(function (response) {
-      $scope.allBrands =  $scope.brands = response.data;;
+      $scope.allBrands =  $scope.brands = response.data;
     })
   }
 
@@ -53,14 +53,40 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
 
   function updateBrand(brand) {
     $http.put('/brand/config',brand).then(function () {
-      $scope.getBrands()
     })
   }
 
   $scope.deleteBrands = function (brand, $event) {
     $event.stopPropagation();
-    $http.delete('/brand/config', brand.id).then(function () {
-      $scope.getBrands()
+    ModalService.showModal({
+      templateUrl: 'js/modals/confirmDelete.html',
+      controller:'popupController',
+      inputs:{
+          options:{
+            body:{
+              bodyContent: 'Please confirm to delete ',
+              brand: brand
+            },
+            header: "Delete Brand",
+            conFirmBtnText : [
+              {name: 'cancel'},
+              {name: "Delete" }
+            ],
+            classes: {
+              modalBody: '',
+              body: 'manage-brand'
+            }
+          }
+      }
+    }).then(function(modal){
+      modal.element.modal();
+      modal.close.then(function(result){
+        if(result=='Delete'){
+          $http.delete('/brand/config/'+brand.id).then(function () {
+            $scope.getBrands();
+          })
+        }
+      })
     })
   }
 

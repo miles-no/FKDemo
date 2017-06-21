@@ -1,0 +1,57 @@
+<div class="modal fade {{options.classes.body}}  modal-wrapper" ng-class="{'modal-without-header': !options.header, 'modal-with-header': options.header}">
+    <div ng-if="!options.header" class="close-modal " ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</div>
+    <div class="modal-dialog modal-content-container">
+        <div class="modal-header" ng-if="options.header">
+            <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">{{options.header}}</h4>
+        </div>
+        <div class="modal-body {{options.classes.modalBody}}"  >
+            <div class="manage-brands">
+                <form class="form-horizontal" >
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="brand">Brand</label>
+                        <div class=" col-sm-6">
+                            <input type="text" class="form-control" ng-model="items.brand" id="brand" ng-minlength="1" ng-pattern="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="legal-part-class">Legal Part CLass</label>
+                        <div class=" col-sm-6">
+                            <input type="text"  ng-model="items.email" class="form-control" id="legal-part-class" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="account-category">Account Category</label>
+                        <div class=" col-sm-6">
+                            <input type="text" ng-model="items.phone" class="form-control" id="account-category">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="credit-limit">Credit Limit</label>
+                        <div class=" col-sm-6">
+                            <input type="text" ng-model="items.phone" class="form-control" id="service-no">
+                            <input type="text" ng-model="items.phone" class="form-control" id="service-no">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="distribution-type">Distribution Type</label>
+                        <div class=" col-sm-6">
+                            <input type="text" ng-model="items.phone" class="form-control" id="service-no">
+                            <input type="text" ng-model="items.phone" class="form-control" id="service-no">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="template">Template</label>
+                        <div class=" col-sm-6">
+                            <input type="text" ng-model="items.phone" class="form-control" id="template">
+                            <input type="text" ng-model="items.phone" class="form-control" id="service-no">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal">{{btns.name}}</button>
+        </div>
+    </div>
+</div>

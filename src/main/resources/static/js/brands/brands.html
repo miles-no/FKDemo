@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="col-md-12">
-        <table st-table="displayedCollection" st-safe-src="searchResults" class="table">
+        <table st-table="displayedCollection" st-safe-src="searchResults" class="table table-align">
             <thead>
             <tr>
                 <th st-sort="Brand">Brand</th>
@@ -32,16 +32,16 @@
                 <td>{{brand.serviceLevel}}</td>
                 <td>{{brand.prefixKID}}</td>
                 <td>{{brand.kontonummer}}</td>
-                <td><i ng-class="{'fa fa-check-circle greenIcon': brand.useEABarcode === '1' , 'fa fa-times-circle redIcon': brand.useEABarcode === '0'}"></i></td>
-                <td ng-click="deleteBrands(brand, $event)"><i class="fa fa-minus-circle redIcon"></i></td>
+                <td><i ng-class="{'fa fa-check-circle greenIcon available': brand.useEABarcode === '1' , 'fa fa-check-circle greenIcon': brand.useEABarcode === '0'}"></i></td>
+                <td ng-click="deleteBrands(brand, $event)"><i class="fa fa-trash-o redIcon"></i></td>
             </tr>
             </tbody>
             <tfoot>
-            <tr>
-                <td colspan="100%" class="text-center">
-                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
-                </td>
-            </tr>
+                <tr>
+                    <td colspan="100%" class="text-center">
+                        <paginator page-size=pageSize total-pages=totalPages on-page-change="onPageChanged(result)"></paginator>
+                    </td>
+                </tr>
             </tfoot>
         </table>
         <div class="add-brand">
