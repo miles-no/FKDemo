@@ -1,6 +1,9 @@
 .manage-brands{
-  .checkbox-align{
+  .icon-align{
     margin-top: 10px;
+    &:focus{
+      outline: none;
+    }
   }
   .table-align{
     th,tr,td{

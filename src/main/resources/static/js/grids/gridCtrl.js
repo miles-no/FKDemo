@@ -130,6 +130,7 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
     showModal(grid, 'Add')
   }
   $scope.updateGrid = function (gridInfo) {
-    showModal(gridInfo, 'Update')
+    var gridData = angular.copy(gridInfo)
+    showModal(gridData, 'Update')
   }
 });

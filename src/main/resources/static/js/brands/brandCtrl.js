@@ -53,6 +53,7 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
 
   function updateBrand(brand) {
     $http.put('/brand/config',brand).then(function () {
+      $scope.getBrands()
     })
   }
 
@@ -126,8 +127,7 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
     showModal(brand, 'Add')
   }
   $scope.updateBrand = function (brandInfo) {
-    showModal(brandInfo, 'Update')
+    var brandData = angular.copy(brandInfo)
+    showModal(brandData, 'Update')
   }
-
-
 });
