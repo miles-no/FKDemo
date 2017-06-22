@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="col-md-12">
-        <table st-table="displayedCollection" st-safe-src="searchResults" class="table table-align">
+        <table st-table="displayedCollection" st-safe-src="allGrids" class="table table-align">
             <thead>
             <tr>
                 <th st-sort="Brand">Brand</th>
@@ -23,7 +23,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="gridItem in allGrids" ng-click="updateGrid(gridItem);">
+                <tr ng-repeat="gridItem in displayedCollection" ng-click="updateGrid(gridItem);">
                     <td>{{gridItem.brand}}</td>
                     <td>{{gridItem.email}}</td>
                     <td>{{gridItem.phone}}</td>
@@ -31,11 +31,11 @@
                 </tr>
             </tbody>
             <tfoot>
-            <tr>
-                <td colspan="100%" class="text-center">
-                    <paginator page-size=pageSize total-pages=totalPages on-page-change="onPageChanged(result)"></paginator>
-                </td>
-            </tr>
+            <!--<tr>-->
+                <!--<td colspan="100%" class="text-center">-->
+                    <!--<paginator page-size=pageSize total-pages=totalPages on-page-change="onPageChanged(result)"></paginator>-->
+                <!--</td>-->
+            <!--</tr>-->
             </tfoot>
         </table>
         <div class="text-right">
