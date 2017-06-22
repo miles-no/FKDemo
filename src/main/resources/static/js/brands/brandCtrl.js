@@ -8,8 +8,8 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
     serviceLevel: '',
     prefixKID: '',
     kontonummer: '',
-    useEABarcode: 0
-  }
+    useEABarcode: '0'
+ }
   $scope.selectedBrands = []
   $scope.allBrands = []
   function showSelectedBrands () {

@@ -58,8 +58,11 @@
 }
 .greenIcon{
   font-size: 19px;
-  &.available{
+  &.eaTrue{
     color: green;
+  }
+  &.eaFalse{
+    color: grey;
   }
 
 }

@@ -53,13 +53,13 @@
             <nav class="navbar navbar-inverse bg-brand-color">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-3 brand-logo" >
-                            <div class="col-sm-2"><i class="fa fa-bars" ng-click="showMenu = true"></i></div>
-                            <div class="col-sm-10"><img class="img-responsive" src="assets/images/svg/fjordkraftlogo.svg" ui-sref="home"></div>
+                        <div class="brand-logo" >
+                            <div class="menu-bar"><i class="fa fa-bars" ng-click="showMenu = true"></i></div>
+                            <div class="company-logo"><img src="assets/images/svg/fjordkraftlogo.svg" ui-sref="home"></div>
                         </div>
                         <div class="left-panel-navbar" ng-show="showMenu">
                             <ul>
-                                <li class="fuelLogo">
+                                <li class="company-nav-logo">
                                     <img src="assets/images/svg/fjordkraftlogo.svg" ng-click="navigateTo('home')">
                                     <i class="fa fa-times" ng-click="showMenu = !showMenu"></i>
                                 </li>
