@@ -145,7 +145,10 @@ app.delete('/brand/config/:id',function(req,res,next){
   var delId = req.params.id;
   console.log(delId);
   request({
-    url :`${apiUrl}/brand/config?id=${delId}`,
+    url :`${apiUrl}/brand/config`,
+    qs : {
+      id : delId
+    },
     method : 'DELETE'
 },function(error,response,body){
   res.send(body);
@@ -157,7 +160,7 @@ app.post('/grid/config',function(req,res,next){
   console.log('Here in POST /grid/config : ',req.body);
   request({
     url :`${apiUrl}/grid/config`,
-  method : 'POST',
+    method : 'POST',
     json : req.body
 },function(error,response,body){
   console.log('Here in :: ',error,response.request.body);
@@ -170,7 +173,7 @@ app.put('/grid/config',function(req,res,next){
   console.log('Here in put update /grid/config :: ',req.body);
   request({
     url :`${apiUrl}/grid/config`,
-  method : 'PUT',
+    method : 'PUT',
     json : req.body
 },function(error,response,body){
   res.send(body);
@@ -182,8 +185,11 @@ app.delete('/grid/config/:id',function(req,res,next){
   var delId = req.params.id;
   console.log(delId);
   request({
-    url :`${apiUrl}/grid/config?id=${delId}`,
-  method : 'DELETE'
+    url :`${apiUrl}/grid/config`,
+    qs : {
+      id : delId
+    },
+    method : 'DELETE'
 },function(error,response,body){
   res.send(body);
 })

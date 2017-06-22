@@ -124,4 +124,12 @@ table {
     border-color: $brand-color
   }
 }
-
+.btn-primary {
+  background-color: $brand-color;
+  border-color: $brand-color;
+  text-transform: capitalize;
+  &:hover{
+    background-color: $btn-click-color;
+    border-color: $btn-click-color;
+  }
+}
