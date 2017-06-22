@@ -8,12 +8,10 @@ function paginationController($http){
         ctrl.onPageChange({result: ctrl.currentPage});
     }   
     ctrl.getNextPageData = function(){
-        ctrl.currentPage = ctrl.currentPage + 1 ;
-        getPageData();
+        ctrl.currentPage == ctrl.totalPages ? '' : (ctrl.currentPage = ctrl.currentPage + 1  || getPageData());
     }
     ctrl.getPrevPageData = function(){
-        ctrl.currentPage = ctrl.currentPage - 1 ;
-        getPageData();
+         ctrl.currentPage == 1 ? '' : (ctrl.currentPage = ctrl.currentPage - 1  || getPageData());
     }
 }
 app.component('paginator',{
