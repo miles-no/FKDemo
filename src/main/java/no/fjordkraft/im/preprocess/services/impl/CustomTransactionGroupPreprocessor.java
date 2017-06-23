@@ -35,6 +35,7 @@ public class CustomTransactionGroupPreprocessor  extends BasePreprocessor {
         List<Transaction> processedTransaction = request.getStatement().getTransactionGroup().getTransaction();
         TransactionGroup transactionGroup = new TransactionGroup();
         Iterator mapIterator = null;
+        int totalTransactions = request.getStatement().getTransactionGroup().getTotalTransactions();
 
 
         for(Transaction transaction:transactions) {
@@ -53,9 +54,11 @@ public class CustomTransactionGroupPreprocessor  extends BasePreprocessor {
         while(mapIterator.hasNext()) {
             Map.Entry pair = (Map.Entry) mapIterator.next();
             processedTransaction.add((Transaction) pair.getValue());
+            totalTransactions++;
         }
 
         transactionGroup.setTransaction(processedTransaction);
+        transactionGroup.setTotalTransactions(totalTransactions);
         request.getStatement().setTransactionGroup(transactionGroup);
     }
 

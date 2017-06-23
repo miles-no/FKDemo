@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import org.apache.axis.encoding.Base64;
 
 /**
  * Created by miles on 6/6/2017.
@@ -46,6 +47,9 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     @Autowired
     StatementService statementService;
 
+    @Autowired
+    SegmentFileServiceImpl segmentFileService;
+
     private String outputDirectoryPath;
     private String pdfGeneratedFolderName;
     private String invoiceGeneratedFolderName;
@@ -64,6 +68,8 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     @Override
     @Transactional
     public void generateInvoice(Statement statement) {
+        String accountNo = statement.getAccountNumber();
+        String brand = statement.getSystemBatchInput().getBrand();
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("PDF merging for statement with id "+ statement.getId());
 
@@ -77,24 +83,42 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             logger.info("Start of Invoice generation for invoice number: " + statement.getInvoiceNumber() + " statement id "+ statement.getId());
             statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSING);
 
-            String files[] =
+            /*String files[] =
                     {
                             outputDirectoryPath + subFolderName + File.separator + statement.getInvoiceNumber() + File.separator +
                                     pdfGeneratedFolderName + File.separator + statement.getInvoiceNumber() + ".pdf",
 
                             controlFileDirectory + File.separator + controlFileName
-                    };
+                    };*/
+
+            String filePath = outputDirectoryPath + subFolderName + File.separator + statement.getInvoiceNumber() + File.separator +
+                    pdfGeneratedFolderName + File.separator + statement.getInvoiceNumber() + ".pdf";
 
             Document pdfCombineUsingJava = new Document();
             PdfCopy copy = new PdfCopy(pdfCombineUsingJava, new FileOutputStream(invoiceGeneratedFilePath));
             pdfCombineUsingJava.open();
-            PdfReader ReadInputPDF;
+            PdfReader readInputPDF;
             int number_of_pages;
-            for (int i = 0; i < files.length; i++) {
+            /*for (int i = 0; i < files.length; i++) {
                 ReadInputPDF = new PdfReader(files[i]);
                 number_of_pages = ReadInputPDF.getNumberOfPages();
                 for (int page = 0; page < number_of_pages; ) {
                     copy.addPage(copy.getImportedPage(ReadInputPDF, ++page));
+                }
+            }*/
+            readInputPDF = new PdfReader(filePath);
+            number_of_pages = readInputPDF.getNumberOfPages();
+            for (int page = 0; page < number_of_pages; ) {
+                copy.addPage(copy.getImportedPage(readInputPDF, ++page));
+            }
+
+            String attachPDF = segmentFileService.getPDFContent(accountNo, brand);
+            if(null != attachPDF) {
+                byte[] pdfBytes = Base64.decode(attachPDF);
+                readInputPDF = new PdfReader(pdfBytes);
+                number_of_pages = readInputPDF.getNumberOfPages();
+                for (int page = 0; page < number_of_pages; ) {
+                    copy.addPage(copy.getImportedPage(readInputPDF, ++page));
                 }
             }
             pdfCombineUsingJava.close();

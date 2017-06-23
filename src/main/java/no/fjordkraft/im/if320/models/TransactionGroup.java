@@ -8,7 +8,8 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "transaction"
+        "transaction",
+        "totalTransactions"
 })
 @XmlRootElement(name = "TransactionGroup")
 public class TransactionGroup {
@@ -16,11 +17,22 @@ public class TransactionGroup {
     @XmlElement(name = "Transaction")
     protected List<Transaction> transaction;
 
+    @XmlElement(name = "TotalTransactions")
+    protected int totalTransactions;
+
     public List<Transaction> getTransaction() {
         return transaction;
     }
 
     public void setTransaction(List<Transaction> transaction) {
         this.transaction = transaction;
+    }
+
+    public int getTotalTransactions() {
+        return totalTransactions;
+    }
+
+    public void setTotalTransactions(int totalTransactions) {
+        this.totalTransactions = totalTransactions;
     }
 }

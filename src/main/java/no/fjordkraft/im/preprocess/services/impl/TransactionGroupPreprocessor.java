@@ -30,6 +30,7 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
         List<Transaction> nettTransaction =  new ArrayList<Transaction>();
         List<Distribution> distributions = new ArrayList<Distribution>();
         Distribution distribuion = null;
+        int i = 0;
 
         for(Transaction transaction:transactions) {
             if (null != transaction.getDistributions()) {
@@ -53,8 +54,10 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
                             }
                         }
                         kraftTransaction.add(createTransactionEntry(transaction, IMConstants.KRAFT));
+                        i++;
                     } else if(IMConstants.NETT.equals(distribuion.getName())) {
                         nettTransaction.add(createTransactionEntry(transaction, IMConstants.NETT));
+                        i++;
                     }
                 }
             }
@@ -62,6 +65,7 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
         processedTransaction.addAll(kraftTransaction);
         processedTransaction.addAll(nettTransaction);
         transactionGroup.setTransaction(groupProcessedTransaction(processedTransaction));
+        transactionGroup.setTotalTransactions(i);
         request.getStatement().setTransactionGroup(transactionGroup);
         request.getStatement().setTotalVatAmount(IMConstants.NEGATIVE*request.getStatement().getTotalVatAmount());
     }
@@ -82,7 +86,7 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
         MultiValueMap multiValueMap = new MultiValueMap();
         Iterator mapIterator = null;
         List<Transaction> transactionList = null;
-        int i = 1;
+        //int i = 1;
 
         for(Transaction individualTransaction:processedTransaction) {
             multiValueMap.put(individualTransaction.getFreeText(), individualTransaction);
@@ -93,7 +97,6 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
             Map.Entry entry = (Map.Entry) mapIterator.next();
             transactionList = (List<Transaction>) entry.getValue();
             for(Transaction transaction:transactionList) {
-                transaction.setTransactionSequence(i++);
                 transactions.add(transaction);
             }
         }

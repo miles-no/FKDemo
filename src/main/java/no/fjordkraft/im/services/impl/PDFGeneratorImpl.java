@@ -1,6 +1,7 @@
 package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.model.Statement;
+import no.fjordkraft.im.repository.SegmentFileRepository;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.InvoiceGenerator;
@@ -47,6 +48,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
     @Autowired
     StatementRepository statementRepository;
+
+    @Autowired
+    SegmentFileServiceImpl segmentFileService;
 
     @Autowired
     IReportEngine reportEngine;
@@ -134,6 +138,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         logger.debug("Generating Invoice PDF for Statement ID: " + statement.getId());
 
         long startTime = System.currentTimeMillis();
+        String accountNo = statement.getAccountNumber();
+        String brand = statement.getSystemBatchInput().getBrand();
         try {
             EngineConfig engineConfig = new EngineConfig();
             engineConfig.setResourcePath(birtResourcePath);
@@ -142,22 +148,24 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                     .createFactoryObject( IReportEngineFactory.EXTENSION_REPORT_ENGINE_FACTORY );
             reportEngine = factory.createReportEngine(engineConfig);
 
-            //String xmlFilePath = "D:\\XMLTOPDF\\new_pdf\\multipleAttachmentsWithChartData.xml";
             String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + statement.getInvoiceNumber() + File.separator ;
             String xmlFilePath =  basePath + xmlFolderName + File.separator + "statement.xml";
             //String reportDesignFilePath = "E:\\FuelKraft\\invoice_manager\\statementReport.rptdesign";
-            //String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
+            String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
 
-            String rptDesign = layoutConfigService.getRptDesignFileByBrand(statement.getSystemBatchInput().getBrand());
-            InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(StandardCharsets.ISO_8859_1));
+            //String rptDesign = layoutConfigService.getRptDesignFileByBrand(statement.getSystemBatchInput().getBrand());
+            //String rptDesign = layoutConfigService.getRptDesignFile(statement.getLayoutID());
+            //String rptDesign = layoutConfigService.getRptDesignFile(26l);
+            InputStream designStream = new ByteArrayInputStream(reportDesignFilePath.getBytes(StandardCharsets.ISO_8859_1));
 
-            String campaignFilePath = configService.getString(IMConstants.CAMPAIGN_FILE_PATH) ;
+            //String campaignFilePath = configService.getString(IMConstants.CAMPAIGN_FILE_PATH) ;
+            String campaignImage = segmentFileService.getImageContent(accountNo, brand);
             //IReportRunnable runnable = reportEngine.openReportDesign(reportDesignFilePath);
             IReportRunnable runnable = reportEngine.openReportDesign(designStream);
 
             IRunAndRenderTask task  = reportEngine.createRunAndRenderTask(runnable);
             task.setParameterValue("sourcexml", xmlFilePath);
-            task.setParameterValue("campaignImage", campaignFilePath);
+            task.setParameterValue("campaignImage", campaignImage);
             //task.setParameterValue("imageurl", "file:///D:/XMLTOPDF/Screenshot_1.png");
             PDFRenderOption options = new PDFRenderOption();
             options.setEmbededFont(true);

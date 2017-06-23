@@ -51,4 +51,5 @@ public interface IMConstants {
     static final String BRAND = "Brand";
     static final String GRID = "Grid";
     static final String CONFIG = "config";
+    static final int ZERO = 0;
 }
