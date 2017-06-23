@@ -21,4 +21,5 @@ public interface BrandService {
 
     BrandConfig getBrandConfigByName(String brand);
     List<String> getAllBrands();
+    Long getBrandCount();
 }

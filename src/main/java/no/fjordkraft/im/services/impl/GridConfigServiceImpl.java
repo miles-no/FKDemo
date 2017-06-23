@@ -52,4 +52,9 @@ public class GridConfigServiceImpl implements GridConfigService {
     public GridConfig getGridConfigByBrand(String brand) {
         return gridConfigRepository.getGridConfigByBrand(brand);
     }
+
+    @Override
+    public Long getGridCount() {
+        return gridConfigRepository.getGridCount();
+    }
 }

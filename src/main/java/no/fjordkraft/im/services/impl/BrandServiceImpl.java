@@ -63,4 +63,9 @@ public class BrandServiceImpl implements BrandService {
     public List<String> getAllBrands() {
         return brandConfigRepository.getAllBrands();
     }
+
+    @Override
+    public Long getBrandCount() {
+        return brandConfigRepository.getBrandsCount();
+    }
 }

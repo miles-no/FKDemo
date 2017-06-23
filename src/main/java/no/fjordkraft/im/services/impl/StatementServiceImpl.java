@@ -244,9 +244,12 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
 
     @Override
     @Transactional(readOnly = true)
-    public Long getCountByStatus(String status) {
+    public Long getCountByStatus(String status, Timestamp fromTime,
+                                 Timestamp toTime, String brand, String customerID, String invoiceNumber) {
         String mappedStatus = mapStatus(status);
-        return statementDetailRepository.getCountByStatus(mappedStatus);
+        String mappedBrand = mapBrand(brand);
+        return statementDetailRepository.getCountByStatus(mappedStatus, fromTime, toTime,
+                mappedBrand, customerID, invoiceNumber);
     }
 
     private String mapBrand(String brands) {

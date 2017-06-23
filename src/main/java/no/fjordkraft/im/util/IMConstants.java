@@ -40,4 +40,15 @@ public interface IMConstants {
     static final String ATTACH_PDF = "ATTACH_PDF";
     static final String CAMPAIGN_FILE_PATH = "campaign.file.path";
     static final String BIRT_RESOURCE_PATH = "birt.resource.path";
+    static final String STATEMENTS = "STATEMENTS";
+    static final String NOT_APPLICABLE = "NA";
+    static final String FKAS = "FKAS";
+    static final String TKAS = "TKAS";
+    static final String ORGANISATION = "Organization";
+    static final String INDIVIDUAL = "Individual";
+    static final String TPM = "TPM";
+    static final String EHF = "EHF";
+    static final String BRAND = "Brand";
+    static final String GRID = "Grid";
+    static final String CONFIG = "config";
 }

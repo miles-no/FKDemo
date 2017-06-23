@@ -14,4 +14,7 @@ public interface GridConfigRepository extends JpaRepository<GridConfig, Long> {
 
     @Query("select g from GridConfig g where g.brand = :brand")
     GridConfig getGridConfigByBrand(@Param("brand") String brand);
+
+    @Query("select count(g) from GridConfig g")
+    Long getGridCount();
 }

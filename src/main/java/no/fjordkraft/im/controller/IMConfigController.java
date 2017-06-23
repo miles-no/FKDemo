@@ -3,11 +3,14 @@ package no.fjordkraft.im.controller;
 import no.fjordkraft.im.model.Config;
 import no.fjordkraft.im.repository.ConfigRepository;
 import no.fjordkraft.im.services.impl.ConfigServiceImpl;
+import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by miles on 6/5/2017.
@@ -45,7 +48,12 @@ public class IMConfigController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
-    List<Config> getConfig() {
-        return configService.findAll();
+    Map<String, Object> getConfig() {
+        Map<String,Object> map = new HashMap<>();
+        List<Config> configList = configService.findAll();
+        Long count = configService.getConfigCount();
+        map.put(IMConstants.TOTAL, count);
+        map.put(IMConstants.CONFIG, configList);
+        return map;
     }
 }

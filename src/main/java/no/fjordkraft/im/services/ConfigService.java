@@ -31,4 +31,6 @@ public interface ConfigService {
 
     void deleteConfig(String key);
 
+    Long getConfigCount();
+
 }

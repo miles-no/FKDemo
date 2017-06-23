@@ -3,12 +3,15 @@ package no.fjordkraft.im.controller;
 import no.fjordkraft.im.model.BrandConfig;
 import no.fjordkraft.im.services.BrandService;
 import no.fjordkraft.im.services.impl.BrandServiceImpl;
+import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by miles on 6/5/2017.
@@ -22,28 +25,25 @@ public class IMBrandController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
-    List<BrandConfig> getBrandConfigs() {
-        List<BrandConfig> brandConfigs = new ArrayList<BrandConfig>();
-        brandConfigs = brandService.getBrandConfigs();
-        return brandConfigs;
+    Map<String, Object> getBrandConfigs() {
+        Map<String, Object> map = new HashMap<>();
+        List<BrandConfig> brandConfigs = brandService.getBrandConfigs();
+        Long count = brandService.getBrandCount();
+        map.put(IMConstants.TOTAL, count);
+        map.put(IMConstants.BRAND, brandConfigs);
+        return map;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
-    List<BrandConfig> saveBrandConfig(@RequestBody BrandConfig brandConfig) {
-        List<BrandConfig> brandConfigList = new ArrayList<>();
+    void saveBrandConfig(@RequestBody BrandConfig brandConfig) {
         brandService.saveBrandConfig(brandConfig);
-        brandConfigList = getBrandConfigs();
-        return brandConfigList;
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
     @ResponseBody
-    List<BrandConfig> updateBrandConfig(@RequestBody BrandConfig brandConfig) {
-        List<BrandConfig> brandConfigList = new ArrayList<>();
+    void updateBrandConfig(@RequestBody BrandConfig brandConfig) {
         brandService.updateBrandConfig(brandConfig);
-        brandConfigList = getBrandConfigs();
-        return brandConfigList;
     }
 
     @RequestMapping(value = "", method = RequestMethod.DELETE)

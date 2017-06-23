@@ -22,4 +22,7 @@ public interface BrandConfigRepository extends JpaRepository<BrandConfig, Long> 
 
     @Query("select b.brand from BrandConfig b")
     List<String> getAllBrands();
+
+    @Query("select count(b) from BrandConfig b)")
+    Long getBrandsCount();
 }

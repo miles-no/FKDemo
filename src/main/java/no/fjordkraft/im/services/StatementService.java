@@ -34,6 +34,7 @@ public interface StatementService {
     public List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime,
                                           String brand, String customerID, String invoice);
 
-    public Long getCountByStatus(String status);
+    public Long getCountByStatus(String status, Timestamp fromTime,
+                                 Timestamp toTime, String brand, String customerID, String invoiceNumber);
 
 }

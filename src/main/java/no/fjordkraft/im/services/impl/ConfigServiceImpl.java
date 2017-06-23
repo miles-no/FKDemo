@@ -141,6 +141,11 @@ public class ConfigServiceImpl implements ConfigService {
     }
 
     @Override
+    public Long getConfigCount() {
+        return configRepository.getConfigCount();
+    }
+
+    @Override
     public synchronized void clearCache() {
         cache.clear();
         lastCacheRefresh = System.currentTimeMillis();

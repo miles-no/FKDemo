@@ -81,9 +81,33 @@ public class StatementDetailRepository {
     }
 
     @Transactional
-    public Long getCountByStatus(String status) {
-        String sql = "select count(s) from Statement s where s.status in (" + status + ")";
-        Query query = entityManager.createQuery(sql);
-        return (Long) query.getSingleResult();
+    public Long getCountByStatus(String status, Timestamp fromTime,
+                                 Timestamp toTime, String brand, String customerID, String invoiceNumber) {
+        StringBuffer selectQuery = new StringBuffer();
+        selectQuery.append("select count(s) from Statement s join s.systemBatchInput where ");
+        if(null != status ) {
+            selectQuery.append(addConditionForQueryValue(status, "s.status"));
+            selectQuery.append(AND);
+        }
+        if(null != brand) {
+            selectQuery.append(addConditionForQueryValue(brand, "s.systemBatchInput.brand"));
+            selectQuery.append(AND);
+        }
+        selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
+        selectQuery.append(AND);
+        selectQuery.append("(:customerID is null or s.customerId = :customerID) ");
+        selectQuery.append(AND);
+        selectQuery.append("(:fromTime is null or s.createTime >= :fromTime) ");
+        selectQuery.append(AND);
+        selectQuery.append("(:toTime is null or s.createTime <= :toTime) ");
+
+        Query query = entityManager.createQuery(selectQuery.toString(), Long.class)
+                .setParameter("fromTime", fromTime)
+                .setParameter("toTime", toTime)
+                .setParameter("customerID", customerID)
+                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'));
+
+        Long count = (Long) query.getSingleResult();
+        return count;
     }
 }
