@@ -15,4 +15,5 @@ public interface GridConfigService {
     void deleteGridConfig(Long id);
     GridConfig getGridConfigByBrand(String brand);
     Long getGridCount();
+    List<String> getAllBrands();
 }

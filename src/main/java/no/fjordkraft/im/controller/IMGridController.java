@@ -58,4 +58,10 @@ public class IMGridController {
         gridConfig = gridConfigService.getGridConfigByBrand(brand);
         return gridConfig;
     }
+
+    @RequestMapping(value = "brand", method = RequestMethod.GET)
+    @ResponseBody
+    List<String> getAllBrands() {
+        return gridConfigService.getAllBrands();
+    }
 }
