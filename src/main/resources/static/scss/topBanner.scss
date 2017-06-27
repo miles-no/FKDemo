@@ -1,48 +1,57 @@
-.invoice-manager{
-  .top-rim{
-    .navbar{
-      height:80px;
-      border-radius: 0px;
-      .brand-logo{
-        max-width: 300px;
-        .menu-bar{
-          display: inline-block;
-          width: 22%;
-          text-align: center;
-          font-size: 30px;
-          float: left;
-          i {
-            margin-top: 22px;
-            color: white;
-            cursor: pointer;
-            outline: none;
-          }
-        }
-        .company-logo{
-          width: 75%;
-          float: left;
-          display: inline-block;
-          img{
-            width: 260px;
-            margin-top: 12px;
-            cursor: pointer;
-          }
-        }
-      }
-      .navbar-nav{
-        margin-top: 0.7em;
-        li>a{
-          color: black;
-          font-weight: bold;
-        }
-      }
-      .status-indicator{
-        margin-top: 0.7em;
-        .fa-circle,.fa-pause-circle,.fa-play-circle{
+.invoice-manager {
+  .navbar{
+    height:80px;
+    border-radius: 0px;
+    .brand-logo{
+      max-width: 300px;
+      .menu-bar{
+        display: inline-block;
+        width: 22%;
+        text-align: center;
+        font-size: 30px;
+        float: left;
+        i {
+          margin-top: 22px;
           color: white;
+          cursor: pointer;
+          outline: none;
         }
       }
-
+      .company-logo{
+        width: 75%;
+        float: left;
+        display: inline-block;
+        img{
+          width: 260px;
+          margin-top: 12px;
+          cursor: pointer;
+        }
+      }
+    }
+    .navbar-nav{
+      margin-top: 0.7em;
+      li>a{
+        color: black;
+        font-weight: bold;
+      }
+    }
+    .status-indicator{
+      margin-top: 0.7em;
+      .fa-circle,.fa-pause-circle,.fa-play-circle{
+        color: white;
+      }
+    }
+    .nav-wrapper {
+      position: fixed;
+      z-index: 10000000;
+      left:0;
+      top:0;
+      right: 0;
+      bottom: 0;
+      transition: all .3s ease-in-out;
+      &.ng-hide{
+        left:-100%;
+      }
       .left-panel-navbar {
         z-index: 10000000;
         position: fixed;
@@ -96,28 +105,35 @@
                 text-decoration: none;
               }
             }
-
-          }
-        }
-      }
-    }
-    @media (max-width: 768px){
-      .navbar{
-        .brand-logo {
-          max-width: 100%;
-          .menu-bar{
-            width: 60px;
-          }
-          .company-logo{
-            width: calc(100% - 60px);
-            text-align: center;
-            img {
-              width: 220px;
-              margin-left: -28px;
-            }
           }
         }
       }
     }
   }
+  @media (max-width: 768px){
+    .navbar{
+      .brand-logo {
+        max-width: 100%;
+        .menu-bar{
+          width: 60px;
+        }
+        .company-logo{
+          width: calc(100% - 60px);
+          text-align: center;
+          img {
+            width: 220px;
+            margin-left: -28px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.header-text {
+  font-size: 30px;
+  padding: 10px 0;
+  text-align: center;
+  color: #ff5500;
 }

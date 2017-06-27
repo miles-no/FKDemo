@@ -3,49 +3,71 @@
     <div class="modal-dialog modal-content-container">
         <div class="modal-header" ng-if="options.header">
             <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title text-center">{{options.header}}</h4>
+            <h4 class="modal-title">{{options.header}}</h4>
         </div>
         <div class="modal-body {{options.classes.modalBody}}"  >
             <div class="manage-brands">
-                <form class="form-horizontal" >
+                <form class="form-horizontal">
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="brand">Brand</label>
-                        <div class=" col-sm-6">
-                            <input type="text" class="form-control" ng-model="items.brand" id="brand" ng-minlength="1" ng-pattern="">
+                        <label class="control-label col-sm-4">Brand</label>
+                        <div class="col-md-6">
+                            <ui-select ng-model="selectedBrands" theme="bootstrap" title="Choose Brand" on-select="onLayoutSelect($item, $model)" ng-disabled="disable">
+                                <ui-select-match placeholder="Select Filter">{{selectedBrands.brand}}</ui-select-match>
+                                <ui-select-choices  repeat="layout in layouts" position='down'>
+                                    <div ng-bind-html="layout.brand | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="legal-part-class">Legal Part CLass</label>
                         <div class=" col-sm-6">
-                            <input type="text"  ng-model="items.email" class="form-control" id="legal-part-class" >
+                            <input type="text"  ng-model="items.legalPartClass" class="form-control" id="legal-part-class" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="account-category">Account Category</label>
                         <div class=" col-sm-6">
-                            <input type="text" ng-model="items.phone" class="form-control" id="account-category">
+                            <input type="text" ng-model="items.accountCategory" class="form-control" id="account-category">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="credit-limit">Credit Limit</label>
                         <div class=" col-sm-6">
-                            <input type="text" ng-model="items.phone" class="form-control" id="service-no">
-                            <input type="text" ng-model="items.phone" class="form-control" id="service-no">
+                            <input type="text" ng-model="items.creditLimit" class="form-control" id="credit-limit">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="distribution-type">Distribution Type</label>
+                        <label class="control-label col-sm-4" for="email-type">Distribution Type</label>
                         <div class=" col-sm-6">
-                            <input type="text" ng-model="items.phone" class="form-control" id="service-no">
-                            <input type="text" ng-model="items.phone" class="form-control" id="service-no">
+                            <label class="col-sm-12" for="email-type">
+                                <input type="checkbox" ng-model="items.distributionEmail" class="" id="email-type">
+                                Email
+                            </label>
+
+                            <label class="col-sm-12" for="paper-type">
+                                <input type="checkbox" ng-model="items.distributionPaper" class="" id="paper-type">
+                                Paper
+                            </label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="template">Template</label>
-                        <div class=" col-sm-6">
-                            <input type="text" ng-model="items.phone" class="form-control" id="template">
-                            <input type="text" ng-model="items.phone" class="form-control" id="service-no">
+                        <label class="control-label col-sm-4">Template</label>
+                        <div class="col-sm-8">
+                            <div class="col-sm-8 row">
+                                <input type="text" ng-value="items.template.name" class="form-control" readonly="readonly">
+                            </div>
+
+                            <div class="upload-btn-wrapper col-sm-3 ">
+                                <button class="btn btn-primary">Upload</button>
+                                <input type="file" file-model="items.template">
+                            </div>
+
+                            <div class="upload-btn-wrapper">
+                                <i class="fa fa-external-link" aria-hidden="true"></i>
+                            </div>
                         </div>
+
                     </div>
                 </form>
             </div>

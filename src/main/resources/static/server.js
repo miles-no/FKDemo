@@ -92,6 +92,14 @@ app.get('/grid/config', function(req, res) {
 })
 });
 
+app.get('/grid/config/brand', function(req, res) {
+  request({
+    url: `${apiUrl}/grid/config/brand`
+},function(error,response,body){
+  res.send(body);
+})
+});
+
 app.get('/dashboard/all', function(req, res) {
   var fromTime = req.query.fromTime;
   var toTime = req.query.toTime;
@@ -124,8 +132,6 @@ app.post('/brand/config',function(req,res,next){
   method : 'POST',
     json : req.body
 },function(error,response,body){
-  console.log('Here in :: ',error,response.request.body);
-  console.log('Here in /brand/config POST :: ',body);
   res.send(body);
 });
 });

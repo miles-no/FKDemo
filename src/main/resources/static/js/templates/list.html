@@ -1,13 +1,13 @@
-<div class="manage-brands" ng-controller="listCtrl">
+<div class="manage-brands" ng-controller="listCtrl" ng-init="getLayouts()">
     <div class="col-md-12">
         <div class="col-md-4">
             <div class="form-group">
                 <label class="control-label col-md-5">Brand</label>
                 <div class="col-md-7">
-                    <ui-select multiple ng-model="states" theme="bootstrap" title="Choose Brand" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
-                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
-                        <ui-select-choices  repeat="eachOverview in possibleStates" position='down'>
-                            <div ng-bind-html="eachOverview | highlight: $select.search"></div>
+                    <ui-select multiple ng-model="selectedLayouts" theme="bootstrap" title="Choose Brand" on-remove="onLayoutRemoval($item, $model)"on-select="onLayoutSelect($item, $model)">
+                        <ui-select-match placeholder="Select Filter">{{$item.brand}}</ui-select-match>
+                        <ui-select-choices  repeat="layout in layouts" position='down'>
+                            <div ng-bind-html="layout.brand | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
                 </div>
@@ -62,22 +62,20 @@
             <thead>
             <tr>
                 <th st-sort="Brand">Brand</th>
-                <th>Legal Part Class</th>
-                <th >Account Category</th>
-                <th >Credit Limit</th>
-                <th >Distribution Method</th>
-                <th >Last Updated</th>
-                <th >Last 5 Updated</th>
-                <th >Preview</th>
-                <th width="40px"></th>
+                <th >legalPartClass</th>
+                <th >accountCategory</th>
+                <th >distributionMethod</th>
+                <th >creditLimit</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="gridItem in allGrids" ng-click="updateGrid(gridItem);">
-                <td>{{gridItem.brand}}</td>
-                <td>{{gridItem.email}}</td>
-                <td>{{gridItem.phone}}</td>
-                <td ng-click="deleteGrid(gridItem, $event)"><i class="fa fa-trash-o redIcon"></i></td>
+            <tr ng-repeat="layoutItem in allLayouts" ng-click="updateLayout(layoutItem)">
+                <td>{{layoutItem.brand}}</td>
+                <td>{{layoutItem.legalPartClass}}</td>
+                <td>{{layoutItem.accountCategory}}</td>
+                <td>{{layoutItem.distributionMethod}}</td>
+                <td>{{layoutItem.creditLimit}}</td>
+
             </tr>
             </tbody>
             <tfoot>
@@ -89,7 +87,7 @@
             </tfoot>
         </table>
         <div class="text-right">
-            <button ng-click="addGrid()" class="btn btn-primary">Add Template</button><!-- modal opens upon clicking of add brand -->
+            <button ng-click="addLayout()" class="btn btn-primary">Add Template</button><!-- modal opens upon clicking of add brand -->
         </div>
     </div>
 </div>

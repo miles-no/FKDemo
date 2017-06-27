@@ -3,17 +3,17 @@
         <div class="row form-group">
             <label class="control-label col-md-2">Brand</label>
             <div class="col-md-6">
-                <ui-select multiple ng-model="selectedBrands" theme="bootstrap" title="Choose brand" on-remove="onBrandRemoval($item, $model)"on-select="onBrandSelect($item, $model)">
-                    <ui-select-match placeholder="Select Filter">{{$item.brand}}</ui-select-match>
-                    <ui-select-choices  repeat="eachBrand in brands" position='down'>
-                        <div ng-bind-html="eachBrand.brand | highlight: $select.search"></div>
+                <ui-select multiple ng-model="selectedBrands" theme="bootstrap" title="Choose brand" on-remove="onBrandRemoval($item, $model)" on-select="onBrandSelect($item, $model)">
+                    <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
+                    <ui-select-choices refresh="syncCall()" refresh-delay="10"  repeat="eachBrand in dropDownData" position='down'>
+                        <div ng-bind-html="eachBrand | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
             </div>
         </div>
     </div>
     <div class="col-md-12">
-        <table st-table="displayedCollection" st-safe-src="allBrands" class="table table-align">
+        <table st-table="displayedCollection" st-safe-src="tableBrands" class="table table-align">
             <thead>
                 <tr>
                     <th st-sort="Brand">Brand</th>
@@ -37,11 +37,11 @@
                 </tr>
             </tbody>
             <tfoot>
-                <tr>
-                    <td colspan="100%" class="text-center">
-                        <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
-                    </td>
-			    </tr>
+                <!--<tr>-->
+                    <!--<td colspan="100%" class="text-center">-->
+                        <!--<paginator page-size=pageSize total-pages=totalPages on-page-change="onPageChanged(result)"></paginator>-->
+                    <!--</td>-->
+			    <!--</tr>-->
             </tfoot>
         </table>
         <div class="text-right">

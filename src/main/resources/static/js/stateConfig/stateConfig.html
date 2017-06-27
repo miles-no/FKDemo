@@ -1,0 +1,25 @@
+<div class="manage-brands" ng-controller="StateConfigController" ng-init="getStatesConfig()">
+
+    <div class="col-md-8 col-md-offset-2 col-sm-12">
+        <div class="header-text">Configurations</div>
+        <table st-table="displayedCollection" st-safe-src="searchResults" class="table table-bordered">
+            <thead>
+            <tr>
+                <th st-sort="Key">Key</th>
+                <th>Value</th>
+                <th width="40px"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="state in stateConfigs" ng-click="updateStateConfig(state);">
+                    <td>{{state.name}}</td>
+                    <td>{{state.value}}</td>
+                    <td ng-click="deleteStateConfig(state, $event)"><i class="fa fa-trash-o redIcon"></i></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-right">
+            <button ng-click="addStateConfig()" class="btn btn-primary">Add Grid</button><!-- modal opens upon clicking of add brand -->
+        </div>
+    </div>
+</div>

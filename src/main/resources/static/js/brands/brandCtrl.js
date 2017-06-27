@@ -9,39 +9,55 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
     prefixKID: '',
     kontonummer: '',
     useEABarcode: '0'
- }
+  }
+
   $scope.selectedBrands = []
-  $scope.allBrands = []
+  $scope.tableBrands = []
+
   function showSelectedBrands () {
-    $scope.allBrands = []
-    if ($scope.selectedBrands.length > 0) {
-      angular.forEach($scope.brands, function (brandItem) {
-        angular.forEach($scope.selectedBrands, function (selectedBrand) {
-          if(brandItem.brand === selectedBrand.brand) {
-            $scope.allBrands.push(brandItem)
+    $scope.tableBrands = []
+    if($scope.selectedBrands.length > 0){
+      angular.forEach($scope.brands, function(item){
+        angular.forEach($scope.selectedBrands, function(selectedItem){
+          if (selectedItem === item.brand){
+            $scope.tableBrands.push(item)
           }
         })
       })
-    } else {
-      $scope.allBrands =  $scope.brands;
+    }
+    else{
+      $scope.tableBrands = $scope.brands
     }
   }
+  $scope.syncCall = function(){
+    $http.get('brand/config/brand').then(function(response){
+      $scope.dropDownData = response.data
+    })
+  }
 
-  $scope.onBrandSelect = function(item,model){
-    console.log('onBrandSelect ',item,model,$scope.brands)
+  //$scope.onPageChanged = function(pageChangedTo){
+  //  $scope.getOverviewDetails(pageChangedTo)
+  //}
+
+  $scope.onBrandSelect = function(item){
     $scope.selectedBrands.push(item);
     showSelectedBrands()
   }
-  $scope.onBrandRemoval = function(item,model){
-    console.log('onBrandRemoval ',item,model,$scope.brands)
+  $scope.onBrandRemoval = function(item){
     _.remove($scope.selectedBrands,function(eachSelectedBrand){
       return eachSelectedBrand === item;
     });
     showSelectedBrands()
   }
   $scope.getBrands = function () {
+    //var queryParams = {
+    //  "page": pageNumber? pageNumber-1 : 0 ,
+    //  "size":$scope.pageSize
+    //}
     $http.get('/brand/config').then(function (response) {
-      $scope.allBrands =  $scope.brands = response.data;
+      $scope.tableBrands= $scope.brands = response.data.Brand;
+      //$scope.totalPages = Math.ceil(response.data.TOTAL/$scope.pageSize);
+      //$scope.allBrands =  $scope.brands = response.data;
     })
   }
 

@@ -6,13 +6,14 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
     phone: ''
   }
   $scope.selectedGrids = []
+  $scope.brands = []
 
   function showSelectedGrids () {
     $scope.allGrids = []
     if ($scope.selectedGrids.length > 0) {
       angular.forEach($scope.grids, function (gridItem) {
         angular.forEach($scope.selectedGrids, function (selectedGrid) {
-          if(gridItem.brand === selectedGrid.brand) {
+          if(gridItem.brand === selectedGrid) {
             $scope.allGrids.push(gridItem)
           }
         })
@@ -20,6 +21,11 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
     } else {
       $scope.allGrids =  $scope.grids;
     }
+  }
+  $scope.syncCall = function(){
+    $http.get('/grid/config/brand').then(function(response){
+      $scope.brands = response.data
+    })
   }
 
   $scope.onGridSelect = function(item,model){
@@ -36,7 +42,7 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
   }
   $scope.getGrids = function () {
     $http.get('/grid/config').then(function (response) {
-      $scope.allGrids =  $scope.grids = response.data;;
+      $scope.allGrids =  $scope.grids = response.data.Grid;
     })
   }
 
@@ -51,13 +57,6 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
       $scope.getGrids()
     })
   }
-
-  //$scope.deleteGrid = function (grid, $event) {
-  //  $event.stopPropagation();
-  //  $http.delete('/grid/config', grid.id).then(function () {
-  //    $scope.getGrids()
-  //  })
-  //}
 
   $scope.deleteGrid = function (grid, $event) {
     $event.stopPropagation();

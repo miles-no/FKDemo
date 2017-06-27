@@ -47,6 +47,9 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
       }).state('templates',{
         url: '/templates',
         templateUrl: 'js/templates/list.html'
+      }).state('state_config',{
+        url: '/state_config',
+        templateUrl: 'js/stateConfig/stateConfig.html'
       });
     $urlRouterProvider.otherwise('/home');
 });

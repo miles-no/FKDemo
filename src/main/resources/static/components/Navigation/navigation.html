@@ -1,0 +1,32 @@
+<nav class="navbar navbar-inverse bg-brand-color">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="brand-logo" >
+                <div class="menu-bar"><i class="fa fa-bars" ng-click="$ctrl.showMenu = true"></i></div>
+                <div class="company-logo"><img src="assets/images/svg/fjordkraftlogo.svg" ui-sref="home"></div>
+            </div>
+            <div class="nav-wrapper" ng-show="$ctrl.showMenu" ng-click="$ctrl.showMenu = false">
+                <div class="left-panel-navbar" ng-show="$ctrl.showMenu">
+                    <ul>
+                        <li class="company-nav-logo">
+                            <img src="assets/images/svg/fjordkraftlogo.svg" ng-click="$ctrl.navigateTo('home')">
+                            <i class="fa fa-times" ng-click="$ctrl.showMenu = !$ctrl.showMenu"></i>
+                        </li>
+                        <li><span ng-class="{'active': $ctrl.activeMenu == 'home'}" ng-click="$ctrl.navigateTo('home')">Dashboard</span></li>
+                        <li><span ng-class="{'active': $ctrl.activeMenu == 'overview'}" ng-click="$ctrl.navigateTo('overview')">Overview</span></li>
+                        <li><span ng-class="{'active': $ctrl.activeMenu == 'listBrands'}" ng-click="$ctrl.navigateTo('listBrands')">Brands</span></li>
+                        <li><span ng-class="{'active': $ctrl.activeMenu == 'listGrid'}" ng-click="$ctrl.navigateTo('listGrid')">Grids</span></li>
+                        <li><span ng-class="{'active': $ctrl.activeMenu == 'templates'}" ng-click="$ctrl.navigateTo('templates')">Templates</span></li>
+                        <li><span ng-class="{'active': $ctrl.activeMenu == 'state_config'}" ng-click="$ctrl.navigateTo('state_config')">State Config</span></li>
+                    </ul>
+                </div>
+            </div>
+            <!--<div class="col-md-2 text-right status-indicator">
+                <div class="">
+                    <i ng-show="isDashbordLive" ng-click="toggleDashbordLive()" class="fa fa-pause-circle fa-2x faa-flash animated" aria-hidden="true"  ng-class="{'hidden':!isDashbordLive}"></i>
+                    <i ng-show="!isDashbordLive" ng-click="toggleDashbordLive()" class="fa fa-play-circle fa-2x " aria-hidden="true"></i>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</nav>
