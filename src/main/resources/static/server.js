@@ -200,3 +200,52 @@ app.delete('/grid/config/:id',function(req,res,next){
   res.send(body);
 })
 });
+
+/******State Config Crud*****/
+
+app.get('/config', function(req, res) {
+  request({
+    url: `${apiUrl}/config`
+},function(error,response,body){
+  res.send(body);
+})
+});
+
+app.post('/config', function(req, res) {
+  request({
+    url: `${apiUrl}/config`,
+    qs : {
+      key : req.body.name,
+      value: req.body.value
+    },
+    method : 'POST'
+},function(error,response,body){
+  console.log(response)
+  res.send(body);
+})
+});
+
+app.delete('/config/:id', function(req, res) {
+  console.log(req.params)
+  request({
+    url: `${apiUrl}/config/`+req.params.id,
+    method : 'DELETE'
+},function(error,response,body){
+  console.log(response)
+  res.send(body);
+})
+});
+
+app.put('/config/', function(req, res) {
+  request({
+    url: `${apiUrl}/config/`,
+    qs:{
+      key : req.body.name,
+      value: req.body.value
+    }
+    method : 'PUT'
+},function(error,response,body){
+  console.log(response)
+  res.send(body);
+})
+});

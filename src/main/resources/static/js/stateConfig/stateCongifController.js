@@ -3,11 +3,40 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
     name: '',
     value: ''
   }
-  
+
+  $scope.selectedGrids = []
+
+  function showSelectedGrids () {
+    $scope.allGrids = []
+    if ($scope.selectedGrids.length > 0) {
+      angular.forEach($scope.grids, function (key) {
+        angular.forEach($scope.selectedGrids, function (selectedGrid) {
+          if(gridItem.brand === selectedGrid) {
+            $scope.allGrids.push(key)
+          }
+        })
+      })
+    } else {
+      $scope.allGrids =  $scope.stateConfigs;
+    }
+  }
+
   $scope.getStatesConfig = function () {
     $http.get('/config').then(function (response) {
-      $scope.stateConfigs = response.data;
+      $scope.alldata = $scope.stateConfigs = response.data.config;
     })
+  }
+
+  $scope.onGridSelect = function(item,model){
+    $scope.selectedGrids.push(item);
+    showSelectedGrids()
+  }
+
+  $scope.onGridRemoval = function(item,model){
+    _.remove($scope.selectedGrids,function(eachSelectedGrid){
+      return eachSelectedGrid === item;
+    });
+    showSelectedGrids()
   }
 
   function addStateConfig (state) {
@@ -17,7 +46,9 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
   }
 
   function updateStateConfig(state) {
-    $http.put('/config',state).then(function (response) {
+    var data = angular.copy(state)
+    console.log(data)
+    $http.put('/config',data).then(function (response) {
       $scope.getStatesConfig()
     })
   }
@@ -31,7 +62,7 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
         options:{
           body:{
             bodyContent: 'Please confirm to delete ',
-            brand: state
+            brand: {brand: state.name}
           },
           header: "Delete Brand",
           conFirmBtnText : [
@@ -48,7 +79,7 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
       modal.element.modal();
       modal.close.then(function(result){
         if(result=='Delete'){
-          $http.delete('/state/config/'+state.id).then(function (response) {
+          $http.delete('/config/'+state.name).then(function (response) {
             $scope.getStatesConfig();
           })
         }
