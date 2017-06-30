@@ -248,3 +248,15 @@ app.put('/config/', function(req, res) {
   res.send(body);
 })
 });
+
+/******plug call*****/
+
+app.post('/transferfile/process', function(req, res) {
+  request({
+    url: `${apiUrl}/transferfile/process`,
+  method : 'POST'
+},function(error,response,body){
+  console.log(response)
+  res.send(body);
+})
+});
