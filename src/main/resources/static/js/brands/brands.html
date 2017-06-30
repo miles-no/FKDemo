@@ -5,7 +5,7 @@
             <div class="col-md-6">
                 <ui-select multiple ng-model="selectedBrands" theme="bootstrap" title="Choose brand" on-remove="onBrandRemoval($item, $model)" on-select="onBrandSelect($item, $model)">
                     <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
-                    <ui-select-choices refresh="syncCall()" refresh-delay="10"  repeat="eachBrand in dropDownData" position='down'>
+                    <ui-select-choices refresh="syncCall()" refresh-delay="10"  repeat="eachBrand in dropDownData | filter : $select.search" position='down'>
                         <div ng-bind-html="eachBrand | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>

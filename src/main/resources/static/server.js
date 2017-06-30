@@ -238,11 +238,10 @@ app.delete('/config/:id', function(req, res) {
 
 app.put('/config/', function(req, res) {
   request({
-    url: `${apiUrl}/config/`,
+    url: `${apiUrl}/config/`+req.body.name,
     qs:{
-      key : req.body.name,
       value: req.body.value
-    }
+    },
     method : 'PUT'
 },function(error,response,body){
   console.log(response)

@@ -4,39 +4,40 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
     value: ''
   }
 
-  $scope.selectedGrids = []
+  $scope.selectedKey = ''
 
-  function showSelectedGrids () {
-    $scope.allGrids = []
-    if ($scope.selectedGrids.length > 0) {
-      angular.forEach($scope.grids, function (key) {
-        angular.forEach($scope.selectedGrids, function (selectedGrid) {
-          if(gridItem.brand === selectedGrid) {
-            $scope.allGrids.push(key)
-          }
-        })
+  $scope.showSelectedKey = function() {
+    $scope.alldata = []
+    if ($scope.selectedKey !== '') {
+      angular.forEach($scope.stateConfigs, function (key) {
+        if (key.name === $scope.selectedKey){
+          $scope.alldata.push(key)
+        }
       })
     } else {
-      $scope.allGrids =  $scope.stateConfigs;
+      $scope.alldata =  $scope.stateConfigs
     }
   }
-
+  $scope.showalldata = function(){
+    if ($scope.selectedKey === ''){
+      $scope.alldata =  $scope.stateConfigs;
+    }
+  }
+  $scope.dummydata = []
   $scope.getStatesConfig = function () {
     $http.get('/config').then(function (response) {
-      $scope.alldata = $scope.stateConfigs = response.data.config;
+      $scope.stateConfigs = response.data.config;
+      $scope.alldata = angular.copy($scope.stateConfigs)
+     angular.forEach($scope.alldata,function(key){
+       $scope.dummydata.push(key.name)
+     })
     })
   }
 
-  $scope.onGridSelect = function(item,model){
-    $scope.selectedGrids.push(item);
-    showSelectedGrids()
-  }
-
-  $scope.onGridRemoval = function(item,model){
-    _.remove($scope.selectedGrids,function(eachSelectedGrid){
-      return eachSelectedGrid === item;
-    });
-    showSelectedGrids()
+  $scope.onGridSelect = function(item,model,$event){
+    $scope.selectedKey = ''
+    $scope.selectedKey = item.name;
+    showSelectedKey()
   }
 
   function addStateConfig (state) {

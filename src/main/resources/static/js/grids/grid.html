@@ -5,7 +5,7 @@
             <div class="col-md-6">
                 <ui-select multiple ng-model="selectedGrids" theme="bootstrap" title="Choose Grid" on-remove="onGridRemoval($item, $model)"on-select="onGridSelect($item, $model)">
                     <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
-                    <ui-select-choices refresh="syncCall()" refresh-delay="10" repeat="eachBrand in brands" position='down'>
+                    <ui-select-choices refresh="syncCall()" refresh-delay="10" repeat="eachBrand in brands | filter $select.search" position='down'>
                         <div ng-bind-html="eachBrand | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
