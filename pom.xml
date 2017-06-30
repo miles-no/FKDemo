@@ -202,7 +202,7 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>true</filtering>
+                <filtering>false</filtering>
                 <excludes>
                     <exclude>static/node/**</exclude>
                     <exclude>static/node_modules/**</exclude>
