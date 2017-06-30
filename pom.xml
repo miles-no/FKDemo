@@ -199,5 +199,15 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>static/node/**</exclude>
+                    <exclude>static/node_modules/**</exclude>
+                </excludes>
+            </resource>
+        </resources>
     </build>
 </project>
