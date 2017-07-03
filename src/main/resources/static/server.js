@@ -119,7 +119,7 @@ app.get('/dashboard/status', function(req, res) {
   request({
     url: `${apiUrl}/dashboard/status`
 },function(error,response,body){
-  console.log('Here in :: ',response.request.uri);
+  //console.log('Here in :: ',response.request.uri);
   console.log('Here in /dashboard/status :: ',body);
   res.send(body);
 })

@@ -46,7 +46,7 @@
     "angular-moment": "1.0.1",
     "angular-smart-table": "2.1.8",
     "babelify": "7.3.0",
-    "bootstrap": "3.3.7",
+    "bootstrap": "~3.3.7",
     "browserify": "14.4.0",
     "del": "3.0.0",
     "font-awesome": "4.7.0",
