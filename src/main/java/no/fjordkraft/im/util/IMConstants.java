@@ -52,4 +52,14 @@ public interface IMConstants {
     static final String GRID = "Grid";
     static final String CONFIG = "config";
     static final int ZERO = 0;
+    static final int GREATER_THAN = 1;
+    static final int LESSER_THAN = -1;
+    static final String STRING = "STRING";
+    static final String INTEGER = "INTEGER";
+    static final String FLOAT = "FLOAT";
+    static final String EQUAL = "EQUAL";
+    static final String NOT_EQUAL = "NOT EQUAL";
+    static final String GREATER = "GREATER";
+    static final String LESSER = "LESSER";
+
 }

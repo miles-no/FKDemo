@@ -70,6 +70,9 @@ public class Statement {
     @Column(name="DUE_DATE")
     private Date dueDate;
 
+    @Column(name="LAYOUT_ID")
+    private Long layoutID;
+
     @Transient
     private String brand;
 
@@ -223,5 +226,13 @@ public class Statement {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public Long getLayoutID() {
+        return layoutID;
+    }
+
+    public void setLayoutID(Long layoutID) {
+        this.layoutID = layoutID;
     }
 }

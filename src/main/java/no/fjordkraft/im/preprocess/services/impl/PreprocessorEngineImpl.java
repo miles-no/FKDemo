@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class PreprocessorEngineImpl implements PreprocessorEngine {
     }
 
     @Override
-    public void execute(PreprocessRequest request) {
+    public void execute(PreprocessRequest request) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
           for(Preprocessor preprocessor:preprocessorList){
               preprocessor.preprocess(request);
           }

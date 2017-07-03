@@ -5,16 +5,17 @@ import java.io.InputStream;
 /**
  * Created by miles on 6/13/2017.
  */
-public class RestLayoutConfig {
+public class RestLayoutRuleConfig {
 
     private Long id;
     private String brand;
     private String legalPartClass;
     private String accountCategory;
     private String distributionMethod;
-    private boolean creditLimit;
+    private Float creditLimit;
     private InputStream inputStream;
     private int version;
+    private int ruleNumber;
 
     public Long getId() {
         return id;
@@ -56,11 +57,11 @@ public class RestLayoutConfig {
         this.distributionMethod = distributionMethod;
     }
 
-    public boolean isCreditLimit() {
+    public Float getCreditLimit() {
         return creditLimit;
     }
 
-    public void setCreditLimit(boolean creditLimit) {
+    public void setCreditLimit(Float creditLimit) {
         this.creditLimit = creditLimit;
     }
 
@@ -78,5 +79,13 @@ public class RestLayoutConfig {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public int getRuleNumber() {
+        return ruleNumber;
+    }
+
+    public void setRuleNumber(int ruleNumber) {
+        this.ruleNumber = ruleNumber;
     }
 }

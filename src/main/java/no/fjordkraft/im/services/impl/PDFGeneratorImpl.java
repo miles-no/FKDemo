@@ -1,7 +1,6 @@
 package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.model.Statement;
-import no.fjordkraft.im.repository.SegmentFileRepository;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.InvoiceGenerator;
@@ -23,7 +22,6 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 
@@ -32,7 +30,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -59,7 +56,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     StatementService statementService;
 
     @Autowired
-    LayoutConfigServiceImpl layoutConfigService;
+    LayoutServiceImpl layoutDesignService;
 
     @Autowired
     @Qualifier("PDFGeneratorExecutor")
@@ -150,23 +147,18 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
             String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + statement.getInvoiceNumber() + File.separator ;
             String xmlFilePath =  basePath + xmlFolderName + File.separator + "statement.xml";
-            //String reportDesignFilePath = "E:\\FuelKraft\\invoice_manager\\statementReport.rptdesign";
             String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
 
-            //String rptDesign = layoutConfigService.getRptDesignFileByBrand(statement.getSystemBatchInput().getBrand());
-            //String rptDesign = layoutConfigService.getRptDesignFile(statement.getLayoutID());
-            //String rptDesign = layoutConfigService.getRptDesignFile(26l);
-            InputStream designStream = new ByteArrayInputStream(reportDesignFilePath.getBytes(StandardCharsets.ISO_8859_1));
+            String rptDesign = layoutDesignService.getRptDesignFile(statement.getLayoutID());
+            //InputStream designStream = new ByteArrayInputStream(reportDesignFilePath.getBytes(StandardCharsets.ISO_8859_1));
+            InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(StandardCharsets.ISO_8859_1));
 
-            //String campaignFilePath = configService.getString(IMConstants.CAMPAIGN_FILE_PATH) ;
             String campaignImage = segmentFileService.getImageContent(accountNo, brand);
-            //IReportRunnable runnable = reportEngine.openReportDesign(reportDesignFilePath);
             IReportRunnable runnable = reportEngine.openReportDesign(designStream);
 
             IRunAndRenderTask task  = reportEngine.createRunAndRenderTask(runnable);
             task.setParameterValue("sourcexml", xmlFilePath);
             task.setParameterValue("campaignImage", campaignImage);
-            //task.setParameterValue("imageurl", "file:///D:/XMLTOPDF/Screenshot_1.png");
             PDFRenderOption options = new PDFRenderOption();
             options.setEmbededFont(true);
             options.setOutputFormat("pdf");
