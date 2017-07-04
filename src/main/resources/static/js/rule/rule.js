@@ -100,8 +100,5 @@ app.controller('ruleController',function($scope,$http,ModalService){
     var ruleData = angular.copy(ruleInfo)
     showModal(ruleData, 'Update')
   }
-  $scope.showDropDown = function(){
-
-  }
 });
 
