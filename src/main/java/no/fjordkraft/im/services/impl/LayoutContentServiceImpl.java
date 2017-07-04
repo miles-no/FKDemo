@@ -24,8 +24,8 @@ public class LayoutContentServiceImpl implements LayoutContentService {
     LayoutServiceImpl layoutService;
 
     @Override
-    public LayoutContent getLayoutContentByLayoutId(Long id, boolean active) {
-        return layoutContentRepository.getLayoutContentById(id, active).get(0);
+    public LayoutContent getLayoutContentByLayoutId(Long layoutId, boolean active) {
+        return layoutContentRepository.getLayoutContentById(layoutId, active).get(0);
     }
 
     @Override
@@ -46,8 +46,8 @@ public class LayoutContentServiceImpl implements LayoutContentService {
     }
 
     @Override
-    public void updateLayoutContent(Long id, String file) {
-        LayoutContent layoutContent = layoutContentRepository.findOne(id);
+    public void updateLayoutContent(Long layoutId, String file) {
+        LayoutContent layoutContent = layoutContentRepository.getLayoutContentByLayoutId(layoutId);
         layoutContent.setFileContent(file);
         layoutContentRepository.saveAndFlush(layoutContent);
     }
@@ -57,5 +57,16 @@ public class LayoutContentServiceImpl implements LayoutContentService {
         LayoutContent layoutContent = layoutContentRepository.getLayoutContentByIdAndVersion(layoutId, version);
         layoutContent.setActive(Boolean.TRUE);
         layoutContentRepository.saveAndFlush(layoutContent);
+    }
+
+    @Override
+    public LayoutContent getLayoutContentById(Long id) {
+        return layoutContentRepository.findOne(id);
+    }
+
+    @Override
+    public String getLayoutContentByLayoutIdandVersion(Long layoutId, Integer version) {
+        LayoutContent layoutContent = layoutContentRepository.getLayoutContentByIdAndVersion(layoutId, version);
+        return layoutContent.getFileContent();
     }
 }

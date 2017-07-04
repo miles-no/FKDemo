@@ -15,12 +15,12 @@ public class LayoutRuleMap {
     @SequenceGenerator(name="SEQ", sequenceName="IM_LAYOUT_RULE_MAP_SEQ")
     private Long id;
 
-    /*@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="RULE_ID")
-    private  LayoutRule layoutRule;*/
+    private  LayoutRule layoutRule;
 
-    @Column(name="RULE_ID")
-    private Long ruleId;
+    /*@Column(name="RULE_ID")
+    private Long ruleId;*/
 
     @Column(name="NAME")
     private String name;
@@ -47,13 +47,13 @@ public class LayoutRuleMap {
         this.layoutRule = layoutRule;
     }*/
 
-    public Long getRuleId() {
+    /*public Long getRuleId() {
         return ruleId;
     }
 
     public void setRuleId(Long ruleId) {
         this.ruleId = ruleId;
-    }
+    }*/
 
     public String getName() {
         return name;

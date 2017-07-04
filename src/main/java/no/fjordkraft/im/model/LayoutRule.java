@@ -20,7 +20,7 @@ public class LayoutRule implements Comparable<LayoutRule> {
     @Column(name="BRAND")
     private String brand;
 
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="RULE_ID")
     private List<LayoutRuleMap> layoutRuleMapList;
 

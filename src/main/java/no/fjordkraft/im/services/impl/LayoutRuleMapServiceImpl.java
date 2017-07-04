@@ -30,7 +30,7 @@ public class LayoutRuleMapServiceImpl implements LayoutRuleMapService {
     @Override
     public void updateLayoutRuleMap(LayoutRuleMap layoutRuleMap) {
         LayoutRuleMap ruleMap = layoutRuleMapRepository.findOne(layoutRuleMap.getId());
-        ruleMap.setRuleId(layoutRuleMap.getRuleId());
+        //ruleMap.setRuleId(layoutRuleMap.getRuleId());
         ruleMap.setName(layoutRuleMap.getName());
         ruleMap.setOperation(layoutRuleMap.getOperation());
         ruleMap.setValue(layoutRuleMap.getValue());

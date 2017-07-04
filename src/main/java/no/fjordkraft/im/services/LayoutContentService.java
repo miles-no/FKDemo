@@ -13,4 +13,6 @@ public interface LayoutContentService {
     void saveLayoutContent(Long layoutId, String file);
     void updateLayoutContent(Long id, String file);
     void activateLayoutTemplate(Long layoutId, Integer version);
+    LayoutContent getLayoutContentById(Long id);
+    String getLayoutContentByLayoutIdandVersion(Long layoutId, Integer version);
 }

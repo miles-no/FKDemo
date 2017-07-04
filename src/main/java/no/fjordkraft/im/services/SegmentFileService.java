@@ -3,6 +3,7 @@ package no.fjordkraft.im.services;
 import no.fjordkraft.im.model.SegmentFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -14,4 +15,5 @@ public interface SegmentFileService {
     String getFileContent(Long id);
     String getImageContent(String accountNo, String brand);
     String getPDFContent(String accountNo, String brand);
+    String getCampaignForPreview(String path) throws IOException;
 }

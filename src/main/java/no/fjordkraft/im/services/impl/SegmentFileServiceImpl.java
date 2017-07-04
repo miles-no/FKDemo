@@ -4,8 +4,14 @@ import no.fjordkraft.im.model.SegmentControlFileResult;
 import no.fjordkraft.im.model.SegmentFile;
 import no.fjordkraft.im.repository.SegmentFileRepository;
 import no.fjordkraft.im.services.SegmentFileService;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Created by miles on 6/21/2017.
@@ -68,6 +74,13 @@ public class SegmentFileServiceImpl implements SegmentFileService{
             }
         }
         return fileContent;
+    }
+
+    @Override
+    public String getCampaignForPreview(String path) throws IOException {
+        File file = new File(path);
+        byte[] encoded = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
+        return new String(encoded, StandardCharsets.US_ASCII);
     }
 
 }

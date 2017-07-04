@@ -23,4 +23,7 @@ public interface LayoutContentRepository extends JpaRepository<LayoutContent, Lo
     @Query("select c from LayoutContent c where c.layoutId = :layoutId and c.version = :version")
     LayoutContent getLayoutContentByIdAndVersion(@Param("layoutId") Long layoutId,
                                                  @Param("version") Integer version);
+
+    @Query("select c from LayoutContent c where c.layoutId = :layoutId")
+    LayoutContent getLayoutContentByLayoutId(@Param("layoutId") Long layoutId);
 }

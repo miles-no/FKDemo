@@ -1,5 +1,6 @@
 package no.fjordkraft.im.services;
 
+import no.fjordkraft.im.domain.NameValuePair;
 import no.fjordkraft.im.model.RuleAttributes;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface RuleAttributesService {
     void updateLayoutConfig(RuleAttributes ruleAttributes);
     void deleteLayoutConfig(Long id);
     RuleAttributes getRuleAttributeByName(String name);
+    List<NameValuePair> getAllRuleAttributes();
 }

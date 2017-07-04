@@ -1,6 +1,9 @@
 package no.fjordkraft.im.domain;
 
+import no.fjordkraft.im.model.LayoutRule;
+
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by miles on 7/3/2017.
@@ -8,6 +11,7 @@ import java.sql.Timestamp;
 public class RestLayout {
 
     private Long layoutID;
+    private String brand;
     private String name;
     private String description;
     private Timestamp createTime;
@@ -15,6 +19,7 @@ public class RestLayout {
     private Long contentID;
     private Integer version;
     private boolean active;
+    private LayoutRule layoutRule;
 
     public Long getLayoutID() {
         return layoutID;
@@ -78,5 +83,21 @@ public class RestLayout {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public LayoutRule getLayoutRule() {
+        return layoutRule;
+    }
+
+    public void setLayoutRule(LayoutRule layoutRule) {
+        this.layoutRule = layoutRule;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

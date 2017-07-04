@@ -1,5 +1,6 @@
 package no.fjordkraft.im.services.impl;
 
+import no.fjordkraft.im.model.LayoutContent;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.ConfigService;
@@ -9,6 +10,7 @@ import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.task.PDFGeneratorTask;
 import no.fjordkraft.im.util.IMConstants;
+import org.apache.commons.io.FileUtils;
 import org.eclipse.birt.core.exception.BirtException;
 import org.eclipse.birt.core.framework.Platform;
 import org.eclipse.birt.report.engine.api.*;
@@ -28,6 +30,7 @@ import org.springframework.util.StopWatch;
 import javax.annotation.PostConstruct;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -57,6 +60,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
     @Autowired
     LayoutServiceImpl layoutDesignService;
+
+    @Autowired
+    LayoutContentServiceImpl layoutContentService;
 
     @Autowired
     @Qualifier("PDFGeneratorExecutor")
@@ -179,5 +185,41 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
+    }
+
+    @Override
+    public byte[] generatePreview(Long layoutId, Integer version) throws IOException, BirtException {
+        String ouputFilePath = "src/main/resources/preview.pdf";
+        try {
+            EngineConfig engineConfig = new EngineConfig();
+            engineConfig.setResourcePath(birtResourcePath);
+            Platform.startup(engineConfig);
+            IReportEngineFactory factory = (IReportEngineFactory) Platform
+                    .createFactoryObject(IReportEngineFactory.EXTENSION_REPORT_ENGINE_FACTORY);
+            reportEngine = factory.createReportEngine(engineConfig);
+
+            String rptDesign = layoutContentService.getLayoutContentByLayoutIdandVersion(layoutId, version);
+            String xmlFilePath = "D:\\FjordKraft_Workspace\\Invoice_Manager_2\\invoice_manager\\src\\main\\resources\\layout\\FjordKraftSampleData.xml";
+            String campaignImagePath = "D:\\FjordKraft_Workspace\\Invoice_Manager_2\\invoice_manager\\src\\main\\resources\\layout\\FKAS_p_31_compressed.jpg";
+            InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(StandardCharsets.ISO_8859_1));
+            String campaignImage = segmentFileService.getCampaignForPreview(campaignImagePath);
+
+            IReportRunnable runnable = reportEngine.openReportDesign(designStream);
+
+            IRunAndRenderTask task = reportEngine.createRunAndRenderTask(runnable);
+            task.setParameterValue("sourcexml", xmlFilePath);
+            task.setParameterValue("campaignImage", campaignImage);
+            PDFRenderOption options = new PDFRenderOption();
+            options.setEmbededFont(true);
+            options.setOutputFormat("pdf");
+            options.setOutputFileName(ouputFilePath);
+            task.setRenderOption(options);
+            task.run();
+        } catch (Exception e) {
+            throw new RuntimeException("Can not generate preview !");
+        }
+
+        File file = new File(ouputFilePath);
+        return FileUtils.readFileToByteArray(file);
     }
 }

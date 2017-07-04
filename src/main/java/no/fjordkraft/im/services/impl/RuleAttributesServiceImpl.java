@@ -1,11 +1,13 @@
 package no.fjordkraft.im.services.impl;
 
+import no.fjordkraft.im.domain.NameValuePair;
 import no.fjordkraft.im.model.RuleAttributes;
 import no.fjordkraft.im.repository.RuleAttributesRepository;
 import no.fjordkraft.im.services.RuleAttributesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,5 +46,19 @@ public class RuleAttributesServiceImpl implements RuleAttributesService {
     @Override
     public RuleAttributes getRuleAttributeByName(String name) {
         return ruleAttributesRepository.getAttributeByName(name);
+    }
+
+    @Override
+    public List<NameValuePair> getAllRuleAttributes() {
+        List<RuleAttributes> ruleAttributesList = ruleAttributesRepository.findAll();
+        List<NameValuePair> nameValuePairList = new ArrayList<>();
+        NameValuePair nameValuePair;
+        for(RuleAttributes ruleAttributes:ruleAttributesList) {
+            nameValuePair = new NameValuePair();
+            nameValuePair.setName(ruleAttributes.getName());
+            nameValuePair.setValue(ruleAttributes.getId());
+            nameValuePairList.add(nameValuePair);
+        }
+        return nameValuePairList;
     }
 }

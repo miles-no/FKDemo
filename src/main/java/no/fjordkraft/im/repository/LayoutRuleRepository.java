@@ -16,4 +16,7 @@ public interface LayoutRuleRepository extends JpaRepository<LayoutRule, Long> {
 
     @Query("select r from LayoutRule r where r.brand = :brand")
     List<LayoutRule> getLayoutRuleByBrand(@Param("brand") String brand);
+
+    @Query("select r from LayoutRule r where r.layoutId = :layoutId")
+    List<LayoutRule> getLayoutRuleByLayout(@Param("layoutId") Long layoutId);
 }

@@ -37,11 +37,17 @@ public class LayoutRuleServiceImpl implements LayoutRuleService {
         LayoutRule rule = layoutRuleRepository.findOne(layoutRule.getId());
         rule.setBrand(layoutRule.getBrand());
         rule.setLayoutId(layoutRule.getLayoutId());
+        rule.setLayoutRuleMapList(layoutRule.getLayoutRuleMapList());
         layoutRuleRepository.saveAndFlush(rule);
     }
 
     @Override
     public void deleteLayoutRule(Long id) {
         layoutRuleRepository.delete(id);
+    }
+
+    @Override
+    public List<LayoutRule> getLayoutRuleByLayout(Long layoutId) {
+        return layoutRuleRepository.getLayoutRuleByLayout(layoutId);
     }
 }
