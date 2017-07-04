@@ -1,0 +1,51 @@
+
+<div class="manage-brands" ng-controller="ruleController" ng-init="getRules()">
+    <!--<div class="col-md-6 col-md-offset-1">-->
+    <!--<div class="row form-group">-->
+    <!--<label class="control-label col-md-1 key-text">Grid</label>-->
+    <!--<div class="col-md-6">-->
+    <!--<ui-select multiple ng-model="selectedGrids" theme="bootstrap" title="Choose Grid" on-remove="onGridRemoval($item, $model)" on-select="onGridSelect($item, $model)">-->
+    <!--<ui-select-match placeholder="Select Brand">{{$item}}</ui-select-match>-->
+    <!--<ui-select-choices refresh="syncCall()" refresh-delay="10" repeat="eachBrand in brands | filter : $select.search" position='down'>-->
+    <!--<div ng-bind-html="eachBrand | highlight: $select.search"></div>-->
+    <!--</ui-select-choices>-->
+    <!--</ui-select>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <div class="col-md-12">
+        <table st-table="displayedCollection" st-safe-src="ruleData" class="table table-align">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Field Mapping</th>
+                <th width="40px"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="ruleItem in displayedCollection" ng-click="updateRule(ruleItem);">
+                <td>{{ruleItem.name}}</td>
+                <td>{{ruleItem.type}}</td>
+                <td>{{ruleItem.fieldMapping}}</td>
+                <td ng-click="deleteRule(ruleItem, $event)"><i class="fa fa-trash-o redIcon"></i></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <!--<tr>-->
+            <!--<td colspan="100%" class="text-center">-->
+            <!--<paginator page-size=pageSize total-pages=totalPages on-page-change="onPageChanged(result)"></paginator>-->
+            <!--</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td colspan="100%" class="text-center">-->
+            <!--<div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>-->
+            <!--</td>-->
+            <!--</tr>-->
+            </tfoot>
+        </table>
+        <div class="text-right">
+            <button ng-click="addRule()" class="btn btn-primary">Add Rule</button><!-- modal opens upon clicking of add brand -->
+        </div>
+    </div>
+</div>

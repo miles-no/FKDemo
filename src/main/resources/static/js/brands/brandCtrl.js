@@ -121,6 +121,7 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
             {name: 'cancel'},
             {name: type }
           ],
+          type : type,
           classes: {
             modalBody: '',
             body: 'manage-brand'

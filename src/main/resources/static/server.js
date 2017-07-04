@@ -249,6 +249,55 @@ app.put('/config/', function(req, res) {
 })
 });
 
+/******rule page*****/
+app.get('/layout/attribute', function(req, res) {
+  request({
+    url: `${apiUrl}/layout/attribute`
+},function(error,response,body){
+  res.send(body);
+})
+});
+
+app.delete('/layout/attribute/:id',function(req,res,next){
+  request({
+    url :`${apiUrl}/layout/attribute/`+req.params.id,
+  method : 'DELETE'
+},function(error,response,body){
+  res.send(body);
+})
+});
+
+app.post('/layout/attribute', function(req, res) {
+  request({
+    url: `${apiUrl}/layout/attribute`,
+  qs : {
+    name : req.body.name,
+    type: req.body.type,
+    fieldMapping: req.body.fieldMapping
+  },
+  method : 'POST'
+},function(error,response,body){
+  console.log(response)
+  res.send(body);
+})
+});
+
+app.put('/layout/attribute', function(req, res) {
+  request({
+    url: `${apiUrl}/layout/attribute/`+req.body.id,
+    qs : {
+      id: req.body.id,
+      name : req.body.name,
+      type: req.body.type,
+      fieldMapping: req.body.fieldMapping
+  },
+  method : 'PUT'
+},function(error,response,body){
+  console.log(response)
+  res.send(body);
+})
+});
+
 /******plug call*****/
 
 app.post('/transferfile/process', function(req, res) {

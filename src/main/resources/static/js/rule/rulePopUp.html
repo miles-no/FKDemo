@@ -9,21 +9,22 @@
             <div class="manage-brands">
                 <form class="form-horizontal" >
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="brand">Brand</label>
-                        <div class=" col-sm-6">
-                            <input type="text" class="form-control" ng-model="items.brand" id="brand" ng-minlength="1" ng-pattern="" ng-disabled = "options.type === 'Update'">
+                        <label class="control-label col-sm-4" for="name">Name</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" ng-model="rule.name" id="name" ng-minlength="1" ng-pattern="">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="agreement-no">E-mail</label>
-                        <div class=" col-sm-6">
-                            <input type="text"  ng-model="items.email" class="form-control" id="agreement-no" >
+                        <label class="control-label col-sm-4">Type</label>
+                        <div class="col-sm-6">
+                            <!--<input type="text"  ng-model="items.email" class="form-control" id="agreement-no" >-->
+                            <select ng-model="rule.type" ng-options="types for types in type" class="form-control"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="service-no">Contact No.</label>
-                        <div class=" col-sm-6">
-                            <input type="text" ng-model="items.phone" class="form-control" id="service-no">
+                        <label class="control-label col-sm-4" for="Field-Mapping">Field Mapping</label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="rule.fieldMapping" class="form-control" id="Field-Mapping">
                         </div>
                     </div>
 

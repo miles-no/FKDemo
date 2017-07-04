@@ -22,7 +22,11 @@
                         <li><span ng-class="{'active': $ctrl.activeMenu == 'overview'}" ng-click="$ctrl.navigateTo('overview')">Overview</span></li>
                         <li><span ng-class="{'active': $ctrl.activeMenu == 'listBrands'}" ng-click="$ctrl.navigateTo('listBrands')">Brands</span></li>
                         <li><span ng-class="{'active': $ctrl.activeMenu == 'listGrid'}" ng-click="$ctrl.navigateTo('listGrid')">Grids</span></li>
-                        <li><span ng-class="{'active': $ctrl.activeMenu == 'templates'}" ng-click="$ctrl.navigateTo('templates')">Templates</span></li>
+                        <li><span class="sub-menu" ng-class="{'active': $ctrl.activeMenu == 'templates'}" ng-click="$ctrl.navigateTo('templates')">Templates</span>
+                            <ul>
+                                <li><span ng-class="{'active': $ctrl.activeMenu == 'rule'}" ng-click="$ctrl.navigateTo('rule')">Add Rule</span></li>
+                            </ul>
+                        </li>
                         <li><span ng-class="{'active': $ctrl.activeMenu == 'state_config'}" ng-click="$ctrl.navigateTo('state_config')">State Config</span></li>
                     </ul>
                 </div>

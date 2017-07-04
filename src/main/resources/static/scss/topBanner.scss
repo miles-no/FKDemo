@@ -6,7 +6,6 @@
         margin: 0;
         list-style: none;
         li{
-
           float: left;
           font-size: 20px;
           color: white;
@@ -96,6 +95,20 @@
           margin: 0;
           padding: 0;
           li{
+            ul {
+              height: 0;
+              display: none;
+              transition: all 1s ease-in-out;
+            }
+            &:hover {
+              ul {
+                display: block;
+                height: auto;
+                li{
+                  background: gray;
+                }
+              }
+            }
             &.company-nav-logo{
               div{
                 div{
@@ -137,6 +150,13 @@
               display: block;
               font-size: 18px;
               outline: none;
+              &.sub-menu {
+                &:after {
+                  content: ">";
+                  float: right;
+                  font-size: 18px;
+                }
+              }
               &:hover {
                 background: orange;
                 text-decoration: none;
