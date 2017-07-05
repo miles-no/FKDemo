@@ -12,9 +12,9 @@
                         <label class="control-label col-sm-3">Brand</label>
                         <div class="col-md-7">
                             <ui-select ng-model="selectedBrands" theme="bootstrap" title="Choose Brand" on-select="onBrandSelect($item, $model)" ng-disabled="disable">
-                                <ui-select-match placeholder="Select Filter">{{selectedBrands.brand}}</ui-select-match>
-                                <ui-select-choices  repeat="layout in layouts" position='down'>
-                                    <div ng-bind-html="layout.brand | highlight: $select.search"></div>
+                                <ui-select-match placeholder="Select Brand">{{selectedBrands}}</ui-select-match>
+                                <ui-select-choices  repeat="brand in allBrands" position='down'>
+                                    <div ng-bind-html="brand | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
                         </div>
@@ -23,11 +23,11 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3">Template</label>
                         <div class="col-sm-8 row">
-                            <div class="col-sm-8" ng-if="items.template.name.length == 0">
-                                <ui-select  ng-model="selectedTemplate" theme="bootstrap" title="Choose Brand" on-select="onLayoutSelect($item, $model)" ng-disabled="disable">
-                                    <ui-select-match placeholder="Select Filter">{{selectedTemplate.brand}}</ui-select-match>
-                                    <ui-select-choices  repeat="layout in layouts" position='down'>
-                                        <div ng-bind-html="layout.brand | highlight: $select.search"></div>
+                            <div class="col-sm-8">
+                                <ui-select  ng-model="selectedTemplate" theme="bootstrap" title="Choose Existing Template" on-select="onLayoutSelect($item, $model)" ng-disabled="disable">
+                                    <ui-select-match placeholder="Choose Existing Layout">{{selectedTemplate.name}}</ui-select-match>
+                                    <ui-select-choices  repeat="layout in allLayouts" position='down'>
+                                        <div ng-bind-html="layout.name | highlight: $select.search"></div>
                                     </ui-select-choices>
                                 </ui-select>
 

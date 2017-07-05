@@ -41,6 +41,7 @@ app.get('/statement/details', function(req, res) {
       page:page
   }//params to be added
 },function(error,response,body){
+  console.log('/statement/details header is ::');
   console.log('/statement/details ::',body);
   res.send(body);
 })
@@ -301,6 +302,13 @@ app.put('/layout/attribute', function(req, res) {
 
 /******templates*****/
 
+app.get('/layout/list', function(req, res) {
+  request({
+    url: `${apiUrl}/layout/list`
+},function(error,response,body){
+  res.send(body);
+})
+});
 app.get('/layout/template/all', function(req, res) {
   request({
     url: `${apiUrl}/layout/template/all`

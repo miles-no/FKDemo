@@ -22,29 +22,44 @@ app.controller('listPopupController',function($scope,options,close, $http){
     /*if ($scope.items.brand.length > 0) {
      $scope.disable = true
      }*/
-    $scope.selectedBrands = []
-    $scope.selectedTemplate=[]
-    var getLayouts = function () {
+    $scope.selectedBrands = '';
+    $scope.selectedTemplate={};
+    let getBrands = function (){
+        
+        $http.get('/brand/config/brand').then(function (response) {
+             $scope.allBrands = response.data;
+             $scope.allBrands.push('All');
+        },function error(error){
+             $scope.allBrands = [];
+        });
+    }
+    let getLayouts = function () {
 
-        /*$http.get('/layout/config').then(function (response) {
-         $scope.allLayouts =  $scope.layouts = response.data;;
-         })*/
-        $scope.allLayouts = $scope.layouts = [{brand: 'KHSD'},{brand: 'ASD'},{brand: 'QWE'}]
+        $http.get('/layout/list').then(function (response) {
+             $scope.allLayouts = response.data;;
+        },function error(error){
+             $scope.allLayouts = {};
+        })
+       // $scope.allLayouts = $scope.layouts = [{brand: 'KHSD'},{brand: 'ASD'},{brand: 'QWE'}]
         console.log('$scope.allLayouts',$scope.allLayouts)
     }
 
-    getLayouts()
+    
     $scope.onBrandSelect = function(item,model){
         $scope.selectedBrands = item;
     }
 
     $scope.onLayoutSelect = function(item,model){
-        $scope.selectedTemplate = angular.copy(item);
+        $scope.selectedTemplate = item;
     }
 
     $scope.clearTemplate = function () {
         $scope.selectedTemplate = [];
-        $scope.layouts = $scope.allLayouts
         $scope.items.template ={ name : ''}
     }
+    let init = function(){
+        getBrands();
+        getLayouts();
+    }
+    init();
 });
