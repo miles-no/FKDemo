@@ -36,7 +36,7 @@ public class StatementDetailRepository {
             selectQuery.append(AND);
         }
         if(null != brand) {
-            selectQuery.append(addConditionForQueryValue(brand, "s.systemBatchInput.brand"));
+            selectQuery.append(addConditionForQueryValue(brand, "s.systemBatchInput.transferFile.brand"));
             selectQuery.append(AND);
         }
         selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
@@ -90,7 +90,7 @@ public class StatementDetailRepository {
             selectQuery.append(AND);
         }
         if(null != brand) {
-            selectQuery.append(addConditionForQueryValue(brand, "s.systemBatchInput.brand"));
+            selectQuery.append(addConditionForQueryValue(brand, "s.systemBatchInput.transferFile.brand"));
             selectQuery.append(AND);
         }
         selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");

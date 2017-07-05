@@ -1,11 +1,12 @@
 package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.jobs.schedulerjobs.InvoiceFeedWatcherJob;
+import no.fjordkraft.im.model.SystemBatchInput;
 import no.fjordkraft.im.model.TransferFile;
+import no.fjordkraft.im.model.TransferTypeEnum;
 import no.fjordkraft.im.repository.TransferFileRepository;
-import no.fjordkraft.im.services.ConfigService;
-import no.fjordkraft.im.services.SystemBatchInputService;
-import no.fjordkraft.im.services.TransferFileService;
+import no.fjordkraft.im.services.*;
+import no.fjordkraft.im.statusEnum.SystemBatchInputStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -22,6 +24,8 @@ import java.util.List;
  */
 @Service
 public class TransferFileServiceImpl implements TransferFileService {
+
+    private static final Logger logger = LoggerFactory.getLogger(InvoiceFeedWatcherJob.class);
 
     @Autowired
     private TransferFileRepository transferFileRepository;
@@ -32,30 +36,49 @@ public class TransferFileServiceImpl implements TransferFileService {
     @Autowired
     private SystemBatchInputService systemBatchInputService;
 
-    private static final Logger logger = LoggerFactory.getLogger(InvoiceFeedWatcherJob.class);
+    @Autowired
+    TransferFileArchiveService transferFileArchiveService;
+
+    @Autowired
+    StatementService statementService;
 
     @Transactional
-    public void saveIMSystemBatchInput() {
+    public void fetchAndProcess() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        List<TransferFile> transferFiles = transferFileRepository.readPendingTransferFiles("PENDING");
+        List<TransferFile> transferFiles = transferFileRepository.readPendingTransferFiles("PENDING", TransferTypeEnum.if320);
         logger.debug("Files to be read "+ transferFiles.size());
         if (null != transferFiles) {
-            for(TransferFile singleTransferFile: transferFiles) {
-                systemBatchInputService.saveSingleIMSysteBatchInput(singleTransferFile);
-                createOutputFolders(singleTransferFile.getFileName());
-                updateTransferFileStatus(singleTransferFile.getId(), "DONE");
+            for(TransferFile transferFile: transferFiles) {
+                SystemBatchInput systemBatchInput = getSystemBatchInput(transferFile);
+                createOutputFolders(transferFile.getFilename());
+                statementService.processTransferFile(systemBatchInput);
+                transferFile.setImStatus("DONE");
+                transferFileRepository.save(transferFile);
             }
             logger.debug("moved files " + transferFiles.size() + " " + stopWatch.prettyPrint());
         }
     }
 
+    private SystemBatchInput getSystemBatchInput(TransferFile transferFile){
+        SystemBatchInput imSystemBatchInput = new SystemBatchInput();
+        imSystemBatchInput.setTransferFile(transferFile);
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        imSystemBatchInput.setCreateTime(timestamp);
+        imSystemBatchInput.setUpdateTime(timestamp);
+        imSystemBatchInput.setStatus(SystemBatchInputStatusEnum.PENDING.getStatus());
+        return imSystemBatchInput;
+    }
 
 
-    void updateTransferFileStatus(Long id, String status) {
-        TransferFile transferFile = transferFileRepository.findOne(id);
-        transferFile.setTransferState(status);
-        transferFileRepository.save(transferFile);
+    public TransferFile getOneTransferFileWithEmptyIMStatus(){
+        return transferFileRepository.readSingleTransferFile();
+    }
+
+    @Override
+    @Transactional
+    public TransferFile saveTransferFile(TransferFile transferFile) {
+        return transferFileRepository.save(transferFile);
     }
 
     void createOutputFolders(String filename){
@@ -88,4 +111,6 @@ public class TransferFileServiceImpl implements TransferFileService {
     public void setConfigService(ConfigService configService) {
         this.configService = configService;
     }
+
+
 }

@@ -2,16 +2,14 @@ package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.domain.RestInvoicePdf;
 import no.fjordkraft.im.domain.RestStatement;
-import no.fjordkraft.im.model.InvoicePdf;
-import no.fjordkraft.im.model.Statement;
-import no.fjordkraft.im.model.StatementPayload;
-import no.fjordkraft.im.model.SystemBatchInput;
+import no.fjordkraft.im.model.*;
 import no.fjordkraft.im.repository.StatementDetailRepository;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.repository.SystemBatchInputRepository;
 import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.services.StatementSplitter;
 import no.fjordkraft.im.services.SystemBatchInputService;
+import no.fjordkraft.im.services.TransferFileArchiveService;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.statusEnum.SystemBatchInputStatusEnum;
 import no.fjordkraft.im.statusEnum.UIStatementStatusEnum;
@@ -23,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.task.TaskExecutor;
@@ -72,71 +71,47 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
 
     ApplicationContext applicationContext;
 
-    public void splitSystemBatchInputFile() {
-        StopWatch stopWatch = new StopWatch(getClass().getSimpleName());
-        stopWatch.start("Statement Splitter");
-        SystemBatchInput systemBatchInput = null;
-        try {
-            InputStream inputStream = null;
-            systemBatchInput = systemBatchInputRepository.readSingleSystemBatchInputFile(String.valueOf(SystemBatchInputStatusEnum.PENDING.getStatus()));
-            if(null != systemBatchInput) {
-                String payload = systemBatchInput.getSystemBatchInputPayload().getPayload();
-                inputStream = new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1));
-                systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSING.getStatus());
-                statementSplitter.batchFileSplit(inputStream, systemBatchInput.getFilename(), systemBatchInput);
-                systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSED.getStatus());
-                logger.debug("File split successful for file " + systemBatchInput.getFilename() + " with id " + systemBatchInput.getId());
-            }
-            /*List<SystemBatchInput> systemBatchInputList = systemBatchInputRepository.readSystemBatchInputFile(String.valueOf(SystemBatchInputStatusEnum.PENDING.getStatus()));
-            if(null != systemBatchInputList &&  systemBatchInputList.size()>0) {
-                for(SystemBatchInput systemBatchInput:systemBatchInputList){
-                    SplitterTask splitterTask = new SplitterTask(systemBatchInput);
-                    taskExecutor.execute(splitterTask);
-                }
+    @Autowired
+    TransferFileArchiveService transferFileArchiveService;
 
-            }*/
+    @Value("${if320.skip.bytes}")
+    Boolean skipBytes;
 
-        } catch(Exception ex) {
-            //if(transferFileID > 0) {
-            systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.FAILED.getStatus());
-            //}
-            throw new RuntimeException(ex.getMessage());
-        }
-        stopWatch.stop();
-        logger.debug(stopWatch.prettyPrint());
+
+    @Transactional
+    public void processTransferFile(SystemBatchInput systemBatchInput){
+            logger.debug("Fetch and split file "+systemBatchInput.getTransferFile().getFilename());
+            //systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSING.getStatus());
+            SplitterTask splitterTask = applicationContext.getBean(SplitterTask.class,systemBatchInput);
+            taskExecutor.execute(splitterTask);
     }
 
-
-    public void fetchAndSplit(){
-        List<SystemBatchInput> systemBatchInputList = systemBatchInputRepository.readSystemBatchInputFile(String.valueOf(SystemBatchInputStatusEnum.PENDING.getStatus()));
-        if(null != systemBatchInputList &&  systemBatchInputList.size()>0) {
-            logger.debug("Fetch and split "+systemBatchInputList.size()+ " files");
-            for(SystemBatchInput systemBatchInput:systemBatchInputList){
-                systemBatchInput.getSystemBatchInputPayload();
-                systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSING.getStatus());
-                SplitterTask splitterTask = applicationContext.getBean(SplitterTask.class,systemBatchInput);
-                taskExecutor.execute(splitterTask);
-            }
-
-        }
-    }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void splitAndSave(SystemBatchInput systemBatchInput){
         StopWatch stopWatch = new StopWatch();
-        stopWatch.start("SplitStatementFile with systemBatchInputId " + systemBatchInput.getId() + " Filename " + systemBatchInput.getFilename() );
+        stopWatch.start("SplitStatementFile with systemBatchInputId " + systemBatchInput.getId() + " Filename " + systemBatchInput.getTransferFile().getFilename() );
         try {
-            String payload = systemBatchInput.getSystemBatchInputPayload().getPayload();
-            InputStream inputStream = new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1));
-            statementSplitter.batchFileSplit(inputStream, systemBatchInput.getFilename(), systemBatchInput);
+            systemBatchInput = systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSING.getStatus());
+            TransferFileId transferFileId = systemBatchInput.getTransferFile().getCompositeKey();
+            TransferFileArchive transferFileArchive = transferFileArchiveService.findOne(transferFileId);
+            String payload = transferFileArchive.getFileContent();
+            InputStream inputStream = new ByteArrayInputStream(payload.getBytes(StandardCharsets.UTF_8));
+            if(skipBytes) {
+                byte[] b = new byte[2];
+                int i = inputStream.read(b);
+                logger.debug("bytes read is "+ new String(b) + " "+ i);
+            }
+            statementSplitter.batchFileSplit(inputStream, transferFileArchive.getFilename(), systemBatchInput);
+
             systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSED.getStatus());
-            logger.debug("File split successful for file " + systemBatchInput.getFilename() + " with id " + systemBatchInput.getId()+ stopWatch.prettyPrint());
+            logger.debug("File split successful for file " + transferFileArchive.getFilename() + " with id " + systemBatchInput.getId()+ stopWatch.prettyPrint());
         } catch (Exception e) {
-            logger.error("Exception while splitting file " + systemBatchInput.getFilename() + " id " + systemBatchInput.getId(), e);
+            logger.error("Exception while splitting file " +systemBatchInput.getTransferFile().getFilename()+ " id " + systemBatchInput.getId(), e);
             systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.FAILED.getStatus());
         }
         stopWatch.stop();
-        logger.debug("Time for splitting file with id "+ systemBatchInput.getId() + " Filename "+ systemBatchInput.getFilename() + stopWatch.prettyPrint());
+        logger.debug("Time for splitting file with id "+ systemBatchInput.getId() + " Filename "+ systemBatchInput.getTransferFile().getFilename() + stopWatch.prettyPrint());
     }
 
 

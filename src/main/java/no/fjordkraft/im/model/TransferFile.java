@@ -1,170 +1,108 @@
 package no.fjordkraft.im.model;
 
+/**
+ * Created by bhavi on 6/27/2017.
+ */
 import javax.persistence.*;
-import java.sql.Clob;
 import java.sql.Timestamp;
 
-/**
- * Created by miles on 5/4/2017.
- */
-@Table(name="TRANSFERFILE")
+
 @Entity
+@IdClass(TransferFileId.class)
+@Table(name = "transferfile",schema = "eacprod")
 public class TransferFile {
-    @Column(name="ID")
+
     @Id
-    private Long id;
-    @Column(name="TRANSFERTYPE")
-    private String transferType;
-    @Column(name="BRAND")
-    private String brand;
-    @Column(name="FILENAME")
-    private String fileName;
-    @Column(name="CREATED")
+    @Column(name = "transfertype",updatable = false)
+    @Enumerated(EnumType.STRING)
+    TransferTypeEnum transferType;
+
+    @Id
+    @Column(name = "brand",updatable = false)
+    String brand;
+
+    @Id
+    @Column(name = "filename",updatable = false)
+    String filename;
+
+    @Column(name = "created",updatable = false)
     private Timestamp created;
-    @Column(name="EKBATCHJOBID")
+
+    @Column(name = "ekbatchjobid",updatable = false)
     private Long ekBatchJobId;
-    @Column(name="TRANSFERSTATUS")
-    private String transferState;
-    @Column(name="STATUSUPDATED")
-    private Timestamp statusUpdated;
-    @Column(name="FILESIZE")
-    private Long fileSize;
-    @Column(name="TTRANSFERREDBYTES")
-    private Long transferredBytes;
-    @Column(name="FILESTORED")
+
+    @Column(name = "ehf",updatable = false)
+    private Boolean ehf;
+
+    @Column(name = "transferstatus",updatable = false)
+    @Enumerated(EnumType.STRING)
+    TransferStatusEnum transferStatus;
+
+    @Column(name = "statusupdated",updatable = false)
+    Timestamp statusUpdated;
+
+    @Column(name = "filesize",updatable = false)
+    Long fileSize;
+
+    @Column(name = "transferredbytes",updatable = false)
+    Long transferredBytes;
+
+    @Column(name = "filestored",updatable = false)
     private Timestamp fileStored;
-    @Column(name="FILECONTENT")
-    @Lob
-    private String fileContent;
-    @Column(name="UPLOADSTARTED")
+
+    @Column(name = "uploadstarted",updatable = false)
     private Timestamp uploadStarted;
-    @Column(name="UPLOADENDED")
+
+    @Column(name = "uploadended",updatable = false)
     private Timestamp uploadEnded;
-    @Column(name="EHF")
-    private Integer ehf;
-    @Column(name="COMPELLOUPLOADSTARTED")
+
+    @Column(name = "compellouploadstarted",updatable = false)
     private Timestamp compelloUploadStarted;
-    @Column(name="COMPELLOULOADENDED")
+
+    @Column(name = "compellouploadended",updatable = false)
     private Timestamp compelloUploadEnded;
 
-    public String getTransferType() {
-        return transferType;
+    @Column(name = "IMSTATUS")
+    private String imStatus;
+
+    public TransferFile() {
     }
 
-    public void setTransferType(String transferType) {
-        this.transferType = transferType;
+    public TransferFile(TransferTypeEnum transferType, String brand, String filename) {
+        setTransferType(transferType);
+        setBrand(brand);
+        setFilename(filename);
     }
 
-    public Long getId() {
-        return id;
+    public TransferFile(String filename, Long fileSize) {
+        setFilename(filename);
+        setFileSize(fileSize);
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public TransferFile(TransferTypeEnum transferType, String brand, String filename, long created, Long fileSize, TransferStatusEnum transferStatus) {
+        setTransferType(transferType);
+        setBrand(brand);
+        setFilename(filename);
+        setCreated(new Timestamp(created));
+        setFileSize(fileSize);
+        setTransferStatus(transferStatus);
     }
 
-    public String getBrand() {
-        return brand;
+    public TransferFileId getCompositeKey() {
+        TransferFileId tfId = new TransferFileId();
+        tfId.setTransferType(getTransferType());
+        tfId.setBrand(getBrand());
+        tfId.setFilename(getFilename());
+        return tfId;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+
+    public Timestamp getCompelloUploadEnded() {
+        return compelloUploadEnded;
     }
 
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public Timestamp getCreated() {
-        return created;
-    }
-
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
-
-    public Long getEkBatchJobId() {
-        return ekBatchJobId;
-    }
-
-    public void setEkBatchJobId(Long ekBatchJobId) {
-        this.ekBatchJobId = ekBatchJobId;
-    }
-
-    public String getTransferState() {
-        return transferState;
-    }
-
-    public void setTransferState(String transferState) {
-        this.transferState = transferState;
-    }
-
-    public Timestamp getStatusUpdated() {
-        return statusUpdated;
-    }
-
-    public void setStatusUpdated(Timestamp statusUpdated) {
-        this.statusUpdated = statusUpdated;
-    }
-
-    public Long getFileSize() {
-        return fileSize;
-    }
-
-    public void setFileSize(Long fileSize) {
-        this.fileSize = fileSize;
-    }
-
-    public Long getTransferredBytes() {
-        return transferredBytes;
-    }
-
-    public void setTransferredBytes(Long transferredBytes) {
-        this.transferredBytes = transferredBytes;
-    }
-
-    public Timestamp getFileStored() {
-        return fileStored;
-    }
-
-    public void setFileStored(Timestamp fileStored) {
-        this.fileStored = fileStored;
-    }
-
-    public String getFileContent() {
-        return fileContent;
-    }
-
-    public void setFileContent(String fileContent) {
-        this.fileContent = fileContent;
-    }
-
-    public Timestamp getUploadStarted() {
-        return uploadStarted;
-    }
-
-    public void setUploadStarted(Timestamp uploadStarted) {
-        this.uploadStarted = uploadStarted;
-    }
-
-    public Timestamp getUploadEnded() {
-        return uploadEnded;
-    }
-
-    public void setUploadEnded(Timestamp uploadEnded) {
-        this.uploadEnded = uploadEnded;
-    }
-
-    public Integer getEhf() {
-        return ehf;
-    }
-
-    public void setEhf(Integer ehf) {
-        this.ehf = ehf;
+    public void setCompelloUploadEnded(Timestamp compelloUploadEnded) {
+        this.compelloUploadEnded = compelloUploadEnded;
     }
 
     public Timestamp getCompelloUploadStarted() {
@@ -175,11 +113,116 @@ public class TransferFile {
         this.compelloUploadStarted = compelloUploadStarted;
     }
 
-    public Timestamp getCompelloUploadEnded() {
-        return compelloUploadEnded;
+    public Timestamp getUploadEnded() {
+        return uploadEnded;
     }
 
-    public void setCompelloUploadEnded(Timestamp compelloUploadEnded) {
-        this.compelloUploadEnded = compelloUploadEnded;
+    public void setUploadEnded(Timestamp uploadEnded) {
+        this.uploadEnded = uploadEnded;
+    }
+
+    public Timestamp getUploadStarted() {
+        return uploadStarted;
+    }
+
+    public void setUploadStarted(Timestamp uploadStarted) {
+        this.uploadStarted = uploadStarted;
+    }
+
+    public Timestamp getFileStored() {
+        return fileStored;
+    }
+
+    public void setFileStored(Timestamp fileStored) {
+        this.fileStored = fileStored;
+    }
+
+    public Long getTransferredBytes() {
+        return transferredBytes;
+    }
+
+    public void setTransferredBytes(Long transferredBytes) {
+        this.transferredBytes = transferredBytes;
+    }
+
+    public Long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public Timestamp getStatusUpdated() {
+        return statusUpdated;
+    }
+
+    public void setStatusUpdated(Timestamp statusUpdated) {
+        this.statusUpdated = statusUpdated;
+    }
+
+    public TransferStatusEnum getTransferStatus() {
+        return transferStatus;
+    }
+
+    public void setTransferStatus(TransferStatusEnum transferStatus) {
+        this.transferStatus = transferStatus;
+    }
+
+    public Boolean getEhf() {
+        return ehf;
+    }
+
+    public void setEhf(Boolean ehf) {
+        this.ehf = ehf;
+    }
+
+    public Long getEkBatchJobId() {
+        return ekBatchJobId;
+    }
+
+    public void setEkBatchJobId(Long ekBatchJobId) {
+        this.ekBatchJobId = ekBatchJobId;
+    }
+
+    public Timestamp getCreated() {
+        return created;
+    }
+
+    public void setCreated(Timestamp created) {
+        this.created = created;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public TransferTypeEnum getTransferType() {
+        return transferType;
+    }
+
+    public void setTransferType(TransferTypeEnum transferType) {
+        this.transferType = transferType;
+    }
+
+    public String getImStatus() {
+        return imStatus;
+    }
+
+    public void setImStatus(String imStatus) {
+        this.imStatus = imStatus;
     }
 }
+

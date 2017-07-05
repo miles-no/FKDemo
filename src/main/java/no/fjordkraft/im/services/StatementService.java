@@ -15,13 +15,13 @@ import java.util.List;
  */
 public interface StatementService {
 
-    public void splitSystemBatchInputFile();
+   // public void splitSystemBatchInputFile();
 
     public void updateStatement(Statement statement);
 
     public List<Statement> getStatementsByStatus(StatementStatusEnum statementStatusEnum);
 
-    public void fetchAndSplit();
+//    public void fetchAndSplit();
 
     public void splitAndSave(SystemBatchInput systemBatchInput);
 
@@ -36,5 +36,10 @@ public interface StatementService {
 
     public Long getCountByStatus(String status, Timestamp fromTime,
                                  Timestamp toTime, String brand, String customerID, String invoiceNumber);
+
+   // public void splitAndSave(TransferFile transferFile);
+
+    public void processTransferFile(SystemBatchInput systemBatchInput);
+
 
 }

@@ -19,8 +19,8 @@ import javax.xml.stream.events.Characters;
 import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
-import java.io.File;
 import java.io.InputStream;
+import java.io.Reader;
 import java.io.StringWriter;
 
 @Service
@@ -43,8 +43,16 @@ public class StatementSplitterImpl implements StatementSplitter {
 
     }
 
+    @Override
+    public void batchFileSplit(Reader inputStream, String filename, SystemBatchInput systemBatchInput) throws Exception {
+
+        XMLInputFactory factory = XMLInputFactory.newInstance();
+        XMLEventReader eventReader = factory.createXMLEventReader(inputStream);
+        splitAndSaveInDB(eventReader, systemBatchInput);
+
+    }
+
     private void splitAndSaveInDB(XMLEventReader eventReader, SystemBatchInput systemBatchInput) throws Exception {
-        String tempFilePath = "src/main/resources/"+systemBatchInput.getId()+".xml";
         try {
             Statement imStatement;
             XMLEventWriter writer = null;
@@ -76,12 +84,14 @@ public class StatementSplitterImpl implements StatementSplitter {
 
                     case XMLStreamConstants.END_ELEMENT:
                         EndElement endElement = event.asEndElement();
+
                         if ("Statement".equalsIgnoreCase(endElement.getName().getLocalPart())) {
                             writer.add(event);
                             writer.flush();
                             writer.close();
                             writer = null;
                             //imStatement.setStatementType(brandCode);
+                            logger.debug("saving statement with ocr"+imStatement.getStatementId());
                             statementService.saveIMStatementinDB(stringOut.toString(), imStatement);
                             stringOut.getBuffer().setLength(0);
                             //stringOut = null;
@@ -108,14 +118,10 @@ public class StatementSplitterImpl implements StatementSplitter {
                 }
             }
         } catch (Exception e) {
-            logger.error("Exception while splitting the file "+systemBatchInput.getId() + " "+ systemBatchInput.getFilename(),e);
+            //logger.error("Exception while splitting the file "+systemBatchInput.getId() + " "+ systemBatchInput.getTransferFile().getFilename(),e);
             throw e;
         } finally {
-            File f = new File(tempFilePath);
-            if(f !=null && f.exists()){
-                logger.debug("deleting file with name "+ f.getAbsolutePath());
-                f.delete();
-            }
+
         }
     }
 }

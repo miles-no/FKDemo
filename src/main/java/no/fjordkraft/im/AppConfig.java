@@ -130,7 +130,7 @@ public class AppConfig {
         liquibase.setDataSource(dataSource);
         //liquibase.setDefaultSchema("mySchema");
         liquibase.setDropFirst(false);
-        liquibase.setShouldRun(true);
+        liquibase.setShouldRun(false);
 
         // Verbose logging
         Map<String, String> params = new HashMap<String, String>();

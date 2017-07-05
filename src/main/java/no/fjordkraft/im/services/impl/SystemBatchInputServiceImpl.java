@@ -1,7 +1,6 @@
 package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.model.SystemBatchInput;
-import no.fjordkraft.im.model.SystemBatchInputPayload;
 import no.fjordkraft.im.model.TransferFile;
 import no.fjordkraft.im.repository.SystemBatchInputRepository;
 import no.fjordkraft.im.services.SystemBatchInputService;
@@ -23,18 +22,18 @@ public class SystemBatchInputServiceImpl implements SystemBatchInputService {
     SystemBatchInputRepository systemBatchInputRepository;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void updateStatusOfIMSystemBatchInput(SystemBatchInput systemBatchInput , String status) {
+    public SystemBatchInput updateStatusOfIMSystemBatchInput(SystemBatchInput systemBatchInput , String status) {
         systemBatchInput.setStatus(status);
         systemBatchInput.setUpdateTime(new Timestamp(System.currentTimeMillis()));
-        systemBatchInputRepository.save(systemBatchInput);
+        return systemBatchInputRepository.save(systemBatchInput);
     }
 
-    @Transactional
+    /*@Transactional
     public void saveSingleIMSysteBatchInput(TransferFile transferFile) {
         SystemBatchInput imSystemBatchInput = new SystemBatchInput();
-        imSystemBatchInput.setTfId(transferFile.getId());
+        //imSystemBatchInput.setTfId(transferFile.getId());
         imSystemBatchInput.setBrand(transferFile.getBrand());
-        imSystemBatchInput.setFilename(transferFile.getFileName());
+        //imSystemBatchInput.setFilename(transferFile.getFileName());
 
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -42,10 +41,32 @@ public class SystemBatchInputServiceImpl implements SystemBatchInputService {
         imSystemBatchInput.setUpdateTime(timestamp);
         imSystemBatchInput.setStatus(SystemBatchInputStatusEnum.PENDING.getStatus());
         SystemBatchInputPayload systemBatchInputPayload = new SystemBatchInputPayload();
-        systemBatchInputPayload.setPayload(transferFile.getFileContent());
+        //systemBatchInputPayload.setPayload(transferFile.getFileContent());
         systemBatchInputPayload.setSystemBatchInput(imSystemBatchInput);
         imSystemBatchInput.setSystemBatchInputPayload(systemBatchInputPayload);
         //imSystemBatchInput.setPayload(transferFile.getFileContent());
         systemBatchInputRepository.save(imSystemBatchInput);
+    }*/
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public SystemBatchInput saveIMSysteBatchInput(TransferFile transferFile) {
+        SystemBatchInput imSystemBatchInput = new SystemBatchInput();
+        //imSystemBatchInput.setTfId(transferFile.getId());
+        //imSystemBatchInput.setBrand(transferFile.getBrand());
+        //imSystemBatchInput.setFilename(transferFile.getFileName());
+        imSystemBatchInput.setTransferFile(transferFile);
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        imSystemBatchInput.setCreateTime(timestamp);
+        imSystemBatchInput.setUpdateTime(timestamp);
+        imSystemBatchInput.setStatus(SystemBatchInputStatusEnum.PENDING.getStatus());
+        /*SystemBatchInputPayload systemBatchInputPayload = new SystemBatchInputPayload();
+        //systemBatchInputPayload.setPayload(transferFile.getFileContent());
+        systemBatchInputPayload.setSystemBatchInput(imSystemBatchInput);
+        imSystemBatchInput.setSystemBatchInputPayload(systemBatchInputPayload);*/
+        //imSystemBatchInput.setPayload(transferFile.getFileContent());
+        return systemBatchInputRepository.saveAndFlush(imSystemBatchInput);
     }
+
+
 }

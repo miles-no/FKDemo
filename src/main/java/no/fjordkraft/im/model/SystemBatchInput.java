@@ -15,20 +15,6 @@ public class SystemBatchInput {
     @SequenceGenerator(name="SEQ", sequenceName="IM_SYSTEM_BATCH_INPUT_SEQ")
     private Long id;
 
-    @Column(name="TF_ID")
-    private Long tfId;
-
-    @Column(name="BRAND")
-    private String brand;
-
-    @Column(name="FILENAME")
-    private String filename;
-
-    /*@Basic(fetch = FetchType.LAZY)
-    @Column(name="PAYLOAD",updatable = false)
-    @Lob
-    private String payload;*/
-
     @Column(name="STATUS")
     private String status;
     @Column(name="CREATE_TIME")
@@ -36,8 +22,13 @@ public class SystemBatchInput {
     @Column(name="UPDATE_TIME")
     private Timestamp updateTime;
 
-    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, mappedBy = "systemBatchInput", fetch = FetchType.LAZY)
-    private SystemBatchInputPayload systemBatchInputPayload;
+    @JoinColumns({
+            @JoinColumn(name="transfertype", referencedColumnName="transferType"),
+            @JoinColumn(name="brand", referencedColumnName="brand"),
+            @JoinColumn(name="filename", referencedColumnName="filename"),
+    })
+    @ManyToOne(fetch = FetchType.EAGER)
+    public TransferFile transferFile;
 
     public Long getId() {
         return id;
@@ -46,30 +37,6 @@ public class SystemBatchInput {
     public void setId(Long id) {
         id = id;
     }
-
-    public Long getTfId() {
-        return tfId;
-    }
-
-    public void setTfId(Long tfId) {
-        this.tfId = tfId;
-    }
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
-    /*public String getPayload() {
-        return payload;
-    }
-
-    public void setPayload(String payload) {
-        this.payload = payload;
-    }*/
 
     public String getStatus() {
         return status;
@@ -95,19 +62,11 @@ public class SystemBatchInput {
         this.updateTime = updateTime;
     }
 
-    public String getBrand() {
-        return brand;
+    public TransferFile getTransferFile() {
+        return transferFile;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public SystemBatchInputPayload getSystemBatchInputPayload() {
-        return systemBatchInputPayload;
-    }
-
-    public void setSystemBatchInputPayload(SystemBatchInputPayload systemBatchInputPayload) {
-        this.systemBatchInputPayload = systemBatchInputPayload;
+    public void setTransferFile(TransferFile transferFile) {
+        this.transferFile = transferFile;
     }
 }

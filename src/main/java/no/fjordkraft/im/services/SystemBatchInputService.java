@@ -8,7 +8,9 @@ import no.fjordkraft.im.model.TransferFile;
  */
 public interface SystemBatchInputService {
 
-    public void updateStatusOfIMSystemBatchInput(SystemBatchInput systemBatchInput , String status);
+    public SystemBatchInput updateStatusOfIMSystemBatchInput(SystemBatchInput systemBatchInput, String status);
 
-    void saveSingleIMSysteBatchInput(TransferFile transferFile);
+    //void saveSingleIMSysteBatchInput(TransferFile transferFile);
+
+    public SystemBatchInput saveIMSysteBatchInput(TransferFile transferFile);
 }

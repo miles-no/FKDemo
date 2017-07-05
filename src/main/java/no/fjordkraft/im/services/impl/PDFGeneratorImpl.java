@@ -32,6 +32,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -107,7 +108,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         logger.debug("Generate invoice pdf for "+ statements.size() + " statements");
 
         for(Statement statement:statements) {
-            statement.getSystemBatchInput().getFilename();
+            statement.getSystemBatchInput().getTransferFile().getFilename();
             PDFGeneratorTask pdfGeneratorTask = applicationContext.getBean(PDFGeneratorTask.class,statement);
             taskExecutor.execute(pdfGeneratorTask);
         }
@@ -122,7 +123,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING);
             String systemBatchInputFileName = "";
             String subFolderName = "";
-            systemBatchInputFileName = statement.getSystemBatchInput().getFilename();
+            systemBatchInputFileName = statement.getSystemBatchInput().getTransferFile().getFilename();
             subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
             birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName, pdfGeneratedFolderName, xmlFolderName);
             statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSED);
@@ -142,7 +143,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
         long startTime = System.currentTimeMillis();
         String accountNo = statement.getAccountNumber();
-        String brand = statement.getSystemBatchInput().getBrand();
+        String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
         try {
             EngineConfig engineConfig = new EngineConfig();
             engineConfig.setResourcePath(birtResourcePath);
@@ -155,12 +156,20 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             String xmlFilePath =  basePath + xmlFolderName + File.separator + "statement.xml";
             String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
 
-            String rptDesign = layoutDesignService.getRptDesignFile(statement.getLayoutID());
-            //InputStream designStream = new ByteArrayInputStream(reportDesignFilePath.getBytes(StandardCharsets.ISO_8859_1));
-            InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(StandardCharsets.ISO_8859_1));
-
             String campaignImage = segmentFileService.getImageContent(accountNo, brand);
-            IReportRunnable runnable = reportEngine.openReportDesign(designStream);
+            IReportRunnable runnable = null;
+
+            Boolean readFromFile =  configService.getBoolean("read.layout.from.file");
+            String encoding = configService.getString("layout.encoding");
+            encoding = encoding == null ? "UTF-8":encoding;
+            logger.debug("read layout from filesystem "+readFromFile+" encoding "+ encoding);
+            if(readFromFile ) {
+                String rptDesign = layoutDesignService.getRptDesignFile(statement.getLayoutID());
+                InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(Charset.forName(encoding)));
+                runnable = reportEngine.openReportDesign(designStream);
+            } else {
+                runnable = reportEngine.openReportDesign(reportDesignFilePath);
+            }
 
             IRunAndRenderTask task  = reportEngine.createRunAndRenderTask(runnable);
             task.setParameterValue("sourcexml", xmlFilePath);

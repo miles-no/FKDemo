@@ -5,7 +5,6 @@ import com.itextpdf.text.pdf.PdfCopy;
 import com.itextpdf.text.pdf.PdfReader;
 import no.fjordkraft.im.model.InvoicePdf;
 import no.fjordkraft.im.model.Statement;
-import no.fjordkraft.im.repository.InvoicePdfRepository;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.InvoiceGenerator;
@@ -13,6 +12,7 @@ import no.fjordkraft.im.services.InvoiceService;
 import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
+import org.apache.axis.encoding.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
-import org.apache.axis.encoding.Base64;
 
 /**
  * Created by miles on 6/6/2017.
@@ -69,11 +68,11 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     @Transactional
     public void generateInvoice(Statement statement) {
         String accountNo = statement.getAccountNumber();
-        String brand = statement.getSystemBatchInput().getBrand();
+        String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("PDF merging for statement with id "+ statement.getId());
 
-        String systemBatchInputFileName = statement.getSystemBatchInput().getFilename();
+        String systemBatchInputFileName = statement.getSystemBatchInput().getTransferFile().getFilename();
         String subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
         String invoiceGeneratedFilePath = outputDirectoryPath + subFolderName + File.separator +
                 statement.getInvoiceNumber() + File.separator + invoiceGeneratedFolderName + File.separator +

@@ -37,6 +37,10 @@ public class SaveProcessedXmlPreprocessor  extends BasePreprocessor {
             stopWatch.start("SaveProcessedXmlPreprocessor");
             StreamResult streamResult = new StreamResult(new FileOutputStream(request.getPathToProcessedXml() + File.separator + "statement.xml"));
             marshaller.marshal(request.getStatement(), streamResult);
+            if(null != streamResult.getOutputStream()) {
+                logger.debug("closing stream in SaveProcessedXmlPreprocessor");
+                streamResult.getOutputStream().close();
+            }
             stopWatch.stop();
             logger.debug(stopWatch.prettyPrint());
         }catch (Exception e) {

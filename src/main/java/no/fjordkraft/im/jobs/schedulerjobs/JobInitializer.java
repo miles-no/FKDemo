@@ -33,7 +33,7 @@ import java.util.Set;
 @DependsOn("SpringSchedulerStarter")
 public class JobInitializer {
 
-    private static String BASE_PACKAGE = "no.fjordkraft";
+    private static String BASE_PACKAGE = "no.fjordkraft.im.jobs";
 
     private boolean initialized = false;
 

@@ -107,7 +107,7 @@ public class ConfigServiceImpl implements ConfigService {
     public Boolean getBoolean(String key) {
         String value = getString(key);
         if (value == null) {
-            return null;
+            return false;
         }
         return Boolean.valueOf(value);
     }

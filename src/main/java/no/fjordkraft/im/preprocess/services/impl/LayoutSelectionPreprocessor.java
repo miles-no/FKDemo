@@ -43,70 +43,72 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request)
             throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, InstantiationException {
         Long layoutID = 0l;
-        String statementBrand = request.getEntity().getSystemBatchInput().getBrand();
+        String statementBrand = request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
         //String statementBrand = "TKAS";
         Statement statement = request.getStatement();
 
         List<LayoutRule> layoutRules = layoutRuleService.getLayoutRuleByBrand(statementBrand);
-        Collections.sort(layoutRules);
-        String rulename;
-        RuleAttributes ruleAttributes = null;
-        boolean foundLayout = false;
+        if(null != layoutRules) {
+            Collections.sort(layoutRules);
+            String rulename;
+            RuleAttributes ruleAttributes = null;
+            boolean foundLayout = false;
 
-        for(LayoutRule layoutRule:layoutRules) {
-            for(LayoutRuleMap layoutRuleMap:layoutRule.getLayoutRuleMapList()) {
-                rulename = layoutRuleMap.getName();
-                ruleAttributes = ruleAttributesService.getRuleAttributeByName(rulename);
-                String ruleAttributeType;
+            for (LayoutRule layoutRule : layoutRules) {
+                for (LayoutRuleMap layoutRuleMap : layoutRule.getLayoutRuleMapList()) {
+                    rulename = layoutRuleMap.getName();
+                    ruleAttributes = ruleAttributesService.getRuleAttributeByName(rulename);
+                    String ruleAttributeType;
 
-                if(null != ruleAttributes) {
-                    Object value = PropertyUtils.getNestedProperty(statement, ruleAttributes.getFieldMapping());
-                    ruleAttributeType = String.valueOf(ruleAttributes.getType());
+                    if (null != ruleAttributes) {
+                        Object value = PropertyUtils.getNestedProperty(statement, ruleAttributes.getFieldMapping());
+                        ruleAttributeType = String.valueOf(ruleAttributes.getType());
 
-                    if (null != value && IMConstants.STRING.equals(ruleAttributeType)) {
-                        if (IMConstants.EQUAL.equals(layoutRuleMap.getOperation())
-                                && layoutRuleMap.getValue().equals(value.toString())) {
-                            foundLayout = true;
-                            continue;
-                        } else if (IMConstants.NOT_EQUAL.equals(layoutRuleMap.getOperation())
-                                && !layoutRuleMap.getValue().equals(value.toString())) {
-                            foundLayout = true;
-                            continue;
-                        } else {
-                            foundLayout = false;
-                            break;
-                        }
-                    } else if (null != value && (IMConstants.INTEGER.equals(ruleAttributeType) || IMConstants.FLOAT.equals(ruleAttributeType))) {
-                        //Class classTemp = Class.forName("java.lang." + ruleAttributeType);
-                        //Method method = classTemp.getMethod("valueOf", String.class);
-                        int comparedResult = Float.valueOf(layoutRuleMap.getValue()).compareTo(Float.valueOf(value.toString()));
+                        if (null != value && IMConstants.STRING.equals(ruleAttributeType)) {
+                            if (IMConstants.EQUAL.equals(layoutRuleMap.getOperation())
+                                    && layoutRuleMap.getValue().equals(value.toString())) {
+                                foundLayout = true;
+                                continue;
+                            } else if (IMConstants.NOT_EQUAL.equals(layoutRuleMap.getOperation())
+                                    && !layoutRuleMap.getValue().equals(value.toString())) {
+                                foundLayout = true;
+                                continue;
+                            } else {
+                                foundLayout = false;
+                                break;
+                            }
+                        } else if (null != value && (IMConstants.INTEGER.equals(ruleAttributeType) || IMConstants.FLOAT.equals(ruleAttributeType))) {
+                            //Class classTemp = Class.forName("java.lang." + ruleAttributeType);
+                            //Method method = classTemp.getMethod("valueOf", String.class);
+                            int comparedResult = Float.valueOf(layoutRuleMap.getValue()).compareTo(Float.valueOf(value.toString()));
 
-                        if (IMConstants.EQUAL.equals(layoutRuleMap.getOperation())
-                                && IMConstants.ZERO == comparedResult) {
-                            foundLayout = true;
-                            continue;
-                        } else if (IMConstants.NOT_EQUAL.equals(layoutRuleMap.getOperation())
-                                && IMConstants.ZERO != comparedResult) {
-                            foundLayout = true;
-                            continue;
-                        } else if (IMConstants.GREATER.equals(layoutRuleMap.getOperation())
-                                && IMConstants.GREATER_THAN == comparedResult) {
-                            foundLayout = true;
-                            continue;
-                        } else if (IMConstants.LESSER.equals(layoutRuleMap.getOperation())
-                                && IMConstants.LESSER_THAN == comparedResult) {
-                            foundLayout = true;
-                            continue;
-                        } else {
-                            foundLayout = false;
-                            break;
+                            if (IMConstants.EQUAL.equals(layoutRuleMap.getOperation())
+                                    && IMConstants.ZERO == comparedResult) {
+                                foundLayout = true;
+                                continue;
+                            } else if (IMConstants.NOT_EQUAL.equals(layoutRuleMap.getOperation())
+                                    && IMConstants.ZERO != comparedResult) {
+                                foundLayout = true;
+                                continue;
+                            } else if (IMConstants.GREATER.equals(layoutRuleMap.getOperation())
+                                    && IMConstants.GREATER_THAN == comparedResult) {
+                                foundLayout = true;
+                                continue;
+                            } else if (IMConstants.LESSER.equals(layoutRuleMap.getOperation())
+                                    && IMConstants.LESSER_THAN == comparedResult) {
+                                foundLayout = true;
+                                continue;
+                            } else {
+                                foundLayout = false;
+                                break;
+                            }
                         }
                     }
                 }
-            }
-            if(foundLayout) {
-                layoutID = layoutRule.getLayoutId();
-                break;
+                if (foundLayout) {
+                    layoutID = layoutRule.getLayoutId();
+                    break;
+                }
             }
         }
 

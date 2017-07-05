@@ -64,8 +64,8 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
 
     @Override
     public Statement unmarshallStatement(String path) throws IOException {
-        try {
-            InputStream inputStream = new FileInputStream(path);
+
+        try (InputStream inputStream = new FileInputStream(path)){
             return unmarshallStatement(inputStream);
         } catch(Exception e){
             logger.error("Exception while unmarshalling statement " + path, e);
@@ -75,8 +75,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
 
     @Override
     public Statement unmarshallStatement(InputStream inputStream) throws IOException {
-        try {
-            Reader reader = new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1);
+        try (Reader reader = new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1)){
             StreamSource source = new StreamSource(reader);
             Statement stmt = (Statement)unMarshaller.unmarshal(source);
             return stmt;
@@ -98,9 +97,8 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             logger.debug("Processor Thread queue count " + executor.getThreadPoolExecutor().getQueue().size() +" active threads "+ executor.getActiveCount() + "max pool size "+executor.getMaxPoolSize()+ " :: "+executor.getThreadPoolExecutor().getActiveCount());
         }
         for(no.fjordkraft.im.model.Statement statement:statementList) {
-            statement.getSystemBatchInput().getFilename();
+            statement.getSystemBatchInput().getTransferFile().getFilename();
             statement.getStatementPayload();
-
             PreprocessorTask preprocessorTask = applicationContext.getBean(PreprocessorTask.class,statement);
             taskExecutor.execute(preprocessorTask);
         }
@@ -113,13 +111,14 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         StopWatch stopwatch = new StopWatch("Preprocessing");
         stopwatch.start();
         try {
-            statementService.updateStatement(statement,StatementStatusEnum.PRE_PROCESSING);
             logger.debug("Preprocessing statement with id " + statement.getId());
             String payload = statement.getStatementPayload().getPayload();
-            statement.getSystemBatchInput().getFilename();
+            statement.getSystemBatchInput().getTransferFile().getFilename();
             Statement if320statement = unmarshallStatement(new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1)));
             //statementService.updateStatement(getUpdatedStatementEntity(if320statement, statement));
             getUpdatedStatementEntity(if320statement, statement);
+            statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
+
             PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request = new PreprocessRequest();
             request.setStatement(if320statement);
             request.setEntity(statement);

@@ -44,7 +44,7 @@ public class GenericPreprocessor extends BasePreprocessor {
             StopWatch stopWatch = new StopWatch();
             stopWatch.start("Unmarshall Attachments");
             String invoiceNumber = request.getEntity().getInvoiceNumber();
-            String baseFolder = request.getEntity().getSystemBatchInput().getFilename();
+            String baseFolder = request.getEntity().getSystemBatchInput().getTransferFile().getFilename();
             String folderName = baseFolder.substring(0, baseFolder.indexOf('.'));
             String basePath = configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
             String pdfGeneratedFolderName = configService.getString(IMConstants.GENERATED_PDF_FOLDER_NAME);
@@ -76,17 +76,20 @@ public class GenericPreprocessor extends BasePreprocessor {
 
 
     private Statement unmarshallAttachments(Statement statement) throws IOException {
-        for(String data:statement.getAttachments().getAttachmentList()){
-            data = data.replaceAll("&lt;!\\[CDATA\\[", "");
-            data = data.replaceAll("\\]\\]&gt;","" );
-            data = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n" + data;
-            StreamSource source = new StreamSource(new ByteArrayInputStream(data.getBytes(StandardCharsets.ISO_8859_1)));
-            FAKTURA faktura = (FAKTURA)unMarshaller.unmarshal(source);
-            Attachment attachment = new Attachment();
-            attachment.setFAKTURA(faktura);
-            statement.getAttachments().getAttachment().add(attachment);
+        if(null != statement.getAttachments() && null != statement.getAttachments().getAttachmentList()) {
+            for (String data : statement.getAttachments().getAttachmentList()) {
+                data = data.replaceAll("&lt;!\\[CDATA\\[", "");
+                data = data.replaceAll("\\]\\]&gt;", "");
+                data = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n" + data;
+                StreamSource source = new StreamSource(new ByteArrayInputStream(data.getBytes(StandardCharsets.ISO_8859_1)));
+                FAKTURA faktura = (FAKTURA) unMarshaller.unmarshal(source);
+                Attachment attachment = new Attachment();
+                attachment.setFAKTURA(faktura);
+                statement.getAttachments().getAttachment().add(attachment);
+            }
+            statement.getAttachments().setAttachmentList(null);
         }
-        statement.getAttachments().setAttachmentList(null);
+
         return statement;
     }
 

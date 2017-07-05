@@ -28,7 +28,7 @@ public class BarcodePreprocessor extends BasePreprocessor {
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
 
         no.fjordkraft.im.model.Statement statement = request.getEntity();
-        BrandConfig brandConfig = barcodeConfigRepository.getBarcodeConfigByBrand(statement.getSystemBatchInput().getBrand());
+        BrandConfig brandConfig = barcodeConfigRepository.getBarcodeConfigByBrand(statement.getSystemBatchInput().getTransferFile().getBrand());
         if(IMConstants.TRUE == brandConfig.getUseEABarcode()) {
             String barcode = IMConstants.BARCODE_PREFIX + brandConfig.getAgreementNumber() + brandConfig.getServiceLevel()
                     + brandConfig.getPrefixKID() + request.getStatement().getAccountNumber();

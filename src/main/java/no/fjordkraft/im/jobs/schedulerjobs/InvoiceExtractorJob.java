@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
         manualAllowed = true,
         checkForWorkingDay = false,
         editAllowed = true,
-        status = JobStatus.enabled
+        status = JobStatus.disabled
 )
 @Description("Reads single invoice and splits into multiple statement and saves in statements table")
 @Configuration(knownParameters = {
@@ -36,8 +36,8 @@ public class InvoiceExtractorJob  implements InterruptableJob {
     StatementService statementService;
 
     public void execute(Context context) {
-        logger.debug("InvoiceExtractor job invoked " );
-        statementService.fetchAndSplit();
+        logger.debug("InvoiceExtractor job invoked statementService.fetchAndSplit");
+        // statementService.fetchAndSplit();
     }
 
     @Override
