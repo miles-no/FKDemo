@@ -9,65 +9,83 @@
             <div class="manage-brands">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label class="control-label col-sm-4">Brand</label>
-                        <div class="col-md-6">
-                            <ui-select ng-model="selectedBrands" theme="bootstrap" title="Choose Brand" on-select="onLayoutSelect($item, $model)" ng-disabled="disable">
+                        <label class="control-label col-sm-3">Brand</label>
+                        <div class="col-md-7">
+                            <ui-select ng-model="selectedBrands" theme="bootstrap" title="Choose Brand" on-select="onBrandSelect($item, $model)" ng-disabled="disable">
                                 <ui-select-match placeholder="Select Filter">{{selectedBrands.brand}}</ui-select-match>
                                 <ui-select-choices  repeat="layout in layouts" position='down'>
                                     <div ng-bind-html="layout.brand | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-4" for="legal-part-class">Legal Part CLass</label>
-                        <div class=" col-sm-6">
-                            <input type="text"  ng-model="items.legalPartClass" class="form-control" id="legal-part-class" >
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-4" for="account-category">Account Category</label>
-                        <div class=" col-sm-6">
-                            <input type="text" ng-model="items.accountCategory" class="form-control" id="account-category">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-4" for="credit-limit">Credit Limit</label>
-                        <div class=" col-sm-6">
-                            <input type="text" ng-model="items.creditLimit" class="form-control" id="credit-limit">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-4" for="email-type">Distribution Type</label>
-                        <div class=" col-sm-6">
-                            <label class="col-sm-12" for="email-type">
-                                <input type="checkbox" ng-model="items.distributionEmail" class="" id="email-type">
-                                Email
-                            </label>
 
-                            <label class="col-sm-12" for="paper-type">
-                                <input type="checkbox" ng-model="items.distributionPaper" class="" id="paper-type">
-                                Paper
-                            </label>
-                        </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-4">Template</label>
-                        <div class="col-sm-8">
-                            <div class="col-sm-8 row">
+                        <label class="control-label col-sm-3">Template</label>
+                        <div class="col-sm-8 row">
+                            <div class="col-sm-8" ng-if="items.template.name.length == 0">
+                                <ui-select  ng-model="selectedTemplate" theme="bootstrap" title="Choose Brand" on-select="onLayoutSelect($item, $model)" ng-disabled="disable">
+                                    <ui-select-match placeholder="Select Filter">{{selectedTemplate.brand}}</ui-select-match>
+                                    <ui-select-choices  repeat="layout in layouts" position='down'>
+                                        <div ng-bind-html="layout.brand | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+
+                            </div>
+                            <div class="col-sm-8" ng-if="items.template.name.length > 0">
                                 <input type="text" ng-value="items.template.name" class="form-control" readonly="readonly">
                             </div>
+                            <div class="upload-btn-wrapper col-sm-2" ng-if="selectedTemplate.brand.length > 0">
+                                <i class="fa fa-external-link" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-sm-2" ng-if="selectedTemplate.brand.length > 0 || items.template.name.length > 0">
+                                <i class="btn" ng-click="clearTemplate()" aria-hidden="true">Clear</i>
+                            </div>
 
-                            <div class="upload-btn-wrapper col-sm-3 ">
+
+                            <div class="col-sm-1 text-center" ng-if="selectedTemplate.length == 0 && items.template.name.length ==  0">
+                                OR
+                            </div>
+
+                            <div class="upload-btn-wrapper col-sm-3 " ng-if="selectedTemplate.length == 0">
                                 <button class="btn btn-primary">Upload</button>
                                 <input type="file" file-model="items.template">
                             </div>
 
-                            <div class="upload-btn-wrapper">
-                                <i class="fa fa-external-link" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="rules-wrapper">
+                        <div class="rules-heading">Rules
+                            <i class="fa fa-plus btn" ng-click="addRule()"> Add Rule</i>
+                        </div>
+                        <div ng-repeat="rule in rulesList">
+                            <div class="panel">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="account-category">Name</label>
+                                    <div class=" col-sm-7">
+                                        <input type="text" ng-model="rule.name" class="form-control" id="account-category">
+                                    </div>
+                                    <div class="col-sm-1"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">Type</label>
+                                    <div class=" col-sm-7">
+                                        <input type="text" list="typeList" ng-model="rule.type" class="form-control" ng-click="rule.type = ''">
+                                        <datalist id="typeList" name="typeList">
+                                            <option value="STRING">String</option>
+                                            <option value="FLOAT">Float</option>
+                                            <option value="INTEGER">Integer</option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">Field Mapping</label>
+                                    <div class=" col-sm-7">
+                                        <input type="text" ng-model="rule.fieldMapping" class="form-control">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                     </div>
                 </form>
             </div>

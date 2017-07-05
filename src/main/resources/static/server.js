@@ -298,6 +298,16 @@ app.put('/layout/attribute', function(req, res) {
 })
 });
 
+app.get('/layout/template/all', function(req, res) {
+  request({
+    url: `${apiUrl}/layout/template/all`
+},function(error,response,body){
+  res.send(body);
+})
+});
+
+
+
 /******plug call*****/
 
 app.post('/transferfile/process', function(req, res) {

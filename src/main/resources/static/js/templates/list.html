@@ -1,89 +1,111 @@
-<div class="manage-brands" ng-controller="listCtrl" ng-init="getLayouts()">
+<div class="manage-brands" ng-controller="listCtrl" ng-init="getLayouts();">
+    <!--<div class="col-md-12">-->
+    <!--<div class="col-md-4">-->
+    <!--<div class="form-group">-->
+    <!--<label class="control-label col-md-5">Brand</label>-->
+    <!--<div class="col-md-7">-->
+    <!--<ui-select multiple ng-model="selectedLayouts" theme="bootstrap" title="Choose Brand" on-remove="onLayoutRemoval($item, $model)" on-select="onLayoutSelect($item, $model)">-->
+    <!--<ui-select-match placeholder="Select Filter">{{$item.brand}}</ui-select-match>-->
+    <!--<ui-select-choices  repeat="layout in layouts" position='down'>-->
+    <!--<div ng-bind-html="layout.brand | highlight: $select.search"></div>-->
+    <!--</ui-select-choices>-->
+    <!--</ui-select>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<label class="control-label col-md-5">Distribution</label>-->
+    <!--<div class="col-md-7">-->
+    <!--<ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="on($item, $model)"on-select="onBrandSelect($item, $model)">-->
+    <!--<ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>-->
+    <!--<ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>-->
+    <!--<div ng-bind-html="eachBrand | highlight: $select.search"></div>-->
+    <!--</ui-select-choices>-->
+    <!--</ui-select>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-md-4">-->
+    <!--<div class="form-group">-->
+    <!--<label class="control-label col-md-5">Legal Part Class</label>-->
+    <!--<div class="col-md-7">-->
+    <!--<ui-select multiple ng-model="states" theme="bootstrap" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">-->
+    <!--<ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>-->
+    <!--<ui-select-choices  repeat="eachOverview in possibleStates" position='down'>-->
+    <!--<div ng-bind-html="eachOverview | highlight: $select.search"></div>-->
+    <!--</ui-select-choices>-->
+    <!--</ui-select>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<label class="control-label col-md-5">Credit Limit</label>-->
+    <!--<div class="col-md-7">-->
+    <!--<ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="onBrandRemoval($item, $model)"on-select="onBrandSelect($item, $model)">-->
+    <!--<ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>-->
+    <!--<ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>-->
+    <!--<div ng-bind-html="eachBrand | highlight: $select.search"></div>-->
+    <!--</ui-select-choices>-->
+    <!--</ui-select>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-md-4">-->
+    <!--<div class="row form-group">-->
+    <!--<label class="control-label col-md-5">Account Category</label>-->
+    <!--<div class="col-md-7">-->
+    <!--<input type="text" ng-model="fromDate"  datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
     <div class="col-md-12">
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label col-md-5">Brand</label>
-                <div class="col-md-7">
-                    <ui-select multiple ng-model="selectedLayouts" theme="bootstrap" title="Choose Brand" on-remove="onLayoutRemoval($item, $model)"on-select="onLayoutSelect($item, $model)">
-                        <ui-select-match placeholder="Select Filter">{{$item.brand}}</ui-select-match>
-                        <ui-select-choices  repeat="layout in layouts" position='down'>
-                            <div ng-bind-html="layout.brand | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-5">Distribution</label>
-                <div class="col-md-7">
-                    <ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="on($item, $model)"on-select="onBrandSelect($item, $model)">
-                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
-                        <ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>
-                            <div ng-bind-html="eachBrand | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label col-md-5">Legal Part Class</label>
-                <div class="col-md-7">
-                    <ui-select multiple ng-model="states" theme="bootstrap" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
-                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
-                        <ui-select-choices  repeat="eachOverview in possibleStates" position='down'>
-                            <div ng-bind-html="eachOverview | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-5">Credit Limit</label>
-                <div class="col-md-7">
-                    <ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="onBrandRemoval($item, $model)"on-select="onBrandSelect($item, $model)">
-                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
-                        <ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>
-                            <div ng-bind-html="eachBrand | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="row form-group">
-                <label class="control-label col-md-5">Account Category</label>
-                <div class="col-md-7">
-                    <input type="text" ng-model="fromDate"  datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <table st-table="displayedCollection" st-safe-src="searchResults" class="table table-align">
+        <table st-table="displayedCollection" st-safe-src="allLayouts" class="table table-align">
             <thead>
             <tr>
-                <th st-sort="Brand">Brand</th>
-                <th >legalPartClass</th>
-                <th >accountCategory</th>
-                <th >distributionMethod</th>
-                <th >creditLimit</th>
+                <th>Brand</th>
+                <th width="40px">
+                <th width="40px">
+                    <!--<th >legalPartClass</th>-->
+                    <!--<th >accountCategory</th>-->
+                    <!--<th >distributionMethod</th>-->
+                    <!--<th >creditLimit</th>-->
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="layoutItem in allLayouts" ng-click="updateLayout(layoutItem)">
+            <tr ng-repeat-start = "layoutItem in displayedCollection">
                 <td>{{layoutItem.brand}}</td>
-                <td>{{layoutItem.legalPartClass}}</td>
-                <td>{{layoutItem.accountCategory}}</td>
-                <td>{{layoutItem.distributionMethod}}</td>
-                <td>{{layoutItem.creditLimit}}</td>
-
+                <td ng-click="dropDownList($event,layoutItem)"><i ng-class="{'fa fa-caret-down': dropDown !== layoutItem , 'fa fa-caret-up': dropDown === layoutItem}"></i></td>
+                <!--<td>{{layoutItem.legalPartClass}}</td>-->
+                <!--<td>{{layoutItem.accountCategory}}</td>-->
+                <!--<td>{{layoutItem.distributionMethod}}</td>-->
+                <!--<td>{{layoutItem.creditLimit}}</td>-->
+            </tr>
+            <tr ng-repeat-end ng-if="dropDown === layoutItem">
+                <td  colspan="3">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Brand</th>
+                            <th>id</th>
+                            <th>layoutId</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{layoutItem.layoutRule.brand}}</td>
+                            <td>{{layoutItem.layoutRule.id}}</td>
+                            <td>{{layoutItem.layoutRule.layoutId}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
             </tr>
             </tbody>
             <tfoot>
-            <tr>
-                <td colspan="100%" class="text-center">
-                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
-                </td>
-            </tr>
+            <!--<tr>-->
+            <!--<td colspan="100%" class="text-center">-->
+            <!--<div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>-->
+            <!--</td>-->
+            <!--</tr>-->
             </tfoot>
         </table>
         <div class="text-right">
