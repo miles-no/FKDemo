@@ -1,6 +1,6 @@
 <div class="modal fade {{options.classes.body}}  modal-wrapper" ng-class="{'modal-without-header': !options.header, 'modal-with-header': options.header}">
     <div ng-if="!options.header" class="close-modal " ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</div>
-    <div class="modal-dialog modal-content-container">
+    <div class="modal-dialog modal-content-container modal-width">
         <div class="modal-header" ng-if="options.header">
             <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title">{{options.header}}</h4>
@@ -57,38 +57,60 @@
                         <div class="rules-heading">Rules
                             <i class="fa fa-plus btn" ng-click="addRule()"> Add Rule</i>
                         </div>
+
+                        <div class="row">
+                            <label class="col-sm-3 col-sm-offset-2">Name</label>
+                            <label class="col-sm-4">Operation</label>
+                            <label class="col-sm-3">Value</label>
+                        </div>
                         <div ng-repeat="rule in rulesList">
                             <div class="panel">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-3">Name</label>
-                                    <div class=" col-sm-7">
-                                        <input type="text" ng-model="rule.name" class="form-control">
+                                <!--<div class="form-group">-->
+                                    <!--<label class="control-label col-sm-3">Name</label>-->
+                                    <!--<div class=" col-sm-7">-->
+                                        <!--<input type="text" ng-model="rule.name" class="form-control">-->
+                                    <!--</div>-->
+                                    <!--<div class="col-sm-1"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>-->
+                                <!--</div>-->
+
+                                <div class="modal-field-content row">
+                                    <input type="text" ng-model="rule.name" class="form-control modal-box col-sm-2 col-sm-offset-1">
+
+                                    <div class="modal-box ui-box col-sm-4"><ui-select  ng-model="selectedOperation.selected" theme="bootstrap" title="Choose operation" ng-disabled="disable">
+                                            <ui-select-match placeholder="Choose operation">{{$select.selected}}</ui-select-match>
+                                            <ui-select-choices  repeat="layout in getAllOperationForAType(rule.type)" position='down'>
+                                                <div ng-bind-html="layout | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
                                     </div>
-                                    <div class="col-sm-1"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>
+
+                                    <input type="text" ng-model="rule.value" class="form-control modal-box col-sm-2">
+
+                                    <div class="rule-delete col-sm-1 modal-box"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-3">Operation</label>
-                                    <div class=" col-sm-7">
-                                        <!--<input type="text" list="operationTypeList" ng-model="rule.type" class="form-control">
-                                        <datalist id="operationTypeList" name="operationTypeList">
-                                            <option ng-repeat ="get"value="STRING">String</option>
-                                            <option value="FLOAT">Float</option>
-                                            <option value="INTEGER">Integer</option>
-                                        </datalist>-->
-                                            <ui-select  ng-model="selectedOperation.selected" theme="bootstrap" title="Choose operation" ng-disabled="disable">
-                                                <ui-select-match placeholder="Choose operation">{{$select.selected}}</ui-select-match>
-                                                <ui-select-choices  repeat="layout in getAllOperationForAType(rule.type)" position='down'>
-                                                    <div ng-bind-html="layout | highlight: $select.search"></div>
-                                                </ui-select-choices>
-                                            </ui-select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-3">Value</label>
-                                    <div class=" col-sm-7">
-                                        <input type="text" ng-model="rule.value" class="form-control">
-                                    </div>
-                                </div>
+                                <!--<div class="form-group">-->
+                                    <!--<label class="control-label col-sm-3">Operation</label>-->
+                                    <!--<div class=" col-sm-7">-->
+                                        <!--&lt;!&ndash;<input type="text" list="operationTypeList" ng-model="rule.type" class="form-control">-->
+                                        <!--<datalist id="operationTypeList" name="operationTypeList">-->
+                                            <!--<option ng-repeat ="get"value="STRING">String</option>-->
+                                            <!--<option value="FLOAT">Float</option>-->
+                                            <!--<option value="INTEGER">Integer</option>-->
+                                        <!--</datalist>&ndash;&gt;-->
+                                            <!--<ui-select  ng-model="selectedOperation.selected" theme="bootstrap" title="Choose operation" ng-disabled="disable">-->
+                                                <!--<ui-select-match placeholder="Choose operation">{{$select.selected}}</ui-select-match>-->
+                                                <!--<ui-select-choices  repeat="layout in getAllOperationForAType(rule.type)" position='down'>-->
+                                                    <!--<div ng-bind-html="layout | highlight: $select.search"></div>-->
+                                                <!--</ui-select-choices>-->
+                                            <!--</ui-select>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="form-group">-->
+                                    <!--<label class="control-label col-sm-3">Value</label>-->
+                                    <!--<div class=" col-sm-7">-->
+                                        <!--<input type="text" ng-model="rule.value" class="form-control">-->
+                                    <!--</div>-->
+                                <!--</div>-->
                             </div>
                         </div>
                     </div>

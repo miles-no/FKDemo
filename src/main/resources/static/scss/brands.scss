@@ -45,7 +45,22 @@
       }
     }
     .panel {
-      margin: 5px auto;
+      margin: 2px auto;
+      .modal-field-content{
+        margin: 10px auto;
+        .modal-box{
+          display: inline-block;
+          width: 25%;
+          &.ui-box{
+            margin: 0 15px 0 15px;
+          }
+          &.rule-delete{
+            width: 2%;
+            position: relative;
+            top: 8px;
+          }
+        }
+      }
     }
   }
 }
