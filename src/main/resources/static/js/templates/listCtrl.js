@@ -1,13 +1,17 @@
 app.controller('listCtrl',function($scope,ModalService,$http){
 
   //$scope.layouts =[];
-  //var newLayout = {
-  //    brand: '',
-  //    legalPartClass: '',
-  //    accountCategory: '',
-  //    distributionMethod: '',
-  //    creditLimit: ''
-  //}
+
+
+  var newLayout = {
+      brand: '',
+      legalPartClass: '',
+      accountCategory: '',
+      distributionMethod: '',
+      creditLimit: ''
+  }
+
+
   //$scope.selectedLayouts = []
   //$scope.allLayouts = []
   //function showSelectedLayouts () {
@@ -89,46 +93,46 @@ app.controller('listCtrl',function($scope,ModalService,$http){
   //    })
   //}
   //
-  //function showModal (layoutInfo, type) {
-  //    ModalService.showModal({
-  //        templateUrl: 'js/templates/listPopUp.html',
-  //        controller: 'listPopupController',
-  //        inputs: {
-  //            options: {
-  //                body:{
-  //                    bodyContent :layoutInfo,
-  //                    layouts: $scope.layouts
-  //                },
-  //                header: type === 'Add' ? 'Add new layout' : 'Update '+ layoutInfo.layout,
-  //                conFirmBtnText : [
-  //                    {name: 'cancel'},
-  //                    {name: type }
-  //                ],
-  //                classes: {
-  //                    modalBody: '',
-  //                    body: 'manage-brand'
-  //                }
-  //            }
-  //        }
-  //    }).then(function(modal){
-  //        modal.element.modal();
-  //        modal.close.then(function(response){
-  //            if (response === 'Add') {
-  //                addLayout(layoutInfo)
-  //            } else if (response === 'Update') {
-  //                updateLayout(layoutInfo)
-  //            }
-  //        });
-  //    });
-  //}
-  //$scope.addLayout = function () {
-  //    var layout = angular.copy(newLayout);
-  //    showModal(layout, 'Add')
-  //}
-  //$scope.updateLayout = function (layoutInfo) {
-  //    showModal(layoutInfo, 'Update')
-  //}
+    function showModal (layoutInfo, type) {
+        ModalService.showModal({
+            templateUrl: 'js/templates/listPopUp.html',
+            controller: 'listPopupController',
+            inputs: {
+                options: {
+                    body:{
+                        bodyContent :layoutInfo,
+                        layouts: $scope.layouts
+                    },
+                    header: type === 'Add' ? 'Add new layout' : 'Update '+ layoutInfo.layout,
+                    conFirmBtnText : [
+                        {name: 'cancel'},
+                        {name: type }
+                    ],
+                    classes: {
+                        modalBody: '',
+                        body: 'manage-brand'
+                    }
+                }
+            }
+        }).then(function(modal){
+            modal.element.modal();
+            modal.close.then(function(response){
+                if (response === 'Add') {
+                    addLayout(layoutInfo)
+                } else if (response === 'Update') {
+                    updateLayout(layoutInfo)
+                }
+            });
+        });
+    }
+    $scope.updateLayout = function (layoutInfo) {
+        showModal(layoutInfo, 'Update')
+    }
 
+    $scope.addTemplate = function () {
+          var layout = angular.copy(newLayout);
+          showModal(layout, 'Add')
+      }
 
 
    $scope.getLayouts = function () {
@@ -136,6 +140,12 @@ app.controller('listCtrl',function($scope,ModalService,$http){
           $scope.allLayouts =  $scope.layouts = response.data;
       })
    }
+
+  $scope.getBrands = function(){
+    $http.get('/layout/rules').then(function(response){
+      $scope.brands = response.data
+    })
+  }
 
 
   $scope.dropdown = {}

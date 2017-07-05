@@ -298,6 +298,9 @@ app.put('/layout/attribute', function(req, res) {
 })
 });
 
+
+/******templates*****/
+
 app.get('/layout/template/all', function(req, res) {
   request({
     url: `${apiUrl}/layout/template/all`
@@ -306,7 +309,21 @@ app.get('/layout/template/all', function(req, res) {
 })
 });
 
+app.get('/layout/rules', function(req, res) {
+  request({
+    url: `${apiUrl}/layout/rules`
+},function(error,response,body){
+  res.send(body);
+})
+});
 
+app.get('/layout/list', function(req, res) {
+  request({
+    url: `${apiUrl}/layout/list`
+},function(error,response,body){
+  res.send(body);
+})
+});
 
 /******plug call*****/
 
