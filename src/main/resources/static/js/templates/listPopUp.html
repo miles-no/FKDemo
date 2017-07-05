@@ -24,7 +24,7 @@
                         <label class="control-label col-sm-3">Template</label>
                         <div class="col-sm-8 row">
                             <div class="col-sm-8">
-                                <ui-select  ng-model="selectedTemplate.selected" theme="bootstrap" title="Choose Existing Template" on-select="onLayoutSelect($item, $model)" ng-disabled="disable">
+                                <ui-select  ng-model="selectedTemplate.selected" theme="bootstrap" title="Choose Existing Template"  ng-disabled="disable">
                                     <ui-select-match placeholder="Choose Existing Layout">{{$select.selected.name}}</ui-select-match>
                                     <ui-select-choices  repeat="layout in allLayouts" position='down'>
                                         <div ng-bind-html="layout.name | highlight: $select.search"></div>
@@ -34,10 +34,10 @@
                             <div class="col-sm-8" ng-if="items.template.name.length > 0">
                                 <input type="text" ng-value="items.template.name" class="form-control" readonly="readonly">
                             </div>
-                            <div class="upload-btn-wrapper col-sm-2" ng-if="selectedTemplate.name.length > 0">
+                            <div class="upload-btn-wrapper col-sm-2" ng-if="selectedTemplate.selected.name.length > 0">
                                 <i class="fa fa-external-link" aria-hidden="true"></i>
                             </div>
-                            <div class="col-sm-2" ng-if="selectedTemplate.name.length > 0 || items.template.name.length > 0">
+                            <div class="col-sm-2" ng-if="items.template.name.length > 0">
                                 <i class="btn" ng-click="clearTemplate()" aria-hidden="true">Clear</i>
                             </div>
 
@@ -60,27 +60,33 @@
                         <div ng-repeat="rule in rulesList">
                             <div class="panel">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3" for="account-category">Name</label>
+                                    <label class="control-label col-sm-3">Name</label>
                                     <div class=" col-sm-7">
-                                        <input type="text" ng-model="rule.name" class="form-control" id="account-category">
+                                        <input type="text" ng-model="rule.name" class="form-control">
                                     </div>
                                     <div class="col-sm-1"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3">Type</label>
+                                    <label class="control-label col-sm-3">Operation</label>
                                     <div class=" col-sm-7">
-                                        <input type="text" list="typeList" ng-model="rule.type" class="form-control" ng-click="rule.type = ''">
-                                        <datalist id="typeList" name="typeList">
-                                            <option value="STRING">String</option>
+                                        <!--<input type="text" list="operationTypeList" ng-model="rule.type" class="form-control">
+                                        <datalist id="operationTypeList" name="operationTypeList">
+                                            <option ng-repeat ="get"value="STRING">String</option>
                                             <option value="FLOAT">Float</option>
                                             <option value="INTEGER">Integer</option>
-                                        </datalist>
+                                        </datalist>-->
+                                            <ui-select  ng-model="selectedOperation.selected" theme="bootstrap" title="Choose operation" ng-disabled="disable">
+                                                <ui-select-match placeholder="Choose operation">{{$select.selected}}</ui-select-match>
+                                                <ui-select-choices  repeat="layout in getAllOperationForAType(rule.type)" position='down'>
+                                                    <div ng-bind-html="layout | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3">Field Mapping</label>
+                                    <label class="control-label col-sm-3">Value</label>
                                     <div class=" col-sm-7">
-                                        <input type="text" ng-model="rule.fieldMapping" class="form-control">
+                                        <input type="text" ng-model="rule.value" class="form-control">
                                     </div>
                                 </div>
                             </div>

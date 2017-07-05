@@ -7,8 +7,15 @@ app.controller('listPopupController',function($scope,options,close, $http){
         }
     }
     var ruleObj = {name: '', type: '', fileMapping: ''}
-    $scope.rulesList = [angular.copy(ruleObj), angular.copy(ruleObj)]
+    //$scope.rulesList = [angular.copy(ruleObj), angular.copy(ruleObj)]
     $scope.hideUpload = true
+    let getLayoutRules = function(){
+        $http.get('layout/attribute').then(function (response) {
+             $scope.rulesList = response.data;
+        },function error(error){
+             $scope.rulesList = [];
+        });
+    }
     $scope.addRule = function () {
         $scope.rulesList.push(angular.copy(ruleObj))
     }
@@ -18,6 +25,20 @@ app.controller('listPopupController',function($scope,options,close, $http){
     }
     $scope.dismissModal = function(result) {
         close(result,200);
+    }
+    $scope.getAllOperationForAType = function(type){
+        switch(type){
+            case 'STRING':
+                return ['EQUALS','NOT EQUALS'] ;
+            case 'INTEGER':
+                return ['LESS THAN','LESS THAN EQUAL TO','GREATER THAN','GREATER THAN EQUAL TO','EQUAL TO','NO EQUAL TO'] ;
+            case 'FLOAT':
+                return ['LESS THAN','LESS THAN EQUAL TO','GREATER THAN','GREATER THAN EQUAL TO','EQUAL TO','NO EQUAL TO'] ;
+            default :
+                return ['EQUALS','NOT EQUALS'] ;
+        }
+
+
     }
     /*if ($scope.items.brand.length > 0) {
      $scope.disable = true
@@ -50,12 +71,12 @@ app.controller('listPopupController',function($scope,options,close, $http){
     }
 
     $scope.onLayoutSelect = function(item,model){
-        $scope.selectedTemplate = item;
+        $scope.selectedTemplate.selected = item;
     }
 
     $scope.clearTemplate = function () {
-        $scope.selectedTemplate = [];
-        $scope.items.template ={ name : ''}
+        //$scope.selectedTemplate = [];
+        $scope.items.template ={}
     }
     $scope.onTemplateChange = function(){
         console.log('Came here on Template change',$scope.selectedTemplate)
@@ -67,6 +88,7 @@ app.controller('listPopupController',function($scope,options,close, $http){
     let init = function(){
         getBrands();
         getLayouts();
+        getLayoutRules();
     }
     init();
 });
