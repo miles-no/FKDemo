@@ -1,6 +1,7 @@
 app.controller('listPopupController',function($scope,options,close, $http){
     $scope.options = options;
     $scope.items = options.body.bodyContent
+    $scope.allowRules = false;
     $scope.items = {
         template : {
             name: ''
@@ -23,7 +24,12 @@ app.controller('listPopupController',function($scope,options,close, $http){
     $scope.removeRule = function (item, index) {
         $scope.rulesList.splice(index,1)
     }
+    let prepareModel = function(){
+
+    }
     $scope.dismissModal = function(result) {
+        console.log('in dismissModal ',$scope);
+        prepareModel()
         close(result,200);
     }
     $scope.getAllOperationForAType = function(type){
@@ -85,6 +91,9 @@ app.controller('listPopupController',function($scope,options,close, $http){
     $scope.$watch('items.template',function(){
         $scope.onTemplateChange();
     });
+    $scope.moveToRules = function(){
+        return false;
+    }
     let init = function(){
         getBrands();
         getLayouts();

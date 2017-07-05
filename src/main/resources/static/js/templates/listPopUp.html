@@ -6,7 +6,25 @@
             <h4 class="modal-title">{{options.header}}</h4>
         </div>
         <div class="modal-body {{options.classes.modalBody}}"  >
-            <div class="manage-brands">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="col-sm-6" ng-if="items.template.name.length > 0">
+                        <div class="row">
+                            <input type="text" ng-value="items.template.name" class="form-control" readonly="readonly">
+                        </div>
+                        <div class="row">
+                            <input type="text" ng-value="items.template.desc" class="form-control" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="upload-btn-wrapper">
+                            <button class="btn btn-primary col-sm-12">Upload</button>
+                            <input type="file" accept=".xml" file-model="items.template" >
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="manage-brands" ng-if="moveToRules()">
                 <form class="form-horizontal">
                     <div class="form-group">
                         <label class="control-label col-sm-3">Brand</label>
@@ -22,36 +40,26 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3">Template</label>
-                        <div class="col-sm-8 row">
-                            <div class="col-sm-8">
-                                <ui-select  ng-model="selectedTemplate.selected" theme="bootstrap" title="Choose Existing Template"  ng-disabled="disable">
-                                    <ui-select-match placeholder="Choose Existing Layout">{{$select.selected.name}}</ui-select-match>
-                                    <ui-select-choices  repeat="layout in allLayouts" position='down'>
-                                        <div ng-bind-html="layout.name | highlight: $select.search"></div>
-                                    </ui-select-choices>
-                                </ui-select>
+                        <div class="col-sm-9">
+                            <div class="col-sm-3">
+                                <div class="col-sm-10">
+                                    <ui-select  ng-model="selectedTemplate.selected" theme="bootstrap" title="Choose Existing Template"  ng-disabled="disable">
+                                        <ui-select-match placeholder="Choose Existing Layout">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices  repeat="layout in allLayouts" position='down'>
+                                            <div ng-bind-html="layout.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-sm-2 upload-btn-wrapper" ng-if="selectedTemplate.selected.name.length > 0">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                                </div>
                             </div>
-                            <div class="col-sm-8" ng-if="items.template.name.length > 0">
-                                <input type="text" ng-value="items.template.name" class="form-control" readonly="readonly">
-                            </div>
-                            <div class="upload-btn-wrapper col-sm-2" ng-if="selectedTemplate.selected.name.length > 0">
-                                <i class="fa fa-external-link" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-sm-2" ng-if="items.template.name.length > 0">
-                                <i class="btn" ng-click="clearTemplate()" aria-hidden="true">Clear</i>
-                            </div>
-
-
-                            <div class="col-sm-1 text-center">
-                                OR
-                            </div>
-
-                            <div class="upload-btn-wrapper col-sm-3 ">
-                                <button class="btn btn-primary">Upload</button>
-                                <input type="file" accept=".xml" file-model="items.template" >
-                            </div>
-
+                             <!--<div class="text-center">
+                                    OR
+                                </div>-->
+                            
                         </div>
+                        
                     </div>
                     <div class="rules-wrapper">
                         <div class="rules-heading">Rules
@@ -88,37 +96,18 @@
 
                                     <div class="rule-delete col-sm-1 modal-box"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>
                                 </div>
-                                <!--<div class="form-group">-->
-                                    <!--<label class="control-label col-sm-3">Operation</label>-->
-                                    <!--<div class=" col-sm-7">-->
-                                        <!--&lt;!&ndash;<input type="text" list="operationTypeList" ng-model="rule.type" class="form-control">-->
-                                        <!--<datalist id="operationTypeList" name="operationTypeList">-->
-                                            <!--<option ng-repeat ="get"value="STRING">String</option>-->
-                                            <!--<option value="FLOAT">Float</option>-->
-                                            <!--<option value="INTEGER">Integer</option>-->
-                                        <!--</datalist>&ndash;&gt;-->
-                                            <!--<ui-select  ng-model="selectedOperation.selected" theme="bootstrap" title="Choose operation" ng-disabled="disable">-->
-                                                <!--<ui-select-match placeholder="Choose operation">{{$select.selected}}</ui-select-match>-->
-                                                <!--<ui-select-choices  repeat="layout in getAllOperationForAType(rule.type)" position='down'>-->
-                                                    <!--<div ng-bind-html="layout | highlight: $select.search"></div>-->
-                                                <!--</ui-select-choices>-->
-                                            <!--</ui-select>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                                <!--<div class="form-group">-->
-                                    <!--<label class="control-label col-sm-3">Value</label>-->
-                                    <!--<div class=" col-sm-7">-->
-                                        <!--<input type="text" ng-model="rule.value" class="form-control">-->
-                                    <!--</div>-->
-                                <!--</div>-->
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer"  ng-if="moveToRules()">
             <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal">{{btns.name}}</button>
+        </div>
+        <div class="modal-footer"  ng-if="!moveToRules()">
+            <button   type="button" ng-click="skipToRules()" class="btn btn-primary">Skip</button>
+            <button   type="button" ng-click="uploadLayout()" class="btn btn-primary">Next</button>
         </div>
     </div>
 </div>
