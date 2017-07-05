@@ -69,7 +69,7 @@ app.controller('ruleController',function($scope,$http,ModalService){
           body:{
             bodyContent :ruleInfo
           },
-          header: type === 'Add' ? 'Add new brand' : 'Update '+ ruleInfo.name,
+          header: type === 'Add' ? 'Add Rule' : 'Update '+ ruleInfo.name,
           conFirmBtnText : [
             {name: 'cancel'},
             {name: type }

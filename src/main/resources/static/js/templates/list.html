@@ -1,79 +1,26 @@
 <div class="manage-brands" ng-controller="listCtrl" ng-init="getLayouts();">
-    <!--<div class="col-md-12">-->
-    <!--<div class="col-md-4">-->
-    <!--<div class="form-group">-->
-    <!--<label class="control-label col-md-5">Brand</label>-->
-    <!--<div class="col-md-7">-->
-    <!--<ui-select multiple ng-model="selectedLayouts" theme="bootstrap" title="Choose Brand" on-remove="onLayoutRemoval($item, $model)" on-select="onLayoutSelect($item, $model)">-->
-    <!--<ui-select-match placeholder="Select Filter">{{$item.brand}}</ui-select-match>-->
-    <!--<ui-select-choices  repeat="layout in layouts" position='down'>-->
-    <!--<div ng-bind-html="layout.brand | highlight: $select.search"></div>-->
-    <!--</ui-select-choices>-->
-    <!--</ui-select>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-    <!--<label class="control-label col-md-5">Distribution</label>-->
-    <!--<div class="col-md-7">-->
-    <!--<ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="on($item, $model)"on-select="onBrandSelect($item, $model)">-->
-    <!--<ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>-->
-    <!--<ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>-->
-    <!--<div ng-bind-html="eachBrand | highlight: $select.search"></div>-->
-    <!--</ui-select-choices>-->
-    <!--</ui-select>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="col-md-4">-->
-    <!--<div class="form-group">-->
-    <!--<label class="control-label col-md-5">Legal Part Class</label>-->
-    <!--<div class="col-md-7">-->
-    <!--<ui-select multiple ng-model="states" theme="bootstrap" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">-->
-    <!--<ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>-->
-    <!--<ui-select-choices  repeat="eachOverview in possibleStates" position='down'>-->
-    <!--<div ng-bind-html="eachOverview | highlight: $select.search"></div>-->
-    <!--</ui-select-choices>-->
-    <!--</ui-select>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-    <!--<label class="control-label col-md-5">Credit Limit</label>-->
-    <!--<div class="col-md-7">-->
-    <!--<ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="onBrandRemoval($item, $model)"on-select="onBrandSelect($item, $model)">-->
-    <!--<ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>-->
-    <!--<ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>-->
-    <!--<div ng-bind-html="eachBrand | highlight: $select.search"></div>-->
-    <!--</ui-select-choices>-->
-    <!--</ui-select>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="col-md-4">-->
-    <!--<div class="row form-group">-->
-    <!--<label class="control-label col-md-5">Account Category</label>-->
-    <!--<div class="col-md-7">-->
-    <!--<input type="text" ng-model="fromDate"  datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
     <div class="col-md-12">
         <table st-table="displayedCollection" st-safe-src="allLayouts" class="table table-align">
             <thead>
             <tr>
                 <th>Brand</th>
-                <th width="40px">
-                <th width="40px">
-                    <!--<th >legalPartClass</th>-->
-                    <!--<th >accountCategory</th>-->
-                    <!--<th >distributionMethod</th>-->
-                    <!--<th >creditLimit</th>-->
+                <!--<th width="40px">
+                <th width="40px">-->
+                <th>Layout Name</th>
+                <th>Layout Description</th>
+                <th>Version</th>
+                <th>Rules Attached</th>
+                
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat-start = "layoutItem in displayedCollection">
                 <td>{{layoutItem.brand}}</td>
-                <td ng-click="dropDownList($event,layoutItem)"><i ng-class="{'fa fa-caret-down': dropDown !== layoutItem , 'fa fa-caret-up': dropDown === layoutItem}"></i></td>
+                <td>{{layoutItem.name}}</td>
+                <td>{{layoutItem.description}}</td>
+                <td>{{layoutItem.version}}</td>
+                <td ng-click="dropDownList($event,layoutItem)" ng-class="{'disabled' : layoutItem.layoutRule.layoutRuleMapList.length==0}">{{layoutItem.layoutRule.layoutRuleMapList.length}}</td>
+                <!--<td ng-click="dropDownList($event,layoutItem)"><i ng-class="{'fa fa-caret-down': dropDown !== layoutItem , 'fa fa-caret-up': dropDown === layoutItem}"></i></td>-->
                 <!--<td>{{layoutItem.legalPartClass}}</td>-->
                 <!--<td>{{layoutItem.accountCategory}}</td>-->
                 <!--<td>{{layoutItem.distributionMethod}}</td>-->
@@ -81,19 +28,19 @@
             </tr>
             <tr ng-repeat-end ng-if="dropDown === layoutItem">
                 <td  colspan="3">
-                    <table class="table table-striped">
+                    <table class="table">
                         <thead>
                         <tr>
-                            <th>Brand</th>
-                            <th>id</th>
-                            <th>layoutId</th>
+                            <th>Name</th>
+                            <th>Operation</th>
+                            <th>Value</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>{{layoutItem.layoutRule.brand}}</td>
-                            <td>{{layoutItem.layoutRule.id}}</td>
-                            <td>{{layoutItem.layoutRule.layoutId}}</td>
+                        <tr ng-repeat ="eachRule in layoutItem.layoutRule.layoutRuleMapList">
+                            <td>{{eachRule.name}}</td>
+                            <td>{{eachRule.operation}}</td>
+                            <td>{{eachRule.value}}</td>
                         </tr>
                         </tbody>
                     </table>
