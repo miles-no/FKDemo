@@ -57,6 +57,13 @@ app.controller('listPopupController',function($scope,options,close, $http){
         $scope.selectedTemplate = [];
         $scope.items.template ={ name : ''}
     }
+    $scope.onTemplateChange = function(){
+        console.log('Came here on Template change',$scope.selectedTemplate)
+        $scope.selectedTemplate ={};
+    };
+    $scope.$watch('items.template',function(){
+        $scope.onTemplateChange();
+    });
     let init = function(){
         getBrands();
         getLayouts();

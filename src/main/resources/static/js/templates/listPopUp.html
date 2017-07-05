@@ -24,32 +24,31 @@
                         <label class="control-label col-sm-3">Template</label>
                         <div class="col-sm-8 row">
                             <div class="col-sm-8">
-                                <ui-select  ng-model="selectedTemplate" theme="bootstrap" title="Choose Existing Template" on-select="onLayoutSelect($item, $model)" ng-disabled="disable">
-                                    <ui-select-match placeholder="Choose Existing Layout">{{selectedTemplate.name}}</ui-select-match>
+                                <ui-select  ng-model="selectedTemplate.selected" theme="bootstrap" title="Choose Existing Template" on-select="onLayoutSelect($item, $model)" ng-disabled="disable">
+                                    <ui-select-match placeholder="Choose Existing Layout">{{$select.selected.name}}</ui-select-match>
                                     <ui-select-choices  repeat="layout in allLayouts" position='down'>
                                         <div ng-bind-html="layout.name | highlight: $select.search"></div>
                                     </ui-select-choices>
                                 </ui-select>
-
                             </div>
                             <div class="col-sm-8" ng-if="items.template.name.length > 0">
                                 <input type="text" ng-value="items.template.name" class="form-control" readonly="readonly">
                             </div>
-                            <div class="upload-btn-wrapper col-sm-2" ng-if="selectedTemplate.brand.length > 0">
+                            <div class="upload-btn-wrapper col-sm-2" ng-if="selectedTemplate.name.length > 0">
                                 <i class="fa fa-external-link" aria-hidden="true"></i>
                             </div>
-                            <div class="col-sm-2" ng-if="selectedTemplate.brand.length > 0 || items.template.name.length > 0">
+                            <div class="col-sm-2" ng-if="selectedTemplate.name.length > 0 || items.template.name.length > 0">
                                 <i class="btn" ng-click="clearTemplate()" aria-hidden="true">Clear</i>
                             </div>
 
 
-                            <div class="col-sm-1 text-center" ng-if="selectedTemplate.length == 0 && items.template.name.length ==  0">
+                            <div class="col-sm-1 text-center">
                                 OR
                             </div>
 
-                            <div class="upload-btn-wrapper col-sm-3 " ng-if="selectedTemplate.length == 0">
+                            <div class="upload-btn-wrapper col-sm-3 ">
                                 <button class="btn btn-primary">Upload</button>
-                                <input type="file" file-model="items.template">
+                                <input type="file" file-model="items.template" >
                             </div>
 
                         </div>
