@@ -32,6 +32,17 @@ app.controller('listPopupController',function($scope,options,close, $http){
         prepareModel()
         close(result,200);
     }
+    $scope.addBrands = false
+
+    $scope.skipToRules = function(){
+        if($scope.addBrands === false){
+            $scope.addBrands = true
+        }
+        else{
+            $scope.addBrands = false
+        }
+    }
+
     $scope.getAllOperationForAType = function(type){
         switch(type){
             case 'STRING':
@@ -52,26 +63,26 @@ app.controller('listPopupController',function($scope,options,close, $http){
     $scope.selectedBrands = '';
     $scope.selectedTemplate={};
     let getBrands = function (){
-        
+
         $http.get('/brand/config/brand').then(function (response) {
-             $scope.allBrands = response.data;
-             $scope.allBrands.push('All');
+            $scope.allBrands = response.data;
+            $scope.allBrands.push('All');
         },function error(error){
-             $scope.allBrands = [];
+            $scope.allBrands = [];
         });
     }
     let getLayouts = function () {
 
         $http.get('/layout/list').then(function (response) {
-             $scope.allLayouts = response.data;;
+            $scope.allLayouts = response.data;
         },function error(error){
-             $scope.allLayouts = {};
+            $scope.allLayouts = {};
         })
-       // $scope.allLayouts = $scope.layouts = [{brand: 'KHSD'},{brand: 'ASD'},{brand: 'QWE'}]
+        // $scope.allLayouts = $scope.layouts = [{brand: 'KHSD'},{brand: 'ASD'},{brand: 'QWE'}]
         console.log('$scope.allLayouts',$scope.allLayouts)
     }
 
-    
+
     $scope.onBrandSelect = function(item,model){
         $scope.selectedBrands = item;
     }
@@ -88,6 +99,10 @@ app.controller('listPopupController',function($scope,options,close, $http){
         console.log('Came here on Template change',$scope.selectedTemplate)
         $scope.selectedTemplate ={};
     };
+    $scope.uploadLayout = function(){
+        $scope.selectedTemplate.selected = items.template;
+        console.log($scope.selectedTemplate.selected)
+    }
     $scope.$watch('items.template',function(){
         $scope.onTemplateChange();
     });

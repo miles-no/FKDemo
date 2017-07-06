@@ -1,8 +1,6 @@
 app.controller('listCtrl',function($scope,ModalService,$http){
 
   //$scope.layouts =[];
-
-
   var newLayout = {
       brand: '',
       legalPartClass: '',
@@ -41,12 +39,8 @@ app.controller('listCtrl',function($scope,ModalService,$http){
   //    });
   //    showSelectedLayouts()
   //}
-  $scope.getLayouts = function () {
-    $http.get('/layout/template/all').then(function (response) {
-      $scope.allLayouts =  $scope.layouts = response.data;
-    })
-  }
-  //
+
+
   //function addLayout (layout) {
   //    $http.post('/layout/config',layout).then(function (response) {
   //        $scope.getLayouts()
@@ -59,41 +53,8 @@ app.controller('listCtrl',function($scope,ModalService,$http){
   //    })
   //}
   //
-  //$scope.deleteLayouts = function (layout, $event) {
-  //    $event.stopPropagation();
-  //    ModalService.showModal({
-  //        templateUrl: 'js/modals/confirmDelete.html',
-  //        controller:'listPopupController',
-  //        inputs:{
-  //            options:{
-  //                body:{
-  //                    bodyContent: 'Please confirm to delete ',
-  //                    layout: layout
-  //                },
-  //                header: "Delete Layout",
-  //                conFirmBtnText : [
-  //                    {name: 'cancel'},
-  //                    {name: "Delete" }
-  //                ],
-  //                classes: {
-  //                    modalBody: '',
-  //                    body: 'manage-brand'
-  //                }
-  //            }
-  //        }
-  //    }).then(function(modal){
-  //        modal.element.modal();
-  //        modal.close.then(function(result){
-  //            if(result=='Delete'){
-  //                $http.delete('/layout/config', layout.id).then(function (response) {
-  //                    $scope.getLayouts()
-  //                })
-  //            }
-  //        })
-  //    })
-  //}
-  //
     function showModal (layoutInfo, type) {
+      console.log(layoutInfo)
         ModalService.showModal({
             templateUrl: 'js/templates/listPopUp.html',
             controller: 'listPopupController',
@@ -125,7 +86,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
             });
         });
     }
-    $scope.updateLayout = function (layoutInfo) {
+    $scope.updateTemplate = function (layoutInfo) {
         showModal(layoutInfo, 'Update')
     }
 
@@ -137,13 +98,17 @@ app.controller('listCtrl',function($scope,ModalService,$http){
 
    $scope.getLayouts = function () {
       $http.get('/layout/template/all').then(function (response) {
-          $scope.allLayouts =  $scope.layouts = response.data;
+          $scope.allLayouts =  response.data;
+      }).catch(function(data){
+        $scope.allLayouts  = data;
       })
    }
 
   $scope.getBrands = function(){
     $http.get('/layout/rules').then(function(response){
       $scope.brands = response.data
+    }).catch(function(data){
+      $scope.brands = data;
     })
   }
 

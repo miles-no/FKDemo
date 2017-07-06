@@ -18,7 +18,12 @@
   .btn-align{
     margin: 0 10px 40px 0;
   }
-
+  .table-dropdown{
+   table-layout: fixed;
+  }
+  .table-padding{
+    padding: 15px 117px 15px 44px;
+  }
   .ui-select{
     margin : 20px auto;
     .key-text{

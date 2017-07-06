@@ -4,31 +4,24 @@
             <thead>
             <tr>
                 <th>Brand</th>
-                <!--<th width="40px">
-                <th width="40px">-->
                 <th>Layout Name</th>
                 <th>Layout Description</th>
                 <th>Version</th>
                 <th>Rules Attached</th>
-                
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat-start = "layoutItem in displayedCollection">
+            <tr ng-repeat-start = "layoutItem in displayedCollection" ng-click="updateTemplate(layoutItem)">
                 <td>{{layoutItem.brand}}</td>
                 <td>{{layoutItem.name}}</td>
                 <td>{{layoutItem.description}}</td>
                 <td>{{layoutItem.version}}</td>
-                <td ng-click="dropDownList($event,layoutItem)" ng-class="{'disabled' : layoutItem.layoutRule.layoutRuleMapList.length==0}">{{layoutItem.layoutRule.layoutRuleMapList.length}}</td>
-                <!--<td ng-click="dropDownList($event,layoutItem)"><i ng-class="{'fa fa-caret-down': dropDown !== layoutItem , 'fa fa-caret-up': dropDown === layoutItem}"></i></td>-->
-                <!--<td>{{layoutItem.legalPartClass}}</td>-->
-                <!--<td>{{layoutItem.accountCategory}}</td>-->
-                <!--<td>{{layoutItem.distributionMethod}}</td>-->
-                <!--<td>{{layoutItem.creditLimit}}</td>-->
+                <td ng-class="{'disabled' : layoutItem.layoutRule.layoutRuleMapList.length==0}"><a ng-click="dropDownList($event,layoutItem)">{{layoutItem.layoutRule.layoutRuleMapList.length}}</a></td>
+                <td ng-show="dropDown === layoutItem"><i class="fa fa-caret-up"></i></td>
             </tr>
             <tr ng-repeat-end ng-if="dropDown === layoutItem">
-                <td  colspan="3">
-                    <table class="table">
+                <td  colspan="5" class="table-padding">
+                    <table class="table table-striped table-sm table-dropdown">
                         <thead>
                         <tr>
                             <th>Name</th>
@@ -47,13 +40,6 @@
                 </td>
             </tr>
             </tbody>
-            <tfoot>
-            <!--<tr>-->
-            <!--<td colspan="100%" class="text-center">-->
-            <!--<div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>-->
-            <!--</td>-->
-            <!--</tr>-->
-            </tfoot>
         </table>
         <div class="text-right">
             <button ng-click="addTemplate()" class="btn btn-primary">Add Template</button><!-- modal opens upon clicking of add brand -->

@@ -5,26 +5,25 @@
             <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title">{{options.header}}</h4>
         </div>
-        <div class="modal-body {{options.classes.modalBody}}"  >
-            <div class="row">
-                <div class="col-sm-7">
-                    <div class="col-sm-6" ng-if="items.template.name.length > 0">
-                        <div class="row">
-                            <input type="text" ng-value="items.template.name" class="form-control" readonly="readonly">
-                        </div>
-                        <div class="row">
-                            <input type="text" ng-value="items.template.desc" class="form-control" readonly="readonly">
-                        </div>
+        <div class="modal-body {{options.classes.modalBody}}">
+            <div class="row" ng-if="!addBrands">
+                <!--ng-if="items.template.name.length > 0"-->
+                <div class="col-sm-offset-1 col-sm-8">
+                    <div class="col-sm-6">
+                        <input type="text" ng-value="items.template.name" class="form-control" readonly="readonly">
                     </div>
-                    <div class="col-sm-4">
-                        <div class="upload-btn-wrapper">
-                            <button class="btn btn-primary col-sm-12">Upload</button>
-                            <input type="file" accept=".xml" file-model="items.template" >
-                        </div>
+                    <div class="col-sm-6">
+                        <input type="text" ng-value="items.template.desc" class="form-control" readonly="readonly">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="upload-btn-wrapper">
+                        <button class="btn btn-primary col-sm-12">Upload</button>
+                        <input type="file" accept=".xml" file-model="items.template" >
                     </div>
                 </div>
             </div> 
-            <div class="manage-brands" ng-if="moveToRules()">
+            <div class="manage-brands" ng-if="addBrands">
                 <form class="form-horizontal">
                     <div class="form-group">
                         <label class="control-label col-sm-3">Brand</label>
@@ -36,13 +35,12 @@
                                 </ui-select-choices>
                             </ui-select>
                         </div>
-
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3">Template</label>
-                        <div class="col-sm-9">
-                            <div class="col-sm-3">
-                                <div class="col-sm-10">
+                        <div class="col-sm-7">
+                            <div>
+                                <div>
                                     <ui-select  ng-model="selectedTemplate.selected" theme="bootstrap" title="Choose Existing Template"  ng-disabled="disable">
                                         <ui-select-match placeholder="Choose Existing Layout">{{$select.selected.name}}</ui-select-match>
                                         <ui-select-choices  repeat="layout in allLayouts" position='down'>
@@ -50,14 +48,10 @@
                                         </ui-select-choices>
                                     </ui-select>
                                 </div>
-                                <div class="col-sm-2 upload-btn-wrapper" ng-if="selectedTemplate.selected.name.length > 0">
-                                    <i class="fa fa-external-link" aria-hidden="true"></i>
-                                </div>
+                                <!--<div class="col-sm-2 upload-btn-wrapper" ng-if="selectedTemplate.selected.name.length > 0">-->
+                                    <!--<i class="fa fa-external-link" aria-hidden="true"></i>-->
+                                <!--</div>-->
                             </div>
-                             <!--<div class="text-center">
-                                    OR
-                                </div>-->
-                            
                         </div>
                         
                     </div>
@@ -80,7 +74,6 @@
                                     <!--</div>-->
                                     <!--<div class="col-sm-1"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>-->
                                 <!--</div>-->
-
                                 <div class="modal-field-content row">
                                     <input type="text" ng-model="rule.name" class="form-control modal-box col-sm-2 col-sm-offset-1">
 
@@ -102,12 +95,13 @@
                 </form>
             </div>
         </div>
-        <div class="modal-footer"  ng-if="moveToRules()">
+        <div class="modal-footer"  ng-if="addBrands">
+            <button  type="button" ng-click="skipToRules()" class="btn btn-primary">Back</button>
             <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal">{{btns.name}}</button>
         </div>
-        <div class="modal-footer"  ng-if="!moveToRules()">
+        <div class="modal-footer"  ng-show="!addBrands">
             <button   type="button" ng-click="skipToRules()" class="btn btn-primary">Skip</button>
-            <button   type="button" ng-click="uploadLayout()" class="btn btn-primary">Next</button>
+            <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "items.template.name.length === 0">Next</button>
         </div>
     </div>
 </div>
