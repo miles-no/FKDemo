@@ -161,6 +161,7 @@ public class AppConfig {
             logger.error("Exception registering Fonts",e);
         }
         EngineConfig engineConfig = new EngineConfig();
+
         IReportEngine engine = null;
         //engineConfig.setEngineHome(IMConstants.BIRT_ENGINE_HOME_PATH);
         String logPath = configService.getString(IMConstants.BIRT_ENGINE_LOG_PATH);
@@ -168,11 +169,16 @@ public class AppConfig {
             engineConfig.setLogConfig(logPath, Level.FINE);
         }
 
+        String birtResourcePath = configService.getString(IMConstants.BIRT_RESOURCE_PATH);
+        engineConfig.setResourcePath(birtResourcePath);
+        logger.debug("Birt Resource path "+engineConfig.getResourcePath());
+
         Platform.startup(engineConfig);
         IReportEngineFactory factory = (IReportEngineFactory) Platform
                 .createFactoryObject( IReportEngineFactory.EXTENSION_REPORT_ENGINE_FACTORY );
         engine = factory.createReportEngine( engineConfig );
         engine.changeLogLevel( Level.WARNING );
+
         stopWatch.stop();
         logger.debug(stopWatch.prettyPrint());
 

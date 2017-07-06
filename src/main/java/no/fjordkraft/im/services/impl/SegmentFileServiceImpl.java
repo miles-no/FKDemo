@@ -6,6 +6,8 @@ import no.fjordkraft.im.repository.SegmentFileRepository;
 import no.fjordkraft.im.services.SegmentFileService;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import java.nio.charset.StandardCharsets;
  */
 @Service
 public class SegmentFileServiceImpl implements SegmentFileService{
+
+    private static final Logger logger = LoggerFactory.getLogger(SegmentFileServiceImpl.class);
 
     @Autowired
     SegmentFileRepository segmentFileRepository;
@@ -49,8 +53,10 @@ public class SegmentFileServiceImpl implements SegmentFileService{
             fileContent = getFileContent(Long.valueOf(campaignID));
         } else {
             segmentControlFileResult = segmentControlFileService.getSegmentControlByBrand(brand);
+            logger.debug("Get segment for brand "+brand);
             if(null != segmentControlFileResult) {
                 campaignID = segmentControlFileResult.getIdCampaign();
+                logger.debug("Get segment for brand "+brand+ " campaignId "+ campaignID);
                 fileContent = getFileContent(Long.valueOf(campaignID));
             }
         }

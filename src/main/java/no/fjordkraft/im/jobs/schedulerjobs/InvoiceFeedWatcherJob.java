@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
         manualAllowed = true,
         checkForWorkingDay = false,
         editAllowed = true,
-        status = JobStatus.disabled
+        status = JobStatus.enabled
 )
 @Description("Moves invoices from TransferFile table to SystemBatchInput")
 @Configuration(knownParameters = {

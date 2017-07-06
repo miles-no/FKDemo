@@ -145,12 +145,12 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         String accountNo = statement.getAccountNumber();
         String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
         try {
-            EngineConfig engineConfig = new EngineConfig();
+            /*EngineConfig engineConfig = new EngineConfig();
             engineConfig.setResourcePath(birtResourcePath);
             Platform.startup(engineConfig);
             IReportEngineFactory factory = (IReportEngineFactory) Platform
                     .createFactoryObject( IReportEngineFactory.EXTENSION_REPORT_ENGINE_FACTORY );
-            reportEngine = factory.createReportEngine(engineConfig);
+            reportEngine = factory.createReportEngine(engineConfig);*/
 
             String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + statement.getInvoiceNumber() + File.separator ;
             String xmlFilePath =  basePath + xmlFolderName + File.separator + "statement.xml";
@@ -164,11 +164,14 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             encoding = encoding == null ? "UTF-8":encoding;
             logger.debug("read layout from filesystem "+readFromFile+" encoding "+ encoding);
             if(readFromFile ) {
+                runnable = reportEngine.openReportDesign(reportDesignFilePath);
+            } else {
                 String rptDesign = layoutDesignService.getRptDesignFile(statement.getLayoutID());
+                if(null != rptDesign) {
+                    logger.debug(" layout is "+ statement.getLayoutID());
+                }
                 InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(Charset.forName(encoding)));
                 runnable = reportEngine.openReportDesign(designStream);
-            } else {
-                runnable = reportEngine.openReportDesign(reportDesignFilePath);
             }
 
             IRunAndRenderTask task  = reportEngine.createRunAndRenderTask(runnable);

@@ -3,10 +3,13 @@ package no.fjordkraft.im.controller;
 import com.sun.org.apache.xpath.internal.operations.Mult;
 import no.fjordkraft.im.domain.*;
 import no.fjordkraft.im.model.*;
+import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.impl.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.eclipse.birt.core.exception.BirtException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
@@ -28,6 +32,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/layout")
 public class IMLayoutController {
+
+    private static final Logger logger = LoggerFactory.getLogger(IMLayoutController.class);
 
     @Autowired
     RuleAttributesServiceImpl ruleAttributesService;
@@ -46,6 +52,9 @@ public class IMLayoutController {
 
     @Autowired
     PDFGeneratorImpl pdfGenerator;
+
+    @Autowired
+    ConfigService configService;
 
     @RequestMapping(value = "attribute", method = RequestMethod.GET)
     @ResponseBody
@@ -105,8 +114,11 @@ public class IMLayoutController {
                             @RequestPart("description") String description,
                             @RequestPart(value = "file", required = false) MultipartFile file) throws IOException {
         String template = null;
+        String encoding = configService.getString("save.layout.encoding");
+        encoding = encoding == null ? "UTF-8":encoding;
+        logger.debug("saveLayoutTemplate encoding "+ encoding);
         if(null != file) {
-            template = FileUtils.readFileToString(convert(file), StandardCharsets.ISO_8859_1);
+            template = FileUtils.readFileToString(convert(file), Charset.forName(encoding));
         }
         RestLayoutTemplate restLayoutTemplate = new RestLayoutTemplate();
         restLayoutTemplate.setName(name);
@@ -122,8 +134,11 @@ public class IMLayoutController {
                                 @RequestPart("description") String description,
                               @RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
         String template = null;
+        String encoding = configService.getString("save.layout.encoding");
+        encoding = encoding == null ? "UTF-8":encoding;
+        logger.debug("saveLayoutTemplate encoding "+ encoding);
         if(null != file) {
-            template = FileUtils.readFileToString(convert(file), StandardCharsets.ISO_8859_1);
+            template = FileUtils.readFileToString(convert(file), Charset.forName(encoding));
         }
         RestLayoutTemplate restLayoutTemplate = new RestLayoutTemplate();
         restLayoutTemplate.setName(name);

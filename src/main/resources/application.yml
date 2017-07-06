@@ -1,6 +1,21 @@
 server:
   port: 8888
 
+spring:
+  main:
+    banner-mode: 'off'
+  profiles.active: dev
+  http:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  datasource:
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: bhavik
+    password: bhavik123
+
 logging:
   level:
     org.springframework.web: ERROR
@@ -9,3 +24,6 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
   file: /opt/app/invoice_manager/logs/application.log
+
+if320.skip.bytes: true
+base.directory.path: /opt/app/invoice_manager/if320-samples
