@@ -77,7 +77,8 @@
                                 <div class="modal-field-content row">
                                     <input type="text" ng-model="rule.name" class="form-control modal-box col-sm-2 col-sm-offset-1">
 
-                                    <div class="modal-box ui-box col-sm-4"><ui-select  ng-model="selectedOperation.selected" theme="bootstrap" title="Choose operation" ng-disabled="disable">
+                                    <div class="modal-box ui-box col-sm-4">
+                                        <ui-select  ng-model="selectedOperation.selected" theme="bootstrap" title="Choose operation" ng-disabled="disable">
                                             <ui-select-match placeholder="Choose operation">{{$select.selected}}</ui-select-match>
                                             <ui-select-choices  repeat="layout in getAllOperationForAType(rule.type)" position='down'>
                                                 <div ng-bind-html="layout | highlight: $select.search"></div>
@@ -90,6 +91,14 @@
                                     <div class="rule-delete col-sm-1 modal-box"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="rule-selector-dropdown">
+                            <ui-select  ng-model="selectedRule.selected" theme="bootstrap" title="Choose operation" ng-disabled="disable" on-select="addRuleToDisplay($item,$model)">
+                                <ui-select-match placeholder="Choose Rule to Add">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices  repeat="rule in getAvailableRules()" position='down'>
+                                    <div ng-bind-html="rule.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                     </div>
                 </form>

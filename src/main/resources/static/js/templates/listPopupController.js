@@ -1,4 +1,4 @@
-app.controller('listPopupController',function($scope,options,close, $http){
+app.controller('listPopupController',function($scope,options,close, $http,_){
     $scope.options = options;
     $scope.items = options.body.bodyContent
     $scope.allowRules = false;
@@ -7,20 +7,34 @@ app.controller('listPopupController',function($scope,options,close, $http){
             name: ''
         }
     }
+    let allPossibleRules = {}
     var ruleObj = {name: '', type: '', fileMapping: ''}
     //$scope.rulesList = [angular.copy(ruleObj), angular.copy(ruleObj)]
     $scope.hideUpload = true
     let getLayoutRules = function(){
         $http.get('layout/attribute').then(function (response) {
+             allPossibleRules = angular.copy(response.data);
              $scope.rulesList = response.data;
         },function error(error){
              $scope.rulesList = [];
         });
     }
     $scope.addRule = function () {
-        $scope.rulesList.push(angular.copy(ruleObj))
-    }
+        //$scope.rulesList.push(angular.copy(ruleObj))
 
+    }
+    $scope.getAvailableRules = function(){
+        return _.filter(allPossibleRules, function(eachRule){
+            return !_.find($scope.rulesList,function(eachRuleOnScreen){
+                return eachRuleOnScreen.name == eachRule.name;
+            })
+        })
+    }
+    $scope.addRuleToDisplay = function(item,model){
+        $scope.rulesList.push(_.find(allPossibleRules,function(e){
+            return e.name==item.name;
+        }));
+    }
     $scope.removeRule = function (item, index) {
         $scope.rulesList.splice(index,1)
     }
@@ -42,7 +56,6 @@ app.controller('listPopupController',function($scope,options,close, $http){
             $scope.addBrands = false
         }
     }
-
     $scope.getAllOperationForAType = function(type){
         switch(type){
             case 'STRING':
@@ -63,26 +76,26 @@ app.controller('listPopupController',function($scope,options,close, $http){
     $scope.selectedBrands = '';
     $scope.selectedTemplate={};
     let getBrands = function (){
-
+        
         $http.get('/brand/config/brand').then(function (response) {
-            $scope.allBrands = response.data;
-            $scope.allBrands.push('All');
+             $scope.allBrands = response.data;
+             $scope.allBrands.push('All');
         },function error(error){
-            $scope.allBrands = [];
+             $scope.allBrands = [];
         });
     }
     let getLayouts = function () {
 
         $http.get('/layout/list').then(function (response) {
-            $scope.allLayouts = response.data;
+             $scope.allLayouts = response.data;
         },function error(error){
-            $scope.allLayouts = {};
+             $scope.allLayouts = {};
         })
-        // $scope.allLayouts = $scope.layouts = [{brand: 'KHSD'},{brand: 'ASD'},{brand: 'QWE'}]
+       // $scope.allLayouts = $scope.layouts = [{brand: 'KHSD'},{brand: 'ASD'},{brand: 'QWE'}]
         console.log('$scope.allLayouts',$scope.allLayouts)
     }
 
-
+    
     $scope.onBrandSelect = function(item,model){
         $scope.selectedBrands = item;
     }
