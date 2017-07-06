@@ -18,4 +18,7 @@ logging:
   file: /opt/app/invoice_manager/logs/application.log
 
 if320.skip.bytes: true
-base.directory.path: /opt/app/invoice_manager/if320-samples
+
+liquibase:
+  context: dev
+  enabled: disable

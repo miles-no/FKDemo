@@ -18,5 +18,10 @@ logging:
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
   file: /opt/app/logs/application.log
 
-base.directory.path: /opt/app/invoice_manager/if320-samples
+
 if320.skip.bytes: true
+
+
+liquibase:
+  context: aws
+  enabled: disable

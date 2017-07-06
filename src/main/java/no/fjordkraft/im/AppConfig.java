@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.task.TaskExecutor;
@@ -50,6 +51,9 @@ public class AppConfig {
     @Autowired
     private ResourceLoader resourceLoader;
 
+    @Autowired
+    private Environment env;
+
     @Bean(name="SpringSchedulerStarter")
     @DependsOn("liquibase")
     public SpringSchedulerStarter getSpringSchedulerStarter() {
@@ -61,24 +65,21 @@ public class AppConfig {
 
     @Bean(name="marshaller")
     public Marshaller getJaxb2Marshaller() {
-
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         marshaller.setPackagesToScan("no.fjordkraft.im.if320.models");
         return marshaller;
-
     }
 
     @Bean
     public Unmarshaller getJaxb2UnMarshaller() {
-
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         marshaller.setPackagesToScan("no.fjordkraft.im.if320.models");
         return marshaller;
-
     }
 
 
     @Bean(name="FileSplitterExecutor")
+    @DependsOn("BirtEngine")
     public TaskExecutor getFileSplitterExecutor(ConfigService configService) {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(5);
@@ -116,8 +117,6 @@ public class AppConfig {
     @Bean(name="liquibase")
     public SpringLiquibase liquibase() throws SQLException {
 
-        Connection conn = dataSource.getConnection();
-
         // Locate change log file
         String changelogFile = "classpath:liquidbase/db-changelog.xml";
         Resource resource = resourceLoader.getResource(changelogFile);
@@ -126,11 +125,14 @@ public class AppConfig {
         // Configure Liquibase
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setChangeLog(changelogFile);
-        liquibase.setContexts("test,dev,prod");
         liquibase.setDataSource(dataSource);
-        //liquibase.setDefaultSchema("mySchema");
         liquibase.setDropFirst(false);
-        liquibase.setShouldRun(false);
+        String liquibaseStatus = env.getProperty("liquibase.enabled");
+        if(null !=liquibaseStatus &&  "DISABLE".equalsIgnoreCase(liquibaseStatus.toUpperCase())) {
+            liquibase.setShouldRun(false);
+        }
+        String context = env.getProperty("liquibase.context");
+        liquibase.setContexts(context);
 
         // Verbose logging
         Map<String, String> params = new HashMap<String, String>();
@@ -142,7 +144,7 @@ public class AppConfig {
 
 
     @Bean(name="BirtEngine")
-    @DependsOn("liquibase")
+    @DependsOn({"liquibase","SpringSchedulerStarter"})
     public IReportEngine getBirtEngine(ConfigService configService) throws BirtException {
         StopWatch stopWatch = new StopWatch();
      //   System.out.print("ULocale.getDefault(ULocale.Category.FORMAT) :: "+ULocale.getDefault(ULocale.Category.FORMAT));
