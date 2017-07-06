@@ -51,6 +51,7 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
                                     transaction.setEndDate(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice()
                                             .getInvoiceOrder().getReadingInfo111().getEndDate());
                                 }
+                                attachment.getFAKTURA().setFreeText(transaction.getFreeText());
                             }
                         }
                         kraftTransaction.add(createTransactionEntry(transaction, IMConstants.KRAFT));
@@ -78,6 +79,7 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
         resultTransaction.setAmountWithVat(transaction.getAmountWithVat()*IMConstants.NEGATIVE);
         resultTransaction.setStartDate(transaction.getStartDate());
         resultTransaction.setEndDate(transaction.getEndDate());
+        resultTransaction.setReference(transaction.getReference());
         return resultTransaction;
     }
 

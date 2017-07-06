@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element ref="{}AKTOR"/&gt;
  *         &lt;element ref="{}AKTORNAVN"/&gt;
  *         &lt;element ref="{}FAKTURANR"/&gt;
+ *         &lt;element ref="{}FREE_TEXT"/&gt;
  *         &lt;element ref="{}MAALEPUNKT"/&gt;
  *         &lt;element ref="{}FAKTURA_TYPE"/&gt;
  *         &lt;element ref="{}KUNDE_TYPE"/&gt;
@@ -49,6 +50,7 @@ import javax.xml.bind.annotation.XmlType;
     "aktor",
     "aktornavn",
     "fakturanr",
+    "freeText",
     "maalepunkt",
     "fakturatype",
     "kundetype",
@@ -71,6 +73,8 @@ public class FAKTURA {
     protected String aktornavn;
     @XmlElement(name = "FAKTURANR", required = true)
     protected String fakturanr;
+    @XmlElement(name = "FREE_TEXT", required = true)
+    protected String freeText;
     @XmlElement(name = "MAALEPUNKT")
     protected long maalepunkt;
     @XmlElement(name = "FAKTURA_TYPE", required = true)
@@ -404,5 +408,13 @@ public class FAKTURA {
 
     public void setVedleggehf(String vedleggehf) {
         this.vedleggehf = vedleggehf;
+    }
+
+    public String getFreeText() {
+        return freeText;
+    }
+
+    public void setFreeText(String freeText) {
+        this.freeText = freeText;
     }
 }
