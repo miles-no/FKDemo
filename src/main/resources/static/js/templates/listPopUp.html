@@ -53,11 +53,15 @@
                                 <!--</div>-->
                             </div>
                         </div>
-                        
+                        <div col-sm-2>
+                            <div class="col-sm-2 upload-btn-wrapper" ng-if="selectedTemplate.selected.name.length > 0" ng-click="downLoadLayout(selectedTemplate.selected.name)">
+                                <i class="fa fa-external-link icon-align" aria-hidden="true"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="rules-wrapper">
+                    <div class="rules-wrapper" ng-if="rulesList.length !== 0">
                         <div class="rules-heading">Rules
-                            <i class="fa fa-plus btn" ng-click="addRule()"> Add Rule</i>
+                            <!--<i class="fa fa-plus btn" ng-click="addRule()"> Add Rule</i>--> <!-- remove this css also it is not required-->
                         </div>
 
                         <div class="row">
@@ -92,13 +96,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="rule-selector-dropdown">
-                            <ui-select  ng-model="selectedRule.selected" theme="bootstrap" title="Choose operation" ng-disabled="disable" on-select="addRuleToDisplay($item,$model)">
-                                <ui-select-match placeholder="Choose Rule to Add">{{$select.selected.name}}</ui-select-match>
-                                <ui-select-choices  repeat="rule in getAvailableRules()" position='down'>
-                                    <div ng-bind-html="rule.name | highlight: $select.search"></div>
-                                </ui-select-choices>
-                            </ui-select>
+                        <div class="row">
+                            <div class="col-sm-offset-3 col-sm-5 rule-selector-dropdown">
+                                <ui-select  ng-model="selectedRule.selected" theme="bootstrap" title="Choose operation" ng-disabled="disable" on-select="addRuleToDisplay($item,$model)">
+                                    <ui-select-match placeholder="Choose Rule to Add">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices  repeat="rule in getAvailableRules()" position='down'>
+                                        <div ng-bind-html="rule.name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
                         </div>
                     </div>
                 </form>
