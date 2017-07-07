@@ -213,15 +213,16 @@ app.get('/config', function(req, res) {
 });
 
 app.post('/config', function(req, res) {
+  console.log('In POST /config '+ JSON.stringify(req.query));
   request({
     url: `${apiUrl}/config`,
     qs : {
-      key : req.body.name,
-      value: req.body.value
+      key : req.query.key,
+      value: req.query.value
     },
     method : 'POST'
 },function(error,response,body){
-  console.log(response)
+  console.log(response.request)
   res.send(body);
 })
 });
@@ -232,16 +233,16 @@ app.delete('/config/:id', function(req, res) {
     url: `${apiUrl}/config/`+req.params.id,
     method : 'DELETE'
 },function(error,response,body){
-  console.log(response)
+  console.log(body)
   res.send(body);
 })
 });
 
-app.put('/config/', function(req, res) {
+app.put('/config/:name', function(req, res) {
   request({
-    url: `${apiUrl}/config/`+req.body.name,
+    url: `${apiUrl}/config/`+req.params.name,
     qs:{
-      value: req.body.value
+      value: req.query.value
     },
     method : 'PUT'
 },function(error,response,body){
@@ -271,12 +272,8 @@ app.delete('/layout/attribute/:id',function(req,res,next){
 app.post('/layout/attribute', function(req, res) {
   request({
     url: `${apiUrl}/layout/attribute`,
-  qs : {
-    name : req.body.name,
-    type: req.body.type,
-    fieldMapping: req.body.fieldMapping
-  },
-  method : 'POST'
+    method : 'POST',
+    json : req.body,
 },function(error,response,body){
   console.log(response)
   res.send(body);
@@ -286,13 +283,8 @@ app.post('/layout/attribute', function(req, res) {
 app.put('/layout/attribute', function(req, res) {
   request({
     url: `${apiUrl}/layout/attribute/`+req.body.id,
-    qs : {
-      id: req.body.id,
-      name : req.body.name,
-      type: req.body.type,
-      fieldMapping: req.body.fieldMapping
-  },
-  method : 'PUT'
+    json : req.body,
+    method : 'PUT'
 },function(error,response,body){
   console.log(response)
   res.send(body);
@@ -313,6 +305,7 @@ app.get('/layout/template/all', function(req, res) {
   request({
     url: `${apiUrl}/layout/template/all`
 },function(error,response,body){
+  console.log('Resp is ', body)
   res.send(body);
 })
 });
