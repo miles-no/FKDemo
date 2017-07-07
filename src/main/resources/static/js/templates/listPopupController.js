@@ -7,6 +7,8 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
             name: ''
         }
     }
+    $scope.selectedBrand = '';
+    $scope.selectedTemplate={};
     let allPossibleRules = {}
     var ruleObj = {name: '', type: '', fileMapping: ''}
     //$scope.rulesList = [angular.copy(ruleObj), angular.copy(ruleObj)]
@@ -19,7 +21,10 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
             $scope.rulesList = [];
         });
     }
-    $scope.showRule = false
+    $scope.showRule = false;
+    $scope.showAddRule = function(index){
+        return $scope.rulesList.length-1 == index ;
+    }
     $scope.addRule = function () {
         if($scope.showRule === false){
             $scope.showRule = true
@@ -46,11 +51,24 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
         $scope.rulesList.splice(index,1)
     }
     let prepareModel = function(){
-
+        let rulesToPost = [];
+        _.forEach($scope.rulesList,function(e){ 
+                let obj= {name : e.name,operation : e.operation,value : e.value};
+                rulesToPost.push(obj);
+        })
+        let layoutObject = {
+            brand : $scope.selectedBrand,
+            layoutId : $scope.selectedTemplate.selected.value,
+            layoutRuleMapList : rulesToPost
+        }
+        return layoutObject;
     }
     $scope.dismissModal = function(result) {
-        console.log('in dismissModal ',$scope);
-        prepareModel()
+        console.log('in dismissModal ',$scope,result,prepareModel());
+        
+        if(result =='Add' || result ==='Update'){
+          console.log('Here in dismissModal reulet is ') ; 
+        }
         close(result,200);
     }
     $scope.addBrands = false
@@ -80,8 +98,7 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     /*if ($scope.items.brand.length > 0) {
      $scope.disable = true
      }*/
-    $scope.selectedBrands = '';
-    $scope.selectedTemplate={};
+    
     let getBrands = function (){
 
         $http.get('/brand/config/brand').then(function (response) {
@@ -104,7 +121,7 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
 
 
     $scope.onBrandSelect = function(item,model){
-        $scope.selectedBrands = item;
+        $scope.selectedBrand = item;
     }
 
     $scope.onLayoutSelect = function(item,model){
@@ -135,6 +152,7 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     $scope.moveToRules = function(){
         return false;
     }
+    
     let init = function(){
         getBrands();
         getLayouts();

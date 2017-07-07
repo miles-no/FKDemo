@@ -59,8 +59,8 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3">Brand</label>
                         <div class="col-md-7">
-                            <ui-select ng-model="selectedBrands" theme="bootstrap" title="Choose Brand" on-select="onBrandSelect($item, $model)" ng-disabled="disable">
-                                <ui-select-match placeholder="Select Brand">{{selectedBrands}}</ui-select-match>
+                            <ui-select ng-model="selectedBrand" theme="bootstrap" title="Choose Brand" on-select="onBrandSelect($item, $model)" ng-disabled="disable">
+                                <ui-select-match placeholder="Select Brand">{{selectedBrand}}</ui-select-match>
                                 <ui-select-choices  repeat="brand in allBrands" position='down'>
                                     <div ng-bind-html="brand | highlight: $select.search"></div>
                                 </ui-select-choices>
@@ -100,7 +100,7 @@
                             <label class="col-sm-4">Operation</label>
                             <label class="col-sm-3">Value</label>
                         </div>
-                        <div ng-repeat="rule in rulesList">
+                        <div ng-repeat="rule in rulesList track by $index">
                             <div class="panel">
                                 <!--<div class="form-group">-->
                                     <!--<label class="control-label col-sm-3">Name</label>-->
@@ -110,7 +110,7 @@
                                     <!--<div class="col-sm-1"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>-->
                                 <!--</div>-->
                                 <div class="modal-field-content row">
-                                    <input type="text" ng-model="rule.name" class="form-control modal-box col-sm-2 col-sm-offset-1">
+                                    <input type="text" ng-model="rule.name" class="form-control modal-box col-sm-2 col-sm-offset-1" readonly="readonly">
 
                                     <div class="modal-box ui-box col-sm-4">
                                         <ui-select  ng-model="selectedOperation.selected" theme="bootstrap" title="Choose operation" ng-disabled="disable">
@@ -123,12 +123,17 @@
 
                                     <input type="text" ng-model="rule.value" class="form-control modal-box col-sm-2">
 
-                                    <div class="rule-delete col-sm-1 modal-box"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>
+                                    <!--<div class="rule-delete col-sm-1 modal-box"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>
+                                    <div class="rule-delete col-sm-1 modal-box"><i class="fa fa-plus btn" ng-click="addRule()"></i></i></div>-->
+                                    <div class="col-sm-1">
+                                        <i class="fa fa-times" ng-click="removeRule(rule,$index)"></i>
+                                        <i class="fa fa-plus btn" ng-click="addRule()" ng-if="showAddRule($index) && getAvailableRules().length && getAvailableRules().length > 0"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-offset-3 col-sm-5 rule-selector-dropdown">
+                        <div class="row ">
+                            <div class="col-sm-offset-3 col-sm-5 rule-selector-dropdown" ng-if="showRule && getAvailableRules().length && getAvailableRules().length > 0">
                                 <ui-select  ng-model="selectedRule.selected" theme="bootstrap" title="Choose operation" ng-disabled="disable" on-select="addRuleToDisplay($item,$model)">
                                     <ui-select-match placeholder="Choose Rule to Add">{{$select.selected.name}}</ui-select-match>
                                     <ui-select-choices  repeat="rule in getAvailableRules()" position='down'>

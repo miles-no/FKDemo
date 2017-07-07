@@ -64,7 +64,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
                         bodyContent :layoutInfo,
                         layouts: $scope.layouts
                     },
-                    header: type === 'Add' ? 'Add new layout' : 'Update '+ layoutInfo.layout,
+                    header: type === 'Add' ? 'Add new Layout' : 'Update '+ layoutInfo.layout,
                     conFirmBtnText : [
                         {name: 'cancel'},
                         {name: type }
@@ -87,7 +87,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
         });
     }
     $scope.updateTemplate = function (layoutInfo) {
-        showModal(layoutInfo, 'Update')
+        showModal(layoutInfo.layoutRule, 'Update')
     }
 
     $scope.addTemplate = function () {

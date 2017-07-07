@@ -10,9 +10,13 @@ function navigationController($state, $rootScope, $http){
   }
 
   this.navigateTo = function (url) {
-    this.activeMenu = url
-    this.showMenu = !this.showMenu
-    $state.go(url)
+    if (! url){
+      $state.go('home');
+    }else{
+      this.activeMenu = url;
+      this.showMenu = !this.showMenu;
+      $state.go(url);
+    }
   }
 
   this.disableReset = false
