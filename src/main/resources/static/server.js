@@ -280,7 +280,7 @@ app.post('/layout/attribute', function(req, res) {
 })
 });
 
-app.put('/layout/attribute', function(req, res) {
+app.put('/layout/attribute/:id', function(req, res) {
   request({
     url: `${apiUrl}/layout/attribute/`+req.body.id,
     json : req.body,
@@ -322,6 +322,27 @@ app.get('/layout/list', function(req, res) {
   request({
     url: `${apiUrl}/layout/list`
 },function(error,response,body){
+  res.send(body);
+})
+});
+app.post('/layout/rule', function(req, res) {
+  request({
+    url: `${apiUrl}/layout/rule`,
+    method : 'POST',
+    json : req.body,
+},function(error,response,body){
+  console.log(response)
+  res.send(body);
+})
+});
+
+app.put('/layout/rule/:id', function(req, res) {
+  request({
+    url: `${apiUrl}/layout/rule/`+req.params.id,
+    json : req.body,
+    method : 'PUT'
+},function(error,response,body){
+  console.log(response)
   res.send(body);
 })
 });

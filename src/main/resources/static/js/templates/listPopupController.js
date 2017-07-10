@@ -1,6 +1,7 @@
 app.controller('listPopupController',function($scope,options,close, $http,_){
     $scope.options = options;
-    $scope.items = options.body.bodyContent
+    $scope.items = options.body.bodyContent;
+    $scope.templateInfo = options.body.bodyContent;
     $scope.allowRules = false;
     $scope.template = {
         name :'',
@@ -16,7 +17,7 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     let getLayoutRules = function(){
         $http.get('layout/attribute').then(function (response) {
             allPossibleRules = angular.copy(response.data);
-            $scope.rulesList = response.data;
+            $scope.rulesList = $scope.templateInfo ? $scope.templateInfo.layoutRuleMapList :response.data;
         },function error(error){
             $scope.rulesList = [];
         });
@@ -64,12 +65,12 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
         return layoutObject;
     }
     $scope.dismissModal = function(result) {
-        console.log('in dismissModal ',$scope,result,prepareModel());
-        
+        console.log('in dismissModal ',$scope,result);
+        //options.body.bodyContent = prepareModel();
         if(result =='Add' || result ==='Update'){
           console.log('Here in dismissModal reulet is ') ; 
         }
-        close(result,200);
+        close({ operation : result, data :prepareModel() },200);
     }
     $scope.addBrands = false
 
@@ -108,10 +109,11 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
             $scope.allBrands = [];
         });
     }
-    let getLayouts = function () {
+    let getLayouts = function (template) {
 
         $http.get('/layout/list').then(function (response) {
             $scope.allLayouts = response.data;
+            template ? $scope.selectedTemplate.selected = _.find($scope.allLayouts,function(l){return l.value==template.layoutId }):'';
         },function error(error){
             $scope.allLayouts = {};
         })
@@ -168,8 +170,8 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     }
     
     let init = function(){
-        getBrands();
-        getLayouts();
+        $scope.templateInfo  ? $scope.selectedBrand = $scope.templateInfo.brand : getBrands();
+        getLayouts($scope.templateInfo);
         getLayoutRules();
     }
     init();
