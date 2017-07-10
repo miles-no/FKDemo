@@ -48,7 +48,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
   }
   
   function updateLayout(layout) {
-     $http.put('/layout/rule/'+layout.id,layout).then(function (response) {
+     $http.put('/layout/rule/'+layout.layoutId,layout).then(function (response) {
          $scope.getLayouts()
      })
   }
@@ -58,7 +58,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
         ModalService.showModal({
             templateUrl: 'js/templates/listPopUp.html',
             controller: 'listPopupController',
-            inputs: {
+            inputs : {
                 options: {
                     body:{
                         bodyContent :layoutInfo,
