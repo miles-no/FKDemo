@@ -2,11 +2,11 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     $scope.options = options;
     $scope.items = options.body.bodyContent
     $scope.allowRules = false;
-    $scope.items = {
-        template : {
-            name: ''
-        }
-    }
+    $scope.template = {
+        name :'',
+        desc : '',
+        file : null
+    };
     $scope.selectedBrand = '';
     $scope.selectedTemplate={};
     let allPossibleRules = {}
@@ -135,17 +135,31 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     $scope.onTemplateChange = function(){
         console.log('Came here on Template change',$scope.selectedTemplate)
         $scope.selectedTemplate ={};
+        // !$scope.template.name ? $scope.template.name = $scope.template.file.name : '';
+        $scope.template.name = ($scope.template.file !== null) ? $scope.template.file.name : ''
     };
-    $scope.uploadLayout = function(){
-        $scope.selectedTemplate.selected = items.template;
-        console.log($scope.selectedTemplate.selected)
-    }
 
+    $scope.uploadLayout = function(){
+        $scope.selectedTemplate.selected = $scope.items;
+        var fd = new FormData()
+        fd.append('name', $scope.template.name)
+        fd.append('description', $scope.template.desc)
+        fd.append('file', $scope.template.file)
+        $http.post('http://ec2-52-57-41-173.eu-central-1.compute.amazonaws.com:8888/layout/template',fd,{
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined}
+        }).then(function(response){
+            console.log(response)
+            getLayoutRules()
+            $scope.skipToRules()
+        })//add error callback
+        console.log('test')
+    }
     $scope.downLoadLayout = function(layout){
         //TODO ADD FUNCTIONALITY FOR THIS
     }
 
-    $scope.$watch('items.template',function(){
+    $scope.$watch('template.file',function(){
         $scope.onTemplateChange();
     });
 

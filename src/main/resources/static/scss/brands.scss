@@ -18,8 +18,13 @@
   .btn-align{
     margin: 0 10px 40px 0;
   }
-  .table-dropdown{
-   table-layout: fixed;
+  .table-border{
+    background-clip: content-box;
+    box-shadow: inset 0 0 0 7px $table-color;
+    .table-dropdown{
+      table-layout: fixed;
+      margin-bottom: 0px;
+    }
   }
   .table-padding{
     padding: 15px 117px 15px 44px;

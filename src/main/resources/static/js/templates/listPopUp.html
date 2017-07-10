@@ -6,59 +6,36 @@
             <h4 class="modal-title">{{options.header}}</h4>
         </div>
         <div class="modal-body {{options.classes.modalBody}}">
-            <div class="row" ng-if="!addBrands">
-                <!--ng-if="items.template.name.length > 0"-->
-                <!--<div class="col-sm-offset-1 col-sm-8">-->
-                    <!--<label class="col-md-6">Name</label>-->
-                    <!--<label class="col-md-6">Description</label>-->
-                <!--</div>-->
-                <!--<div class="col-sm-offset-1 col-sm-8">-->
-                    <!--<div class="col-sm-6">-->
-                        <!--<input type="text" ng-value="items.template.name" class="form-control" readonly="readonly">-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-6">-->
-                        <!--<input type="text" ng-value="items.template.desc" class="form-control">-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-sm-2">-->
-                    <!--<div class="upload-btn-wrapper">-->
-                        <!--<button class="btn btn-primary col-sm-12">Upload</button>-->
-                        <!--<input type="file" accept=".xml" file-model="items.template" >-->
-                    <!--</div>-->
-                <!--</div>-->
-                <div class="form-group div-height">
-                    <label class="control-label col-sm-offset-2 col-sm-3">Name</label>
-                    <div class="col-sm-6">
-                        <input class="col-sm-6 form-control" type="text" ng-value="items.template.name" class="form-control">
+            <form name="uploadForm" novalidate>
+                <div class="row" ng-if="!addBrands">
+                    <div class="form-group div-height">
+                        <label class="control-label col-sm-offset-2 col-sm-3">Name</label>
+                        <div class="col-sm-6">
+                            <input class="col-sm-6 form-control" type="text" ng-model="template.name" class="form-control" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group div-height">
-                    <label class="control-label col-sm-offset-2 col-sm-3">Description</label>
-                    <div class=" col-sm-6">
-                        <input class="col-sm-6 form-control" type="text" ng-model="items.template.desc" class="form-control">
+                    <div class="form-group div-height">
+                        <label class="control-label col-sm-offset-2 col-sm-3">Description</label>
+                        <div class=" col-sm-6">
+                            <input class="col-sm-6 form-control" type="text" ng-model="template.desc" class="form-control" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group div-height">
-                    <label class="control-label col-sm-offset-2 col-sm-3">Choose Layout File</label>
-                    <div class=" col-sm-6">
-                        <div class="upload-btn-wrapper">
-                            <button class="btn btn-primary col-sm-4">Upload</button>
-                            <input type="file" accept=".xml" file-model="items.template" >
+                    <div class="form-group div-height">
+                        <label class="control-label col-sm-offset-2 col-sm-3">Choose Layout File</label>
+                        <div class=" col-sm-6">
+                            <div class="upload-btn-wrapper">
+                                <button class="btn btn-primary col-sm-4" >Upload</button>
+                                <input type="file" accept=".xml" file-model="template.file" class="col-sm-4">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!--<div class="col-sm-offset-9 col-sm-2">-->
-                    <!--<div class="upload-btn-wrapper">-->
-                        <!--<button class="btn btn-primary col-sm-12">Upload</button>-->
-                        <!--<input type="file" accept=".xml" file-model="items.template" >-->
-                    <!--</div>-->
-                <!--</div>-->
-            </div> 
+            </form>
             <div class="manage-brands" ng-if="addBrands">
                 <form class="form-horizontal">
                     <div class="form-group">
                         <label class="control-label col-sm-3">Brand</label>
-                        <div class="col-md-7">
+                        <div class="col-sm-7">
                             <ui-select ng-model="selectedBrand" theme="bootstrap" title="Choose Brand" on-select="onBrandSelect($item, $model)" ng-disabled="disable">
                                 <ui-select-match placeholder="Select Brand">{{selectedBrand}}</ui-select-match>
                                 <ui-select-choices  repeat="brand in allBrands" position='down'>
@@ -70,19 +47,15 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3">Template</label>
                         <div class="col-sm-7">
-                            <div>
-                                <div>
-                                    <ui-select  ng-model="selectedTemplate.selected" theme="bootstrap" title="Choose Existing Template"  ng-disabled="disable">
-                                        <ui-select-match placeholder="Choose Existing Layout">{{$select.selected.name}}</ui-select-match>
-                                        <ui-select-choices  repeat="layout in allLayouts" position='down'>
-                                            <div ng-bind-html="layout.name | highlight: $select.search"></div>
-                                        </ui-select-choices>
-                                    </ui-select>
-                                </div>
-                                <!--<div class="col-sm-2 upload-btn-wrapper" ng-if="selectedTemplate.selected.name.length > 0">-->
-                                    <!--<i class="fa fa-external-link" aria-hidden="true"></i>-->
-                                <!--</div>-->
-                            </div>
+                            <ui-select  ng-model="selectedTemplate.selected" theme="bootstrap" title="Choose Existing Template"  ng-disabled="disable">
+                                <ui-select-match placeholder="Choose Existing Layout">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices  repeat="layout in allLayouts" position='down'>
+                                    <div ng-bind-html="layout.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                            <!--<div class="col-sm-2 upload-btn-wrapper" ng-if="selectedTemplate.selected.name.length > 0">-->
+                            <!--<i class="fa fa-external-link" aria-hidden="true"></i>-->
+                            <!--</div>-->
                         </div>
                         <div col-sm-2>
                             <div class="col-sm-2 upload-btn-wrapper" ng-if="selectedTemplate.selected.name.length > 0" ng-click="downLoadLayout(selectedTemplate.selected.name)">
@@ -103,11 +76,11 @@
                         <div ng-repeat="rule in rulesList track by $index">
                             <div class="panel">
                                 <!--<div class="form-group">-->
-                                    <!--<label class="control-label col-sm-3">Name</label>-->
-                                    <!--<div class=" col-sm-7">-->
-                                        <!--<input type="text" ng-model="rule.name" class="form-control">-->
-                                    <!--</div>-->
-                                    <!--<div class="col-sm-1"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>-->
+                                <!--<label class="control-label col-sm-3">Name</label>-->
+                                <!--<div class=" col-sm-7">-->
+                                <!--<input type="text" ng-model="rule.name" class="form-control">-->
+                                <!--</div>-->
+                                <!--<div class="col-sm-1"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>-->
                                 <!--</div>-->
                                 <div class="modal-field-content row">
                                     <input type="text" ng-model="rule.name" class="form-control modal-box col-sm-2 col-sm-offset-1" readonly="readonly">
@@ -132,7 +105,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row ">
+                        <div class="row">
                             <div class="col-sm-offset-3 col-sm-5 rule-selector-dropdown" ng-if="showRule && getAvailableRules().length && getAvailableRules().length > 0">
                                 <ui-select  ng-model="selectedRule.selected" theme="bootstrap" title="Choose operation" ng-disabled="disable" on-select="addRuleToDisplay($item,$model)">
                                     <ui-select-match placeholder="Choose Rule to Add">{{$select.selected.name}}</ui-select-match>
@@ -152,7 +125,7 @@
         </div>
         <div class="modal-footer"  ng-show="!addBrands">
             <button   type="button" ng-click="skipToRules()" class="btn btn-primary">Skip</button>
-            <button   type="button" ng-click="uploadFileuploadFile()" class="btn btn-primary" ng-disabled = "items.template.name === ''">Next</button>
+            <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "(template.file === null  || uploadForm.$invalid)">Next</button>
         </div>
     </div>
 </div>
