@@ -1,6 +1,6 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
-import no.fjordkraft.im.if320.models.AccountCategory;
+import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.model.LayoutRule;
 import no.fjordkraft.im.model.LayoutRuleMap;
@@ -8,18 +8,14 @@ import no.fjordkraft.im.model.RuleAttributes;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.repository.StatementRepository;
-import no.fjordkraft.im.services.impl.LayoutRuleMapServiceImpl;
 import no.fjordkraft.im.services.impl.LayoutRuleServiceImpl;
 import no.fjordkraft.im.services.impl.RuleAttributesServiceImpl;
 import no.fjordkraft.im.util.IMConstants;
-import org.apache.poi.hssf.record.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.security.provider.certpath.CollectionCertStore;
 import org.apache.commons.beanutils.PropertyUtils;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Collections;
 
@@ -46,13 +42,13 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
         String statementBrand = request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
         //String statementBrand = "TKAS";
         Statement statement = request.getStatement();
+        boolean foundLayout = false;
 
         List<LayoutRule> layoutRules = layoutRuleService.getLayoutRuleByBrand(statementBrand);
         if(null != layoutRules) {
             Collections.sort(layoutRules);
             String rulename;
             RuleAttributes ruleAttributes = null;
-            boolean foundLayout = false;
 
             for (LayoutRule layoutRule : layoutRules) {
                 for (LayoutRuleMap layoutRuleMap : layoutRule.getLayoutRuleMapList()) {
@@ -112,6 +108,9 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
             }
         }
 
+        if(!foundLayout) {
+            throw new PreprocessorException("Layout not found");
+        }
         request.getEntity().setLayoutID(layoutID);
     }
 }

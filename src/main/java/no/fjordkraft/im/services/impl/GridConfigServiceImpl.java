@@ -23,7 +23,7 @@ public class GridConfigServiceImpl implements GridConfigService {
     public List<GridConfig> getGridConfigs() {
         return gridConfigRepository.findAll();
     }
-
+    
     @Override
     @Transactional
     public void saveGridConfig(GridConfig gridConfig) {
@@ -34,7 +34,7 @@ public class GridConfigServiceImpl implements GridConfigService {
     @Transactional
     public void updateGridConfig(GridConfig gridConfig) {
         GridConfig grid = gridConfigRepository.findOne(gridConfig.getId());
-        grid.setBrand(gridConfig.getBrand());
+        grid.setGridName(gridConfig.getGridName());
         grid.setEmail(gridConfig.getEmail());
         grid.setPhone(gridConfig.getPhone());
 
@@ -50,7 +50,7 @@ public class GridConfigServiceImpl implements GridConfigService {
     @Override
     @Transactional(readOnly=true)
     public GridConfig getGridConfigByBrand(String brand) {
-        return gridConfigRepository.getGridConfigByBrand(brand);
+        return gridConfigRepository.getGridConfigByGrid(brand);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class GridConfigServiceImpl implements GridConfigService {
     }
 
     @Override
-    public List<String> getAllBrands() {
-        return gridConfigRepository.getAllBrands();
+    public List<String> getAllGrids() {
+        return gridConfigRepository.getAllGrids();
     }
 }

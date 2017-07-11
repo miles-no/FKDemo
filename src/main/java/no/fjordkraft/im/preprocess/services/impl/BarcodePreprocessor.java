@@ -5,6 +5,8 @@ import no.fjordkraft.im.model.BrandConfig;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.repository.BrandConfigRepository;
+import no.fjordkraft.im.services.impl.AuditLogServiceImpl;
+import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,17 +26,26 @@ public class BarcodePreprocessor extends BasePreprocessor {
     @Autowired
     BrandConfigRepository barcodeConfigRepository;
 
+    @Autowired
+    AuditLogServiceImpl auditLogService;
+
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
 
         no.fjordkraft.im.model.Statement statement = request.getEntity();
-        BrandConfig brandConfig = barcodeConfigRepository.getBarcodeConfigByBrand(statement.getSystemBatchInput().getTransferFile().getBrand());
-        if(IMConstants.TRUE == brandConfig.getUseEABarcode()) {
-            String barcode = IMConstants.BARCODE_PREFIX + brandConfig.getAgreementNumber() + brandConfig.getServiceLevel()
-                    + brandConfig.getPrefixKID() + request.getStatement().getAccountNumber();
-            logger.debug("Barcode for statementId " + statement.getId() + " is " + barcode);
-            request.getStatement().setBarcode(Long.parseLong(barcode));
-            request.getStatement().setKontonummer(brandConfig.getKontonummer());
+        String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
+        BrandConfig brandConfig = barcodeConfigRepository.getBarcodeConfigByBrand(brand);
+        if(null != brandConfig) {
+            if (IMConstants.TRUE == brandConfig.getUseEABarcode()) {
+                String barcode = IMConstants.BARCODE_PREFIX + brandConfig.getAgreementNumber() + brandConfig.getServiceLevel()
+                        + brandConfig.getPrefixKID() + request.getStatement().getAccountNumber();
+                logger.debug("Barcode for statementId " + statement.getId() + " is " + barcode);
+                request.getStatement().setBarcode(Long.parseLong(barcode));
+                request.getStatement().setKontonummer(brandConfig.getKontonummer());
+            }
+        } else {
+            String errorMessage = "Brand not found";
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);
         }
     }
 }

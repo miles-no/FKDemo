@@ -1,10 +1,16 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
+import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.*;
+import no.fjordkraft.im.model.GridConfig;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
+import no.fjordkraft.im.services.impl.AuditLogServiceImpl;
+import no.fjordkraft.im.services.impl.GridConfigServiceImpl;
+import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import org.apache.commons.collections4.map.MultiValueMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,56 +25,69 @@ import java.util.Map;
 @PreprocessorInfo(order=6)
 public class TransactionGroupPreprocessor  extends BasePreprocessor{
 
+    @Autowired
+    GridConfigServiceImpl gridConfigService;
+
+    @Autowired
+    AuditLogServiceImpl auditLogService;
+
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
-        List<Transaction> transactions = request.getStatement().getTransactions().getTransaction();
-        List<Attachment> attachments = request.getStatement().getAttachments().getAttachment();
-        List<Transaction> processedTransaction = new ArrayList<Transaction>();
-        TransactionGroup transactionGroup = new TransactionGroup();
+        try {
+            List<Transaction> transactions = request.getStatement().getTransactions().getTransaction();
+            List<Attachment> attachments = request.getStatement().getAttachments().getAttachment();
+            List<Transaction> processedTransaction = new ArrayList<Transaction>();
+            TransactionGroup transactionGroup = new TransactionGroup();
 
-        List<Transaction> kraftTransaction = new ArrayList<Transaction>();
-        List<Transaction> nettTransaction =  new ArrayList<Transaction>();
-        List<Distribution> distributions = new ArrayList<Distribution>();
-        Distribution distribuion = null;
-        int i = 0;
+            List<Transaction> kraftTransaction = new ArrayList<Transaction>();
+            List<Transaction> nettTransaction = new ArrayList<Transaction>();
+            List<Distribution> distributions = new ArrayList<Distribution>();
+            Distribution distribuion = null;
+            int i = 0;
 
-        for(Transaction transaction:transactions) {
-            if (null != transaction.getDistributions()) {
-                distributions = transaction.getDistributions().getDistribution();
+            for (Transaction transaction : transactions) {
+                if (null != transaction.getDistributions()) {
+                    distributions = transaction.getDistributions().getDistribution();
 
-                if (!distributions.isEmpty()) {
-                    distribuion = distributions.get(0);
-                    if (IMConstants.KRAFT.equals(distribuion.getName())) {
-                        for(Attachment attachment:attachments) {
-                            if(transaction.getReference().equals(attachment.getFAKTURA().getFAKTURANR())) {
+                    if (!distributions.isEmpty()) {
+                        distribuion = distributions.get(0);
+                        if (IMConstants.KRAFT.equals(distribuion.getName())) {
+                            for (Attachment attachment : attachments) {
+                                if (transaction.getReference().equals(attachment.getFAKTURA().getFAKTURANR())) {
 
-                                ReadingInfo111 readingInfo111 = attachment.getFAKTURA().getVEDLEGGEMUXML()
-                                        .getInvoice().getInvoiceOrder().getReadingInfo111();
-                                if(null != readingInfo111) {
-                                    transaction.setStartDate(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice()
-                                            .getInvoiceOrder().getReadingInfo111().getStartDate());
+                                    ReadingInfo111 readingInfo111 = attachment.getFAKTURA().getVEDLEGGEMUXML()
+                                            .getInvoice().getInvoiceOrder().getReadingInfo111();
+                                    if (null != readingInfo111) {
+                                        transaction.setStartDate(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice()
+                                                .getInvoiceOrder().getReadingInfo111().getStartDate());
 
-                                    transaction.setEndDate(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice()
-                                            .getInvoiceOrder().getReadingInfo111().getEndDate());
+                                        transaction.setEndDate(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice()
+                                                .getInvoiceOrder().getReadingInfo111().getEndDate());
+                                    }
+                                    attachment.getFAKTURA().setFreeText(transaction.getFreeText());
+                                    attachment.getFAKTURA().setGrid(getGridConfigInfo(attachment.getFAKTURA().getVEDLEGGEMUXML()
+                                            .getInvoice().getInvoiceOrder().getInvoiceOrderInfo110().getLDC1(),
+                                            request.getEntity().getId()));
                                 }
-                                attachment.getFAKTURA().setFreeText(transaction.getFreeText());
                             }
+                            kraftTransaction.add(createTransactionEntry(transaction, IMConstants.KRAFT));
+                            i++;
+                        } else if (IMConstants.NETT.equals(distribuion.getName())) {
+                            nettTransaction.add(createTransactionEntry(transaction, IMConstants.NETT));
+                            i++;
                         }
-                        kraftTransaction.add(createTransactionEntry(transaction, IMConstants.KRAFT));
-                        i++;
-                    } else if(IMConstants.NETT.equals(distribuion.getName())) {
-                        nettTransaction.add(createTransactionEntry(transaction, IMConstants.NETT));
-                        i++;
                     }
                 }
             }
+            processedTransaction.addAll(kraftTransaction);
+            processedTransaction.addAll(nettTransaction);
+            transactionGroup.setTransaction(groupProcessedTransaction(processedTransaction));
+            transactionGroup.setTotalTransactions(i);
+            request.getStatement().setTransactionGroup(transactionGroup);
+            request.getStatement().setTotalVatAmount(IMConstants.NEGATIVE * request.getStatement().getTotalVatAmount());
+        } catch (Exception ex) {
+            throw new PreprocessorException("Failed in Transaction Group Pre-Processor with message: " + ex.getMessage());
         }
-        processedTransaction.addAll(kraftTransaction);
-        processedTransaction.addAll(nettTransaction);
-        transactionGroup.setTransaction(groupProcessedTransaction(processedTransaction));
-        transactionGroup.setTotalTransactions(i);
-        request.getStatement().setTransactionGroup(transactionGroup);
-        request.getStatement().setTotalVatAmount(IMConstants.NEGATIVE*request.getStatement().getTotalVatAmount());
     }
 
     private Transaction createTransactionEntry(Transaction transaction, String type) {
@@ -103,5 +122,20 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
             }
         }
         return transactions;
+    }
+
+    private Grid getGridConfigInfo(String ldc1, Long id) {
+        Grid grid = new Grid();
+
+        GridConfig gridConfig = gridConfigService.getGridConfigByBrand(ldc1);
+        if(null != gridConfig) {
+            grid.setName(gridConfig.getGridName());
+            grid.setEmail(gridConfig.getEmail());
+            grid.setTelephone(gridConfig.getPhone());
+        } else {
+            String errorMessage = "Grid not found: " + ldc1;
+            auditLogService.saveAuditLog(id, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);
+        }
+        return grid;
     }
 }

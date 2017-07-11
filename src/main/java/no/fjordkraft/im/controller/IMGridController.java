@@ -62,6 +62,6 @@ public class IMGridController {
     @RequestMapping(value = "brand", method = RequestMethod.GET)
     @ResponseBody
     List<String> getAllBrands() {
-        return gridConfigService.getAllBrands();
+        return gridConfigService.getAllGrids();
     }
 }

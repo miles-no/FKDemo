@@ -1,6 +1,6 @@
 package no.fjordkraft.im.services.impl;
 
-import no.fjordkraft.im.model.LayoutContent;
+import no.fjordkraft.im.exceptions.PDFGeneratorException;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.ConfigService;
@@ -72,6 +72,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     @Autowired
     InvoiceGenerator invoiceGenerator;
 
+    @Autowired
+    AuditLogServiceImpl auditLogService;
+
     private String outputDirectoryPath;
     private String pdfGeneratedFolderName;
     private String xmlFolderName;
@@ -126,15 +129,29 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             systemBatchInputFileName = statement.getSystemBatchInput().getTransferFile().getFilename();
             subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
             birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName, pdfGeneratedFolderName, xmlFolderName);
-            statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSED);
+            statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSED);
             invoiceGenerator.generateInvoice(statement);
+        } catch (PDFGeneratorException e) {
+            logger.error("Exception in PDF generation for statement" + statement.getId(), e);
+            statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(), getCause(e).getMessage(), IMConstants.ERROR);
         } catch (Exception e) {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
-            statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING_FAILED);
+            statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
         }
         stopWatch.stop();
         logger.debug("PDF generated for statement with statementId"+ statement.getId()+ "completed");
         logger.debug(stopWatch.prettyPrint());
+    }
+
+    private Throwable getCause(Throwable e) {
+        Throwable cause = null;
+        Throwable result = e;
+
+        while(null != (cause = result.getCause())  && (result != cause) ) {
+            result = cause;
+        }
+        return result;
     }
 
     public void birtEnginePDFGenerator(Statement statement, String outPutDirectoryPath, String statementFolderName,
@@ -145,7 +162,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         String accountNo = statement.getAccountNumber();
         String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
         try {
-            /*EngineConfig engineConfig = new EngineConfig();
+            /*EngineConfig engineConfig = new EngineConfig();\
             engineConfig.setResourcePath(birtResourcePath);
             Platform.startup(engineConfig);
             IReportEngineFactory factory = (IReportEngineFactory) Platform
@@ -157,6 +174,10 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
 
             String campaignImage = segmentFileService.getImageContent(accountNo, brand);
+            if(null == campaignImage) {
+                auditLogService.saveAuditLog(IMConstants.CAMPAIGN_IMAGE, statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(),
+                        "Campaign Image not found", IMConstants.WARNING);
+            }
             IReportRunnable runnable = null;
 
             Boolean readFromFile =  configService.getBoolean("read.layout.from.file");
@@ -186,7 +207,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             task.run();
 
         } catch (BirtException e) {
-            throw e;
+            throw new PDFGeneratorException(e.getMessage());
         }
 
         long endTime = System.currentTimeMillis();

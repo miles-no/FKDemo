@@ -103,6 +103,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "vatId",
     "paymentType",
     "paymentTypeStatus",
+    "directDebit",
     "eInvoiceId",
     "nationalId",
     "barcode",
@@ -173,6 +174,8 @@ public class Statement {
     protected String paymentType;
     @XmlElement(name = "PaymentTypeStatus", required = true)
     protected String paymentTypeStatus;
+    @XmlElement(name = "DirectDebit", required = true)
+    protected String directDebit;
     @XmlElement(name = "EInvoiceId", required = true)
     protected String eInvoiceId;
     @XmlElement(name = "NationalId")
@@ -1478,5 +1481,13 @@ public class Statement {
 
     public void setKontonummer(String kontonummer) {
         this.kontonummer = kontonummer;
+    }
+
+    public String getDirectDebit() {
+        return directDebit;
+    }
+
+    public void setDirectDebit(String directDebit) {
+        this.directDebit = directDebit;
     }
 }

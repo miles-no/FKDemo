@@ -54,6 +54,7 @@ import javax.xml.bind.annotation.XmlType;
     "maalepunkt",
     "fakturatype",
     "kundetype",
+    "grid",
     "fakturamerkeso",
     "vedleggformat",
     "vedleggemuxml",
@@ -81,6 +82,8 @@ public class FAKTURA {
     protected String fakturatype;
     @XmlElement(name = "KUNDE_TYPE", required = true)
     protected String kundetype;
+    @XmlElement(name = "GRID", required = true)
+    protected Grid grid;
     @XmlElement(name = "FAKTURA_MERKE_SO", required = true)
     protected String fakturamerkeso;
     @XmlElement(name = "VEDLEGG_FORMAT", required = true)
@@ -416,5 +419,13 @@ public class FAKTURA {
 
     public void setFreeText(String freeText) {
         this.freeText = freeText;
+    }
+
+    public Grid getGrid() {
+        return grid;
+    }
+
+    public void setGrid(Grid grid) {
+        this.grid = grid;
     }
 }

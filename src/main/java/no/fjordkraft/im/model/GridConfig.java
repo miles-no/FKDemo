@@ -15,8 +15,8 @@ public class GridConfig {
     @SequenceGenerator(name="SEQ", sequenceName="IM_GRID_CONFIG_SEQ")
     private Long id;
 
-    @Column(name="BRAND")
-    private String brand;
+    @Column(name="GRID_NAME")
+    private String gridName;
 
     @Column(name="EMAIL")
     private String email;
@@ -32,12 +32,12 @@ public class GridConfig {
         this.id = id;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getGridName() {
+        return gridName;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setGridName(String gridName) {
+        this.gridName = gridName;
     }
 
     public String getEmail() {

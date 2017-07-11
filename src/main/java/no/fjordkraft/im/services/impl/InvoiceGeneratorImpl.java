@@ -49,6 +49,9 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     @Autowired
     SegmentFileServiceImpl segmentFileService;
 
+    @Autowired
+    AuditLogServiceImpl auditLogService;
+
     private String outputDirectoryPath;
     private String pdfGeneratedFolderName;
     private String invoiceGeneratedFolderName;
@@ -119,6 +122,9 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                 for (int page = 0; page < number_of_pages; ) {
                     copy.addPage(copy.getImportedPage(readInputPDF, ++page));
                 }
+            } else {
+                auditLogService.saveAuditLog(IMConstants.ATTACH_PDF, statement.getId(), StatementStatusEnum.INVOICE_PROCESSING.getStatus(),
+                        "Attach_PDF not found", IMConstants.WARNING);
             }
             pdfCombineUsingJava.close();
 

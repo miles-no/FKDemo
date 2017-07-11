@@ -14,12 +14,12 @@ import java.util.List;
 @Repository
 public interface GridConfigRepository extends JpaRepository<GridConfig, Long> {
 
-    @Query("select g from GridConfig g where g.brand = :brand")
-    GridConfig getGridConfigByBrand(@Param("brand") String brand);
+    @Query("select g from GridConfig g where g.gridName = :gridName")
+    GridConfig getGridConfigByGrid(@Param("gridName") String gridName);
 
     @Query("select count(g) from GridConfig g")
     Long getGridCount();
 
-    @Query("select g.brand from GridConfig g")
-    List<String> getAllBrands();
+    @Query("select g.gridName from GridConfig g")
+    List<String> getAllGrids();
 }

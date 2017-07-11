@@ -61,5 +61,17 @@ public interface IMConstants {
     static final String NOT_EQUAL = "NOT EQUAL";
     static final String GREATER = "GREATER";
     static final String LESSER = "LESSER";
-
+    static final String ERROR = "ERROR";
+    static final String WARNING = "WARNING";
+    static final String STATEMENT = "STATEMENT";
+    static final String TRANSFER_FILE = "TRNSFER_FILE";
+    static final String YES = "YES";
+    static final String NO = "NO";
+    static final String UNDEFINED = "Undefined";
+    static final String DIRECT_DEBIT = "DirectDebit";
+    static final String GRANTED = "Granted";
+    static final String CANCELLED = "Cancelled";
+    static final String INTERNALLY_GRANTED = "InternallyGranted";
+    static final String SYSTEM = "SYSTEM";
+    static final String CAMPAIGN_IMAGE = "CAMPAIGN_IMAGE";
 }
