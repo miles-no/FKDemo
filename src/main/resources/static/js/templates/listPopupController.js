@@ -147,7 +147,7 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
         fd.append('name', $scope.template.name)
         fd.append('description', $scope.template.desc)
         fd.append('file', $scope.template.file)
-        $http.post('http://ec2-52-57-41-173.eu-central-1.compute.amazonaws.com:8888/layout/template',fd,{
+        $http.post('/layout/template',fd,{
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined}
         }).then(function(response){

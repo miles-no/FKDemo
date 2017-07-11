@@ -11,6 +11,7 @@ var browserify = require('browserify');
 var babelify = require('babelify');
 var vinylSourceStream = require('vinyl-source-stream');
 var vinylBuffer = require('vinyl-buffer');
+var gulpSequence = require('gulp-sequence')
 
 
  
@@ -28,7 +29,7 @@ gulp.task('cleanAppFiles',function(){
 });
 gulp.task('clean', function(){
   'use strict';
-  del(['dist']);
+  del(['dist','tempupload']);
   //return gulp.src(path.join(__dirname,'/dist/*'),{read: false}).pipe(clean());
 });
 
@@ -48,6 +49,7 @@ gulp.task('combineAppJs',['combileVendorJS'],function(){
     return gulp.src([
             path.join(__dirname,'/js/**/*.js'),
             path.join(__dirname,'/components/**/*.js'),
+            path.join(__dirname,'/directives/**/*.js'),
             path.join(__dirname,'/modules/**/*.js'),
             ])
         .pipe(concat('app.js'))
@@ -61,7 +63,7 @@ gulp.task('connect',function(){
 });
 gulp.task('watch',function(){
     gulp.watch(path.join(__dirname,'/scss/**/*.scss'),['sass']);
-    //gulp.watch([path.join(__dirname,'/js/**/*.js'),path.join(__dirname,'/components/**/*.js')],['cleanJsFiles','combineAppJs']);
+    gulp.watch([path.join(__dirname,'/js/**/*.js'),path.join(__dirname,'/components/**/*.js')],['browserify']);
 });
 gulp.task('runExpress',['browserify'],function(cb){
     var started = false;

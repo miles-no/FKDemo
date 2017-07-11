@@ -7,6 +7,9 @@ var router = express.Router();
 var request = require('request');
 var bodyParser = require('body-parser');
 const appConfig = require('./appconfig');
+var multer  = require('multer')
+var upload = multer({dest :appConfig.tempFilePath});
+var fs = require('fs');
 
 const apiUrl = `${appConfig.api_server_host}:${appConfig.api_server_port}`;
 app.use('/',express.static('./'));
@@ -343,6 +346,24 @@ app.put('/layout/rule/:id', function(req, res) {
     method : 'PUT'
 },function(error,response,body){
   console.log(response)
+  res.send(body);
+})
+});
+app.post('/layout/template',upload.single('file'), function(req, res) {
+  console.log('In POST /layout/template ', req.body);
+  console.log('In POST /layout/template ', JSON.stringify(req.file));
+  let formData = {
+    name : req.body.name,
+    description : req.body.description,
+    file :  fs.createReadStream(`${req.file.destination}${req.file.filename}`)
+  }
+  request({
+    url: `${apiUrl}/layout/template`,
+    method : 'POST',
+    formData : formData,
+},function(error,response,body){
+  console.log(JSON.stringify(response.request.headers))
+  fs.rmdir(appConfig.tempFilePath)
   res.send(body);
 })
 });
