@@ -6,6 +6,9 @@
   .modal-dialog {
     max-width: 100%;
   }
+  .div-height{
+    min-height: 50px;
+  }
   &.manage-brand {
     margin: 10px auto;
     .modal-content-container{
@@ -55,6 +58,10 @@
   }
   i{
     font-size: 1.4rem;
+  }
+  .icon-align{
+    position: relative;
+    top: 4px;
   }
 }
 

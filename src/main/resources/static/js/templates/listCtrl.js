@@ -41,30 +41,30 @@ app.controller('listCtrl',function($scope,ModalService,$http){
   //}
 
 
-  //function addLayout (layout) {
-  //    $http.post('/layout/config',layout).then(function (response) {
-  //        $scope.getLayouts()
-  //    })
-  //}
-  //
-  //function updateLayout(layout) {
-  //    $http.put('/layout/config',layout).then(function (response) {
-  //        $scope.getLayouts()
-  //    })
-  //}
-  //
+  function addLayout (layout) {
+     $http.post('/layout/rule',layout).then(function (response) {
+         $scope.getLayouts()
+     })
+  }
+  
+  function updateLayout(layout) {
+     $http.put('/layout/rule/'+layout.layoutId,layout).then(function (response) {
+         $scope.getLayouts()
+     })
+  }
+  
     function showModal (layoutInfo, type) {
       console.log(layoutInfo)
         ModalService.showModal({
             templateUrl: 'js/templates/listPopUp.html',
             controller: 'listPopupController',
-            inputs: {
+            inputs : {
                 options: {
                     body:{
                         bodyContent :layoutInfo,
                         layouts: $scope.layouts
                     },
-                    header: type === 'Add' ? 'Add new layout' : 'Update '+ layoutInfo.layout,
+                    header: type === 'Add' ? 'Add new Layout' : 'Update '+ layoutInfo.layout,
                     conFirmBtnText : [
                         {name: 'cancel'},
                         {name: type }
@@ -78,21 +78,21 @@ app.controller('listCtrl',function($scope,ModalService,$http){
         }).then(function(modal){
             modal.element.modal();
             modal.close.then(function(response){
-                if (response === 'Add') {
-                    addLayout(layoutInfo)
-                } else if (response === 'Update') {
-                    updateLayout(layoutInfo)
+                if (response.operation === 'Add') {
+                    addLayout(response.data)
+                } else if (response.operation === 'Update') {
+                    updateLayout(response.data)
                 }
             });
         });
     }
     $scope.updateTemplate = function (layoutInfo) {
-        showModal(layoutInfo, 'Update')
+        showModal(layoutInfo.layoutRule, 'Update')
     }
 
     $scope.addTemplate = function () {
-          var layout = angular.copy(newLayout);
-          showModal(layout, 'Add')
+          //var layout = angular.copy(newLayout);
+          showModal(null, 'Add')
       }
 
 

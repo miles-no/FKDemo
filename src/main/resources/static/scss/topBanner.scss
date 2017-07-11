@@ -39,6 +39,9 @@
         width: 75%;
         float: left;
         display: inline-block;
+        &:focus {
+            outline: none;
+        }
         img{
           width: auto;
           height: 48px;
@@ -181,6 +184,9 @@
         .company-logo{
           width: calc(100% - 60px);
           text-align: center;
+          &:focus {
+            outline: none;
+          }
           img {
             width: auto;
             margin-left: -28px;

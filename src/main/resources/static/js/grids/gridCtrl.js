@@ -69,7 +69,7 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
             bodyContent: 'Please confirm to delete ',
             brand: grid
           },
-          header: "Delete Brand",
+          header: "Delete Grid",
           conFirmBtnText : [
             {name: 'cancel'},
             {name: "Delete" }
@@ -102,7 +102,7 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
           body:{
             bodyContent :gridInfo
           },
-          header: type === 'Add' ? 'Add new brand' : 'Update '+ gridInfo.brand,
+          header: type === 'Add' ? 'Add new Grid' : 'Update '+ gridInfo.brand,
           conFirmBtnText : [
             {name: 'cancel'},
             {name: type }

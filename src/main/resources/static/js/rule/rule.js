@@ -19,7 +19,7 @@ app.controller('ruleController',function($scope,$http,ModalService){
   }
 
   function updateRule(rule) {
-    $http.put('/layout/attribute',rule).then(function () {
+    $http.put('/layout/attribute/'+rule.id,rule).then(function () {
       $scope.getRules()
     })
   }

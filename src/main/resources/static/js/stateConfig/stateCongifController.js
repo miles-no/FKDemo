@@ -39,17 +39,24 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
     $scope.selectedKey = item.name;
     showSelectedKey()
   }
-
+  
   function addStateConfig (state) {
-    $http.post('/config',state).then(function (response) {
+    let queryParams = {
+      key : state.name,
+      value : state.value
+    }
+    $http({url : '/config',method: 'POST',params:queryParams} ).then(function (response) {
       $scope.getStatesConfig()
     })
   }
 
   function updateStateConfig(state) {
     var data = angular.copy(state)
-    console.log(data)
-    $http.put('/config',data).then(function (response) {
+    console.log(data);
+    let queryParams = {
+      value : data.value
+    }
+    $http({url:'/config/'+data.name,method: 'PUT', params:queryParams}).then(function (response) {
       $scope.getStatesConfig()
     })
   }

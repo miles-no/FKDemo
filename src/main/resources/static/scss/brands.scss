@@ -18,8 +18,13 @@
   .btn-align{
     margin: 0 10px 40px 0;
   }
-  .table-dropdown{
-   table-layout: fixed;
+  .table-border{
+    background-clip: content-box;
+    box-shadow: inset 0 0 0 7px $table-color;
+    .table-dropdown{
+      table-layout: fixed;
+      margin-bottom: 0px;
+    }
   }
   .table-padding{
     padding: 15px 117px 15px 44px;
@@ -38,6 +43,12 @@
   }
   .rules-wrapper {
 
+    .rule-selector-dropdown{
+      margin-top: 24px;
+      padding-left: 45px;
+      margin-bottom: 24px;
+    }
+
     .rules-heading {
       padding:8px 10px;
       margin: 10px auto;
@@ -47,6 +58,19 @@
       i{
         box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
         float: right;
+      }
+    }
+
+    .add-row{
+      display: inline;
+      i{
+        float: right;
+        position: relative;
+        bottom: 35px;
+        right: 23px;
+        &:focus{
+          outline: none;
+        }
       }
     }
     .panel {

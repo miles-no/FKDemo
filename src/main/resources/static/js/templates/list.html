@@ -1,12 +1,12 @@
 <div class="manage-brands" ng-controller="listCtrl" ng-init="getLayouts();">
-    <div class="col-md-12">
+    <div class="col-sm-12">
         <table st-table="displayedCollection" st-safe-src="allLayouts" class="table table-align">
             <thead>
             <tr>
                 <th>Brand</th>
                 <th>Layout Name</th>
                 <th>Layout Description</th>
-                <th>Version</th>
+                <th width="20%">Version</th>
                 <th>Rules Attached</th>
             </tr>
             </thead>
@@ -15,12 +15,12 @@
                 <td>{{layoutItem.brand}}</td>
                 <td>{{layoutItem.name}}</td>
                 <td>{{layoutItem.description}}</td>
-                <td>{{layoutItem.version}}</td>
+                <td width="20%">{{layoutItem.version}}</td>
                 <td ng-class="{'disabled' : layoutItem.layoutRule.layoutRuleMapList.length==0}"><a ng-click="dropDownList($event,layoutItem)">{{layoutItem.layoutRule.layoutRuleMapList.length}}</a></td>
                 <td ng-show="dropDown === layoutItem"><i class="fa fa-caret-up"></i></td>
             </tr>
             <tr ng-repeat-end ng-if="dropDown === layoutItem">
-                <td  colspan="5" class="table-padding">
+                <td  colspan="5" class="table-border">
                     <table class="table table-striped table-sm table-dropdown">
                         <thead>
                         <tr>

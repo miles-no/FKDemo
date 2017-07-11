@@ -2,9 +2,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="brand-logo" >
-                <div class="menu-bar"><i class="fa fa-bars" ng-click="$ctrl.showMenu = true"></i></div>
-                <div class="company-logo">
-                    <span><img src="assets/images/svg/logof.svg" ng-click="$ctrl.navigateTo('home')"></span>
+                <div class="menu-bar">
+                    <i class="fa fa-bars" ng-click="$ctrl.showMenu = true"></i>
+                </div>
+                <div class="company-logo" ng-click="$ctrl.navigateTo()">
+                    <span><img src="assets/images/svg/logof.svg"></span>
                     <span>IM</span>
                 </div>
             </div>
@@ -22,12 +24,9 @@
                         <li><span ng-class="{'active': $ctrl.activeMenu == 'overview'}" ng-click="$ctrl.navigateTo('overview')">Overview</span></li>
                         <li><span ng-class="{'active': $ctrl.activeMenu == 'listBrands'}" ng-click="$ctrl.navigateTo('listBrands')">Brands</span></li>
                         <li><span ng-class="{'active': $ctrl.activeMenu == 'listGrid'}" ng-click="$ctrl.navigateTo('listGrid')">Grids</span></li>
-                        <li><span class="sub-menu" ng-class="{'active': $ctrl.activeMenu == 'templates'}" ng-click="$ctrl.navigateTo('templates')">Templates</span>
-                            <ul>
-                                <li><span ng-class="{'active': $ctrl.activeMenu == 'rule'}" ng-click="$ctrl.navigateTo('rule')">Add Rule</span></li>
-                            </ul>
-                        </li>
-                        <li><span ng-class="{'active': $ctrl.activeMenu == 'state_config'}" ng-click="$ctrl.navigateTo('state_config')">State Config</span></li>
+                        <li><span ng-class="{'active': $ctrl.activeMenu == 'templates'}" ng-click="$ctrl.navigateTo('templates')">Templates Management</span></li>
+                        <li><span ng-class="{'active': $ctrl.activeMenu == 'rule'}" ng-click="$ctrl.navigateTo('rule')">Template Rules</span></li>
+                        <li><span ng-class="{'active': $ctrl.activeMenu == 'state_config'}" ng-click="$ctrl.navigateTo('state_config')">System Configurations</span></li>
                     </ul>
                 </div>
             </div>
@@ -37,10 +36,10 @@
                         <i ng-click="$ctrl.isDashbordLive = !$ctrl.isDashbordLive" class="fa fa-2x animated" ng-class="{'fa-play-circle': !$ctrl.isDashbordLive, 'fa-pause-circle' : $ctrl.isDashbordLive}"></i>
                     </li>
                     <li>
-                        <i ng-click="$ctrl.resetDashboard()" class="fa fa-2x fa-retweet" ng-class="{'disableReset' :$ctrl.disableReset}" title="{{$ctrl.disableReset ? 'Inactive' : 'Active'}}" ng-disabled="$ctrl.disableReset"></i>
+                        <i ng-click="$ctrl.resetDashboard()" class="fa fa-2x fa-retweet  " ng-class="{'disableReset' :$ctrl.disableReset,'faa-flash animated':$ctrl.disableReset}" uib-tooltip="{{$ctrl.disableReset ? 'Loading file from AFI' : 'Click to process a file from AFI'}}"  tooltip-placement="bottom" ng-disabled="$ctrl.disableReset"></i>
                     </li>
                     <li>
-                        <div class="pulse fa fa-spin fa-genderless" title="{{$ctrl.disableReset ? 'Inactive' : 'Active'}}"></div>
+                        <!--<div class="pulse fa fa-spin fa-genderless" title="{{$ctrl.disableReset ? 'Inactive' : 'Active'}}"></div>-->
                     </li>
                 </ul>
             </div>
