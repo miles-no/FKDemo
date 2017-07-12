@@ -143,9 +143,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
     var layoutId = layout.layoutID
     var version = layout.version;
     let qp = {layoutId: layoutId, version: version};
-    $http.get('/layout/preview',{params: qp},{responseType: 'arraybuffer'}).success(function(response,status,headers){
-
-      console.log(response,headers);
+    $http.get('/layout/preview',{params: qp,responseType: 'arraybuffer'}).success(function(response,status,headers){
 
       var file = new Blob([response], {type: 'application/pdf'});
       var fileURL = URL.createObjectURL(file);
