@@ -6,8 +6,10 @@
                 <th>Brand</th>
                 <th>Layout Name</th>
                 <th>Layout Description</th>
-                <th width="20%">Version</th>
+                <th>Version</th>
+                <th>Layout Actived</th>
                 <th>Rules Attached</th>
+                <th>Preview</th>
             </tr>
             </thead>
             <tbody>
@@ -15,16 +17,19 @@
                 <td>{{layoutItem.brand}}</td>
                 <td>{{layoutItem.name}}</td>
                 <td>{{layoutItem.description}}</td>
-                <td width="20%">{{layoutItem.version}}</td>
+                <td>{{layoutItem.version}}</td>
+                <td ng-click="setActive(layoutItem,$event)"><i  ng-class="{'fa fa-check-circle greenIcon eaTrue': layoutItem.active === true , 'fa fa-check-circle greenIcon eaFalse': layoutItem.active === false}"></i></td>
                 <td ng-class="{'disabled' : layoutItem.layoutRule.layoutRuleMapList.length==0}"><a ng-click="dropDownList($event,layoutItem)">{{layoutItem.layoutRule.layoutRuleMapList.length}}</a></td>
+                <td ng-click="previewLayout(layoutItem,$event)"><i class="fa fa-file-pdf-o"></i></td>
+                <td ng-click="deleteTemplate(layoutItem,$event)"><i class="fa fa-trash-o redIcon"></i></td>
                 <td ng-show="dropDown === layoutItem"><i class="fa fa-caret-up"></i></td>
             </tr>
             <tr ng-repeat-end ng-if="dropDown === layoutItem">
-                <td  colspan="5" class="table-border">
+                <td  colspan="7" class="table-border">
                     <table class="table table-striped table-sm table-dropdown">
                         <thead>
                         <tr>
-                            <th>Name</th>
+                            <th width="30%">Name</th>
                             <th>Operation</th>
                             <th>Value</th>
                         </tr>

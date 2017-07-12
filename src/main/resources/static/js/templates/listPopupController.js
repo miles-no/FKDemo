@@ -50,6 +50,10 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     }
     $scope.removeRule = function (item, index) {
         $scope.rulesList.splice(index,1)
+        if ($scope.rulesList.length === 0){
+            $scope.showRule = true
+            $scope.getAvailableRules()
+        }
     }
     let prepareModel = function(){
         let rulesToPost = [];
@@ -158,9 +162,19 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
         console.log('test')
     }
     $scope.downLoadLayout = function(layout){
-        //TODO ADD FUNCTIONALITY FOR THIS
-    }
+        var id = layout.value
+        $http({
+            method : 'GET',
+            url : '/layout/rptdesign?id='+id,
+        }).then(function(response,status,headers){
+            var file = new Blob([response.data], {type: 'application/xml'});
+            var downloadLink = angular.element('<a></a>');
+            downloadLink.attr('href',window.URL.createObjectURL(file));
+            downloadLink.attr('download', layout.name+'.xml');
+            downloadLink[0].click();
 
+        })
+    }
     $scope.$watch('template.file',function(){
         $scope.onTemplateChange();
     });
