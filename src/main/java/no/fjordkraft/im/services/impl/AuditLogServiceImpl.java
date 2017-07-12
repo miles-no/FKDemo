@@ -1,5 +1,6 @@
 package no.fjordkraft.im.services.impl;
 
+import no.fjordkraft.im.logging.AuditLogRecord;
 import no.fjordkraft.im.model.AuditLog;
 import no.fjordkraft.im.repository.AuditLogRepository;
 import no.fjordkraft.im.services.AuditLogService;
@@ -20,7 +21,7 @@ public class AuditLogServiceImpl implements AuditLogService {
 
     @Override
     public void saveAuditLog(Long actionOnId, String action, String msg, String logType) {
-        AuditLog auditLog = AuditLog.logBuilder()
+        AuditLogRecord auditLogRecord = AuditLogRecord.logBuilder()
                 .withActionOnType(IMConstants.STATEMENT)
                 .withActionOnId(actionOnId)
                 .withAction(action)
@@ -30,12 +31,20 @@ public class AuditLogServiceImpl implements AuditLogService {
                 .withLogType(logType)
                 .build();
 
+        AuditLog auditLog = new AuditLog();
+        auditLog.setActionOnType(auditLogRecord.getActionOnType());
+        auditLog.setActionOnId(auditLogRecord.getActionOnId());
+        auditLog.setAction(auditLogRecord.getAction());
+        auditLog.setUserName(auditLogRecord.getUsername());
+        auditLog.setMsg(auditLogRecord.getMsg());
+        auditLog.setDateTime(auditLogRecord.getDateTime());
+
         auditLogRepository.saveAndFlush(auditLog);
     }
 
     @Override
     public void saveAuditLog(String actionOnType, Long actionOnId, String action, String msg, String logType) {
-        AuditLog auditLog = AuditLog.logBuilder()
+        AuditLogRecord auditLogRecord = AuditLogRecord.logBuilder()
                 .withActionOnType(actionOnType)
                 .withActionOnId(actionOnId)
                 .withAction(action)
@@ -45,6 +54,13 @@ public class AuditLogServiceImpl implements AuditLogService {
                 .withLogType(logType)
                 .build();
 
+        AuditLog auditLog = new AuditLog();
+        auditLog.setActionOnType(auditLogRecord.getActionOnType());
+        auditLog.setActionOnId(auditLogRecord.getActionOnId());
+        auditLog.setAction(auditLogRecord.getAction());
+        auditLog.setUserName(auditLogRecord.getUsername());
+        auditLog.setMsg(auditLogRecord.getMsg());
+        auditLog.setDateTime(auditLogRecord.getDateTime());
         auditLogRepository.saveAndFlush(auditLog);
     }
 

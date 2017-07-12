@@ -190,6 +190,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 String rptDesign = layoutDesignService.getRptDesignFile(statement.getLayoutID());
                 if(null != rptDesign) {
                     logger.debug(" layout is "+ statement.getLayoutID());
+                } else {
+                    throw new PDFGeneratorException("Layout not found");
                 }
                 InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(Charset.forName(encoding)));
                 runnable = reportEngine.openReportDesign(designStream);

@@ -75,7 +75,7 @@ public class LayoutServiceImpl implements LayoutService {
         LayoutContent layoutContent;
         for(LayoutRule layoutRule:layoutRuleList) {
             layout = getLayoutDesignById(layoutRule.getLayoutId());
-            layoutContent = layoutContentService.getLayoutContentByLayoutId(layout.getId(), Boolean.TRUE);
+            layoutContent = layoutContentService.getLayoutContentByLayoutId(layout.getId());
             if(null != layout && null != layoutContent) {
                 restLayout = new RestLayout();
                 restLayout.setLayoutID(layout.getId());
@@ -102,7 +102,7 @@ public class LayoutServiceImpl implements LayoutService {
         LayoutContent layoutContent;
         for(LayoutRule layoutRule:layoutRuleList) {
             layout = getLayoutDesignById(layoutRule.getLayoutId());
-            layoutContent = layoutContentService.getLayoutContentByLayoutId(layout.getId(), Boolean.TRUE);
+            layoutContent = layoutContentService.getLayoutContentByLayoutId(layout.getId());
             if(null != layout && null != layoutContent) {
                 restLayout = new RestLayout();
                 restLayout.setLayoutID(layout.getId());
@@ -113,6 +113,7 @@ public class LayoutServiceImpl implements LayoutService {
                 restLayout.setUpdateTime(layout.getUpdateTime());
                 restLayout.setContentID(layoutContent.getId());
                 restLayout.setVersion(layoutContent.getVersion());
+                restLayout.setActive(layoutContent.isActive());
                 restLayout.setLayoutRule(layoutRule);
                 restLayoutList.add(restLayout);
             }

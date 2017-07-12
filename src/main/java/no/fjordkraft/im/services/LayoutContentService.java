@@ -10,6 +10,7 @@ import java.io.InputStream;
 public interface LayoutContentService {
 
     LayoutContent getLayoutContentByLayoutId(Long id, boolean active);
+    LayoutContent getLayoutContentByLayoutId(Long id);
     void saveLayoutContent(Long layoutId, String file);
     void updateLayoutContent(Long id, String file);
     void activateLayoutTemplate(Long layoutId, Integer version);

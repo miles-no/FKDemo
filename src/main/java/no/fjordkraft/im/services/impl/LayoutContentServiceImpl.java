@@ -1,6 +1,7 @@
 package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.model.LayoutContent;
+import no.fjordkraft.im.model.LayoutRule;
 import no.fjordkraft.im.repository.LayoutContentRepository;
 import no.fjordkraft.im.services.LayoutContentService;
 import no.fjordkraft.im.util.IMConstants;
@@ -25,7 +26,20 @@ public class LayoutContentServiceImpl implements LayoutContentService {
 
     @Override
     public LayoutContent getLayoutContentByLayoutId(Long layoutId, boolean active) {
-        return layoutContentRepository.getLayoutContentById(layoutId, active).get(0);
+        List<LayoutContent> layoutContentList = layoutContentRepository.getLayoutContentById(layoutId, active);
+        if(null != layoutContentList && IMConstants.ZERO != layoutContentList.size()) {
+            return layoutContentList.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public LayoutContent getLayoutContentByLayoutId(Long layoutId) {
+        List<LayoutContent> layoutContentList = layoutContentRepository.getLayoutContentById(layoutId);
+        if(null != layoutContentList && IMConstants.ZERO != layoutContentList.size()) {
+            return layoutContentList.get(0);
+        }
+        return null;
     }
 
     @Override
