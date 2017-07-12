@@ -39,12 +39,20 @@ public class PieChartPreprocessor extends BasePreprocessor {
             }
         }
         distributionDetails.setType(IMConstants.NETTLEIE);
-        distributionDetails.setAmount(nettAmount);
+        if(Float.valueOf(IMConstants.ZERO) > nettAmount) {
+            distributionDetails.setAmount(Float.valueOf(0));
+        } else {
+            distributionDetails.setAmount(nettAmount);
+        }
         distributionList.add(distributionDetails);
 
         distributionDetails = new DistributionDetails();
         distributionDetails.setType(IMConstants.STROM);
-        distributionDetails.setAmount(otherAmount);
+        if(Float.valueOf(IMConstants.ZERO) > otherAmount) {
+            distributionDetails.setAmount(Float.valueOf(0));
+        } else {
+            distributionDetails.setAmount(otherAmount);
+        }
         distributionList.add(distributionDetails);
 
         pieChart.setDistribution(distributionList);

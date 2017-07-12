@@ -51,6 +51,12 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
             RuleAttributes ruleAttributes = null;
 
             for (LayoutRule layoutRule : layoutRules) {
+                List<LayoutRuleMap> layoutRuleMapList = layoutRule.getLayoutRuleMapList();
+                if(null == layoutRuleMapList || IMConstants.ZERO == layoutRuleMapList.size()) {
+                    foundLayout = true;
+                    layoutID = layoutRule.getLayoutId();
+                    break;
+                }
                 for (LayoutRuleMap layoutRuleMap : layoutRule.getLayoutRuleMapList()) {
                     rulename = layoutRuleMap.getName();
                     ruleAttributes = ruleAttributesService.getRuleAttributeByName(rulename);

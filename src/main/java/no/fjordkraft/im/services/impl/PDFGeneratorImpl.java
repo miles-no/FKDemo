@@ -226,17 +226,15 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     public byte[] generatePreview(Long layoutId, Integer version) throws IOException, BirtException {
         String ouputFilePath = "src/main/resources/preview.pdf";
         try {
-            EngineConfig engineConfig = new EngineConfig();
-            engineConfig.setResourcePath(birtResourcePath);
-            Platform.startup(engineConfig);
-            IReportEngineFactory factory = (IReportEngineFactory) Platform
-                    .createFactoryObject(IReportEngineFactory.EXTENSION_REPORT_ENGINE_FACTORY);
-            reportEngine = factory.createReportEngine(engineConfig);
-
             String rptDesign = layoutContentService.getLayoutContentByLayoutIdandVersion(layoutId, version);
-            String xmlFilePath = "D:\\FjordKraft_Workspace\\Invoice_Manager_2\\invoice_manager\\src\\main\\resources\\layout\\FjordKraftSampleData.xml";
-            String campaignImagePath = "D:\\FjordKraft_Workspace\\Invoice_Manager_2\\invoice_manager\\src\\main\\resources\\layout\\FKAS_p_31_compressed.jpg";
-            InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(StandardCharsets.ISO_8859_1));
+
+            File xmlFile = new File("src\\main\\resources\\sampleFile\\statement.xml");
+            String xmlFilePath = xmlFile.getAbsolutePath();
+            File campaignImageFile = new File("src\\main\\resources\\sampleFile\\FKAS_p_31.jpg");
+            String campaignImagePath = campaignImageFile.getAbsolutePath();
+            String encoding = configService.getString("layout.encoding");
+            encoding = encoding == null ? "UTF-8":encoding;
+            InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(Charset.forName(encoding)));
             String campaignImage = segmentFileService.getCampaignForPreview(campaignImagePath);
 
             IReportRunnable runnable = reportEngine.openReportDesign(designStream);
