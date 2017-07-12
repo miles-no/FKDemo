@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="gridItem in displayedCollection" ng-click="updateGrid(gridItem);">
-                    <td>{{gridItem.brand}}</td>
+                    <td>{{gridItem.gridName}}</td>
                     <td>{{gridItem.email}}</td>
                     <td>{{gridItem.phone}}</td>
                     <td ng-click="deleteGrid(gridItem, $event)"><i class="fa fa-trash-o redIcon"></i></td>
