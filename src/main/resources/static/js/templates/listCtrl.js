@@ -55,7 +55,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
   }
   
   function updateLayout(layout) {
-     $http.put('/layout/rule/'+layout.layoutId,layout).then(function (response) {
+     $http.put('/layout/rule/'+layout.layoutRule.id,layout).then(function (response) {
          $scope.getLayouts()
      })
   }
