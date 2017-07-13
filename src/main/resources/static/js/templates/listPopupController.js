@@ -8,6 +8,7 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
         desc : '',
         file : null
     };
+    $scope.rulesList =[];
     $scope.selectedBrand = '';
     $scope.selectedTemplate={};
     let allPossibleRules = {}
@@ -17,7 +18,7 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     let getLayoutRules = function(setLayout){
         $http.get('layout/attribute').then(function (response) {
             allPossibleRules = angular.copy(response.data);
-            $scope.rulesList = $scope.templateInfo ? $scope.templateInfo.layoutRuleMapList :response.data;
+             $scope.templateInfo ? $scope.rulesList = $scope.templateInfo.layoutRuleMapList : $scope.showRule = true;
         },function error(error){
             $scope.rulesList = [];
         });
@@ -90,9 +91,9 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
             case 'STRING':
                 return ['EQUALS','NOT EQUALS'] ;
             case 'INTEGER':
-                return ['LESS THAN','LESS THAN EQUAL TO','GREATER THAN','GREATER THAN EQUAL TO','EQUAL TO','NO EQUAL TO'] ;
+                return ['LESS THAN','LESS THAN EQUAL TO','GREATER THAN','GREATER THAN EQUAL TO','EQUAL TO','NOT EQUAL TO'] ;
             case 'FLOAT':
-                return ['LESS THAN','LESS THAN EQUAL TO','GREATER THAN','GREATER THAN EQUAL TO','EQUAL TO','NO EQUAL TO'] ;
+                return ['LESS THAN','LESS THAN EQUAL TO','GREATER THAN','GREATER THAN EQUAL TO','EQUAL TO','NOT EQUAL TO'] ;
             default :
                 return ['EQUALS','NOT EQUALS'] ;
         }

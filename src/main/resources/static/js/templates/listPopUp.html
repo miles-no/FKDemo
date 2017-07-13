@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-content-container modal-width">
         <div class="modal-header" ng-if="options.header">
             <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">{{options.header}}</h4>
+            <h4 class="text-center modal-title">{{options.header}}</h4>
         </div>
         <div class="modal-body {{options.classes.modalBody}}">
             <form name="uploadForm" novalidate>
@@ -100,8 +100,8 @@
                                     <!--<div class="rule-delete col-sm-1 modal-box"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>
                                     <div class="rule-delete col-sm-1 modal-box"><i class="fa fa-plus btn" ng-click="addRule()"></i></i></div>-->
                                     <div class="col-sm-1">
-                                        <i class="fa fa-times" ng-click="removeRule(rule,$index)"></i>
-                                        <i class="fa fa-plus" ng-click="addRule()" ng-if="showAddRule($index) && getAvailableRules().length && getAvailableRules().length > 0"></i>
+                                        <i class="fa fa-times col-sm-4" ng-click="removeRule(rule,$index)"></i>
+                                        <i class="fa fa-plus col-sm-4" ng-click="addRule()" ng-if="showAddRule($index) && getAvailableRules().length && getAvailableRules().length > 0"></i>
                                     </div>
                                 </div>
                             </div>
