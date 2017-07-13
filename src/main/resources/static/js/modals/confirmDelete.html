@@ -6,7 +6,7 @@
             <h4 class="modal-title">{{options.header}}</h4>
         </div>
         <div class="modal-body {{options.classes.modalBody}}"  >
-            {{options.body.bodyContent}} {{options.body.brand.brand}}
+            {{options.body.bodyContent}} 
         </div>
         <div class="modal-footer">
             <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal">{{btns.name}}</button>

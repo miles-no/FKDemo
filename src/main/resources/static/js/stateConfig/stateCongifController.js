@@ -69,7 +69,7 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
       inputs:{
         options:{
           body:{
-            bodyContent: 'Please confirm to delete ',
+            bodyContent: 'Please confirm to delete '+state.name,
             brand: {brand: state.name}
           },
           header: "Delete Brand",

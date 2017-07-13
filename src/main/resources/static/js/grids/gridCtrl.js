@@ -13,7 +13,7 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
     if ($scope.selectedGrids.length > 0) {
       angular.forEach($scope.grids, function (gridItem) {
         angular.forEach($scope.selectedGrids, function (selectedGrid) {
-          if(gridItem.brand === selectedGrid) {
+          if(gridItem.gridName === selectedGrid) {
             $scope.allGrids.push(gridItem)
           }
         })
@@ -66,7 +66,7 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
       inputs:{
         options:{
           body:{
-            bodyContent: 'Please confirm to delete ',
+            bodyContent: 'Please confirm to delete '+ grid.gridName,
             brand: grid
           },
           header: "Delete Grid",
@@ -102,7 +102,7 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
           body:{
             bodyContent :gridInfo
           },
-          header: type === 'Add' ? 'Add new Grid' : 'Update '+ gridInfo.brand,
+          header: type === 'Add' ? 'Add new Grid' : 'Update '+ gridInfo.gridName,
           conFirmBtnText : [
             {name: 'cancel'},
             {name: type }

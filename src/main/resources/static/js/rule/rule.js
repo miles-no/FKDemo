@@ -33,7 +33,7 @@ app.controller('ruleController',function($scope,$http,ModalService){
       inputs:{
         options:{
           body:{
-            bodyContent: 'Please confirm to delete ',
+            bodyContent: 'Please confirm to delete '+rule.name,
             brand: {brand: rule.name}
           },
           header: "Delete Rule",

@@ -55,7 +55,10 @@ app.controller('listCtrl',function($scope,ModalService,$http){
   }
   
   function updateLayout(layout) {
-     $http.put('/layout/rule/'+layout.layoutRule.id,layout).then(function (response) {
+      let id = layout.id;
+      //delete(layout.id);
+     //$http.put('/layout/rule/'+id,layout).then(function (response) {
+    $http.put('/layout/rule/'+layout.layoutRule.id,layout).then(function (response) {
          $scope.getLayouts()
      })
   }
@@ -68,10 +71,10 @@ app.controller('listCtrl',function($scope,ModalService,$http){
       inputs:{
         options:{
           body:{
-            bodyContent: 'Please confirm to Set' + layoutInfo.brand,
+            bodyContent: 'Are you sure you want to Activate Layout '+layoutInfo.name ,
             brand: layoutInfo
           },
-          header: "Set Layout Active",
+          header: "Confirm Layout Activation",
           conFirmBtnText : [
             {name: 'Cancel'},
             {name: 'Confirm' }
@@ -106,7 +109,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
                       bodyContent :layoutInfo,
                       layouts: $scope.layouts
                   },
-                  header: type === 'Add' ? 'Add new Layout' : 'Update '+ layoutInfo.layout,
+                  header: type === 'Add' ? 'Add new Layout' : 'Update '+ layoutInfo.name,
                   conFirmBtnText : [
                       {name: 'cancel'},
                       {name: type }
