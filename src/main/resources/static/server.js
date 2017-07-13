@@ -6,6 +6,10 @@ var app = express();
 var router = express.Router();
 var request = require('request');
 var bodyParser = require('body-parser');
+var multer = require('multer');
+var upload = multer();
+var FormData = require('form-data');
+
 const appConfig = require('./appconfig');
 var multer  = require('multer')
 var upload = multer({dest :appConfig.tempFilePath});
@@ -285,7 +289,7 @@ app.post('/layout/attribute', function(req, res) {
 
 app.put('/layout/attribute/:id', function(req, res) {
   request({
-    url: `${apiUrl}/layout/attribute/`+req.body.id,
+    url: `${apiUrl}/layout/attribute/`+req.params.id,
     json : req.body,
     method : 'PUT'
 },function(error,response,body){
@@ -308,7 +312,7 @@ app.get('/layout/template/all', function(req, res) {
   request({
     url: `${apiUrl}/layout/template/all`
 },function(error,response,body){
-  console.log('Resp is ', body)
+  console.log(' /layout/template/all Resp is ', body)
   res.send(body);
 })
 });
@@ -349,6 +353,18 @@ app.put('/layout/rule/:id', function(req, res) {
   res.send(body);
 })
 });
+
+app.put('/layout/activate/:id/:id1',function(req,res){
+  var u1 = `${apiUrl}/layout/activate/`+req.params.id+`/`+req.params.id1
+  console.log(u1);
+  request({
+    url: u1,
+    method : 'PUT'
+  },function(error,response,body){
+  res.send(body)
+})
+})
+
 app.post('/layout/template',upload.single('file'), function(req, res) {
   console.log('In POST /layout/template ', req.body);
   console.log('In POST /layout/template ', JSON.stringify(req.file));
@@ -362,11 +378,27 @@ app.post('/layout/template',upload.single('file'), function(req, res) {
     method : 'POST',
     formData : formData,
 },function(error,response,body){
-  console.log(JSON.stringify(response.request.headers))
-  fs.rmdir(appConfig.tempFilePath)
+  console.log('POST /layout/template',JSON.stringify(response.request.headers))
+  //fs.rm(`${req.file.destination}${req.file.filename}`);
   res.send(body);
 })
 });
+app.get('/layout/preview', function(req, res) {
+  console.log('in layout/preview',req.query);
+  let qp ={
+    layoutId: req.query.layoutId,
+    version : req.query.version
+  };
+
+  request({url : `${apiUrl}/layout/preview`,qs: qp}).pipe(res);
+});
+
+app.get('/layout/rptdesign', function(req, res) {
+  var id = req.query.id
+  request(`${apiUrl}/layout/rptdesign?id=${id}`).pipe(res);
+});
+
+
 
 /******plug call*****/
 
@@ -379,3 +411,4 @@ app.post('/transferfile/process', function(req, res) {
   res.send(body);
 })
 });
+

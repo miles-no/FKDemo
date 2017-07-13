@@ -1,7 +1,7 @@
 app.controller('listPopupController',function($scope,options,close, $http,_){
     $scope.options = options;
-    $scope.items = options.body.bodyContent;
-    $scope.templateInfo = options.body.bodyContent;
+    $scope.layoutUpdateObject = options.body.bodyContent;
+    $scope.templateInfo = options.body.bodyContent ? options.body.bodyContent.layoutRule : null;
     $scope.allowRules = false;
     $scope.template = {
         name :'',
@@ -14,7 +14,7 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     var ruleObj = {name: '', type: '', fileMapping: ''}
     //$scope.rulesList = [angular.copy(ruleObj), angular.copy(ruleObj)]
     $scope.hideUpload = true
-    let getLayoutRules = function(){
+    let getLayoutRules = function(setLayout){
         $http.get('layout/attribute').then(function (response) {
             allPossibleRules = angular.copy(response.data);
             $scope.rulesList = $scope.templateInfo ? $scope.templateInfo.layoutRuleMapList :response.data;
@@ -43,13 +43,16 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     $scope.addRuleToDisplay = function(item,model){
         $scope.rulesList.push(_.find(allPossibleRules,function(e){
             return e.name==item.name;
+            
         }));
-        if($scope.rulesList.length === 0){
-            $scope.showRule =false
-        }
+        $scope.showRule =false;
     }
     $scope.removeRule = function (item, index) {
         $scope.rulesList.splice(index,1)
+        if ($scope.rulesList.length === 0){
+            $scope.showRule = true
+            $scope.getAvailableRules()
+        }
     }
     let prepareModel = function(){
         let rulesToPost = [];
@@ -96,9 +99,7 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
 
 
     }
-    /*if ($scope.items.brand.length > 0) {
-     $scope.disable = true
-     }*/
+    
     
     let getBrands = function (){
 
@@ -113,7 +114,7 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
 
         $http.get('/layout/list').then(function (response) {
             $scope.allLayouts = response.data;
-            template ? $scope.selectedTemplate.selected = _.find($scope.allLayouts,function(l){return l.value==template.layoutId }):'';
+            template ? $scope.selectedTemplate.selected = _.find($scope.allLayouts,function(l){return l.value==(template.layoutId? template.layoutId: template.id) }):'';
         },function error(error){
             $scope.allLayouts = {};
         })
@@ -130,37 +131,44 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
         $scope.selectedTemplate.selected = item;
     }
 
-    $scope.clearTemplate = function () {
-        //$scope.selectedTemplate = [];
-        $scope.items.template ={}
-    }
+    
     $scope.onTemplateChange = function(){
         console.log('Came here on Template change',$scope.selectedTemplate)
         $scope.selectedTemplate ={};
-        // !$scope.template.name ? $scope.template.name = $scope.template.file.name : '';
-        $scope.template.name = ($scope.template.file !== null) ? $scope.template.file.name : ''
+        !$scope.template.name ? $scope.template.name = ($scope.template.file ? $scope.template.file.name:'') : '';
+        //$scope.template.name = ($scope.template.file !== null) ? $scope.template.file.name : ''
     };
 
     $scope.uploadLayout = function(){
-        $scope.selectedTemplate.selected = $scope.items;
         var fd = new FormData()
         fd.append('name', $scope.template.name)
         fd.append('description', $scope.template.desc)
-        fd.append('file', $scope.template.file)
+        $scope.template.file ? fd.append('file', $scope.template.file) : '';
         $http.post('/layout/template',fd,{
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined}
         }).then(function(response){
             console.log(response)
-            getLayoutRules()
+            getLayoutRules();
+            getLayouts(response.data);
             $scope.skipToRules()
         })//add error callback
         console.log('test')
     }
     $scope.downLoadLayout = function(layout){
-        //TODO ADD FUNCTIONALITY FOR THIS
-    }
+        var id = layout.value
+        $http({
+            method : 'GET',
+            url : '/layout/rptdesign?id='+id,
+        }).then(function(response,status,headers){
+            var file = new Blob([response.data], {type: 'application/xml'});
+            var downloadLink = angular.element('<a></a>');
+            downloadLink.attr('href',window.URL.createObjectURL(file));
+            downloadLink.attr('download', layout.name+'.xml');
+            downloadLink[0].click();
 
+        })
+    }
     $scope.$watch('template.file',function(){
         $scope.onTemplateChange();
     });
@@ -171,6 +179,9 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     
     let init = function(){
         $scope.templateInfo  ? $scope.selectedBrand = $scope.templateInfo.brand : getBrands();
+        $scope.templateInfo  ? $scope.template.name  = $scope.layoutUpdateObject.name : '';
+        $scope.templateInfo  ? $scope.template.desc  = $scope.layoutUpdateObject.description : '';
+        $scope.templateInfo && $scope.templateInfo.layoutRuleMapList.length < 1 ?  $scope.showRule =true :'';
         getLayouts($scope.templateInfo);
         getLayoutRules();
     }

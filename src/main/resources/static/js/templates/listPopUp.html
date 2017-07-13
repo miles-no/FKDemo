@@ -26,6 +26,7 @@
                             <div class="upload-btn-wrapper">
                                 <button class="btn btn-primary col-sm-4" >Upload</button>
                                 <input type="file" accept=".xml" file-model="template.file" class="col-sm-4">
+                                <label class="col-sm-2" ng-if="template.file">{{template.file.name}}</label>
                             </div>
                         </div>
                     </div>
@@ -58,12 +59,12 @@
                             <!--</div>-->
                         </div>
                         <div col-sm-2>
-                            <div class="col-sm-2 upload-btn-wrapper" ng-if="selectedTemplate.selected.name.length > 0" ng-click="downLoadLayout(selectedTemplate.selected.name)">
+                            <div class="col-sm-2 upload-btn-wrapper" ng-if="selectedTemplate.selected.name.length > 0" ng-click="downLoadLayout(selectedTemplate.selected)">
                                 <i class="fa fa-external-link icon-align" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="rules-wrapper" ng-if="rulesList.length !== 0">
+                    <div class="rules-wrapper" >
                         <div class="rules-heading">Rules
                             <!--<i class="fa fa-plus btn" ng-click="addRule()"> Add Rule</i>--> <!-- remove this css also it is not required-->
                         </div>
@@ -100,7 +101,7 @@
                                     <div class="rule-delete col-sm-1 modal-box"><i class="fa fa-plus btn" ng-click="addRule()"></i></i></div>-->
                                     <div class="col-sm-1">
                                         <i class="fa fa-times" ng-click="removeRule(rule,$index)"></i>
-                                        <i class="fa fa-plus btn" ng-click="addRule()" ng-if="showAddRule($index) && getAvailableRules().length && getAvailableRules().length > 0"></i>
+                                        <i class="fa fa-plus" ng-click="addRule()" ng-if="showAddRule($index) && getAvailableRules().length && getAvailableRules().length > 0"></i>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +126,7 @@
         </div>
         <div class="modal-footer"  ng-show="!addBrands">
             <button   type="button" ng-click="skipToRules()" class="btn btn-primary">Skip</button>
-            <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "(template.file === null  || uploadForm.$invalid)">Next</button>
+            <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid)">Next</button>
         </div>
     </div>
 </div>
