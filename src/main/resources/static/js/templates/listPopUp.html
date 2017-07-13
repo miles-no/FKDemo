@@ -125,7 +125,7 @@
             <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal">{{btns.name}}</button>
         </div>
         <div class="modal-footer"  ng-show="!addBrands">
-            <button   type="button" ng-click="skipToRules()" class="btn btn-primary">Skip</button>
+            <button   type="button" ng-click="skipToRules()" class="btn btn-primary">Use Existing Template</button>
             <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid) || uploadForm.$pristine">Next</button>
         </div>
     </div>

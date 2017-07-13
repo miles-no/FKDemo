@@ -64,7 +64,8 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
         let layoutObject = {
             brand : $scope.selectedBrand,
             layoutId : $scope.selectedTemplate.selected.value,
-            layoutRuleMapList : rulesToPost
+            layoutRuleMapList : rulesToPost,
+            id : $scope.templateInfo && $scope.templateInfo.id ? $scope.templateInfo.id : null
         }
         return layoutObject;
     }
