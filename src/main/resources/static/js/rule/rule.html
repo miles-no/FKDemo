@@ -1,18 +1,18 @@
-
 <div class="manage-brands" ng-controller="ruleController" ng-init="getRules()">
-    <!--<div class="col-md-6 col-md-offset-1">-->
-    <!--<div class="row form-group">-->
-    <!--<label class="control-label col-md-1 key-text">Grid</label>-->
-    <!--<div class="col-md-6">-->
-    <!--<ui-select multiple ng-model="selectedGrids" theme="bootstrap" title="Choose Grid" on-remove="onGridRemoval($item, $model)" on-select="onGridSelect($item, $model)">-->
-    <!--<ui-select-match placeholder="Select Brand">{{$item}}</ui-select-match>-->
-    <!--<ui-select-choices refresh="syncCall()" refresh-delay="10" repeat="eachBrand in brands | filter : $select.search" position='down'>-->
-    <!--<div ng-bind-html="eachBrand | highlight: $select.search"></div>-->
-    <!--</ui-select-choices>-->
-    <!--</ui-select>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
+    <div class="col-sm-12 text-center header-style">Rules</div>
+    <div class="col-md-6">
+        <div class="row form-group">
+            <label class="control-label col-md-1 text-center">Rules</label>
+            <div class="col-md-6">
+                <ui-select multiple ng-model="selectedRule" theme="bootstrap" title="Choose Rule" on-remove="onRuleRemoval($item, $model)" on-select="onGridSelect($item, $model)">
+                    <ui-select-match placeholder="Select Rule">{{$item}}</ui-select-match>
+                    <ui-select-choices repeat="eachRule in rules | filter : $select.search" position='down'>
+                        <div ng-bind-html="eachBrand | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
     <div class="col-md-12">
         <table st-table="displayedCollection" st-safe-src="ruleData" class="table table-align">
             <thead>

@@ -2,6 +2,11 @@
 .bg-brand-color{
   background-color: $brand-color;
 }
+.header-style{
+  font-size: 33px;
+  color: $brand-color;
+  margin-bottom: 32px;
+}
 .modal-wrapper {
   .modal-dialog {
     max-width: 100%;

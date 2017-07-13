@@ -1,7 +1,8 @@
 <div class="manage-brands" ng-controller="ManageBrandsController" ng-init="getBrands()">
-    <div class="col-md-6">
+    <div class="col-sm-12 text-center header-style">Brands</div>
+    <div class="col-sm-6">
         <div class="row form-group">
-            <label class="control-label col-md-2">Brand</label>
+            <label class="control-label col-md-1 text-center">Brand</label>
             <div class="col-md-6">
                 <ui-select multiple ng-model="selectedBrands" theme="bootstrap" title="Choose brand" on-remove="onBrandRemoval($item, $model)" on-select="onBrandSelect($item, $model)">
                     <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>

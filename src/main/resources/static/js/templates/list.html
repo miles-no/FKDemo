@@ -1,4 +1,6 @@
 <div class="manage-brands" ng-controller="listCtrl" ng-init="getLayouts();">
+    <div class="col-sm-12 text-center header-style">Template</div>
+    <spinner size="medium" class-name="cover" ng-show="loading"></spinner>
     <div class="col-sm-12">
         <table st-table="displayedCollection" st-safe-src="allLayouts" class="table table-align">
             <thead>

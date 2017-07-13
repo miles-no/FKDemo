@@ -11,6 +11,7 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
     $scope.searchResults = [];
     $scope.states =[];
     $scope.brands =[];
+    $scope.loading = false;
     $scope.datepickerConfig ={
         "dateFormat" :'YYYY-MM-DD',
         "minDate" : moment().subtract(20,'years'),
@@ -65,13 +66,12 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
     $scope.getForamttedDate = function(date){
         return (date ? moment(date) : moment()).format('YYYY-MM-DD');
     }
+
     $scope.getInvoiceFile = function(invoiceId){
-        
+        $scope.loading = true
         $http.get('/statement/pdf/'+invoiceId,{responseType: 'arraybuffer'}).success(function(response,status,headers){
-            
-            console.log(response,headers);
-           
-            var file = new Blob([response], {type: 'application/pdf'});
+          $scope.loading = false;
+          var file = new Blob([response], {type: 'application/pdf'});
 	        var fileURL = URL.createObjectURL(file);
             ModalService.showModal({
                 templateUrl: 'templates/pdf-display-modal.html',

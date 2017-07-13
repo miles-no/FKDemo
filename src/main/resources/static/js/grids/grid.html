@@ -1,7 +1,8 @@
 <div class="manage-brands" ng-controller="GridsController" ng-init="getGrids()">
+    <div class="col-sm-12 text-center header-style">Grids</div>
     <div class="col-md-6">
         <div class="row form-group">
-            <label class="control-label col-md-2">Grid</label>
+            <label class="control-label col-md-1 text-center">Grid</label>
             <div class="col-md-6">
                 <ui-select multiple ng-model="selectedGrids" theme="bootstrap" title="Choose Grid" on-remove="onGridRemoval($item, $model)" on-select="onGridSelect($item, $model)">
                     <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>

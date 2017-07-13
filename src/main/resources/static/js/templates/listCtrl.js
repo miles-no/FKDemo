@@ -140,15 +140,15 @@ app.controller('listCtrl',function($scope,ModalService,$http){
         //var layout = angular.copy(newLayout);
         showModal(null, 'Add')
   }
-
+  $scope.loading = false
   $scope.previewLayout = function(layout, $event){
-
     $event.stopPropagation();
     var layoutId = layout.layoutID
     var version = layout.version;
     let qp = {layoutId: layoutId, version: version};
+    $scope.loading = true
     $http.get('/layout/preview',{params: qp,responseType: 'arraybuffer'}).success(function(response,status,headers){
-
+      $scope.loading = false
       var file = new Blob([response], {type: 'application/pdf'});
       var fileURL = URL.createObjectURL(file);
       ModalService.showModal({
@@ -165,6 +165,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
       });
     }).error(
       function(error){
+        $scope.loading = false
         console.log(error);
       }
     );
