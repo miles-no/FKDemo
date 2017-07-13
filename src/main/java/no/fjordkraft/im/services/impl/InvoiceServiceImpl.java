@@ -5,6 +5,7 @@ import no.fjordkraft.im.repository.InvoicePdfRepository;
 import no.fjordkraft.im.services.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -17,7 +18,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     private InvoicePdfRepository invoicePdfRepository;
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public InvoicePdf saveInvoicePdf(InvoicePdf invoicePdf) {
         invoicePdf = invoicePdfRepository.saveAndFlush(invoicePdf);
         return invoicePdf;

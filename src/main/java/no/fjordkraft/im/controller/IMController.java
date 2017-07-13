@@ -120,7 +120,8 @@ public class IMController {
     }
 
     @RequestMapping(value = "transferfile/process",method = RequestMethod.POST)
-    public void updateTransferFileStatusToPending(){
+    @ResponseBody
+    public TransferFile updateTransferFileStatusToPending(){
         TransferFile transferFile = transferFileService.getOneTransferFileWithEmptyIMStatus();
 
         if(null != transferFile) {
@@ -130,6 +131,9 @@ public class IMController {
         } else {
             logger.debug(" no transferfile with empty IMSTatus found ");
         }
+
+        return transferFile;
+
     }
 
     @RequestMapping(value = "getinvoicepdf", method = RequestMethod.GET)
@@ -323,6 +327,9 @@ public class IMController {
             logger.error("Erorr getting control file "+filename,e);
         }
     }
+
+
+
 
 
 

@@ -57,8 +57,8 @@ public interface IMConstants {
     static final String STRING = "STRING";
     static final String INTEGER = "INTEGER";
     static final String FLOAT = "FLOAT";
-    static final String EQUAL = "EQUAL";
-    static final String NOT_EQUAL = "NOT EQUAL";
+    static final String EQUALS = "EQUALS";
+    static final String NOT_EQUALS = "NOT EQUALS";
     static final String GREATER = "GREATER";
     static final String LESSER = "LESSER";
     static final String ERROR = "ERROR";

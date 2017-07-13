@@ -4,13 +4,14 @@ package no.fjordkraft.im.model;
  * Created by bhavi on 6/27/2017.
  */
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 
 @Entity
 @IdClass(TransferFileId.class)
 @Table(name = "transferfile",schema = "eacprod")
-public class TransferFile {
+public class TransferFile implements Serializable{
 
     @Id
     @Column(name = "transfertype",updatable = false)

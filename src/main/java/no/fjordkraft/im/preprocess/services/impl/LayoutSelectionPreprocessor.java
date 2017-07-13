@@ -67,11 +67,11 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
                         ruleAttributeType = String.valueOf(ruleAttributes.getType());
 
                         if (null != value && IMConstants.STRING.equals(ruleAttributeType)) {
-                            if (IMConstants.EQUAL.equals(layoutRuleMap.getOperation())
+                            if (IMConstants.EQUALS.equals(layoutRuleMap.getOperation())
                                     && layoutRuleMap.getValue().equals(value.toString())) {
                                 foundLayout = true;
                                 continue;
-                            } else if (IMConstants.NOT_EQUAL.equals(layoutRuleMap.getOperation())
+                            } else if (IMConstants.NOT_EQUALS.equals(layoutRuleMap.getOperation())
                                     && !layoutRuleMap.getValue().equals(value.toString())) {
                                 foundLayout = true;
                                 continue;
@@ -84,11 +84,11 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
                             //Method method = classTemp.getMethod("valueOf", String.class);
                             int comparedResult = Float.valueOf(layoutRuleMap.getValue()).compareTo(Float.valueOf(value.toString()));
 
-                            if (IMConstants.EQUAL.equals(layoutRuleMap.getOperation())
+                            if (IMConstants.EQUALS.equals(layoutRuleMap.getOperation())
                                     && IMConstants.ZERO == comparedResult) {
                                 foundLayout = true;
                                 continue;
-                            } else if (IMConstants.NOT_EQUAL.equals(layoutRuleMap.getOperation())
+                            } else if (IMConstants.NOT_EQUALS.equals(layoutRuleMap.getOperation())
                                     && IMConstants.ZERO != comparedResult) {
                                 foundLayout = true;
                                 continue;

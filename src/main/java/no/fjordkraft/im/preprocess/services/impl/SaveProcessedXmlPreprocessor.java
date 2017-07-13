@@ -34,6 +34,7 @@ public class SaveProcessedXmlPreprocessor  extends BasePreprocessor {
 
         try {
             StopWatch stopWatch = new StopWatch();
+            logger.debug("Credit limit for statement with is "+request.getEntity().getId() + " is "+request.getStatement().getCreditLimit() + " AvailableCredit :" +request.getStatement().getAvailableCredit());
             stopWatch.start("SaveProcessedXmlPreprocessor");
             StreamResult streamResult = new StreamResult(new FileOutputStream(request.getPathToProcessedXml() + File.separator + "statement.xml"));
             marshaller.marshal(request.getStatement(), streamResult);
