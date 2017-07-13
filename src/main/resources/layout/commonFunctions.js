@@ -1,3 +1,9 @@
+var months = [
+    'January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+    ];
+
 function getFormattedDate(date) {
 	var dateArray = date.split('-');
 	return dateArray[2] + "." + dateArray[1] + "." + dateArray[0].substr(2,2);
@@ -23,3 +29,8 @@ var number = value,
    j = (j = i.length) > 3 ? j % 3 : 0;
 return symbol + negative + (j ? i.substr(0, j) + thousand : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousand) + (decimalPlaces ? decimal + Math.abs(number - i).toFixed(decimalPlaces).slice(2) : "");
 };
+
+function monthNumToName(date) {
+    var d = parseInt(date.substr(5,2));
+    return months[d-1];
+}
