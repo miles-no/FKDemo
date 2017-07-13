@@ -91,9 +91,9 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
             case 'STRING':
                 return ['EQUALS','NOT EQUALS'] ;
             case 'INTEGER':
-                return ['LESS THAN','LESS THAN EQUAL TO','GREATER THAN','GREATER THAN EQUAL TO','EQUAL TO','NOT EQUAL TO'] ;
+                return ['LESS THAN','LESS THAN EQUAL TO','GREATER THAN','GREATER THAN EQUAL TO','EQUALS','NOT EQUALS'] ;
             case 'FLOAT':
-                return ['LESS THAN','LESS THAN EQUAL TO','GREATER THAN','GREATER THAN EQUAL TO','EQUAL TO','NOT EQUAL TO'] ;
+                return ['LESS THAN','LESS THAN EQUAL TO','GREATER THAN','GREATER THAN EQUAL TO','EQUALS','NOT EQUALS'] ;
             default :
                 return ['EQUALS','NOT EQUALS'] ;
         }
