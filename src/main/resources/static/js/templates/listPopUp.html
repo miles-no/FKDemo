@@ -126,7 +126,7 @@
         </div>
         <div class="modal-footer"  ng-show="!addBrands">
             <button   type="button" ng-click="skipToRules()" class="btn btn-primary">Skip</button>
-            <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid)">Next</button>
+            <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid) || uploadForm.$pristine">Next</button>
         </div>
     </div>
 </div>

@@ -129,7 +129,8 @@ app.controller('listCtrl',function($scope,ModalService,$http){
       });
   }
   $scope.updateTemplate = function (layoutInfo) {
-      showModal(layoutInfo, 'Update')
+      var layoutDetails = angular.copy(layoutInfo)
+      showModal(layoutDetails, 'Update')
   }
 
   $scope.addTemplate = function () {

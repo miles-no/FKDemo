@@ -132,14 +132,6 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
         $scope.selectedTemplate.selected = item;
     }
 
-    
-    $scope.onTemplateChange = function(){
-        console.log('Came here on Template change',$scope.selectedTemplate)
-        $scope.selectedTemplate ={};
-        !$scope.template.name ? $scope.template.name = ($scope.template.file ? $scope.template.file.name:'') : '';
-        //$scope.template.name = ($scope.template.file !== null) ? $scope.template.file.name : ''
-    };
-
     $scope.uploadLayout = function(){
         var fd = new FormData()
         fd.append('name', $scope.template.name)
@@ -170,8 +162,12 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
 
         })
     }
-    $scope.$watch('template.file',function(){
-        $scope.onTemplateChange();
+    $scope.$watch('template.file',function(newVal, oldVal){
+        if (newVal !== oldVal && newVal !== '') {
+            $scope.selectedTemplate ={};
+            $scope.template.name =  (!!$scope.template.file ? $scope.template.file.name:'');
+            $scope.template.desc = ''
+        }
     });
 
     $scope.moveToRules = function(){
