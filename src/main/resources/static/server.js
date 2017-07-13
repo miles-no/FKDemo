@@ -312,7 +312,7 @@ app.get('/layout/template/all', function(req, res) {
   request({
     url: `${apiUrl}/layout/template/all`
 },function(error,response,body){
-  console.log('Resp is ', body)
+  console.log(' /layout/template/all Resp is ', body)
   res.send(body);
 })
 });
@@ -378,8 +378,8 @@ app.post('/layout/template',upload.single('file'), function(req, res) {
     method : 'POST',
     formData : formData,
 },function(error,response,body){
-  console.log(JSON.stringify(response.request.headers))
-  fs.rmdir(appConfig.tempFilePath)
+  console.log('POST /layout/template',JSON.stringify(response.request.headers))
+  //fs.rm(`${req.file.destination}${req.file.filename}`);
   res.send(body);
 })
 });

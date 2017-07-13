@@ -26,6 +26,7 @@
                             <div class="upload-btn-wrapper">
                                 <button class="btn btn-primary col-sm-4" >Upload</button>
                                 <input type="file" accept=".xml" file-model="template.file" class="col-sm-4">
+                                <label class="col-sm-2" ng-if="template.file">{{template.file.name}}</label>
                             </div>
                         </div>
                     </div>
@@ -63,7 +64,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="rules-wrapper" ng-if="rulesList.length !== 0">
+                    <div class="rules-wrapper" >
                         <div class="rules-heading">Rules
                             <!--<i class="fa fa-plus btn" ng-click="addRule()"> Add Rule</i>--> <!-- remove this css also it is not required-->
                         </div>
@@ -125,7 +126,7 @@
         </div>
         <div class="modal-footer"  ng-show="!addBrands">
             <button   type="button" ng-click="skipToRules()" class="btn btn-primary">Skip</button>
-            <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "(template.file === null  || uploadForm.$invalid)">Next</button>
+            <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid)">Next</button>
         </div>
     </div>
 </div>
