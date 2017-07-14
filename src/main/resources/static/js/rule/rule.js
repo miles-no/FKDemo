@@ -7,21 +7,45 @@ app.controller('ruleController',function($scope,$http,ModalService){
     fieldMapping: ''
   }
   $scope.ruleList = []
+  $scope.selectedRule = []
+  $scope.tableRule = []
 
   $scope.getRules = function (){
     $http.get('/layout/attribute').success(function(response){
-      $scope.ruleData = response
+      $scope.tableRule = $scope.ruleData = response
       angular.forEach($scope.ruleData, function(item){
         $scope.ruleList.push(item.name)
+      })
+      $scope.ruleList = _.uniqBy($scope.ruleList,function(e){
+        return e
       })
     })
   }
 
-  $scope.onRuleSelect = function($item,$modal){
-
+  function showSelectedRules (){
+    $scope.tableRule = []
+    if($scope.selectedRule.length > 0){
+      angular.forEach($scope.ruleData,function(item){
+        angular.forEach($scope.selectedRule,function(selectedItems){
+          if(selectedItems === item.name){
+            $scope.tableRule.push(item)
+          }
+        })
+      })
+    }else{
+      $scope.tableRule = $scope.ruleData
+    }
   }
-  $scope.onRuleRemoval = function($item,$modal){
 
+  $scope.onRuleSelect = function(item,modal){
+    $scope.selectedRule.push(item)
+    showSelectedRules()
+  }
+  $scope.onRuleRemoval = function(item,modal){
+    _.remove($scope.selectedRule,function(eachSelectedRule){
+      return eachSelectedRule === item;
+    });
+    showSelectedRules()
   }
 
   function addRule (rule) {

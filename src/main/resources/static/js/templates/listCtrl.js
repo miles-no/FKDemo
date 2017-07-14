@@ -1,6 +1,5 @@
 app.controller('listCtrl',function($scope,ModalService,$http){
 
-  //$scope.layouts =[];
   var newLayout = {
       brand: '',
       legalPartClass: '',
@@ -9,36 +8,47 @@ app.controller('listCtrl',function($scope,ModalService,$http){
       creditLimit: ''
   }
 
+  $scope.selectedTemplate = []
+  $scope.templatelist = []
 
-  //$scope.selectedLayouts = []
-  //$scope.allLayouts = []
-  //function showSelectedLayouts () {
-  //    $scope.allLayouts = []
-  //    if ($scope.selectedLayouts.length > 0) {
-  //        angular.forEach($scope.layouts, function (layoutItem) {
-  //            angular.forEach($scope.selectedLayouts, function (selectedLayout) {
-  //                if(layoutItem.layout === selectedLayout.layout) {
-  //                    $scope.allLayouts.push(layoutItem)
-  //                }
-  //            })
-  //        })
-  //    } else {
-  //        $scope.allLayouts =  $scope.layouts;
-  //    }
-  //}
-  //
-  //$scope.onLayoutSelect = function(item,model){
-  //    console.log('onLayoutSelect ',item,model,$scope.layouts)
-  //    $scope.selectedLayouts.push(item);
-  //    showSelectedLayouts()
-  //}
-  //$scope.onLayoutRemoval = function(item,model){
-  //    console.log('onLayoutRemoval ',item,model,$scope.layouts)
-  //    _.remove($scope.selectedLayouts,function(eachSelectedLayout){
-  //        return eachSelectedLayout === item;
-  //    });
-  //    showSelectedLayouts()
-  //}
+  $scope.onTemplateSelect = function(item){
+    $scope.selectedTemplate.push(item)
+    showSelectedTemplate()
+  }
+
+  $scope.onTemplateRemoval = function(item){
+    _.remove($scope.selectedRule,function(eachSelectedTemplate){
+      return eachSelectedTemplate === item;
+    });
+    showSelectedTemplate()
+  }
+
+  function showSelectedTemplate (){
+    $scope.tableRule = []
+    if($scope.selectedTemplate.length > 0){
+      angular.forEach($scope.allLayouts,function(item){
+        angular.forEach($scope.selectedTemplate,function(selectedItems){
+          if(selectedItems === item.brand){
+            $scope.tableRule.push(item)
+          }
+        })
+      })
+    }else{
+      $scope.tableRule = $scope.allLayouts
+    }
+  }
+
+  $scope.onTemplateSelect = function(item){
+    $scope.selectedTemplate.push(item)
+    showSelectedTemplate()
+  }
+  $scope.onTemplateRemoval = function(item){
+    _.remove($scope.selectedTemplate,function(eachSelectedTemplate){
+      return eachSelectedTemplate === item;
+    });
+    showSelectedTemplate()
+  }
+
 
   function setActiveLayout (active){
     var layoutId = active.layoutID
@@ -168,13 +178,19 @@ app.controller('listCtrl',function($scope,ModalService,$http){
         $scope.loading = false
         console.log(error);
       }
-    );
+    )
   }
 
 
  $scope.getLayouts = function () {
     $http.get('/layout/template/all').then(function (response) {
-        $scope.allLayouts =  response.data;
+      $scope.tableRule = $scope.allLayouts =  response.data;
+      angular.forEach($scope.allLayouts, function(item){
+        $scope.templatelist.push(item.brand)
+      })
+     $scope.templatelist =  _.uniqBy($scope.templatelist,function(e){
+       return e
+     })
     }).catch(function(data){
       $scope.allLayouts  = data;
     })

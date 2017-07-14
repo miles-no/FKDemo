@@ -17,6 +17,9 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
             $scope.allGrids.push(gridItem)
           }
         })
+        $scope.allGrids = _.uniqBy($scope.allGrids,function(e){
+          return e
+        })
       })
     } else {
       $scope.allGrids =  $scope.grids;

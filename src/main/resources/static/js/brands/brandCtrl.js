@@ -23,6 +23,9 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
             $scope.tableBrands.push(item)
           }
         })
+        $scope.tableBrands = _.uniqBy($scope.tableBrands,function(e){
+          return e
+        })
       })
     }
     else{
@@ -41,7 +44,7 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
 
   $scope.onBrandSelect = function(item){
     $scope.selectedBrands.push(item);
-    showSelectedBrands()
+      showSelectedBrands()
   }
   $scope.onBrandRemoval = function(item){
     _.remove($scope.selectedBrands,function(eachSelectedBrand){
