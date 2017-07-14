@@ -58,7 +58,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
       let id = layout.id;
       //delete(layout.id);
      //$http.put('/layout/rule/'+id,layout).then(function (response) {
-    $http.put('/layout/rule/'+layout.layoutRule.id,layout).then(function (response) {
+    $http.put('/layout/rule/'+id,layout).then(function (response) {
          $scope.getLayouts()
      })
   }
