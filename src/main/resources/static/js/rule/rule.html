@@ -2,12 +2,12 @@
     <div class="col-sm-12 text-center header-style">Rules</div>
     <div class="col-md-6">
         <div class="row form-group">
-            <label class="control-label col-md-1 text-center">Rules</label>
+            <label class="control-label col-md-1 text-center text-match">Rules</label>
             <div class="col-md-6">
-                <ui-select multiple ng-model="selectedRule" theme="bootstrap" title="Choose Rule" on-remove="onRuleRemoval($item, $model)" on-select="onGridSelect($item, $model)">
+                <ui-select multiple ng-model="selectedRule" theme="bootstrap" title="Choose Rule" on-remove="onRuleRemoval($item, $model)" on-select="onRuleSelect($item, $model)">
                     <ui-select-match placeholder="Select Rule">{{$item}}</ui-select-match>
-                    <ui-select-choices repeat="eachRule in rules | filter : $select.search" position='down'>
-                        <div ng-bind-html="eachBrand | highlight: $select.search"></div>
+                    <ui-select-choices repeat="eachRule in ruleList | filter : $select.search" position='down'>
+                        <div ng-bind-html="eachRule | highlight: $select.search"></div>
                     </ui-select-choices>
                 </ui-select>
             </div>

@@ -7,6 +7,13 @@
   color: $brand-color;
   margin-bottom: 32px;
 }
+
+.text-match{
+  color: $brand-color;
+  margin-top: 5px;
+  font-size: 16px;
+  font-family: monospace;
+}
 .modal-wrapper {
   .modal-dialog {
     max-width: 100%;

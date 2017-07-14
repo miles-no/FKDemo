@@ -1,6 +1,19 @@
 <div class="manage-brands" ng-controller="listCtrl" ng-init="getLayouts();">
     <div class="col-sm-12 text-center header-style">Template</div>
     <spinner size="medium" class-name="cover" ng-show="loading"></spinner>
+    <div class="col-md-6">
+        <div class="row form-group">
+            <label class="control-label col-md-2 text-center text-match">Brands</label>
+            <div class="col-md-6">
+                <ui-select multiple ng-model="selectedRule" theme="bootstrap" title="Choose Rule" on-remove="onRuleRemoval($item, $model)" on-select="onGridSelect($item, $model)">
+                    <ui-select-match placeholder="Select Brand">{{$item}}</ui-select-match>
+                    <ui-select-choices repeat="eachRule in rules | filter : $select.search" position='down'>
+                        <div ng-bind-html="eachBrand | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
     <div class="col-sm-12">
         <table st-table="displayedCollection" st-safe-src="allLayouts" class="table table-align">
             <thead>

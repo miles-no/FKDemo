@@ -158,9 +158,8 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
             var file = new Blob([response.data], {type: 'application/xml'});
             var downloadLink = angular.element('<a></a>');
             downloadLink.attr('href',window.URL.createObjectURL(file));
-            downloadLink.attr('download', layout.name+'.xml');
+            downloadLink.attr('download', layout.name+'.rptdesign');
             downloadLink[0].click();
-
         })
     }
     $scope.$watch('template.file',function(newVal, oldVal){

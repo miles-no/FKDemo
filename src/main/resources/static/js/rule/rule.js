@@ -6,10 +6,22 @@ app.controller('ruleController',function($scope,$http,ModalService){
     type: '',
     fieldMapping: ''
   }
+  $scope.ruleList = []
+
   $scope.getRules = function (){
     $http.get('/layout/attribute').success(function(response){
       $scope.ruleData = response
+      angular.forEach($scope.ruleData, function(item){
+        $scope.ruleList.push(item.name)
+      })
     })
+  }
+
+  $scope.onRuleSelect = function($item,$modal){
+
+  }
+  $scope.onRuleRemoval = function($item,$modal){
+
   }
 
   function addRule (rule) {

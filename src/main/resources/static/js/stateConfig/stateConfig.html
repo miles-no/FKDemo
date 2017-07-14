@@ -3,7 +3,7 @@
     <div class="col-md-6 ui-select">
         <div class="row form-group">
             <div class='container-fluid typeahead-demo'>
-                <label class="control-label col-md-1 key-text">Key</label>
+                <label class="control-label col-md-1 key-text text-match">Key</label>
                 <input type="text" ng-model="selectedKey" ng-change="showalldata()" typeahead-on-select="showSelectedKey()" typeahead-min-length="0"  uib-typeahead="data for data in dummydata | filter:$viewValue | limitTo:8" class="state-box">
             </div>
         </div>
