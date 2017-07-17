@@ -44,17 +44,10 @@ public class LayoutContentServiceImpl implements LayoutContentService {
 
     @Override
     public void saveLayoutContent(Long layoutId, String file) {
-        List<Integer> versionList = layoutContentRepository.getLatestVersionNumber(layoutId);
-        Integer version;
-        if(null != versionList && IMConstants.ZERO != versionList.size()) {
-            version = Collections.max(versionList);
-        } else {
-            version = 0;
-        }
         LayoutContent layoutContent = new LayoutContent();
         layoutContent.setLayoutId(layoutId);
         layoutContent.setFileContent(file);
-        layoutContent.setVersion(++version);
+        layoutContent.setVersion(IMConstants.ONE);
         layoutContent.setActive(Boolean.FALSE);
         layoutContentRepository.saveAndFlush(layoutContent);
     }
@@ -82,5 +75,39 @@ public class LayoutContentServiceImpl implements LayoutContentService {
     public String getLayoutContentByLayoutIdandVersion(Long layoutId, Integer version) {
         LayoutContent layoutContent = layoutContentRepository.getLayoutContentByIdAndVersion(layoutId, version);
         return layoutContent.getFileContent();
+    }
+
+    @Override
+    public void deleteLayoutContent(Long id) {
+        layoutContentRepository.delete(id);
+    }
+
+    @Override
+    public void deActivateLayoutTemplate(Long layoutId, Integer version) {
+        LayoutContent layoutContent = layoutContentRepository.getLayoutContentByIdAndVersion(layoutId, version);
+        layoutContent.setActive(Boolean.FALSE);
+        layoutContentRepository.saveAndFlush(layoutContent);
+    }
+
+    @Override
+    public List<LayoutContent> getAllLayoutContentByLayoutId(Long layoutId) {
+        return layoutContentRepository.getLayoutContentById(layoutId);
+    }
+
+    @Override
+    public void updateLayoutVersion(Long id, String template) {
+        List<Integer> versionList = layoutContentRepository.getVersionNumbersForLayout(id);
+        Integer version;
+        if(null != versionList && IMConstants.ZERO != versionList.size()) {
+            version = Collections.max(versionList);
+        } else {
+            version = 0;
+        }
+        LayoutContent layoutContent = new LayoutContent();
+        layoutContent.setLayoutId(id);
+        layoutContent.setFileContent(template);
+        layoutContent.setVersion(++version);
+        layoutContent.setActive(Boolean.FALSE);
+        layoutContentRepository.saveAndFlush(layoutContent);
     }
 }

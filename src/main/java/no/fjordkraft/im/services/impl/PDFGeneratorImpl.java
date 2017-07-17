@@ -83,6 +83,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
     private String birtRPTPath;
     private String birtResourcePath;
+    private String sampleStatementFilePath;
+    private String sampleCampaignImagePath;
 
     public PDFGeneratorImpl(ConfigService configService) {
         this.configService = configService;
@@ -95,6 +97,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         xmlFolderName = configService.getString(IMConstants.PROCESSED_XML_FOLDER_NAME);
         birtRPTPath = configService.getString(IMConstants.BIRT_RPTDESIGN_PATH);
         birtResourcePath = configService.getString(IMConstants.BIRT_RESOURCE_PATH);
+        sampleStatementFilePath = configService.getString(IMConstants.SAMPLE_STATEMENT_FILE_PATH);
+        sampleCampaignImagePath = configService.getString(IMConstants.SAMPLE_CAMPAIGN_IMAGE_PATH);
     }
 
     @Override
@@ -227,20 +231,14 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         String ouputFilePath = "src/main/resources/preview.pdf";
         try {
             String rptDesign = layoutContentService.getLayoutContentByLayoutIdandVersion(layoutId, version);
-
-            File xmlFile = new File("src\\main\\resources\\sampleFile\\statement.xml");
-            String xmlFilePath = xmlFile.getAbsolutePath();
-            File campaignImageFile = new File("src\\main\\resources\\sampleFile\\FKAS_p_31.jpg");
-            String campaignImagePath = campaignImageFile.getAbsolutePath();
             String encoding = configService.getString("layout.encoding");
             encoding = encoding == null ? "UTF-8":encoding;
             InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(Charset.forName(encoding)));
-            String campaignImage = segmentFileService.getCampaignForPreview(campaignImagePath);
-
+            String campaignImage = segmentFileService.getCampaignForPreview(sampleCampaignImagePath);
             IReportRunnable runnable = reportEngine.openReportDesign(designStream);
 
             IRunAndRenderTask task = reportEngine.createRunAndRenderTask(runnable);
-            task.setParameterValue("sourcexml", xmlFilePath);
+            task.setParameterValue("sourcexml", sampleStatementFilePath);
             task.setParameterValue("campaignImage", campaignImage);
             PDFRenderOption options = new PDFRenderOption();
             options.setEmbededFont(true);

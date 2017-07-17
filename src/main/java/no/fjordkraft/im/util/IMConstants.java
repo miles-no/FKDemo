@@ -17,6 +17,8 @@ public interface IMConstants {
     String NUM_OF_THREAD_PDFGENERATOR ="num.thread.pdf.generator";
     String MAX_QUEUE_CAPACITY="500";
     String BIRT_RPTDESIGN_PATH = "birt.layout.file.path";
+    String SAMPLE_STATEMENT_FILE_PATH = "sample.statement.file.path";
+    String SAMPLE_CAMPAIGN_IMAGE_PATH = "sample.campaign.image.path";
     static final String DESTINATION_PATH = "destinationPath";
     static final String PDF_GENERATED_FOLDER_NAME = "pdfGeneratedFolderName";
     static final String NETT = "NETT";
@@ -52,6 +54,7 @@ public interface IMConstants {
     static final String GRID = "Grid";
     static final String CONFIG = "config";
     static final int ZERO = 0;
+    static final int ONE = 1;
     static final int GREATER_THAN = 1;
     static final int LESSER_THAN = -1;
     static final String STRING = "STRING";

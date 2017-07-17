@@ -135,11 +135,28 @@ public class LayoutServiceImpl implements LayoutService {
         return nameValuePairs;
     }
 
-    /*@Override
-    public Layout getLayoutByIdAndVersion(Long id, Integer version) {
-        LayoutID layoutID = new LayoutID();
-        layoutID.setId(id);
-        layoutID.setVersion(version);
-        return layoutDesignRepository.findOne(layoutID);
-    }*/
+    @Override
+    public void deleteLayout(Long id) {
+        List<LayoutContent> layoutContentList = layoutContentService.getAllLayoutContentByLayoutId(id);
+        List<LayoutRule> layoutRuleList = layoutRuleService.getLayoutRuleByLayout(id);
+        for(LayoutRule layoutRule:layoutRuleList) {
+            layoutRuleService.deleteLayoutRule(layoutRule.getId());
+        }
+        for(LayoutContent layoutContent:layoutContentList) {
+            layoutContentService.deleteLayoutContent(layoutContent.getId());
+        }
+        layoutRepository.delete(id);
+    }
+
+    @Override
+    public Layout updateLayoutVersion(Long id, String template) {
+        Layout layout = layoutRepository.findOne(id);
+        if(null != layout) {
+            layout.setUpdateTime(new Timestamp(System.currentTimeMillis()));
+            layoutRepository.saveAndFlush(layout);
+            layoutContentService.updateLayoutVersion(id, template);
+        }
+        return layout;
+    }
+
 }

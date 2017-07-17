@@ -147,6 +147,26 @@ public class IMLayoutController {
         return layoutService.updateLayout(id, restLayoutTemplate);
     }
 
+    @RequestMapping(value = "template/version/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    Layout updateLayoutVersion(@PathVariable("id") Long id,
+                               @RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
+        String template = null;
+        String encoding = configService.getString("save.layout.encoding");
+        encoding = encoding == null ? "UTF-8":encoding;
+        logger.debug("saveLayoutTemplate encoding "+ encoding);
+        if(null != file) {
+            template = FileUtils.readFileToString(convert(file), Charset.forName(encoding));
+        }
+        return layoutService.updateLayoutVersion(id, template);
+    }
+
+    @RequestMapping(value = "template/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    void deleteLayoutTemplate(@PathVariable("id") Long id) {
+        layoutService.deleteLayout(id);
+    }
+
     public File convert(MultipartFile file) throws IOException {
         File convFile = new File(file.getOriginalFilename());
         convFile.createNewFile();
@@ -161,6 +181,13 @@ public class IMLayoutController {
     void activateTemplate(@PathVariable("layoutId") Long layoutId,
                           @PathVariable("version") Integer version) {
         layoutContentService.activateLayoutTemplate(layoutId, version);
+    }
+
+    @RequestMapping(value="deActivate/{layoutId}/{version}", method = RequestMethod.PUT)
+    @ResponseBody
+    void deActivateTemplate(@PathVariable("layoutId") Long layoutId,
+                          @PathVariable("version") Integer version) {
+        layoutContentService.deActivateLayoutTemplate(layoutId, version);
     }
 
     @RequestMapping(value="rule", method = RequestMethod.GET)
@@ -186,7 +213,11 @@ public class IMLayoutController {
     @RequestMapping(value = "rptdesign", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<byte[]> getRptDesignFile(@RequestParam("id") Long id) throws IOException {
-        LayoutContent layoutContent = layoutContentService.getLayoutContentById(id);
+        LayoutContent layoutContent = layoutContentService.getLayoutContentByLayoutId(id);
+        //File file = new File("/opt/app/sampleFile/sample.rptdesign");
+        File file = new File("D:\\data\\sample.rptdesign");
+        FileUtils.writeStringToFile(file, layoutContent.getFileContent());
+            logger.debug("sample.rptdesign is saved.");
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_XML);
         headers.setContentLength(layoutContent.getFileContent().length());

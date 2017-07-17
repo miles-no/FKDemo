@@ -32,7 +32,7 @@ import java.nio.file.Files;
 @Service
 public class InvoiceGeneratorImpl implements InvoiceGenerator {
 
-    private static final Logger logger = LoggerFactory.getLogger(PDFGeneratorImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(InvoiceGeneratorImpl.class);
 
     @Autowired
     private ConfigService configService;

@@ -20,4 +20,6 @@ public interface LayoutService {
     List<RestLayout> getLayoutByBrand(String brand);
     List<RestLayout> getAllLayout();
     List<NameValuePair> getLayoutList();
+    void deleteLayout(Long id);
+    Layout updateLayoutVersion(Long id, String template);
 }

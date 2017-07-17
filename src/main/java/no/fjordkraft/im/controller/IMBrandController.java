@@ -46,9 +46,9 @@ public class IMBrandController {
         brandService.updateBrandConfig(brandConfig);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    void deleteBrandConfig(@RequestParam(value="id") Long id) {
+    void deleteBrandConfig(@PathVariable(value="id") Long id) {
         brandService.deleteBrandConfig(id);
     }
 
