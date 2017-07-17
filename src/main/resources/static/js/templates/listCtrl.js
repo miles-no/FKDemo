@@ -65,10 +65,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
   }
   
   function updateLayout(layout) {
-      let id = layout.id;
-      //delete(layout.id);
-     //$http.put('/layout/rule/'+id,layout).then(function (response) {
-    $http.put('/layout/rule/'+id,layout).then(function (response) {
+     $http.put(`/layout/rule/${layout.id}`,layout).then(function (response) {
          $scope.getLayouts()
      })
   }
