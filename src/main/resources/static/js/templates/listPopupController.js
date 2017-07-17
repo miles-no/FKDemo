@@ -149,19 +149,7 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
         })//add error callback
         console.log('test')
     }
-    $scope.downLoadLayout = function(layout){
-        var id = layout.value
-        $http({
-            method : 'GET',
-            url : '/layout/rptdesign?id='+id,
-        }).then(function(response,status,headers){
-            var file = new Blob([response.data], {type: 'application/xml'});
-            var downloadLink = angular.element('<a></a>');
-            downloadLink.attr('href',window.URL.createObjectURL(file));
-            downloadLink.attr('download', layout.name+'.rptdesign');
-            downloadLink[0].click();
-        })
-    }
+
     $scope.$watch('template.file',function(newVal, oldVal){
         if (newVal !== oldVal && newVal !== '') {
             $scope.selectedTemplate ={};

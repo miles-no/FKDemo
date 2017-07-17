@@ -24,7 +24,9 @@
                 <th>Version</th>
                 <th>Active</th>
                 <th>Rules Attached</th>
+                <th>Download</th>
                 <th>Preview</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -33,9 +35,10 @@
                 <td>{{layoutItem.name}}</td>
                 <td>{{layoutItem.description}}</td>
                 <td>{{layoutItem.version}}</td>
-                <td ng-click="setActive(layoutItem,$event)"><i  ng-class="{'fa fa-check-circle greenIcon eaTrue': layoutItem.active === true , 'fa fa-check-circle greenIcon eaFalse': layoutItem.active === false}"></i></td>
+                <td ng-click="toggleLayout(layoutItem,$event)"><i  ng-class="{'fa fa-check-circle greenIcon eaTrue': layoutItem.active === true , 'fa fa-check-circle greenIcon eaFalse': layoutItem.active === false}"></i></td>
                 <td ng-class="{'disabled' : layoutItem.layoutRule.layoutRuleMapList.length==0}"><a ng-click="dropDownList($event,layoutItem)">{{layoutItem.layoutRule.layoutRuleMapList.length}}</a></td>
-                <td ng-click="previewLayout(layoutItem,$event)"><i class="fa fa-file-pdf-o"></i></td>
+                <td ng-click="downLoadLayout(layoutItem,$event)"><i uib-tooltip="Click to download {{layoutItem.name}}" tooltip-placement="bottom"  class="fa fa-external-link" aria-hidden="true"></i></td>
+                <td ng-click="previewLayout(layoutItem,$event)"><i uib-tooltip="Click to preview {{layoutItem.name}}" tooltip-placement="bottom" class="fa fa-file-pdf-o"></i></td>
                 <td ng-click="deleteTemplate(layoutItem,$event)"><i class="fa fa-trash-o redIcon"></i></td>
                 <td ng-show="dropDown === layoutItem"><i class="fa fa-caret-up"></i></td>
             </tr>
@@ -60,9 +63,16 @@
                 </td>
             </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="9" class="text-center">
+                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                </td>
+            </tr>
+            </tfoot>
         </table>
         <div class="text-right">
-            <button ng-click="addTemplate()" class="btn btn-primary">Add Template</button><!-- modal opens upon clicking of add brand -->
+            <button ng-click="addTemplate()" class="btn btn-primary">Add Template</button>
         </div>
     </div>
 </div>

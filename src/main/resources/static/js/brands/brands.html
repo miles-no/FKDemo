@@ -2,7 +2,7 @@
     <div class="col-sm-12 text-center header-style">Brands</div>
     <div class="col-sm-6">
         <div class="row form-group">
-            <label class="control-label col-md-1 text-center text-match text-match">Brand</label>
+            <label class="control-label col-md-1 text-center text-match">Brand</label>
             <div class="col-md-6">
                 <ui-select multiple ng-model="selectedBrands" theme="bootstrap" title="Choose brand" on-remove="onBrandRemoval($item, $model)" on-select="onBrandSelect($item, $model)">
                     <ui-select-match placeholder="Select Brand">{{$item}}</ui-select-match>
@@ -23,13 +23,13 @@
                     <th >Prefix KID</th>
                     <th>Kontonummer</th>
                     <th>Use Barcode</th>
-                    <th width="40px"></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="brand in displayedCollection" ng-click="updateBrand(brand)">
                     <td>{{brand.brand}}</td>
-                    <td>{{brand.agreementNumber}}</td>
+                    <td><div>{{brand.agreementNumber}}</div></td>
                     <td>{{brand.serviceLevel}}</td>
                     <td>{{brand.prefixKID}}</td>
                     <td>{{brand.kontonummer}}</td>
@@ -38,11 +38,11 @@
                 </tr>
             </tbody>
             <tfoot>
-                <!--<tr>-->
-                    <!--<td colspan="100%" class="text-center">-->
-                        <!--<paginator page-size=pageSize total-pages=totalPages on-page-change="onPageChanged(result)"></paginator>-->
-                    <!--</td>-->
-			    <!--</tr>-->
+                <tr>
+                    <td colspan="7" class="text-center">
+                        <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                    </td>
+                </tr>
             </tfoot>
         </table>
         <div class="text-right">

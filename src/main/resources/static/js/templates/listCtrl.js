@@ -58,6 +58,14 @@ app.controller('listCtrl',function($scope,ModalService,$http){
     })
   }
 
+  function deActivateLayout (active){
+    var layoutId = active.layoutID
+    var deActiveId = active.version
+    $http.put('/layout/deActivate/'+layoutId+'/'+deActiveId).then(function(response){
+      $scope.getLayouts();
+    })
+  }
+
   function addLayout (layout) {
      $http.post('/layout/rule',layout).then(function (response) {
          $scope.getLayouts()
@@ -70,18 +78,25 @@ app.controller('listCtrl',function($scope,ModalService,$http){
      })
   }
 
-  function showActiveModal (layoutInfo){
+  function toggleLayoutModal (layoutInfo){
     console.log(layoutInfo)
+    if (layoutInfo.active === true){
+      var bodyTitle = 'Are you sure you want to deactivate '
+      var headerText = 'Confirm Layout deactivation'
+    }else{
+      var bodyTitle = 'Are you sure you want to activate '
+      var headerText = 'Confirm Layout activation'
+    }
     ModalService.showModal({
       templateUrl: 'js/modals/confirmDelete.html',
       controller:'popupController',
       inputs:{
         options:{
           body:{
-            bodyContent: 'Are you sure you want to Activate Layout '+layoutInfo.name ,
+            bodyContent: bodyTitle +layoutInfo.name ,
             brand: layoutInfo
           },
-          header: "Confirm Layout Activation",
+          header: headerText,
           conFirmBtnText : [
             {name: 'Cancel'},
             {name: 'Confirm' }
@@ -99,7 +114,11 @@ app.controller('listCtrl',function($scope,ModalService,$http){
           var activate = {}
           activate.layoutID = layoutInfo.layoutID
           activate.version = layoutInfo.version
-          setActiveLayout(activate)
+          if(layoutInfo.active === false){
+            setActiveLayout(activate)
+          }else{
+            deActivateLayout(activate)
+          }
         }
       });
     })
@@ -178,8 +197,20 @@ app.controller('listCtrl',function($scope,ModalService,$http){
     )
   }
 
-
- $scope.getLayouts = function () {
+  $scope.downLoadLayout = function(layout){
+    var id = layout.layoutID
+    $http({
+      method : 'GET',
+      url : '/layout/rptdesign?id='+id,
+    }).then(function(response,status,headers){
+      var file = new Blob([response.data], {type: 'application/xml'});
+      var downloadLink = angular.element('<a></a>');
+      downloadLink.attr('href',window.URL.createObjectURL(file));
+      downloadLink.attr('download', layout.name+'.rptdesign');
+      downloadLink[0].click();
+    })
+  }
+  $scope.getLayouts = function () {
     $http.get('/layout/template/all').then(function (response) {
       $scope.tableRule = $scope.allLayouts =  response.data;
       angular.forEach($scope.allLayouts, function(item){
@@ -201,16 +232,15 @@ app.controller('listCtrl',function($scope,ModalService,$http){
     })
   }
 
-  $scope.setActive = function(rule, $event){
+  $scope.toggleLayout = function(rule, $event){
       $event.stopPropagation();
-      showActiveModal(rule)
-
-
+      toggleLayoutModal(rule)
   }
 
   $scope.deleteTemplate = function(template,$event){
+    var id = template.layoutID
     $event.stopPropagation();
-    $http.delete('').then(function(){
+    $http.delete('/layout/template/'+id).then(function(){
       $scope.getLayouts();
     })
   }

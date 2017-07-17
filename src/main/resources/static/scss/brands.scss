@@ -1,5 +1,9 @@
 @import 'base';
 .manage-brands{
+
+  th,tr,td{
+    outline: none;
+  }
   .icon-align{
     margin-top: 10px;
     &:focus{
@@ -9,7 +13,6 @@
   .table-align{
     th,tr,td{
       text-align: center;
-      outline: none;
     }
     tr.active td{
       background: skyblue;

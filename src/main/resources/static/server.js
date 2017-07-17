@@ -159,10 +159,7 @@ app.delete('/brand/config/:id',function(req,res,next){
   var delId = req.params.id;
   console.log(delId);
   request({
-    url :`${apiUrl}/brand/config`,
-    qs : {
-      id : delId
-    },
+    url :`${apiUrl}/brand/config/`+delId,
     method : 'DELETE'
 },function(error,response,body){
   res.send(body);
@@ -364,6 +361,27 @@ app.put('/layout/activate/:id/:id1',function(req,res){
   res.send(body)
 })
 })
+
+app.put('/layout/deActivate/:id/:id1',function(req,res){
+  var u1 = `${apiUrl}/layout/deActivate/`+req.params.id+`/`+req.params.id1
+  console.log(u1);
+  request({
+    url: u1,
+    method : 'PUT'
+  },function(error,response,body){
+    res.send(body)
+  })
+})
+
+app.delete('/layout/template/:id',function(req,res){
+  request({
+    url :`${apiUrl}/layout/template/`+req.params.id,
+    method : 'DELETE'
+},function(error,response,body){
+  res.send(body);
+})
+});
+
 
 app.post('/layout/template',upload.single('file'), function(req, res) {
   console.log('In POST /layout/template ', req.body);

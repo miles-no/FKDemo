@@ -24,6 +24,13 @@
                 <td ng-click="deleteStateConfig(state, $event)"><i class="fa fa-trash-o redIcon"></i></td>
             </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3" class="text-center">
+                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                </td>
+            </tr>
+            </tfoot>
         </table>
         <div class="text-right">
             <button ng-click="addStateConfig()" class="btn btn-primary btn-align">Add Configuration</button><!-- modal opens upon clicking of add brand -->

@@ -84,7 +84,7 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
       inputs:{
           options:{
             body:{
-              bodyContent: 'Please confirm to delete ' + brand.name,
+              bodyContent: 'Please confirm to delete ' + brand.brand,
               brand: brand
             },
             header: "Delete Brand",
