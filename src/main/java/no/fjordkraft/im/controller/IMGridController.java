@@ -45,9 +45,9 @@ public class IMGridController {
         gridConfigService.updateGridConfig(gridConfig);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    void deleteGridConfig(@RequestParam(value="id") Long id) {
+    void deleteGridConfig(@PathVariable(value="id") Long id) {
         gridConfigService.deleteGridConfig(id);
     }
 
