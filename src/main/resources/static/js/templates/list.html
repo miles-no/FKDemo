@@ -1,10 +1,5 @@
 <div class="manage-brands" ng-controller="listCtrl" ng-init="getLayouts();">
     <div class="col-sm-12 text-center header-style">Template</div>
-    <!--<div id="status-buttons" class="text-center">-->
-        <!--<a ui-sref-active="active" ui-sref=".add"><span>1</span> Profile</a>-->
-        <!--<a ui-sref-active="active" ui-sref=".interests"><span>2</span> Interests</a>-->
-        <!--<a ui-sref-active="active" ui-sref=".payment"><span>3</span> Payment</a>-->
-    <!--</div>-->
     <spinner size="medium" class-name="cover" ng-show="loading"></spinner>
     <div class="col-md-6">
         <div class="row form-group">
@@ -23,7 +18,7 @@
         <table st-table="displayedCollection" st-safe-src="tableRule" class="table table-align">
             <thead>
             <tr>
-                <th class="table-left">Brand</th>
+                <th class="table-left pointer" st-sort="brand">Brand</th>
                 <th class="table-left">Layout Name</th>
                 <th class="table-left">Layout Description</th>
                 <th>Version</th>

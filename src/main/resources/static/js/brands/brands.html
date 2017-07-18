@@ -2,7 +2,7 @@
     <div class="col-sm-12 text-center header-style">Brands</div>
     <div class="col-sm-6">
         <div class="row form-group">
-            <label class="control-label col-md-1 text-center text-match">Brand</label>
+            <label class="control-label col-md-2 text-match">Brand</label>
             <div class="col-md-6">
                 <ui-select multiple ng-model="selectedBrands" theme="bootstrap" title="Choose brand" on-remove="onBrandRemoval($item, $model)" on-select="onBrandSelect($item, $model)">
                     <ui-select-match placeholder="Select Brand">{{$item}}</ui-select-match>
@@ -17,7 +17,7 @@
         <table st-table="displayedCollection" st-safe-src="tableBrands" class="table table-align">
             <thead>
                 <tr>
-                    <th class="table-left" st-sort="Brand">Brand</th>
+                    <th class="table-left pointer" st-sort="brand">Brand</th>
                     <th class="table-left">Agreement No</th>
                     <th>Service Level No</th>
                     <th class="table-left">Prefix KID</th>
