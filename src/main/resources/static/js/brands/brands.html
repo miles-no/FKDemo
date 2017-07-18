@@ -17,22 +17,22 @@
         <table st-table="displayedCollection" st-safe-src="tableBrands" class="table table-align">
             <thead>
                 <tr>
-                    <th st-sort="Brand">Brand</th>
-                    <th>Agreement No</th>
-                    <th >Service Level No</th>
-                    <th >Prefix KID</th>
-                    <th>Kontonummer</th>
+                    <th class="table-left" st-sort="Brand">Brand</th>
+                    <th class="table-left">Agreement No</th>
+                    <th>Service Level No</th>
+                    <th class="table-left">Prefix KID</th>
+                    <th class="table-left">Kontonummer</th>
                     <th>Use Barcode</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="brand in displayedCollection" ng-click="updateBrand(brand)">
-                    <td>{{brand.brand}}</td>
-                    <td><div>{{brand.agreementNumber}}</div></td>
+                    <td class="table-left">{{brand.brand}}</td>
+                    <td class="table-left">{{brand.agreementNumber}}</td>
                     <td>{{brand.serviceLevel}}</td>
-                    <td>{{brand.prefixKID}}</td>
-                    <td>{{brand.kontonummer}}</td>
+                    <td class="table-left">{{brand.prefixKID}}</td>
+                    <td class="table-left">{{brand.kontonummer}}</td>
                     <td><i ng-class="{'fa fa-check-circle greenIcon eaTrue': brand.useEABarcode === '1' , 'fa fa-check-circle greenIcon eaFalse': brand.useEABarcode === '0'}"></i></td>
                     <td ng-click="deleteBrands(brand, $event)"><i class="fa fa-trash-o redIcon"></i></td>
                 </tr>

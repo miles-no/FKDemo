@@ -1,5 +1,10 @@
 <div class="manage-brands" ng-controller="listCtrl" ng-init="getLayouts();">
     <div class="col-sm-12 text-center header-style">Template</div>
+    <!--<div id="status-buttons" class="text-center">-->
+        <!--<a ui-sref-active="active" ui-sref=".add"><span>1</span> Profile</a>-->
+        <!--<a ui-sref-active="active" ui-sref=".interests"><span>2</span> Interests</a>-->
+        <!--<a ui-sref-active="active" ui-sref=".payment"><span>3</span> Payment</a>-->
+    <!--</div>-->
     <spinner size="medium" class-name="cover" ng-show="loading"></spinner>
     <div class="col-md-6">
         <div class="row form-group">
@@ -18,9 +23,9 @@
         <table st-table="displayedCollection" st-safe-src="tableRule" class="table table-align">
             <thead>
             <tr>
-                <th>Brand</th>
-                <th>Layout Name</th>
-                <th>Layout Description</th>
+                <th class="table-left">Brand</th>
+                <th class="table-left">Layout Name</th>
+                <th class="table-left">Layout Description</th>
                 <th>Version</th>
                 <th>Active</th>
                 <th>Rules Attached</th>
@@ -31,9 +36,9 @@
             </thead>
             <tbody>
             <tr ng-repeat-start = "layoutItem in displayedCollection" ng-click="updateTemplate(layoutItem)">
-                <td>{{layoutItem.brand}}</td>
-                <td>{{layoutItem.name}}</td>
-                <td>{{layoutItem.description}}</td>
+                <td class="table-left">{{layoutItem.brand}}</td>
+                <td class="table-left">{{layoutItem.name}}</td>
+                <td class="table-left">{{layoutItem.description}}</td>
                 <td>{{layoutItem.version}}</td>
                 <td ng-click="toggleLayout(layoutItem,$event)"><i  ng-class="{'fa fa-check-circle greenIcon eaTrue': layoutItem.active === true , 'fa fa-check-circle greenIcon eaFalse': layoutItem.active === false}"></i></td>
                 <td ng-class="{'disabled' : layoutItem.layoutRule.layoutRuleMapList.length==0}"><a ng-click="dropDownList($event,layoutItem)">{{layoutItem.layoutRule.layoutRuleMapList.length}}</a></td>
