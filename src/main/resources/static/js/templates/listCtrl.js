@@ -197,7 +197,8 @@ app.controller('listCtrl',function($scope,ModalService,$http){
     )
   }
 
-  $scope.downLoadLayout = function(layout){
+  $scope.downLoadLayout = function(layout,$event){
+    $event.stopPropagation();
     var id = layout.layoutID
     $http({
       method : 'GET',
