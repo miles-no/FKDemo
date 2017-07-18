@@ -238,10 +238,36 @@ app.controller('listCtrl',function($scope,ModalService,$http){
   }
 
   $scope.deleteTemplate = function(template,$event){
-    var id = template.layoutID
     $event.stopPropagation();
-    $http.delete('/layout/template/'+id).then(function(){
-      $scope.getLayouts();
+    var id = template.layoutID
+    ModalService.showModal({
+      templateUrl: 'js/modals/confirmDelete.html',
+      controller:'popupController',
+      inputs:{
+        options:{
+          body:{
+            bodyContent: 'Please confirm to delete '+template.name
+          },
+          header: 'Delete Template',
+          conFirmBtnText : [
+            {name: 'cancel'},
+            {name: "Delete" }
+          ],
+          classes: {
+            modalBody: '',
+            body: 'manage-brand'
+          }
+        }
+      }
+    }).then(function(modal){
+      modal.element.modal();
+      modal.close.then(function(result){
+        if(result=='Delete'){
+            $http.delete('/layout/template/'+id).then(function(){
+            $scope.getLayouts();
+          })
+        }
+      })
     })
   }
 
