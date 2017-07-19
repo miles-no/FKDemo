@@ -64,7 +64,9 @@ public class RuleAttributesServiceImpl implements RuleAttributesService {
         restRuleAttribute.setName(ruleAttributes.getName());
         restRuleAttribute.setType(ruleAttributes.getType());
         restRuleAttribute.setFieldMapping(ruleAttributes.getFieldMapping());
-        restRuleAttribute.setOptions(ruleAttributes.getOptions().split("\\s*,\\s*"));
+        if(null != ruleAttributes.getOptions()) {
+            restRuleAttribute.setOptions(ruleAttributes.getOptions().split("\\s*,\\s*"));
+        }
         return restRuleAttribute;
     }
 
