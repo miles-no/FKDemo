@@ -28,7 +28,7 @@
                     <td>{{gridItem.gridName}}</td>
                     <td>{{gridItem.email}}</td>
                     <td>{{gridItem.phone}}</td>
-                    <td ng-click="deleteGrid(gridItem, $event)"><i class="fa fa-trash-o redIcon"></i></td>
+                    <td ng-click="deleteGrid(gridItem, $event)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
                 </tr>
             </tbody>
             <tfoot>

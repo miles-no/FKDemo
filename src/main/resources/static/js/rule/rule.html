@@ -1,5 +1,5 @@
 <div class="manage-brands" ng-controller="ruleController" ng-init="getRules()">
-    <div class="col-sm-12 text-center header-style">Rules</div>
+    <div class="col-sm-12 text-center header-style">Template Rules</div>
     <div class="col-md-6">
         <div class="row form-group">
             <label class="control-label col-md-1 text-center text-match">Rules</label>
@@ -30,7 +30,7 @@
                 <td>{{ruleItem.type}}</td>
                 <td>{{ruleItem.fieldMapping}}</td>
                 <td>{{ruleItem.options}}</td>
-                <td ng-click="deleteRule(ruleItem, $event)"><i class="fa fa-trash-o redIcon"></i></td>
+                <td ng-click="deleteRule(ruleItem, $event)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
             </tr>
             </tbody>
             <tfoot>

@@ -21,7 +21,7 @@
             <tr ng-repeat="state in displayedCollection" ng-click="updateStateConfig(state);">
                 <td>{{state.name}}</td>
                 <td>{{state.value}}</td>
-                <td ng-click="deleteStateConfig(state, $event)"><i class="fa fa-trash-o redIcon"></i></td>
+                <td ng-click="deleteStateConfig(state, $event)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
             </tr>
             </tbody>
             <tfoot>

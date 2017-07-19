@@ -34,7 +34,7 @@
                     <td class="table-left">{{brand.prefixKID}}</td>
                     <td class="table-left">{{brand.kontonummer}}</td>
                     <td><i ng-class="{'fa fa-check-circle greenIcon eaTrue': brand.useEABarcode === '1' , 'fa fa-check-circle greenIcon eaFalse': brand.useEABarcode === '0'}"></i></td>
-                    <td ng-click="deleteBrands(brand, $event)"><i class="fa fa-trash-o redIcon"></i></td>
+                    <td ng-click="deleteBrands(brand, $event)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
                 </tr>
             </tbody>
             <tfoot>

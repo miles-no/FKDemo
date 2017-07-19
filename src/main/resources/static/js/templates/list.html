@@ -1,5 +1,5 @@
 <div class="manage-brands" ng-controller="listCtrl" ng-init="getLayouts();">
-    <div class="col-sm-12 text-center header-style">Template</div>
+    <div class="col-sm-12 text-center header-style">Template Management</div>
     <spinner size="medium" class-name="cover" ng-show="loading"></spinner>
     <div class="col-md-6">
         <div class="row form-group">
@@ -39,7 +39,7 @@
                 <td ng-class="{'disabled' : layoutItem.layoutRule.layoutRuleMapList.length==0}"><a ng-click="dropDownList($event,layoutItem)">{{layoutItem.layoutRule.layoutRuleMapList.length}}</a></td>
                 <td ng-click="downLoadLayout(layoutItem,$event)"><i uib-tooltip="Click to download {{layoutItem.name}}" tooltip-placement="bottom"  class="fa fa-download" aria-hidden="true"></i></td>
                 <td ng-click="previewLayout(layoutItem,$event)"><i uib-tooltip="Click to preview {{layoutItem.name}}" tooltip-placement="bottom" class="fa fa-file-pdf-o"></i></td>
-                <td ng-click="deleteTemplate(layoutItem,$event)"><i class="fa fa-trash-o redIcon"></i></td>
+                <td ng-click="deleteTemplate(layoutItem,$event)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
                 <td ng-show="dropDown === layoutItem"><i class="fa fa-caret-up"></i></td>
             </tr>
             <tr ng-repeat-end ng-if="dropDown === layoutItem">
