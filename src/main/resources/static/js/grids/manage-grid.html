@@ -7,31 +7,33 @@
         </div>
         <div class="modal-body {{options.classes.modalBody}}"  >
             <div class="manage-brands">
-                <form class="form-horizontal" >
+                <form name="gridValidations" class="form-horizontal" novalidate>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="brand">Name</label>
                         <div class=" col-sm-6">
-                            <input type="text" class="form-control" ng-model="items.gridName" id="brand" ng-minlength="1" ng-pattern="">
+                            <input name="name" type="text" class="form-control" ng-model="items.gridName" id="brand" ng-minlength="1"  limit-to="100" required>
+                            <span class="error-msg" ng-show="gridValidations.name.$invalid && gridValidations.name.$touched">Field Cannot be empty</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="agreement-no">E-mail</label>
                         <div class=" col-sm-6">
-                            <input type="text"  ng-model="items.email" class="form-control" id="agreement-no" >
+                            <input type="email" name="email" ng-model="items.email" class="form-control" id="agreement-no"  limit-to="100" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
+                            <span class="error-msg" ng-show="gridValidations.email.$invalid && gridValidations.email.$touched">Please Enter a valid Email address</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="service-no">Contact No.</label>
                         <div class=" col-sm-6">
-                            <input type="text" ng-model="items.phone" class="form-control" id="service-no">
+                            <input name="contact" type="tel" ng-model="items.phone" class="form-control" id="service-no" ng-minlength="1" limit-to="25" ng-pattern="/^(\+\d+-?)?(\(\d+\))*[\d-\+]*\d+$/" permit-mask="\d\+\-\" required>
+                            <span class="error-msg" ng-show="gridValidations.contact.$invalid && gridValidations.contact.$touched">Please Enter a valid telephone number</span>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
         <div class="modal-footer">
-            <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal">{{btns.name}}</button>
+            <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal" ng-disabled="gridValidations.$invalid && (btns.name == 'Update' || btns.name == 'Add')">{{btns.name}}</button>
         </div>
     </div>
 </div>

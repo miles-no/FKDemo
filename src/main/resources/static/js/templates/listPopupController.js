@@ -104,7 +104,6 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     
     
     let getBrands = function (){
-
         $http.get('/brand/config/brand').then(function (response) {
             $scope.allBrands = response.data;
             $scope.allBrands.push('All');
@@ -153,8 +152,9 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     $scope.$watch('template.file',function(newVal, oldVal){
         if (newVal !== oldVal && newVal !== '') {
             $scope.selectedTemplate ={};
-            $scope.template.name =  (!!$scope.template.file ? $scope.template.file.name:'');
-            $scope.template.desc = ''
+            if(!$scope.template.name){
+                $scope.template.name = $scope.template.file.name
+            }
         }
     });
 

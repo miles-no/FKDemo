@@ -14,12 +14,13 @@
         </div>
     </div>
     <div class="col-md-12">
-        <table st-table="displayedCollection" st-safe-src="tableRule" class="table">
+        <table st-table="displayedCollection" st-safe-src="tableRule" class="table table-layout">
             <thead>
             <tr>
                 <th st-sort="name" class="pointer">Name</th>
                 <th st-sort="type">Type</th>
                 <th st-sort="fieldMapping">Field Mapping</th>
+                <th st-sort="">Options</th>
                 <th width="40px"></th>
             </tr>
             </thead>
@@ -28,6 +29,7 @@
                 <td>{{ruleItem.name}}</td>
                 <td>{{ruleItem.type}}</td>
                 <td>{{ruleItem.fieldMapping}}</td>
+                <td>{{ruleItem.options}}</td>
                 <td ng-click="deleteRule(ruleItem, $event)"><i class="fa fa-trash-o redIcon"></i></td>
             </tr>
             </tbody>

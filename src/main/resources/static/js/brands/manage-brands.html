@@ -7,35 +7,40 @@
         </div>
         <div class="modal-body {{options.classes.modalBody}}"  >
             <div class="manage-brands">
-                <form class="form-horizontal" >
+                <form name="brandValidations" class="form-horizontal" novalidate>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="brand">Brand</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" ng-model="brand.brand" id="brand" ng-minlength="1" ng-pattern="">
+                            <input name="brand" type="text" class="form-control" ng-model="brand.brand" id="brand" ng-minlength="1" limit-to="20" permit-mask="\w" ng-pattern="/^$|^[A-Za-z0-9]+/" required>
+                            <span class="error-msg" ng-show="brandValidations.brand.$invalid && brandValidations.brand.$touched">Field cannot be empty</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="agreement-no">Agreement No</label>
                         <div class=" col-sm-6">
-                            <input type="text"  ng-model="brand.agreementNumber" class="form-control" id="agreement-no" >
+                            <input name="agreement" type="tel" step="1" ng-model="brand.agreementNumber" class="form-control" id="agreement-no" ng-minlength="4" limit-to = "4" ng-pattern="/^\d+$/" permit-mask="\d" required>
+                            <span class="error-msg" ng-show="brandValidations.agreement.$invalid && brandValidations.agreement.$touched">Field Length should be of four characters</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="service-no">Service level No</label>
                         <div class=" col-sm-6">
-                            <input type="text" ng-model="brand.serviceLevel" class="form-control" id="service-no">
+                            <input name="service" type="tel" ng-model="brand.serviceLevel" class="form-control" id="service-no" ng-minlength="1" limit-to = "1" ng-pattern="/^\d$/" permit-mask="\d" required>
+                            <span class="error-msg" ng-show="brandValidations.service.$invalid && brandValidations.service.$touched">Field cannot not be empty</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="k-id">Prefix KID</label>
                         <div class=" col-sm-6">
-                            <input type="text" ng-model="brand.prefixKID" class="form-control" id="k-id" >
+                            <input name="prefixId" type="tel" ng-model="brand.prefixKID" step="1" class="form-control" id="k-id" ng-minlength="3" limit-to="3" ng-pattern="/^\d+$/" permit-mask="\d" required>
+                            <span class="error-msg" ng-show="brandValidations.prefixId.$invalid && brandValidations.prefixId.$touched">Field Length should be of three characters</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="Kontonummer">Kontonummer</label>
                         <div class=" col-sm-6">
-                            <input type="text" ng-model="brand.kontonummer" class="form-control" id="Kontonummer" >
+                            <input name="Kontonummer" type="text" ng-model="brand.kontonummer" class="form-control" id="Kontonummer" limit-to="20" ng-minlength="1" ng-pattern="/^((\d+\.)*)?\d+$/" permit-mask="\d\." required>
+                            <span class="error-msg" ng-show="brandValidations.Kontonummer.$invalid && brandValidations.Kontonummer.$touched">Field should start and end in numerals with decimals in between</span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -48,7 +53,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal">{{btns.name}}</button>
+            <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal" ng-disabled="brandValidations.$invalid && (btns.name == 'Update' || btns.name == 'Add')">{{btns.name}}</button>
         </div>
     </div>
 </div>

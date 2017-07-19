@@ -9,6 +9,18 @@
     cursor: pointer;
   }
 }
+.hide-link{
+  opacity: 0;
+  &:hover{
+    cursor: default;
+  }
+}
+
+.error-msg{
+  position: relative;
+  top: 4px;
+  color: $red;
+}
 
 .bg-brand-color{
   background-color: $brand-color;
@@ -18,7 +30,9 @@
   color: $brand-color;
   margin-bottom: 32px;
 }
-
+.table-layout{
+  table-layout: fixed;
+}
 .text-match{
   color: $brand-color;
   margin-top: 5px;
