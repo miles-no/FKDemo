@@ -58,13 +58,13 @@ public class IMLayoutController {
 
     @RequestMapping(value = "attribute", method = RequestMethod.GET)
     @ResponseBody
-    List<RuleAttributes> getAllLayoutConfig() {
+    List<RestRuleAttribute> getAllLayoutConfig() {
         return ruleAttributesService.getAllLayoutConfig();
     }
 
     @RequestMapping(value = "attribute/{name}", method = RequestMethod.GET)
     @ResponseBody
-    RuleAttributes getRuleAttributeByName(@PathVariable("name") String name) {
+    RestRuleAttribute getRuleAttributeByName(@PathVariable("name") String name) {
         return ruleAttributesService.getRuleAttributeByName(name);
     }
 

@@ -1,5 +1,6 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
+import no.fjordkraft.im.domain.RestRuleAttribute;
 import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.model.LayoutRule;
@@ -48,7 +49,7 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
         if(null != layoutRules) {
             Collections.sort(layoutRules);
             String rulename;
-            RuleAttributes ruleAttributes = null;
+            RestRuleAttribute restRuleAttribute = null;
 
             for (LayoutRule layoutRule : layoutRules) {
                 List<LayoutRuleMap> layoutRuleMapList = layoutRule.getLayoutRuleMapList();
@@ -59,12 +60,12 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
                 }
                 for (LayoutRuleMap layoutRuleMap : layoutRule.getLayoutRuleMapList()) {
                     rulename = layoutRuleMap.getName();
-                    ruleAttributes = ruleAttributesService.getRuleAttributeByName(rulename);
+                    restRuleAttribute = ruleAttributesService.getRuleAttributeByName(rulename);
                     String ruleAttributeType;
 
-                    if (null != ruleAttributes) {
-                        Object value = PropertyUtils.getNestedProperty(statement, ruleAttributes.getFieldMapping());
-                        ruleAttributeType = String.valueOf(ruleAttributes.getType());
+                    if (null != restRuleAttribute) {
+                        Object value = PropertyUtils.getNestedProperty(statement, restRuleAttribute.getFieldMapping());
+                        ruleAttributeType = String.valueOf(restRuleAttribute.getType());
 
                         if (null != value && IMConstants.STRING.equals(ruleAttributeType)) {
                             if (IMConstants.EQUALS.equals(layoutRuleMap.getOperation())
@@ -80,8 +81,6 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
                                 break;
                             }
                         } else if (null != value && (IMConstants.INTEGER.equals(ruleAttributeType) || IMConstants.FLOAT.equals(ruleAttributeType))) {
-                            //Class classTemp = Class.forName("java.lang." + ruleAttributeType);
-                            //Method method = classTemp.getMethod("valueOf", String.class);
                             int comparedResult = Float.valueOf(layoutRuleMap.getValue()).compareTo(Float.valueOf(value.toString()));
 
                             if (IMConstants.EQUALS.equals(layoutRuleMap.getOperation())
@@ -92,15 +91,24 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
                                     && IMConstants.ZERO != comparedResult) {
                                 foundLayout = true;
                                 continue;
-                            } else if (IMConstants.GREATER.equals(layoutRuleMap.getOperation())
-                                    && IMConstants.GREATER_THAN == comparedResult) {
+                            } else if (IMConstants.GREATER_THAN.equals(layoutRuleMap.getOperation())
+                                    && IMConstants.GREATER == comparedResult) {
                                 foundLayout = true;
                                 continue;
-                            } else if (IMConstants.LESSER.equals(layoutRuleMap.getOperation())
-                                    && IMConstants.LESSER_THAN == comparedResult) {
+                            } else if (IMConstants.LESS_THAN.equals(layoutRuleMap.getOperation())
+                                    && IMConstants.LESSER == comparedResult) {
                                 foundLayout = true;
                                 continue;
-                            } else {
+                            } else if (IMConstants.GREATER_THAN_EQUAL_TO.equals(layoutRuleMap.getOperation())
+                                    && (IMConstants.GREATER == comparedResult || IMConstants.ZERO == comparedResult)) {
+                                foundLayout = true;
+                                continue;
+                            } else if (IMConstants.LESS_THAN_EQUAL_TO.equals(layoutRuleMap.getOperation())
+                                    && (IMConstants.LESSER == comparedResult || IMConstants.ZERO == comparedResult)) {
+                                foundLayout = true;
+                                continue;
+                            }
+                            else {
                                 foundLayout = false;
                                 break;
                             }

@@ -61,6 +61,11 @@ public class LayoutContentServiceImpl implements LayoutContentService {
 
     @Override
     public void activateLayoutTemplate(Long layoutId, Integer version) {
+        List<LayoutContent> layoutContentList = layoutContentRepository.getLayoutContentById(layoutId);
+        for(LayoutContent layoutContent:layoutContentList) {
+            layoutContent.setActive(Boolean.FALSE);
+            layoutContentRepository.saveAndFlush(layoutContent);
+        }
         LayoutContent layoutContent = layoutContentRepository.getLayoutContentByIdAndVersion(layoutId, version);
         layoutContent.setActive(Boolean.TRUE);
         layoutContentRepository.saveAndFlush(layoutContent);

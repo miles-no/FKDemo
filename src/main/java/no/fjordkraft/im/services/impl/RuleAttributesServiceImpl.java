@@ -1,6 +1,7 @@
 package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.domain.NameValuePair;
+import no.fjordkraft.im.domain.RestRuleAttribute;
 import no.fjordkraft.im.model.RuleAttributes;
 import no.fjordkraft.im.repository.RuleAttributesRepository;
 import no.fjordkraft.im.services.RuleAttributesService;
@@ -20,8 +21,21 @@ public class RuleAttributesServiceImpl implements RuleAttributesService {
     RuleAttributesRepository ruleAttributesRepository;
 
     @Override
-    public List<RuleAttributes> getAllLayoutConfig() {
-        return ruleAttributesRepository.findAll();
+    public List<RestRuleAttribute> getAllLayoutConfig() {
+        List<RuleAttributes> ruleAttributesList = ruleAttributesRepository.findAll();
+        List<RestRuleAttribute> restRuleAttributeList = new ArrayList<>();
+        RestRuleAttribute restRuleAttribute;
+        for(RuleAttributes ruleAttributes:ruleAttributesList) {
+            restRuleAttribute = new RestRuleAttribute();
+            restRuleAttribute.setName(ruleAttributes.getName());
+            restRuleAttribute.setType(ruleAttributes.getType());
+            restRuleAttribute.setFieldMapping(ruleAttributes.getFieldMapping());
+            if(null != ruleAttributes.getOptions()) {
+                restRuleAttribute.setOptions(ruleAttributes.getOptions().split("\\s*,\\s*"));
+            }
+            restRuleAttributeList.add(restRuleAttribute);
+        }
+        return restRuleAttributeList;
     }
 
     @Override
@@ -44,8 +58,14 @@ public class RuleAttributesServiceImpl implements RuleAttributesService {
     }
 
     @Override
-    public RuleAttributes getRuleAttributeByName(String name) {
-        return ruleAttributesRepository.getAttributeByName(name);
+    public RestRuleAttribute getRuleAttributeByName(String name) {
+        RuleAttributes ruleAttributes = ruleAttributesRepository.getAttributeByName(name);
+        RestRuleAttribute restRuleAttribute = new RestRuleAttribute();
+        restRuleAttribute.setName(ruleAttributes.getName());
+        restRuleAttribute.setType(ruleAttributes.getType());
+        restRuleAttribute.setFieldMapping(ruleAttributes.getFieldMapping());
+        restRuleAttribute.setOptions(ruleAttributes.getOptions().split("\\s*,\\s*"));
+        return restRuleAttribute;
     }
 
     @Override

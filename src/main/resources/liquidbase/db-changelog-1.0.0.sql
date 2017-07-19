@@ -291,3 +291,6 @@ start with 1
 increment by 1
 nocache
 nocycle;
+
+--changeset hemlatha:9
+alter table im_rule_attributes add options varchar2(500);

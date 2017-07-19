@@ -12,7 +12,7 @@ public class RuleAttributes {
     @Column(name="ID")
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator = "SEQ")
-    @SequenceGenerator(name="SEQ", sequenceName="IM_LAYOUT_CONFIG_SEQ")
+    @SequenceGenerator(name="SEQ", sequenceName="IM_RULE_ATTRIBUTES_SEQ")
     private Long id;
 
     @Column(name="NAME")
@@ -23,6 +23,9 @@ public class RuleAttributes {
 
     @Column(name="FIELD_MAPPING")
     private String fieldMapping;
+
+    @Column(name="OPTIONS")
+    private String options;
 
     public Long getId() {
         return id;
@@ -54,5 +57,13 @@ public class RuleAttributes {
 
     public void setFieldMapping(String fieldMapping) {
         this.fieldMapping = fieldMapping;
+    }
+
+    public String getOptions() {
+        return options;
+    }
+
+    public void setOptions(String options) {
+        this.options = options;
     }
 }

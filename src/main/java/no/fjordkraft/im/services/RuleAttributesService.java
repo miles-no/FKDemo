@@ -1,6 +1,7 @@
 package no.fjordkraft.im.services;
 
 import no.fjordkraft.im.domain.NameValuePair;
+import no.fjordkraft.im.domain.RestRuleAttribute;
 import no.fjordkraft.im.model.RuleAttributes;
 
 import java.util.List;
@@ -10,10 +11,10 @@ import java.util.List;
  */
 public interface RuleAttributesService {
 
-    List<RuleAttributes> getAllLayoutConfig();
+    List<RestRuleAttribute> getAllLayoutConfig();
     void saveLayoutConfig(RuleAttributes ruleAttributes);
     void updateLayoutConfig(RuleAttributes ruleAttributes);
     void deleteLayoutConfig(Long id);
-    RuleAttributes getRuleAttributeByName(String name);
+    RestRuleAttribute getRuleAttributeByName(String name);
     List<NameValuePair> getAllRuleAttributes();
 }

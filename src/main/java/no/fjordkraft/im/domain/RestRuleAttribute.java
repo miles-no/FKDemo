@@ -1,5 +1,7 @@
 package no.fjordkraft.im.domain;
 
+import java.util.List;
+
 /**
  * Created by miles on 7/4/2017.
  */
@@ -8,6 +10,7 @@ public class RestRuleAttribute {
     private String name;
     private String type;
     private String fieldMapping;
+    private String[] options;
 
     public String getName() {
         return name;
@@ -31,5 +34,13 @@ public class RestRuleAttribute {
 
     public void setFieldMapping(String fieldMapping) {
         this.fieldMapping = fieldMapping;
+    }
+
+    public String[] getOptions() {
+        return options;
+    }
+
+    public void setOptions(String[] options) {
+        this.options = options;
     }
 }
