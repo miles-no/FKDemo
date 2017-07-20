@@ -167,8 +167,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
         showModal(null, 'Add')
   }
   $scope.loading = false
-  $scope.previewLayout = function(layout, $event){
-    $event.stopPropagation();
+  $scope.previewLayout = function(layout){
     var layoutId = layout.layoutID
     var version = layout.version;
     let qp = {layoutId: layoutId, version: version};
@@ -197,8 +196,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
     )
   }
 
-  $scope.downLoadLayout = function(layout,$event){
-    $event.stopPropagation();
+  $scope.downLoadLayout = function(layout){
     var id = layout.layoutID
     $http({
       method : 'GET',
@@ -233,13 +231,11 @@ app.controller('listCtrl',function($scope,ModalService,$http){
     })
   }
 
-  $scope.toggleLayout = function(rule, $event){
-      $event.stopPropagation();
+  $scope.toggleLayout = function(rule){
       toggleLayoutModal(rule)
   }
 
-  $scope.deleteTemplate = function(template,$event){
-    $event.stopPropagation();
+  $scope.deleteTemplate = function(template){
     var id = template.layoutID
     ModalService.showModal({
       templateUrl: 'js/modals/confirmDelete.html',
@@ -275,8 +271,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
 
   $scope.dropdown = {}
   var pre = {}
-  $scope.dropDownList=function($event,user){
-    $event.stopPropagation();
+  $scope.dropDownList=function(user){
     if(pre === user){
       $scope.dropDown = {}
       pre = {}

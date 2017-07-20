@@ -1,9 +1,9 @@
 <div class="manage-brands" ng-controller="ManageBrandsController" ng-init="getBrands()">
     <div class="col-sm-12 text-center header-style">Brands</div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="row form-group">
-            <label class="control-label col-md-2 text-match">Brand</label>
-            <div class="col-md-6">
+            <label class="control-label col-sm-3 col-lg-2 text-match search-align">Brand</label>
+            <div class="col-sm-8">
                 <ui-select multiple ng-model="selectedBrands" theme="bootstrap" title="Choose brand" on-remove="onBrandRemoval($item, $model)" on-select="onBrandSelect($item, $model)">
                     <ui-select-match placeholder="Select Brand">{{$item}}</ui-select-match>
                     <ui-select-choices refresh="syncCall()" refresh-delay="10"  repeat="eachBrand in dropDownData | filter : $select.search" position='down'>
@@ -13,11 +13,11 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-sm-12">
         <table st-table="displayedCollection" st-safe-src="tableBrands" class="table table-align">
             <thead>
                 <tr>
-                    <th class="table-left pointer" st-sort="brand">Brand</th>
+                    <th class="table-left" st-sort="brand"><span class="pointer">Brand</span></th>
                     <th class="table-left">Agreement No</th>
                     <th>Service Level No</th>
                     <th class="table-left">Prefix KID</th>
@@ -27,14 +27,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="brand in displayedCollection" ng-click="updateBrand(brand)">
-                    <td class="table-left">{{brand.brand}}</td>
+                <tr ng-repeat="brand in displayedCollection">
+                    <td class="table-left"><span class="pointer" ng-click="updateBrand(brand)">{{brand.brand}}</span></td>
                     <td class="table-left">{{brand.agreementNumber}}</td>
                     <td>{{brand.serviceLevel}}</td>
                     <td class="table-left">{{brand.prefixKID}}</td>
                     <td class="table-left">{{brand.kontonummer}}</td>
                     <td><i ng-class="{'fa fa-check-circle greenIcon eaTrue': brand.useEABarcode === '1' , 'fa fa-check-circle greenIcon eaFalse': brand.useEABarcode === '0'}"></i></td>
-                    <td ng-click="deleteBrands(brand, $event)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
+                    <td ng-click="deleteBrands(brand)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
                 </tr>
             </tbody>
             <tfoot>

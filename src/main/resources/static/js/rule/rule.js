@@ -60,8 +60,7 @@ app.controller('ruleController',function($scope,$http,ModalService){
     })
   }
 
-  $scope.deleteRule = function (rule, $event) {
-    $event.stopPropagation();
+  $scope.deleteRule = function (rule) {
     console.log(rule);
     ModalService.showModal({
       templateUrl: 'js/modals/confirmDelete.html',

@@ -34,7 +34,7 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
     })
   }
 
-  $scope.onGridSelect = function(item,model,$event){
+  $scope.onGridSelect = function(item,model){
     $scope.selectedKey = ''
     $scope.selectedKey = item.name;
     showSelectedKey()
@@ -61,8 +61,7 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
     })
   }
 
-  $scope.deleteStateConfig = function (state, $event) {
-    $event.stopPropagation();
+  $scope.deleteStateConfig = function (state) {
     ModalService.showModal({
       templateUrl: 'js/modals/confirmDelete.html',
       controller:'popupController',

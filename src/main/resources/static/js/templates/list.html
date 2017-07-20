@@ -1,10 +1,10 @@
 <div class="manage-brands" ng-controller="listCtrl" ng-init="getLayouts();">
     <div class="col-sm-12 text-center header-style">Template Management</div>
     <spinner size="medium" class-name="cover" ng-show="loading"></spinner>
-    <div class="col-md-6">
+    <div class="col-sm-4">
         <div class="row form-group">
-            <label class="control-label col-md-2 text-center text-match">Brands</label>
-            <div class="col-md-6">
+            <label class="control-label col-sm-3 col-lg-3 search-align text-match">Brands</label>
+            <div class="col-sm-8">
                 <ui-select multiple ng-model="selectedTemplate" theme="bootstrap" title="Choose Template" on-remove="onTemplateRemoval($item)" on-select="onTemplateSelect($item)">
                     <ui-select-match placeholder="Select Brand">{{$item}}</ui-select-match>
                     <ui-select-choices repeat="eachTemplate in templatelist | filter : $select.search" position='down'>
@@ -18,9 +18,9 @@
         <table st-table="displayedCollection" st-safe-src="tableRule" class="table table-align">
             <thead>
             <tr>
-                <th class="table-left pointer" st-sort="brand">Brand</th>
-                <th class="table-left">Layout Name</th>
+                <th class="table-left" st-sort="name"><span class="pointer">Layout Name</span></th>
                 <th class="table-left">Layout Description</th>
+                <th class="table-left" st-sort="brand"><span class="pointer">Brand</span></th>
                 <th>Version</th>
                 <th>Active</th>
                 <th>Rules Attached</th>
@@ -30,16 +30,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat-start = "layoutItem in displayedCollection" ng-click="updateTemplate(layoutItem)">
-                <td class="table-left">{{layoutItem.brand}}</td>
-                <td class="table-left">{{layoutItem.name}}</td>
+            <tr ng-repeat-start = "layoutItem in displayedCollection">
+                <td class="table-left"><span class="pointer" ng-click="updateTemplate(layoutItem)">{{layoutItem.name}}</span></td>
                 <td class="table-left">{{layoutItem.description}}</td>
+                <td class="table-left">{{layoutItem.brand}}</td>
                 <td>{{layoutItem.version}}</td>
-                <td ng-click="toggleLayout(layoutItem,$event)"><i  ng-class="{'fa fa-check-circle greenIcon eaTrue': layoutItem.active === true , 'fa fa-check-circle greenIcon eaFalse': layoutItem.active === false}"></i></td>
+                <td ng-click="toggleLayout(layoutItem)"><i  ng-class="{'fa fa-check-circle greenIcon eaTrue': layoutItem.active === true , 'fa fa-check-circle greenIcon eaFalse': layoutItem.active === false}"></i></td>
                 <td ng-class="{'disabled' : layoutItem.layoutRule.layoutRuleMapList.length==0}"><a ng-click="dropDownList($event,layoutItem)">{{layoutItem.layoutRule.layoutRuleMapList.length}}</a></td>
-                <td ng-click="downLoadLayout(layoutItem,$event)"><i uib-tooltip="Click to download {{layoutItem.name}}" tooltip-placement="bottom"  class="fa fa-download" aria-hidden="true"></i></td>
-                <td ng-click="previewLayout(layoutItem,$event)"><i uib-tooltip="Click to preview {{layoutItem.name}}" tooltip-placement="bottom" class="fa fa-file-pdf-o"></i></td>
-                <td ng-click="deleteTemplate(layoutItem,$event)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
+                <td ng-click="downLoadLayout(layoutItem)"><i uib-tooltip="Click to download {{layoutItem.name}}" tooltip-placement="bottom"  class="fa fa-download" aria-hidden="true"></i></td>
+                <td ng-click="previewLayout(layoutItem)"><i uib-tooltip="Click to preview {{layoutItem.name}}" tooltip-placement="bottom" class="fa fa-file-pdf-o"></i></td>
+                <td ng-click="deleteTemplate(layoutItem)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
                 <td ng-show="dropDown === layoutItem"><i class="fa fa-caret-up"></i></td>
             </tr>
             <tr ng-repeat-end ng-if="dropDown === layoutItem">

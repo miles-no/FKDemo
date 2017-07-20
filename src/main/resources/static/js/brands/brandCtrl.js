@@ -76,8 +76,7 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
     })
   }
 
-  $scope.deleteBrands = function (brand, $event) {
-    $event.stopPropagation();
+  $scope.deleteBrands = function (brand) {
     ModalService.showModal({
       templateUrl: 'js/modals/confirmDelete.html',
       controller:'popupController',

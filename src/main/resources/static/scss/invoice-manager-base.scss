@@ -5,23 +5,30 @@
 .st-sort-descent:after {content: '\25BC'}
 
 .pointer{
+  color: $brand-color;
+  outline: none;
   &:hover{
     cursor: pointer;
+    color: $hover-color;
+    text-decoration: underline;
   }
 }
 .hide-link{
   opacity: 0;
+  outline: none;
   &:hover{
     cursor: default;
+    text-decoration: underline;
   }
 }
-
+.search-align{
+  padding-left: 23px;
+}
 .error-msg{
   position: relative;
   top: 4px;
   color: $red;
 }
-
 .bg-brand-color{
   background-color: $brand-color;
 }
@@ -108,10 +115,10 @@
 .greenIcon{
   font-size: 19px;
   &.eaTrue{
-    color: green;
+    color: $green;
   }
   &.eaFalse{
-    color: grey;
+    color: $grey;
   }
 
 }

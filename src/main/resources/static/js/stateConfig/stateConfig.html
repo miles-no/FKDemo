@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="col-md-12 col-sm-12">
-        <table st-table="displayedCollection" st-safe-src="alldata" class="table">
+        <table st-table="displayedCollection" st-safe-src="alldata" class="table table-layout">
             <thead>
             <tr>
                 <th st-sort="name" class="pointer">Key</th>
@@ -18,10 +18,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="state in displayedCollection" ng-click="updateStateConfig(state);">
-                <td>{{state.name}}</td>
+            <tr ng-repeat="state in displayedCollection">
+                <td><span class="pointer" ng-click="updateStateConfig(state)">{{state.name}}</span></td>
                 <td>{{state.value}}</td>
-                <td ng-click="deleteStateConfig(state, $event)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
+                <td ng-click="deleteStateConfig(state)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
             </tr>
             </tbody>
             <tfoot>

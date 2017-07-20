@@ -1,9 +1,9 @@
 <div class="manage-brands" ng-controller="ruleController" ng-init="getRules()">
     <div class="col-sm-12 text-center header-style">Template Rules</div>
-    <div class="col-md-6">
+    <div class="col-sm-4">
         <div class="row form-group">
-            <label class="control-label col-md-1 text-center text-match">Rules</label>
-            <div class="col-md-6">
+            <label class="control-label col-sm-3 col-lg-2 search-align text-match">Rules</label>
+            <div class="col-sm-8">
                 <ui-select multiple ng-model="selectedRule" theme="bootstrap" title="Choose Rule" on-remove="onRuleRemoval($item, $model)" on-select="onRuleSelect($item, $model)">
                     <ui-select-match placeholder="Select Rule">{{$item}}</ui-select-match>
                     <ui-select-choices repeat="eachRule in ruleList | filter : $select.search" position='down'>
@@ -17,7 +17,7 @@
         <table st-table="displayedCollection" st-safe-src="tableRule" class="table table-layout">
             <thead>
             <tr>
-                <th st-sort="name" class="pointer">Name</th>
+                <th st-sort="name"><span class="pointer">Name</span></th>
                 <th st-sort="type">Type</th>
                 <th st-sort="fieldMapping">Field Mapping</th>
                 <th st-sort="">Options</th>
@@ -25,12 +25,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="ruleItem in displayedCollection" ng-click="updateRule(ruleItem);">
-                <td>{{ruleItem.name}}</td>
+            <tr ng-repeat="ruleItem in displayedCollection">
+                <td><span ng-click="updateRule(ruleItem)" class="pointer">{{ruleItem.name}}</span></td>
                 <td>{{ruleItem.type}}</td>
                 <td>{{ruleItem.fieldMapping}}</td>
                 <td>{{ruleItem.options}}</td>
-                <td ng-click="deleteRule(ruleItem, $event)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
+                <td ng-click="deleteRule(ruleItem)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
             </tr>
             </tbody>
             <tfoot>

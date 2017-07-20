@@ -61,8 +61,7 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
     })
   }
 
-  $scope.deleteGrid = function (grid, $event) {
-    $event.stopPropagation();
+  $scope.deleteGrid = function (grid) {
     ModalService.showModal({
       templateUrl: 'js/modals/confirmDelete.html',
       controller:'popupController',
