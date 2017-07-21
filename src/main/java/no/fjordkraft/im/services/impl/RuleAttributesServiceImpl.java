@@ -7,6 +7,7 @@ import no.fjordkraft.im.repository.RuleAttributesRepository;
 import no.fjordkraft.im.services.RuleAttributesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +40,13 @@ public class RuleAttributesServiceImpl implements RuleAttributesService {
     }
 
     @Override
+    @Transactional
     public void saveLayoutConfig(RuleAttributes ruleAttributes) {
         ruleAttributesRepository.saveAndFlush(ruleAttributes);
     }
 
     @Override
+    @Transactional
     public void updateLayoutConfig(RuleAttributes ruleAttributes) {
         RuleAttributes config = ruleAttributesRepository.findOne(ruleAttributes.getId());
         config.setName(ruleAttributes.getName());

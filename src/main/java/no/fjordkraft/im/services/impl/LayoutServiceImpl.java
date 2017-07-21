@@ -11,6 +11,7 @@ import no.fjordkraft.im.services.LayoutService;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class LayoutServiceImpl implements LayoutService {
     }
 
     @Override
+    @Transactional
     public Layout saveLayout(RestLayoutTemplate restLayoutTemplate) {
         Layout layout = new Layout();
         layout.setName(restLayoutTemplate.getName());

@@ -12,7 +12,7 @@ public class BrandConfig {
     @Column(name="ID")
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator = "SEQ")
-    @SequenceGenerator(name="SEQ", sequenceName="IM_BARCODE_CONFIG_SEQ")
+    @SequenceGenerator(name="SEQ", sequenceName="IM_BRAND_CONFIG_SEQ")
     private Long id;
 
     @Column(name="BRAND")

@@ -222,9 +222,10 @@ public class IMController {
                                   @RequestParam(value = "userName",required = false) String userName,
                                   @RequestParam(value = "password",required = false) String password,@RequestParam(value = "service",required = false) String service,
                                   @RequestParam(value = "encoding",required = false) String encoding ,@RequestParam(value = "port",required = false) Integer port ){
-        String filename = null;
+        String outFile = null;
         Connection conn = null;
         try {
+            logger.debug("saving file fileName"+ fileName + " batchId "+ batchId);
             if(StringUtils.isEmpty(host)) {
                 conn = dataSource.getConnection();
             } else {
@@ -237,24 +238,38 @@ public class IMController {
             String query = "";
             if(StringUtils.isEmpty(batchId)) {
                 query = "select * from eacprod.transferfile where filename = ?";
-            } else if (StringUtils.isEmpty(batchId)) {
+            } else if (StringUtils.isEmpty(fileName)) {
                 query = "select * from eacprod.transferfile where ekbatchjobid = ?";
             } else {
                 query = "select * from eacprod.transferfile where filename = ? and ekbatchjobid = ?";
             }
-
+           
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1,fileName);
-            stmt.setString(2,batchId);
+            if(StringUtils.isEmpty(batchId)) {
+                stmt.setString(1, fileName);
+                batchId ="";
+            } else if (StringUtils.isEmpty(fileName)){
+                stmt.setString(1,batchId);
+                File f = new File(path+batchId);
+                f.mkdirs();
+                logger.debug("directory created "+ f.getAbsolutePath());
+            } else {
+                stmt.setString(1, fileName);
+                stmt.setString(2, batchId);
+            }
+
 
             ResultSet rs = stmt.executeQuery();
 
             while(rs.next()) {
-                filename = rs.getString("FILENAME");
-                logger.debug("file is"+filename);
+                outFile = rs.getString("FILENAME");
+                logger.debug("file is"+outFile);
                 Clob clob = rs.getClob("FILECONTENT");
                 Reader reader = clob.getCharacterStream();
-                File file = new File(path+fileName);
+                if(batchId.length() > 0 && batchId.indexOf("/") == -1) {
+                    batchId = batchId + File.separator;
+                }
+                File file = new File(path+batchId+outFile);
                 FileWriter writer = new FileWriter(file);
 
                 int i = -1;
@@ -273,7 +288,7 @@ public class IMController {
             }
 
         }catch (Exception e){
-            logger.error("Erorr parsing file "+filename,e);
+            logger.error("Erorr parsing file "+outFile,e);
         }
     }
 

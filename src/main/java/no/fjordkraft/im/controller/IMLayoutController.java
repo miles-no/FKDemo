@@ -5,12 +5,14 @@ import no.fjordkraft.im.domain.*;
 import no.fjordkraft.im.model.*;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.impl.*;
+import no.fjordkraft.im.util.IMConstants;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.eclipse.birt.core.exception.BirtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -55,6 +57,7 @@ public class IMLayoutController {
 
     @Autowired
     ConfigService configService;
+
 
     @RequestMapping(value = "attribute", method = RequestMethod.GET)
     @ResponseBody
@@ -213,17 +216,19 @@ public class IMLayoutController {
     @RequestMapping(value = "rptdesign", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<byte[]> getRptDesignFile(@RequestParam("id") Long id) throws IOException {
+
         LayoutContent layoutContent = layoutContentService.getLayoutContentByLayoutId(id);
-        //File file = new File("/opt/app/sampleFile/sample.rptdesign");
-        File file = new File("D:\\data\\sample.rptdesign");
-        FileUtils.writeStringToFile(file, layoutContent.getFileContent());
-            logger.debug("sample.rptdesign is saved.");
+        byte rptFile[] = layoutContent.getFileContent().getBytes();
+        logger.debug("File bytes is "+ rptFile.length+ " file length of string "+ layoutContent.getFileContent().length());
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_XML);
-        headers.setContentLength(layoutContent.getFileContent().length());
+        headers.setContentLength(rptFile.length);
         headers.set(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=sample.rptdesign");
-        return new ResponseEntity<>(layoutContent.getFileContent().getBytes(), headers, HttpStatus.OK);
+
+
+        return new ResponseEntity<>(rptFile, headers, HttpStatus.OK);
     }
 
     @RequestMapping(value = "preview", method = RequestMethod.GET)
@@ -232,7 +237,7 @@ public class IMLayoutController {
                                                    @RequestParam("version") Integer version) throws IOException, BirtException {
         byte[] pdf = pdfGenerator.generatePreview(layoutId, version);
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_XML);
+        headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentLength(pdf.length);
         headers.set(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=sample.pdf");

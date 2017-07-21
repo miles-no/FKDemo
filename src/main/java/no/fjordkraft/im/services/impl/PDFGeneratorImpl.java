@@ -115,6 +115,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         logger.debug("Generate invoice pdf for "+ statements.size() + " statements");
 
         for(Statement statement:statements) {
+            logger.debug("PDF generation will start for statement with id "+ statement.getId());
+            statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING);
             statement.getSystemBatchInput().getTransferFile().getFilename();
             PDFGeneratorTask pdfGeneratorTask = applicationContext.getBean(PDFGeneratorTask.class,statement);
             taskExecutor.execute(pdfGeneratorTask);
@@ -127,7 +129,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("PDF generation for statement "+ statement.getId());
         try {
-            statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING);
+            //statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING);
             String systemBatchInputFileName = "";
             String subFolderName = "";
             systemBatchInputFileName = statement.getSystemBatchInput().getTransferFile().getFilename();
