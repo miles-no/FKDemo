@@ -21,6 +21,8 @@ public class SystemBatchInput {
     private Timestamp createTime;
     @Column(name="UPDATE_TIME")
     private Timestamp updateTime;
+    @Column(name="NUM_OF_RECORDS")
+    private Integer numOfRecords;
 
     @JoinColumns({
             @JoinColumn(name="transfertype", referencedColumnName="transferType"),
@@ -68,5 +70,13 @@ public class SystemBatchInput {
 
     public void setTransferFile(TransferFile transferFile) {
         this.transferFile = transferFile;
+    }
+
+    public Integer getNumOfRecords() {
+        return numOfRecords;
+    }
+
+    public void setNumOfRecords(Integer numOfRecords) {
+        this.numOfRecords = numOfRecords;
     }
 }

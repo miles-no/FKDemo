@@ -316,4 +316,5 @@ Insert into IM_RULE_ATTRIBUTES (ID,NAME,TYPE,FIELD_MAPPING,OPTIONS) values (26,'
 Insert into IM_RULE_ATTRIBUTES (ID,NAME,TYPE,FIELD_MAPPING,OPTIONS) values (22,'Legal Part Class','STRING','legalPartClass','Individual,Organization');
 Insert into IM_RULE_ATTRIBUTES (ID,NAME,TYPE,FIELD_MAPPING,OPTIONS) values (1,'Pincode of area','STRING','postcode',null);
 
-
+--changeset hemlatha:10
+alter table im_system_batch_input add NUM_OF_RECORDS NUMBER;

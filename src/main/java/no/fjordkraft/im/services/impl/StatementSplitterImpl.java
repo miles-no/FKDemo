@@ -7,6 +7,7 @@ package no.fjordkraft.im.services.impl;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.model.SystemBatchInput;
 import no.fjordkraft.im.repository.StatementRepository;
+import no.fjordkraft.im.repository.SystemBatchInputRepository;
 import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.services.StatementSplitter;
 import org.slf4j.Logger;
@@ -34,13 +35,16 @@ public class StatementSplitterImpl implements StatementSplitter {
     @Autowired
     StatementService statementService;
 
+    @Autowired
+    SystemBatchInputServiceImpl systemBatchInputService;
+
     @Override
     public void batchFileSplit(InputStream inputStream, String filename, SystemBatchInput systemBatchInput) throws Exception {
 
         XMLInputFactory factory = XMLInputFactory.newInstance();
         XMLEventReader eventReader = factory.createXMLEventReader(inputStream);
-        splitAndSaveInDB(eventReader, systemBatchInput);
-
+        String numberOfRecords = splitAndSaveInDB(eventReader, systemBatchInput);
+        systemBatchInput.setNumOfRecords(Integer.valueOf(numberOfRecords));
     }
 
     @Override
@@ -48,16 +52,19 @@ public class StatementSplitterImpl implements StatementSplitter {
 
         XMLInputFactory factory = XMLInputFactory.newInstance();
         XMLEventReader eventReader = factory.createXMLEventReader(inputStream);
-        splitAndSaveInDB(eventReader, systemBatchInput);
+        String numberOfRecords = splitAndSaveInDB(eventReader, systemBatchInput);
+        systemBatchInput.setNumOfRecords(Integer.valueOf(numberOfRecords));
 
     }
 
-    private void splitAndSaveInDB(XMLEventReader eventReader, SystemBatchInput systemBatchInput) throws Exception {
+    private String splitAndSaveInDB(XMLEventReader eventReader, SystemBatchInput systemBatchInput) throws Exception {
         try {
             Statement imStatement;
             XMLEventWriter writer = null;
             XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
             boolean isStatementOcr = false;
+            String numberOfRecords = null;
+            boolean isNumberOfRecords = false;
 
             imStatement = new Statement();
             imStatement.setSystemBatchInput(systemBatchInput);
@@ -77,7 +84,9 @@ public class StatementSplitterImpl implements StatementSplitter {
                         } else if (qName.equalsIgnoreCase("StatementOcrNumber")) {
                             isStatementOcr = true;
                             writer.add(event);
-                        } else if (writer != null) {
+                        } else if (qName.equalsIgnoreCase("NumberOfRecords")) {
+                            isNumberOfRecords = true;
+                        }else if (writer != null) {
                             writer.add(event);
                         }
                         break;
@@ -108,7 +117,11 @@ public class StatementSplitterImpl implements StatementSplitter {
                             imStatement.setStatementId(characters.getData());
                             writer.add(event);
                             isStatementOcr = false;
-                        } else if (writer != null){
+                        } else if (isNumberOfRecords) {
+                            Characters characters = event.asCharacters();
+                            numberOfRecords = characters.getData();
+                            isNumberOfRecords = false;
+                        }else if (writer != null){
                             writer.add(event);
                         }
                         break;
@@ -117,6 +130,7 @@ public class StatementSplitterImpl implements StatementSplitter {
                             writer.add(event);
                 }
             }
+            return numberOfRecords;
         } catch (Exception e) {
             //logger.error("Exception while splitting the file "+systemBatchInput.getId() + " "+ systemBatchInput.getTransferFile().getFilename(),e);
             throw e;

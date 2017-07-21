@@ -65,7 +65,10 @@ public class LayoutServiceImpl implements LayoutService {
     @Override
     public String getRptDesignFile(Long layoutId) {
         LayoutContent layoutContent = layoutContentService.getLayoutContentByLayoutId(layoutId, Boolean.TRUE);
-        return layoutContent.getFileContent();
+        if(null != layoutContent.getFileContent()) {
+            return layoutContent.getFileContent();
+        }
+        return null;
     }
 
     @Override

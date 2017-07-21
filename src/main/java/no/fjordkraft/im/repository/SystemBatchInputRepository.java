@@ -19,4 +19,10 @@ public interface SystemBatchInputRepository extends JpaRepository<SystemBatchInp
 
     @Query("select s from SystemBatchInput s where rownum <= 5 and s.status = :status order by s.id asc")
     List<SystemBatchInput> readSystemBatchInputFile(@Param("status") String status);
+
+    @Query("select s.id from SystemBatchInput s where s.transferFile.filename = :filename")
+    Long getSBIIdByFilename(@Param("filename") String filename);
+
+    @Query("select s.numOfRecords from SystemBatchInput s where s.id = :id")
+    Integer getNumOfRecordsById(@Param("id") Long id);
 }

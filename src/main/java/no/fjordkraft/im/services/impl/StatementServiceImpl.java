@@ -74,6 +74,9 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     @Autowired
     TransferFileArchiveService transferFileArchiveService;
 
+    @Autowired
+    TransferFileServiceImpl transferFileService;
+
     @Value("${if320.skip.bytes}")
     Boolean skipBytes;
 
@@ -86,6 +89,122 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
             taskExecutor.execute(splitterTask);
     }
 
+    @Override
+    public List<StatusCount> getStatusAndCountByTransferfile(String transferFile) {
+        Long sbiId = systemBatchInputRepository.getSBIIdByFilename(transferFile);
+        Integer numOfRecords = systemBatchInputService.getNumOfRecordsById(sbiId);
+        return mapStatusToUIStatus(statementRepository.getStatementBySbiId(sbiId), (null != numOfRecords ? Long.valueOf(numOfRecords):null));
+    }
+
+    @Override
+    public List<StatusCount> getStatusByTransferfileBatchId(Long ekBatchJobId) {
+        List<TransferFile> transferFileList = transferFileService.readTransferFileByBatchJobId(ekBatchJobId);
+        List<StatusCount> statusCountList = new ArrayList<>();
+        Integer numOfRecords = 0;
+        Long totalRecords = 0l;
+
+        if(null != transferFileList && IMConstants.ZERO != transferFileList.size()) {
+            for (TransferFile transferFile : transferFileList) {
+                Long sbiId = systemBatchInputRepository.getSBIIdByFilename(transferFile.getFilename());
+                numOfRecords = systemBatchInputService.getNumOfRecordsById(sbiId);
+                if(null != numOfRecords) {
+                    totalRecords += numOfRecords;
+                }
+                List<StatusCount> statusCounts = statementRepository.getStatementBySbiId(sbiId);
+                statusCountList.addAll(statusCounts);
+            }
+            return mapStatusToUIStatus(statusCountList, totalRecords);
+        }
+        return null;
+    }
+
+    private List<StatusCount> mapStatusToUIStatus(List<StatusCount> statusCounts, Long numOfRecords) {
+        Map<String, Long> statusMap = new HashMap<String, Long>();
+        List<StatusCount> uiStatusCount = new ArrayList<StatusCount>();
+        StatusCount status = null;
+        Long sum = 0l;
+
+        statusMap.put(UIStatementStatusEnum.PENDING.getStatus(), 0l);
+        statusMap.put(UIStatementStatusEnum.PRE_PROCESSING.getStatus(), 0l);
+        statusMap.put(UIStatementStatusEnum.PROCESSING.getStatus(), 0l);
+        statusMap.put(UIStatementStatusEnum.MERGING.getStatus(), 0l);
+        statusMap.put(UIStatementStatusEnum.READY.getStatus(), 0l);
+        statusMap.put(UIStatementStatusEnum.FAILED.getStatus(), 0l);
+
+        for(StatusCount statusCount:statusCounts) {
+            if(statusCount.getName().equals(StatementStatusEnum.PENDING.getStatus())) {
+                statusMap.put(UIStatementStatusEnum.PENDING.getStatus(), statusCount.getValue());
+            } else if(statusCount.getName().equals(StatementStatusEnum.PRE_PROCESSING.getStatus())){
+                statusMap.put(UIStatementStatusEnum.PRE_PROCESSING.getStatus(), statusCount.getValue());
+            } else if(statusCount.getName().equals(StatementStatusEnum.PRE_PROCESSED.getStatus())
+                    || statusCount.getName().equals(StatementStatusEnum.PDF_PROCESSING.getStatus())){
+                sum = statusMap.get(UIStatementStatusEnum.PROCESSING.getStatus());
+                sum += statusCount.getValue();
+                statusMap.put(UIStatementStatusEnum.PROCESSING.getStatus(), sum);
+            } else if(statusCount.getName().equals(StatementStatusEnum.PDF_PROCESSED.getStatus())
+                    || statusCount.getName().equals(StatementStatusEnum.INVOICE_PROCESSING.getStatus())) {
+                sum = statusMap.get(UIStatementStatusEnum.MERGING.getStatus());
+                sum += statusCount.getValue();
+                statusMap.put(UIStatementStatusEnum.MERGING.getStatus(), sum);
+            } else if(statusCount.getName().equals(StatementStatusEnum.INVOICE_PROCESSED.getStatus())
+                    || statusCount.getName().equals(StatementStatusEnum.DELIVERY_PENDING.getStatus())) {
+                sum = statusMap.get(UIStatementStatusEnum.READY.getStatus());
+                sum += statusCount.getValue();
+                statusMap.put(UIStatementStatusEnum.READY.getStatus(), sum);
+            } else if(statusCount.getName().equals(StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus()) ||
+                    statusCount.getName().equals(StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus()) ||
+                    statusCount.getName().equals(StatementStatusEnum.INVOICE_PROCESSING_FAILED.getStatus()) ||
+                    statusCount.getName().equals(StatementStatusEnum.DELIVERY_FAILED.getStatus())) {
+
+                sum = statusMap.get(UIStatementStatusEnum.FAILED.getStatus());
+                sum += statusCount.getValue();
+                statusMap.put(UIStatementStatusEnum.FAILED.getStatus(), sum);
+            }
+        }
+
+        status = new StatusCount();
+        status.setName(UIStatementStatusEnum.PENDING.getStatus());
+        status.setValue(statusMap.get(UIStatementStatusEnum.PENDING.getStatus()));
+        uiStatusCount.add(0, status);
+
+        status = new StatusCount();
+        status.setName(UIStatementStatusEnum.PRE_PROCESSING.getStatus());
+        status.setValue(statusMap.get(UIStatementStatusEnum.PRE_PROCESSING.getStatus()));
+        uiStatusCount.add(1, status);
+
+        status = new StatusCount();
+        status.setName(UIStatementStatusEnum.PROCESSING.getStatus());
+        status.setValue(statusMap.get(UIStatementStatusEnum.PROCESSING.getStatus()));
+        uiStatusCount.add(2, status);
+
+        status = new StatusCount();
+        status.setName(UIStatementStatusEnum.MERGING.getStatus());
+        status.setValue(statusMap.get(UIStatementStatusEnum.MERGING.getStatus()));
+        uiStatusCount.add(3, status);
+
+        status = new StatusCount();
+        status.setName(UIStatementStatusEnum.READY.getStatus());
+        status.setValue(statusMap.get(UIStatementStatusEnum.READY.getStatus()));
+        uiStatusCount.add(4, status);
+
+        status = new StatusCount();
+        status.setName(UIStatementStatusEnum.FAILED.getStatus());
+        status.setValue(statusMap.get(UIStatementStatusEnum.FAILED.getStatus()));
+        uiStatusCount.add(5, status);
+
+        status = new StatusCount();
+        status.setName("Total Invoice Processed");
+        status.setValue(Long.valueOf(statusCounts.size()));
+        uiStatusCount.add(6, status);
+
+        if(null != numOfRecords) {
+            status = new StatusCount();
+            status.setName("Total statements");
+            status.setValue(Long.valueOf(statusCounts.size()));
+            uiStatusCount.add(6, status);
+        }
+        return uiStatusCount;
+    }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void splitAndSave(SystemBatchInput systemBatchInput){
@@ -283,4 +402,6 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
 
         return mappedStatusList.toString();
     }
+
+
 }

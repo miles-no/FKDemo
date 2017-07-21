@@ -13,4 +13,10 @@ public interface SystemBatchInputService {
     //void saveSingleIMSysteBatchInput(TransferFile transferFile);
 
     public SystemBatchInput saveIMSysteBatchInput(TransferFile transferFile);
+
+    public void updateSystemBatchInput(SystemBatchInput systemBatchInput);
+
+    Long getSBIIdByTransferFileName(String transferFileName);
+
+    Integer getNumOfRecordsById(Long id);
 }

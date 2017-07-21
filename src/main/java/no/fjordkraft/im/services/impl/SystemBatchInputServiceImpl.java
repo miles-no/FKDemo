@@ -68,5 +68,18 @@ public class SystemBatchInputServiceImpl implements SystemBatchInputService {
         return systemBatchInputRepository.saveAndFlush(imSystemBatchInput);
     }
 
+    @Transactional()
+    public void updateSystemBatchInput(SystemBatchInput systemBatchInput) {
+        systemBatchInputRepository.saveAndFlush(systemBatchInput);
+    }
+
+    @Override
+    public Long getSBIIdByTransferFileName(String transferFileName) {
+        return systemBatchInputRepository.getSBIIdByFilename(transferFileName);
+    }
+
+    public Integer getNumOfRecordsById(Long id) {
+        return systemBatchInputRepository.getNumOfRecordsById(id);
+    }
 
 }

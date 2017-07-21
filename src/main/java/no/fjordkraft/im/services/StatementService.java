@@ -2,6 +2,7 @@ package no.fjordkraft.im.services;
 
 import no.fjordkraft.im.domain.RestStatement;
 import no.fjordkraft.im.model.Statement;
+import no.fjordkraft.im.model.StatusCount;
 import no.fjordkraft.im.model.SystemBatchInput;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 
@@ -40,6 +41,10 @@ public interface StatementService {
    // public void splitAndSave(TransferFile transferFile);
 
     public void processTransferFile(SystemBatchInput systemBatchInput);
+
+    List<StatusCount> getStatusAndCountByTransferfile(String transferFile);
+
+    List<StatusCount> getStatusByTransferfileBatchId(Long ekBatchJobId);
 
 
 }

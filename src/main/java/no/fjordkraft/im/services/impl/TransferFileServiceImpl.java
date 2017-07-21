@@ -1,6 +1,7 @@
 package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.jobs.schedulerjobs.InvoiceFeedWatcherJob;
+import no.fjordkraft.im.model.StatusCount;
 import no.fjordkraft.im.model.SystemBatchInput;
 import no.fjordkraft.im.model.TransferFile;
 import no.fjordkraft.im.model.TransferTypeEnum;
@@ -17,6 +18,7 @@ import org.springframework.util.StopWatch;
 
 import java.io.File;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -79,6 +81,11 @@ public class TransferFileServiceImpl implements TransferFileService {
     @Transactional
     public TransferFile saveTransferFile(TransferFile transferFile) {
         return transferFileRepository.save(transferFile);
+    }
+
+    @Override
+    public List<TransferFile> readTransferFileByBatchJobId(Long batchJobId) {
+        return transferFileRepository.readTransferfileByBatchJobId(batchJobId);
     }
 
     void createOutputFolders(String filename){
