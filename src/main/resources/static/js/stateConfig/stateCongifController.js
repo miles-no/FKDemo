@@ -18,18 +18,32 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
       $scope.alldata =  $scope.stateConfigs
     }
   }
-  $scope.showalldata = function(){
-    if ($scope.selectedKey === ''){
-      $scope.alldata =  $scope.stateConfigs;
-    }
+
+  $('.glyphicon-remove').addClass('fa fa-times').removeClass('glyphicon glyphicon-remove')
+
+
+  $scope.clearUiSelect = function($event){
+    $event.stopPropagation();
+    $scope.selectedKey.selected = undefined
+    $scope.alldata =  $scope.stateConfigs
   }
-  $scope.dummydata = []
+
+  $scope.onPropSelect = function(item){
+    $scope.alldata = []
+    angular.forEach($scope.stateConfigs,function(key){
+      if(key.name === item){
+        $scope.selectedKey = item
+        $scope.alldata.push(key)
+      }
+    })
+  }
+  $scope.configName = []
   $scope.getStatesConfig = function () {
     $http.get('/config').then(function (response) {
       $scope.stateConfigs = response.data.config;
       $scope.alldata = angular.copy($scope.stateConfigs)
      angular.forEach($scope.alldata,function(key){
-       $scope.dummydata.push(key.name)
+       $scope.configName.push(key.name)
      })
     })
   }
@@ -93,8 +107,6 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
       })
     })
   }
-
-
 
   function showModal (stateInfo, type) {
     ModalService.showModal({

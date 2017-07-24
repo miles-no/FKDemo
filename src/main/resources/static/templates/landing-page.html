@@ -1,12 +1,12 @@
 <div class="invoice-manager-overview" ng-controller="landingPageController" ng-init="init()">
     <div class="current-system-status flex-container">
-        <div class="col-md-offset-1 col-md-3 vertical-align-in-flex">
+        <div class="col-md-4 vertical-align-in-flex">
             <div class="row">
-                <div class="col-md-12  text-center">
-                    <div>
+                <div class="col-sm-12 text-center">
+                    <div class="small-text">
                         <span odometer="totalInvoices" odometer-options="{theme: 'plaza', duration: 3000,animation : 'count'}"/>
                     </div>
-                    <label >Total Invoices</label>
+                    <label class="small-text">Total Invoices</label>
                 </div>
             </div>
         </div>
@@ -15,20 +15,10 @@
         </div>
     </div>
     <hr class="section-breaker">
-    <!--<div class="overview-duration container">
-        <div class="col-md-2 col-md-offset-6 ">
-            <ui-select  ng-model="overview.selected" theme="bootstrap" title="Choose Overview Period">
-                <ui-select-match placeholder="Select Filter">{{$select.selected.name}}</ui-select-match>
-                <ui-select-choices  repeat="eachOverview in possibleOverviews" position='down'>
-                    <div ng-bind-html="eachOverview.name | highlight: $select.search"></div>
-                </ui-select-choices>
-            </ui-select>
-        </div>
-    </div>-->
     <div class="definative-period-overview">
-         <div class="col-md-offset-1 col-md-3 overview-duration">
+         <div class="col-md-4 overview-duration">
               <div class="row">
-                  <div class="form-group col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                  <div class="form-group col-sm-offset-2 col-sm-8">
                      <ui-select  ng-model="overview.selected" theme="bootstrap" title="Choose Overview Period" on-select="onOverviewSelect($item, $model)">
                           <ui-select-match placeholder="Select Filter">{{$select.selected.name}}</ui-select-match>
                           <ui-select-choices  repeat="eachOverview in possibleOverviews" position='down'>
@@ -47,7 +37,7 @@
                   <br/>
               </div>
               <div class="row">
-                 <div class="form-group col-md-6 col-md-offset-3 text-center">
+                 <div class="form-group col-sm-12 text-center">
                       <div>
                          <span odometer="overviewCount" odometer-options="{theme: 'plaza', duration: 3000,animation : 'count'}"/>
                       </div>
@@ -57,7 +47,7 @@
           </div>
         <div class="col-md-8 overview-graphs">
             <div class="row">
-                <div class="col-md-5 text-center">
+                <div class="col-sm-offset-1 col-sm-5 text-center">
                     <canvas id="divisionsByBrand"
                             class="chart chart-bar"
                             chart-data="brandOverview.data"
@@ -66,7 +56,7 @@
                     </canvas>
                     <label class="row">Brands</label>
                 </div>
-                <div class="col-md-offset-1 col-md-5 text-center">
+                <div class="col-sm-offset-1 col-sm-5 text-center">
                     <div class="form-group">
                         <canvas id="processingInvoices"
                                 class="chart chart-doughnut"

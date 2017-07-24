@@ -78,6 +78,7 @@
                     <!--<th >Invoice Date</th>-->
                     <th >City</th>
                     <th st-sort="dueDate">Due Date</th>
+                    <th st-sort="updateTime">Updated Date</th>
                     <th >Links</th>
                 </tr>
             </thead>
@@ -90,6 +91,7 @@
                     <td>{{row.amount}}</td>
                     <td>{{row.city}}</td>
                     <td>{{getForamttedDate(row.dueDate)}}</td>
+                    <td>{{getForamttedDate(row.updateTime)}}</td>
                     <td>
                         <!--<button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
                             <i class="glyphicon glyphicon-remove-circle">

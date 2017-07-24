@@ -1,0 +1,20 @@
+@import 'base';
+
+.config-align{
+  @media screen and (max-width:1579px) and (min-width:1204px) {
+    left: 15px;
+  }
+}
+
+.clear-items{
+  width: initial !important;
+  display: inline !important;
+  outline: none;
+  float: right;
+  a{
+    color: $black;
+    font-size: 12px;
+    position: relative;
+    bottom: 1px;
+  }
+}

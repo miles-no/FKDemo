@@ -1,18 +1,23 @@
 <div class="manage-brands" ng-controller="StateConfigController" ng-init="getStatesConfig()">
-    <div class="header-text text-center header-style">System Configurations</div>
-    <div class="col-md-6 ui-select">
+    <div class="col-sm-12 text-center header-style">System Configurations</div>
+    <div class="col-sm-4">
         <div class="row form-group">
-            <div class='container-fluid typeahead-demo'>
-                <label class="control-label col-md-1 key-text text-match">Key</label>
-                <input type="text" ng-model="selectedKey" ng-change="showalldata()" typeahead-on-select="showSelectedKey()" typeahead-min-length="0"  uib-typeahead="data for data in dummydata | filter:$viewValue | limitTo:8" class="state-box">
+            <label class="control-label col-sm-3 col-lg-2 text-match search-align">Property</label>
+            <div class="col-sm-8 config-align">
+                <ui-select ng-model="selectedKey" theme="bootstrap" title="Choose Property" on-select="onPropSelect($item)" on-remove="clearUiSelect()">
+                    <ui-select-match allow-clear="true" placeholder="Select Property">{{selectedKey}}</ui-select-match>
+                    <ui-select-choices repeat="eachBrand in configName | filter : $select.search" position='down'>
+                        <div ng-bind-html="eachBrand | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
             </div>
         </div>
     </div>
-    <div class="col-md-12 col-sm-12">
+    <div class="col-sm-12">
         <table st-table="displayedCollection" st-safe-src="alldata" class="table table-layout">
             <thead>
             <tr>
-                <th st-sort="name" class="pointer">Key</th>
+                <th st-sort="name" class="pointer">Property</th>
                 <th>Value</th>
                 <th width="40px"></th>
             </tr>
@@ -33,7 +38,7 @@
             </tfoot>
         </table>
         <div class="text-right">
-            <button ng-click="addStateConfig()" class="btn btn-primary btn-align">Add Configuration</button><!-- modal opens upon clicking of add brand -->
+            <button ng-click="addStateConfig()" class="btn btn-primary btn-align">Add Property</button><!-- modal opens upon clicking of add brand -->
         </div>
     </div>
 </div>
