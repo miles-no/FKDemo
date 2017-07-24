@@ -62,57 +62,65 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
                     rulename = layoutRuleMap.getName();
                     restRuleAttribute = ruleAttributesService.getRuleAttributeByName(rulename);
                     String ruleAttributeType;
+                    String field;
 
                     if (null != restRuleAttribute) {
-                        Object value = PropertyUtils.getNestedProperty(statement, restRuleAttribute.getFieldMapping());
-                        ruleAttributeType = String.valueOf(restRuleAttribute.getType());
+                        field = restRuleAttribute.getFieldMapping().substring(0, 1).toLowerCase();
+                        field += restRuleAttribute.getFieldMapping().substring(1);
+                        try {
+                            Object value = PropertyUtils.getNestedProperty(statement, field);
+                            ruleAttributeType = String.valueOf(restRuleAttribute.getType());
 
-                        if (null != value && IMConstants.STRING.equals(ruleAttributeType)) {
-                            if (IMConstants.EQUALS.equals(layoutRuleMap.getOperation())
-                                    && layoutRuleMap.getValue().equals(value.toString())) {
-                                foundLayout = true;
-                                continue;
-                            } else if (IMConstants.NOT_EQUALS.equals(layoutRuleMap.getOperation())
-                                    && !layoutRuleMap.getValue().equals(value.toString())) {
-                                foundLayout = true;
-                                continue;
-                            } else {
-                                foundLayout = false;
-                                break;
-                            }
-                        } else if (null != value && (IMConstants.INTEGER.equals(ruleAttributeType) || IMConstants.FLOAT.equals(ruleAttributeType))) {
-                            int comparedResult = Float.valueOf(layoutRuleMap.getValue()).compareTo(Float.valueOf(value.toString()));
+                            if (null != value && IMConstants.STRING.equals(ruleAttributeType)) {
+                                if (IMConstants.EQUALS.equals(layoutRuleMap.getOperation())
+                                        && layoutRuleMap.getValue().equals(value.toString())) {
+                                    foundLayout = true;
+                                    continue;
+                                } else if (IMConstants.NOT_EQUALS.equals(layoutRuleMap.getOperation())
+                                        && !layoutRuleMap.getValue().equals(value.toString())) {
+                                    foundLayout = true;
+                                    continue;
+                                } else {
+                                    foundLayout = false;
+                                    break;
+                                }
+                            } else if (null != value && (IMConstants.INTEGER.equals(ruleAttributeType) || IMConstants.FLOAT.equals(ruleAttributeType))) {
+                                int comparedResult = Float.valueOf(layoutRuleMap.getValue()).compareTo(Float.valueOf(value.toString()));
 
-                            if (IMConstants.EQUALS.equals(layoutRuleMap.getOperation())
-                                    && IMConstants.ZERO == comparedResult) {
-                                foundLayout = true;
-                                continue;
-                            } else if (IMConstants.NOT_EQUALS.equals(layoutRuleMap.getOperation())
-                                    && IMConstants.ZERO != comparedResult) {
-                                foundLayout = true;
-                                continue;
-                            } else if (IMConstants.GREATER_THAN.equals(layoutRuleMap.getOperation())
-                                    && IMConstants.GREATER == comparedResult) {
-                                foundLayout = true;
-                                continue;
-                            } else if (IMConstants.LESS_THAN.equals(layoutRuleMap.getOperation())
-                                    && IMConstants.LESSER == comparedResult) {
-                                foundLayout = true;
-                                continue;
-                            } else if (IMConstants.GREATER_THAN_EQUAL_TO.equals(layoutRuleMap.getOperation())
-                                    && (IMConstants.GREATER == comparedResult || IMConstants.ZERO == comparedResult)) {
-                                foundLayout = true;
-                                continue;
-                            } else if (IMConstants.LESS_THAN_EQUAL_TO.equals(layoutRuleMap.getOperation())
-                                    && (IMConstants.LESSER == comparedResult || IMConstants.ZERO == comparedResult)) {
-                                foundLayout = true;
-                                continue;
+                                if (IMConstants.EQUALS.equals(layoutRuleMap.getOperation())
+                                        && IMConstants.ZERO == comparedResult) {
+                                    foundLayout = true;
+                                    continue;
+                                } else if (IMConstants.NOT_EQUALS.equals(layoutRuleMap.getOperation())
+                                        && IMConstants.ZERO != comparedResult) {
+                                    foundLayout = true;
+                                    continue;
+                                } else if (IMConstants.GREATER_THAN.equals(layoutRuleMap.getOperation())
+                                        && IMConstants.GREATER == comparedResult) {
+                                    foundLayout = true;
+                                    continue;
+                                } else if (IMConstants.LESS_THAN.equals(layoutRuleMap.getOperation())
+                                        && IMConstants.LESSER == comparedResult) {
+                                    foundLayout = true;
+                                    continue;
+                                } else if (IMConstants.GREATER_THAN_EQUAL_TO.equals(layoutRuleMap.getOperation())
+                                        && (IMConstants.GREATER == comparedResult || IMConstants.ZERO == comparedResult)) {
+                                    foundLayout = true;
+                                    continue;
+                                } else if (IMConstants.LESS_THAN_EQUAL_TO.equals(layoutRuleMap.getOperation())
+                                        && (IMConstants.LESSER == comparedResult || IMConstants.ZERO == comparedResult)) {
+                                    foundLayout = true;
+                                    continue;
+                                } else {
+                                    foundLayout = false;
+                                    break;
+                                }
                             }
-                            else {
-                                foundLayout = false;
-                                break;
-                            }
+                        } catch (Exception e) {
+                            throw new PreprocessorException("Error while reading rule value: " + field);
                         }
+                    } else {
+                        throw new PreprocessorException("Rule attribute not mapped: " + rulename);
                     }
                 }
                 if (foundLayout) {
@@ -120,6 +128,8 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
                     break;
                 }
             }
+        } else {
+            throw new PreprocessorException("Layout Rules not found for brand or Brand is not mapped: " + statementBrand);
         }
 
         if(!foundLayout) {

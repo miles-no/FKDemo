@@ -2,6 +2,7 @@ package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.logging.AuditLogRecord;
 import no.fjordkraft.im.model.AuditLog;
+import no.fjordkraft.im.repository.AuditLogDetailRepository;
 import no.fjordkraft.im.repository.AuditLogRepository;
 import no.fjordkraft.im.services.AuditLogService;
 import no.fjordkraft.im.util.IMConstants;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by miles on 7/10/2017.
@@ -18,6 +20,9 @@ public class AuditLogServiceImpl implements AuditLogService {
 
     @Autowired
     AuditLogRepository auditLogRepository;
+
+    @Autowired
+    AuditLogDetailRepository auditLogDetailRepository;
 
     @Override
     public void saveAuditLog(Long actionOnId, String action, String msg, String logType) {
@@ -38,6 +43,7 @@ public class AuditLogServiceImpl implements AuditLogService {
         auditLog.setUserName(auditLogRecord.getUsername());
         auditLog.setMsg(auditLogRecord.getMsg());
         auditLog.setDateTime(auditLogRecord.getDateTime());
+        auditLog.setLogType(auditLogRecord.getLogType());
 
         auditLogRepository.saveAndFlush(auditLog);
     }
@@ -72,5 +78,15 @@ public class AuditLogServiceImpl implements AuditLogService {
     @Override
     public AuditLog getAuditLogById(Long id) {
         return auditLogRepository.findOne(id);
+    }
+
+    @Override
+    public List<AuditLog> getAuditLogRecords(int page, int size, Timestamp fromTime, Timestamp toTime, String action, String actionOnType, Long actionOnId, String logType) {
+        return auditLogDetailRepository.getDetails(page, size, fromTime, toTime, action, actionOnType, actionOnId, logType);
+    }
+
+    @Override
+    public Long getAuditLogRecordsCount(int page, int size, Timestamp fromTime, Timestamp toTime, String action, String actionOnType, Long actionOnId, String logType) {
+        return auditLogDetailRepository.getCount(page, size, fromTime, toTime, action, actionOnType, actionOnId, logType);
     }
 }

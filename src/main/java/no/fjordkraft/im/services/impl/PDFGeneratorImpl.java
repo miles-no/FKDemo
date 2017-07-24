@@ -136,7 +136,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
             birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName, pdfGeneratedFolderName, xmlFolderName);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSED);
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             invoiceGenerator.generateInvoice(statement);
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
         } catch (PDFGeneratorException e) {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);

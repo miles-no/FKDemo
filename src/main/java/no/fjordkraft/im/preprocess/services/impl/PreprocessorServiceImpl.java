@@ -94,7 +94,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
     public void preprocess() throws IOException {
         StopWatch stopwatch = new StopWatch("Preprocessing");
         stopwatch.start();
-        Long numOfThreads = configService.getLong(IMConstants.NUM_OF_THREAD_PDFGENERATOR);
+        Long numOfThreads = configService.getLong(IMConstants.NUM_OF_THREAD_PREPROCESSOR);
         List<no.fjordkraft.im.model.Statement> statementList = statementRepository.readStatements(numOfThreads,StatementStatusEnum.PENDING.name());
         logger.debug("Preprocessing started for "+ statementList.size() + " statements");
         if(taskExecutor instanceof ThreadPoolTaskExecutor) {
@@ -131,6 +131,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
 
             preprocessorEngine.execute(request);
             statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
         } catch (PreprocessorException ex) {
             statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), ex.getMessage(), IMConstants.ERROR);

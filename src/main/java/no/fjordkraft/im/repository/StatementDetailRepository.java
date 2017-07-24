@@ -49,7 +49,7 @@ public class StatementDetailRepository {
         selectQuery.append("order by s.createTime desc");
 
         Query query = entityManager.createQuery(selectQuery.toString(), Statement.class)
-                .setFirstResult(page)
+                .setFirstResult(page*size)
                 .setMaxResults(size)
                 .setParameter("fromTime", fromTime)
                 .setParameter("toTime", toTime)

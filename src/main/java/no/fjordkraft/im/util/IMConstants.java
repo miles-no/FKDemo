@@ -79,4 +79,6 @@ public interface IMConstants {
     static final String INTERNALLY_GRANTED = "InternallyGranted";
     static final String SYSTEM = "SYSTEM";
     static final String CAMPAIGN_IMAGE = "CAMPAIGN_IMAGE";
+    static final String SUCCESS = "SUCCESS";
+    static final String AUDIT_LOG = "AUDIT_LOG";
 }
