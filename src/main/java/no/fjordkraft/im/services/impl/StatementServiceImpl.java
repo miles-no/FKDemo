@@ -242,7 +242,7 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void updateStatement(Statement statement, StatementStatusEnum status){
         statement.setStatus(status.getStatus());
-        statement.setUdateTime(new Timestamp(System.currentTimeMillis()));
+        statement.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         statementRepository.saveAndFlush(statement);
     }
 
@@ -264,7 +264,7 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         //imStatement.setPayload(xml);
         imStatement.setStatus(StatementStatusEnum.PENDING.getStatus());
         imStatement.setCreateTime(new Timestamp(System.currentTimeMillis()));
-        imStatement.setUdateTime(new Timestamp(System.currentTimeMillis()));
+        imStatement.setUpdateTime(new Timestamp(System.currentTimeMillis()));
 
         StatementPayload statementPayload = new StatementPayload();
         statementPayload.setPayload(xml);
@@ -279,7 +279,7 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         //imStatement.setPayload(xml);
         imStatement.setStatus(StatementStatusEnum.PENDING.getStatus());
         imStatement.setCreateTime(new Timestamp(System.currentTimeMillis()));
-        imStatement.setUdateTime(new Timestamp(System.currentTimeMillis()));
+        imStatement.setUpdateTime(new Timestamp(System.currentTimeMillis()));
 
         StatementPayload statementPayload = new StatementPayload();
         statementPayload.setPayload(xml);
@@ -307,7 +307,7 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
                 RestStatement restStatement = new RestStatement();
                 restStatement.setId(statement.getId());
                 restStatement.setStatus(statement.getStatus());
-                restStatement.setUdateTime(statement.getUdateTime());
+                restStatement.setUdateTime(statement.getUpdateTime());
                 restStatement.setPdfAttachment(statement.getPdfAttachment());
                 restStatement.setAccountNumber(statement.getAccountNumber());
                 restStatement.setAmount(statement.getAmount());

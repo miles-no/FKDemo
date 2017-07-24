@@ -47,7 +47,7 @@ public class Statement {
     private Timestamp createTime;
 
     @Column(name="Update_TIME")
-    private Timestamp udateTime;
+    private Timestamp updateTime;
 
     @Column(name="PDF_ATTACHMENT")
     private Integer pdfAttachment;
@@ -124,12 +124,12 @@ public class Statement {
         this.createTime = createTime;
     }
 
-    public Timestamp getUdateTime() {
-        return udateTime;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUdateTime(Timestamp udateTime) {
-        this.udateTime = udateTime;
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Integer getPdfAttachment() {
