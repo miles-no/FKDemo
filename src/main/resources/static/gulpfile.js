@@ -110,7 +110,9 @@ gulp.task('combileVendorJS',['moveFontAwesome'],function(){
         './node_modules/angular-smart-table/dist/smart-table.min.js',
         './node_modules/angular-circular-timepicker/dist/javascript/angular.circular.timepicker.js',
         './node_modules/angular-modal-service/dst/angular-modal-service.min.js',
-        './node_modules/ng-flat-datepicker/dist/ng-flat-datepicker.min.js'
+        './node_modules/ng-flat-datepicker/dist/ng-flat-datepicker.min.js',
+        './node_modules/clipboard/dist/clipboard.min.js',
+        './node_modules/ngclipboard/dist/ngclipboard.min.js'
     ]
     return gulp.src(libFiles)
             .pipe(concat('lib.js'))
