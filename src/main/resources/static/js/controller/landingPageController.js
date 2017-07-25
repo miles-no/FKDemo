@@ -74,7 +74,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment,
                 labels : []
             };
             prepareChartDataForObject($scope.brandOverview,result.data.STATUS_BY_BRAND);
-            prepareChartDataForObject($scope.locationOverview,result.data.STATUS_BY_CITY);
+            prepareChartDataForObject($scope.locationOverview,_.takeRight(_.sortBy(result.data.STATUS_BY_CITY,[function (eachCity){ return eachCity.value}]),10));
             $rootScope.brands && $rootScope.brands.length && $rootScope.brands.length>0 ? '' : $rootScope.brands = _.cloneDeep($scope.brandOverview.labels);
         },function error(error){
             console.log(`in Error ${error}`);
