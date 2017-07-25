@@ -1,0 +1,49 @@
+<div class="auditLog" ng-controller="auditLogController" ng-init="init()">
+    <div class="col-sm-12 text-center header-style">Audit Logs</div>
+    <div class="col-sm-4">
+        <div class="row form-group">
+            <label class="control-label col-sm-3 col-lg-2 search-align text-match">to be added</label>
+            <div class="col-sm-8">
+                <ui-select multiple ng-model="selectedGrids" theme="bootstrap" title="Choose audit" on-remove="onauditRemoval($item, $model)" on-select="onGridSelect($item, $model)">
+                    <ui-select-match placeholder="Select audit">{{$item}}</ui-select-match>
+                    <ui-select-choices repeat="eachBrand in brands | filter : $select.search" position='down'>
+                        <div ng-bind-html="eachBrand | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <table st-table="displayedCollection" st-safe-src="auditLog" class="table">
+            <thead>
+            <tr>
+                <th><span class="pointer">Action Id</span></th>
+                <th>Action</th>
+                <th>Action Type</th>
+                <th>Date</th>
+                <th>Log Type</th>
+                <th>msg</th>
+                <th>userName</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="logs in displayedCollection">
+                <td>{{logs.actionOnId}}</td>
+                <td>{{logs.action}}</td>
+                <td>{{logs.actionOnType}}</td>
+                <td>{{getForamttedDate(logs.dateTime)}}</td>
+                <td>{{logs.logType}}</td>
+                <td>{{logs.msg || "N/A"}}</td>
+                <td>{{logs.userName}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="100%" class="text-center">
+                        <paginator page-size=pageSize total-pages=totalPages on-page-change="onPageChanged(result)"></paginator>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

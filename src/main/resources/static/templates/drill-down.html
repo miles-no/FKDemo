@@ -6,7 +6,7 @@
             <div class="row form-group">
                 <label class="control-label col-md-2">State</label>
                 <div class="col-md-6">
-                    <ui-select multiple ng-model="states" theme="bootstrap" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
+                    <ui-select multiple ng-model="states" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
                         <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
                         <ui-select-choices  repeat="eachOverview in possibleStates" position='down'>
                             <div ng-bind-html="eachOverview | highlight: $select.search"></div>
@@ -22,8 +22,8 @@
             </div>-->
             <div class="row form-group">
                 <label class="control-label col-md-2">Invoice</label>
-                <div class="col-md-8">
-                    <input type="text" ng-model="invoiceNumber" ng-change="getOverviewDetails()">
+                <div class="col-md-10">
+                    <input type="text" theme="bootstrap" ng-model="invoiceNumber" ng-change="getOverviewDetails()">
                 </div>
             </div>
         </div>
@@ -84,9 +84,18 @@
             </thead>
 			<tbody>
                 <tr ng-repeat="row in displayedCollection">
-                    <td>{{row.customerId}}</td>
-                    <td>{{row.accountNumber}}</td>
-                    <td>{{row.invoiceNumber}}</td>
+                    <td>
+                        <span>{{row.customerId}}</span>
+                        <span class="clipboard-position fa fa-clipboard" uib-tooltip="Copy to Clipboard" tooltip-placement="bottom" ngclipboard-error="onError(e);" ngclipboard data-clipboard-text="{{row.customerId}}"></span>
+                    </td>
+                    <td>
+                        <span>{{row.accountNumber}}</span>
+                        <span class="clipboard-position fa fa-clipboard" uib-tooltip="Copy to Clipboard" tooltip-placement="bottom" ngclipboard-error="onError(e);" ngclipboard data-clipboard-text="{{row.accountNumber}}"></span>
+                    </td>
+                    <td>
+                        <span>{{row.invoiceNumber}}</span>
+                        <span class="clipboard-position fa fa-clipboard" uib-tooltip="Copy to Clipboard" tooltip-placement="bottom" ngclipboard-error="onError(e);" ngclipboard data-clipboard-text="{{row.accountNumber}}"></span>
+                    </td>
                     <td>{{row.distributionMethod}}</td>
                     <td>{{row.amount}}</td>
                     <td>{{row.city}}</td>

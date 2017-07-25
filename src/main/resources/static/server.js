@@ -430,3 +430,13 @@ app.post('/transferfile/process', function(req, res) {
 })
 });
 
+/**********audit logs*****/
+
+app.get('/auditRecord',function(req,res){
+  console.log(req.query)
+  let qp = {
+    page: req.query.page,
+    size: req.query.size
+  }
+  request({url : `${apiUrl}/auditRecord`,qs: qp}).pipe(res);
+})

@@ -18,7 +18,12 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
         "maxDate" : moment().add(1,'days')
 
     }
-    
+
+    $scope.onError = function(e) {
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+    }
+
     $scope.onStateSelect = function(item,model){
         console.log('onStateSelect ',item,model,$scope.states)
         $scope.states.push(item);

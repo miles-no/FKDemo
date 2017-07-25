@@ -14,7 +14,8 @@ let dependencies = [
         'angularMoment',
         'smart-table',
         'ngFlatDatepicker',
-        'angularModalService'
+        'angularModalService',
+        'ngclipboard'
         // 'angular.circular.timepicker'
     ];
 
@@ -53,6 +54,9 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
       }).state('rule',{
         url: '/rule',
         templateUrl: 'js/rule/rule.html'
+      }).state('audit_log',{
+        url: '/audit_log',
+        templateUrl: 'js/auditLog/auditLog.html'
       });
     $urlRouterProvider.otherwise('/home');
 });
