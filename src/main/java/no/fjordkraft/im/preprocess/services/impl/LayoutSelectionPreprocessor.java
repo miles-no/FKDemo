@@ -65,8 +65,7 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
                     String field;
 
                     if (null != restRuleAttribute) {
-                        field = restRuleAttribute.getFieldMapping().substring(0, 1).toLowerCase();
-                        field += restRuleAttribute.getFieldMapping().substring(1);
+                        field = getFieldMapped(restRuleAttribute.getFieldMapping());
                         try {
                             Object value = PropertyUtils.getNestedProperty(statement, field);
                             ruleAttributeType = String.valueOf(restRuleAttribute.getType());
@@ -136,5 +135,28 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
             throw new PreprocessorException("Layout not found");
         }
         request.getEntity().setLayoutID(layoutID);
+    }
+
+    private String getFieldMapped(String fieldMapping) {
+        StringBuffer result = new StringBuffer();
+        String temp;
+        if(fieldMapping.contains(".")) {
+            String[] fields = fieldMapping.split("\\.");
+            int i = 0;
+            for (String field : fields) {
+                if (IMConstants.ZERO != i) {
+                    result.append(".");
+                }
+                temp = field.substring(0, 1).toLowerCase();
+                temp += field.substring(1);
+                result.append(temp);
+                i++;
+            }
+            return result.toString();
+        }
+
+        temp = fieldMapping.substring(0, 1).toLowerCase();
+        temp += fieldMapping.substring(1);
+        return temp;
     }
 }

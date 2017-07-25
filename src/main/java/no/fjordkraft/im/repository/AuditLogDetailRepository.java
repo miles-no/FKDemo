@@ -77,8 +77,6 @@ public class AuditLogDetailRepository {
         selectQuery.append("order by a.dateTime desc");
 
         Query query = entityManager.createQuery(selectQuery.toString(), Long.class)
-                .setFirstResult(page)
-                .setMaxResults(size)
                 .setParameter("fromTime", fromTime)
                 .setParameter("toTime", toTime)
                 .setParameter("action", action)
