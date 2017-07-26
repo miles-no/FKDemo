@@ -65,9 +65,10 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-sm-3 col-sm-offset-2">Name</label>
-                            <label class="col-sm-4">Operation</label>
-                            <label class="col-sm-3">Value</label>
+                            <label class="col-sm-3">Name</label>
+                            <label class="col-sm-3">Operation</label>
+                            <!--<label class="col-sm-3">Value</label>-->
+                            <label class="col-sm-3">Options</label>
                         </div>
                         <div ng-repeat="rule in rulesList track by $index">
                             <div class="panel">
@@ -90,7 +91,17 @@
                                         </ui-select>
                                     </div>
 
-                                    <input type="text" ng-model="rule.value" class="form-control modal-box col-sm-2">
+                                    <!--<input type="text" ng-model="rule.value" class="form-control modal-box col-sm-2">-->
+
+                                    <div class="modal-box ui-box col-sm-4">
+                                        <ui-select  ng-model="rule.operation" theme="bootstrap" title="Choose operation" ng-disabled="disable">
+                                            <ui-select-match placeholder="Choose operation">{{rule.operation}}</ui-select-match>
+                                            <ui-select-choices  repeat="layout in getAllOperationForAType(rule.type)" position='down'>
+                                                <div ng-bind-html="layout | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+
 
                                     <!--<div class="rule-delete col-sm-1 modal-box"><i class="fa fa-times" ng-click="removeRule(rule,$index)"></i></div>
                                     <div class="rule-delete col-sm-1 modal-box"><i class="fa fa-plus btn" ng-click="addRule()"></i></i></div>-->

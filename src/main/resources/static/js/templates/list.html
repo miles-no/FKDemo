@@ -36,14 +36,18 @@
                 <td class="table-left">{{layoutItem.brand}}</td>
                 <td>{{layoutItem.version}}</td>
                 <td ng-click="toggleLayout(layoutItem)"><i  ng-class="{'fa fa-check-circle greenIcon eaTrue': layoutItem.active === true , 'fa fa-check-circle greenIcon eaFalse': layoutItem.active === false}"></i></td>
-                <td ng-class="{'disabled' : layoutItem.layoutRule.layoutRuleMapList.length==0}"><a ng-click="dropDownList($event,layoutItem)">{{layoutItem.layoutRule.layoutRuleMapList.length}}</a></td>
+                <td>
+                    <a  ng-class="{'disabled' : layoutItem.layoutRule.layoutRuleMapList.length==0}"
+                        ng-click="layoutItem.layoutRule.layoutRuleMapList.length === 0 || dropDownList(layoutItem)"
+                        class="pointer">{{layoutItem.layoutRule.layoutRuleMapList.length}}
+                    </a>
+                </td>
                 <td ng-click="downLoadLayout(layoutItem)"><i uib-tooltip="Click to download {{layoutItem.name}}" tooltip-placement="bottom"  class="fa fa-download" aria-hidden="true"></i></td>
                 <td ng-click="previewLayout(layoutItem)"><i uib-tooltip="Click to preview {{layoutItem.name}}" tooltip-placement="bottom" class="fa fa-file-pdf-o"></i></td>
                 <td ng-click="deleteTemplate(layoutItem)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
-                <td ng-show="dropDown === layoutItem"><i class="fa fa-caret-up"></i></td>
             </tr>
             <tr ng-repeat-end ng-if="dropDown === layoutItem">
-                <td  colspan="7" class="table-border">
+                <td  colspan="10" class="table-border">
                     <table class="table table-striped table-sm table-dropdown">
                         <thead>
                         <tr>
