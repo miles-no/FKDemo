@@ -18,7 +18,24 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     let getLayoutRules = function(setLayout){
         $http.get('layout/attribute').then(function (response) {
             allPossibleRules = angular.copy(response.data);
-             $scope.templateInfo ? $scope.rulesList = $scope.templateInfo.layoutRuleMapList : $scope.showRule = true;
+            if ($scope.templateInfo){
+                $scope.rulesList = $scope.templateInfo.layoutRuleMapList
+                angular.forEach(allPossibleRules,function(e){
+                    angular.forEach($scope.rulesList,function(item,index){
+                        if (item.name === e.name){
+                            $scope.rulesList[index].options = []
+                            angular.forEach(e.options, function(data){
+                                $scope.rulesList[index].options.push(data)
+                            })
+
+                        }
+                    })
+                })
+                console.log($scope.rulesList)
+            }else{
+                $scope.showRule = true
+            }
+             //$scope.templateInfo ? ($scope.rulesList = $scope.templateInfo.layoutRuleMapList) : $scope.showRule = true;
         },function error(error){
             $scope.rulesList = [];
         });
@@ -34,6 +51,13 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
             $scope.showRule =false
         }
     }
+
+    $scope.onOptionsSelect = function(item,rule){
+        console.log($scope.rulesList)
+        rule.value = item
+        console.log($scope.rulesList)
+    }
+
     $scope.getAvailableRules = function(){
         return _.filter(allPossibleRules, function(eachRule){
             return !_.find($scope.rulesList,function(eachRuleOnScreen){
@@ -98,8 +122,6 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
             default :
                 return ['EQUALS','NOT EQUALS'] ;
         }
-
-
     }
     
     
