@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class RestRuleAttribute {
 
+    private Long id;
     private String name;
     private String type;
     private String fieldMapping;
@@ -42,5 +43,13 @@ public class RestRuleAttribute {
 
     public void setOptions(String[] options) {
         this.options = options;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

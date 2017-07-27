@@ -134,6 +134,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "currentClaim",
     "totalOpenClaim",
     "totalVatAmount",
+    "totalAttachment",
     "currentInterestRates",
     "outstandingClaims",
     "transactions",
@@ -236,7 +237,9 @@ public class Statement {
     protected float currentClaim;
     @XmlElement(name = "TotalOpenClaim")
     protected float totalOpenClaim;
-    @XmlElement(name = "TotalVatAmount")
+    @XmlElement(name = "TotalAttachment")
+    protected int totalAttachment;
+    @XmlElement(name = "")
     protected float totalVatAmount;
     @XmlElement(name = "CurrentInterestRates", required = true)
     protected CurrentInterestRates currentInterestRates;
@@ -1489,5 +1492,13 @@ public class Statement {
 
     public void setDirectDebit(String directDebit) {
         this.directDebit = directDebit;
+    }
+
+    public int getTotalAttachment() {
+        return totalAttachment;
+    }
+
+    public void setTotalAttachment(int totalAttachment) {
+        this.totalAttachment = totalAttachment;
     }
 }

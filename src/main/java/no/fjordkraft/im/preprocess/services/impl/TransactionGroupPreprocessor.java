@@ -85,6 +85,11 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
             transactionGroup.setTotalTransactions(i);
             request.getStatement().setTransactionGroup(transactionGroup);
             request.getStatement().setTotalVatAmount(IMConstants.NEGATIVE * request.getStatement().getTotalVatAmount());
+            if(i > 10) {
+                request.getStatement().setTotalAttachment(attachments.size() + 1);
+            } else {
+                request.getStatement().setTotalAttachment(attachments.size());
+            }
         } catch (Exception ex) {
             throw new PreprocessorException("Failed in Transaction Group Pre-Processor with message: " + ex.getMessage());
         }

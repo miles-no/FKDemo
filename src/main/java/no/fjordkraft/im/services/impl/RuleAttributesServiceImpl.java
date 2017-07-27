@@ -28,6 +28,7 @@ public class RuleAttributesServiceImpl implements RuleAttributesService {
         RestRuleAttribute restRuleAttribute;
         for(RuleAttributes ruleAttributes:ruleAttributesList) {
             restRuleAttribute = new RestRuleAttribute();
+            restRuleAttribute.setId(ruleAttributes.getId());
             restRuleAttribute.setName(ruleAttributes.getName());
             restRuleAttribute.setType(ruleAttributes.getType());
             restRuleAttribute.setFieldMapping(ruleAttributes.getFieldMapping());
@@ -64,6 +65,7 @@ public class RuleAttributesServiceImpl implements RuleAttributesService {
     public RestRuleAttribute getRuleAttributeByName(String name) {
         RuleAttributes ruleAttributes = ruleAttributesRepository.getAttributeByName(name);
         RestRuleAttribute restRuleAttribute = new RestRuleAttribute();
+        restRuleAttribute.setId(ruleAttributes.getId());
         restRuleAttribute.setName(ruleAttributes.getName());
         restRuleAttribute.setType(ruleAttributes.getType());
         restRuleAttribute.setFieldMapping(ruleAttributes.getFieldMapping());
