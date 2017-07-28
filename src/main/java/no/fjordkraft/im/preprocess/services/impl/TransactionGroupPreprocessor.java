@@ -118,11 +118,13 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
             multiValueMap.put(individualTransaction.getFreeText(), individualTransaction);
         }
 
+        int k = 1;
         mapIterator = multiValueMap.entrySet().iterator();
         while(mapIterator.hasNext()) {
             Map.Entry entry = (Map.Entry) mapIterator.next();
             transactionList = (List<Transaction>) entry.getValue();
             for(Transaction transaction:transactionList) {
+                transaction.setTransactionSequence(k++);
                 transactions.add(transaction);
             }
         }

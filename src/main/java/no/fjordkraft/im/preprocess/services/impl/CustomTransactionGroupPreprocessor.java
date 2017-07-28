@@ -50,11 +50,14 @@ public class CustomTransactionGroupPreprocessor  extends BasePreprocessor {
                 }
             }
         }
+        Transaction transaction;
         mapIterator = diverseRabatter.entrySet().iterator();
         while(mapIterator.hasNext()) {
             Map.Entry pair = (Map.Entry) mapIterator.next();
+            transaction = new Transaction();
+            transaction = (Transaction) pair.getValue();
+            transaction.setTransactionSequence(++totalTransactions);
             processedTransaction.add((Transaction) pair.getValue());
-            totalTransactions++;
         }
 
         transactionGroup.setTransaction(processedTransaction);
