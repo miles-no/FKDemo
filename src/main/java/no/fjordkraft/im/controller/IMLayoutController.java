@@ -73,23 +73,15 @@ public class IMLayoutController {
 
     @RequestMapping(value = "attribute", method = RequestMethod.POST)
     @ResponseBody
-    void saveLayoutConfig(@RequestBody RestRuleAttribute restRuleAttribute) {
-        RuleAttributes ruleAttributes = new RuleAttributes();
-        ruleAttributes.setName(restRuleAttribute.getName());
-        ruleAttributes.setType(restRuleAttribute.getType());
-        ruleAttributes.setFieldMapping(restRuleAttribute.getFieldMapping());
+    void saveLayoutConfig(@RequestBody RuleAttributes ruleAttributes) {
         ruleAttributesService.saveLayoutConfig(ruleAttributes);
     }
 
     @RequestMapping(value = "attribute/{id}", method = RequestMethod.PUT)
     @ResponseBody
     void updateLayoutConfig(@PathVariable("id") Long id,
-                            @RequestBody RestRuleAttribute restRuleAttribute) {
-        RuleAttributes ruleAttributes = new RuleAttributes();
+                            @RequestBody RuleAttributes ruleAttributes) {
         ruleAttributes.setId(id);
-        ruleAttributes.setName(restRuleAttribute.getName());
-        ruleAttributes.setType(restRuleAttribute.getType());
-        ruleAttributes.setFieldMapping(restRuleAttribute.getFieldMapping());
         ruleAttributesService.updateLayoutConfig(ruleAttributes);
     }
 

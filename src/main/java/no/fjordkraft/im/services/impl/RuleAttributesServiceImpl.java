@@ -53,6 +53,7 @@ public class RuleAttributesServiceImpl implements RuleAttributesService {
         config.setName(ruleAttributes.getName());
         config.setType(ruleAttributes.getType());
         config.setFieldMapping(ruleAttributes.getFieldMapping());
+        config.setOptions(ruleAttributes.getOptions());
         ruleAttributesRepository.saveAndFlush(config);
     }
 
