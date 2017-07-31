@@ -3372,16 +3372,14 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                             <structure>
                                 <property name="name">DueDate</property>
                                 <text-property name="displayName">DueDate</text-property>
-                                <expression name="expression" type="javascript">getFormattedFullDate(dataSetRow["DueDate"])</expression>
+                                <expression name="expression" type="javascript">dataSetRow["DueDate"]</expression>
                                 <property name="dataType">string</property>
-                                <property name="allowExport">true</property>
                             </structure>
                             <structure>
                                 <property name="name">CurrentClaim</property>
                                 <text-property name="displayName">CurrentClaim</text-property>
-                                <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
+                                <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
                                 <property name="dataType">string</property>
-                                <property name="allowExport">true</property>
                             </structure>
                             <structure>
                                 <property name="name">Kontonummer</property>
@@ -4776,7 +4774,10 @@ dataSetRow["InvoiceNo"]</expression>
             </list-property>
             <detail>
                 <grid id="782">
-                    <property name="height">9.645833333333334in</property>
+                    <property name="pageBreakAfter">avoid</property>
+                    <property name="pageBreakBefore">avoid</property>
+                    <property name="pageBreakInside">avoid</property>
+                    <property name="height">10.625in</property>
                     <property name="width">7.5625in</property>
                     <column id="783">
                         <property name="width">5.2in</property>
@@ -4785,24 +4786,27 @@ dataSetRow["InvoiceNo"]</expression>
                         <property name="width">1.6in</property>
                     </column>
                     <row id="785">
-                        <property name="height">7.5in</property>
+                        <property name="pageBreakAfter">avoid</property>
+                        <property name="pageBreakBefore">avoid</property>
+                        <property name="height">7.447916666666667in</property>
                         <cell id="786">
                             <property name="backgroundRepeat">no-repeat</property>
-                            <property name="borderBottomStyle">none</property>
-                            <property name="borderLeftStyle">none</property>
-                            <property name="borderRightStyle">none</property>
-                            <property name="borderTopStyle">none</property>
+                            <property name="borderBottomColor">#000000</property>
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="borderLeftColor">#000000</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">1px</property>
+                            <property name="borderRightColor">#000000</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">1px</property>
+                            <property name="borderTopColor">#000000</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">1px</property>
                             <grid id="399">
-                                <property name="borderBottomStyle">solid</property>
-                                <property name="borderBottomWidth">1px</property>
-                                <property name="borderLeftStyle">solid</property>
-                                <property name="borderLeftWidth">1px</property>
-                                <property name="borderRightStyle">solid</property>
-                                <property name="borderRightWidth">1px</property>
-                                <property name="borderTopStyle">solid</property>
-                                <property name="borderTopWidth">1px</property>
-                                <property name="pageBreakAfter">auto</property>
-                                <property name="height">7.354166666666667in</property>
+                                <property name="pageBreakAfter">avoid</property>
+                                <property name="pageBreakBefore">avoid</property>
+                                <property name="height">7.322916666666667in</property>
                                 <column id="400">
                                     <property name="paddingRight">10pt</property>
                                 </column>
@@ -4830,7 +4834,7 @@ dataSetRow["InvoiceNo"]</expression>
                                                     <grid id="511">
                                                         <property name="height">0.3958333333333333in</property>
                                                         <column id="512">
-                                                            <property name="width">0.9in</property>
+                                                            <property name="width">1.1in</property>
                                                         </column>
                                                         <column id="513"/>
                                                         <row id="514">
@@ -4838,7 +4842,6 @@ dataSetRow["InvoiceNo"]</expression>
                                                             <cell id="515">
                                                                 <label id="517">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                                    <property name="fontWeight">bold</property>
                                                                     <text-property name="text">Leveringsadresse:</text-property>
                                                                 </label>
                                                             </cell>
@@ -4857,7 +4860,7 @@ dataSetRow["InvoiceNo"]</expression>
                                                     <grid id="524">
                                                         <property name="width">2.4791666666666665in</property>
                                                         <column id="525">
-                                                            <property name="width">0.5in</property>
+                                                            <property name="width">0.8in</property>
                                                         </column>
                                                         <column id="526">
                                                             <property name="width">1.5833333333333333in</property>
@@ -4866,7 +4869,6 @@ dataSetRow["InvoiceNo"]</expression>
                                                             <cell id="528">
                                                                 <label id="530">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                                    <property name="fontWeight">bold</property>
                                                                     <text-property name="text">Strømavtale:</text-property>
                                                                 </label>
                                                             </cell>
@@ -4881,7 +4883,7 @@ dataSetRow["InvoiceNo"]</expression>
                                                     <grid id="538">
                                                         <property name="width">2.5in</property>
                                                         <column id="539">
-                                                            <property name="width">0.6in</property>
+                                                            <property name="width">0.85in</property>
                                                         </column>
                                                         <column id="540">
                                                             <property name="width">1.5520833333333333in</property>
@@ -4890,7 +4892,6 @@ dataSetRow["InvoiceNo"]</expression>
                                                             <cell id="542">
                                                                 <label id="544">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                                    <property name="fontWeight">bold</property>
                                                                     <text-property name="text">Målepunkt-ID:</text-property>
                                                                 </label>
                                                             </cell>
@@ -4906,14 +4907,13 @@ dataSetRow["InvoiceNo"]</expression>
                                                 <cell id="390">
                                                     <grid id="545">
                                                         <column id="546">
-                                                            <property name="width">0.75in</property>
+                                                            <property name="width">0.9in</property>
                                                         </column>
                                                         <column id="547"/>
                                                         <row id="548">
                                                             <cell id="549">
                                                                 <label id="551">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                                    <property name="fontWeight">bold</property>
                                                                     <text-property name="text">Målernummer:</text-property>
                                                                 </label>
                                                             </cell>
@@ -4929,7 +4929,7 @@ dataSetRow["InvoiceNo"]</expression>
                                                         <property name="height">0.3333333333333333in</property>
                                                         <property name="width">2.71875in</property>
                                                         <column id="553">
-                                                            <property name="width">1.2in</property>
+                                                            <property name="width">1.35in</property>
                                                         </column>
                                                         <column id="554"/>
                                                         <row id="555">
@@ -4937,7 +4937,6 @@ dataSetRow["InvoiceNo"]</expression>
                                                             <cell id="556">
                                                                 <label id="558">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                                    <property name="fontWeight">bold</property>
                                                                     <text-property name="text">Forventet årsforbruk: </text-property>
                                                                 </label>
                                                             </cell>
@@ -4971,7 +4970,6 @@ dataSetRow["InvoiceNo"]</expression>
                                                 <cell id="800">
                                                     <text id="802">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                        <property name="fontSize">7pt</property>
                                                         <property name="fontWeight">bold</property>
                                                         <property name="contentType">auto</property>
                                                         <text-property name="content"><![CDATA[Strøm]]></text-property>
@@ -4993,12 +4991,8 @@ dataSetRow["InvoiceNo"]</expression>
                                     <property name="pageBreakAfter">avoid</property>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
-                                    <property name="height">1.75in</property>
+                                    <property name="height">1.5833333333333333in</property>
                                     <cell id="406">
-                                        <property name="colSpan">1</property>
-                                        <property name="rowSpan">2</property>
-                                        <property name="paddingLeft">5pt</property>
-                                        <property name="paddingRight">5pt</property>
                                         <table id="419">
                                             <property name="fontSize">7pt</property>
                                             <property name="borderBottomStyle">none</property>
@@ -5061,13 +5055,11 @@ dataSetRow["InvoiceNo"]</expression>
                                                 <property name="width">1.3in</property>
                                             </column>
                                             <column id="439">
-                                                <property name="width">1.15in</property>
+                                                <property name="width">1.1666666666666667in</property>
                                             </column>
-                                            <column id="440">
-                                                <property name="width">1in</property>
-                                            </column>
+                                            <column id="440"/>
                                             <column id="441">
-                                                <property name="width">0.9in</property>
+                                                <property name="width">1.2in</property>
                                             </column>
                                             <column id="442">
                                                 <property name="width">0.6458333333333334in</property>
@@ -5079,40 +5071,40 @@ dataSetRow["InvoiceNo"]</expression>
                                                     <property name="borderBottomWidth">1px</property>
                                                     <cell id="421">
                                                         <label id="443">
-                                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                            <property name="fontWeight">bold</property>
+                                                            <property name="fontFamily">"Franklin Gothic Medium"</property>
+                                                            <property name="fontWeight">normal</property>
                                                             <property name="textAlign">left</property>
                                                             <text-property name="text">Produkt</text-property>
                                                         </label>
                                                     </cell>
                                                     <cell id="422">
                                                         <label id="445">
-                                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                            <property name="fontWeight">bold</property>
+                                                            <property name="fontFamily">"Franklin Gothic Medium"</property>
+                                                            <property name="fontWeight">normal</property>
                                                             <property name="textAlign">left</property>
                                                             <text-property name="text">Periode</text-property>
                                                         </label>
                                                     </cell>
                                                     <cell id="423">
                                                         <label id="447">
-                                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                            <property name="fontWeight">bold</property>
+                                                            <property name="fontFamily">"Franklin Gothic Medium"</property>
+                                                            <property name="fontWeight">normal</property>
                                                             <property name="textAlign">right</property>
                                                             <text-property name="text">Forbruk</text-property>
                                                         </label>
                                                     </cell>
                                                     <cell id="424">
                                                         <label id="449">
-                                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                            <property name="fontWeight">bold</property>
+                                                            <property name="fontFamily">"Franklin Gothic Medium"</property>
+                                                            <property name="fontWeight">normal</property>
                                                             <property name="textAlign">right</property>
                                                             <text-property name="text">Pris</text-property>
                                                         </label>
                                                     </cell>
                                                     <cell id="425">
                                                         <label id="451">
-                                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                            <property name="fontWeight">bold</property>
+                                                            <property name="fontFamily">"Franklin Gothic Medium"</property>
+                                                            <property name="fontWeight">normal</property>
                                                             <property name="textAlign">right</property>
                                                             <text-property name="text">Sum</text-property>
                                                         </label>
@@ -5163,7 +5155,6 @@ dataSetRow["InvoiceNo"]</expression>
                                                     <property name="borderTopColor">#808080</property>
                                                     <property name="borderTopStyle">solid</property>
                                                     <property name="borderTopWidth">1px</property>
-                                                    <property name="height">0.2708333333333333in</property>
                                                     <cell id="433">
                                                         <label id="456">
                                                             <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
@@ -5201,7 +5192,8 @@ dataSetRow["InvoiceNo"]</expression>
                                     <property name="pageBreakAfter">avoid</property>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
-                                    <property name="height">1.2291666666666667in</property>
+                                    <property name="height">1.5in</property>
+                                    <cell id="409"/>
                                 </row>
                                 <row id="411">
                                     <property name="pageBreakAfter">avoid</property>
@@ -5212,14 +5204,13 @@ dataSetRow["InvoiceNo"]</expression>
                                         <grid id="460">
                                             <column id="461"/>
                                             <column id="462">
-                                                <property name="width">3.5in</property>
+                                                <property name="width">3.3in</property>
                                             </column>
                                             <row id="463">
                                                 <property name="height">2.5in</property>
                                                 <cell id="464">
                                                     <grid id="478">
                                                         <property name="fontSize">9pt</property>
-                                                        <property name="width">1.7395833333333333in</property>
                                                         <property name="dataSet">AttachmentStromJoinDataSet</property>
                                                         <list-property name="boundDataColumns">
                                                             <structure>
@@ -5230,9 +5221,7 @@ dataSetRow["InvoiceNo"]</expression>
                                                                 <property name="allowExport">true</property>
                                                             </structure>
                                                         </list-property>
-                                                        <column id="479">
-                                                            <property name="width">1.7395833333333333in</property>
-                                                        </column>
+                                                        <column id="479"/>
                                                         <row id="480">
                                                             <cell id="481">
                                                                 <label id="488">
@@ -5246,8 +5235,6 @@ dataSetRow["InvoiceNo"]</expression>
                                                         <row id="482">
                                                             <cell id="483">
                                                                 <label id="489">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                                    <property name="fontSize">7pt</property>
                                                                     <text-property name="text">Måleravlesninger registrert på:</text-property>
                                                                 </label>
                                                             </cell>
@@ -5256,7 +5243,6 @@ dataSetRow["InvoiceNo"]</expression>
                                                             <cell id="485">
                                                                 <data id="492">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                                    <property name="fontSize">8pt</property>
                                                                     <property name="resultSetColumn">Address1</property>
                                                                 </data>
                                                             </cell>
@@ -5264,8 +5250,6 @@ dataSetRow["InvoiceNo"]</expression>
                                                         <row id="486">
                                                             <cell id="487">
                                                                 <text id="491">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                                    <property name="fontSize">7pt</property>
                                                                     <property name="paddingTop">10pt</property>
                                                                     <property name="contentType">auto</property>
                                                                     <text-property name="content"><![CDATA[Husk at du kan melde inn målerstand
@@ -5316,7 +5300,7 @@ så ofte du ønsker til din netteier.]]></text-property>
           <Value>Forbrukshistorikk i kWh</Value>
           <Font>
             <Name>Fjordkraft Neo Sans</Name>
-            <Size>7.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
               <horizontalAlignment>Center</horizontalAlignment>
@@ -6679,8 +6663,8 @@ så ofte du ønsker til din netteier.]]></text-property>
 ]]></xml-property>
                                                         <property name="outputFormat">SVG</property>
                                                         <property name="inheritColumns">false</property>
-                                                        <property name="height">105pt</property>
-                                                        <property name="width">243pt</property>
+                                                        <property name="height">102pt</property>
+                                                        <property name="width">225pt</property>
                                                         <property name="dataSet">AttachmentBarGraphJoinDataSet</property>
                                                         <list-property name="boundDataColumns">
                                                             <structure>
@@ -6758,7 +6742,9 @@ så ofte du ønsker til din netteier.]]></text-property>
                                     </cell>
                                 </row>
                                 <row id="414">
-                                    <property name="height">1.59375in</property>
+                                    <property name="pageBreakAfter">avoid</property>
+                                    <property name="pageBreakBefore">avoid</property>
+                                    <property name="height">1.5208333333333333in</property>
                                     <cell id="415">
                                         <property name="borderBottomStyle">none</property>
                                         <property name="borderLeftStyle">none</property>
@@ -6779,10 +6765,14 @@ så ofte du ønsker til din netteier.]]></text-property>
                             <property name="borderTopStyle">none</property>
                             <property name="paddingLeft">10pt</property>
                             <grid id="807">
-                                <property name="height">9.510416666666666in</property>
+                                <property name="pageBreakAfter">avoid</property>
+                                <property name="pageBreakBefore">avoid</property>
+                                <property name="height">10.5in</property>
                                 <column id="808"/>
                                 <row id="811">
-                                    <property name="height">9.510416666666666in</property>
+                                    <property name="pageBreakAfter">avoid</property>
+                                    <property name="pageBreakBefore">avoid</property>
+                                    <property name="height">10.5in</property>
                                     <cell id="812">
                                         <property name="backgroundColor">#E1E1E1</property>
                                         <property name="paddingLeft">5pt</property>
@@ -6834,7 +6824,7 @@ måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <property name="resultSetColumn">Name</property>
                                         </data>
                                         <label id="819">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="fontWeight">bold</property>
                                             <property name="paddingTop">10pt</property>
@@ -6853,7 +6843,7 @@ kundeforhold, fakturahistorikk, anlegg&#13;
 og forbruk.</text-property>
                                         </label>
                                         <label id="824">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="fontWeight">bold</property>
                                             <property name="paddingTop">7pt</property>
@@ -6869,7 +6859,7 @@ strømregningen, se&#13;
 fjordkraft.no/fakturaforklaring</text-property>
                                         </label>
                                         <label id="827">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="fontWeight">bold</property>
                                             <property name="paddingTop">7pt</property>
@@ -6907,7 +6897,7 @@ vedlikehold av ledningsnettet i ditt&#13;
 område.</text-property>
                                         </label>
                                         <label id="835">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="fontWeight">bold</property>
                                             <property name="paddingTop">7pt</property>
@@ -6926,7 +6916,7 @@ www.nve.no/kraftmarked/&#13;
 elsertifikater</text-property>
                                         </label>
                                         <label id="844">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="fontWeight">bold</property>
                                             <property name="paddingTop">7pt</property>
@@ -6945,7 +6935,7 @@ og Forbrukerrådet for å løse tvistesaker.&#13;
 Se www.elklagenemda.no.</text-property>
                                         </label>
                                         <label id="846">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="fontWeight">bold</property>
                                             <property name="paddingTop">7pt</property>
@@ -6963,7 +6953,7 @@ se www.nve.no/no/Kraftmarked/&#13;
 Elsertifikater</text-property>
                                         </label>
                                         <label id="848">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="fontWeight">bold</property>
                                             <property name="paddingTop">7pt</property>
@@ -6976,18 +6966,23 @@ Elsertifikater</text-property>
                                             <property name="lineHeight">8pt</property>
                                             <text-property name="text">Ved for sen betaling beregnes&#13;
 forsinkelsesrente og purregebyr&#13;
-etter gjeldende satser.&#13;
-</text-property>
+etter gjeldende satser.</text-property>
                                         </label>
                                     </cell>
                                 </row>
                             </grid>
                         </cell>
                     </row>
-                    <row id="850">
-                        <property name="height">2.1458333333333335in</property>
-                        <cell id="851">
+                    <row id="856">
+                        <property name="pageBreakAfter">avoid</property>
+                        <property name="pageBreakBefore">avoid</property>
+                        <property name="height">3.1770833333333335in</property>
+                        <cell id="857">
                             <property name="backgroundRepeat">no-repeat</property>
+                            <property name="borderBottomStyle">none</property>
+                            <property name="borderLeftStyle">none</property>
+                            <property name="borderRightStyle">none</property>
+                            <property name="borderTopStyle">none</property>
                         </cell>
                     </row>
                 </grid>
