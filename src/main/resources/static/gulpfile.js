@@ -87,11 +87,11 @@ gulp.task('moveFontAwesome',['sass'],function(){
     return gulp.src(path.join(__dirname,'/node_modules/font-awesome/**'))
             .pipe(gulp.dest(path.join(__dirname,'/dist/')));
 });
-gulp.task('bootstrapFonts',function(){
+gulp.task('bootstrapFonts',['moveFontAwesome'],function(){
     return gulp.src(path.join(__dirname,'./node_modules/bootstrap/fonts/*.*'))
       .pipe(gulp.dest(path.join(__dirname,'/dist/fonts')));
 })
-gulp.task('combileVendorJS',['moveFontAwesome','bootstrapFonts'],function(){
+gulp.task('combileVendorJS',['bootstrapFonts'],function(){
     var libFiles = [
         './node_modules/lodash/lodash.min.js',
         './node_modules/jquery/dist/jquery.min.js',
