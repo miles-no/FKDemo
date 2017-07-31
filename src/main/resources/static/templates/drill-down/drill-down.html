@@ -107,8 +107,15 @@
                             </i>
                         </button>-->
                         <div class="row">
-                            <i class="fa col-md-2" uib-tooltip="Click to view {{eachPdf.type === 'INVOICE_PDF' ? 'Invoice pdf' : 'Grid pdf'}}" tooltip-placement ="bottom" ng-class="{'fa-file-pdf-o': isInvoicePDF(eachPdf),'fa-file':!isInvoicePDF(eachPdf) }" aria-hidden="true" ng-repeat="eachPdf in row.invoicePdfList" ng-click="getInvoiceFile(eachPdf.id)"></i>
+                            <i class="fa col-md-2" uib-tooltip="Click to view {{eachPdf.type === 'INVOICE_PDF' ? 'Invoice pdf' : 'Grid pdf'}}" tooltip-placement ="bottom" ng-class="{'fa-file-pdf-o': isInvoicePDF(eachPdf),'fa-file':!isInvoicePDF(eachPdf) }" aria-hidden="true" ng-repeat="eachPdf in row.invoicePdfList | orderBy : 'type'" ng-click="getInvoiceFile(eachPdf.id)"></i>
                         </div>
+                        <!--<div class="row">-->
+                            <!--<span ng-repeat="eachPdf in row.invoicePdfList track by eachPdf.id">-->
+                                <!--<i class="fa col-md-2 fa-file-pdf-o" uib-tooltip="Click to view invoice pdf" tooltip-placement ="bottom" aria-hidden="true" ng-click="getInvoiceFile(eachPdf.id)"></i>-->
+                                <!--<i class="fa col-md-2 fa-file" uib-tooltip="Click to view grid pdf" tooltip-placement ="bottom" aria-hidden="true" ng-click="getInvoiceFile(eachPdf.id)"></i>-->
+                            <!--</span>-->
+                            <!--&lt;!&ndash;<i ng-repeat="eachPdf in row.invoicePdfList" ng-click="getInvoiceFile(eachPdf.id)"></i>&ndash;&gt;-->
+                        <!--</div>-->
                     </td>
                 </tr>
 			</tbody>

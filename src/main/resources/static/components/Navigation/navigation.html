@@ -33,6 +33,9 @@
             </div>
             <div class="navbar-right">
                 <ul>
+                    <li ng-hide="$ctrl.activeMenu !== 'home'" class="display-time">
+                         {{$ctrl.time}}
+                    </li>
                     <li ng-hide="true">
                         <i ng-click="$ctrl.isDashbordLive = !$ctrl.isDashbordLive" class="fa fa-2x animated" ng-class="{'fa-play-circle': !$ctrl.isDashbordLive, 'fa-pause-circle' : $ctrl.isDashbordLive}"></i>
                     </li>

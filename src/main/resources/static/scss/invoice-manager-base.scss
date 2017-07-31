@@ -28,6 +28,13 @@
   top: 4px;
   color: $red;
 }
+.disabled{
+  &:hover{
+    color: $brand-color;
+    text-decoration: none;
+    cursor: default;
+  }
+}
 .bg-brand-color{
   background-color: $brand-color;
 }

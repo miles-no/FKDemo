@@ -1,9 +1,15 @@
 var app = angular.module('invoiceManagerApp');
 
-function navigationController($state, $rootScope, $http){
+function navigationController($state, $scope,$rootScope, $http){
   this.showMenu = false;
   this.activeMenu = 'home'
   this.isDashbordLive = true;
+  //this.abcd = $rootScope.abcd;
+
+  let self = this
+  $rootScope.$watch('time', function(){
+    self.time =  $rootScope.time
+  })
   $rootScope.isDashbordLive = this.isDashbordLive;
   this.toggleDashbordLive = function(){
     this.isDashbordLive = !this.isDashbordLive;
@@ -32,6 +38,5 @@ function navigationController($state, $rootScope, $http){
 }
 app.component('navigation',{
   templateUrl: 'components/Navigation/navigation.html',
-  bindings: {},
-  controller: navigationController,
+  controller: navigationController
 });

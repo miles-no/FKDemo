@@ -152,7 +152,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
               if (response.operation === 'Add') {
                   addLayout(response.data)
               } else if (response.operation === 'Update') {
-                  updateLayout(response.data)
+                updateLayout(response.data)
               }
           });
       });
@@ -177,7 +177,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
       var file = new Blob([response], {type: 'application/pdf'});
       var fileURL = URL.createObjectURL(file);
       ModalService.showModal({
-        templateUrl: 'templates/pdf-display-modal.html',
+        templateUrl: 'templates/pdf-modal/pdf-display-modal.html',
         controller: 'pdfDisplayController',
         inputs:{
           pdfUrl :fileURL

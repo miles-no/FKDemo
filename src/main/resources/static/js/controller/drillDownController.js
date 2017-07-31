@@ -79,7 +79,7 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
           var file = new Blob([response], {type: 'application/pdf'});
 	        var fileURL = URL.createObjectURL(file);
             ModalService.showModal({
-                templateUrl: 'templates/pdf-display-modal.html',
+                templateUrl: 'templates/pdf-modal/pdf-display-modal.html',
                 controller: 'pdfDisplayController',
                 inputs:{
                     pdfUrl :fileURL

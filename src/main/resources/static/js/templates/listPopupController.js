@@ -31,7 +31,6 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
                         }
                     })
                 })
-                console.log($scope.rulesList)
             }else{
                 $scope.showRule = true
             }

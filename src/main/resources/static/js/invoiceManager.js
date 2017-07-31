@@ -30,11 +30,11 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
     $stateProvider
         .state('home',{
             url: '/home',
-            templateUrl: 'templates/landing-page.html'
+            templateUrl: 'templates/landing-page/landing-page.html'
         })
         .state('overview',{
             url: '/overview',
-            templateUrl: 'templates/drill-down.html',
+            templateUrl: 'templates/drill-down/drill-down.html',
             params : {
                 processingState : null,
                 dates : null
@@ -72,4 +72,6 @@ invoiceManager.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
 });
 
-
+invoiceManager.run(function($rootScope){
+  $rootScope.abcd = 1234;
+})

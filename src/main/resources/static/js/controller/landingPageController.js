@@ -84,6 +84,9 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment,
         let getStateNames = $rootScope.states && $rootScope.states.length ==0 ? true: false
         $http.get('/dashboard/status').then(
             function success(result){
+                var getDateAndTime = new Date();
+                var dateTime = moment(getDateAndTime).format('YYYY-MM-DD HH:mm:ss')
+                $rootScope.time = 'Last updated'+ ' ' + dateTime
                 $scope.processingStates = result.data;
                 _.forEach($scope.processingStates,function(eachState){
                     getStateNames ?(eachState.name==='Total' ? '' :$rootScope.states.push(eachState.name)): '';

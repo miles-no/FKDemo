@@ -21,12 +21,16 @@
                         </div>
                     </div>
                     <div class="form-group div-height">
-                        <label class="control-label col-sm-offset-2 col-sm-3">Choose Layout File</label>
-                        <div class=" col-sm-6">
+                        <label class="control-label col-sm-offset-2 col-sm-3">Choose Template</label>
+                        <div class="col-sm-6">
                             <div class="upload-btn-wrapper">
-                                <button class="btn btn-primary col-sm-4" >Upload</button>
+                                <button class="btn btn-primary col-sm-5" >Upload new Template</button>
                                 <input type="file" accept=".xml" file-model="template.file" class="col-sm-4">
                                 <label class="col-sm-2" ng-if="template.file">{{template.file.name}}</label>
+                            </div>
+                            <div class="button-inline text-margin"> OR </div>
+                            <div class="button-inline">
+                                <button  type="button" ng-click="skipToRules()" class="btn btn-primary">Use Existing Template</button>
                             </div>
                         </div>
                     </div>
@@ -34,17 +38,6 @@
             </form>
             <div class="manage-brands" ng-if="addBrands">
                 <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-sm-3">Brand</label>
-                        <div class="col-sm-7">
-                            <ui-select ng-model="selectedBrand" theme="bootstrap" title="Choose Brand" on-select="onBrandSelect($item, $model)" ng-disabled="disable">
-                                <ui-select-match placeholder="Select Brand">{{selectedBrand}}</ui-select-match>
-                                <ui-select-choices  repeat="brand in allBrands" position='down'>
-                                    <div ng-bind-html="brand | highlight: $select.search"></div>
-                                </ui-select-choices>
-                            </ui-select>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3">Template</label>
                         <div class="col-sm-7">
@@ -54,14 +47,23 @@
                                     <div ng-bind-html="layout.name | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
-                            <!--<div class="col-sm-2 upload-btn-wrapper" ng-if="selectedTemplate.selected.name.length > 0">-->
-                            <!--<i class="fa fa-external-link" aria-hidden="true"></i>-->
-                            <!--</div>-->
                         </div>
                     </div>
-                    <div class="rules-wrapper" >
+                    <div class="rules-wrapper">
                         <div class="rules-heading">Rules
                             <!--<i class="fa fa-plus btn" ng-click="addRule()"> Add Rule</i>--> <!-- remove this css also it is not required-->
+                        </div>
+
+                        <div class="form-group brand-layout">
+                            <label class="control-label col-sm-3">Brand</label>
+                            <div class="col-sm-7">
+                                <ui-select ng-model="selectedBrand" theme="bootstrap" title="Choose Brand" on-select="onBrandSelect($item, $model)" ng-disabled="templateInfo.brand">
+                                    <ui-select-match placeholder="Select Brand">{{selectedBrand}}</ui-select-match>
+                                    <ui-select-choices  repeat="brand in allBrands" position='down'>
+                                        <div ng-bind-html="brand | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
                         </div>
 
                         <div class="row">
@@ -93,12 +95,12 @@
 
                                     <!--<input type="text" ng-model="rule.value" class="form-control modal-box col-sm-2">-->
                                     <div ng-form="ruleForm">
-                                        <div ng-show="!rule.options.length">
-                                            <textarea class="modal-box ui-box col-sm-4"  ng-model="rule.value" ng-required="true"></textarea>
+                                        <div ng-show="!rule.options.length" class="modal-box ui-box col-sm-4">
+                                            <textarea  class="form-control box-height" ng-model="rule.value" ng-required="true"></textarea>
                                         </div>
                                         <div ng-hide="!rule.options.length" class="modal-box ui-box col-sm-4">
                                             <ui-select  ng-model="rule.value" theme="bootstrap" title="Choose option" on-select="onOptionsSelect($item,rule)" ng-required="true">
-                                                <ui-select-match placeholder="Choose options">{{$item}}</ui-select-match>
+                                                <ui-select-match placeholder="Choose options">{{rule.value}}</ui-select-match>
                                                 <ui-select-choices  repeat="option in rule.options" position='down'>
                                                     <div ng-bind-html="option | highlight: $select.search"></div>
                                                 </ui-select-choices>
@@ -135,7 +137,6 @@
             <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal" ng-disabled="ruleForm.$invalid && (btns.name === 'Update' || btns.name === 'Add')">{{btns.name}}</button>
         </div>
         <div class="modal-footer"  ng-show="!addBrands">
-            <button   type="button" ng-click="skipToRules()" class="btn btn-primary">Use Existing Template</button>
             <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid) || uploadForm.$pristine">Next</button>
         </div>
     </div>

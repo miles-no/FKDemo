@@ -1,0 +1,17 @@
+@import 'base';
+
+.box-height{
+  max-height: 34px;
+}
+
+.button-inline{
+  display:inline-block;
+  &.text-margin{
+    margin: 0 20px;
+  }
+}
+
+.brand-layout{
+  border-bottom: 1px solid $light-grey;
+  padding: 20px 0 35px 0;
+}

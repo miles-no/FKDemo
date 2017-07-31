@@ -4,7 +4,7 @@
         <div class="row form-group">
             <label class="control-label col-sm-3 col-lg-2 text-match search-align">Property</label>
             <div class="col-sm-8 config-align">
-                <ui-select ng-model="selectedKey" theme="bootstrap" title="Choose Property" on-select="onPropSelect($item)" on-remove="clearUiSelect()">
+                <ui-select ng-model="selectedKey" theme="bootstrap" title="Choose Property" on-select="onPropSelect($item)">
                     <ui-select-match allow-clear="true" placeholder="Select Property">{{selectedKey}}</ui-select-match>
                     <ui-select-choices repeat="eachBrand in configName | filter : $select.search" position='down'>
                         <div ng-bind-html="eachBrand | highlight: $select.search"></div>

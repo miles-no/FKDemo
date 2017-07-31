@@ -42,8 +42,8 @@
                         class="pointer">{{layoutItem.layoutRule.layoutRuleMapList.length}}
                     </a>
                 </td>
-                <td ng-click="downLoadLayout(layoutItem)"><i uib-tooltip="Click to download {{layoutItem.name}}" tooltip-placement="bottom"  class="fa fa-download" aria-hidden="true"></i></td>
-                <td ng-click="previewLayout(layoutItem)"><i uib-tooltip="Click to preview {{layoutItem.name}}" tooltip-placement="bottom" class="fa fa-file-pdf-o"></i></td>
+                <td ng-click="downLoadLayout(layoutItem)"><i uib-tooltip="Click to download" tooltip-placement="bottom"  class="fa fa-download" aria-hidden="true"></i></td>
+                <td ng-click="previewLayout(layoutItem)"><i uib-tooltip="Click to preview" tooltip-placement="bottom" class="fa fa-file-pdf-o"></i></td>
                 <td ng-click="deleteTemplate(layoutItem)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
             </tr>
             <tr ng-repeat-end ng-if="dropDown === layoutItem">

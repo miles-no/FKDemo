@@ -6,28 +6,6 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
 
   $scope.selectedKey = ''
 
-  $scope.showSelectedKey = function() {
-    $scope.alldata = []
-    if ($scope.selectedKey !== '') {
-      angular.forEach($scope.stateConfigs, function (key) {
-        if (key.name === $scope.selectedKey){
-          $scope.alldata.push(key)
-        }
-      })
-    } else {
-      $scope.alldata =  $scope.stateConfigs
-    }
-  }
-
-  $('.glyphicon-remove').addClass('fa fa-times').removeClass('glyphicon glyphicon-remove')
-
-
-  $scope.clearUiSelect = function($event){
-    $event.stopPropagation();
-    $scope.selectedKey.selected = undefined
-    $scope.alldata =  $scope.stateConfigs
-  }
-
   $scope.onPropSelect = function(item){
     $scope.alldata = []
     angular.forEach($scope.stateConfigs,function(key){
@@ -37,23 +15,27 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
       }
     })
   }
+ 
+    $scope.$watch('alldata',function(newVal,oldVal){
+    if (newVal !== oldVal && !newVal.length){
+        $scope.alldata = $scope.stateConfigs
+    }
+  })
+
   $scope.configName = []
   $scope.getStatesConfig = function () {
     $http.get('/config').then(function (response) {
       $scope.stateConfigs = response.data.config;
       $scope.alldata = angular.copy($scope.stateConfigs)
-     angular.forEach($scope.alldata,function(key){
+      angular.forEach($scope.alldata,function(key){
        $scope.configName.push(key.name)
-     })
+      })
+      $scope.configName = _.uniqBy($scope.configName,function(e){
+        return e
+      })
     })
   }
 
-  $scope.onGridSelect = function(item,model){
-    $scope.selectedKey = ''
-    $scope.selectedKey = item.name;
-    showSelectedKey()
-  }
-  
   function addStateConfig (state) {
     let queryParams = {
       key : state.name,

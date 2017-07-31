@@ -52,14 +52,8 @@
         .state-cards{
             .state-card{
                     /***For Angular material Cards Starts***/
-                @media screen and (max-width: 1442px){
-                    max-width: 250px;
-                }
                 @media screen and (min-width: 1443px) and (max-width: 1547px){
                     max-width: 265px;
-                }
-                .border-style{
-                    border-radius: 10px;
                 }
                     md-card{
                             .md-headline{
