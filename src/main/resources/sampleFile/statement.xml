@@ -1,2 +1,1073 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Statement xmlns:ns2="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ns3="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:ns4="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:ns5="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:ns6="urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2"><CustomerReference>903298</CustomerReference><MainSourceReference>903298</MainSourceReference><DistributionMethod>Paper</DistributionMethod><DistributionMethodExternalReference>707057500056189972</DistributionMethodExternalReference><VatId></VatId><PaymentType>Undefined</PaymentType><PaymentTypeStatus>Undefined</PaymentTypeStatus><DirectDebit>NO</DirectDebit><EInvoiceId></EInvoiceId><NationalId>50293341</NationalId><Barcode>2070111117033014007</Barcode><Name>Norhagen Rune Erik </Name><CareOfName>Norhagen Rune Erik</CareOfName><Address>Skytta Terrasse 3</Address><Address1>Skytta Terrasse 3</Address1><Address2></Address2><PostCode>1481</PostCode><City>HAGAN</City><Region>NO</Region><Country>Norge</Country><Email>messe.simensen.norhagen@gmail.com</Email><MobileNumber>48199556</MobileNumber><StatementDate>2017-04-06</StatementDate><AccountNumber>7033014007</AccountNumber><SequenceNumber>40</SequenceNumber><StatementOcrNumber>703301400710408</StatementOcrNumber><Kontonummer>1503.80.91058</Kontonummer><DueDate>2017-04-27</DueDate><IngoingBalance>-64861.71</IngoingBalance><OutgoingBalance>-37592.06</OutgoingBalance><CreditLimit>0.0</CreditLimit><AvailableCredit>0.0</AvailableCredit><NonCreditedInterest>0.0</NonCreditedInterest><GeneralMessage></GeneralMessage><AccountMessage></AccountMessage><CurrentClaim>37592.05</CurrentClaim><TotalOpenClaim>37592.05</TotalOpenClaim><TotalVatAmount>5744.3</TotalVatAmount><CurrentInterestRates><InterestRate><Name>Overdue Claim Interest</Name><Rate>8.75</Rate></InterestRate></CurrentInterestRates><OutstandingClaims></OutstandingClaims><Transactions><Transaction><TransactionId>60234887</TransactionId><TransactionSequence>0</TransactionSequence><ParentTransactionId></ParentTransactionId><TransactionType>Interest</TransactionType><TransactionCategory>DI;Forsinkelsesrente</TransactionCategory><TransactionDate>2017-02-27</TransactionDate><ValueDate>2017-02-28</ValueDate><Amount>-0.26</Amount><VatAmount>0.0</VatAmount><AmountWithVat>-0.26</AmountWithVat><Reference></Reference><Url></Url><FreeText></FreeText><Distributions/><CollectionFeeForStatements></CollectionFeeForStatements></Transaction><Transaction><TransactionId>60229736</TransactionId><TransactionSequence>0</TransactionSequence><ParentTransactionId></ParentTransactionId><TransactionType>Charge</TransactionType><TransactionCategory>NE;Nettleie fra Hafslund Nett AS</TransactionCategory><TransactionDate>2017-03-06</TransactionDate><ValueDate>2017-04-28</ValueDate><Amount>-31528.53</Amount><VatAmount>-7882.13</VatAmount><AmountWithVat>-39410.66</AmountWithVat><Reference>2764117-38148837</Reference><Url></Url><FreeText>Skytta Terrasse 3</FreeText><Distributions><Distribution><Name>NETT</Name><Amount>-39410.66</Amount></Distribution></Distributions><CollectionFeeForStatements></CollectionFeeForStatements></Transaction><Transaction><TransactionId>63465065</TransactionId><TransactionSequence>0</TransactionSequence><ParentTransactionId></ParentTransactionId><TransactionType>Account fee</TransactionType><TransactionCategory>DI;Papirfaktura</TransactionCategory><TransactionDate>2017-03-31</TransactionDate><ValueDate>2017-04-28</ValueDate><Amount>-39.2</Amount><VatAmount>-9.8</VatAmount><AmountWithVat>-49.0</AmountWithVat><Reference></Reference><Url></Url><FreeText></FreeText><Distributions/><CollectionFeeForStatements></CollectionFeeForStatements></Transaction><Transaction><TransactionId>62942926</TransactionId><TransactionSequence>0</TransactionSequence><ParentTransactionId></ParentTransactionId><TransactionType>Instalment Payment</TransactionType><TransactionCategory>DI;Nedbetalingsordning</TransactionCategory><TransactionDate>2017-04-03</TransactionDate><ValueDate>2017-04-03</ValueDate><Amount>-8623.37</Amount><VatAmount>0.0</VatAmount><AmountWithVat>-8623.37</AmountWithVat><Reference>Payment - 7130695104</Reference><Url></Url><FreeText>Instalment Account reason #1.</FreeText><Distributions/><CollectionFeeForStatements></CollectionFeeForStatements></Transaction><Transaction><TransactionId>62942927</TransactionId><TransactionSequence>0</TransactionSequence><ParentTransactionId></ParentTransactionId><TransactionType>Interest</TransactionType><TransactionCategory>DI;Avbetalingsrenter</TransactionCategory><TransactionDate>2017-04-03</TransactionDate><ValueDate>2017-04-28</ValueDate><Amount>-246.94</Amount><VatAmount>0.0</VatAmount><AmountWithVat>-246.94</AmountWithVat><Reference>Interest - 7130695104</Reference><Url></Url><FreeText>Instalment Account reason #1.</FreeText><Distributions/><CollectionFeeForStatements></CollectionFeeForStatements></Transaction><Transaction><TransactionId>63169368</TransactionId><TransactionSequence>0</TransactionSequence><ParentTransactionId></ParentTransactionId><TransactionType>Charge</TransactionType><TransactionCategory>KR;Strøm fra Fjordkraft</TransactionCategory><TransactionDate>2017-04-04</TransactionDate><ValueDate>2017-04-28</ValueDate><Amount>-42004.6</Amount><VatAmount>-10501.15</VatAmount><AmountWithVat>-52505.75</AmountWithVat><Reference>37740798</Reference><Url></Url><FreeText>Skytta Terrasse 3</FreeText><Distributions><Distribution><Name>Kraft</Name><Amount>-52505.75</Amount></Distribution></Distributions><CollectionFeeForStatements></CollectionFeeForStatements><StartDate>2017-02-01</StartDate><EndDate>2017-04-01</EndDate></Transaction><Transaction><TransactionId>63170306</TransactionId><TransactionSequence>0</TransactionSequence><ParentTransactionId></ParentTransactionId><TransactionType>Charge</TransactionType><TransactionCategory>KN;Kreditnota fra Fjordkraft</TransactionCategory><TransactionDate>2017-04-04</TransactionDate><ValueDate>2017-04-05</ValueDate><Amount>51840.93</Amount><VatAmount>12960.23</VatAmount><AmountWithVat>64801.16</AmountWithVat><Reference>37740795</Reference><Url></Url><FreeText>Skytta Terrasse 3</FreeText><Distributions><Distribution><Name>Kraft</Name><Amount>-64801.16</Amount></Distribution></Distributions><CollectionFeeForStatements></CollectionFeeForStatements></Transaction><Transaction><TransactionId>63302256</TransactionId><TransactionSequence>0</TransactionSequence><ParentTransactionId></ParentTransactionId><TransactionType>Charge</TransactionType><TransactionCategory>NE;Nettleie fra Hafslund Nett AS</TransactionCategory><TransactionDate>2017-04-06</TransactionDate><ValueDate>2017-04-28</ValueDate><Amount>-1245.78</Amount><VatAmount>-311.45</VatAmount><AmountWithVat>-1557.23</AmountWithVat><Reference>3429164-38868914</Reference><Url></Url><FreeText>Skytta Terrasse 3</FreeText><Distributions><Distribution><Name>NETT</Name><Amount>-1557.23</Amount></Distribution></Distributions><CollectionFeeForStatements></CollectionFeeForStatements></Transaction></Transactions><TransactionGroup><Transaction><TransactionId>0</TransactionId><TransactionSequence>0</TransactionSequence><TransactionType>Kraft</TransactionType><TransactionCategory>Strøm fra Fjordkraft</TransactionCategory><Amount>0.0</Amount><VatAmount>0.0</VatAmount><AmountWithVat>52505.75</AmountWithVat><Reference>37740798</Reference><FreeText>Skytta Terrasse 3</FreeText><StartDate>2017-02-01</StartDate><EndDate>2017-04-01</EndDate></Transaction><Transaction><TransactionId>0</TransactionId><TransactionSequence>0</TransactionSequence><TransactionType>Kraft</TransactionType><TransactionCategory>Kreditnota fra Fjordkraft</TransactionCategory><Amount>0.0</Amount><VatAmount>0.0</VatAmount><AmountWithVat>-64801.16</AmountWithVat><Reference>37740795</Reference><FreeText>Skytta Terrasse 3</FreeText></Transaction><Transaction><TransactionId>0</TransactionId><TransactionSequence>0</TransactionSequence><TransactionType>NETT</TransactionType><TransactionCategory>Nettleie fra Hafslund Nett AS</TransactionCategory><Amount>0.0</Amount><VatAmount>0.0</VatAmount><AmountWithVat>39410.66</AmountWithVat><Reference>2764117-38148837</Reference><FreeText>Skytta Terrasse 3</FreeText></Transaction><Transaction><TransactionId>0</TransactionId><TransactionSequence>0</TransactionSequence><TransactionType>NETT</TransactionType><TransactionCategory>Nettleie fra Hafslund Nett AS</TransactionCategory><Amount>0.0</Amount><VatAmount>0.0</VatAmount><AmountWithVat>1557.23</AmountWithVat><Reference>3429164-38868914</Reference><FreeText>Skytta Terrasse 3</FreeText></Transaction><Transaction><TransactionId>0</TransactionId><TransactionSequence>0</TransactionSequence><TransactionCategory>Diverse</TransactionCategory><Amount>0.0</Amount><VatAmount>0.0</VatAmount><AmountWithVat>-49.0</AmountWithVat></Transaction><TotalTransactions>5</TotalTransactions></TransactionGroup><PieChart><DistributionDetails><Type>Nettleie</Type><Amount>40967.89</Amount></DistributionDetails><DistributionDetails><Type>STROM</Type><Amount>0.0</Amount></DistributionDetails></PieChart><LineItems></LineItems><InstalmentAccounts>
-      </InstalmentAccounts><Attachments><Attachment><FAKTURA><AKTOR>50153687</AKTOR><AKTORNAVN>Fjordkraft AS</AKTORNAVN><FAKTURANR>37740798</FAKTURANR><FREE_TEXT>Skytta Terrasse 3</FREE_TEXT><MAALEPUNKT>707057500056189972</MAALEPUNKT><FAKTURA_TYPE>FAKTURA</FAKTURA_TYPE><KUNDE_TYPE>P</KUNDE_TYPE><GRID><Name>Hafslund Nett AS</Name><Email>info@tkas.in</Email><Telephone>05121</Telephone></GRID><FAKTURA_MERKE_SO></FAKTURA_MERKE_SO><VEDLEGG_FORMAT>EMUXML</VEDLEGG_FORMAT><VEDLEGG_EMUXML><Invoice><MainInvoiceInfo-101><InvoiceNo>37740798</InvoiceNo><CustomerId>50293341</CustomerId><CID>90329807987</CID><PrintDate>2017-04-04</PrintDate><DueDate>2017-04-18</DueDate><PayInst2Total>52505.75</PayInst2Total><PaymentDocNo>0</PaymentDocNo><GrossPresentation>J</GrossPresentation><E-InvoiceTmpl></E-InvoiceTmpl><StandingOrder>0</StandingOrder><ProcessCode></ProcessCode><FormTmplCode></FormTmplCode><FormType>G</FormType><DueDateDescription>BETALINGSFRIST</DueDateDescription><MoraInterest>0.0</MoraInterest><PrintedAmount>52505.75</PrintedAmount><PreviouslyPaid>0.0</PreviouslyPaid><ToBePaid>52505.75</ToBePaid><VAT>10501.15</VAT><TotPrintWithoutDec>-13031</TotPrintWithoutDec><Decimals>75</Decimals><Mod10>7</Mod10><TotalOutstanding>0.0</TotalOutstanding><EInvoiceUrl></EInvoiceUrl><Utility>Fjordkraft AS</Utility><ReminderFee>62.0</ReminderFee><ToBePaidNet>42004.6</ToBePaidNet><InvoiceDate>2017-04-04</InvoiceDate><CIDLong>90329807987</CIDLong><IsTestInvoice>N</IsTestInvoice><CreditedInvoiceNo>0</CreditedInvoiceNo><E-InvoiceReferenceNew>90329807987</E-InvoiceReferenceNew><netPrintet>42004.6</netPrintet><RegulationRecords>0.0</RegulationRecords><TemplateType></TemplateType><Transactions/><Balance>0.0</Balance><EInvoiceReferenceProposal>90329807987</EInvoiceReferenceProposal></MainInvoiceInfo-101><CustomerInfo-103><Name>Norhagen</Name><Name2>Rune Erik</Name2><Address1>Skytta Terrasse 3</Address1><Address2></Address2><PostalCode>1481</PostalCode><City>HAGAN</City><CountryCode>N</CountryCode><Country>Norge</Country><Address3></Address3><Address4></Address4><Address5></Address5><PersIdNo-CoRegNo>19670504</PersIdNo-CoRegNo><PhoneNo></PhoneNo><MobilePhoneNo>48199556</MobilePhoneNo><EmailAddress>messe.simensen.norhagen@gmail.com</EmailAddress><CountryIsoCode103>NO</CountryIsoCode103></CustomerInfo-103><InvoiceAgreementInfo-105><InvAgreementId>903298</InvAgreementId><AgreementDate>2013-10-24</AgreementDate><IndustryPrivate>P</IndustryPrivate><InvoiceLabel></InvoiceLabel><InterestId>N</InterestId><InterestRate><Rate>0.0</Rate></InterestRate><PayerStatus></PayerStatus><AccountNo></AccountNo><TotalPrinted>0.0</TotalPrinted><TotalPrintedOtherInvoices>0.0</TotalPrintedOtherInvoices><BIC-Customer></BIC-Customer><IBAN-Customer></IBAN-Customer></InvoiceAgreementInfo-105><Pass-ThroughInvoiceInfo-109><FirstInvoice>0</FirstInvoice><ExtCustRef></ExtCustRef><ToDate></ToDate></Pass-ThroughInvoiceInfo-109><InvoiceOrder><InvoiceOrderInfo-110><StartDate>2013-10-24</StartDate><BillingGroup>PM3</BillingGroup><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo><CloseCode></CloseCode><TotalPrinted>0.0</TotalPrinted><ShortTimeSA>F</ShortTimeSA><IndustryCode></IndustryCode><B-AccountCode>J</B-AccountCode><InvoiceType>B</InvoiceType><ConsumptionCode>35</ConsumptionCode><AreaId>0</AreaId><LDC1>Hafslund Nett AS</LDC1><LDC2>Drammensveien 144</LDC2><Supplier1>Fjordkraft AS</Supplier1><Supplier2></Supplier2><B-AccountText>Beregnet beløp for perioden</B-AccountText><Amount>52505.75</Amount><Instlmnt>3</Instlmnt><ActivityId>2</ActivityId><ActivityType>EL</ActivityType><ActivitySubType>OM</ActivitySubType><ActivityName>Fjordkraft AS</ActivityName><CompanyRegNo>976944682</CompanyRegNo><UtilityAccountNo>15031934610</UtilityAccountNo><ActivitySubTypeName>Omsetning</ActivitySubTypeName><YearEffect>0.0</YearEffect><ActivityCloseable>N</ActivityCloseable></InvoiceOrderInfo-110><ReadingInfo-111><StartDate>2017-02-01</StartDate><EndDate>2017-04-01</EndDate><MeterId>-502887194</MeterId><StartReading>0.0</StartReading><FinalC-Reading>6190.0</FinalC-Reading><AreaFactor>1.0</AreaFactor><FixedPricePeriodStart>2017-01-01</FixedPricePeriodStart><FixedPricePeriodEnd>2017-04-01</FixedPricePeriodEnd><TotalDigits>8</TotalDigits><TotalDecimals>3</TotalDecimals><Method>1</Method><MethodStartReading>1</MethodStartReading><MethodFinalC-Reading>6190.0</MethodFinalC-Reading><V-Reading>S</V-Reading><ProdCounterNo>1</ProdCounterNo><MeterCounterNo>1</MeterCounterNo><Denomination>KWH</Denomination><TotalDays>59</TotalDays><Description></Description><FixedPricePeriodDays>90</FixedPricePeriodDays><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo><TotConsCurrCounter>87325.0</TotConsCurrCounter><MeterIdNew>-502887194</MeterIdNew></ReadingInfo-111><LastReading-112><DateRead>2017-04-01</DateRead><ReadingMethod>1</ReadingMethod><MeterCounter1>1</MeterCounter1><C-Reading1>6190.0</C-Reading1><MethodText>Avlest av everket</MethodText><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo></LastReading-112><InvoiceOrderAmounts-113><GrossSettled>52505.75</GrossSettled><NetSettled>42004.6</NetSettled><VatSettled>10501.15</VatSettled><GrossB-Account>0.0</GrossB-Account><NetB-Account>0.0</NetB-Account><VatB-Account>0.0</VatB-Account><BAccountTermNo>0</BAccountTermNo><GrossWriteBacks>0.0</GrossWriteBacks><NetWriteBacks>0.0</NetWriteBacks><VatWriteBacks>0.0</VatWriteBacks><GrossMisc>0.0</GrossMisc><NetMisc>0.0</NetMisc><VatMisc>0.0</VatMisc><GrossItem>0.0</GrossItem><NetItem>0.0</NetItem><VatItem>0.0</VatItem><VatTotal>10501.15</VatTotal><GrossTax>0.0</GrossTax><NetTotal>42004.6</NetTotal><GrossTotal>52505.75</GrossTotal><GrossSettledAndWriteBacks>52505.75</GrossSettledAndWriteBacks><NetSettledAndWriteBacks>42004.6</NetSettledAndWriteBacks><VatSettledAndWriteBacks>10501.15</VatSettledAndWriteBacks><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo><NetWithTax>42004.6</NetWithTax><GrossWithTax>52505.75</GrossWithTax><NetNoTax>0.0</NetNoTax></InvoiceOrderAmounts-113><VatSpecInvoiceOrder-114><VatRate>25.0</VatRate><SumBasis>42004.6</SumBasis><SumVat>10501.15</SumVat><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo></VatSpecInvoiceOrder-114><PriceInfo-116><StatisticCode>F</StatisticCode><Gross>49.0</Gross><PriceCode>T1</PriceCode><Description>Fastbeløp           </Description><Designation>kr/mnd</Designation><PriceDate>2017-04-04</PriceDate><Gross_high_precision>49.0</Gross_high_precision><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo></PriceInfo-116><PriceInfo-116><StatisticCode>2</StatisticCode><Gross>0.5399</Gross><PriceCode>27</PriceCode><Description>Strømpris</Description><Designation>øre/kWh</Designation><PriceDate>2017-04-04</PriceDate><Gross_high_precision>0.5399</Gross_high_precision><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo></PriceInfo-116><SupplyPointInfo-117><SupplyPointId></SupplyPointId><InstlnId></InstlnId><StreetNo>Skytta terrasse 3 </StreetNo><Description></Description><MeterId>-502887194</MeterId><ActivityType>EL</ActivityType><MeterLocationId>0</MeterLocationId><ObjectId>707057500056189972</ObjectId><GridArea></GridArea><Address1></Address1><Address2></Address2><Address3></Address3><Address4></Address4><Address5></Address5><MeterCode></MeterCode><InstSign></InstSign><HousingCooperative></HousingCooperative><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo><JunctionId></JunctionId><JunctionDescription></JunctionDescription><readingMateriel></readingMateriel><MeterIdNew>-502887194</MeterIdNew></SupplyPointInfo-117><ProductParameters-118><ProdId>FKPG</ProdId><Field1>0</Field1><Field2>0</Field2><Field3>15.0</Field3><Field4>0.0</Field4><Field5>0.0</Field5><Field6>0.0</Field6><Field7>0.0</Field7><Field8>0.0</Field8><Field9>0.0</Field9><Field10>0.0</Field10><Field11>0.0</Field11><Field12>0.0</Field12><Field13>0.0</Field13><Field14>0.0</Field14><Field15>0.0</Field15><Field16>0.0</Field16><Field17>0.0</Field17><Field18>0.0</Field18><Field19>0.0</Field19><Field20>0.0</Field20><Label1></Label1><Label2>Fornybar</Label2><Label3>Avtalenr</Label3><Label4></Label4><Label5></Label5><Label6></Label6><Label7></Label7><Label8></Label8><Label9></Label9><Label10></Label10><Label11></Label11><Label12></Label12><Label13></Label13><Label14></Label14><Label15></Label15><Label16></Label16><Label17></Label17><Label18></Label18><Label19></Label19><Label20></Label20><Description>Fjordkraft Prisgaranti</Description><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo></ProductParameters-118><InvoiceLine-120><StartDate>2017-01-01</StartDate><EndDate>2017-01-23</EndDate><StartMonth>Januar</StartMonth><EndMonth>Januar</EndMonth><Net>28345.45</Net><Gross>35431.81</Gross><StatisticCode>2</StatisticCode><VatRate>25.0</VatRate><SuppCode></SuppCode><Text>Strømpris</Text><PriceCode>27</PriceCode><PriceRate>0.49592</PriceRate><Basis>57157.305</Basis><NoOfDays>22</NoOfDays><OldC-Reading>25948.0</OldC-Reading><FinalC-Reading>83105.305</FinalC-Reading><TotalTaxPrice>0.0</TotalTaxPrice><UnitCode></UnitCode><ProdId>FKPG</ProdId><ProdDenomination>kWh</ProdDenomination><GrossPrice>0.6199</GrossPrice><TotalGross>35431.81</TotalGross><PriceDenomination>øre/kWh</PriceDenomination><MiscCode>0</MiscCode><B-Account></B-Account><Type>AVL</Type><VAT>7086.36</VAT><DiscPercent>0.0</DiscPercent><GrossPriceWithoutTax>0.6199</GrossPriceWithoutTax><TotalGrossWithoutTax>35431.81</TotalGrossWithoutTax><TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision><GrossPrice_high_precision>0.6199</GrossPrice_high_precision><GrossPriceWithoutTax_high_precision>0.6199</GrossPriceWithoutTax_high_precision><ActivityType>EL</ActivityType><ActivitySubType>OM</ActivitySubType><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo><ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice><PriceDenominationGross>øre/kWh</PriceDenominationGross><PriceDenominationGrossWithoutTax>øre/kWh</PriceDenominationGrossWithoutTax><PriceDenominationTax></PriceDenominationTax><MiscCodeNew>0</MiscCodeNew><TextNew>Strømpris</TextNew><DiscAmount>-28345.45</DiscAmount><SuppSubscriptionPrice>0.0</SuppSubscriptionPrice><FireValue>0.0</FireValue><ProductSaleId>0</ProductSaleId></InvoiceLine-120><InvoiceLine-120><StartDate>2017-01-23</StartDate><EndDate>2017-01-31</EndDate><StartMonth>Januar</StartMonth><EndMonth>Januar</EndMonth><Net>9717.25</Net><Gross>12146.57</Gross><StatisticCode>2</StatisticCode><VatRate>25.0</VatRate><SuppCode></SuppCode><Text>Strømpris</Text><PriceCode>27</PriceCode><PriceRate>0.45592</PriceRate><Basis>21313.508</Basis><NoOfDays>8</NoOfDays><OldC-Reading>83105.305</OldC-Reading><FinalC-Reading>104418.81</FinalC-Reading><TotalTaxPrice>0.0</TotalTaxPrice><UnitCode></UnitCode><ProdId>FKPG</ProdId><ProdDenomination>kWh</ProdDenomination><GrossPrice>0.5699</GrossPrice><TotalGross>12146.57</TotalGross><PriceDenomination>øre/kWh</PriceDenomination><MiscCode>0</MiscCode><B-Account></B-Account><Type>AVL</Type><VAT>2429.32</VAT><DiscPercent>0.0</DiscPercent><GrossPriceWithoutTax>0.5699</GrossPriceWithoutTax><TotalGrossWithoutTax>12146.57</TotalGrossWithoutTax><TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision><GrossPrice_high_precision>0.5699</GrossPrice_high_precision><GrossPriceWithoutTax_high_precision>0.5699</GrossPriceWithoutTax_high_precision><ActivityType>EL</ActivityType><ActivitySubType>OM</ActivitySubType><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo><ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice><PriceDenominationGross>øre/kWh</PriceDenominationGross><PriceDenominationGrossWithoutTax>øre/kWh</PriceDenominationGrossWithoutTax><PriceDenominationTax></PriceDenominationTax><MiscCodeNew>0</MiscCodeNew><TextNew>Strømpris</TextNew><DiscAmount>-9717.25</DiscAmount><SuppSubscriptionPrice>0.0</SuppSubscriptionPrice><FireValue>0.0</FireValue><ProductSaleId>0</ProductSaleId></InvoiceLine-120><InvoiceLine-120><StartDate>2017-01-31</StartDate><EndDate>2017-02-01</EndDate><StartMonth>Januar</StartMonth><EndMonth>Februar</EndMonth><Net>1150.72</Net><Gross>1438.39</Gross><StatisticCode>2</StatisticCode><VatRate>25.0</VatRate><SuppCode></SuppCode><Text>Strømpris</Text><PriceCode>27</PriceCode><PriceRate>0.43192</PriceRate><Basis>2664.189</Basis><NoOfDays>1</NoOfDays><OldC-Reading>104418.81</OldC-Reading><FinalC-Reading>107083.0</FinalC-Reading><TotalTaxPrice>0.0</TotalTaxPrice><UnitCode></UnitCode><ProdId>FKPG</ProdId><ProdDenomination>kWh</ProdDenomination><GrossPrice>0.5399</GrossPrice><TotalGross>1438.39</TotalGross><PriceDenomination>øre/kWh</PriceDenomination><MiscCode>0</MiscCode><B-Account></B-Account><Type>AVL</Type><VAT>287.67</VAT><DiscPercent>0.0</DiscPercent><GrossPriceWithoutTax>0.5399</GrossPriceWithoutTax><TotalGrossWithoutTax>1438.39</TotalGrossWithoutTax><TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision><GrossPrice_high_precision>0.5399</GrossPrice_high_precision><GrossPriceWithoutTax_high_precision>0.5399</GrossPriceWithoutTax_high_precision><ActivityType>EL</ActivityType><ActivitySubType>OM</ActivitySubType><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo><ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice><PriceDenominationGross>øre/kWh</PriceDenominationGross><PriceDenominationGrossWithoutTax>øre/kWh</PriceDenominationGrossWithoutTax><PriceDenominationTax></PriceDenominationTax><MiscCodeNew>0</MiscCodeNew><TextNew>Strømpris</TextNew><DiscAmount>-1150.72</DiscAmount><SuppSubscriptionPrice>0.0</SuppSubscriptionPrice><FireValue>0.0</FireValue><ProductSaleId>0</ProductSaleId></InvoiceLine-120><InvoiceLine-120><StartDate>2017-02-01</StartDate><EndDate>2017-04-01</EndDate><StartMonth>Februar</StartMonth><EndMonth>April</EndMonth><Net>2673.58</Net><Gross>3341.98</Gross><StatisticCode>2</StatisticCode><VatRate>25.0</VatRate><SuppCode></SuppCode><Text>Strømpris</Text><PriceCode>27</PriceCode><PriceRate>0.43192</PriceRate><Basis>6190.0</Basis><NoOfDays>59</NoOfDays><OldC-Reading>0.0</OldC-Reading><FinalC-Reading>6190.0</FinalC-Reading><TotalTaxPrice>0.0</TotalTaxPrice><UnitCode></UnitCode><ProdId>FKPG</ProdId><ProdDenomination>kWh</ProdDenomination><GrossPrice>0.5399</GrossPrice><TotalGross>3341.98</TotalGross><PriceDenomination>øre/kWh</PriceDenomination><MiscCode>0</MiscCode><B-Account></B-Account><Type>AVL</Type><VAT>668.4</VAT><DiscPercent>0.0</DiscPercent><GrossPriceWithoutTax>0.5399</GrossPriceWithoutTax><TotalGrossWithoutTax>3341.98</TotalGrossWithoutTax><TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision><GrossPrice_high_precision>0.5399</GrossPrice_high_precision><GrossPriceWithoutTax_high_precision>0.5399</GrossPriceWithoutTax_high_precision><ActivityType>EL</ActivityType><ActivitySubType>OM</ActivitySubType><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo><ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice><PriceDenominationGross>øre/kWh</PriceDenominationGross><PriceDenominationGrossWithoutTax>øre/kWh</PriceDenominationGrossWithoutTax><PriceDenominationTax></PriceDenominationTax><MiscCodeNew>0</MiscCodeNew><TextNew>Strømpris</TextNew><DiscAmount>-2673.58</DiscAmount><SuppSubscriptionPrice>0.0</SuppSubscriptionPrice><FireValue>0.0</FireValue><ProductSaleId>0</ProductSaleId></InvoiceLine-120><InvoiceLine-120><StartDate>2017-01-01</StartDate><EndDate>2017-02-01</EndDate><StartMonth>Januar</StartMonth><EndMonth>Februar</EndMonth><Net>0.0</Net><Gross>0.0</Gross><StatisticCode>R</StatisticCode><VatRate>25.0</VatRate><SuppCode></SuppCode><Text>Fornybar energi</Text><PriceCode>G</PriceCode><PriceRate>0.0</PriceRate><Basis>81135.0</Basis><NoOfDays>31</NoOfDays><OldC-Reading>25948.0</OldC-Reading><FinalC-Reading>107083.0</FinalC-Reading><TotalTaxPrice>0.0</TotalTaxPrice><UnitCode></UnitCode><ProdId>FKPG</ProdId><ProdDenomination>kWh</ProdDenomination><GrossPrice>0.0</GrossPrice><TotalGross>0.0</TotalGross><PriceDenomination></PriceDenomination><MiscCode>0</MiscCode><B-Account></B-Account><Type>AVL</Type><VAT>0.0</VAT><DiscPercent>0.0</DiscPercent><GrossPriceWithoutTax>0.0</GrossPriceWithoutTax><TotalGrossWithoutTax>0.0</TotalGrossWithoutTax><TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision><GrossPrice_high_precision>0.0</GrossPrice_high_precision><GrossPriceWithoutTax_high_precision>0.0</GrossPriceWithoutTax_high_precision><ActivityType>EL</ActivityType><ActivitySubType>OM</ActivitySubType><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo><ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice><PriceDenominationGross></PriceDenominationGross><PriceDenominationGrossWithoutTax></PriceDenominationGrossWithoutTax><PriceDenominationTax></PriceDenominationTax><MiscCodeNew>0</MiscCodeNew><TextNew>Fornybar energi</TextNew><DiscAmount>0.0</DiscAmount><SuppSubscriptionPrice>0.0</SuppSubscriptionPrice><FireValue>0.0</FireValue><ProductSaleId>0</ProductSaleId></InvoiceLine-120><InvoiceLine-120><StartDate>2017-02-01</StartDate><EndDate>2017-04-01</EndDate><StartMonth>Februar</StartMonth><EndMonth>April</EndMonth><Net>0.0</Net><Gross>0.0</Gross><StatisticCode>R</StatisticCode><VatRate>25.0</VatRate><SuppCode></SuppCode><Text>Fornybar energi</Text><PriceCode>G</PriceCode><PriceRate>0.0</PriceRate><Basis>6190.0</Basis><NoOfDays>59</NoOfDays><OldC-Reading>0.0</OldC-Reading><FinalC-Reading>6190.0</FinalC-Reading><TotalTaxPrice>0.0</TotalTaxPrice><UnitCode></UnitCode><ProdId>FKPG</ProdId><ProdDenomination>kWh</ProdDenomination><GrossPrice>0.0</GrossPrice><TotalGross>0.0</TotalGross><PriceDenomination></PriceDenomination><MiscCode>0</MiscCode><B-Account></B-Account><Type>AVL</Type><VAT>0.0</VAT><DiscPercent>0.0</DiscPercent><GrossPriceWithoutTax>0.0</GrossPriceWithoutTax><TotalGrossWithoutTax>0.0</TotalGrossWithoutTax><TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision><GrossPrice_high_precision>0.0</GrossPrice_high_precision><GrossPriceWithoutTax_high_precision>0.0</GrossPriceWithoutTax_high_precision><ActivityType>EL</ActivityType><ActivitySubType>OM</ActivitySubType><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo><ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice><PriceDenominationGross></PriceDenominationGross><PriceDenominationGrossWithoutTax></PriceDenominationGrossWithoutTax><PriceDenominationTax></PriceDenominationTax><MiscCodeNew>0</MiscCodeNew><TextNew>Fornybar energi</TextNew><DiscAmount>0.0</DiscAmount><SuppSubscriptionPrice>0.0</SuppSubscriptionPrice><FireValue>0.0</FireValue><ProductSaleId>0</ProductSaleId></InvoiceLine-120><InvoiceLine-120><StartDate>2017-01-01</StartDate><EndDate>2017-04-01</EndDate><StartMonth>Januar</StartMonth><EndMonth>April</EndMonth><Net>117.6</Net><Gross>147.0</Gross><StatisticCode>F</StatisticCode><VatRate>25.0</VatRate><SuppCode></SuppCode><Text>Fastbeløp           </Text><PriceCode>T1</PriceCode><PriceRate>39.2</PriceRate><Basis>1.0</Basis><NoOfDays>90</NoOfDays><OldC-Reading>0.0</OldC-Reading><FinalC-Reading>1.0</FinalC-Reading><TotalTaxPrice>0.0</TotalTaxPrice><UnitCode></UnitCode><ProdId>FKPG</ProdId><ProdDenomination></ProdDenomination><GrossPrice>49.0</GrossPrice><TotalGross>147.0</TotalGross><PriceDenomination>kr/mnd</PriceDenomination><MiscCode>0</MiscCode><B-Account></B-Account><Type>APB</Type><VAT>29.4</VAT><DiscPercent>0.0</DiscPercent><GrossPriceWithoutTax>49.0</GrossPriceWithoutTax><TotalGrossWithoutTax>147.0</TotalGrossWithoutTax><TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision><GrossPrice_high_precision>49.0</GrossPrice_high_precision><GrossPriceWithoutTax_high_precision>49.0</GrossPriceWithoutTax_high_precision><ActivityType>EL</ActivityType><ActivitySubType>OM</ActivitySubType><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo><ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice><PriceDenominationGross>kr/mnd</PriceDenominationGross><PriceDenominationGrossWithoutTax>kr/mnd</PriceDenominationGrossWithoutTax><PriceDenominationTax></PriceDenominationTax><MiscCodeNew>0</MiscCodeNew><TextNew>Fastbeløp           </TextNew><DiscAmount>-117.6</DiscAmount><SuppSubscriptionPrice>0.0</SuppSubscriptionPrice><FireValue>0.0</FireValue><ProductSaleId>0</ProductSaleId></InvoiceLine-120><YearlyConsumption-123><AnnualConsumption>3078</AnnualConsumption><B-AccountAmount>190.0</B-AccountAmount><PriceDate>2017-04-04</PriceDate></YearlyConsumption-123><GenInfoInvoiceOrder-125><TextCode>FJOR</TextCode><PageIndicator>B</PageIndicator><Text>Fra 01.07.2013 oppdaterer vi våre betalingsvilkår.</Text><ActivityType>EL</ActivityType><ActivitySubType>OM</ActivitySubType><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo></GenInfoInvoiceOrder-125><GenInfoInvoiceOrder-125><TextCode>FJOR</TextCode><PageIndicator>B</PageIndicator><Text>Se www.fjordkraft.no/avtalevilkar for mer informasjon</Text><ActivityType>EL</ActivityType><ActivitySubType>OM</ActivitySubType><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo></GenInfoInvoiceOrder-125><ConsumptionPillars-132><PeriodDescription1>MAR</PeriodDescription1><LastYearConsumption1>1082.0</LastYearConsumption1><ThisYearConsumption1>3201.0</ThisYearConsumption1><PeriodDescription2>FEB</PeriodDescription2><LastYearConsumption2>1227.0</LastYearConsumption2><ThisYearConsumption2>2989.0</ThisYearConsumption2><PeriodDescription3>JAN</PeriodDescription3><LastYearConsumption3>1585.0</LastYearConsumption3><ThisYearConsumption3>81135.0</ThisYearConsumption3><PeriodDescription4>DES</PeriodDescription4><LastYearConsumption4>1302.0</LastYearConsumption4><ThisYearConsumption4>359.0</ThisYearConsumption4><PeriodDescription5>NOV</PeriodDescription5><LastYearConsumption5>1149.0</LastYearConsumption5><ThisYearConsumption5>1865.0</ThisYearConsumption5><PeriodDescription6>OKT</PeriodDescription6><LastYearConsumption6>958.0</LastYearConsumption6><ThisYearConsumption6>156.0</ThisYearConsumption6><PeriodDescription7>SEP</PeriodDescription7><LastYearConsumption7>692.0</LastYearConsumption7><ThisYearConsumption7>92.0</ThisYearConsumption7><PeriodDescription8>AUG</PeriodDescription8><LastYearConsumption8>581.0</LastYearConsumption8><ThisYearConsumption8>0.0</ThisYearConsumption8><PeriodDescription9>JUL</PeriodDescription9><LastYearConsumption9>710.0</LastYearConsumption9><ThisYearConsumption9>433.0</ThisYearConsumption9><PeriodDescription10>JUN</PeriodDescription10><LastYearConsumption10>6321.0</LastYearConsumption10><ThisYearConsumption10>478.0</ThisYearConsumption10><PeriodDescription11>MAI</PeriodDescription11><LastYearConsumption11>556.0</LastYearConsumption11><ThisYearConsumption11>650.0</ThisYearConsumption11><PeriodDescription12>APR</PeriodDescription12><LastYearConsumption12>564.0</LastYearConsumption12><ThisYearConsumption12>869.0</ThisYearConsumption12><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo></ConsumptionPillars-132><Consumptions><Consumption><ConsumptionSequence>1</ConsumptionSequence><PeriodDescription>MAR</PeriodDescription><LastYearConsumption>1082.0</LastYearConsumption><ThisYearConsumption>3201.0</ThisYearConsumption></Consumption><Consumption><ConsumptionSequence>2</ConsumptionSequence><PeriodDescription>FEB</PeriodDescription><LastYearConsumption>1227.0</LastYearConsumption><ThisYearConsumption>2989.0</ThisYearConsumption></Consumption><Consumption><ConsumptionSequence>3</ConsumptionSequence><PeriodDescription>JAN</PeriodDescription><LastYearConsumption>1585.0</LastYearConsumption><ThisYearConsumption>81135.0</ThisYearConsumption></Consumption><Consumption><ConsumptionSequence>4</ConsumptionSequence><PeriodDescription>DES</PeriodDescription><LastYearConsumption>1302.0</LastYearConsumption><ThisYearConsumption>359.0</ThisYearConsumption></Consumption><Consumption><ConsumptionSequence>5</ConsumptionSequence><PeriodDescription>NOV</PeriodDescription><LastYearConsumption>1149.0</LastYearConsumption><ThisYearConsumption>1865.0</ThisYearConsumption></Consumption><Consumption><ConsumptionSequence>6</ConsumptionSequence><PeriodDescription>OKT</PeriodDescription><LastYearConsumption>958.0</LastYearConsumption><ThisYearConsumption>156.0</ThisYearConsumption></Consumption><Consumption><ConsumptionSequence>7</ConsumptionSequence><PeriodDescription>SEP</PeriodDescription><LastYearConsumption>692.0</LastYearConsumption><ThisYearConsumption>92.0</ThisYearConsumption></Consumption><Consumption><ConsumptionSequence>8</ConsumptionSequence><PeriodDescription>AUG</PeriodDescription><LastYearConsumption>581.0</LastYearConsumption><ThisYearConsumption>0.0</ThisYearConsumption></Consumption><Consumption><ConsumptionSequence>9</ConsumptionSequence><PeriodDescription>JUL</PeriodDescription><LastYearConsumption>710.0</LastYearConsumption><ThisYearConsumption>433.0</ThisYearConsumption></Consumption><Consumption><ConsumptionSequence>10</ConsumptionSequence><PeriodDescription>JUN</PeriodDescription><LastYearConsumption>6321.0</LastYearConsumption><ThisYearConsumption>478.0</ThisYearConsumption></Consumption><Consumption><ConsumptionSequence>11</ConsumptionSequence><PeriodDescription>MAI</PeriodDescription><LastYearConsumption>556.0</LastYearConsumption><ThisYearConsumption>650.0</ThisYearConsumption></Consumption><Consumption><ConsumptionSequence>12</ConsumptionSequence><PeriodDescription>APR</PeriodDescription><LastYearConsumption>564.0</LastYearConsumption><ThisYearConsumption>869.0</ThisYearConsumption></Consumption></Consumptions><InvoiceOrderEndRecord-134><BillingGroup>PM3</BillingGroup><ServiceAgreeSerialNo>1</ServiceAgreeSerialNo></InvoiceOrderEndRecord-134></InvoiceOrder><VatSpecInvoice-142><VatRate>25.0</VatRate><SumBasis>42004.6</SumBasis><SumVat>10501.15</SumVat></VatSpecInvoice-142><InvoiceEndRecord-199><TotalLines>28</TotalLines><InvoiceNo>249</InvoiceNo></InvoiceEndRecord-199></Invoice></VEDLEGG_EMUXML><VEDLEGG_E2B></VEDLEGG_E2B></FAKTURA></Attachment></Attachments><TaxReport></TaxReport><DirectDebitAmount></DirectDebitAmount><DirectDebitAgreementDate></DirectDebitAgreementDate><DirectDebitBasetype></DirectDebitBasetype><LegalPartClass>Individual</LegalPartClass><MinClaimFixedAmount></MinClaimFixedAmount><BudgetStatementAmount>0.0</BudgetStatementAmount><RecommendedStatementAmount>37592.05</RecommendedStatementAmount><Collection></Collection><AccountType><Code>INVACC</Code><Name>Post-Mot-Post</Name></AccountType><AccountCategory><Code>FPMS</Code><Name>FPMS</Name></AccountCategory><Version>1</Version><StatementType>Invoice</StatementType><CreditedInvoice></CreditedInvoice></Statement>
+<?xml version="1.0" encoding="UTF-8"?>
+<Statement xmlns:ns2="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ns3="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:ns4="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:ns5="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:ns6="urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2">
+   <CustomerReference>903298</CustomerReference>
+   <MainSourceReference>903298</MainSourceReference>
+   <DistributionMethod>Paper</DistributionMethod>
+   <DistributionMethodExternalReference>707057500056189972</DistributionMethodExternalReference>
+   <VatId />
+   <PaymentType>Undefined</PaymentType>
+   <PaymentTypeStatus>Undefined</PaymentTypeStatus>
+   <DirectDebit>NO</DirectDebit>
+   <EInvoiceId />
+   <NationalId>50293341</NationalId>
+   <Barcode>2070111117033014007</Barcode>
+   <Name>Norhagen Rune Erik</Name>
+   <CareOfName>Norhagen Rune Erik</CareOfName>
+   <Address>Skytta Terrasse 3</Address>
+   <Address1>Skytta Terrasse 3</Address1>
+   <Address2 />
+   <PostCode>1481</PostCode>
+   <City>HAGAN</City>
+   <Region>NO</Region>
+   <Country>Norge</Country>
+   <Email>messe.simensen.norhagen@gmail.com</Email>
+   <MobileNumber>48199556</MobileNumber>
+   <StatementDate>2017-04-06</StatementDate>
+   <AccountNumber>7033014007</AccountNumber>
+   <SequenceNumber>40</SequenceNumber>
+   <StatementOcrNumber>703301400710408</StatementOcrNumber>
+   <Kontonummer>1503.80.91058</Kontonummer>
+   <DueDate>2017-04-27</DueDate>
+   <IngoingBalance>-64861.71</IngoingBalance>
+   <OutgoingBalance>-37592.06</OutgoingBalance>
+   <CreditLimit>0.0</CreditLimit>
+   <AvailableCredit>0.0</AvailableCredit>
+   <NonCreditedInterest>0.0</NonCreditedInterest>
+   <GeneralMessage />
+   <AccountMessage />
+   <CurrentClaim>37592.05</CurrentClaim>
+   <TotalOpenClaim>37592.05</TotalOpenClaim>
+   <TotalVatAmount>5744.3</TotalVatAmount>
+   <TotalAttachment>1</TotalAttachment>
+   <CurrentInterestRates>
+      <InterestRate>
+         <Name>Overdue Claim Interest</Name>
+         <Rate>8.75</Rate>
+      </InterestRate>
+   </CurrentInterestRates>
+   <OutstandingClaims />
+   <Transactions>
+      <Transaction>
+         <TransactionId>60234887</TransactionId>
+         <TransactionSequence>0</TransactionSequence>
+         <ParentTransactionId />
+         <TransactionType>Interest</TransactionType>
+         <TransactionCategory>DI;Forsinkelsesrente</TransactionCategory>
+         <TransactionDate>2017-02-27</TransactionDate>
+         <ValueDate>2017-02-28</ValueDate>
+         <Amount>-0.26</Amount>
+         <VatAmount>0.0</VatAmount>
+         <AmountWithVat>-0.26</AmountWithVat>
+         <Reference />
+         <Url />
+         <FreeText />
+         <Distributions />
+         <CollectionFeeForStatements />
+      </Transaction>
+      <Transaction>
+         <TransactionId>60229736</TransactionId>
+         <TransactionSequence>0</TransactionSequence>
+         <ParentTransactionId />
+         <TransactionType>Charge</TransactionType>
+         <TransactionCategory>NE;Nettleie fra Hafslund Nett AS</TransactionCategory>
+         <TransactionDate>2017-03-06</TransactionDate>
+         <ValueDate>2017-04-28</ValueDate>
+         <Amount>-31528.53</Amount>
+         <VatAmount>-7882.13</VatAmount>
+         <AmountWithVat>-39410.66</AmountWithVat>
+         <Reference>2764117-38148837</Reference>
+         <Url />
+         <FreeText>Skytta Terrasse 3</FreeText>
+         <Distributions>
+            <Distribution>
+               <Name>NETT</Name>
+               <Amount>-39410.66</Amount>
+            </Distribution>
+         </Distributions>
+         <CollectionFeeForStatements />
+      </Transaction>
+      <Transaction>
+         <TransactionId>63465065</TransactionId>
+         <TransactionSequence>0</TransactionSequence>
+         <ParentTransactionId />
+         <TransactionType>Account fee</TransactionType>
+         <TransactionCategory>DI;Papirfaktura</TransactionCategory>
+         <TransactionDate>2017-03-31</TransactionDate>
+         <ValueDate>2017-04-28</ValueDate>
+         <Amount>-39.2</Amount>
+         <VatAmount>-9.8</VatAmount>
+         <AmountWithVat>-49.0</AmountWithVat>
+         <Reference />
+         <Url />
+         <FreeText />
+         <Distributions />
+         <CollectionFeeForStatements />
+      </Transaction>
+      <Transaction>
+         <TransactionId>62942926</TransactionId>
+         <TransactionSequence>0</TransactionSequence>
+         <ParentTransactionId />
+         <TransactionType>Instalment Payment</TransactionType>
+         <TransactionCategory>DI;Nedbetalingsordning</TransactionCategory>
+         <TransactionDate>2017-04-03</TransactionDate>
+         <ValueDate>2017-04-03</ValueDate>
+         <Amount>-8623.37</Amount>
+         <VatAmount>0.0</VatAmount>
+         <AmountWithVat>-8623.37</AmountWithVat>
+         <Reference>Payment - 7130695104</Reference>
+         <Url />
+         <FreeText>Instalment Account reason #1.</FreeText>
+         <Distributions />
+         <CollectionFeeForStatements />
+      </Transaction>
+      <Transaction>
+         <TransactionId>62942927</TransactionId>
+         <TransactionSequence>0</TransactionSequence>
+         <ParentTransactionId />
+         <TransactionType>Interest</TransactionType>
+         <TransactionCategory>DI;Avbetalingsrenter</TransactionCategory>
+         <TransactionDate>2017-04-03</TransactionDate>
+         <ValueDate>2017-04-28</ValueDate>
+         <Amount>-246.94</Amount>
+         <VatAmount>0.0</VatAmount>
+         <AmountWithVat>-246.94</AmountWithVat>
+         <Reference>Interest - 7130695104</Reference>
+         <Url />
+         <FreeText>Instalment Account reason #1.</FreeText>
+         <Distributions />
+         <CollectionFeeForStatements />
+      </Transaction>
+      <Transaction>
+         <TransactionId>63169368</TransactionId>
+         <TransactionSequence>0</TransactionSequence>
+         <ParentTransactionId />
+         <TransactionType>Charge</TransactionType>
+         <TransactionCategory>KR;Strøm fra Fjordkraft</TransactionCategory>
+         <TransactionDate>2017-04-04</TransactionDate>
+         <ValueDate>2017-04-28</ValueDate>
+         <Amount>-42004.6</Amount>
+         <VatAmount>-10501.15</VatAmount>
+         <AmountWithVat>-52505.75</AmountWithVat>
+         <Reference>37740798</Reference>
+         <Url />
+         <FreeText>Skytta Terrasse 3</FreeText>
+         <Distributions>
+            <Distribution>
+               <Name>Kraft</Name>
+               <Amount>-52505.75</Amount>
+            </Distribution>
+         </Distributions>
+         <CollectionFeeForStatements />
+         <StartDate>2017-02-01</StartDate>
+         <EndDate>2017-04-01</EndDate>
+      </Transaction>
+      <Transaction>
+         <TransactionId>63170306</TransactionId>
+         <TransactionSequence>0</TransactionSequence>
+         <ParentTransactionId />
+         <TransactionType>Charge</TransactionType>
+         <TransactionCategory>KN;Kreditnota fra Fjordkraft</TransactionCategory>
+         <TransactionDate>2017-04-04</TransactionDate>
+         <ValueDate>2017-04-05</ValueDate>
+         <Amount>51840.93</Amount>
+         <VatAmount>12960.23</VatAmount>
+         <AmountWithVat>64801.16</AmountWithVat>
+         <Reference>37740795</Reference>
+         <Url />
+         <FreeText>Skytta Terrasse 3</FreeText>
+         <Distributions>
+            <Distribution>
+               <Name>Kraft</Name>
+               <Amount>-64801.16</Amount>
+            </Distribution>
+         </Distributions>
+         <CollectionFeeForStatements />
+      </Transaction>
+      <Transaction>
+         <TransactionId>63302256</TransactionId>
+         <TransactionSequence>0</TransactionSequence>
+         <ParentTransactionId />
+         <TransactionType>Charge</TransactionType>
+         <TransactionCategory>NE;Nettleie fra Hafslund Nett AS</TransactionCategory>
+         <TransactionDate>2017-04-06</TransactionDate>
+         <ValueDate>2017-04-28</ValueDate>
+         <Amount>-1245.78</Amount>
+         <VatAmount>-311.45</VatAmount>
+         <AmountWithVat>-1557.23</AmountWithVat>
+         <Reference>3429164-38868914</Reference>
+         <Url />
+         <FreeText>Skytta Terrasse 3</FreeText>
+         <Distributions>
+            <Distribution>
+               <Name>NETT</Name>
+               <Amount>-1557.23</Amount>
+            </Distribution>
+         </Distributions>
+         <CollectionFeeForStatements />
+      </Transaction>
+   </Transactions>
+   <TransactionGroup>
+      <Transaction>
+         <TransactionId>0</TransactionId>
+         <TransactionSequence>1</TransactionSequence>
+         <TransactionType>Kraft</TransactionType>
+         <TransactionCategory>Strøm fra Fjordkraft</TransactionCategory>
+         <Amount>0.0</Amount>
+         <VatAmount>0.0</VatAmount>
+         <AmountWithVat>52505.75</AmountWithVat>
+         <Reference>37740798</Reference>
+         <FreeText>Skytta Terrasse 3</FreeText>
+         <StartDate>2017-02-01</StartDate>
+         <EndDate>2017-04-01</EndDate>
+      </Transaction>
+      <Transaction>
+         <TransactionId>0</TransactionId>
+         <TransactionSequence>2</TransactionSequence>
+         <TransactionType>Kraft</TransactionType>
+         <TransactionCategory>Kreditnota fra Fjordkraft</TransactionCategory>
+         <Amount>0.0</Amount>
+         <VatAmount>0.0</VatAmount>
+         <AmountWithVat>-64801.16</AmountWithVat>
+         <Reference>37740795</Reference>
+         <FreeText>Skytta Terrasse 3</FreeText>
+      </Transaction>
+      <Transaction>
+         <TransactionId>0</TransactionId>
+         <TransactionSequence>3</TransactionSequence>
+         <TransactionType>NETT</TransactionType>
+         <TransactionCategory>Nettleie fra Hafslund Nett AS</TransactionCategory>
+         <Amount>0.0</Amount>
+         <VatAmount>0.0</VatAmount>
+         <AmountWithVat>39410.66</AmountWithVat>
+         <Reference>2764117-38148837</Reference>
+         <FreeText>Skytta Terrasse 3</FreeText>
+      </Transaction>
+      <Transaction>
+         <TransactionId>0</TransactionId>
+         <TransactionSequence>4</TransactionSequence>
+         <TransactionType>NETT</TransactionType>
+         <TransactionCategory>Nettleie fra Hafslund Nett AS</TransactionCategory>
+         <Amount>0.0</Amount>
+         <VatAmount>0.0</VatAmount>
+         <AmountWithVat>1557.23</AmountWithVat>
+         <Reference>3429164-38868914</Reference>
+         <FreeText>Skytta Terrasse 3</FreeText>
+      </Transaction>
+      <Transaction>
+         <TransactionId>0</TransactionId>
+         <TransactionSequence>5</TransactionSequence>
+         <TransactionCategory>Diverse</TransactionCategory>
+         <Amount>0.0</Amount>
+         <VatAmount>0.0</VatAmount>
+         <AmountWithVat>-49.0</AmountWithVat>
+      </Transaction>
+      <TotalTransactions>5</TotalTransactions>
+   </TransactionGroup>
+   <PieChart>
+      <DistributionDetails>
+         <Type>Nettleie</Type>
+         <Amount>40967.89</Amount>
+      </DistributionDetails>
+      <DistributionDetails>
+         <Type>STROM</Type>
+         <Amount>0.0</Amount>
+      </DistributionDetails>
+   </PieChart>
+   <LineItems />
+   <InstalmentAccounts />
+   <Attachments>
+      <Attachment>
+         <FAKTURA>
+            <AKTOR>50153687</AKTOR>
+            <AKTORNAVN>Fjordkraft AS</AKTORNAVN>
+            <FAKTURANR>37740798</FAKTURANR>
+            <FREE_TEXT>Skytta Terrasse 3</FREE_TEXT>
+            <MAALEPUNKT>707057500056189972</MAALEPUNKT>
+            <FAKTURA_TYPE>FAKTURA</FAKTURA_TYPE>
+            <KUNDE_TYPE>P</KUNDE_TYPE>
+            <GRID>
+               <Name>Hafslund Nett AS</Name>
+               <Email>info@tkas.in</Email>
+               <Telephone>05121</Telephone>
+            </GRID>
+            <FAKTURA_MERKE_SO />
+            <VEDLEGG_FORMAT>EMUXML</VEDLEGG_FORMAT>
+            <VEDLEGG_EMUXML>
+               <Invoice>
+                  <MainInvoiceInfo-101>
+                     <InvoiceNo>37740798</InvoiceNo>
+                     <CustomerId>50293341</CustomerId>
+                     <CID>90329807987</CID>
+                     <PrintDate>2017-04-04</PrintDate>
+                     <DueDate>2017-04-18</DueDate>
+                     <PayInst2Total>52505.75</PayInst2Total>
+                     <PaymentDocNo>0</PaymentDocNo>
+                     <GrossPresentation>J</GrossPresentation>
+                     <E-InvoiceTmpl />
+                     <StandingOrder>0</StandingOrder>
+                     <ProcessCode />
+                     <FormTmplCode />
+                     <FormType>G</FormType>
+                     <DueDateDescription>BETALINGSFRIST</DueDateDescription>
+                     <MoraInterest>0.0</MoraInterest>
+                     <PrintedAmount>52505.75</PrintedAmount>
+                     <PreviouslyPaid>0.0</PreviouslyPaid>
+                     <ToBePaid>52505.75</ToBePaid>
+                     <VAT>10501.15</VAT>
+                     <TotPrintWithoutDec>-13031</TotPrintWithoutDec>
+                     <Decimals>75</Decimals>
+                     <Mod10>7</Mod10>
+                     <TotalOutstanding>0.0</TotalOutstanding>
+                     <EInvoiceUrl />
+                     <Utility>Fjordkraft AS</Utility>
+                     <ReminderFee>62.0</ReminderFee>
+                     <ToBePaidNet>42004.6</ToBePaidNet>
+                     <InvoiceDate>2017-04-04</InvoiceDate>
+                     <CIDLong>90329807987</CIDLong>
+                     <IsTestInvoice>N</IsTestInvoice>
+                     <CreditedInvoiceNo>0</CreditedInvoiceNo>
+                     <E-InvoiceReferenceNew>90329807987</E-InvoiceReferenceNew>
+                     <netPrintet>42004.6</netPrintet>
+                     <RegulationRecords>0.0</RegulationRecords>
+                     <TemplateType />
+                     <Transactions />
+                     <Balance>0.0</Balance>
+                     <EInvoiceReferenceProposal>90329807987</EInvoiceReferenceProposal>
+                  </MainInvoiceInfo-101>
+                  <CustomerInfo-103>
+                     <Name>Norhagen</Name>
+                     <Name2>Rune Erik</Name2>
+                     <Address1>Skytta Terrasse 3</Address1>
+                     <Address2 />
+                     <PostalCode>1481</PostalCode>
+                     <City>HAGAN</City>
+                     <CountryCode>N</CountryCode>
+                     <Country>Norge</Country>
+                     <Address3 />
+                     <Address4 />
+                     <Address5 />
+                     <PersIdNo-CoRegNo>19670504</PersIdNo-CoRegNo>
+                     <PhoneNo />
+                     <MobilePhoneNo>48199556</MobilePhoneNo>
+                     <EmailAddress>messe.simensen.norhagen@gmail.com</EmailAddress>
+                     <CountryIsoCode103>NO</CountryIsoCode103>
+                  </CustomerInfo-103>
+                  <InvoiceAgreementInfo-105>
+                     <InvAgreementId>903298</InvAgreementId>
+                     <AgreementDate>2013-10-24</AgreementDate>
+                     <IndustryPrivate>P</IndustryPrivate>
+                     <InvoiceLabel />
+                     <InterestId>N</InterestId>
+                     <InterestRate>
+                        <Rate>0.0</Rate>
+                     </InterestRate>
+                     <PayerStatus />
+                     <AccountNo />
+                     <TotalPrinted>0.0</TotalPrinted>
+                     <TotalPrintedOtherInvoices>0.0</TotalPrintedOtherInvoices>
+                     <BIC-Customer />
+                     <IBAN-Customer />
+                  </InvoiceAgreementInfo-105>
+                  <Pass-ThroughInvoiceInfo-109>
+                     <FirstInvoice>0</FirstInvoice>
+                     <ExtCustRef />
+                     <ToDate />
+                  </Pass-ThroughInvoiceInfo-109>
+                  <InvoiceOrder>
+                     <InvoiceOrderInfo-110>
+                        <StartDate>2013-10-24</StartDate>
+                        <BillingGroup>PM3</BillingGroup>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                        <CloseCode />
+                        <TotalPrinted>0.0</TotalPrinted>
+                        <ShortTimeSA>F</ShortTimeSA>
+                        <IndustryCode />
+                        <B-AccountCode>J</B-AccountCode>
+                        <InvoiceType>B</InvoiceType>
+                        <ConsumptionCode>35</ConsumptionCode>
+                        <AreaId>0</AreaId>
+                        <LDC1>Hafslund Nett AS</LDC1>
+                        <LDC2>Drammensveien 144</LDC2>
+                        <Supplier1>Fjordkraft AS</Supplier1>
+                        <Supplier2 />
+                        <B-AccountText>Beregnet beløp for perioden</B-AccountText>
+                        <Amount>52505.75</Amount>
+                        <Instlmnt>3</Instlmnt>
+                        <ActivityId>2</ActivityId>
+                        <ActivityType>EL</ActivityType>
+                        <ActivitySubType>OM</ActivitySubType>
+                        <ActivityName>Fjordkraft AS</ActivityName>
+                        <CompanyRegNo>976944682</CompanyRegNo>
+                        <UtilityAccountNo>15031934610</UtilityAccountNo>
+                        <ActivitySubTypeName>Omsetning</ActivitySubTypeName>
+                        <YearEffect>0.0</YearEffect>
+                        <ActivityCloseable>N</ActivityCloseable>
+                     </InvoiceOrderInfo-110>
+                     <ReadingInfo-111>
+                        <StartDate>2017-02-01</StartDate>
+                        <EndDate>2017-04-01</EndDate>
+                        <MeterId>-502887194</MeterId>
+                        <StartReading>0.0</StartReading>
+                        <FinalC-Reading>6190.0</FinalC-Reading>
+                        <AreaFactor>1.0</AreaFactor>
+                        <FixedPricePeriodStart>2017-01-01</FixedPricePeriodStart>
+                        <FixedPricePeriodEnd>2017-04-01</FixedPricePeriodEnd>
+                        <TotalDigits>8</TotalDigits>
+                        <TotalDecimals>3</TotalDecimals>
+                        <Method>1</Method>
+                        <MethodStartReading>1</MethodStartReading>
+                        <MethodFinalC-Reading>6190.0</MethodFinalC-Reading>
+                        <V-Reading>S</V-Reading>
+                        <ProdCounterNo>1</ProdCounterNo>
+                        <MeterCounterNo>1</MeterCounterNo>
+                        <Denomination>KWH</Denomination>
+                        <TotalDays>59</TotalDays>
+                        <Description />
+                        <FixedPricePeriodDays>90</FixedPricePeriodDays>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                        <TotConsCurrCounter>87325.0</TotConsCurrCounter>
+                        <MeterIdNew>-502887194</MeterIdNew>
+                     </ReadingInfo-111>
+                     <LastReading-112>
+                        <DateRead>2017-04-01</DateRead>
+                        <ReadingMethod>1</ReadingMethod>
+                        <MeterCounter1>1</MeterCounter1>
+                        <C-Reading1>6190.0</C-Reading1>
+                        <MethodText>Avlest av everket</MethodText>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                     </LastReading-112>
+                     <InvoiceOrderAmounts-113>
+                        <GrossSettled>52505.75</GrossSettled>
+                        <NetSettled>42004.6</NetSettled>
+                        <VatSettled>10501.15</VatSettled>
+                        <GrossB-Account>0.0</GrossB-Account>
+                        <NetB-Account>0.0</NetB-Account>
+                        <VatB-Account>0.0</VatB-Account>
+                        <BAccountTermNo>0</BAccountTermNo>
+                        <GrossWriteBacks>0.0</GrossWriteBacks>
+                        <NetWriteBacks>0.0</NetWriteBacks>
+                        <VatWriteBacks>0.0</VatWriteBacks>
+                        <GrossMisc>0.0</GrossMisc>
+                        <NetMisc>0.0</NetMisc>
+                        <VatMisc>0.0</VatMisc>
+                        <GrossItem>0.0</GrossItem>
+                        <NetItem>0.0</NetItem>
+                        <VatItem>0.0</VatItem>
+                        <VatTotal>10501.15</VatTotal>
+                        <GrossTax>0.0</GrossTax>
+                        <NetTotal>42004.6</NetTotal>
+                        <GrossTotal>52505.75</GrossTotal>
+                        <GrossSettledAndWriteBacks>52505.75</GrossSettledAndWriteBacks>
+                        <NetSettledAndWriteBacks>42004.6</NetSettledAndWriteBacks>
+                        <VatSettledAndWriteBacks>10501.15</VatSettledAndWriteBacks>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                        <NetWithTax>42004.6</NetWithTax>
+                        <GrossWithTax>52505.75</GrossWithTax>
+                        <NetNoTax>0.0</NetNoTax>
+                     </InvoiceOrderAmounts-113>
+                     <VatSpecInvoiceOrder-114>
+                        <VatRate>25.0</VatRate>
+                        <SumBasis>42004.6</SumBasis>
+                        <SumVat>10501.15</SumVat>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                     </VatSpecInvoiceOrder-114>
+                     <PriceInfo-116>
+                        <StatisticCode>F</StatisticCode>
+                        <Gross>49.0</Gross>
+                        <PriceCode>T1</PriceCode>
+                        <Description>Fastbeløp</Description>
+                        <Designation>kr/mnd</Designation>
+                        <PriceDate>2017-04-04</PriceDate>
+                        <Gross_high_precision>49.0</Gross_high_precision>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                     </PriceInfo-116>
+                     <PriceInfo-116>
+                        <StatisticCode>2</StatisticCode>
+                        <Gross>0.5399</Gross>
+                        <PriceCode>27</PriceCode>
+                        <Description>Strømpris</Description>
+                        <Designation>øre/kWh</Designation>
+                        <PriceDate>2017-04-04</PriceDate>
+                        <Gross_high_precision>0.5399</Gross_high_precision>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                     </PriceInfo-116>
+                     <SupplyPointInfo-117>
+                        <SupplyPointId />
+                        <InstlnId />
+                        <StreetNo>Skytta terrasse 3</StreetNo>
+                        <Description />
+                        <MeterId>-502887194</MeterId>
+                        <ActivityType>EL</ActivityType>
+                        <MeterLocationId>0</MeterLocationId>
+                        <ObjectId>707057500056189972</ObjectId>
+                        <GridArea />
+                        <Address1 />
+                        <Address2 />
+                        <Address3 />
+                        <Address4 />
+                        <Address5 />
+                        <MeterCode />
+                        <InstSign />
+                        <HousingCooperative />
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                        <JunctionId />
+                        <JunctionDescription />
+                        <readingMateriel />
+                        <MeterIdNew>-502887194</MeterIdNew>
+                     </SupplyPointInfo-117>
+                     <ProductParameters-118>
+                        <ProdId>FKPG</ProdId>
+                        <Field1>0</Field1>
+                        <Field2>0</Field2>
+                        <Field3>15.0</Field3>
+                        <Field4>0.0</Field4>
+                        <Field5>0.0</Field5>
+                        <Field6>0.0</Field6>
+                        <Field7>0.0</Field7>
+                        <Field8>0.0</Field8>
+                        <Field9>0.0</Field9>
+                        <Field10>0.0</Field10>
+                        <Field11>0.0</Field11>
+                        <Field12>0.0</Field12>
+                        <Field13>0.0</Field13>
+                        <Field14>0.0</Field14>
+                        <Field15>0.0</Field15>
+                        <Field16>0.0</Field16>
+                        <Field17>0.0</Field17>
+                        <Field18>0.0</Field18>
+                        <Field19>0.0</Field19>
+                        <Field20>0.0</Field20>
+                        <Label1 />
+                        <Label2>Fornybar</Label2>
+                        <Label3>Avtalenr</Label3>
+                        <Label4 />
+                        <Label5 />
+                        <Label6 />
+                        <Label7 />
+                        <Label8 />
+                        <Label9 />
+                        <Label10 />
+                        <Label11 />
+                        <Label12 />
+                        <Label13 />
+                        <Label14 />
+                        <Label15 />
+                        <Label16 />
+                        <Label17 />
+                        <Label18 />
+                        <Label19 />
+                        <Label20 />
+                        <Description>Fjordkraft Prisgaranti</Description>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                     </ProductParameters-118>
+                     <InvoiceLine-120>
+                        <StartDate>2017-01-01</StartDate>
+                        <EndDate>2017-01-23</EndDate>
+                        <StartMonth>Januar</StartMonth>
+                        <EndMonth>Januar</EndMonth>
+                        <Net>28345.45</Net>
+                        <Gross>35431.81</Gross>
+                        <StatisticCode>2</StatisticCode>
+                        <VatRate>25.0</VatRate>
+                        <SuppCode />
+                        <Text>Strømpris</Text>
+                        <PriceCode>27</PriceCode>
+                        <PriceRate>0.49592</PriceRate>
+                        <Basis>57157.305</Basis>
+                        <NoOfDays>22</NoOfDays>
+                        <OldC-Reading>25948.0</OldC-Reading>
+                        <FinalC-Reading>83105.305</FinalC-Reading>
+                        <TotalTaxPrice>0.0</TotalTaxPrice>
+                        <UnitCode />
+                        <ProdId>FKPG</ProdId>
+                        <ProdDenomination>kWh</ProdDenomination>
+                        <GrossPrice>0.6199</GrossPrice>
+                        <TotalGross>35431.81</TotalGross>
+                        <PriceDenomination>øre/kWh</PriceDenomination>
+                        <MiscCode>0</MiscCode>
+                        <B-Account />
+                        <Type>AVL</Type>
+                        <VAT>7086.36</VAT>
+                        <DiscPercent>0.0</DiscPercent>
+                        <GrossPriceWithoutTax>0.6199</GrossPriceWithoutTax>
+                        <TotalGrossWithoutTax>35431.81</TotalGrossWithoutTax>
+                        <TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision>
+                        <GrossPrice_high_precision>0.6199</GrossPrice_high_precision>
+                        <GrossPriceWithoutTax_high_precision>0.6199</GrossPriceWithoutTax_high_precision>
+                        <ActivityType>EL</ActivityType>
+                        <ActivitySubType>OM</ActivitySubType>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                        <ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice>
+                        <PriceDenominationGross>øre/kWh</PriceDenominationGross>
+                        <PriceDenominationGrossWithoutTax>øre/kWh</PriceDenominationGrossWithoutTax>
+                        <PriceDenominationTax />
+                        <MiscCodeNew>0</MiscCodeNew>
+                        <TextNew>Strømpris</TextNew>
+                        <DiscAmount>-28345.45</DiscAmount>
+                        <SuppSubscriptionPrice>0.0</SuppSubscriptionPrice>
+                        <FireValue>0.0</FireValue>
+                        <ProductSaleId>0</ProductSaleId>
+                     </InvoiceLine-120>
+                     <InvoiceLine-120>
+                        <StartDate>2017-01-23</StartDate>
+                        <EndDate>2017-01-31</EndDate>
+                        <StartMonth>Januar</StartMonth>
+                        <EndMonth>Januar</EndMonth>
+                        <Net>9717.25</Net>
+                        <Gross>12146.57</Gross>
+                        <StatisticCode>2</StatisticCode>
+                        <VatRate>25.0</VatRate>
+                        <SuppCode />
+                        <Text>Strømpris</Text>
+                        <PriceCode>27</PriceCode>
+                        <PriceRate>0.45592</PriceRate>
+                        <Basis>21313.508</Basis>
+                        <NoOfDays>8</NoOfDays>
+                        <OldC-Reading>83105.305</OldC-Reading>
+                        <FinalC-Reading>104418.81</FinalC-Reading>
+                        <TotalTaxPrice>0.0</TotalTaxPrice>
+                        <UnitCode />
+                        <ProdId>FKPG</ProdId>
+                        <ProdDenomination>kWh</ProdDenomination>
+                        <GrossPrice>0.5699</GrossPrice>
+                        <TotalGross>12146.57</TotalGross>
+                        <PriceDenomination>øre/kWh</PriceDenomination>
+                        <MiscCode>0</MiscCode>
+                        <B-Account />
+                        <Type>AVL</Type>
+                        <VAT>2429.32</VAT>
+                        <DiscPercent>0.0</DiscPercent>
+                        <GrossPriceWithoutTax>0.5699</GrossPriceWithoutTax>
+                        <TotalGrossWithoutTax>12146.57</TotalGrossWithoutTax>
+                        <TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision>
+                        <GrossPrice_high_precision>0.5699</GrossPrice_high_precision>
+                        <GrossPriceWithoutTax_high_precision>0.5699</GrossPriceWithoutTax_high_precision>
+                        <ActivityType>EL</ActivityType>
+                        <ActivitySubType>OM</ActivitySubType>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                        <ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice>
+                        <PriceDenominationGross>øre/kWh</PriceDenominationGross>
+                        <PriceDenominationGrossWithoutTax>øre/kWh</PriceDenominationGrossWithoutTax>
+                        <PriceDenominationTax />
+                        <MiscCodeNew>0</MiscCodeNew>
+                        <TextNew>Strømpris</TextNew>
+                        <DiscAmount>-9717.25</DiscAmount>
+                        <SuppSubscriptionPrice>0.0</SuppSubscriptionPrice>
+                        <FireValue>0.0</FireValue>
+                        <ProductSaleId>0</ProductSaleId>
+                     </InvoiceLine-120>
+                     <InvoiceLine-120>
+                        <StartDate>2017-01-31</StartDate>
+                        <EndDate>2017-02-01</EndDate>
+                        <StartMonth>Januar</StartMonth>
+                        <EndMonth>Februar</EndMonth>
+                        <Net>1150.72</Net>
+                        <Gross>1438.39</Gross>
+                        <StatisticCode>2</StatisticCode>
+                        <VatRate>25.0</VatRate>
+                        <SuppCode />
+                        <Text>Strømpris</Text>
+                        <PriceCode>27</PriceCode>
+                        <PriceRate>0.43192</PriceRate>
+                        <Basis>2664.189</Basis>
+                        <NoOfDays>1</NoOfDays>
+                        <OldC-Reading>104418.81</OldC-Reading>
+                        <FinalC-Reading>107083.0</FinalC-Reading>
+                        <TotalTaxPrice>0.0</TotalTaxPrice>
+                        <UnitCode />
+                        <ProdId>FKPG</ProdId>
+                        <ProdDenomination>kWh</ProdDenomination>
+                        <GrossPrice>0.5399</GrossPrice>
+                        <TotalGross>1438.39</TotalGross>
+                        <PriceDenomination>øre/kWh</PriceDenomination>
+                        <MiscCode>0</MiscCode>
+                        <B-Account />
+                        <Type>AVL</Type>
+                        <VAT>287.67</VAT>
+                        <DiscPercent>0.0</DiscPercent>
+                        <GrossPriceWithoutTax>0.5399</GrossPriceWithoutTax>
+                        <TotalGrossWithoutTax>1438.39</TotalGrossWithoutTax>
+                        <TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision>
+                        <GrossPrice_high_precision>0.5399</GrossPrice_high_precision>
+                        <GrossPriceWithoutTax_high_precision>0.5399</GrossPriceWithoutTax_high_precision>
+                        <ActivityType>EL</ActivityType>
+                        <ActivitySubType>OM</ActivitySubType>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                        <ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice>
+                        <PriceDenominationGross>øre/kWh</PriceDenominationGross>
+                        <PriceDenominationGrossWithoutTax>øre/kWh</PriceDenominationGrossWithoutTax>
+                        <PriceDenominationTax />
+                        <MiscCodeNew>0</MiscCodeNew>
+                        <TextNew>Strømpris</TextNew>
+                        <DiscAmount>-1150.72</DiscAmount>
+                        <SuppSubscriptionPrice>0.0</SuppSubscriptionPrice>
+                        <FireValue>0.0</FireValue>
+                        <ProductSaleId>0</ProductSaleId>
+                     </InvoiceLine-120>
+                     <InvoiceLine-120>
+                        <StartDate>2017-02-01</StartDate>
+                        <EndDate>2017-04-01</EndDate>
+                        <StartMonth>Februar</StartMonth>
+                        <EndMonth>April</EndMonth>
+                        <Net>2673.58</Net>
+                        <Gross>3341.98</Gross>
+                        <StatisticCode>2</StatisticCode>
+                        <VatRate>25.0</VatRate>
+                        <SuppCode />
+                        <Text>Strømpris</Text>
+                        <PriceCode>27</PriceCode>
+                        <PriceRate>0.43192</PriceRate>
+                        <Basis>6190.0</Basis>
+                        <NoOfDays>59</NoOfDays>
+                        <OldC-Reading>0.0</OldC-Reading>
+                        <FinalC-Reading>6190.0</FinalC-Reading>
+                        <TotalTaxPrice>0.0</TotalTaxPrice>
+                        <UnitCode />
+                        <ProdId>FKPG</ProdId>
+                        <ProdDenomination>kWh</ProdDenomination>
+                        <GrossPrice>0.5399</GrossPrice>
+                        <TotalGross>3341.98</TotalGross>
+                        <PriceDenomination>øre/kWh</PriceDenomination>
+                        <MiscCode>0</MiscCode>
+                        <B-Account />
+                        <Type>AVL</Type>
+                        <VAT>668.4</VAT>
+                        <DiscPercent>0.0</DiscPercent>
+                        <GrossPriceWithoutTax>0.5399</GrossPriceWithoutTax>
+                        <TotalGrossWithoutTax>3341.98</TotalGrossWithoutTax>
+                        <TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision>
+                        <GrossPrice_high_precision>0.5399</GrossPrice_high_precision>
+                        <GrossPriceWithoutTax_high_precision>0.5399</GrossPriceWithoutTax_high_precision>
+                        <ActivityType>EL</ActivityType>
+                        <ActivitySubType>OM</ActivitySubType>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                        <ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice>
+                        <PriceDenominationGross>øre/kWh</PriceDenominationGross>
+                        <PriceDenominationGrossWithoutTax>øre/kWh</PriceDenominationGrossWithoutTax>
+                        <PriceDenominationTax />
+                        <MiscCodeNew>0</MiscCodeNew>
+                        <TextNew>Strømpris</TextNew>
+                        <DiscAmount>-2673.58</DiscAmount>
+                        <SuppSubscriptionPrice>0.0</SuppSubscriptionPrice>
+                        <FireValue>0.0</FireValue>
+                        <ProductSaleId>0</ProductSaleId>
+                     </InvoiceLine-120>
+                     <InvoiceLine-120>
+                        <StartDate>2017-01-01</StartDate>
+                        <EndDate>2017-02-01</EndDate>
+                        <StartMonth>Januar</StartMonth>
+                        <EndMonth>Februar</EndMonth>
+                        <Net>0.0</Net>
+                        <Gross>0.0</Gross>
+                        <StatisticCode>R</StatisticCode>
+                        <VatRate>25.0</VatRate>
+                        <SuppCode />
+                        <Text>Fornybar energi</Text>
+                        <PriceCode>G</PriceCode>
+                        <PriceRate>0.0</PriceRate>
+                        <Basis>81135.0</Basis>
+                        <NoOfDays>31</NoOfDays>
+                        <OldC-Reading>25948.0</OldC-Reading>
+                        <FinalC-Reading>107083.0</FinalC-Reading>
+                        <TotalTaxPrice>0.0</TotalTaxPrice>
+                        <UnitCode />
+                        <ProdId>FKPG</ProdId>
+                        <ProdDenomination>kWh</ProdDenomination>
+                        <GrossPrice>0.0</GrossPrice>
+                        <TotalGross>0.0</TotalGross>
+                        <PriceDenomination />
+                        <MiscCode>0</MiscCode>
+                        <B-Account />
+                        <Type>AVL</Type>
+                        <VAT>0.0</VAT>
+                        <DiscPercent>0.0</DiscPercent>
+                        <GrossPriceWithoutTax>0.0</GrossPriceWithoutTax>
+                        <TotalGrossWithoutTax>0.0</TotalGrossWithoutTax>
+                        <TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision>
+                        <GrossPrice_high_precision>0.0</GrossPrice_high_precision>
+                        <GrossPriceWithoutTax_high_precision>0.0</GrossPriceWithoutTax_high_precision>
+                        <ActivityType>EL</ActivityType>
+                        <ActivitySubType>OM</ActivitySubType>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                        <ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice>
+                        <PriceDenominationGross />
+                        <PriceDenominationGrossWithoutTax />
+                        <PriceDenominationTax />
+                        <MiscCodeNew>0</MiscCodeNew>
+                        <TextNew>Fornybar energi</TextNew>
+                        <DiscAmount>0.0</DiscAmount>
+                        <SuppSubscriptionPrice>0.0</SuppSubscriptionPrice>
+                        <FireValue>0.0</FireValue>
+                        <ProductSaleId>0</ProductSaleId>
+                     </InvoiceLine-120>
+                     <InvoiceLine-120>
+                        <StartDate>2017-02-01</StartDate>
+                        <EndDate>2017-04-01</EndDate>
+                        <StartMonth>Februar</StartMonth>
+                        <EndMonth>April</EndMonth>
+                        <Net>0.0</Net>
+                        <Gross>0.0</Gross>
+                        <StatisticCode>R</StatisticCode>
+                        <VatRate>25.0</VatRate>
+                        <SuppCode />
+                        <Text>Fornybar energi</Text>
+                        <PriceCode>G</PriceCode>
+                        <PriceRate>0.0</PriceRate>
+                        <Basis>6190.0</Basis>
+                        <NoOfDays>59</NoOfDays>
+                        <OldC-Reading>0.0</OldC-Reading>
+                        <FinalC-Reading>6190.0</FinalC-Reading>
+                        <TotalTaxPrice>0.0</TotalTaxPrice>
+                        <UnitCode />
+                        <ProdId>FKPG</ProdId>
+                        <ProdDenomination>kWh</ProdDenomination>
+                        <GrossPrice>0.0</GrossPrice>
+                        <TotalGross>0.0</TotalGross>
+                        <PriceDenomination />
+                        <MiscCode>0</MiscCode>
+                        <B-Account />
+                        <Type>AVL</Type>
+                        <VAT>0.0</VAT>
+                        <DiscPercent>0.0</DiscPercent>
+                        <GrossPriceWithoutTax>0.0</GrossPriceWithoutTax>
+                        <TotalGrossWithoutTax>0.0</TotalGrossWithoutTax>
+                        <TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision>
+                        <GrossPrice_high_precision>0.0</GrossPrice_high_precision>
+                        <GrossPriceWithoutTax_high_precision>0.0</GrossPriceWithoutTax_high_precision>
+                        <ActivityType>EL</ActivityType>
+                        <ActivitySubType>OM</ActivitySubType>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                        <ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice>
+                        <PriceDenominationGross />
+                        <PriceDenominationGrossWithoutTax />
+                        <PriceDenominationTax />
+                        <MiscCodeNew>0</MiscCodeNew>
+                        <TextNew>Fornybar energi</TextNew>
+                        <DiscAmount>0.0</DiscAmount>
+                        <SuppSubscriptionPrice>0.0</SuppSubscriptionPrice>
+                        <FireValue>0.0</FireValue>
+                        <ProductSaleId>0</ProductSaleId>
+                     </InvoiceLine-120>
+                     <InvoiceLine-120>
+                        <StartDate>2017-01-01</StartDate>
+                        <EndDate>2017-04-01</EndDate>
+                        <StartMonth>Januar</StartMonth>
+                        <EndMonth>April</EndMonth>
+                        <Net>117.6</Net>
+                        <Gross>147.0</Gross>
+                        <StatisticCode>F</StatisticCode>
+                        <VatRate>25.0</VatRate>
+                        <SuppCode />
+                        <Text>Fastbeløp</Text>
+                        <PriceCode>T1</PriceCode>
+                        <PriceRate>39.2</PriceRate>
+                        <Basis>1.0</Basis>
+                        <NoOfDays>90</NoOfDays>
+                        <OldC-Reading>0.0</OldC-Reading>
+                        <FinalC-Reading>1.0</FinalC-Reading>
+                        <TotalTaxPrice>0.0</TotalTaxPrice>
+                        <UnitCode />
+                        <ProdId>FKPG</ProdId>
+                        <ProdDenomination />
+                        <GrossPrice>49.0</GrossPrice>
+                        <TotalGross>147.0</TotalGross>
+                        <PriceDenomination>kr/mnd</PriceDenomination>
+                        <MiscCode>0</MiscCode>
+                        <B-Account />
+                        <Type>APB</Type>
+                        <VAT>29.4</VAT>
+                        <DiscPercent>0.0</DiscPercent>
+                        <GrossPriceWithoutTax>49.0</GrossPriceWithoutTax>
+                        <TotalGrossWithoutTax>147.0</TotalGrossWithoutTax>
+                        <TotalTaxPrice_high_precision>0.0</TotalTaxPrice_high_precision>
+                        <GrossPrice_high_precision>49.0</GrossPrice_high_precision>
+                        <GrossPriceWithoutTax_high_precision>49.0</GrossPriceWithoutTax_high_precision>
+                        <ActivityType>EL</ActivityType>
+                        <ActivitySubType>OM</ActivitySubType>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                        <ProductCodePass-ThroughInvoice>0</ProductCodePass-ThroughInvoice>
+                        <PriceDenominationGross>kr/mnd</PriceDenominationGross>
+                        <PriceDenominationGrossWithoutTax>kr/mnd</PriceDenominationGrossWithoutTax>
+                        <PriceDenominationTax />
+                        <MiscCodeNew>0</MiscCodeNew>
+                        <TextNew>Fastbeløp</TextNew>
+                        <DiscAmount>-117.6</DiscAmount>
+                        <SuppSubscriptionPrice>0.0</SuppSubscriptionPrice>
+                        <FireValue>0.0</FireValue>
+                        <ProductSaleId>0</ProductSaleId>
+                     </InvoiceLine-120>
+                     <YearlyConsumption-123>
+                        <AnnualConsumption>3078</AnnualConsumption>
+                        <B-AccountAmount>190.0</B-AccountAmount>
+                        <PriceDate>2017-04-04</PriceDate>
+                     </YearlyConsumption-123>
+                     <GenInfoInvoiceOrder-125>
+                        <TextCode>FJOR</TextCode>
+                        <PageIndicator>B</PageIndicator>
+                        <Text>Fra 01.07.2013 oppdaterer vi våre betalingsvilkår.</Text>
+                        <ActivityType>EL</ActivityType>
+                        <ActivitySubType>OM</ActivitySubType>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                     </GenInfoInvoiceOrder-125>
+                     <GenInfoInvoiceOrder-125>
+                        <TextCode>FJOR</TextCode>
+                        <PageIndicator>B</PageIndicator>
+                        <Text>Se www.fjordkraft.no/avtalevilkar for mer informasjon</Text>
+                        <ActivityType>EL</ActivityType>
+                        <ActivitySubType>OM</ActivitySubType>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                     </GenInfoInvoiceOrder-125>
+                     <ConsumptionPillars-132>
+                        <PeriodDescription1>MAR</PeriodDescription1>
+                        <LastYearConsumption1>1082.0</LastYearConsumption1>
+                        <ThisYearConsumption1>3201.0</ThisYearConsumption1>
+                        <PeriodDescription2>FEB</PeriodDescription2>
+                        <LastYearConsumption2>1227.0</LastYearConsumption2>
+                        <ThisYearConsumption2>2989.0</ThisYearConsumption2>
+                        <PeriodDescription3>JAN</PeriodDescription3>
+                        <LastYearConsumption3>1585.0</LastYearConsumption3>
+                        <ThisYearConsumption3>81135.0</ThisYearConsumption3>
+                        <PeriodDescription4>DES</PeriodDescription4>
+                        <LastYearConsumption4>1302.0</LastYearConsumption4>
+                        <ThisYearConsumption4>359.0</ThisYearConsumption4>
+                        <PeriodDescription5>NOV</PeriodDescription5>
+                        <LastYearConsumption5>1149.0</LastYearConsumption5>
+                        <ThisYearConsumption5>1865.0</ThisYearConsumption5>
+                        <PeriodDescription6>OKT</PeriodDescription6>
+                        <LastYearConsumption6>958.0</LastYearConsumption6>
+                        <ThisYearConsumption6>156.0</ThisYearConsumption6>
+                        <PeriodDescription7>SEP</PeriodDescription7>
+                        <LastYearConsumption7>692.0</LastYearConsumption7>
+                        <ThisYearConsumption7>92.0</ThisYearConsumption7>
+                        <PeriodDescription8>AUG</PeriodDescription8>
+                        <LastYearConsumption8>581.0</LastYearConsumption8>
+                        <ThisYearConsumption8>0.0</ThisYearConsumption8>
+                        <PeriodDescription9>JUL</PeriodDescription9>
+                        <LastYearConsumption9>710.0</LastYearConsumption9>
+                        <ThisYearConsumption9>433.0</ThisYearConsumption9>
+                        <PeriodDescription10>JUN</PeriodDescription10>
+                        <LastYearConsumption10>6321.0</LastYearConsumption10>
+                        <ThisYearConsumption10>478.0</ThisYearConsumption10>
+                        <PeriodDescription11>MAI</PeriodDescription11>
+                        <LastYearConsumption11>556.0</LastYearConsumption11>
+                        <ThisYearConsumption11>650.0</ThisYearConsumption11>
+                        <PeriodDescription12>APR</PeriodDescription12>
+                        <LastYearConsumption12>564.0</LastYearConsumption12>
+                        <ThisYearConsumption12>869.0</ThisYearConsumption12>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                     </ConsumptionPillars-132>
+                     <Consumptions>
+                        <Consumption>
+                           <ConsumptionSequence>1</ConsumptionSequence>
+                           <PeriodDescription>MAR</PeriodDescription>
+                           <LastYearConsumption>1082.0</LastYearConsumption>
+                           <ThisYearConsumption>3201.0</ThisYearConsumption>
+                        </Consumption>
+                        <Consumption>
+                           <ConsumptionSequence>2</ConsumptionSequence>
+                           <PeriodDescription>FEB</PeriodDescription>
+                           <LastYearConsumption>1227.0</LastYearConsumption>
+                           <ThisYearConsumption>2989.0</ThisYearConsumption>
+                        </Consumption>
+                        <Consumption>
+                           <ConsumptionSequence>3</ConsumptionSequence>
+                           <PeriodDescription>JAN</PeriodDescription>
+                           <LastYearConsumption>1585.0</LastYearConsumption>
+                           <ThisYearConsumption>81135.0</ThisYearConsumption>
+                        </Consumption>
+                        <Consumption>
+                           <ConsumptionSequence>4</ConsumptionSequence>
+                           <PeriodDescription>DES</PeriodDescription>
+                           <LastYearConsumption>1302.0</LastYearConsumption>
+                           <ThisYearConsumption>359.0</ThisYearConsumption>
+                        </Consumption>
+                        <Consumption>
+                           <ConsumptionSequence>5</ConsumptionSequence>
+                           <PeriodDescription>NOV</PeriodDescription>
+                           <LastYearConsumption>1149.0</LastYearConsumption>
+                           <ThisYearConsumption>1865.0</ThisYearConsumption>
+                        </Consumption>
+                        <Consumption>
+                           <ConsumptionSequence>6</ConsumptionSequence>
+                           <PeriodDescription>OKT</PeriodDescription>
+                           <LastYearConsumption>958.0</LastYearConsumption>
+                           <ThisYearConsumption>156.0</ThisYearConsumption>
+                        </Consumption>
+                        <Consumption>
+                           <ConsumptionSequence>7</ConsumptionSequence>
+                           <PeriodDescription>SEP</PeriodDescription>
+                           <LastYearConsumption>692.0</LastYearConsumption>
+                           <ThisYearConsumption>92.0</ThisYearConsumption>
+                        </Consumption>
+                        <Consumption>
+                           <ConsumptionSequence>8</ConsumptionSequence>
+                           <PeriodDescription>AUG</PeriodDescription>
+                           <LastYearConsumption>581.0</LastYearConsumption>
+                           <ThisYearConsumption>0.0</ThisYearConsumption>
+                        </Consumption>
+                        <Consumption>
+                           <ConsumptionSequence>9</ConsumptionSequence>
+                           <PeriodDescription>JUL</PeriodDescription>
+                           <LastYearConsumption>710.0</LastYearConsumption>
+                           <ThisYearConsumption>433.0</ThisYearConsumption>
+                        </Consumption>
+                        <Consumption>
+                           <ConsumptionSequence>10</ConsumptionSequence>
+                           <PeriodDescription>JUN</PeriodDescription>
+                           <LastYearConsumption>6321.0</LastYearConsumption>
+                           <ThisYearConsumption>478.0</ThisYearConsumption>
+                        </Consumption>
+                        <Consumption>
+                           <ConsumptionSequence>11</ConsumptionSequence>
+                           <PeriodDescription>MAI</PeriodDescription>
+                           <LastYearConsumption>556.0</LastYearConsumption>
+                           <ThisYearConsumption>650.0</ThisYearConsumption>
+                        </Consumption>
+                        <Consumption>
+                           <ConsumptionSequence>12</ConsumptionSequence>
+                           <PeriodDescription>APR</PeriodDescription>
+                           <LastYearConsumption>564.0</LastYearConsumption>
+                           <ThisYearConsumption>869.0</ThisYearConsumption>
+                        </Consumption>
+                     </Consumptions>
+                     <InvoiceOrderEndRecord-134>
+                        <BillingGroup>PM3</BillingGroup>
+                        <ServiceAgreeSerialNo>1</ServiceAgreeSerialNo>
+                     </InvoiceOrderEndRecord-134>
+                  </InvoiceOrder>
+                  <VatSpecInvoice-142>
+                     <VatRate>25.0</VatRate>
+                     <SumBasis>42004.6</SumBasis>
+                     <SumVat>10501.15</SumVat>
+                  </VatSpecInvoice-142>
+                  <InvoiceEndRecord-199>
+                     <TotalLines>28</TotalLines>
+                     <InvoiceNo>249</InvoiceNo>
+                  </InvoiceEndRecord-199>
+               </Invoice>
+            </VEDLEGG_EMUXML>
+            <VEDLEGG_E2B />
+         </FAKTURA>
+      </Attachment>
+   </Attachments>
+   <TaxReport />
+   <DirectDebitAmount />
+   <DirectDebitAgreementDate />
+   <DirectDebitBasetype />
+   <LegalPartClass>Individual</LegalPartClass>
+   <MinClaimFixedAmount />
+   <BudgetStatementAmount>0.0</BudgetStatementAmount>
+   <RecommendedStatementAmount>37592.05</RecommendedStatementAmount>
+   <Collection />
+   <AccountType>
+      <Code>INVACC</Code>
+      <Name>Post-Mot-Post</Name>
+   </AccountType>
+   <AccountCategory>
+      <Code>FPMS</Code>
+      <Name>FPMS</Name>
+   </AccountCategory>
+   <Version>1</Version>
+   <StatementType>Invoice</StatementType>
+   <CreditedInvoice />
+</Statement>
