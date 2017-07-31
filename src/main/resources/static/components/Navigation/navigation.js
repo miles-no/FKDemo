@@ -18,6 +18,7 @@ function navigationController($state, $scope,$rootScope, $http){
   this.navigateTo = function (url) {
     if (! url){
       $state.go('home');
+      this.activeMenu = 'home';
     }else{
       this.activeMenu = url;
       this.showMenu = !this.showMenu;
