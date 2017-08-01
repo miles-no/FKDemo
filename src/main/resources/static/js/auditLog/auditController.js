@@ -13,6 +13,16 @@ app.controller('auditLogController',function($scope,$http,moment){
     })
   }
 
+  //$.('audit-ellipsis').on('mouseover',function(){
+  //  if ()
+  //})
+
+  $scope.showHiddenText = function(elem){
+    if (elem.style.overflow == 'hidden'){
+      elem.style = 'initial';
+    }
+  }
+
   $scope.onPageChanged = function(pageChangedTo){
     $scope.getLogs(pageChangedTo)
   }
@@ -20,6 +30,8 @@ app.controller('auditLogController',function($scope,$http,moment){
   $scope.getForamttedDate = function(date){
     return (date ? moment(date) : moment()).format('YYYY-MM-DD');
   }
+
+
 
   $scope.init = function(){
     $scope.pageSize = 10;

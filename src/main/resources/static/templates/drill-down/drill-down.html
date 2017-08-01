@@ -4,7 +4,7 @@
     <div class="col-md-12 overview-filters">
         <div class="col-md-4">
             <div class="row form-group">
-                <label class="control-label col-md-2">State</label>
+                <label class="control-label col-md-2 label-align">State</label>
                 <div class="col-md-6">
                     <ui-select multiple ng-model="states" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
                         <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
@@ -14,44 +14,37 @@
                     </ui-select>
                 </div>
             </div>
-            <!--<div class="row form-group">
-                <label class="control-label col-md-2">Filter</label>
-                <div class="col-md-8">
-                    <input type="text">
-                </div>
-            </div>-->
-            <div class="row form-group">
-                <label class="control-label col-md-2">Invoice</label>
-                <div class="col-md-10">
-                    <input type="text" theme="bootstrap" ng-model="invoiceNumber" ng-change="getOverviewDetails()">
-                </div>
-            </div>
+            <!--<div class="row form-group">-->
+                <!--<label class="control-label col-md-2">Invoice</label>-->
+                <!--<div class="col-md-6">-->
+                    <!--<input type="text" class="form-control" theme="bootstrap" ng-model="invoiceNumber" ng-change="getOverviewDetails()">-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
         <div class="col-md-4">
             <div class="row form-group">
-                <label class="control-label col-md-2">From</label>
-                <div class="col-md-8">
-                    <input type="text" ng-model="fromDate"  datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">
-                </div>
-            </div>
-            <div class="row form-group">
-                <label class="control-label col-md-2">Brand</label>
+                <label class="control-label col-md-2 label-align">From</label>
                 <div class="col-md-6">
-                    <ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="onBrandRemoval($item, $model)"on-select="onBrandSelect($item, $model)">
-                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
-                        <ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>
-                            <div ng-bind-html="eachBrand | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
+                    <input type="text" ng-model="fromDate" class="form-control" datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">
                 </div>
             </div>
+            <!--<div class="row form-group">-->
+                <!--<label class="control-label col-md-2">Brand</label>-->
+                <!--<div class="col-md-6">-->
+                    <!--<ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="onBrandRemoval($item, $model)"on-select="onBrandSelect($item, $model)">-->
+                        <!--<ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>-->
+                        <!--<ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>-->
+                            <!--<div ng-bind-html="eachBrand | highlight: $select.search"></div>-->
+                        <!--</ui-select-choices>-->
+                    <!--</ui-select>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label class="control-label col-md-2">To</label>
-                <div class="col-md-8">
-                   <input type="text" ng-model="toDate"  datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">
-                   <!--<circulartimepicker ng-model="date1"></circulartimepicker>-->
+                <label class="control-label col-md-2 label-align">To</label>
+                <div class="col-md-6">
+                   <input type="text" ng-model="toDate" class="form-control" datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">
                 </div>
             </div>
         </div>

@@ -2,6 +2,8 @@ var app = angular.module('invoiceManagerApp');
 
 app.controller('ManageBrandsController',function($scope, $q, $http,ModalService){
   $scope.brands =[];
+  $scope.alerts =[];
+
   var newBrand = {
     brand: '',
     agreementNumber: '',
@@ -38,9 +40,6 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
     })
   }
 
-  //$scope.onPageChanged = function(pageChangedTo){
-  //  $scope.getOverviewDetails(pageChangedTo)
-  //}
 
   $scope.onBrandSelect = function(item){
     $scope.selectedBrands.push(item);
@@ -53,14 +52,9 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
     showSelectedBrands()
   }
   $scope.getBrands = function () {
-    //var queryParams = {
-    //  "page": pageNumber? pageNumber-1 : 0 ,
-    //  "size":$scope.pageSize
-    //}
+
     $http.get('/brand/config').then(function (response) {
       $scope.tableBrands= $scope.brands = response.data.Brand;
-      //$scope.totalPages = Math.ceil(response.data.TOTAL/$scope.pageSize);
-      //$scope.allBrands =  $scope.brands = response.data;
     })
   }
 
@@ -101,8 +95,16 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
       modal.element.modal();
       modal.close.then(function(result){
         if(result=='Delete'){
-          $http.delete('/brand/config/'+brand.id).then(function () {
-            $scope.getBrands();
+          $http.delete('/brand/config/'+brand.id).then(function (response) {
+            if (response.status === 200){
+              $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
+              $scope.getBrands();
+            }
+            else{
+              $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+            }
+          },function(err){
+            $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
           })
         }
       })
@@ -111,7 +113,7 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
 
   function showModal (brandInfo, type) {
     ModalService.showModal({
-      templateUrl: 'js/brands/manage-brands.html',
+      templateUrl: 'templates/brands/brandsPopup.html',
       controller: 'ManageBrandsPopupController',
       inputs: {
         options: {

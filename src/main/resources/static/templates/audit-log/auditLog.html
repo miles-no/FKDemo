@@ -35,13 +35,13 @@
         <table st-table="displayedCollection" st-safe-src="auditLog" class="table">
             <thead>
             <tr>
-                <th><span class="pointer">Action Id</span></th>
-                <th>Action</th>
-                <th>Action Type</th>
-                <th>Date</th>
-                <th>Log Type</th>
-                <th>Message</th>
-                <th>Username</th>
+                <th width="11%"><span class="pointer">Action Id</span></th>
+                <th width="14%">Action</th>
+                <th width="14%">Action Type</th>
+                <th width="14%">Date</th>
+                <th width="14%">Log Type</th>
+                <th width="19%">Message</th>
+                <th width="12%">Username</th>
             </tr>
             </thead>
             <tbody>
@@ -51,7 +51,7 @@
                 <td>{{logs.actionOnType}}</td>
                 <td>{{getForamttedDate(logs.dateTime)}}</td>
                 <td>{{logs.logType}}</td>
-                <td>{{logs.msg || "N/A"}}</td>
+                <td><span class="audit-ellipsis" ng-click="showHiddenText(this)">{{logs.msg || "N/A"}}</span></td>
                 <td>{{logs.userName}}</td>
             </tr>
             </tbody>

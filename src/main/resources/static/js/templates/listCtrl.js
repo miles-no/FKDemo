@@ -127,7 +127,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
   function showModal (layoutInfo, type) {
     console.log(layoutInfo)
       ModalService.showModal({
-          templateUrl: 'js/templates/listPopUp.html',
+          templateUrl: 'templates/template-management/templateManagementPopup.html',
           controller: 'listPopupController',
           inputs : {
               options: {

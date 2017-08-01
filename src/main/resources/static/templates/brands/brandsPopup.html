@@ -5,13 +5,13 @@
             <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title text-center">{{options.header}}</h4>
         </div>
-        <div class="modal-body {{options.classes.modalBody}}"  >
+        <div class="modal-body {{options.classes.modalBody}}">
             <div class="manage-brands">
                 <form name="brandValidations" class="form-horizontal" novalidate>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="brand">Brand</label>
                         <div class="col-sm-6">
-                            <input name="brand" type="text" class="form-control" ng-model="brand.brand" id="brand" ng-minlength="1" limit-to="20" permit-mask="\w" ng-pattern="/^$|^[A-Za-z0-9]+/" required>
+                            <input name="brand" type="text" class="form-control brand" ng-model="brand.brand" id="brand" ng-minlength="1" limit-to="20" permit-mask="\w" ng-pattern="/^$|^[A-Za-z0-9]+/" autofocus required>
                             <span class="error-msg" ng-show="brandValidations.brand.$invalid && brandValidations.brand.$touched">Field cannot be empty</span>
                         </div>
                     </div>

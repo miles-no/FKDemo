@@ -4,4 +4,7 @@ app.controller('ManageBrandsPopupController',function($scope,options,close){
   $scope.dismissModal = function(result){
     close(result,200);
   }
+  $(document).on('shown.bs.modal', '.modal', function() {
+    $(this).find('[autofocus]').focus();
+  });
 });

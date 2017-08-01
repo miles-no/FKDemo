@@ -97,7 +97,7 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
 
   function showModal (gridInfo, type) {
     ModalService.showModal({
-      templateUrl: 'js/grids/manage-grid.html',
+      templateUrl: 'templates/grids/gridsPopup.html',
       controller: 'popupController',
       inputs: {
         options: {

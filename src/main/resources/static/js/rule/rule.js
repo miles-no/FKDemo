@@ -97,7 +97,7 @@ app.controller('ruleController',function($scope,$http,ModalService){
 
   function showModal (ruleInfo, type) {
     ModalService.showModal({
-      templateUrl: 'js/rule/rulePopUp.html',
+      templateUrl: 'templates/template-attributes/templateAttributesPopup.html',
       controller: 'ManageRulePopupController',
       inputs: {
         options: {

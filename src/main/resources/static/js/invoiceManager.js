@@ -41,22 +41,22 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
             }
         }).state('listBrands',{
         url: '/brands',
-        templateUrl: 'js/brands/brands.html'
+        templateUrl: 'templates/brands/brands.html'
       }).state('listGrid',{
         url: '/grids',
-        templateUrl: 'js/grids/grid.html'
+        templateUrl: 'templates/grids/grids.html'
       }).state('templates',{
         url: '/templates',
-        templateUrl: 'js/templates/list.html'
+        templateUrl: 'templates/template-management/templateManagement.html'
       }).state('state_config',{
         url: '/state_config',
-        templateUrl: 'js/stateConfig/stateConfig.html'
+        templateUrl: 'templates/system-configurations/systemConfigurations.html'
       }).state('rule',{
         url: '/rule',
-        templateUrl: 'js/rule/rule.html'
+        templateUrl: 'templates/template-attributes/templateAttributes.html'
       }).state('audit_log',{
         url: '/audit_log',
-        templateUrl: 'js/auditLog/auditLog.html'
+        templateUrl: 'templates/audit-log/auditLog.html'
       });
     $urlRouterProvider.otherwise('/home');
 });
