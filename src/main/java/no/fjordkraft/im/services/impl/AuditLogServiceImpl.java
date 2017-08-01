@@ -25,7 +25,7 @@ public class AuditLogServiceImpl implements AuditLogService {
     AuditLogDetailRepository auditLogDetailRepository;
 
     @Override
-    public void saveAuditLog(Long actionOnId, String action, String msg, String logType) {
+    public void saveAuditLog(Long actionOnId, String action, String msg, String logType, String invoiceNo) {
         AuditLogRecord auditLogRecord = AuditLogRecord.logBuilder()
                 .withActionOnType(IMConstants.STATEMENT)
                 .withActionOnId(actionOnId)
@@ -34,6 +34,7 @@ public class AuditLogServiceImpl implements AuditLogService {
                 .withDateTime(new Timestamp(System.currentTimeMillis()))
                 .withUsername(IMConstants.SYSTEM)
                 .withLogType(logType)
+                .withInvoiceNo(invoiceNo)
                 .build();
 
         AuditLog auditLog = new AuditLog();
@@ -44,12 +45,13 @@ public class AuditLogServiceImpl implements AuditLogService {
         auditLog.setMsg(auditLogRecord.getMsg());
         auditLog.setDateTime(auditLogRecord.getDateTime());
         auditLog.setLogType(auditLogRecord.getLogType());
+        auditLog.setInvoiceNo(auditLogRecord.getInvoiceNo());
 
         auditLogRepository.saveAndFlush(auditLog);
     }
 
     @Override
-    public void saveAuditLog(String actionOnType, Long actionOnId, String action, String msg, String logType) {
+    public void saveAuditLog(String actionOnType, Long actionOnId, String action, String msg, String logType, String invoiceNo) {
         AuditLogRecord auditLogRecord = AuditLogRecord.logBuilder()
                 .withActionOnType(actionOnType)
                 .withActionOnId(actionOnId)
@@ -81,12 +83,12 @@ public class AuditLogServiceImpl implements AuditLogService {
     }
 
     @Override
-    public List<AuditLog> getAuditLogRecords(int page, int size, Timestamp fromTime, Timestamp toTime, String action, String actionOnType, Long actionOnId, String logType) {
-        return auditLogDetailRepository.getDetails(page, size, fromTime, toTime, action, actionOnType, actionOnId, logType);
+    public List<AuditLog> getAuditLogRecords(int page, int size, Timestamp fromTime, Timestamp toTime, String action, String actionOnType, Long actionOnId, String logType, String invoiceNo) {
+        return auditLogDetailRepository.getDetails(page, size, fromTime, toTime, action, actionOnType, actionOnId, logType, invoiceNo);
     }
 
     @Override
-    public Long getAuditLogRecordsCount(int page, int size, Timestamp fromTime, Timestamp toTime, String action, String actionOnType, Long actionOnId, String logType) {
-        return auditLogDetailRepository.getCount(page, size, fromTime, toTime, action, actionOnType, actionOnId, logType);
+    public Long getAuditLogRecordsCount(int page, int size, Timestamp fromTime, Timestamp toTime, String action, String actionOnType, Long actionOnId, String logType, String invoiceNo) {
+        return auditLogDetailRepository.getCount(page, size, fromTime, toTime, action, actionOnType, actionOnId, logType, invoiceNo);
     }
 }

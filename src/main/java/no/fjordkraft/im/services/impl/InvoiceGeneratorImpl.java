@@ -124,7 +124,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                 }
             } else {
                 auditLogService.saveAuditLog(IMConstants.ATTACH_PDF, statement.getId(), StatementStatusEnum.INVOICE_PROCESSING.getStatus(),
-                        "Attach_PDF not found", IMConstants.WARNING);
+                        "Attach_PDF not found", IMConstants.WARNING, statement.getInvoiceNumber());
             }
             pdfCombineUsingJava.close();
 

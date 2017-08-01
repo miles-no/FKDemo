@@ -24,7 +24,7 @@ public class AuditLogDetailRepository {
 
     @Transactional(readOnly = true)
     public List<AuditLog> getDetails(int page, int size, Timestamp fromTime, Timestamp toTime, String action,
-                                     String actionOnType, Long actionOnId, String logType) {
+                                     String actionOnType, Long actionOnId, String logType, String invoiceNo) {
 
         StringBuffer selectQuery = new StringBuffer();
         selectQuery.append("select a from AuditLog a where ");
@@ -36,6 +36,8 @@ public class AuditLogDetailRepository {
         selectQuery.append("(:actionOnId is null or a.actionOnId >= :actionOnId) ");
         selectQuery.append(AND);
         selectQuery.append("(:logType is null or a.logType >= :logType) ");
+        selectQuery.append(AND);
+        selectQuery.append("(:invoiceNo is null or a.invoiceNo >= :invoiceNo) ");
         selectQuery.append(AND);
         selectQuery.append("(:fromTime is null or a.dateTime >= :fromTime) ");
         selectQuery.append(AND);
@@ -50,7 +52,8 @@ public class AuditLogDetailRepository {
                 .setParameter("action", action)
                 .setParameter("actionOnType", actionOnType)
                 .setParameter("actionOnId", actionOnId)
-                .setParameter("logType", logType);
+                .setParameter("logType", logType)
+                .setParameter("invoiceNo", invoiceNo);
 
         List<AuditLog> auditLogList = query.getResultList();
         return auditLogList;
@@ -58,7 +61,7 @@ public class AuditLogDetailRepository {
 
     @Transactional(readOnly = true)
     public Long getCount(int page, int size, Timestamp fromTime, Timestamp toTime, String action,
-                                     String actionOnType, Long actionOnId, String logType) {
+                                     String actionOnType, Long actionOnId, String logType, String invoiceNo) {
 
         StringBuffer selectQuery = new StringBuffer();
         selectQuery.append("select count(a) from AuditLog a where ");
@@ -71,6 +74,8 @@ public class AuditLogDetailRepository {
         selectQuery.append(AND);
         selectQuery.append("(:logType is null or a.logType >= :logType) ");
         selectQuery.append(AND);
+        selectQuery.append("(:invoiceNo is null or a.invoiceNo >= :invoiceNo) ");
+        selectQuery.append(AND);
         selectQuery.append("(:fromTime is null or a.dateTime >= :fromTime) ");
         selectQuery.append(AND);
         selectQuery.append("(:toTime is null or a.dateTime <= :toTime) ");
@@ -82,7 +87,8 @@ public class AuditLogDetailRepository {
                 .setParameter("action", action)
                 .setParameter("actionOnType", actionOnType)
                 .setParameter("actionOnId", actionOnId)
-                .setParameter("logType", logType);
+                .setParameter("logType", logType)
+                .setParameter("invoiceNo", invoiceNo);
 
         Long count = (Long) query.getSingleResult();
         return count;

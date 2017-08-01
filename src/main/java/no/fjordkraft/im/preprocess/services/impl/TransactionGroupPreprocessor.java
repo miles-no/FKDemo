@@ -67,7 +67,7 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
                                     attachment.getFAKTURA().setFreeText(transaction.getFreeText());
                                     attachment.getFAKTURA().setGrid(getGridConfigInfo(attachment.getFAKTURA().getVEDLEGGEMUXML()
                                             .getInvoice().getInvoiceOrder().getInvoiceOrderInfo110().getLDC1(),
-                                            request.getEntity().getId()));
+                                            request.getEntity().getId(), request.getEntity().getInvoiceNumber()));
                                 }
                             }
                             kraftTransaction.add(createTransactionEntry(transaction, IMConstants.KRAFT));
@@ -131,7 +131,7 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
         return transactions;
     }
 
-    private Grid getGridConfigInfo(String ldc1, Long id) {
+    private Grid getGridConfigInfo(String ldc1, Long id, String invoiceNo) {
         Grid grid = new Grid();
 
         GridConfig gridConfig = gridConfigService.getGridConfigByBrand(ldc1);
@@ -141,7 +141,7 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
             grid.setTelephone(gridConfig.getPhone());
         } else {
             String errorMessage = "Grid not found: " + ldc1;
-            auditLogService.saveAuditLog(id, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);
+            auditLogService.saveAuditLog(id, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING, invoiceNo);
         }
         return grid;
     }

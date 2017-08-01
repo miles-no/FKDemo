@@ -40,6 +40,9 @@ public class AuditLog {
     @Column(name="LOG_TYPE")
     private String logType;
 
+    @Column(name="INVOICE_NO")
+    private String invoiceNo;
+
     public Long getId() {
         return id;
     }
@@ -102,5 +105,13 @@ public class AuditLog {
 
     public void setLogType(String logType) {
         this.logType = logType;
+    }
+
+    public String getInvoiceNo() {
+        return invoiceNo;
+    }
+
+    public void setInvoiceNo(String invoiceNo) {
+        this.invoiceNo = invoiceNo;
     }
 }

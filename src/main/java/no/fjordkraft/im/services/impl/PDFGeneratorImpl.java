@@ -1,5 +1,7 @@
 package no.fjordkraft.im.services.impl;
 
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import no.fjordkraft.im.exceptions.PDFGeneratorException;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.repository.StatementRepository;
@@ -136,13 +138,13 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
             birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName, pdfGeneratedFolderName, xmlFolderName);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSED);
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS, statement.getInvoiceNumber());
             invoiceGenerator.generateInvoice(statement);
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS, statement.getInvoiceNumber());
         } catch (PDFGeneratorException e) {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(), getCause(e).getMessage(), IMConstants.ERROR);
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(), getCause(e).getMessage(), IMConstants.ERROR, statement.getInvoiceNumber());
         } catch (Exception e) {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
@@ -184,7 +186,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             String campaignImage = segmentFileService.getImageContent(accountNo, brand);
             if(null == campaignImage) {
                 auditLogService.saveAuditLog(IMConstants.CAMPAIGN_IMAGE, statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(),
-                        "Campaign Image not found", IMConstants.WARNING);
+                        "Campaign Image not found", IMConstants.WARNING, statement.getInvoiceNumber());
             }
             IReportRunnable runnable = null;
 
@@ -240,6 +242,13 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(Charset.forName(encoding)));
             String campaignImage = segmentFileService.getCampaignForPreview(sampleCampaignImagePath);
             IReportRunnable runnable = reportEngine.openReportDesign(designStream);
+
+            try {
+                Font font = FontFactory.getFont("Fjordkraft Neo Sans");
+                logger.debug("FontFactory.getFont(Fjordkraft Neo Sans): " + font.getFamilyname());
+            } catch(Exception e) {
+                throw new RuntimeException(e.getMessage());
+            }
 
             IRunAndRenderTask task = reportEngine.createRunAndRenderTask(runnable);
             task.setParameterValue("sourcexml", sampleStatementFilePath);
