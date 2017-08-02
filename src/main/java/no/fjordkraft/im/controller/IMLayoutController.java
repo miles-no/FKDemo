@@ -58,6 +58,9 @@ public class IMLayoutController {
     @Autowired
     ConfigService configService;
 
+    @Autowired
+    StatementServiceImpl statementService;
+
 
     @RequestMapping(value = "attribute", method = RequestMethod.GET)
     @ResponseBody
@@ -246,5 +249,25 @@ public class IMLayoutController {
     @ResponseBody
     List<NameValuePair> getRuleAttributes() {
         return ruleAttributesService.getAllRuleAttributes();
+    }
+
+    @RequestMapping(value = "statement/xml/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<byte[]> getStatementXmlFile(@PathVariable("id") Long id) throws IOException {
+
+        String payload = statementService.getStatementById(id);
+        if(null != payload) {
+            byte statement[] = payload.getBytes();
+            logger.debug("File bytes is " + statement.length + " file length of string " + payload.length());
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_XML);
+            headers.setContentLength(statement.length);
+            headers.set(HttpHeaders.CONTENT_DISPOSITION,
+                    "attachment; filename=statement_" + id + ".xml");
+
+            return new ResponseEntity<>(statement, headers, HttpStatus.OK);
+        }
+        return null;
     }
 }

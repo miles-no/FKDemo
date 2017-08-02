@@ -118,6 +118,17 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         return null;
     }
 
+    @Override
+    public String getStatementById(Long id) {
+        Statement statement = statementRepository.findOne(id);
+        if(null != statement &&
+                null != statement.getStatementPayload() &&
+                null != statement.getStatementPayload().getPayload()) {
+            return statement.getStatementPayload().getPayload();
+        }
+        return null;
+    }
+
     private List<StatusCount> mapStatusToUIStatus(List<StatusCount> statusCounts, Long numOfRecords) {
         Map<String, Long> statusMap = new HashMap<String, Long>();
         List<StatusCount> uiStatusCount = new ArrayList<StatusCount>();

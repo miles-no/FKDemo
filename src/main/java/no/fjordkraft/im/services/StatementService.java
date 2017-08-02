@@ -46,5 +46,5 @@ public interface StatementService {
 
     List<StatusCount> getStatusByTransferfileBatchId(Long ekBatchJobId);
 
-
+    String getStatementById(Long id);
 }
