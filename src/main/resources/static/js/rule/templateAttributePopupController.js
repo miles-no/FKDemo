@@ -1,4 +1,4 @@
-app.controller('ManageRulePopupController',function($scope,options,close){
+app.controller('templateAttributePopupController',function($scope,options,close){
   $scope.options = options;
   $scope.type = ['STRING','FLOAT','INTEGER']
   $scope.rule = options.body.bodyContent
@@ -15,4 +15,7 @@ app.controller('ManageRulePopupController',function($scope,options,close){
   $scope.dismissModal = function(result){
     close(result,200);
   }
+  $(document).on('shown.bs.modal', '.modal', function() {
+    $(this).find('[autofocus]').focus();
+  });
 });

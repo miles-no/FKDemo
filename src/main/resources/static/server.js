@@ -194,12 +194,10 @@ app.put('/grid/config',function(req,res,next){
 app.delete('/grid/config/:id',function(req,res,next){
   console.log('Here in delete /grid/config',req.params.id);
   var delId = req.params.id;
-  console.log(delId);
+  var uri = `${apiUrl}/grid/config/`+delId
+  console.log(uri)
   request({
-    url :`${apiUrl}/grid/config`,
-    qs : {
-      id : delId
-    },
+    url : uri,
     method : 'DELETE'
 },function(error,response,body){
   res.send(body);

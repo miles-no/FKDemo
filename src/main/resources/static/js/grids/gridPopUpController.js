@@ -1,7 +1,10 @@
-app.controller('popupController',function($scope,options,close){
+app.controller('gridPopupController',function($scope,options,close){
   $scope.options = options;
-  $scope.items = options.body.bodyContent
+  $scope.grids = options.body.bodyContent
   $scope.dismissModal = function(result){
     close(result,200);
   }
+  $(document).on('shown.bs.modal', '.modal', function() {
+    $(this).find('[autofocus]').focus();
+  });
 });

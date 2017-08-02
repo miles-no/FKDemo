@@ -1,8 +1,9 @@
-<div class="manage-brands" ng-controller="ruleController" ng-init="getRules()">
+<div class="manage-brands" ng-controller="templateAttributeController" ng-init="getRules()">
+    <div uib-alert ng-repeat="alert in alerts" class="alert-width" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}}</div>
     <div class="col-sm-12 text-center header-style">Template Attributes</div>
     <div class="col-sm-4">
         <div class="row form-group">
-            <label class="control-label col-sm-3 col-lg-2 search-align text-match">Rules</label>
+            <label class="control-label col-sm-3 col-lg-3 search-align text-match">Attributes</label>
             <div class="col-sm-8">
                 <ui-select multiple ng-model="selectedRule" theme="bootstrap" title="Choose Attribute" on-remove="onRuleRemoval($item, $model)" on-select="onRuleSelect($item, $model)">
                     <ui-select-match placeholder="Select Attribute">{{$item}}</ui-select-match>
@@ -46,7 +47,7 @@
             </tfoot>
         </table>
         <div class="text-right">
-            <button ng-click="addRule()" class="btn btn-primary">Add Rule</button><!-- modal opens upon clicking of add brand -->
+            <button ng-click="addRule()" class="btn btn-primary">Add attribute</button><!-- modal opens upon clicking of add brand -->
         </div>
     </div>
 </div>

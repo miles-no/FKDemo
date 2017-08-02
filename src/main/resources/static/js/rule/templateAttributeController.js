@@ -1,4 +1,4 @@
-app.controller('ruleController',function($scope,$http,ModalService){
+app.controller('templateAttributeController',function($scope,$http,ModalService){
 
 
   var newRule = {
@@ -9,6 +9,7 @@ app.controller('ruleController',function($scope,$http,ModalService){
   $scope.ruleList = []
   $scope.selectedRule = []
   $scope.tableRule = []
+  $scope.alerts =[];
 
   $scope.getRules = function (){
     $http.get('/layout/attribute').success(function(response){
@@ -37,6 +38,11 @@ app.controller('ruleController',function($scope,$http,ModalService){
     }
   }
 
+  $scope.closeAlert = function(index){
+    $scope.alerts.splice(index,1)
+  }
+
+
   $scope.onRuleSelect = function(item,modal){
     $scope.selectedRule.push(item)
     showSelectedRules()
@@ -49,14 +55,30 @@ app.controller('ruleController',function($scope,$http,ModalService){
   }
 
   function addRule (rule) {
-    $http.post('/layout/attribute',rule).then(function () {
-      $scope.getRules()
+    $http.post('/layout/attribute',rule).then(function (response) {
+      if(response.status === 200){
+        $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
+        $scope.getRules()
+      }
+      else{
+        $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+      }
+    },function(err){
+      $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
   function updateRule(rule) {
-    $http.put('/layout/attribute/'+rule.id,rule).then(function () {
-      $scope.getRules()
+    $http.put('/layout/attribute/'+rule.id,rule).then(function (response) {
+      if(response.status === 200){
+        $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
+        $scope.getRules()
+      }
+      else{
+        $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+      }
+    },function(err){
+      $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
@@ -86,8 +108,16 @@ app.controller('ruleController',function($scope,$http,ModalService){
       modal.element.modal();
       modal.close.then(function(result){
         if(result=='Delete'){
-          $http.delete('/layout/attribute/'+rule.id).then(function () {
-            $scope.getRules();
+          $http.delete('/layout/attribute/'+rule.id).then(function (response) {
+            if(response.status === 200){
+              $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
+              $scope.getRules()
+            }
+            else{
+              $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+            }
+          },function(err){
+            $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
           })
         }
       })
@@ -98,7 +128,7 @@ app.controller('ruleController',function($scope,$http,ModalService){
   function showModal (ruleInfo, type) {
     ModalService.showModal({
       templateUrl: 'templates/template-attributes/templateAttributesPopup.html',
-      controller: 'ManageRulePopupController',
+      controller: 'templateAttributePopupController',
       inputs: {
         options: {
           body:{

@@ -40,6 +40,9 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
     })
   }
 
+  $scope.closeAlert = function(index){
+      $scope.alerts.splice(index,1)
+  }
 
   $scope.onBrandSelect = function(item){
     $scope.selectedBrands.push(item);
@@ -59,14 +62,30 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
   }
 
   function addBrand (brand) {
-    $http.post('/brand/config',brand).then(function () {
-      $scope.getBrands()
+    $http.post('/brand/config',brand).then(function (response) {
+      if(response.status === 200){
+        $scope.getBrands()
+        $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
+      }
+      else{
+        $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+      }
+    },function(err){
+      $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
   function updateBrand(brand) {
     $http.put('/brand/config',brand).then(function () {
-      $scope.getBrands()
+      if(response.status === 200){
+        $scope.getBrands()
+        $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
+      }
+      else{
+        $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+      }
+    },function(err){
+      $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 

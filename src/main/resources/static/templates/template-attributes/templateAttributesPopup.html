@@ -11,21 +11,22 @@
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="name">Name</label>
                         <div class="col-sm-6">
-                            <input name="name" type="text" class="form-control" ng-model="rule.name" id="name" ng-minlength="1">
-                            <span ng-show="ruleValidations.name.$invalid && ruleValidations.name.$touched">Field cannot be empty</span>
+                            <input name="name" type="text" class="form-control" ng-model="rule.name" id="name" ng-minlength="1" limit-to="500" autofocus required>
+                            <span ng-show="ruleValidations.name.$invalid && ruleValidations.name.$touched" class="error-msg">Field cannot be empty</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4">Type</label>
                         <div class="col-sm-6">
-                            <select ng-model="rule.type" ng-options="types for types in type" class="form-control"></select>
+                            <select name="select" ng-model="rule.type" ng-options="types for types in type" class="form-control" required></select>
+                            <span ng-show="ruleValidations.select.$error.required && ruleValidations.select.$touched" class="error-msg">Field cannot be empty</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="Field-Mapping">Field Mapping</label>
                         <div class="col-sm-6">
-                            <input name="field" type="text" ng-model="rule.fieldMapping" class="form-control" id="Field-Mapping" ng-minlength="1">
-                            <span ng-show="ruleValidations.field.$invalid && ruleValidations.field.$touched">Field cannot be empty</span>
+                            <input name="field" type="text" ng-model="rule.fieldMapping" class="form-control" id="Field-Mapping" ng-minlength="1" limit-to="500" required>
+                            <span ng-show="ruleValidations.field.$invalid && ruleValidations.field.$touched" class="error-msg">Field cannot be empty</span>
                         </div>
                     </div>
                     <div class="form-group">

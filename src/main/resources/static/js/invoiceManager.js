@@ -51,8 +51,8 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
       }).state('state_config',{
         url: '/state_config',
         templateUrl: 'templates/system-configurations/systemConfigurations.html'
-      }).state('rule',{
-        url: '/rule',
+      }).state('attributes',{
+        url: '/attributes',
         templateUrl: 'templates/template-attributes/templateAttributes.html'
       }).state('audit_log',{
         url: '/audit_log',

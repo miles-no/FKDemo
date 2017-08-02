@@ -7,6 +7,7 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
   }
   $scope.selectedGrids = []
   $scope.brands = []
+  $scope.alerts =[];
 
   function showSelectedGrids () {
     $scope.allGrids = []
@@ -31,6 +32,11 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
     })
   }
 
+  $scope.closeAlert = function(index){
+    $scope.alerts.splice(index,1)
+  }
+
+
   $scope.onGridSelect = function(item,model){
     console.log('onGridSelect ',item,model,$scope.brands)
     $scope.selectedGrids.push(item);
@@ -50,14 +56,30 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
   }
 
   function addGrid (grid) {
-    $http.post('/grid/config',grid).then(function () {
-      $scope.getGrids()
+    $http.post('/grid/config',grid).then(function (response) {
+      if(response.status === 200){
+        $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
+        $scope.getGrids()
+      }
+      else{
+        $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+      }
+    },function(err){
+      $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
   function updateGrid(grid) {
-    $http.put('/grid/config',grid).then(function () {
-      $scope.getGrids()
+    $http.put('/grid/config',grid).then(function (response) {
+      if(response.status === 200){
+        $scope.getGrids()
+        $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
+      }
+      else{
+        $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+      }
+    },function(err){
+      $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
@@ -86,8 +108,16 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
       modal.element.modal();
       modal.close.then(function(result){
         if(result=='Delete'){
-          $http.delete('/grid/config/'+grid.id).then(function () {
-            $scope.getGrids();
+          $http.delete('/grid/config/'+grid.id).then(function (response) {
+            if (response.status === 200){
+              $scope.getGrids();
+              $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
+            }
+            else{
+              $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+            }
+          },function(err){
+            $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
           })
         }
       })
@@ -98,7 +128,7 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
   function showModal (gridInfo, type) {
     ModalService.showModal({
       templateUrl: 'templates/grids/gridsPopup.html',
-      controller: 'popupController',
+      controller: 'gridPopupController',
       inputs: {
         options: {
           body:{
