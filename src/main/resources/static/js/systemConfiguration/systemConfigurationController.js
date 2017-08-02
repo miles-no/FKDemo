@@ -4,6 +4,7 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
     value: ''
   }
 
+  $scope.alerts =[];
   $scope.selectedKey = ''
 
   $scope.onPropSelect = function(item){
@@ -15,8 +16,13 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
       }
     })
   }
- 
-    $scope.$watch('alldata',function(newVal,oldVal){
+
+  $scope.closeAlert = function(index){
+    $scope.alerts.splice(index,1)
+  }
+
+
+  $scope.$watch('alldata',function(newVal,oldVal){
     if (newVal !== oldVal && !newVal.length){
         $scope.alldata = $scope.stateConfigs
     }
@@ -26,6 +32,7 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
   $scope.getStatesConfig = function () {
     $http.get('/config').then(function (response) {
       $scope.stateConfigs = response.data.config;
+      $scope.configName = []
       $scope.alldata = angular.copy($scope.stateConfigs)
       angular.forEach($scope.alldata,function(key){
        $scope.configName.push(key.name)
@@ -42,18 +49,33 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
       value : state.value
     }
     $http({url : '/config',method: 'POST',params:queryParams} ).then(function (response) {
-      $scope.getStatesConfig()
+      if(response.status === 200){
+        $scope.getStatesConfig()
+        $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
+      }
+      else{
+        $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+      }
+    },function(err){
+      $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
   function updateStateConfig(state) {
     var data = angular.copy(state)
-    console.log(data);
     let queryParams = {
       value : data.value
     }
     $http({url:'/config/'+data.name,method: 'PUT', params:queryParams}).then(function (response) {
-      $scope.getStatesConfig()
+      if(response.status === 200){
+        $scope.getStatesConfig()
+        $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
+      }
+      else{
+        $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+      }
+    },function(err){
+      $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
@@ -83,7 +105,15 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
       modal.close.then(function(result){
         if(result=='Delete'){
           $http.delete('/config/'+state.name).then(function (response) {
-            $scope.getStatesConfig();
+            if(response.status === 200){
+              $scope.getStatesConfig()
+              $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
+            }
+            else{
+              $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+            }
+          },function(err){
+            $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
           })
         }
       })
@@ -92,8 +122,8 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
 
   function showModal (stateInfo, type) {
     ModalService.showModal({
-      templateUrl: 'js/stateConfig/stateConfigPopup.html',
-      controller: 'popupController',
+      templateUrl: 'templates/system-configurations/systemConfigurationsPopup.html',
+      controller: 'systemConfigurationPopupController',
       inputs: {
         options: {
           body:{

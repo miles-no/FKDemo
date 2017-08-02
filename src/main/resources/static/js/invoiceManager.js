@@ -48,8 +48,8 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
       }).state('templates',{
         url: '/templates',
         templateUrl: 'templates/template-management/templateManagement.html'
-      }).state('state_config',{
-        url: '/state_config',
+      }).state('system_config',{
+        url: '/system_config',
         templateUrl: 'templates/system-configurations/systemConfigurations.html'
       }).state('attributes',{
         url: '/attributes',

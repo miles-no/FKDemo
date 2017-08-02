@@ -73,6 +73,7 @@
                     <th st-sort="dueDate">Due Date</th>
                     <th st-sort="updateTime">Updated Date</th>
                     <th >Links</th>
+                    <th class="text-center">Download</th>
                 </tr>
             </thead>
 			<tbody>
@@ -87,7 +88,7 @@
                     </td>
                     <td>
                         <span>{{row.invoiceNumber}}</span>
-                        <span class="clipboard-position fa fa-clipboard" uib-tooltip="Copy to Clipboard" tooltip-placement="bottom" ngclipboard-error="onError(e);" ngclipboard data-clipboard-text="{{row.accountNumber}}"></span>
+                        <span class="clipboard-position fa fa-clipboard" uib-tooltip="Copy to Clipboard" tooltip-placement="bottom" ngclipboard-error="onError(e);" ngclipboard data-clipboard-text="{{row.invoiceNumber}}"></span>
                     </td>
                     <td>{{row.distributionMethod}}</td>
                     <td>{{row.amount}}</td>
@@ -109,6 +110,9 @@
                             <!--</span>-->
                             <!--&lt;!&ndash;<i ng-repeat="eachPdf in row.invoicePdfList" ng-click="getInvoiceFile(eachPdf.id)"></i>&ndash;&gt;-->
                         <!--</div>-->
+                    </td>
+                    <td class="text-center">
+                        <i uib-tooltip="Click to download" tooltip-placement="bottom" class="fa fa-download text-center" aria-hidden="true" ng-click="downloadXml(row.id)"></i>
                     </td>
                 </tr>
 			</tbody>

@@ -72,6 +72,19 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
         return (date ? moment(date) : moment()).format('YYYY-MM-DD');
     }
 
+    $scope.downloadXml = function(id){
+        $http({
+            method : 'GET',
+            url : '/layout/statement/xml/'+id,
+        }).then(function(response,status,headers){
+            var file = new Blob([response.data], {type: 'application/xml'});
+            var downloadLink = angular.element('<a></a>');
+            downloadLink.attr('href',window.URL.createObjectURL(file));
+            downloadLink.attr('download', layout.name+'.rptdesign');
+            downloadLink[0].click();
+        })
+    }
+
     $scope.getInvoiceFile = function(invoiceId){
         $scope.loading = true
         $http.get('/statement/pdf/'+invoiceId,{responseType: 'arraybuffer'}).success(function(response,status,headers){

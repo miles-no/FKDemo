@@ -30,7 +30,7 @@
                             </div>
                             <div class="button-inline text-margin"> OR </div>
                             <div class="button-inline">
-                                <button  type="button" ng-click="skipToRules()" class="btn btn-primary">Use Existing Template</button>
+                                <button  type="button" ng-click="skipToRules()" class="btn btn-primary" ng-disabled="uploadForm.$invalid">Use Existing Template</button>
                             </div>
                         </div>
                     </div>
@@ -53,11 +53,10 @@
                         <div class="rules-heading">Rules
                             <!--<i class="fa fa-plus btn" ng-click="addRule()"> Add Rule</i>--> <!-- remove this css also it is not required-->
                         </div>
-
                         <div class="form-group brand-layout">
                             <label class="control-label col-sm-3">Brand</label>
                             <div class="col-sm-7">
-                                <ui-select ng-model="selectedBrand" theme="bootstrap" title="Choose Brand" on-select="onBrandSelect($item, $model)" ng-disabled="templateInfo.brand">
+                                <ui-select ng-model="selectedBrand" theme="bootstrap" title="Choose Brand" on-select="onBrandSelect($item, $model)" ng-disabled="templateInfo.brand" required>
                                     <ui-select-match placeholder="Select Brand">{{selectedBrand}}</ui-select-match>
                                     <ui-select-choices  repeat="brand in allBrands" position='down'>
                                         <div ng-bind-html="brand | highlight: $select.search"></div>
@@ -65,7 +64,6 @@
                                 </ui-select>
                             </div>
                         </div>
-
                         <div class="row">
                             <label class="col-sm-offset-2 col-sm-3">Name</label>
                             <label class="col-sm-3">Operation</label>
@@ -134,7 +132,7 @@
         </div>
         <div class="modal-footer"  ng-if="addBrands">
             <button  type="button" ng-click="skipToRules()" class="btn btn-primary">Back</button>
-            <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal" ng-disabled="ruleForm.$invalid && (btns.name === 'Update' || btns.name === 'Add')">{{btns.name}}</button>
+            <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal" ng-disabled="ruleForm.$invalid && selectedBrand && (btns.name === 'Update' || btns.name === 'Add')">{{btns.name}}</button>
         </div>
         <div class="modal-footer"  ng-show="!addBrands">
             <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid) || uploadForm.$pristine">Next</button>
