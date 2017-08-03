@@ -26,13 +26,15 @@
                             <div class="upload-btn-wrapper">
                                 <button class="btn btn-primary col-sm-5" >Upload new Template</button>
                                 <input type="file" accept=".xml" file-model="template.file" class="col-sm-4">
-                                <label class="col-sm-2" ng-if="template.file">{{template.file.name}}</label>
                             </div>
                             <div class="button-inline text-margin"> OR </div>
                             <div class="button-inline">
                                 <button  type="button" ng-click="skipToRules()" class="btn btn-primary" ng-disabled="uploadForm.$invalid">Use Existing Template</button>
                             </div>
                         </div>
+                    </div>
+                    <div ng-if="template.file" class="text-center">
+                        <label class="col-sm-offset-5 col-sm-3" ng-if="template.file">{{template.file.name}}</label>
                     </div>
                 </div>
             </form>
@@ -135,7 +137,7 @@
             <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal" ng-disabled="ruleForm.$invalid && selectedBrand && (btns.name === 'Update' || btns.name === 'Add')">{{btns.name}}</button>
         </div>
         <div class="modal-footer"  ng-show="!addBrands">
-            <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid) || uploadForm.$pristine">Next</button>
+            <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid)">Next</button>
         </div>
     </div>
 </div>
