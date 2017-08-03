@@ -1,57 +1,22 @@
-package no.fjordkraft.im.model;
+package no.fjordkraft.im.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import no.fjordkraft.im.logging.AuditLogRecord;
-
-import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by miles on 7/7/2017.
+ * Created by miles on 8/3/2017.
  */
-@Entity
-@Table(name="IM_AUDIT_LOG")
-public class AuditLog {
+public class RestAuditLog {
 
-    @Column(name="ID")
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator = "SEQ")
-    @SequenceGenerator(name="SEQ", sequenceName="IM_AUDIT_LOG_SEQ")
-    private Long id;
-
-    @Column(name="ACTION_ON_TYPE")
     private String actionOnType;
-
-    @Column(name="ACTION_ON_ID")
     private Long actionOnId;
-
-    @Column(name="ACTION")
     private String action;
-
-    @Column(name="USERNAME")
     private String userName;
-
-    @Column(name="MSG")
-    @Lob
     private String msg;
-
-    @Column(name="DATETIME")
     private Timestamp dateTime;
-
-    @Column(name="LOG_TYPE")
     private String logType;
-
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name="ACTION_ON_ID", insertable = false, updatable = false)
-    private Statement statement;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private String invoiceNo;
+    private String accountNumber;
+    private String customerId;
 
     public String getActionOnType() {
         return actionOnType;
@@ -109,11 +74,27 @@ public class AuditLog {
         this.logType = logType;
     }
 
-    public Statement getStatement() {
-        return statement;
+    public String getInvoiceNo() {
+        return invoiceNo;
     }
 
-    public void setStatement(Statement statement) {
-        this.statement = statement;
+    public void setInvoiceNo(String invoiceNo) {
+        this.invoiceNo = invoiceNo;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 }

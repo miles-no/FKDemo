@@ -27,7 +27,8 @@ public class StatementDetailRepository {
 
     @Transactional(readOnly = true)
     public List<Statement> getDetails(int page, int size, String status, Timestamp fromTime,
-                                Timestamp toTime, String brand, String customerID, String invoiceNumber){
+                                Timestamp toTime, String brand, String customerID,
+                                      String invoiceNumber, String accountNumber){
 
         StringBuffer selectQuery = new StringBuffer();
         selectQuery.append("select s from Statement s join s.systemBatchInput where ");
@@ -43,6 +44,8 @@ public class StatementDetailRepository {
         selectQuery.append(AND);
         selectQuery.append("(:customerID is null or s.customerId = :customerID) ");
         selectQuery.append(AND);
+        selectQuery.append("(:accountNumber is null or s.accountNumber = :accountNumber) ");
+        selectQuery.append(AND);
         selectQuery.append("(:fromTime is null or s.createTime >= :fromTime) ");
         selectQuery.append(AND);
         selectQuery.append("(:toTime is null or s.createTime <= :toTime) ");
@@ -54,7 +57,8 @@ public class StatementDetailRepository {
                 .setParameter("fromTime", fromTime)
                 .setParameter("toTime", toTime)
                 .setParameter("customerID", customerID)
-                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'));
+                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'))
+                .setParameter("accountNumber", accountNumber);
 
         List<Statement> statementList = query.getResultList();
         return statementList;
@@ -81,8 +85,8 @@ public class StatementDetailRepository {
     }
 
     @Transactional
-    public Long getCountByStatus(String status, Timestamp fromTime,
-                                 Timestamp toTime, String brand, String customerID, String invoiceNumber) {
+    public Long getCountByStatus(String status, Timestamp fromTime, Timestamp toTime, String brand,
+                                 String customerID, String invoiceNumber, String accountNumber) {
         StringBuffer selectQuery = new StringBuffer();
         selectQuery.append("select count(s) from Statement s join s.systemBatchInput where ");
         if(null != status ) {
@@ -97,6 +101,8 @@ public class StatementDetailRepository {
         selectQuery.append(AND);
         selectQuery.append("(:customerID is null or s.customerId = :customerID) ");
         selectQuery.append(AND);
+        selectQuery.append("(:accountNumber is null or s.accountNumber = :accountNumber) ");
+        selectQuery.append(AND);
         selectQuery.append("(:fromTime is null or s.createTime >= :fromTime) ");
         selectQuery.append(AND);
         selectQuery.append("(:toTime is null or s.createTime <= :toTime) ");
@@ -105,7 +111,8 @@ public class StatementDetailRepository {
                 .setParameter("fromTime", fromTime)
                 .setParameter("toTime", toTime)
                 .setParameter("customerID", customerID)
-                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'));
+                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'))
+                .setParameter("accountNumber", accountNumber);
 
         Long count = (Long) query.getSingleResult();
         return count;

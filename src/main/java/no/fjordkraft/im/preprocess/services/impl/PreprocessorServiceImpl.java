@@ -131,10 +131,10 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
 
             preprocessorEngine.execute(request);
             statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSED.getStatus(), null, IMConstants.SUCCESS, statement.getInvoiceNumber());
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
         } catch (PreprocessorException ex) {
             statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), ex.getMessage(), IMConstants.ERROR, statement.getInvoiceNumber());
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), ex.getMessage(), IMConstants.ERROR);
         } catch (Exception e) {
             logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);

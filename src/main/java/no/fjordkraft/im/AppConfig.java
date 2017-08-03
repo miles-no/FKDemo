@@ -31,6 +31,8 @@ import org.springframework.util.StopWatch;
 
 import javax.sql.DataSource;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -145,7 +147,7 @@ public class AppConfig {
 
     @Bean(name="BirtEngine")
     @DependsOn({"liquibase","SpringSchedulerStarter"})
-    public IReportEngine getBirtEngine(ConfigService configService) throws BirtException {
+    public IReportEngine getBirtEngine(ConfigService configService) throws BirtException, MalformedURLException {
         StopWatch stopWatch = new StopWatch();
      //   System.out.print("ULocale.getDefault(ULocale.Category.FORMAT) :: "+ULocale.getDefault(ULocale.Category.FORMAT));
         stopWatch.start("Initializing Birt engine");
@@ -170,6 +172,10 @@ public class AppConfig {
        if(StringUtils.isNotEmpty(logPath)) {
             engineConfig.setLogConfig(logPath, Level.FINE);
         }
+
+        URL url = new URL("file:"+File.separator+fontPath + File.separator +"fontsConfig.xml");
+        logger.debug("Font config url "+url.toString());
+        engineConfig.setFontConfig(url);
 
         String birtResourcePath = configService.getString(IMConstants.BIRT_RESOURCE_PATH);
         engineConfig.setResourcePath(birtResourcePath);

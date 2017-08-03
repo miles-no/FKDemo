@@ -45,7 +45,7 @@ public class BarcodePreprocessor extends BasePreprocessor {
             }
         } else {
             String errorMessage = "Brand not found";
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING, statement.getInvoiceNumber());
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);
         }
     }
 }

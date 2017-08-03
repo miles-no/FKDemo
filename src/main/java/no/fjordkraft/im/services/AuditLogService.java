@@ -1,5 +1,6 @@
 package no.fjordkraft.im.services;
 
+import no.fjordkraft.im.domain.RestAuditLog;
 import no.fjordkraft.im.model.AuditLog;
 
 import java.sql.Timestamp;
@@ -10,12 +11,12 @@ import java.util.List;
  */
 public interface AuditLogService {
 
-    void saveAuditLog(Long actionOnId, String action, String msg, String logType, String invoiceNo);
-    void saveAuditLog(String actionOnType, Long actionOnId, String action, String msg, String logType, String invoiceNo);
+    void saveAuditLog(Long actionOnId, String action, String msg, String logType);
+    void saveAuditLog(String actionOnType, Long actionOnId, String action, String msg, String logType);
     Long getTotalAuditLog();
     AuditLog getAuditLogById(Long id);
-    List<AuditLog> getAuditLogRecords(int page, int size, Timestamp fromTime, Timestamp toTime, String action,
-                                      String actionOnType, Long actionOnId, String logType, String invoiceNo);
-    Long getAuditLogRecordsCount(int page, int size, Timestamp fromTime, Timestamp toTime, String action,
-                                      String actionOnType, Long actionOnId, String logType, String invoiceNo);
+    List<RestAuditLog> getAuditLogRecords(int page, int size, Timestamp fromTime, Timestamp toTime, String action,
+                                      String actionOnType, String logType, String invoiceNo, String customerID, String accountNumber);
+    Long getAuditLogRecordsCount(Timestamp fromTime, Timestamp toTime, String action,
+                                      String actionOnType, String logType, String invoiceNo, String customerID, String accountNumber);
 }

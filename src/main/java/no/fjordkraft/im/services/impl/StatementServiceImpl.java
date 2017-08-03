@@ -303,12 +303,12 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     @Override
     @Transactional(readOnly = true)
     public List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime,
-                                          String brand, String customerID, String invoiceNumber) {
+                                          String brand, String customerID, String invoiceNumber, String accountNumber) {
         String mappedStatus = mapStatus(status);
         String mappedBrand = mapBrand(brand);
 
         List<Statement> statementList = statementDetailRepository.getDetails(page, size, mappedStatus, fromTime, toTime,
-                mappedBrand, customerID, invoiceNumber);
+                mappedBrand, customerID, invoiceNumber, accountNumber);
 
         List<RestStatement> restStatementList = new ArrayList<>();
         //List<Long> statementIdList =  new ArrayList<>();
@@ -350,11 +350,11 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     @Override
     @Transactional(readOnly = true)
     public Long getCountByStatus(String status, Timestamp fromTime,
-                                 Timestamp toTime, String brand, String customerID, String invoiceNumber) {
+                                 Timestamp toTime, String brand, String customerID, String invoiceNumber, String accountNumber) {
         String mappedStatus = mapStatus(status);
         String mappedBrand = mapBrand(brand);
         return statementDetailRepository.getCountByStatus(mappedStatus, fromTime, toTime,
-                mappedBrand, customerID, invoiceNumber);
+                mappedBrand, customerID, invoiceNumber, accountNumber);
     }
 
     private String mapBrand(String brands) {

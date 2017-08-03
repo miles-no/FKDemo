@@ -17,9 +17,8 @@ public class AuditLogRecord {
     private String msg;
     private Timestamp dateTime;
     private String logType;
-    private String invoiceNo;
 
-    AuditLogRecord(String actionOnType, Long actionOnId, String action, String username, String msg, Timestamp dateTime, String logType, String invoiceNo) {
+    AuditLogRecord(String actionOnType, Long actionOnId, String action, String username, String msg, Timestamp dateTime, String logType) {
         this.actionOnType = actionOnType;
         this.actionOnId = actionOnId;
         this.action = action;
@@ -27,7 +26,6 @@ public class AuditLogRecord {
         this.msg = msg;
         this.dateTime = dateTime;
         this.logType = logType;
-        this.invoiceNo = invoiceNo;
     }
 
     public String getActionOnType() {
@@ -58,10 +56,6 @@ public class AuditLogRecord {
         return logType;
     }
 
-    public String getInvoiceNo() {
-        return invoiceNo;
-    }
-
     @Override
     public String toString() {
         return "Audit_Log{ +" +
@@ -72,7 +66,6 @@ public class AuditLogRecord {
                 "msg=" + msg +
                 "dateTime=" + dateTime +
                 "logType=" + logType +
-                "invoiceNo" + invoiceNo +
                 "}";
     }
 
@@ -88,7 +81,6 @@ public class AuditLogRecord {
         private String msg;
         private Timestamp dateTime;
         private String logType;
-        private String invoiceNo;
 
         public AuditLogRecordBuilder() {
             dateTime = new Timestamp(System.currentTimeMillis());
@@ -129,11 +121,6 @@ public class AuditLogRecord {
             return this;
         }
 
-        public AuditLogRecordBuilder withInvoiceNo(String invoiceNo) {
-            this.invoiceNo = invoiceNo;
-            return this;
-        }
-
         public AuditLogRecord build() {
             return new AuditLogRecord(
                     actionOnType,
@@ -142,8 +129,7 @@ public class AuditLogRecord {
                     username,
                     msg,
                     dateTime,
-                    logType,
-                    invoiceNo);
+                    logType);
         }
     }
 }

@@ -40,10 +40,11 @@ public class IMStatementController {
                                @RequestParam(value = "customerID", required=false) String customerID,
                                @RequestParam(value = "brand", required=false) String brand,
                                @RequestParam(value = "invoiceNumber", required=false) String invoiceNumber,
+                               @RequestParam(value = "accountNumber", required=false) String accountNumber,
                                @RequestParam(value = "page") int page,
                                @RequestParam(value = "size") int size) {
-        List<RestStatement> restStatements = statementService.getDetails(page, size, status, fromTime, toTime, brand, customerID, invoiceNumber);
-        Long count = getCountByStatus(status, fromTime, toTime, brand, customerID, invoiceNumber);
+        List<RestStatement> restStatements = statementService.getDetails(page, size, status, fromTime, toTime, brand, customerID, invoiceNumber, accountNumber);
+        Long count = getCountByStatus(status, fromTime, toTime, brand, customerID, invoiceNumber, accountNumber);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put(IMConstants.STATEMENTS, restStatements);
         resultMap.put(IMConstants.TOTAL, count);
@@ -57,8 +58,9 @@ public class IMStatementController {
             @RequestParam(value = "toTime", required=false) Timestamp toTime,
             @RequestParam(value = "brand", required=false) String brand,
             @RequestParam(value = "customerID", required=false) String customerID,
-            @RequestParam(value = "invoiceNumber", required=false) String invoiceNumber) {
-        return statementService.getCountByStatus(status, fromTime, toTime, brand, customerID, invoiceNumber);
+            @RequestParam(value = "invoiceNumber", required=false) String invoiceNumber,
+            @RequestParam(value = "accountNumber", required=false) String accountNumber) {
+        return statementService.getCountByStatus(status, fromTime, toTime, brand, customerID, invoiceNumber, accountNumber);
     }
 
     @RequestMapping(value = "/pdf/{id}", method = RequestMethod.GET)

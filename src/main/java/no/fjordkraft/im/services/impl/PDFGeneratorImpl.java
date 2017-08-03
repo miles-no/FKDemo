@@ -87,6 +87,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     private String birtResourcePath;
     private String sampleStatementFilePath;
     private String sampleCampaignImagePath;
+    private String customPdfFontPath;
 
     public PDFGeneratorImpl(ConfigService configService) {
         this.configService = configService;
@@ -101,6 +102,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         birtResourcePath = configService.getString(IMConstants.BIRT_RESOURCE_PATH);
         sampleStatementFilePath = configService.getString(IMConstants.SAMPLE_STATEMENT_FILE_PATH);
         sampleCampaignImagePath = configService.getString(IMConstants.SAMPLE_CAMPAIGN_IMAGE_PATH);
+        customPdfFontPath = configService.getString(IMConstants.CUSTOM_FONT_PATH);
+
     }
 
     @Override
@@ -138,13 +141,13 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
             birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName, pdfGeneratedFolderName, xmlFolderName);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSED);
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS, statement.getInvoiceNumber());
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             invoiceGenerator.generateInvoice(statement);
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS, statement.getInvoiceNumber());
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
         } catch (PDFGeneratorException e) {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(), getCause(e).getMessage(), IMConstants.ERROR, statement.getInvoiceNumber());
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(), getCause(e).getMessage(), IMConstants.ERROR);
         } catch (Exception e) {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
@@ -186,7 +189,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             String campaignImage = segmentFileService.getImageContent(accountNo, brand);
             if(null == campaignImage) {
                 auditLogService.saveAuditLog(IMConstants.CAMPAIGN_IMAGE, statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(),
-                        "Campaign Image not found", IMConstants.WARNING, statement.getInvoiceNumber());
+                        "Campaign Image not found", IMConstants.WARNING);
             }
             IReportRunnable runnable = null;
 
@@ -211,6 +214,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             task.setParameterValue("sourcexml", xmlFilePath);
             task.setParameterValue("campaignImage", campaignImage);
             PDFRenderOption options = new PDFRenderOption();
+            logger.debug("Custom Font path: " + customPdfFontPath);
+            options.setFontDirectory(customPdfFontPath);
             options.setEmbededFont(true);
             options.setOutputFormat("pdf");
             options.setOutputFileName(basePath + pdfGeneratedFolderName + File.separator + statement.getInvoiceNumber() + ".pdf");
@@ -254,6 +259,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             task.setParameterValue("sourcexml", sampleStatementFilePath);
             task.setParameterValue("campaignImage", campaignImage);
             PDFRenderOption options = new PDFRenderOption();
+            logger.debug("Custom Font path: " + customPdfFontPath);
+            options.setFontDirectory(customPdfFontPath);
             options.setEmbededFont(true);
             options.setOutputFormat("pdf");
             options.setOutputFileName(ouputFilePath);

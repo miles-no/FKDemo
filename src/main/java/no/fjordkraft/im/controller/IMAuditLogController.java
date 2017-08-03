@@ -1,5 +1,6 @@
 package no.fjordkraft.im.controller;
 
+import no.fjordkraft.im.domain.RestAuditLog;
 import no.fjordkraft.im.domain.RestStatement;
 import no.fjordkraft.im.model.AuditLog;
 import no.fjordkraft.im.services.impl.AuditLogServiceImpl;
@@ -30,12 +31,13 @@ public class IMAuditLogController {
                                    @RequestParam(value = "toTime", required=false) Timestamp toTime,
                                    @RequestParam(value = "action", required=false) String action,
                                    @RequestParam(value = "actionOnType", required=false) String actionOnType,
-                                   @RequestParam(value = "actionOnId", required=false) Long actionOnId,
                                    @RequestParam(value = "logType", required=false) String logType,
-                                   @RequestParam(value = "invoiceNo", required=false) String invoiceNo) {
+                                   @RequestParam(value = "invoiceNo", required=false) String invoiceNo,
+                                   @RequestParam(value = "customerID", required=false) String customerID,
+                                   @RequestParam(value = "accountNumber", required=false) String accountNumber) {
 
-        List<AuditLog> auditLogList = auditLogService.getAuditLogRecords(page, size, fromTime, toTime, action, actionOnType, actionOnId, logType, invoiceNo);
-        Long count = auditLogService.getAuditLogRecordsCount(page, size, fromTime, toTime, action, actionOnType, actionOnId, logType, invoiceNo);
+        List<RestAuditLog> auditLogList = auditLogService.getAuditLogRecords(page, size, fromTime, toTime, action, actionOnType, logType, invoiceNo, customerID, accountNumber);
+        Long count = auditLogService.getAuditLogRecordsCount(fromTime, toTime, action, actionOnType, logType, invoiceNo, customerID, accountNumber);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put(IMConstants.AUDIT_LOG, auditLogList);
         resultMap.put(IMConstants.TOTAL, count);
