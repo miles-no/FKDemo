@@ -10,6 +10,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
 
   $scope.selectedTemplate = []
   $scope.templatelist = []
+  $scope.alerts =[];
 
   $scope.onTemplateSelect = function(item){
     $scope.selectedTemplate.push(item)
@@ -49,6 +50,9 @@ app.controller('listCtrl',function($scope,ModalService,$http){
     showSelectedTemplate()
   }
 
+  $scope.closeAlert = function(index){
+    $scope.alerts.splice(index,1)
+  }
 
   function setActiveLayout (active){
     var layoutId = active.layoutID
@@ -68,14 +72,30 @@ app.controller('listCtrl',function($scope,ModalService,$http){
 
   function addLayout (layout) {
      $http.post('/layout/rule',layout).then(function (response) {
+       if(response.status === 200){
          $scope.getLayouts()
+         $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
+       }
+       else{
+         $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+       }
+     },function(err){
+       $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
      })
   }
   
   function updateLayout(layout) {
      $http.put(`/layout/rule/${layout.id}`,layout).then(function (response) {
-         $scope.getLayouts()
-     })
+      if(response.status === 200){
+        $scope.getLayouts()
+        $scope.alerts.push({ type: 'success', msg: 'Record update successfully' })
+      }
+      else{
+        $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+      }
+    },function(err){
+      $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+    })
   }
 
   function toggleLayoutModal (layoutInfo){
@@ -260,9 +280,17 @@ app.controller('listCtrl',function($scope,ModalService,$http){
       modal.element.modal();
       modal.close.then(function(result){
         if(result=='Delete'){
-            $http.delete('/layout/template/'+id).then(function(){
-            $scope.getLayouts();
-          })
+            $http.delete('/layout/template/'+id).then(function(response){
+              if (response.status === 200){
+                $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
+                $scope.getLayouts();
+              }
+              else{
+                $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+              }
+            },function(err){
+              $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+            })
         }
       })
     })

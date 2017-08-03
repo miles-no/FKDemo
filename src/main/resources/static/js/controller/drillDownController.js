@@ -61,6 +61,8 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
         $scope.states && $scope.states.length >0 ? queryParams.states = _.join($scope.states,',') :'';
         $scope.brands && $scope.brands.length >0 ? queryParams.brand = _.join($scope.brands,',') :'';
         $scope.invoiceNumber ? queryParams.invoiceNumber = $scope.invoiceNumber :'';
+        $scope.accountNumber ? queryParams.accountNumber = $scope.accountNumber :'';
+        $scope.customerID ? queryParams.customerID = $scope.customerID :'';
         $http.get('/statement/details',{params:queryParams}).then(function success(result){
             $scope.searchResults = result.data.STATEMENTS
             $scope.totalPages = Math.ceil(result.data.TOTAL/$scope.pageSize);
@@ -72,7 +74,7 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
         return (date ? moment(date) : moment()).format('YYYY-MM-DD');
     }
 
-    $scope.downloadXml = function(id){
+    $scope.downloadXml = function(id,invoiceid){
         $http({
             method : 'GET',
             url : '/layout/statement/xml/'+id,
@@ -80,7 +82,7 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
             var file = new Blob([response.data], {type: 'application/xml'});
             var downloadLink = angular.element('<a></a>');
             downloadLink.attr('href',window.URL.createObjectURL(file));
-            downloadLink.attr('download', layout.name+'.rptdesign');
+            downloadLink.attr('download', 'statement_'+invoiceid+'.xml');
             downloadLink[0].click();
         })
     }
@@ -123,7 +125,9 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
         $scope.pageSize = 10;
         console.log($rootScope,$stateParams);
         $scope.fromDate = moment().subtract(1,'months').hour(0).minute(0).second(0).format('YYYY-MM-DD');
+        console.log($scope.fromDate)
         $scope.toDate= moment().hour(23).minute(59).second(59).format('YYYY-MM-DD');
+        console.log($scope.toDate)
         getAllBrands();
         $scope.possibleStates = $rootScope.states;
         !$scope.possibleStates || ($scope.possibleStates && $scope.possibleStates.length)== 0 ? $scope.possibleStates = ["PENDING","PRE-PROCESSING","PROCESSING","MERGING","READY","FAILED"] :'';

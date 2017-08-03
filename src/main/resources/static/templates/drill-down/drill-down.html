@@ -2,10 +2,10 @@
     <spinner size="medium" class-name="cover" ng-show="loading"></spinner>
     <div class="col-sm-12 text-center header-style">Overview</div>
     <div class="col-md-12 overview-filters">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="row form-group">
-                <label class="control-label col-md-2 label-align">State</label>
-                <div class="col-md-6">
+                <label class="control-label col-md-3 label-align">State</label>
+                <div class="col-md-9">
                     <ui-select multiple ng-model="states" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
                         <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
                         <ui-select-choices  repeat="eachOverview in possibleStates" position='down'>
@@ -15,22 +15,22 @@
                 </div>
             </div>
             <div class="row form-group">
-                <label class="control-label col-md-2">Invoice</label>
-                <div class="col-md-6">
+                <label class="control-label col-md-3">Invoice</label>
+                <div class="col-md-9">
                     <input type="text" class="form-control" theme="bootstrap" ng-model="invoiceNumber" ng-change="getOverviewDetails()">
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="row form-group">
-                <label class="control-label col-md-2 label-align">From</label>
-                <div class="col-md-6">
+                <label class="control-label col-md-3 label-align">From</label>
+                <div class="col-md-9">
                     <input type="text" ng-model="fromDate" class="form-control" datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">
                 </div>
             </div>
             <div class="row form-group">
-                <label class="control-label col-md-2">Brand</label>
-                <div class="col-md-6">
+                <label class="control-label col-md-3">Brand</label>
+                <div class="col-md-9">
                     <ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="onBrandRemoval($item, $model)"on-select="onBrandSelect($item, $model)">
                         <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
                         <ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>
@@ -40,11 +40,25 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label col-md-2 label-align">To</label>
-                <div class="col-md-6">
+        <div class="col-md-3">
+            <div class="row form-group">
+                <label class="control-label col-md-3 label-align">To</label>
+                <div class="col-md-9">
                    <input type="text" ng-model="toDate" class="form-control" datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="control-label col-md-3">Account No</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" theme="bootstrap" ng-model="accountNumber" ng-change="getOverviewDetails()">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row form-group">
+                <label class="control-label col-md-3">Customer ID</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" theme="bootstrap" ng-model="customerID" ng-change="getOverviewDetails()">
                 </div>
             </div>
         </div>
@@ -65,15 +79,15 @@
                 <tr>
                     <th st-sort="customerId">Customer id</th>
                     <th st-sort="accountNumber">Account No</th>
-                    <th >Invoice No</th>
-                    <th >Distribution Method</th>
+                    <th>Invoice No</th>
+                    <th>Distribution Method</th>
                     <th st-sort="amount">Amount</th>
                     <!--<th >Invoice Date</th>-->
-                    <th >City</th>
+                    <th>City</th>
                     <th st-sort="dueDate">Due Date</th>
                     <th st-sort="updateTime">Updated Date</th>
-                    <th >Links</th>
-                    <th class="text-center">Download</th>
+                    <th>Links</th>
+                    <!--<th class="text-center">Download</th>-->
                 </tr>
             </thead>
 			<tbody>
@@ -102,6 +116,7 @@
                         </button>-->
                         <div class="row">
                             <i class="fa col-md-2" uib-tooltip="Click to view {{eachPdf.type === 'INVOICE_PDF' ? 'Invoice pdf' : 'Grid pdf'}}" tooltip-placement ="bottom" ng-class="{'fa-file-pdf-o': isInvoicePDF(eachPdf),'fa-file':!isInvoicePDF(eachPdf) }" aria-hidden="true" ng-repeat="eachPdf in row.invoicePdfList | orderBy : 'type'" ng-click="getInvoiceFile(eachPdf.id)"></i>
+                            <i uib-tooltip="Click to download" uib-tooltip="Click to download xml" tooltip-placement="bottom" class="fa fa-file-code-o col-md-2" aria-hidden="true" ng-click="downloadXml(row.id,row.invoiceNumber)"></i>
                         </div>
                         <!--<div class="row">-->
                             <!--<span ng-repeat="eachPdf in row.invoicePdfList track by eachPdf.id">-->
@@ -111,9 +126,9 @@
                             <!--&lt;!&ndash;<i ng-repeat="eachPdf in row.invoicePdfList" ng-click="getInvoiceFile(eachPdf.id)"></i>&ndash;&gt;-->
                         <!--</div>-->
                     </td>
-                    <td class="text-center">
-                        <i uib-tooltip="Click to download" tooltip-placement="bottom" class="fa fa-download text-center" aria-hidden="true" ng-click="downloadXml(row.id)"></i>
-                    </td>
+                    <!--<td class="text-center">-->
+                        <!--<i uib-tooltip="Click to download" tooltip-placement="bottom" class="fa fa-file-code-o text-center" aria-hidden="true" ng-click="downloadXml(row.id,row.invoiceNumber)"></i>-->
+                    <!--</td>-->
                 </tr>
 			</tbody>
             <tfoot>

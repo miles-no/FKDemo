@@ -38,18 +38,23 @@ app.get('/statement/details', function(req, res) {
   var toTime = req.query.toTime;
   var size = req.query.size;
   var page = req.query.page;
+  var customerID = req.query.customerID
+  var accountNumber = req.query.accountNumber
+  var qp = {
+    fromTime:fromTime,
+    invoice:invoice,
+    toTime:toTime,
+    size:size,
+    page:page,
+    customerID:customerID,
+    accountNumber:accountNumber
+  }
+
+  console.log(qp)
   request({
     url: `${apiUrl}/statement/details`,
-  qs:{
-    fromTime:fromTime,
-      invoice:invoice,
-      toTime:toTime,
-      size:size,
-      page:page
-  }//params to be added
+  qs: qp
 },function(error,response,body){
-  console.log('/statement/details header is ::');
-  console.log('/statement/details ::',body);
   res.send(body);
 })
 });
@@ -72,6 +77,27 @@ app.get('/statement/pdf/:id', function(req, res) {
   // Used pipe since the return type is not json and the response is forwarded to the controller as is 
   request(`${apiUrl}/statement/pdf/${invoiceId}`).pipe(res);
 });
+
+
+app.get('/layout/statement/xml/:id', function(req, res) {
+  var invoiceId = req.params.id;
+  console.log(invoiceId)
+  /*request({
+   url: `${apiUrl}/statement/pdf/${invoiceId}`
+   },function(error,response,body){
+   console.log('Invoice Details PDF ',response.headers,response.headers['content-type'],response.headers['content-disposition'],response.headers['content-length']);
+   //res.send(body);
+   res.writeHead(200,{
+   'Content-Type': response.headers['content-type'],
+   'Content-disposition': response.headers['content-disposition'],
+   'Content-Length': response.headers['content-length']
+   });
+   res.end(new Buffer(body,'binary'));
+   })*/
+  // Used pipe since the return type is not json and the response is forwarded to the controller as is
+  request(`${apiUrl}/layout/statement/xml/${invoiceId}`).pipe(res);
+});
+
 
 app.get('/brand/config/brand', function(req, res) {
   request({
@@ -432,9 +458,22 @@ app.post('/transferfile/process', function(req, res) {
 
 app.get('/auditRecord',function(req,res){
   console.log(req.query)
+  var invoiceNo = req.query.invoiceNo
+  var fromTime = req.query.fromTime
+  var toTime = req.query.toTime
+  var page = req.query.page
+  var size = req.query.size
+  var customerID = req.query.customerID
+  var accountNumber = req.query.accountNumber
   let qp = {
-    page: req.query.page,
-    size: req.query.size
+    fromTime:fromTime,
+    invoiceNo:invoiceNo,
+    toTime:toTime,
+    page: page,
+    size: size,
+    customerID:customerID,
+    accountNumber:accountNumber
   }
+  console.log(qp)
   request({url : `${apiUrl}/auditRecord`,qs: qp}).pipe(res);
 })

@@ -14,6 +14,11 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
     let allPossibleRules = {}
     var ruleObj = {name: '', type: '', fileMapping: ''}
     //$scope.rulesList = [angular.copy(ruleObj), angular.copy(ruleObj)]
+
+    $(document).on('shown.bs.modal', '.modal', function() {
+        $(this).find('[autofocus]').focus();
+    });
+
     $scope.hideUpload = true
     let getLayoutRules = function(setLayout){
         $http.get('layout/attribute').then(function (response) {

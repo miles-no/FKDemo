@@ -1,4 +1,5 @@
 <div class="manage-brands" ng-controller="listCtrl" ng-init="getLayouts();">
+    <div uib-alert ng-repeat="alert in alerts" class="alert-width" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}}</div>
     <div class="col-sm-12 text-center header-style">Template Management</div>
     <spinner size="medium" class-name="cover" ng-show="loading"></spinner>
     <div class="col-sm-4">

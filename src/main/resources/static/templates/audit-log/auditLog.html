@@ -14,9 +14,9 @@
                 <!--</div>-->
             <!--</div>-->
             <div class="row form-group">
-                <label class="control-label col-md-2">Invoice</label>
+                <label class="control-label col-md-2">Invoice No</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" theme="bootstrap" ng-model="invoiceNumber" ng-change="getLogs()">
+                    <input type="text" class="form-control" theme="bootstrap" ng-model="invoiceNo" ng-change="getLogs()">
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">To</label>
                 <div class="col-md-8">
-                    <input type="text" ng-model="toDate" class="form-control" theme="bootstrap" datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getLogs()">
+                    <input type="text" ng-model="toTime" class="form-control" theme="bootstrap" datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getLogs()">
                 </div>
             </div>
         </div>
@@ -32,7 +32,25 @@
             <div class="row form-group">
                 <label class="control-label col-md-2">From</label>
                 <div class="col-md-8">
-                    <input type="text" ng-model="fromDate" class="form-control" theme="bootstrap"  datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getLogs()">
+                    <input type="text" ng-model="fromTime" class="form-control" theme="bootstrap"  datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getLogs()">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="col-sm-4">
+            <div class="row form-group">
+                <label class="control-label col-md-2">Customer No</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" theme="bootstrap" ng-model="customerID" ng-change="getLogs()">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row form-group">
+                <label class="control-label col-md-2">Account No</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" theme="bootstrap" ng-model="accountNumber" ng-change="getLogs()">
                 </div>
             </div>
         </div>
@@ -41,18 +59,22 @@
         <table st-table="displayedCollection" st-safe-src="auditLog" class="table">
             <thead>
             <tr>
-                <th width="11%"><span class="pointer">Invoice Id</span></th>
-                <th width="14%">Action</th>
-                <th width="14%">Action Type</th>
-                <th width="14%">Date</th>
-                <th width="14%">Log Type</th>
-                <th width="19%">Message</th>
-                <th width="12%">Username</th>
+                <th><span class="pointer">Invoice No</span></th>
+                <th><span class="pointer">Customer No</span></th>
+                <th><span class="pointer">Account No</span></th>
+                <th>Action</th>
+                <th>Action Type</th>
+                <th>Date</th>
+                <th>Log Type</th>
+                <th>Message</th>
+                <th>Username</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="logs in displayedCollection">
                 <td>{{logs.invoiceNo}}</td>
+                <td>{{logs.customerId}}</td>
+                <td>{{logs.accountNumber}}</td>
                 <td>{{logs.action}}</td>
                 <td>{{logs.actionOnType}}</td>
                 <td>{{getForamttedDate(logs.dateTime)}}</td>
