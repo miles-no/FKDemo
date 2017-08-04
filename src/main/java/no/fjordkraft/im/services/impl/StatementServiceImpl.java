@@ -229,6 +229,7 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
             InputStream inputStream = new ByteArrayInputStream(payload.getBytes(StandardCharsets.UTF_8));
             if(skipBytes) {
                 byte[] b = new byte[2];
+                inputStream.read(b);
                 logger.debug("byte 1:: "+b[0]+" byte2::"+b[1]);
             }
             statementSplitter.batchFileSplit(inputStream, transferFileArchive.getFilename(), systemBatchInput);
