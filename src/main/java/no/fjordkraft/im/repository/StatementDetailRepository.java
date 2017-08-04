@@ -32,6 +32,7 @@ public class StatementDetailRepository {
 
         StringBuffer selectQuery = new StringBuffer();
         selectQuery.append("select s from Statement s join s.systemBatchInput where ");
+
         if(null != status ) {
             selectQuery.append(addConditionForQueryValue(status, "s.status"));
             selectQuery.append(AND);
@@ -40,12 +41,22 @@ public class StatementDetailRepository {
             selectQuery.append(addConditionForQueryValue(brand, "s.systemBatchInput.transferFile.brand"));
             selectQuery.append(AND);
         }
-        selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:customerID is null or s.customerId = :customerID) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:accountNumber is null or s.accountNumber = :accountNumber) ");
-        selectQuery.append(AND);
+        if(null != invoiceNumber) {
+            //selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
+            selectQuery.append(addConditionForQueryValue(invoiceNumber, "s.invoiceNumber"));
+            selectQuery.append(AND);
+        }
+        if(null != customerID) {
+            //selectQuery.append("(:customerID is null or s.customerId = :customerID) ");
+            selectQuery.append(addConditionForQueryValue(customerID, "s.customerId"));
+            selectQuery.append(AND);
+        }
+        if(null != accountNumber) {
+            //selectQuery.append("(:accountNumber is null or s.accountNumber = :accountNumber) ");
+            selectQuery.append(addConditionForQueryValue(accountNumber, "s.accountNumber"));
+            selectQuery.append(AND);
+        }
+
         selectQuery.append("(:fromTime is null or s.createTime >= :fromTime) ");
         selectQuery.append(AND);
         selectQuery.append("(:toTime is null or s.createTime <= :toTime) ");
@@ -97,12 +108,21 @@ public class StatementDetailRepository {
             selectQuery.append(addConditionForQueryValue(brand, "s.systemBatchInput.transferFile.brand"));
             selectQuery.append(AND);
         }
-        selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:customerID is null or s.customerId = :customerID) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:accountNumber is null or s.accountNumber = :accountNumber) ");
-        selectQuery.append(AND);
+        if(null != invoiceNumber) {
+            //selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
+            selectQuery.append(addConditionForQueryValue(invoiceNumber, "s.invoiceNumber"));
+            selectQuery.append(AND);
+        }
+        if(null != customerID) {
+            //selectQuery.append("(:customerID is null or s.customerId = :customerID) ");
+            selectQuery.append(addConditionForQueryValue(customerID, "s.customerId"));
+            selectQuery.append(AND);
+        }
+        if(null != accountNumber) {
+            //selectQuery.append("(:accountNumber is null or s.accountNumber = :accountNumber) ");
+            selectQuery.append(addConditionForQueryValue(accountNumber, "s.accountNumber"));
+            selectQuery.append(AND);
+        }
         selectQuery.append("(:fromTime is null or s.createTime >= :fromTime) ");
         selectQuery.append(AND);
         selectQuery.append("(:toTime is null or s.createTime <= :toTime) ");

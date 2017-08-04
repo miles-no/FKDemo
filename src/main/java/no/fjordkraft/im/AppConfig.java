@@ -173,7 +173,7 @@ public class AppConfig {
             engineConfig.setLogConfig(logPath, Level.FINE);
         }
 
-        URL url = new URL("file:"+File.separator+fontPath + File.separator +"fontsConfig.xml");
+        URL url = new URL("file:"+fontPath + File.separator +"fontsConfig.xml");
         logger.debug("Font config url "+url.toString());
         engineConfig.setFontConfig(url);
 

@@ -30,18 +30,30 @@ public class AuditLogDetailRepository {
         StringBuffer selectQuery = new StringBuffer();
         selectQuery.append("select a from AuditLog a join a.statement where ");
 
-        selectQuery.append("(:action is null or a.action like :action) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:actionOnType is null or a.actionOnType = :actionOnType) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:logType is null or a.logType = :logType) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:invoiceNo is null or a.statement.invoiceNumber = :invoiceNo) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:customerID is null or a.statement.customerId = :customerID) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:accountNumber is null or a.statement.accountNumber = :accountNumber) ");
-        selectQuery.append(AND);
+        if(null != action) {
+            selectQuery.append("(:action is null or a.action like :action) ");
+            selectQuery.append(AND);
+        }
+        if(null != actionOnType) {
+            selectQuery.append("(:actionOnType is null or a.actionOnType = :actionOnType) ");
+            selectQuery.append(AND);
+        }
+        if(null != logType) {
+            selectQuery.append("(:logType is null or a.logType = :logType) ");
+            selectQuery.append(AND);
+        }
+        if(null != invoiceNo) {
+            selectQuery.append("(:invoiceNo is null or a.statement.invoiceNumber = :invoiceNo) ");
+            selectQuery.append(AND);
+        }
+        if(null != customerID) {
+            selectQuery.append("(:customerID is null or a.statement.customerId = :customerID) ");
+            selectQuery.append(AND);
+        }
+        if(null != accountNumber) {
+            selectQuery.append("(:accountNumber is null or a.statement.accountNumber = :accountNumber) ");
+            selectQuery.append(AND);
+        }
         selectQuery.append("(:fromTime is null or a.dateTime >= :fromTime) ");
         selectQuery.append(AND);
         selectQuery.append("(:toTime is null or a.dateTime <= :toTime) ");
@@ -70,18 +82,30 @@ public class AuditLogDetailRepository {
         StringBuffer selectQuery = new StringBuffer();
         selectQuery.append("select count(a) from AuditLog a join a.statement where ");
 
-        selectQuery.append("(:action is null or a.action like :action) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:actionOnType is null or a.actionOnType = :actionOnType) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:logType is null or a.logType = :logType) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:invoiceNo is null or a.statement.invoiceNumber = :invoiceNo) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:customerID is null or a.statement.customerId = :customerID) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:accountNumber is null or a.statement.accountNumber = :accountNumber) ");
-        selectQuery.append(AND);
+        if(null != action) {
+            selectQuery.append("(:action is null or a.action like :action) ");
+            selectQuery.append(AND);
+        }
+        if(null != actionOnType) {
+            selectQuery.append("(:actionOnType is null or a.actionOnType = :actionOnType) ");
+            selectQuery.append(AND);
+        }
+        if(null != logType) {
+            selectQuery.append("(:logType is null or a.logType = :logType) ");
+            selectQuery.append(AND);
+        }
+        if(null != invoiceNo) {
+            selectQuery.append("(:invoiceNo is null or a.statement.invoiceNumber = :invoiceNo) ");
+            selectQuery.append(AND);
+        }
+        if(null != customerID) {
+            selectQuery.append("(:customerID is null or a.statement.customerId = :customerID) ");
+            selectQuery.append(AND);
+        }
+        if(null != accountNumber) {
+            selectQuery.append("(:accountNumber is null or a.statement.accountNumber = :accountNumber) ");
+            selectQuery.append(AND);
+        }
         selectQuery.append("(:fromTime is null or a.dateTime >= :fromTime) ");
         selectQuery.append(AND);
         selectQuery.append("(:toTime is null or a.dateTime <= :toTime) ");
