@@ -65,7 +65,7 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
     $http.post('/brand/config',brand).then(function (response) {
       if(response.status === 200){
         $scope.getBrands()
-        $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
+        $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
       }
       else{
         $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
@@ -76,10 +76,10 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
   }
 
   function updateBrand(brand) {
-    $http.put('/brand/config',brand).then(function () {
+    $http.put('/brand/config',brand).then(function (response) {
       if(response.status === 200){
         $scope.getBrands()
-        $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
+        $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
       }
       else{
         $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })

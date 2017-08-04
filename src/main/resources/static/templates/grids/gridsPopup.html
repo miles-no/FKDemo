@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="service-no">Contact No.</label>
                         <div class=" col-sm-6">
-                            <input name="contact" type="tel" ng-model="grids.phone" class="form-control" id="service-no" ng-minlength="1" limit-to="25" ng-pattern="/^(\+\d+-?)?(\(\d+\))*[\d-\+]*\d+$/" permit-mask="\d\+\-\" required>
+                            <input name="contact" type="tel" ng-model="grids.phone" class="form-control" id="service-no" ng-minlength="1" limit-to="25" ng-pattern="/^(\+\d+-?)?(\(\d+\))*[\d-\+]*\d+$/" permit-mask="\d\+\-" required>
                             <span class="error-msg" ng-show="gridValidations.contact.$invalid && gridValidations.contact.$touched">Please Enter a valid telephone number</span>
                         </div>
                     </div>
