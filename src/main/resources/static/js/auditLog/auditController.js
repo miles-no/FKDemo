@@ -20,8 +20,9 @@ app.controller('auditLogController',function($scope,$http,moment){
         queryParams.fromTime = moment($scope.fromTime).startOf('day').format('YYYY-MM-DD HH:mm:ss')
       }
       if($scope.toTime){
-        queryParams.toTime = moment($scope.toTime).startOf('day').format('YYYY-MM-DD HH:mm:ss')
+        queryParams.toTime = moment($scope.toTime).hour(23).minute(59).second(59).format('YYYY-MM-DD HH:mm:ss')
       }
+    console.log(queryParams)
     $http.get('/auditRecord',{params:queryParams}).then(function(response){
       $scope.auditLog = response.data.AUDIT_LOG
       $scope.totalPages = Math.ceil(response.data.TOTAL/$scope.pageSize);
