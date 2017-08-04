@@ -14,6 +14,7 @@ app.controller('templateAttributeController',function($scope,$http,ModalService)
   $scope.getRules = function (){
     $http.get('/layout/attribute').success(function(response){
       $scope.tableRule = $scope.ruleData = response
+      $scope.ruleList = []
       angular.forEach($scope.ruleData, function(item){
         $scope.ruleList.push(item.name)
       })
