@@ -31,27 +31,27 @@ public class AuditLogDetailRepository {
         selectQuery.append("select a from AuditLog a join a.statement where ");
 
         if(null != action) {
-            selectQuery.append("(:action is null or a.action like :action) ");
+            selectQuery.append((addConditionForQueryValue(action, "a.action")));
             selectQuery.append(AND);
         }
         if(null != actionOnType) {
-            selectQuery.append("(:actionOnType is null or a.actionOnType = :actionOnType) ");
+            selectQuery.append((addConditionForQueryValue(actionOnType, "a.actionOnType")));
             selectQuery.append(AND);
         }
         if(null != logType) {
-            selectQuery.append("(:logType is null or a.logType = :logType) ");
+            selectQuery.append((addConditionForQueryValue(logType, "a.logType")));
             selectQuery.append(AND);
         }
         if(null != invoiceNo) {
-            selectQuery.append("(:invoiceNo is null or a.statement.invoiceNumber = :invoiceNo) ");
+            selectQuery.append((addConditionForQueryValue(invoiceNo, "a.statement.invoiceNumber")));
             selectQuery.append(AND);
         }
         if(null != customerID) {
-            selectQuery.append("(:customerID is null or a.statement.customerId = :customerID) ");
+            selectQuery.append((addConditionForQueryValue(customerID, "a.statement.customerId")));
             selectQuery.append(AND);
         }
         if(null != accountNumber) {
-            selectQuery.append("(:accountNumber is null or a.statement.accountNumber = :accountNumber) ");
+            selectQuery.append((addConditionForQueryValue(accountNumber, "a.statement.accountNumber")));
             selectQuery.append(AND);
         }
         selectQuery.append("(:fromTime is null or a.dateTime >= :fromTime) ");
@@ -63,13 +63,7 @@ public class AuditLogDetailRepository {
                 .setFirstResult(page * size)
                 .setMaxResults(size)
                 .setParameter("fromTime", fromTime)
-                .setParameter("toTime", toTime)
-                .setParameter("action", action)
-                .setParameter("actionOnType", actionOnType)
-                .setParameter("logType", logType)
-                .setParameter("invoiceNo", invoiceNo)
-                .setParameter("customerID", customerID)
-                .setParameter("accountNumber", accountNumber);
+                .setParameter("toTime", toTime);
 
         List<AuditLog> auditLogList = query.getResultList();
         return auditLogList;
@@ -83,27 +77,27 @@ public class AuditLogDetailRepository {
         selectQuery.append("select count(a) from AuditLog a join a.statement where ");
 
         if(null != action) {
-            selectQuery.append("(:action is null or a.action like :action) ");
+            selectQuery.append((addConditionForQueryValue(action, "a.action")));
             selectQuery.append(AND);
         }
         if(null != actionOnType) {
-            selectQuery.append("(:actionOnType is null or a.actionOnType = :actionOnType) ");
+            selectQuery.append((addConditionForQueryValue(actionOnType, "a.actionOnType")));
             selectQuery.append(AND);
         }
         if(null != logType) {
-            selectQuery.append("(:logType is null or a.logType = :logType) ");
+            selectQuery.append((addConditionForQueryValue(logType, "a.logType")));
             selectQuery.append(AND);
         }
         if(null != invoiceNo) {
-            selectQuery.append("(:invoiceNo is null or a.statement.invoiceNumber = :invoiceNo) ");
+            selectQuery.append((addConditionForQueryValue(invoiceNo, "a.statement.invoiceNumber")));
             selectQuery.append(AND);
         }
         if(null != customerID) {
-            selectQuery.append("(:customerID is null or a.statement.customerId = :customerID) ");
+            selectQuery.append((addConditionForQueryValue(customerID, "a.statement.customerId")));
             selectQuery.append(AND);
         }
         if(null != accountNumber) {
-            selectQuery.append("(:accountNumber is null or a.statement.accountNumber = :accountNumber) ");
+            selectQuery.append((addConditionForQueryValue(accountNumber, "a.statement.accountNumber")));
             selectQuery.append(AND);
         }
         selectQuery.append("(:fromTime is null or a.dateTime >= :fromTime) ");
@@ -113,15 +107,13 @@ public class AuditLogDetailRepository {
 
         Query query = entityManager.createQuery(selectQuery.toString(), Long.class)
                 .setParameter("fromTime", fromTime)
-                .setParameter("toTime", toTime)
-                .setParameter("action", action)
-                .setParameter("actionOnType", actionOnType)
-                .setParameter("logType", logType)
-                .setParameter("invoiceNo", invoiceNo)
-                .setParameter("customerID", customerID)
-                .setParameter("accountNumber", accountNumber);
+                .setParameter("toTime", toTime);
 
         Long count = (Long) query.getSingleResult();
         return count;
+    }
+
+    private String addConditionForQueryValue(String value, String name) {
+        return "(" + name + " in " + "(" + value + "))";
     }
 }

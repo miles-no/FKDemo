@@ -41,25 +41,19 @@ public class StatementDetailRepository {
             selectQuery.append(addConditionForQueryValue(brand, "s.systemBatchInput.transferFile.brand"));
             selectQuery.append(AND);
         }
-        if(null != invoiceNumber) {
-            //selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
-            selectQuery.append(addConditionForQueryValue(invoiceNumber, "s.invoiceNumber"));
-            selectQuery.append(AND);
-        }
         if(null != customerID) {
-            //selectQuery.append("(:customerID is null or s.customerId = :customerID) ");
             selectQuery.append(addConditionForQueryValue(customerID, "s.customerId"));
             selectQuery.append(AND);
         }
         if(null != accountNumber) {
-            //selectQuery.append("(:accountNumber is null or s.accountNumber = :accountNumber) ");
             selectQuery.append(addConditionForQueryValue(accountNumber, "s.accountNumber"));
             selectQuery.append(AND);
         }
-
         selectQuery.append("(:fromTime is null or s.createTime >= :fromTime) ");
         selectQuery.append(AND);
         selectQuery.append("(:toTime is null or s.createTime <= :toTime) ");
+        selectQuery.append(AND);
+        selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
         selectQuery.append("order by s.createTime desc");
 
         Query query = entityManager.createQuery(selectQuery.toString(), Statement.class)
@@ -67,9 +61,7 @@ public class StatementDetailRepository {
                 .setMaxResults(size)
                 .setParameter("fromTime", fromTime)
                 .setParameter("toTime", toTime)
-                .setParameter("customerID", customerID)
-                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'))
-                .setParameter("accountNumber", accountNumber);
+                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'));
 
         List<Statement> statementList = query.getResultList();
         return statementList;
@@ -108,31 +100,25 @@ public class StatementDetailRepository {
             selectQuery.append(addConditionForQueryValue(brand, "s.systemBatchInput.transferFile.brand"));
             selectQuery.append(AND);
         }
-        if(null != invoiceNumber) {
-            //selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
-            selectQuery.append(addConditionForQueryValue(invoiceNumber, "s.invoiceNumber"));
-            selectQuery.append(AND);
-        }
         if(null != customerID) {
-            //selectQuery.append("(:customerID is null or s.customerId = :customerID) ");
             selectQuery.append(addConditionForQueryValue(customerID, "s.customerId"));
             selectQuery.append(AND);
         }
         if(null != accountNumber) {
-            //selectQuery.append("(:accountNumber is null or s.accountNumber = :accountNumber) ");
             selectQuery.append(addConditionForQueryValue(accountNumber, "s.accountNumber"));
             selectQuery.append(AND);
         }
         selectQuery.append("(:fromTime is null or s.createTime >= :fromTime) ");
         selectQuery.append(AND);
         selectQuery.append("(:toTime is null or s.createTime <= :toTime) ");
+        selectQuery.append(AND);
+        selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
+        selectQuery.append("order by s.createTime desc");
 
         Query query = entityManager.createQuery(selectQuery.toString(), Long.class)
                 .setParameter("fromTime", fromTime)
                 .setParameter("toTime", toTime)
-                .setParameter("customerID", customerID)
-                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'))
-                .setParameter("accountNumber", accountNumber);
+                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'));
 
         Long count = (Long) query.getSingleResult();
         return count;
