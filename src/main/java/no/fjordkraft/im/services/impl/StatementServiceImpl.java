@@ -31,10 +31,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 
 import javax.annotation.Resource;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -227,12 +225,19 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
             TransferFileArchive transferFileArchive = transferFileArchiveService.findOne(transferFileId);
             String payload = transferFileArchive.getFileContent();
             InputStream inputStream = new ByteArrayInputStream(payload.getBytes(StandardCharsets.UTF_8));
-            if(skipBytes) {
-                byte[] b = new byte[2];
-                inputStream.read(b);
-                logger.debug("byte 1:: "+b[0]+" byte2::"+b[1]);
+            PushbackInputStream pushbackInputStream = new PushbackInputStream(inputStream);
+            byte[] b = new byte[1];
+            pushbackInputStream.read(b);
+            logger.debug("byte read:: "+b[0]);
+            if (b[0] == -62) {
+                pushbackInputStream.read(b);
+                logger.debug("byte 2:: "+b[0]);
+            } else {
+                logger.debug("unread byte");
+                pushbackInputStream.unread(b);
             }
-            statementSplitter.batchFileSplit(inputStream, transferFileArchive.getFilename(), systemBatchInput);
+
+            statementSplitter.batchFileSplit(pushbackInputStream, transferFileArchive.getFilename(), systemBatchInput);
 
             systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSED.getStatus());
             logger.debug("File split successful for file " + transferFileArchive.getFilename() + " with id " + systemBatchInput.getId()+ stopWatch.prettyPrint());
