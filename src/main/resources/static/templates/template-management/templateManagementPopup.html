@@ -54,6 +54,7 @@
                     <div class="rules-wrapper">
                         <div class="rules-heading">Rules
                             <!--<i class="fa fa-plus btn" ng-click="addRule()"> Add Rule</i>--> <!-- remove this css also it is not required-->
+                            <i class="fa fa-plus" ng-click="addRule()" ng-if="rulesList.length && getAvailableRules().length && getAvailableRules().length > 0"></i>
                         </div>
                             <div class="form-group brand-layout">
                                 <label class="control-label col-sm-3">Brand</label>
@@ -95,8 +96,8 @@
                                         </ui-select>
                                     </div>
                                     <div class="col-sm-1">
-                                        <i class="fa fa-times col-sm-4" ng-click="removeRule(rule,$index)"></i>
-                                        <i class="fa fa-plus col-sm-4" ng-click="addRule()" ng-if="showAddRule($index) && getAvailableRules().length && getAvailableRules().length > 0"></i>
+                                        <i class="fa fa-trash col-sm-4 trash-style" ng-click="removeRule(rule,$index)"></i>
+                                        <!--<i class="fa fa-plus col-sm-4" ng-click="addRule()" ng-if="showAddRule($index) && getAvailableRules().length && getAvailableRules().length > 0"></i>-->
                                     </div>
                                 </div>
                             </div>

@@ -45,9 +45,7 @@ app.controller('listPopupController',function($scope,options,close, $http,_){
         });
     }
     $scope.showRule = false;
-    $scope.showAddRule = function(index){
-        return $scope.rulesList.length-1 == index ;
-    }
+
     $scope.addRule = function () {
         if($scope.showRule === false){
             $scope.showRule = true
