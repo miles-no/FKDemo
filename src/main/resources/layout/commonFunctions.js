@@ -34,3 +34,8 @@ function monthNumToName(date) {
     var d = parseInt(date.substr(5,2));
     return months[d-1];
 }
+
+function getYear(date) {
+    var year = parseInt(date.substr(0,4));
+    return year;
+}
