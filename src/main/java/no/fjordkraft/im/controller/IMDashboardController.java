@@ -5,6 +5,7 @@ import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.impl.StatementServiceImpl;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.statusEnum.UIStatementStatusEnum;
+import no.fjordkraft.im.ui.services.UIStatementService;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,12 +25,12 @@ import java.util.Map;
 public class IMDashboardController {
 
     @Autowired
-    StatementRepository statementRepository;
+    UIStatementService statementService;
 
     @RequestMapping(value = "status", method = RequestMethod.GET)
     @ResponseBody
     public List<StatusCount> getStatementCountByStatus() {
-        List<StatusCount> statusCounts = statementRepository.getStatementStatus();
+        List<StatusCount> statusCounts = statementService.getStatementStatus();
         List<StatusCount> uiStatusCount = new ArrayList<StatusCount>();
         StatusCount status = null;
         Long sum = 0l;
@@ -107,7 +108,7 @@ public class IMDashboardController {
 
         status = new StatusCount();
         status.setName("Total");
-        status.setValue(statementRepository.getTotalInvoiceCount());
+        status.setValue(statementService.getTotalInvoiceCount());
         uiStatusCount.add(6, status);
 
         return uiStatusCount;
@@ -116,19 +117,19 @@ public class IMDashboardController {
     @RequestMapping(value = "city", method = RequestMethod.GET)
     @ResponseBody
     public List<StatusCount> getStatusByCity(@RequestParam("fromTime") Timestamp fromTime, @RequestParam("toTime") Timestamp toTime) {
-        return statementRepository.getStatusByCity(fromTime, toTime);
+        return statementService.getStatusByCity(fromTime, toTime);
     }
 
     @RequestMapping(value = "brand", method = RequestMethod.GET)
     @ResponseBody
     public List<StatusCount> getStatusByBrand(@RequestParam("fromTime") Timestamp fromTime, @RequestParam("toTime") Timestamp toTime) {
-        return statementRepository.getStatusByBrand(fromTime, toTime);
+        return statementService.getStatusByBrand(fromTime, toTime);
     }
 
     @RequestMapping(value = "time",method = RequestMethod.GET)
     @ResponseBody
     public StatusCount getInvoiceCountByTime(@RequestParam("fromTime") Timestamp fromTime, @RequestParam("toTime") Timestamp toTime) {
-        Long count = statementRepository.getInvoiceCountByTime(fromTime, toTime);
+        Long count = statementService.getInvoiceCountByTime(fromTime, toTime);
         StatusCount statusCount = new StatusCount();
         statusCount.setName("Total");
         statusCount.setValue(count);

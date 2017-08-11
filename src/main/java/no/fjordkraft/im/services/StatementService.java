@@ -32,19 +32,8 @@ public interface StatementService {
 
     public void updateStatement(Statement statement, StatementStatusEnum status);
 
-    public List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime,
-                                          String brand, String customerID, String invoice, String accountNumber);
-
-    public Long getCountByStatus(String status, Timestamp fromTime,
-                                 Timestamp toTime, String brand, String customerID, String invoiceNumber, String accountNumber);
-
    // public void splitAndSave(TransferFile transferFile);
 
     public void processTransferFile(SystemBatchInput systemBatchInput);
 
-    List<StatusCount> getStatusAndCountByTransferfile(String transferFile);
-
-    List<StatusCount> getStatusByTransferfileBatchId(Long ekBatchJobId);
-
-    String getStatementById(Long id);
 }

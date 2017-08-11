@@ -9,6 +9,8 @@ import no.fjordkraft.im.model.RuleAttributes;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.repository.StatementRepository;
+import no.fjordkraft.im.services.LayoutRuleService;
+import no.fjordkraft.im.services.RuleAttributesService;
 import no.fjordkraft.im.services.impl.LayoutRuleServiceImpl;
 import no.fjordkraft.im.services.impl.RuleAttributesServiceImpl;
 import no.fjordkraft.im.util.IMConstants;
@@ -31,10 +33,10 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
     StatementRepository statementRepository;
 
     @Autowired
-    LayoutRuleServiceImpl layoutRuleService;
+    LayoutRuleService layoutRuleService;
 
     @Autowired
-    RuleAttributesServiceImpl ruleAttributesService;
+    RuleAttributesService ruleAttributesService;
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request)
@@ -158,5 +160,9 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
         temp = fieldMapping.substring(0, 1).toLowerCase();
         temp += fieldMapping.substring(1);
         return temp;
+    }
+
+    public void setLayoutRuleServiceImpl(LayoutRuleService layoutRuleService) {
+        this.layoutRuleService = layoutRuleService;
     }
 }

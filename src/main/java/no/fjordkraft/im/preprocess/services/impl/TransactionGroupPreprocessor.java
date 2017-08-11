@@ -5,6 +5,8 @@ import no.fjordkraft.im.if320.models.*;
 import no.fjordkraft.im.model.GridConfig;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
+import no.fjordkraft.im.services.AuditLogService;
+import no.fjordkraft.im.services.GridConfigService;
 import no.fjordkraft.im.services.impl.AuditLogServiceImpl;
 import no.fjordkraft.im.services.impl.GridConfigServiceImpl;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
@@ -26,10 +28,10 @@ import java.util.Map;
 public class TransactionGroupPreprocessor  extends BasePreprocessor{
 
     @Autowired
-    GridConfigServiceImpl gridConfigService;
+    GridConfigService gridConfigService;
 
     @Autowired
-    AuditLogServiceImpl auditLogService;
+    AuditLogService auditLogService;
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
@@ -144,5 +146,13 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
             auditLogService.saveAuditLog(id, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);
         }
         return grid;
+    }
+
+    public void setGridConfigService(GridConfigService gridConfigService) {
+        this.gridConfigService = gridConfigService;
+    }
+
+    public void setAuditLogService(AuditLogService auditLogService) {
+        this.auditLogService = auditLogService;
     }
 }

@@ -3,6 +3,7 @@ package no.fjordkraft.im.controller;
 import no.fjordkraft.im.model.Config;
 import no.fjordkraft.im.repository.ConfigRepository;
 import no.fjordkraft.im.services.impl.ConfigServiceImpl;
+import no.fjordkraft.im.ui.services.UIConfigService;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ import java.util.Map;
 public class IMConfigController {
 
     @Autowired
-    ConfigServiceImpl configService;
+    UIConfigService configService;
 
     @RequestMapping(value = "{key}", method = RequestMethod.GET)
     @ResponseBody

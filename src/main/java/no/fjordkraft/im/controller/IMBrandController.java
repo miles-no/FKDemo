@@ -1,14 +1,11 @@
 package no.fjordkraft.im.controller;
 
 import no.fjordkraft.im.model.BrandConfig;
-import no.fjordkraft.im.services.BrandService;
-import no.fjordkraft.im.services.impl.BrandServiceImpl;
+import no.fjordkraft.im.ui.services.UIBrandService;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +18,7 @@ import java.util.Map;
 public class IMBrandController {
 
     @Autowired
-    BrandService brandService;
+    UIBrandService brandService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody

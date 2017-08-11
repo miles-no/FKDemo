@@ -10,16 +10,5 @@ import java.util.List;
  */
 @Service
 public interface BrandService {
-
-    List<BrandConfig> getBrandConfigs();
-
-    void saveBrandConfig(BrandConfig brandConfig);
-
-    void updateBrandConfig(BrandConfig brandConfig);
-
-    void deleteBrandConfig(Long id);
-
     BrandConfig getBrandConfigByName(String brand);
-    List<String> getAllBrands();
-    Long getBrandCount();
 }

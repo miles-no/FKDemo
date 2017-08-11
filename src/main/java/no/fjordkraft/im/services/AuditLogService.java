@@ -13,10 +13,4 @@ public interface AuditLogService {
 
     void saveAuditLog(Long actionOnId, String action, String msg, String logType);
     void saveAuditLog(String actionOnType, Long actionOnId, String action, String msg, String logType);
-    Long getTotalAuditLog();
-    AuditLog getAuditLogById(Long id);
-    List<RestAuditLog> getAuditLogRecords(int page, int size, Timestamp fromTime, Timestamp toTime, String action,
-                                      String actionOnType, String logType, String invoiceNo, String customerID, String accountNumber);
-    Long getAuditLogRecordsCount(Timestamp fromTime, Timestamp toTime, String action,
-                                      String actionOnType, String logType, String invoiceNo, String customerID, String accountNumber);
 }

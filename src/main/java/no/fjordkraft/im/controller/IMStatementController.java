@@ -4,6 +4,7 @@ import no.fjordkraft.im.domain.RestStatement;
 import no.fjordkraft.im.model.InvoicePdf;
 import no.fjordkraft.im.repository.InvoicePdfRepository;
 import no.fjordkraft.im.services.impl.StatementServiceImpl;
+import no.fjordkraft.im.ui.services.UIStatementService;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -27,7 +28,7 @@ import java.util.Map;
 public class IMStatementController {
 
     @Autowired
-    StatementServiceImpl statementService;
+    UIStatementService statementService;
 
     @Autowired
     InvoicePdfRepository invoicePdfRepository;

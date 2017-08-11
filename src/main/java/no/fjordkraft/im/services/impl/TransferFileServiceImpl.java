@@ -1,12 +1,13 @@
 package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.jobs.schedulerjobs.InvoiceFeedWatcherJob;
-import no.fjordkraft.im.model.StatusCount;
 import no.fjordkraft.im.model.SystemBatchInput;
 import no.fjordkraft.im.model.TransferFile;
 import no.fjordkraft.im.model.TransferTypeEnum;
 import no.fjordkraft.im.repository.TransferFileRepository;
-import no.fjordkraft.im.services.*;
+import no.fjordkraft.im.services.ConfigService;
+import no.fjordkraft.im.services.StatementService;
+import no.fjordkraft.im.services.TransferFileService;
 import no.fjordkraft.im.statusEnum.SystemBatchInputStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
@@ -18,11 +19,10 @@ import org.springframework.util.StopWatch;
 
 import java.io.File;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by bhavi on 5/9/2017.
+ * Created by miles on 8/11/2017.
  */
 @Service
 public class TransferFileServiceImpl implements TransferFileService {
@@ -30,19 +30,13 @@ public class TransferFileServiceImpl implements TransferFileService {
     private static final Logger logger = LoggerFactory.getLogger(InvoiceFeedWatcherJob.class);
 
     @Autowired
-    private TransferFileRepository transferFileRepository;
-
-    @Autowired
-    private ConfigService configService;
-
-    @Autowired
-    private SystemBatchInputService systemBatchInputService;
-
-    @Autowired
-    TransferFileArchiveService transferFileArchiveService;
+    TransferFileRepository transferFileRepository;
 
     @Autowired
     StatementService statementService;
+
+    @Autowired
+    ConfigService configService;
 
     @Transactional
     public void fetchAndProcess() {
@@ -72,52 +66,10 @@ public class TransferFileServiceImpl implements TransferFileService {
         return imSystemBatchInput;
     }
 
-
-    public TransferFile getOneTransferFileWithEmptyIMStatus(){
-        return transferFileRepository.readSingleTransferFile();
-    }
-
-    @Override
-    @Transactional
-    public TransferFile saveTransferFile(TransferFile transferFile) {
-        return transferFileRepository.save(transferFile);
-    }
-
-    @Override
-    public List<TransferFile> readTransferFileByBatchJobId(Long batchJobId) {
-        return transferFileRepository.readTransferfileByBatchJobId(batchJobId);
-    }
-
     void createOutputFolders(String filename){
         String destinationPath =configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
         String folderName = filename.substring(0, filename.indexOf('.'));
         File baseFolder = new File(new File(destinationPath) , folderName);
         baseFolder.mkdir();
     }
-
-    public TransferFileRepository getTransferFileRepository() {
-        return transferFileRepository;
-    }
-
-    public void setTransferFileRepository(TransferFileRepository transferFileRepository) {
-        this.transferFileRepository = transferFileRepository;
-    }
-
-    public SystemBatchInputService getSystemBatchInputService() {
-        return systemBatchInputService;
-    }
-
-    public void setSystemBatchInputService(SystemBatchInputService systemBatchInputService) {
-        this.systemBatchInputService = systemBatchInputService;
-    }
-
-    public ConfigService getConfigService() {
-        return configService;
-    }
-
-    public void setConfigService(ConfigService configService) {
-        this.configService = configService;
-    }
-
-
 }

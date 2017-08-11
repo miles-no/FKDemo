@@ -35,12 +35,6 @@ public class ConfigServiceImpl implements ConfigService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Config> findAll() {
-        return configRepository.findAll();
-    }
-
-    @Transactional(readOnly = true)
-    @Override
     public Config findById(String id) {
         return configRepository.findOne(id);
     }
@@ -110,39 +104,6 @@ public class ConfigServiceImpl implements ConfigService {
             return false;
         }
         return Boolean.valueOf(value);
-    }
-
-    @Override
-    @Transactional
-    public Config updateConfig(String key, String value) {
-        Config configDb = configRepository.findOne(key);
-        if (configDb == null) {
-            configDb = new Config();
-            configDb.setName(key);
-        }
-        configDb.setValue(value);
-        synchronized (this) {
-            cache.put(key, value);
-        }
-        return configRepository.saveAndFlush(configDb);
-    }
-
-    @Override
-    public void saveConfig(String key, String value) {
-        Config config = new Config();
-        config.setName(key);
-        config.setValue(value);
-        configRepository.save(config);
-    }
-
-    @Override
-    public void deleteConfig(String key) {
-        configRepository.delete(key);
-    }
-
-    @Override
-    public Long getConfigCount() {
-        return configRepository.getConfigCount();
     }
 
     @Override

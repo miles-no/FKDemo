@@ -1,9 +1,8 @@
 package no.fjordkraft.im.controller;
 
 import no.fjordkraft.im.domain.RestAuditLog;
-import no.fjordkraft.im.domain.RestStatement;
-import no.fjordkraft.im.model.AuditLog;
-import no.fjordkraft.im.services.impl.AuditLogServiceImpl;
+import no.fjordkraft.im.ui.services.UIAuditLogService;
+import no.fjordkraft.im.ui.services.impl.UIAuditLogServiceImpl;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,7 @@ import java.util.Map;
 public class IMAuditLogController {
 
     @Autowired
-    AuditLogServiceImpl auditLogService;
+    UIAuditLogService auditLogService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody

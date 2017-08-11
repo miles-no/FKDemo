@@ -46,10 +46,6 @@ public interface IMConstants {
     static final String NOT_APPLICABLE = "NA";
     static final String FKAS = "FKAS";
     static final String TKAS = "TKAS";
-    static final String ORGANISATION = "Organization";
-    static final String INDIVIDUAL = "Individual";
-    static final String TPM = "TPM";
-    static final String EHF = "EHF";
     static final String BRAND = "Brand";
     static final String GRID = "Grid";
     static final String CONFIG = "config";
@@ -69,7 +65,7 @@ public interface IMConstants {
     static final String ERROR = "ERROR";
     static final String WARNING = "WARNING";
     static final String STATEMENT = "STATEMENT";
-    static final String TRANSFER_FILE = "TRNSFER_FILE";
+    static final String SYSTEM_BATCH_FILE = "SYSTEM_BATCH_FILE";
     static final String YES = "YES";
     static final String NO = "NO";
     static final String UNDEFINED = "Undefined";

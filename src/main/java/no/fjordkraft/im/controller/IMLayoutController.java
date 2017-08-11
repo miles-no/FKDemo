@@ -1,10 +1,11 @@
 package no.fjordkraft.im.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mult;
 import no.fjordkraft.im.domain.*;
 import no.fjordkraft.im.model.*;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.impl.*;
+import no.fjordkraft.im.ui.services.*;
+import no.fjordkraft.im.ui.services.impl.UILayoutRuleServiceImpl;
 import no.fjordkraft.im.util.IMConstants;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -38,28 +39,25 @@ public class IMLayoutController {
     private static final Logger logger = LoggerFactory.getLogger(IMLayoutController.class);
 
     @Autowired
-    RuleAttributesServiceImpl ruleAttributesService;
+    UIRuleAttributesService ruleAttributesService;
 
     @Autowired
-    LayoutServiceImpl layoutService;
+    UILayoutService layoutService;
 
     @Autowired
-    LayoutContentServiceImpl layoutContentService;
+    UILayoutContentService layoutContentService;
 
     @Autowired
-    LayoutRuleServiceImpl layoutRuleService;
-
-    @Autowired
-    LayoutRuleMapServiceImpl layoutRuleMapService;
+    UILayoutRuleService layoutRuleService;
 
     @Autowired
     PDFGeneratorImpl pdfGenerator;
 
     @Autowired
-    ConfigService configService;
+    UIConfigService configService;
 
     @Autowired
-    StatementServiceImpl statementService;
+    UIStatementService statementService;
 
 
     @RequestMapping(value = "attribute", method = RequestMethod.GET)

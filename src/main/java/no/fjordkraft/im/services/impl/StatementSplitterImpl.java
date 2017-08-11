@@ -4,6 +4,7 @@ package no.fjordkraft.im.services.impl;
  * Created by miles on 5/2/2017.
  */
 
+import no.fjordkraft.im.exceptions.StatementSplitterException;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.model.SystemBatchInput;
 import no.fjordkraft.im.repository.StatementRepository;
@@ -133,7 +134,8 @@ public class StatementSplitterImpl implements StatementSplitter {
             return numberOfRecords;
         } catch (Exception e) {
             //logger.error("Exception while splitting the file "+systemBatchInput.getId() + " "+ systemBatchInput.getTransferFile().getFilename(),e);
-            throw e;
+            //throw e;
+            throw new StatementSplitterException(e.getMessage());
         } finally {
 
         }

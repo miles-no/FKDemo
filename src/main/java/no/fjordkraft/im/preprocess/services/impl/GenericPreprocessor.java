@@ -75,7 +75,7 @@ public class GenericPreprocessor extends BasePreprocessor {
     }
 
 
-    private Statement unmarshallAttachments(Statement statement) throws IOException {
+    public Statement unmarshallAttachments(Statement statement) throws IOException {
         if(null != statement.getAttachments() && null != statement.getAttachments().getAttachmentList()) {
             for (String data : statement.getAttachments().getAttachmentList()) {
                 data = data.replaceAll("&lt;!\\[CDATA\\[", "");
@@ -93,7 +93,7 @@ public class GenericPreprocessor extends BasePreprocessor {
         return statement;
     }
 
-    private void decodeAndUnmarshalEHFAttachment(Statement statement) throws IOException {
+    public void decodeAndUnmarshalEHFAttachment(Statement statement) throws IOException {
         for(Attachment attachment : statement.getAttachments().getAttachment()){
             if("PDFEHF".equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
                 String data = attachment.getFAKTURA().getVedleggehf();
@@ -122,4 +122,7 @@ public class GenericPreprocessor extends BasePreprocessor {
         }
     }
 
+    public void setUnMarshaller(Unmarshaller unMarshaller) {
+        this.unMarshaller = unMarshaller;
+    }
 }

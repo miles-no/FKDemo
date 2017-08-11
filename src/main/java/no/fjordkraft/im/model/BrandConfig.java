@@ -9,6 +9,18 @@ import javax.persistence.*;
 @Table(name="IM_BRAND_CONFIG")
 public class BrandConfig {
 
+    public BrandConfig() {
+    }
+
+    public BrandConfig(String brand, char useEABarcode, String agreementNumber, String serviceLevel, String prefixKID, String kontonummer) {
+        this.brand = brand;
+        this.useEABarcode = useEABarcode;
+        this.agreementNumber = agreementNumber;
+        this.serviceLevel = serviceLevel;
+        this.prefixKID = prefixKID;
+        this.kontonummer = kontonummer;
+    }
+
     @Column(name="ID")
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator = "SEQ")

@@ -13,13 +13,5 @@ import java.util.List;
  */
 public interface LayoutService {
 
-    Layout getLayoutDesignById(Long id);
     String getRptDesignFile(Long id);
-    Layout saveLayout(RestLayoutTemplate restLayoutTemplate);
-    Layout updateLayout(Long id, RestLayoutTemplate restLayoutTemplate);
-    List<RestLayout> getLayoutByBrand(String brand);
-    List<RestLayout> getAllLayout();
-    List<NameValuePair> getLayoutList();
-    void deleteLayout(Long id);
-    Layout updateLayoutVersion(Long id, String template);
 }

@@ -10,3 +10,7 @@ mvn install:install-file -Dfile=./de.c-brell.birt.reportitem.barcode_1.0.1.20120
 
 mvn install:install-file -Dfile=./ubl-0.0.1-SNAPSHOT.jar -DgroupId=oasis-open -DartifactId=ubl -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar
 
+mvn install:install-file -Dfile=./junit-4.12.jar -DgroupId=junit -DartifactId=junit -Dversion=4.12 -Dpackaging=jar
+
+mvn install:install-file -Dfile=./mockito-all-1.8.4.jar -DgroupId=org.mockito -DartifactId=mockito-all -Dversion=1.8.4 -Dpackaging=jar
+

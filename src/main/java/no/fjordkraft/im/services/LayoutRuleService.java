@@ -11,8 +11,4 @@ public interface LayoutRuleService {
 
     List<LayoutRule> getAllLayoutRule();
     List<LayoutRule> getLayoutRuleByBrand(String brand);
-    void saveLayoutRule(LayoutRule layoutRule);
-    void updateLayoutRule(LayoutRule layoutRule);
-    void deleteLayoutRule(Long id);
-    List<LayoutRule> getLayoutRuleByLayout(Long layoutId);
 }

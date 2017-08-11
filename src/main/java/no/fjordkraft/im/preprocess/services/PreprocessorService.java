@@ -1,6 +1,7 @@
 package no.fjordkraft.im.preprocess.services;
 
 import no.fjordkraft.im.if320.models.Statement;
+import org.springframework.oxm.Unmarshaller;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,4 +20,6 @@ public interface PreprocessorService {
     public void preprocess() throws IOException;
 
     //public void updateStatementEntity(no.fjordkraft.im.model.Statement statementEntity);
+
+    public void setUnMarshaller(Unmarshaller unMarshaller);
 }

@@ -3,6 +3,7 @@ package no.fjordkraft.im.services.impl;
 import no.fjordkraft.im.model.SegmentControlFileResult;
 import no.fjordkraft.im.model.SegmentFile;
 import no.fjordkraft.im.repository.SegmentFileRepository;
+import no.fjordkraft.im.services.SegmentControlFileService;
 import no.fjordkraft.im.services.SegmentFileService;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
@@ -19,7 +20,7 @@ import java.nio.charset.StandardCharsets;
  * Created by miles on 6/21/2017.
  */
 @Service
-public class SegmentFileServiceImpl implements SegmentFileService{
+public class SegmentFileServiceImpl implements SegmentFileService {
 
     private static final Logger logger = LoggerFactory.getLogger(SegmentFileServiceImpl.class);
 
@@ -27,7 +28,7 @@ public class SegmentFileServiceImpl implements SegmentFileService{
     SegmentFileRepository segmentFileRepository;
 
     @Autowired
-    SegmentControlFileServiceImpl segmentControlFileService;
+    SegmentControlFileService segmentControlFileService;
     
     @Override
     public void updateSegmentFile(SegmentFile segmentFile) {

@@ -1,15 +1,13 @@
 package no.fjordkraft.im.controller;
 
 import no.fjordkraft.im.model.SegmentFile;
-import no.fjordkraft.im.services.impl.SegmentFileServiceImpl;
+import no.fjordkraft.im.services.SegmentFileService;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 /**
  * Created by miles on 6/21/2017.
@@ -19,7 +17,7 @@ import java.nio.charset.StandardCharsets;
 public class SegmentFileController {
 
     @Autowired
-    SegmentFileServiceImpl segmentFileService;
+    SegmentFileService segmentFileService;
 
     @RequestMapping(value = "",method = RequestMethod.PUT)
     @ResponseBody

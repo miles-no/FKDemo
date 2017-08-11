@@ -11,8 +11,6 @@ import java.util.List;
 
 public interface ConfigService {
 
-    List<Config> findAll();
-
     Config findById(String id);
 
     String getString(String key);
@@ -21,16 +19,9 @@ public interface ConfigService {
 
     Boolean getBoolean(String key);
 
-    public Long getLong(String key);
+    Long getLong(String key);
 
     void clearCache();
 
-    Config updateConfig(String key, String value);
-
-    void saveConfig(String key, String value);
-
-    void deleteConfig(String key);
-
-    Long getConfigCount();
 
 }

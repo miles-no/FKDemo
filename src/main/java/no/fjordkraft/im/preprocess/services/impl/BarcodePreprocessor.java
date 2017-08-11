@@ -5,7 +5,9 @@ import no.fjordkraft.im.model.BrandConfig;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.repository.BrandConfigRepository;
+import no.fjordkraft.im.services.BrandService;
 import no.fjordkraft.im.services.impl.AuditLogServiceImpl;
+import no.fjordkraft.im.services.impl.BrandServiceImpl;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
@@ -24,7 +26,7 @@ public class BarcodePreprocessor extends BasePreprocessor {
     private static final Logger logger = LoggerFactory.getLogger(BarcodePreprocessor.class);
 
     @Autowired
-    BrandConfigRepository barcodeConfigRepository;
+    BrandService brandService;
 
     @Autowired
     AuditLogServiceImpl auditLogService;
@@ -34,7 +36,7 @@ public class BarcodePreprocessor extends BasePreprocessor {
 
         no.fjordkraft.im.model.Statement statement = request.getEntity();
         String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
-        BrandConfig brandConfig = barcodeConfigRepository.getBarcodeConfigByBrand(brand);
+        BrandConfig brandConfig = brandService.getBrandConfigByName(brand);
         if(null != brandConfig) {
             if (IMConstants.TRUE == brandConfig.getUseEABarcode()) {
                 String barcode = IMConstants.BARCODE_PREFIX + brandConfig.getAgreementNumber() + brandConfig.getServiceLevel()
@@ -47,5 +49,9 @@ public class BarcodePreprocessor extends BasePreprocessor {
             String errorMessage = "Brand not found";
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);
         }
+    }
+
+    public void setBarcodeConfigRepository(BrandService brandService) {
+        this.brandService = brandService;
     }
 }

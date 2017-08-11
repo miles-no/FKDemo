@@ -29,12 +29,14 @@ public class PieChartPreprocessor extends BasePreprocessor {
         float nettAmount = 0;
         float otherAmount = 0;
 
-        for(Transaction transaction:transactions) {
-            if (null != transaction.getTransactionType()) {
-                if (IMConstants.NETT.equals(transaction.getTransactionType())) {
-                    nettAmount += transaction.getAmountWithVat();
-                } else {
-                    otherAmount += transaction.getAmountWithVat();
+        if(null != transactions && IMConstants.ZERO != transactions.size()) {
+            for (Transaction transaction : transactions) {
+                if (null != transaction.getTransactionType()) {
+                    if (IMConstants.NETT.equals(transaction.getTransactionType())) {
+                        nettAmount += transaction.getAmountWithVat();
+                    } else {
+                        otherAmount += transaction.getAmountWithVat();
+                    }
                 }
             }
         }

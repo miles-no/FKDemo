@@ -39,14 +39,18 @@ public class CustomTransactionGroupPreprocessor  extends BasePreprocessor {
 
 
         for(Transaction transaction:transactions) {
-            for(no.fjordkraft.im.model.TransactionGroup rabatter:rabatterList) {
-                if(rabatter.getTransactionCategory().equals(transaction.getTransactionCategory())) {
-                    diverseRabatter.put(IMConstants.RABATTER, createDiverseRabatterTransactionEntry(diverseRabatter, transaction, rabatter, IMConstants.RABATTER));
+            if(null != rabatterList && IMConstants.ZERO != rabatterList.size()) {
+                for (no.fjordkraft.im.model.TransactionGroup rabatter : rabatterList) {
+                    if (rabatter.getTransactionCategory().equals(transaction.getTransactionCategory())) {
+                        diverseRabatter.put(IMConstants.RABATTER, createDiverseRabatterTransactionEntry(diverseRabatter, transaction, rabatter, IMConstants.RABATTER));
+                    }
                 }
             }
-            for(no.fjordkraft.im.model.TransactionGroup diverse:diverseList) {
-                if(diverse.getTransactionCategory().equals(transaction.getTransactionCategory())) {
-                    diverseRabatter.put(IMConstants.DIVERSE, createDiverseRabatterTransactionEntry(diverseRabatter, transaction, diverse, IMConstants.DIVERSE));
+            if(null != diverseList && IMConstants.ZERO != diverseList.size()) {
+                for (no.fjordkraft.im.model.TransactionGroup diverse : diverseList) {
+                    if (diverse.getTransactionCategory().equals(transaction.getTransactionCategory())) {
+                        diverseRabatter.put(IMConstants.DIVERSE, createDiverseRabatterTransactionEntry(diverseRabatter, transaction, diverse, IMConstants.DIVERSE));
+                    }
                 }
             }
         }
@@ -90,5 +94,9 @@ public class CustomTransactionGroupPreprocessor  extends BasePreprocessor {
             }
         }
         return resultTransaction;
+    }
+
+    public void setTransactionGroupRepository(TransactionGroupRepository transactionGroupRepository) {
+        this.transactionGroupRepository = transactionGroupRepository;
     }
 }

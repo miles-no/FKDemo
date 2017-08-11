@@ -9,11 +9,5 @@ import java.util.List;
  */
 public interface GridConfigService {
 
-    List<GridConfig> getGridConfigs();
-    void saveGridConfig(GridConfig gridConfig);
-    void updateGridConfig(GridConfig gridConfig);
-    void deleteGridConfig(Long id);
     GridConfig getGridConfigByBrand(String brand);
-    Long getGridCount();
-    List<String> getAllGrids();
 }

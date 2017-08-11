@@ -5,16 +5,14 @@ package no.fjordkraft.im.controller;
  */
 
 import no.fjordkraft.im.model.*;
-import no.fjordkraft.im.preprocess.services.PreprocessorEngine;
-import no.fjordkraft.im.preprocess.services.PreprocessorService;
 import no.fjordkraft.im.repository.InvoicePdfRepository;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.repository.TransferFileRepository;
-import no.fjordkraft.im.services.TransferFileArchiveService;
-import no.fjordkraft.im.services.TransferFileService;
-import no.fjordkraft.im.services.impl.StatementServiceImpl;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.statusEnum.UIStatementStatusEnum;
+import no.fjordkraft.im.ui.services.UIStatementService;
+import no.fjordkraft.im.ui.services.UITransferFileArchiveService;
+import no.fjordkraft.im.ui.services.UITransferFileService;
 import no.fjordkraft.im.util.Util;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
@@ -26,10 +24,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.oxm.Unmarshaller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.io.*;
 import java.nio.charset.Charset;
@@ -49,28 +45,16 @@ public class IMController {
     DataSource dataSource;
 
     @Autowired
-    Unmarshaller unMarshaller;
-
-    @Autowired
-    PreprocessorEngine preprocessorEngine;
-
-    @Autowired
-    PreprocessorService preprocessorService;
-
-    @Autowired
     TransferFileRepository transferFileRepository;
 
     @Autowired
-    StatementRepository statementRepository;
+    UITransferFileArchiveService transferFileArchiveService;
 
     @Autowired
-    TransferFileArchiveService transferFileArchiveService;
+    UITransferFileService transferFileService;
 
     @Autowired
-    TransferFileService transferFileService;
-
-    @Autowired
-    StatementServiceImpl statementService;
+    UIStatementService statementService;
 
     static int index=10;
 

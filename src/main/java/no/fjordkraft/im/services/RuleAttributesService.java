@@ -11,10 +11,5 @@ import java.util.List;
  */
 public interface RuleAttributesService {
 
-    List<RestRuleAttribute> getAllLayoutConfig();
-    void saveLayoutConfig(RuleAttributes ruleAttributes);
-    void updateLayoutConfig(RuleAttributes ruleAttributes);
-    void deleteLayoutConfig(Long id);
     RestRuleAttribute getRuleAttributeByName(String name);
-    List<NameValuePair> getAllRuleAttributes();
 }
