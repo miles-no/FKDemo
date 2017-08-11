@@ -10,11 +10,10 @@ stage("Build") {
 
                 git branch: 'master', credentialsId: 'deploykeys-invoice-manager', url: 'git@github.com:milesfk/invoice_manager.git'
                 try {
-                    sh ./libs/insstallToMaven
+                    sh "./libs/installToMaven"
                     sh "mvn clean install"
                 }
                 catch(e) {
-                    slack ('danger', ":boom: ${env.JOB_BASE_NAME}: Build is broken: ${env.BUILD_URL}")
                     throw e
                 }
                 stash includes: "target/**/*.jar,ansible/**", name: "built"
