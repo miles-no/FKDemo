@@ -22,7 +22,7 @@ public interface TransferFileRepository extends JpaRepository<TransferFile,Long>
     @Query("select t from TransferFile t where rownum <= 1 and t.imStatus is null and t.fileStored is not null order by t.fileStored desc")
     TransferFile readSingleTransferFile();
 
-    @Query("select t from TransferFile t where rownum <= 5 and t.imStatus = :status and t.transferType = :transferType order by t.fileStored asc")
+    @Query("select t from TransferFile t where rownum <= 1 and t.imStatus = :status and t.transferType = :transferType order by t.fileStored asc")
     List<TransferFile> readPendingTransferFiles(@Param("status") String status, @Param("transferType") TransferTypeEnum transferType);
 
     @Query("select t from TransferFile t where t.ekBatchJobId = :ekBatchJobId")

@@ -84,7 +84,7 @@ public class AppConfig {
     @DependsOn("BirtEngine")
     public TaskExecutor getFileSplitterExecutor(ConfigService configService) {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(5);
+        //executor.setCorePoolSize(5);
         int maxPool = configService.getInteger(IMConstants.NUM_OF_THREAD_FILESPLITTER);
         executor.setMaxPoolSize(maxPool);
         executor.setQueueCapacity(Integer.valueOf(IMConstants.MAX_QUEUE_CAPACITY));
