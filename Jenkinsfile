@@ -10,6 +10,7 @@ stage("Build") {
 
                 git branch: 'master', credentialsId: 'deploykeys-invoice-manager', url: 'git@github.com:milesfk/invoice_manager.git'
                 try {
+                    sh ./libs/insstallToMaven
                     sh "mvn clean install"
                 }
                 catch(e) {
