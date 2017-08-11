@@ -1,0 +1,5 @@
+[appservers]
+fk-t-lx12.bkk.no ansible_user=miles2
+
+[test]
+fk-t-lx12.bkk.no

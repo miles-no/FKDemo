@@ -28,3 +28,23 @@ stage("Build") {
     }
 }
 
+stage('Deploy to Test') {
+    lock("Deploy to Test") {
+        node {
+            unstash 'built'
+            wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
+                try {
+                    ansiblePlaybook(
+                        playbook: "ansible/site.yml",
+                        inventory: "ansible/test",
+                        credentialsId: "fa22861e0e",
+                        colorized: true)
+                }
+                catch(e) {
+                    throw e
+                }
+            }
+        }
+    }
+}
+

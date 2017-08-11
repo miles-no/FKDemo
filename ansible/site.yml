@@ -1,0 +1,44 @@
+- hosts: appservers
+  remote_user: miles2
+  serial: "50%"
+  tasks:
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Making sure directory {{app_basedir}}/{{app}} exists"
+      become: true
+      file:
+        path={{app_basedir}}/{{app}}
+        state=directory
+        owner=miles2
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Making sure directory {{app_basedir}}/{{app}}/current exists"
+      become: true
+      file:
+        path={{app_basedir}}/{{app}}/current
+        state=directory
+        owner=miles2
+    -
+      name: "{{app}}@{{inventory_hostname}} - Making sure directory {{app_basedir}}/{{app}}/previous exists"
+      become: true
+      file:
+        path={{app_basedir}}/{{app}}/previous
+        state=directory
+        owner=miles2
+    -
+      name: "{{app}}@{{inventory_hostname}} - Making sure directory /var/log/{{app}}/ exists"
+      become: true
+      file:
+        path=/var/log/{{app}}/
+        state=directory
+        owner=miles2
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Copying new binaries"
+      copy:
+        src="{{item}}"
+        dest={{app_basedir}}/{{app}}/current/
+        mode=0700
+      with_fileglob :
+        - ../target/*.jar
+

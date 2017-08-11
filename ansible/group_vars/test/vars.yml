@@ -1,0 +1,4 @@
+env: TEST
+db_url: jdbc:oracle:oci:@T120
+
+
