@@ -37,7 +37,7 @@ stage('Deploy to Test') {
                     ansiblePlaybook(
                         playbook: "ansible/site.yml",
                         inventory: "ansible/test",
-                        credentialsId: "fa22861e0e",
+                        credentialsId: "miles2-login",
                         colorized: true)
                 }
                 catch(e) {
