@@ -14,3 +14,5 @@ mvn install:install-file -Dfile=./junit-4.12.jar -DgroupId=junit -DartifactId=ju
 
 mvn install:install-file -Dfile=./mockito-all-1.8.4.jar -DgroupId=org.mockito -DartifactId=mockito-all -Dversion=1.8.4 -Dpackaging=jar
 
+mvn install:install-file -Dfile=./commons.io_2.0.1.jar -DgroupId=org.apache.commons -DartifactId=commons-io -Dversion=2.0.1 -Dpackaging=jar
+

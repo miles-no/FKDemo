@@ -1,0 +1,33 @@
+server:
+  port: 80
+
+spring:
+  datasource:
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@bkkexa02-scan:1521/U120.FK.NO
+    username: invoiceman
+    password: pfJstHLvmLVAhxs
+
+  #datasource:
+  #      driverClassName: oracle.jdbc.driver.OracleDriver
+  #      url: jdbc:oracle:thin:@localhost:1521:xe
+  #      username: vimond
+  #      password: genesis
+
+logging:
+  level:
+    org.springframework.web: ERROR
+    no.fjordkraft: DEBUG
+    #org.hibernate.type: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file: /home/miles2/app/logs/application.log
+  #file: D:\FuelKraft\invoice_manager\logs\application.log
+
+
+if320.skip.bytes: true
+
+#liquibase:
+#  context: fjordkraftdev
+#  enabled: disable

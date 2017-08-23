@@ -1,0 +1,769 @@
+<Statement>
+      <CustomerReference>001329724</CustomerReference>
+      <MainSourceReference>001329724</MainSourceReference>
+      <DistributionMethod>Paper</DistributionMethod>
+      <DistributionMethodExternalReference>707057500028672730</DistributionMethodExternalReference>
+      <VatId></VatId>
+      <PaymentType>Undefined</PaymentType>
+      <PaymentTypeStatus>Undefined</PaymentTypeStatus>
+      <EInvoiceId></EInvoiceId>
+      <NationalId>50639188</NationalId>
+      <Name>Krogvik Svein-Olav </Name>
+      <CareOfName>Krogvik Svein-Olav</CareOfName>
+      <Address>Åmundsleitet 20</Address>
+      <Address1>Åmundsleitet 20</Address1>
+      <Address2></Address2>
+      <PostCode>5115</PostCode>
+      <City>ULSET</City>
+      <Region>NO</Region>
+      <Country></Country>
+      <Email>krogvik@hotmail.com</Email>
+      <MobileNumber>95179361</MobileNumber>
+      <StatementDate>2017-03-21</StatementDate>
+      <AccountNumber>7124571600</AccountNumber>
+      <SequenceNumber>1</SequenceNumber>
+      <StatementOcrNumber>712457160010014</StatementOcrNumber>
+      <DueDate>2017-04-04</DueDate>
+      <IngoingBalance>0.00</IngoingBalance>
+      <OutgoingBalance>-3449.78</OutgoingBalance>
+      <CreditLimit>0.00</CreditLimit>
+      <AvailableCredit>0.00</AvailableCredit>
+      <NonCreditedInterest>0.00</NonCreditedInterest>
+      <GeneralMessage></GeneralMessage>
+      <AccountMessage></AccountMessage>
+      <CurrentClaim>3449.78</CurrentClaim>
+      <TotalOpenClaim>3449.78</TotalOpenClaim>
+      <TotalVatAmount>-689.96</TotalVatAmount>
+      <CurrentInterestRates>
+        <InterestRate>
+          <Name>Overdue Claim Interest</Name>
+          <Rate>8.75</Rate>
+        </InterestRate>
+      </CurrentInterestRates>
+      <OutstandingClaims></OutstandingClaims>
+      <Transactions>
+        <Transaction>
+          <TransactionId>62549244</TransactionId>
+          <ParentTransactionId></ParentTransactionId>
+          <TransactionType>Account fee</TransactionType>
+          <TransactionCategory>DI;Papirfaktura</TransactionCategory>
+          <TransactionDate>2017-02-28</TransactionDate>
+          <ValueDate>2017-04-05</ValueDate>
+          <Amount>-39.20</Amount>
+          <VatAmount>-9.80</VatAmount>
+          <AmountWithVat>-49.00</AmountWithVat>
+          <Reference></Reference>
+          <Url></Url>
+          <FreeText></FreeText>
+          <Distributions></Distributions>
+          <CollectionFeeForStatements></CollectionFeeForStatements>
+        </Transaction>
+        <Transaction>
+          <TransactionId>61335078</TransactionId>
+          <ParentTransactionId></ParentTransactionId>
+          <TransactionType>Charge</TransactionType>
+          <TransactionCategory>KR;Strøm fra Fjordkraft</TransactionCategory>
+          <TransactionDate>2017-03-11</TransactionDate>
+          <ValueDate>2017-04-05</ValueDate>
+          <Amount>-880.99</Amount>
+          <VatAmount>-220.26</VatAmount>
+          <AmountWithVat>-1101.25</AmountWithVat>
+          <Reference>37446293</Reference>
+          <Url></Url>
+          <FreeText>Åmundsleitet 20</FreeText>
+          <Distributions>
+            <Distribution>
+              <Name>Kraft</Name>
+              <Amount>-1101.25</Amount>
+            </Distribution>
+          </Distributions>
+          <CollectionFeeForStatements></CollectionFeeForStatements>
+        </Transaction>
+        <Transaction>
+          <TransactionId>62506845</TransactionId>
+          <ParentTransactionId></ParentTransactionId>
+          <TransactionType>Charge</TransactionType>
+          <TransactionCategory>DI;Rabatt: Papirfaktura</TransactionCategory>
+          <TransactionDate>2017-03-14</TransactionDate>
+          <ValueDate>2017-04-05</ValueDate>
+          <Amount>39.20</Amount>
+          <VatAmount>9.80</VatAmount>
+          <AmountWithVat>49.00</AmountWithVat>
+          <Reference>Rabatt papirfaktura</Reference>
+          <Url></Url>
+          <FreeText></FreeText>
+          <Distributions></Distributions>
+          <CollectionFeeForStatements></CollectionFeeForStatements>
+        </Transaction>
+        <Transaction>
+          <TransactionId>61908681</TransactionId>
+          <ParentTransactionId></ParentTransactionId>
+          <TransactionType>Charge</TransactionType>
+          <TransactionCategory>NE;Nettleie fra BKK Nett AS</TransactionCategory>
+          <TransactionDate>2017-03-15</TransactionDate>
+          <ValueDate>2017-03-16</ValueDate>
+          <Amount>0.01</Amount>
+          <VatAmount>0.00</VatAmount>
+          <AmountWithVat>0.01</AmountWithVat>
+          <Reference>3338749-37345940</Reference>
+          <Url></Url>
+          <FreeText>Åmundsleitet 20</FreeText>
+          <Distributions>
+            <Distribution>
+              <Name>NETT</Name>
+              <Amount>-0.01</Amount>
+            </Distribution>
+          </Distributions>
+          <CollectionFeeForStatements></CollectionFeeForStatements>
+        </Transaction>
+        <Transaction>
+          <TransactionId>62033028</TransactionId>
+          <ParentTransactionId></ParentTransactionId>
+          <TransactionType>Charge</TransactionType>
+          <TransactionCategory>NE;Nettleie fra BKK Nett AS</TransactionCategory>
+          <TransactionDate>2017-03-15</TransactionDate>
+          <ValueDate>2017-04-05</ValueDate>
+          <Amount>-471.21</Amount>
+          <VatAmount>-117.80</VatAmount>
+          <AmountWithVat>-589.01</AmountWithVat>
+          <Reference>3299314-37293265</Reference>
+          <Url></Url>
+          <FreeText>Risnes 62</FreeText>
+          <Distributions>
+            <Distribution>
+              <Name>NETT</Name>
+              <Amount>-589.01</Amount>
+            </Distribution>
+          </Distributions>
+          <CollectionFeeForStatements></CollectionFeeForStatements>
+        </Transaction>
+        <Transaction>
+          <TransactionId>62099968</TransactionId>
+          <ParentTransactionId></ParentTransactionId>
+          <TransactionType>Charge</TransactionType>
+          <TransactionCategory>NE;Nettleie fra BKK Nett AS</TransactionCategory>
+          <TransactionDate>2017-03-15</TransactionDate>
+          <ValueDate>2017-04-05</ValueDate>
+          <Amount>-1091.76</Amount>
+          <VatAmount>-272.94</VatAmount>
+          <AmountWithVat>-1364.70</AmountWithVat>
+          <Reference>3338748-37345940</Reference>
+          <Url></Url>
+          <FreeText>Åmundsleitet 20</FreeText>
+          <Distributions>
+            <Distribution>
+              <Name>NETT</Name>
+              <Amount>-1364.70</Amount>
+            </Distribution>
+          </Distributions>
+          <CollectionFeeForStatements></CollectionFeeForStatements>
+        </Transaction>
+        <Transaction>
+          <TransactionId>62253383</TransactionId>
+          <ParentTransactionId></ParentTransactionId>
+          <TransactionType>Charge</TransactionType>
+          <TransactionCategory>KR;Strøm fra Fjordkraft</TransactionCategory>
+          <TransactionDate>2017-03-16</TransactionDate>
+          <ValueDate>2017-04-05</ValueDate>
+          <Amount>-315.87</Amount>
+          <VatAmount>-78.96</VatAmount>
+          <AmountWithVat>-394.83</AmountWithVat>
+          <Reference>37600150</Reference>
+          <Url></Url>
+          <FreeText>Risnes 62</FreeText>
+          <Distributions>
+            <Distribution>
+              <Name>Kraft</Name>
+              <Amount>-394.83</Amount>
+            </Distribution>
+          </Distributions>
+          <CollectionFeeForStatements></CollectionFeeForStatements>
+        </Transaction>
+      </Transactions>
+      <LineItems></LineItems>
+      <InstalmentAccounts></InstalmentAccounts>
+      <Attachments>
+        <Attachment>&lt;FAKTURA&gt;&lt;AKTOR&gt;50153687&lt;/AKTOR&gt;&lt;AKTORNAVN&gt;&amp;lt;![CDATA[Fjordkraft AS]]&amp;gt;&lt;/AKTORNAVN&gt;&lt;FAKTURANR&gt;37446293&lt;/FAKTURANR&gt;&lt;MAALEPUNKT&gt;707057500028672730&lt;/MAALEPUNKT&gt;&lt;FAKTURA_TYPE&gt;FAKTURA&lt;/FAKTURA_TYPE&gt;&lt;KUNDE_TYPE&gt;P&lt;/KUNDE_TYPE&gt;&lt;FAKTURA_MERKE_SO&gt;&lt;/FAKTURA_MERKE_SO&gt;&lt;VEDLEGG_FORMAT&gt;EMUXML&lt;/VEDLEGG_FORMAT&gt;&lt;VEDLEGG_EMUXML&gt;&lt;Invoice&gt;&lt;MainInvoiceInfo-101&gt;&lt;InvoiceNo&gt;037446293&lt;/InvoiceNo&gt;&lt;CustomerId&gt;50639188&lt;/CustomerId&gt;&lt;CID&gt;0132972462932&lt;/CID&gt;&lt;PrintDate&gt;2017-03-11&lt;/PrintDate&gt;&lt;DueDate&gt;2017-03-24&lt;/DueDate&gt;&lt;PayInst2Total&gt;1101.25&lt;/PayInst2Total&gt;&lt;PaymentDocNo&gt;0&lt;/PaymentDocNo&gt;&lt;GrossPresentation&gt;&amp;lt;![CDATA[J]]&amp;gt;&lt;/GrossPresentation&gt;&lt;E-InvoiceTmpl&gt;&lt;/E-InvoiceTmpl&gt;&lt;StandingOrder&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/StandingOrder&gt;&lt;ProcessCode&gt;&lt;/ProcessCode&gt;&lt;FormTmplCode&gt;&lt;/FormTmplCode&gt;&lt;FormType&gt;&amp;lt;![CDATA[G]]&amp;gt;&lt;/FormType&gt;&lt;DueDateDescription&gt;&amp;lt;![CDATA[BETALINGSFRIST]]&amp;gt;&lt;/DueDateDescription&gt;&lt;MoraInterest&gt;0.00&lt;/MoraInterest&gt;&lt;PrintedAmount&gt;1101.25&lt;/PrintedAmount&gt;&lt;PreviouslyPaid&gt;0.00&lt;/PreviouslyPaid&gt;&lt;ToBePaid&gt;1101.25&lt;/ToBePaid&gt;&lt;VAT&gt;220.26&lt;/VAT&gt;&lt;TotPrintWithoutDec&gt;1101&lt;/TotPrintWithoutDec&gt;&lt;Decimals&gt;25&lt;/Decimals&gt;&lt;Mod10&gt;2&lt;/Mod10&gt;&lt;TotalOutstanding&gt;0.00&lt;/TotalOutstanding&gt;&lt;EInvoiceUrl&gt;&lt;/EInvoiceUrl&gt;&lt;Utility&gt;&amp;lt;![CDATA[Fjordkraft AS]]&amp;gt;&lt;/Utility&gt;&lt;ReminderFee&gt;62.00&lt;/ReminderFee&gt;&lt;ToBePaidNet&gt;880.99&lt;/ToBePaidNet&gt;&lt;InvoiceDate&gt;2017-03-10&lt;/InvoiceDate&gt;&lt;CIDLong&gt;0132972462932&lt;/CIDLong&gt;&lt;IsTestInvoice&gt;&amp;lt;![CDATA[N]]&amp;gt;&lt;/IsTestInvoice&gt;&lt;CreditedInvoiceNo&gt;000000000&lt;/CreditedInvoiceNo&gt;&lt;E-InvoiceReferenceNew&gt;0132972462932&lt;/E-InvoiceReferenceNew&gt;&lt;netPrintet&gt;880.99&lt;/netPrintet&gt;&lt;RegulationRecords&gt;0.00&lt;/RegulationRecords&gt;&lt;TemplateType&gt;&lt;/TemplateType&gt;&lt;Transactions&gt;-1101.25&lt;/Transactions&gt;&lt;Balance&gt;0.00&lt;/Balance&gt;&lt;EInvoiceReferenceProposal&gt;0132972462932&lt;/EInvoiceReferenceProposal&gt;&lt;/MainInvoiceInfo-101&gt;&lt;CustomerInfo-103&gt;&lt;Name&gt;&amp;lt;![CDATA[Krogvik]]&amp;gt;&lt;/Name&gt;&lt;Name2&gt;&amp;lt;![CDATA[Svein-Olav]]&amp;gt;&lt;/Name2&gt;&lt;Address1&gt;&amp;lt;![CDATA[Åmundsleitet 20]]&amp;gt;&lt;/Address1&gt;&lt;Address2&gt;&lt;/Address2&gt;&lt;PostalCode&gt;&amp;lt;![CDATA[5115]]&amp;gt;&lt;/PostalCode&gt;&lt;City&gt;&amp;lt;![CDATA[ULSET]]&amp;gt;&lt;/City&gt;&lt;CountryCode&gt;&lt;/CountryCode&gt;&lt;Country&gt;&lt;/Country&gt;&lt;Address3&gt;&lt;/Address3&gt;&lt;Address4&gt;&lt;/Address4&gt;&lt;Address5&gt;&lt;/Address5&gt;&lt;PersIdNo-CoRegNo&gt;&amp;lt;![CDATA[19440527]]&amp;gt;&lt;/PersIdNo-CoRegNo&gt;&lt;PhoneNo&gt;&amp;lt;![CDATA[95179361]]&amp;gt;&lt;/PhoneNo&gt;&lt;MobilePhoneNo&gt;&amp;lt;![CDATA[95179361]]&amp;gt;&lt;/MobilePhoneNo&gt;&lt;EmailAddress&gt;&amp;lt;![CDATA[krogvik@hotmail.com]]&amp;gt;&lt;/EmailAddress&gt;&lt;CountryIsoCode103&gt;&lt;/CountryIsoCode103&gt;&lt;/CustomerInfo-103&gt;&lt;InvoiceAgreementInfo-105&gt;&lt;InvAgreementId&gt;1329724&lt;/InvAgreementId&gt;&lt;AgreementDate&gt;2017-01-01&lt;/AgreementDate&gt;&lt;IndustryPrivate&gt;&amp;lt;![CDATA[P]]&amp;gt;&lt;/IndustryPrivate&gt;&lt;InvoiceLabel&gt;&lt;/InvoiceLabel&gt;&lt;InterestId&gt;&amp;lt;![CDATA[N]]&amp;gt;&lt;/InterestId&gt;&lt;InterestRate&gt;0.00&lt;/InterestRate&gt;&lt;PayerStatus&gt;&lt;/PayerStatus&gt;&lt;AccountNo&gt;&lt;/AccountNo&gt;&lt;TotalPrinted&gt;0.00&lt;/TotalPrinted&gt;&lt;TotalPrintedOtherInvoices&gt;0.00&lt;/TotalPrintedOtherInvoices&gt;&lt;BIC-Customer&gt;&lt;/BIC-Customer&gt;&lt;IBAN-Customer&gt;&lt;/IBAN-Customer&gt;&lt;/InvoiceAgreementInfo-105&gt;&lt;Pass-ThroughInvoiceInfo-109&gt;&lt;FirstInvoice&gt;1&lt;/FirstInvoice&gt;&lt;ExtCustRef&gt;&lt;/ExtCustRef&gt;&lt;ToDate&gt;&lt;/ToDate&gt;&lt;/Pass-ThroughInvoiceInfo-109&gt;&lt;InvoiceOrder&gt;&lt;InvoiceOrderInfo-110&gt;&lt;StartDate&gt;2017-01-01&lt;/StartDate&gt;&lt;BillingGroup&gt;&amp;lt;![CDATA[PA]]&amp;gt;&lt;/BillingGroup&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;CloseCode&gt;&lt;/CloseCode&gt;&lt;TotalPrinted&gt;0.00&lt;/TotalPrinted&gt;&lt;ShortTimeSA&gt;&amp;lt;![CDATA[F]]&amp;gt;&lt;/ShortTimeSA&gt;&lt;IndustryCode&gt;&lt;/IndustryCode&gt;&lt;B-AccountCode&gt;&amp;lt;![CDATA[J]]&amp;gt;&lt;/B-AccountCode&gt;&lt;InvoiceType&gt;&amp;lt;![CDATA[B]]&amp;gt;&lt;/InvoiceType&gt;&lt;ConsumptionCode&gt;&amp;lt;![CDATA[35]]&amp;gt;&lt;/ConsumptionCode&gt;&lt;AreaId&gt;&amp;lt;![CDATA[1201]]&amp;gt;&lt;/AreaId&gt;&lt;LDC1&gt;&amp;lt;![CDATA[BKK Nett AS]]&amp;gt;&lt;/LDC1&gt;&lt;LDC2&gt;&lt;/LDC2&gt;&lt;Supplier1&gt;&amp;lt;![CDATA[Fjordkraft AS]]&amp;gt;&lt;/Supplier1&gt;&lt;Supplier2&gt;&lt;/Supplier2&gt;&lt;B-AccountText&gt;&amp;lt;![CDATA[Beregnet beløp for perioden]]&amp;gt;&lt;/B-AccountText&gt;&lt;Amount&gt;1101.25&lt;/Amount&gt;&lt;Instlmnt&gt;1&lt;/Instlmnt&gt;&lt;ActivityId&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/ActivityId&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ActivityName&gt;&amp;lt;![CDATA[Fjordkraft AS]]&amp;gt;&lt;/ActivityName&gt;&lt;CompanyRegNo&gt;&amp;lt;![CDATA[976944682]]&amp;gt;&lt;/CompanyRegNo&gt;&lt;UtilityAccountNo&gt;&amp;lt;![CDATA[15031934610]]&amp;gt;&lt;/UtilityAccountNo&gt;&lt;ActivitySubTypeName&gt;&amp;lt;![CDATA[Omsetning]]&amp;gt;&lt;/ActivitySubTypeName&gt;&lt;YearEffect&gt;0.000&lt;/YearEffect&gt;&lt;ActivityCloseable&gt;&amp;lt;![CDATA[N]]&amp;gt;&lt;/ActivityCloseable&gt;&lt;/InvoiceOrderInfo-110&gt;&lt;ReadingInfo-111&gt;&lt;StartDate&gt;2017-01-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-02-01&lt;/EndDate&gt;&lt;MeterId&gt;&amp;lt;![CDATA[0096597]]&amp;gt;&lt;/MeterId&gt;&lt;StartReading&gt;19539.000&lt;/StartReading&gt;&lt;FinalC-Reading&gt;21086.000&lt;/FinalC-Reading&gt;&lt;AreaFactor&gt;1.000&lt;/AreaFactor&gt;&lt;FixedPricePeriodStart&gt;2017-01-01&lt;/FixedPricePeriodStart&gt;&lt;FixedPricePeriodEnd&gt;2017-03-01&lt;/FixedPricePeriodEnd&gt;&lt;TotalDigits&gt;5&lt;/TotalDigits&gt;&lt;TotalDecimals&gt;3&lt;/TotalDecimals&gt;&lt;Method&gt;&amp;lt;![CDATA[3]]&amp;gt;&lt;/Method&gt;&lt;MethodStartReading&gt;&amp;lt;![CDATA[3]]&amp;gt;&lt;/MethodStartReading&gt;&lt;MethodFinalC-Reading&gt;1547.000&lt;/MethodFinalC-Reading&gt;&lt;V-Reading&gt;&amp;lt;![CDATA[S]]&amp;gt;&lt;/V-Reading&gt;&lt;ProdCounterNo&gt;&amp;lt;![CDATA[1]]&amp;gt;&lt;/ProdCounterNo&gt;&lt;MeterCounterNo&gt;1&lt;/MeterCounterNo&gt;&lt;Denomination&gt;&amp;lt;![CDATA[KWH]]&amp;gt;&lt;/Denomination&gt;&lt;TotalDays&gt;31&lt;/TotalDays&gt;&lt;Description&gt;&lt;/Description&gt;&lt;FixedPricePeriodDays&gt;59&lt;/FixedPricePeriodDays&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;TotConsCurrCounter&gt;2691.000&lt;/TotConsCurrCounter&gt;&lt;MeterIdNew&gt;&amp;lt;![CDATA[0096597]]&amp;gt;&lt;/MeterIdNew&gt;&lt;/ReadingInfo-111&gt;&lt;ReadingInfo-111&gt;&lt;StartDate&gt;2017-02-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-02-27&lt;/EndDate&gt;&lt;MeterId&gt;&amp;lt;![CDATA[0096597]]&amp;gt;&lt;/MeterId&gt;&lt;StartReading&gt;21086.000&lt;/StartReading&gt;&lt;FinalC-Reading&gt;22230.000&lt;/FinalC-Reading&gt;&lt;AreaFactor&gt;1.000&lt;/AreaFactor&gt;&lt;FixedPricePeriodStart&gt;2017-01-01&lt;/FixedPricePeriodStart&gt;&lt;FixedPricePeriodEnd&gt;2017-03-01&lt;/FixedPricePeriodEnd&gt;&lt;TotalDigits&gt;5&lt;/TotalDigits&gt;&lt;TotalDecimals&gt;3&lt;/TotalDecimals&gt;&lt;Method&gt;&amp;lt;![CDATA[3]]&amp;gt;&lt;/Method&gt;&lt;MethodStartReading&gt;&amp;lt;![CDATA[1]]&amp;gt;&lt;/MethodStartReading&gt;&lt;MethodFinalC-Reading&gt;1144.000&lt;/MethodFinalC-Reading&gt;&lt;V-Reading&gt;&amp;lt;![CDATA[S]]&amp;gt;&lt;/V-Reading&gt;&lt;ProdCounterNo&gt;&amp;lt;![CDATA[1]]&amp;gt;&lt;/ProdCounterNo&gt;&lt;MeterCounterNo&gt;1&lt;/MeterCounterNo&gt;&lt;Denomination&gt;&amp;lt;![CDATA[KWH]]&amp;gt;&lt;/Denomination&gt;&lt;TotalDays&gt;26&lt;/TotalDays&gt;&lt;Description&gt;&lt;/Description&gt;&lt;FixedPricePeriodDays&gt;59&lt;/FixedPricePeriodDays&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;TotConsCurrCounter&gt;2691.000&lt;/TotConsCurrCounter&gt;&lt;MeterIdNew&gt;&amp;lt;![CDATA[0096597]]&amp;gt;&lt;/MeterIdNew&gt;&lt;/ReadingInfo-111&gt;&lt;LastReading-112&gt;&lt;DateRead&gt;2017-02-27&lt;/DateRead&gt;&lt;ReadingMethod&gt;&amp;lt;![CDATA[1]]&amp;gt;&lt;/ReadingMethod&gt;&lt;MeterCounter1&gt;1&lt;/MeterCounter1&gt;&lt;C-Reading1&gt;22230.000&lt;/C-Reading1&gt;&lt;MethodText&gt;&amp;lt;![CDATA[Avlest av everket]]&amp;gt;&lt;/MethodText&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;/LastReading-112&gt;&lt;InvoiceOrderAmounts-113&gt;&lt;GrossSettled&gt;1101.25&lt;/GrossSettled&gt;&lt;NetSettled&gt;880.99&lt;/NetSettled&gt;&lt;VatSettled&gt;220.26&lt;/VatSettled&gt;&lt;GrossB-Account&gt;0.00&lt;/GrossB-Account&gt;&lt;NetB-Account&gt;0.00&lt;/NetB-Account&gt;&lt;VatB-Account&gt;0.00&lt;/VatB-Account&gt;&lt;BAccountTermNo&gt;0&lt;/BAccountTermNo&gt;&lt;GrossWriteBacks&gt;0.00&lt;/GrossWriteBacks&gt;&lt;NetWriteBacks&gt;0.00&lt;/NetWriteBacks&gt;&lt;VatWriteBacks&gt;0.00&lt;/VatWriteBacks&gt;&lt;GrossMisc&gt;0.00&lt;/GrossMisc&gt;&lt;NetMisc&gt;0.00&lt;/NetMisc&gt;&lt;VatMisc&gt;0.00&lt;/VatMisc&gt;&lt;GrossItem&gt;0.00&lt;/GrossItem&gt;&lt;NetItem&gt;0.00&lt;/NetItem&gt;&lt;VatItem&gt;0.00&lt;/VatItem&gt;&lt;VatTotal&gt;220.26&lt;/VatTotal&gt;&lt;GrossTax&gt;0.00&lt;/GrossTax&gt;&lt;NetTotal&gt;880.99&lt;/NetTotal&gt;&lt;GrossTotal&gt;1101.25&lt;/GrossTotal&gt;&lt;GrossSettledAndWriteBacks&gt;1101.25&lt;/GrossSettledAndWriteBacks&gt;&lt;NetSettledAndWriteBacks&gt;880.99&lt;/NetSettledAndWriteBacks&gt;&lt;VatSettledAndWriteBacks&gt;220.26&lt;/VatSettledAndWriteBacks&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;NetWithTax&gt;880.99&lt;/NetWithTax&gt;&lt;GrossWithTax&gt;1101.25&lt;/GrossWithTax&gt;&lt;NetNoTax&gt;0.00&lt;/NetNoTax&gt;&lt;/InvoiceOrderAmounts-113&gt;&lt;VatSpecInvoiceOrder-114&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SumBasis&gt;880.99&lt;/SumBasis&gt;&lt;SumVat&gt;220.26&lt;/SumVat&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;/VatSpecInvoiceOrder-114&gt;&lt;PriceInfo-116&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/StatisticCode&gt;&lt;Gross&gt;0.34825&lt;/Gross&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[27]]&amp;gt;&lt;/PriceCode&gt;&lt;Description&gt;&amp;lt;![CDATA[Strømpris]]&amp;gt;&lt;/Description&gt;&lt;Designation&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/Designation&gt;&lt;PriceDate&gt;2017-03-10&lt;/PriceDate&gt;&lt;Gross_high_precision&gt;0.3482500000&lt;/Gross_high_precision&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;/PriceInfo-116&gt;&lt;PriceInfo-116&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/StatisticCode&gt;&lt;Gross&gt;0.00825&lt;/Gross&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[P14]]&amp;gt;&lt;/PriceCode&gt;&lt;Description&gt;&amp;lt;![CDATA[Påslag              ]]&amp;gt;&lt;/Description&gt;&lt;Designation&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/Designation&gt;&lt;PriceDate&gt;2017-03-10&lt;/PriceDate&gt;&lt;Gross_high_precision&gt;0.0082500000&lt;/Gross_high_precision&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;/PriceInfo-116&gt;&lt;SupplyPointInfo-117&gt;&lt;SupplyPointId&gt;&lt;/SupplyPointId&gt;&lt;InstlnId&gt;&lt;/InstlnId&gt;&lt;StreetNo&gt;&amp;lt;![CDATA[Åmundsleitet 20 ]]&amp;gt;&lt;/StreetNo&gt;&lt;Description&gt;&lt;/Description&gt;&lt;MeterId&gt;&amp;lt;![CDATA[0096597]]&amp;gt;&lt;/MeterId&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;MeterLocationId&gt;0&lt;/MeterLocationId&gt;&lt;ObjectId&gt;&amp;lt;![CDATA[707057500028672730]]&amp;gt;&lt;/ObjectId&gt;&lt;GridArea&gt;&lt;/GridArea&gt;&lt;Address1&gt;&lt;/Address1&gt;&lt;Address2&gt;&lt;/Address2&gt;&lt;Address3&gt;&lt;/Address3&gt;&lt;Address4&gt;&lt;/Address4&gt;&lt;Address5&gt;&lt;/Address5&gt;&lt;MeterCode&gt;&lt;/MeterCode&gt;&lt;InstSign&gt;&lt;/InstSign&gt;&lt;HousingCooperative&gt;&lt;/HousingCooperative&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;JunctionId&gt;&lt;/JunctionId&gt;&lt;JunctionDescription&gt;&lt;/JunctionDescription&gt;&lt;readingMateriel&gt;&lt;/readingMateriel&gt;&lt;MeterIdNew&gt;&amp;lt;![CDATA[0096597]]&amp;gt;&lt;/MeterIdNew&gt;&lt;/SupplyPointInfo-117&gt;&lt;ProductParameters-118&gt;&lt;ProdId&gt;&amp;lt;![CDATA[FSP1]]&amp;gt;&lt;/ProdId&gt;&lt;Field1&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/Field1&gt;&lt;Field2&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/Field2&gt;&lt;Field3&gt;450.00000&lt;/Field3&gt;&lt;Field4&gt;0.00000&lt;/Field4&gt;&lt;Field5&gt;0.66000&lt;/Field5&gt;&lt;Field6&gt;0.00000&lt;/Field6&gt;&lt;Field7&gt;0.00000&lt;/Field7&gt;&lt;Field8&gt;0.00000&lt;/Field8&gt;&lt;Field9&gt;0.00000&lt;/Field9&gt;&lt;Field10&gt;0.00000&lt;/Field10&gt;&lt;Field11&gt;0.00000&lt;/Field11&gt;&lt;Field12&gt;0.00000&lt;/Field12&gt;&lt;Field13&gt;0.00000&lt;/Field13&gt;&lt;Field14&gt;0.00000&lt;/Field14&gt;&lt;Field15&gt;0.00000&lt;/Field15&gt;&lt;Field16&gt;0.00000&lt;/Field16&gt;&lt;Field17&gt;0.00000&lt;/Field17&gt;&lt;Field18&gt;0.00000&lt;/Field18&gt;&lt;Field19&gt;0.00000&lt;/Field19&gt;&lt;Field20&gt;0.00000&lt;/Field20&gt;&lt;Label1&gt;&amp;lt;![CDATA[Område]]&amp;gt;&lt;/Label1&gt;&lt;Label2&gt;&amp;lt;![CDATA[Fornybar]]&amp;gt;&lt;/Label2&gt;&lt;Label3&gt;&amp;lt;![CDATA[Avtalenr]]&amp;gt;&lt;/Label3&gt;&lt;Label4&gt;&lt;/Label4&gt;&lt;Label5&gt;&amp;lt;![CDATA[Påslag]]&amp;gt;&lt;/Label5&gt;&lt;Label6&gt;&lt;/Label6&gt;&lt;Label7&gt;&lt;/Label7&gt;&lt;Label8&gt;&lt;/Label8&gt;&lt;Label9&gt;&lt;/Label9&gt;&lt;Label10&gt;&lt;/Label10&gt;&lt;Label11&gt;&lt;/Label11&gt;&lt;Label12&gt;&lt;/Label12&gt;&lt;Label13&gt;&lt;/Label13&gt;&lt;Label14&gt;&lt;/Label14&gt;&lt;Label15&gt;&lt;/Label15&gt;&lt;Label16&gt;&lt;/Label16&gt;&lt;Label17&gt;&lt;/Label17&gt;&lt;Label18&gt;&lt;/Label18&gt;&lt;Label19&gt;&lt;/Label19&gt;&lt;Label20&gt;&lt;/Label20&gt;&lt;Description&gt;&amp;lt;![CDATA[Fjordkraft Spotpris]]&amp;gt;&lt;/Description&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;/ProductParameters-118&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-01-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-02-01&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Januar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;421.51&lt;/Net&gt;&lt;Gross&gt;526.89&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[Innkjøpspris]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[49]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;0.27247&lt;/PriceRate&gt;&lt;Basis&gt;1547.000&lt;/Basis&gt;&lt;NoOfDays&gt;31&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;19539.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;21086.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[SI]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&amp;lt;![CDATA[kWh]]&amp;gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;0.34059&lt;/GrossPrice&gt;&lt;TotalGross&gt;526.89&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[AVL]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;105.38&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;0.34059&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;526.89&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;0.3405875000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;0.3405875000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[Innkjøpspris]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;-421.51000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-01-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-02-01&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Januar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;86.01&lt;/Net&gt;&lt;Gross&gt;107.52&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[Påslag              ]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[P14]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;0.05560&lt;/PriceRate&gt;&lt;Basis&gt;1547.000&lt;/Basis&gt;&lt;NoOfDays&gt;31&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;19539.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;21086.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[SI]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&amp;lt;![CDATA[kWh]]&amp;gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;0.06950&lt;/GrossPrice&gt;&lt;TotalGross&gt;107.52&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[AVL]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;21.51&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;0.06950&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;107.52&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;0.0695000000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;0.0695000000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[Påslag              ]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;-86.01000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-01-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-02-01&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Januar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;0.00&lt;/Net&gt;&lt;Gross&gt;0.00&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[R]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[Fornybar energi]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[G]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;0.00000&lt;/PriceRate&gt;&lt;Basis&gt;1547.000&lt;/Basis&gt;&lt;NoOfDays&gt;31&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;19539.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;21086.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[SI]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&amp;lt;![CDATA[kWh]]&amp;gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;0.00000&lt;/GrossPrice&gt;&lt;TotalGross&gt;0.00&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[AVL]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;0.00&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;0.00000&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;0.00&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;0.0000000000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;0.0000000000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[Fornybar energi]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;0.00000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-02-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-02-27&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;318.72&lt;/Net&gt;&lt;Gross&gt;398.40&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[Strømpris]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[27]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;0.27860&lt;/PriceRate&gt;&lt;Basis&gt;1144.000&lt;/Basis&gt;&lt;NoOfDays&gt;26&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;21086.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;22230.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[FSP1]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&amp;lt;![CDATA[kWh]]&amp;gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;0.34825&lt;/GrossPrice&gt;&lt;TotalGross&gt;398.40&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[AVL]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;79.68&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;0.34825&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;398.40&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;0.3482500000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;0.3482500000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[Strømpris]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;-318.72000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-02-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-02-27&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;7.55&lt;/Net&gt;&lt;Gross&gt;9.44&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[Påslag              ]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[P14]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;0.00660&lt;/PriceRate&gt;&lt;Basis&gt;1144.000&lt;/Basis&gt;&lt;NoOfDays&gt;26&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;21086.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;22230.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[FSP1]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&amp;lt;![CDATA[kWh]]&amp;gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;0.00825&lt;/GrossPrice&gt;&lt;TotalGross&gt;9.44&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[AVL]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;1.89&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;0.00825&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;9.44&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;0.0082500000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;0.0082500000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[Påslag              ]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;-7.55000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-02-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-02-27&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;0.00&lt;/Net&gt;&lt;Gross&gt;0.00&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[R]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[Fornybar energi]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[G]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;0.00000&lt;/PriceRate&gt;&lt;Basis&gt;1144.000&lt;/Basis&gt;&lt;NoOfDays&gt;26&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;21086.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;22230.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[FSP1]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&amp;lt;![CDATA[kWh]]&amp;gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;0.00000&lt;/GrossPrice&gt;&lt;TotalGross&gt;0.00&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[AVL]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;0.00&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;0.00000&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;0.00&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;0.0000000000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;0.0000000000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[Fornybar energi]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;0.00000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-01-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-02-01&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Januar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;47.20&lt;/Net&gt;&lt;Gross&gt;59.00&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[F]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[Strøm fastbeløp]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[FA]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;47.20000&lt;/PriceRate&gt;&lt;Basis&gt;1.000&lt;/Basis&gt;&lt;NoOfDays&gt;31&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;0.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;1.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[SI]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;59.00000&lt;/GrossPrice&gt;&lt;TotalGross&gt;59.00&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&amp;lt;![CDATA[kr/mnd]]&amp;gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[APB]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;11.80&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;59.00000&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;59.00&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;59.0000000000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;59.0000000000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&amp;lt;![CDATA[kr/mnd]]&amp;gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&amp;lt;![CDATA[kr/mnd]]&amp;gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[Strøm fastbeløp]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;-47.20000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-02-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-03-01&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Mars]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;0.00&lt;/Net&gt;&lt;Gross&gt;0.00&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[F]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[FK Spotpris         ]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[450]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;0.00000&lt;/PriceRate&gt;&lt;Basis&gt;1.000&lt;/Basis&gt;&lt;NoOfDays&gt;28&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;0.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;1.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[FSP1]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;0.00000&lt;/GrossPrice&gt;&lt;TotalGross&gt;0.00&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[APB]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;0.00&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;0.00000&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;0.00&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;0.0000000000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;0.0000000000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[FK Spotpris         ]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;0.00000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;YearlyConsumption-123&gt;&lt;AnnualConsumption&gt;14071&lt;/AnnualConsumption&gt;&lt;B-AccountAmount&gt;720.00&lt;/B-AccountAmount&gt;&lt;PriceDate&gt;2017-03-10&lt;/PriceDate&gt;&lt;/YearlyConsumption-123&gt;&lt;GenInfoInvoiceOrder-125&gt;&lt;TextCode&gt;&amp;lt;![CDATA[FJOR]]&amp;gt;&lt;/TextCode&gt;&lt;PageIndicator&gt;&amp;lt;![CDATA[B]]&amp;gt;&lt;/PageIndicator&gt;&lt;Text&gt;&amp;lt;![CDATA[Fra 01.07.2013 oppdaterer vi våre betalingsvilkår.]]&amp;gt;&lt;/Text&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;/GenInfoInvoiceOrder-125&gt;&lt;GenInfoInvoiceOrder-125&gt;&lt;TextCode&gt;&amp;lt;![CDATA[FJOR]]&amp;gt;&lt;/TextCode&gt;&lt;PageIndicator&gt;&amp;lt;![CDATA[B]]&amp;gt;&lt;/PageIndicator&gt;&lt;Text&gt;&amp;lt;![CDATA[Se www.fjordkraft.no/avtalevilkar for mer informasjon]]&amp;gt;&lt;/Text&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;/GenInfoInvoiceOrder-125&gt;&lt;ConsumptionPillars-132&gt;&lt;PeriodDescription1&gt;&amp;lt;![CDATA[JAN-FEB]]&amp;gt;&lt;/PeriodDescription1&gt;&lt;LastYearConsumption1&gt;0.000&lt;/LastYearConsumption1&gt;&lt;ThisYearConsumption1&gt;2729.995&lt;/ThisYearConsumption1&gt;&lt;PeriodDescription2&gt;&amp;lt;![CDATA[NOV-DES]]&amp;gt;&lt;/PeriodDescription2&gt;&lt;LastYearConsumption2&gt;0.000&lt;/LastYearConsumption2&gt;&lt;ThisYearConsumption2&gt;0.000&lt;/ThisYearConsumption2&gt;&lt;PeriodDescription3&gt;&amp;lt;![CDATA[SEP-OKT]]&amp;gt;&lt;/PeriodDescription3&gt;&lt;LastYearConsumption3&gt;0.000&lt;/LastYearConsumption3&gt;&lt;ThisYearConsumption3&gt;0.000&lt;/ThisYearConsumption3&gt;&lt;PeriodDescription4&gt;&amp;lt;![CDATA[JUL-AUG]]&amp;gt;&lt;/PeriodDescription4&gt;&lt;LastYearConsumption4&gt;0.000&lt;/LastYearConsumption4&gt;&lt;ThisYearConsumption4&gt;0.000&lt;/ThisYearConsumption4&gt;&lt;PeriodDescription5&gt;&amp;lt;![CDATA[MAI-JUN]]&amp;gt;&lt;/PeriodDescription5&gt;&lt;LastYearConsumption5&gt;0.000&lt;/LastYearConsumption5&gt;&lt;ThisYearConsumption5&gt;0.000&lt;/ThisYearConsumption5&gt;&lt;PeriodDescription6&gt;&amp;lt;![CDATA[MAR-APR]]&amp;gt;&lt;/PeriodDescription6&gt;&lt;LastYearConsumption6&gt;0.000&lt;/LastYearConsumption6&gt;&lt;ThisYearConsumption6&gt;0.000&lt;/ThisYearConsumption6&gt;&lt;PeriodDescription7&gt;&lt;/PeriodDescription7&gt;&lt;PeriodDescription8&gt;&lt;/PeriodDescription8&gt;&lt;PeriodDescription9&gt;&lt;/PeriodDescription9&gt;&lt;PeriodDescription10&gt;&lt;/PeriodDescription10&gt;&lt;PeriodDescription11&gt;&lt;/PeriodDescription11&gt;&lt;PeriodDescription12&gt;&lt;/PeriodDescription12&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;/ConsumptionPillars-132&gt;&lt;InvoiceOrderEndRecord-134&gt;&lt;BillingGroup&gt;&amp;lt;![CDATA[PA]]&amp;gt;&lt;/BillingGroup&gt;&lt;ServiceAgreeSerialNo&gt;1&lt;/ServiceAgreeSerialNo&gt;&lt;/InvoiceOrderEndRecord-134&gt;&lt;/InvoiceOrder&gt;&lt;VatSpecInvoice-142&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SumBasis&gt;880.99&lt;/SumBasis&gt;&lt;SumVat&gt;220.26&lt;/SumVat&gt;&lt;/VatSpecInvoice-142&gt;&lt;InvoiceEndRecord-199&gt;&lt;TotalLines&gt;29&lt;/TotalLines&gt;&lt;InvoiceNo&gt;1621&lt;/InvoiceNo&gt;&lt;/InvoiceEndRecord-199&gt;&lt;/Invoice&gt;&lt;/VEDLEGG_EMUXML&gt;&lt;VEDLEGG_E2B&gt;&lt;/VEDLEGG_E2B&gt;&lt;/FAKTURA&gt;</Attachment>
+        <Attachment>&lt;FAKTURA&gt;&lt;AKTOR&gt;50153745&lt;/AKTOR&gt;&lt;AKTORNAVN&gt;&amp;lt;![CDATA[BKK Nett AS]]&amp;gt;&lt;/AKTORNAVN&gt;&lt;FAKTURANR&gt;3299314-37293265&lt;/FAKTURANR&gt;&lt;MAALEPUNKT&gt;707057500027069074&lt;/MAALEPUNKT&gt;&lt;FAKTURA_TYPE&gt;UNCL1001&lt;/FAKTURA_TYPE&gt;&lt;KUNDE_TYPE&gt;P&lt;/KUNDE_TYPE&gt;&lt;FAKTURA_MERKE_SO&gt;&lt;/FAKTURA_MERKE_SO&gt;&lt;VEDLEGG_FORMAT&gt;PDF&lt;/VEDLEGG_FORMAT&gt;&lt;VEDLEGG_PDF&gt;JVBERi0xLjMKJdDS5dMKMSAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovUGFnZXMgMyAwIFIKL091
+dGxpbmVzIDQgMCBSCj4+CmVuZG9iagoyIDAgb2JqCjw8Ci9DcmVhdG9yIChQREYvUFJlUyBWZXJz
+aW9uOiA2LjMuMC4wICAgICAgICkKL0NyZWF0aW9uRGF0ZSAoRDoyMDE3MDMxNTAwMjkxMSswMScw
+MCcpCi9Qcm9kdWNlciAoIltDbGliUERGIExpYnJhcnkgMi4wMi1yMS0yXSBXaW5kb3dzIFBERi9Q
+UmVTIFZlcnNpb246IDYuMy4wLjAgICAgICAgIikKL0F1dGhvciAoVXNlcjogV2luZG93cyBYUC8y
+MDAwL05ULzl4IFVzZXIpCi9UaXRsZSAoRDovcHJlcy9EYXRhLzNfSW1wb3J0L1RlbXBQREYvMzcy
+OTMyNjVfSU4ucGRmKQovU3ViamVjdCAoTk9ORSkKL0tleXdvcmRzIChOT05FKQo+PgplbmRvYmoK
+MyAwIG9iago8PAovVHlwZSAvUGFnZXMKL0NvdW50IDIKL0tpZHMgWyAxOCAwIFIgXQo+PgplbmRv
+YmoKNCAwIG9iago8PAovVHlwZSAvT3V0bGluZXMKL0NvdW50IDAKPj4KZW5kb2JqCjUgMCBvYmoK
+Wy9QREYgL1RleHQgXQplbmRvYmoKNiAwIG9iago8PAovVHlwZSAvUGFnZQovUGFyZW50IDE4IDAg
+UgovUmVzb3VyY2VzIDw8Ci9Gb250IDw8Ci9GY3BkZjAgMTIgMCBSCi9GY3BkZjEgMTUgMCBSCj4+
+Ci9YT2JqZWN0IDw8Ci9JTWNwZGYwMCAxNiAwIFIKPj4KL1Byb2NTZXQgNSAwIFIgPj4KL01lZGlh
+Qm94IFswIDAgNTk1IDg0Ml0KL0Nyb3BCb3ggWzAgMCA1OTUgODQyXQovVHJpbUJveCBbMCAwIDU5
+NSA4NDJdCi9Sb3RhdGUgMAovQ29udGVudHMgNyAwIFIKPj4KZW5kb2JqCjcgMCBvYmoKPDwKL0xl
+bmd0aCAxMzExCi9GaWx0ZXIgWy9GbGF0ZURlY29kZV0KPj4Kc3RyZWFtCniczVhtb9pIEP58/hUr
+nSolUtnsu3f5RgrJVTQvh52eTkKqHDCpG2Oo7aTtD7z/lI83iw02xAGuSpMjENaPd2afnZmdGUwx
+gRcia1907UoLVgxGU8c59p2jk9F8PIFZDPkTp+fXQNoMmiX2Bl12T44uB6EHw3ft4WU6u0mDKTqJ
+4jBDB9+1OgQsSnJvNsmHdt7Q+5Hl4XQ4TzNQNcfh9xCdzRLUDUeIKsRIm7I2FTCgHHR+DNMsgtsK
+cwz0UfGCG39FyXj2LUNemN6HqZ3OUDfIg1GY5HDdG0e5lTu4voviMTKMkMO3SInWdZRbqpewMclQ
+G30Ikpv3XUQEFYB7ozSa5wv6v3VhO4OeNzztXg7en/tsNcCX3Xd27nw2i9Gkcao/nWPYHpol2Ti4
+QVRiNA3SzNJ0ESFtZtqUOG8c56tDtziMG6wMfLdcwI1ceEwYgbV+JCEltpvcQGH+0fuzhXsJ6s6c
+P9cczsgj3+4DrjNubVBmChMmOWpRIjGhkiJ/6hycBLf5XRocIv/LowhrWrABbJy5CyToBj6nK97I
+/tGCpeXIBBaizjBJ20uS5cZuloPTX0RGgJvFOhnuMgMc5UtTWdmFSyx03S7jIJ+9nmUqOhSW5Nie
+o33INAbSLnCXbYTCkDosmeMwD+IouckmaZTle5nnORmtzFMxAtsQsbd5fknoSA0U6qET3IOVwtc8
+WBUlSjSnQr+acZTBpAjk/l0yflWjVFQoIUpQwl+cCsOLQsEZNrIwCvQP99Et8u7DKGldxMF9vWJs
+LTxWGYMSCaeBY6PLuvPPFMycxWGUhzlUsZ/QBoUV6lmhTVIq91ahBHbVIxVof3kXS/FI/uqD1/Ob
+yqhucMBzYNt9JyCKVJF6zv9GJ52+fzXoXPme3+v2Bgjex/0+6ngLwg3Srl5Kn1wMen6n751fnZ2B
+GHQ4iBMDIcSektXuUva4c97vX5z7F6UwvK96593B/8JQy6Nf4+uF6Dq4zSI4/2gyS9EUGtYogdE0
+yL7MEtzYJammA7YVfIIQlcIe/JbSBAtS1rH4YQ4HBHjMoJuePKQ5yqMYjaME3abBJI9DgINk/JDu
+2cHtbOu+QnIxyyxjiixTxv83R0jMFUQ+I5CrDEFTR0IKF0ZVUNwIKVChaAVJRTHnFoC+wZWmDjDM
+mUQjp4Js/6UU6ClOfyNSim1HirUgD7lGVGQ2dzVyPjsTx4Om/HHCrTNwpbXAwmJSudY+a5Tt7fgJ
+Nc/Ud7xUQyMZx1TbbQFY5Dvvbgoh+OKVSWHX8uDwW4sX2S3M4RRE4UszkZA+bBGoUZHavCX0Pzab
+q4Di0Atp+WRAlbd3B9SuE17fT2NQNJhbGKxNUbfRte2tQ1TUy/UlD4YHf0A6ukdnHzuIUvetJsPD
+l26+V46pSO90TM3ikAyUKJOD64oyxUEyqaC4GbIjXUHWdUS4Nu3YAa8DDCuooUWKKyAJA8YWqXIb
+BMGiNarWkhxr6aKKTwmMqn2USNyEQMGpq4FY1MBrtU51XVAZOSuk3EK8FSn2vVqlNMymhW26/amg
+rj3vev72wIaRWaQam/kWGQ/6ArgB4c2aiu2yum97brRsKLWg2Bip7XOg9RmtRvHqqdHu5zzS/gq3
+jRjTmEtSNBKdD8dXhH8yFD6uMkJoQsuR0uwTYTic3lFl/4efJ3u3wpK4GLrBjcXQUYb3V0Gh+lK+
+ocI1iu+vAiSVdDdZ/N7eXwMHEmxzH9xotpE0lu7Z4aU9YqAeAv8C2LDS2gplbmRzdHJlYW0KZW5k
+b2JqCjggMCBvYmoKPDwKL1R5cGUgL1BhZ2UKL1BhcmVudCAxOCAwIFIKL1Jlc291cmNlcyA8PAov
+Rm9udCA8PAovRmNwZGYxIDE1IDAgUgovRmNwZGYwIDEyIDAgUgo+PgovWE9iamVjdCA8PAovSU1j
+cGRmMDEgMTcgMCBSCj4+Ci9Qcm9jU2V0IDUgMCBSID4+Ci9NZWRpYUJveCBbMCAwIDU5NSA4NDJd
+Ci9Dcm9wQm94IFswIDAgNTk1IDg0Ml0KL1RyaW1Cb3ggWzAgMCA1OTUgODQyXQovUm90YXRlIDAK
+L0NvbnRlbnRzIDkgMCBSCj4+CmVuZG9iago5IDAgb2JqCjw8Ci9MZW5ndGggMTcyMQovRmlsdGVy
+IFsvRmxhdGVEZWNvZGVdCj4+CnN0cmVhbQp4nO1ay27bOBTd+ysIzKYFbIbvR3cpOn1g+pppZrop
+ULiJ7LqWZY8sp1+cf8hyLi1SohzFlVFXzmJaJLGOTPLwkvfecylRTOAfIo0/tHFlBCs/XC4Gg6cX
+g7Pnl6urCUWUoYvJ4PeLCCRtIEUqYI3mpK25isAmjVGTHBeYMAcDO8kkdLYYPHo+nhebfDzNN1mW
+jqeP0cW3XS62hd9dDIahBzNREvPA5G1SFGkyS+5S2On6MF41RtAUfl5U9JD7T0syaKQNpnpL5HVy
+neTj7Oo2fxK4ePrT8OFFdyL/7piiaQlKLSaa0HJ8JbdbRiqsxN0WFou7KHz97NWbrZUoerYc/Pkz
+XA82mgHSfGu0Nzdpstpk82L06tkxzNadSmnCmAvTRFmiBfr0aLlaTWdrdJ1cobRa1vV8NimST497
+pektZg0mtrJYnh1ljx1urJqGlYIoLU5hC0qAhax9bpZN19s9dBqbRHTeUkI5NRoR8CqK/pqts2SN
+FDuJlSjQolta51kxLgp0k68ny/xLvpmfyFA1I845RfOPX09iGKaxLUP2+3x5tTnZvql5vINdPLl1
+G3mIkizJp7PFTVpAHHonuoUbEicOgm34oi2/6Ft8H3AtMGMug3JsmEQuaVDsFiMgaSvCsLGqQqQS
+kHTUNg8TK6JryEAKksugQrTGUnLog2vo1cg2xLfaj5Qjcc2wkrJisjufy8HXwWTwoTWdxQwM1zD3
+ra2k0s4yMWN3N72nl1abd8Tu25daQuKGkQXm1u9LSD6rG5R5bYNm2TxF4+upS0A5WuWg6TDhmBGq
+D9weB1LtxzG9AYzGRDVEHZqM18WXJL1d9eqiApbCqJgQNYQM4f48P7vJ+41a3jhWu+jVNE4ZzU9i
+mpoOt0MIM+g2T872R/TI25zfSgKzcl4HiqKMQ0ToCklbEfB+EGsBkc7rDSvrAW2ia4WtENs45BEQ
+LlTSbR/3IxZr0PLVKJRAAIW5VkQCcFnzD1DaDjFsuakhF4KUstVQ9XVJ5nJQIX4K6V6knHY1jDfL
+rnFdUDwgmO1PIAobF38ph+TVTCABStshn0ICVMVbyi2mcRKhgmDdzCJgGwj726SxLQFbEd9sL+LH
+4hIzY2syu7Pam0YiBvb+NBJu95lHDGZulwqDRVwrbBaLpFPMOhoTKpS7iKm8B52+vEp6pcE4eLa9
+a5F1AfUcqKtJPh4Vs/RgifWTywS7z8oGK3easux3iQRlbvSYxfl1mqwzV00tbop+VwrCFRa0aZMy
+ufVfJXgvghhG1clK3cqDahoEblN32DRC7iPH3bTf0ShV3lRTUoQYyDtIEcNlv6sUnKgmQ/vVQcF/
+agIfitlqA+Gl6JWIFAKydIOIFvt2RkOGYUiJLu/Bpm/KsACl7VCQSB6qNJTLsCKWYlS41g0tRqE1
+sw3p1QrBBxnLMZA7lMVyzAOX9Tw8krYhEksddQN5nG/lmh+nvi6pXA4qxE8h3Yf4eVejeMPsWviX
+aDHQg1Q2tZiH0nYoaDEP1aIFlKRgsRbTHFvb1GIGCgDTUF53Ed9sP1KOVWkxT2Z3Vp20mJFbcvdp
+MX/7BFrMUBD6VU2fpMkiyTrFh+NrsYjKKbVYTeMhabGa1fPuRfXxxVhzu/QrwRhEsOY++bBZoHnP
+px3eb2x1FnbS047KeWo+D0aG1ZQegAyryYD4QH98fHkaMVbT6Hwq9QsUGWeYN9kwa4ak56UpPYlB
+ZcXlQzhUDb4UMerdl3p1imii0qKr8bTbKczRvSLi4Y6xT3CGHTwiYsIsGVp1WIYLco8Rjdn9R2/h
+9s/KvR84lnuaaUKePN1TmP97PZ4ECtu0Xlpp7JBUJwu/IlhA1AO5FY/56dHLJB9fozf/nCNK9dAQ
+tJwG+bMunwIiKPeHmu+Vy22FPhRVgptGoe+htB0KxbeH6vIcyjdNdAwI8AseF/qMWsyojKv6NogR
+rGGO1ViMMUwkqQv9ANSFfkDSNsSX4AEJJXoYp7r2VKJC308h3YuU864KfW+YXQt3KfSP/WYDExpb
+FaoYNM3HxWyNkux2PpplsH8W4/W3ZYbcewZw8zYrUPlswD1qdokBkgWB7di221ULKXMgdm/hobAF
++cog/ft4OrtKEEPgAmwfl30vyPmrkREUWyuNe+Gt+Y1Ra3P/x7+Auf9tROkewEu30wxkNVK+jnj+
++unfhH+2FH60skIYQv0nZdhnwnCy2FDlfidfJ/H09g4mIadxYncGQ2dr3L0LKjGnfKcLbZXo3gW0
+VKVzxSx+e9K9B+5e3dydB7dm9x2psDw/WKUOeyDeAv8Bn7te9wplbmRzdHJlYW0KZW5kb2JqCjEw
+IDAgb2JqCjw8Ci9UeXBlIC9Gb250RGVzY3JpcHRvcgovQXNjZW50IDkwNQovQ2FwSGVpZ2h0IDkw
+NQovRGVzY2VudCAtMjEyCi9GbGFncyAzMgovRm9udEJCb3ggWy02MjcgLTM3NSAyMDAwIDEwNTZd
+Ci9Gb250TmFtZSAvQXJpYWwtQm9sZE1UCi9JdGFsaWNBbmdsZSAwCi9TdGVtViAxNTgKL1hIZWln
+aHQgMAo+PgplbmRvYmoKMTEgMCBvYmoKPDwKL1R5cGUgL0VuY29kaW5nCi9CYXNlRW5jb2Rpbmcg
+L1dpbkFuc2lFbmNvZGluZwo+PgplbmRvYmoKMTIgMCBvYmoKPDwKL1R5cGUgL0ZvbnQKL1N1YnR5
+cGUgL1RydWVUeXBlCi9OYW1lIC9GY3BkZjAKL0Jhc2VGb250IC9BcmlhbC1Cb2xkTVQKL0VuY29k
+aW5nIDExIDAgUgovRmlyc3RDaGFyIDMwCi9MYXN0Q2hhciAyNTUKL1dpZHRocyBbCjc1MCA3NTAg
+Mjc4IDMzMyA0NzQgNTU2IDU1NiA4ODkgNzIyIDIzOCAzMzMgMzMzIDM4OSA1ODQgMjc4IAozMzMg
+Mjc4IDI3OCA1NTYgNTU2IDU1NiA1NTYgNTU2IDU1NiA1NTYgNTU2IDU1NiA1NTYgMzMzIDMzMyA1
+ODQgCjU4NCA1ODQgNjExIDk3NSA3MjIgNzIyIDcyMiA3MjIgNjY3IDYxMSA3NzggNzIyIDI3OCA1
+NTYgNzIyIDYxMSAKODMzIDcyMiA3NzggNjY3IDc3OCA3MjIgNjY3IDYxMSA3MjIgNjY3IDk0NCA2
+NjcgNjY3IDYxMSAzMzMgMjc4IAozMzMgNTg0IDU1NiAzMzMgNTU2IDYxMSA1NTYgNjExIDU1NiAz
+MzMgNjExIDYxMSAyNzggMjc4IDU1NiAyNzggCjg4OSA2MTEgNjExIDYxMSA2MTEgMzg5IDU1NiAz
+MzMgNjExIDU1NiA3NzggNTU2IDU1NiA1MDAgMzg5IDI4MCAKMzg5IDU4NCA3NTAgNTU2IDc1MCAy
+NzggNTU2IDUwMCAxMDAwIDU1NiA1NTYgMzMzIDEwMDAgNjY3IDMzMyAxMDAwIAo3NTAgNjExIDc1
+MCA3NTAgMjc4IDI3OCA1MDAgNTAwIDM1MCA1NTYgMTAwMCAzMzMgMTAwMCA1NTYgMzMzIDk0NCAK
+NzUwIDUwMCA2NjcgMjc4IDMzMyA1NTYgNTU2IDU1NiA1NTYgMjgwIDU1NiAzMzMgNzM3IDM3MCA1
+NTYgNTg0IAozMzMgNzM3IDU1MiA0MDAgNTQ5IDMzMyAzMzMgMzMzIDU3NiA1NTYgMzMzIDMzMyAz
+MzMgMzY1IDU1NiA4MzQgCjgzNCA4MzQgNjExIDcyMiA3MjIgNzIyIDcyMiA3MjIgNzIyIDEwMDAg
+NzIyIDY2NyA2NjcgNjY3IDY2NyAyNzggCjI3OCAyNzggMjc4IDcyMiA3MjIgNzc4IDc3OCA3Nzgg
+Nzc4IDc3OCA1ODQgNzc4IDcyMiA3MjIgNzIyIDcyMiAKNjY3IDY2NyA2MTEgNTU2IDU1NiA1NTYg
+NTU2IDU1NiA1NTYgODg5IDU1NiA1NTYgNTU2IDU1NiA1NTYgMjc4IAoyNzggMjc4IDI3OCA2MTEg
+NjExIDYxMSA2MTEgNjExIDYxMSA2MTEgNTQ5IDYxMSA2MTEgNjExIDYxMSA2MTEgCjU1NiA2MTEg
+NTU2IF0KL0ZvbnREZXNjcmlwdG9yIDEwIDAgUgo+PgplbmRvYmoKMTMgMCBvYmoKPDwKL1R5cGUg
+L0ZvbnREZXNjcmlwdG9yCi9Bc2NlbnQgOTA1Ci9DYXBIZWlnaHQgOTA1Ci9EZXNjZW50IC0yMTIK
+L0ZsYWdzIDMyCi9Gb250QkJveCBbLTY2NCAtMzI0IDIwMDAgMTA0MF0KL0ZvbnROYW1lIC9Bcmlh
+bE1UCi9JdGFsaWNBbmdsZSAwCi9TdGVtViA4NQovWEhlaWdodCAwCj4+CmVuZG9iagoxNCAwIG9i
+ago8PAovVHlwZSAvRW5jb2RpbmcKL0Jhc2VFbmNvZGluZyAvV2luQW5zaUVuY29kaW5nCj4+CmVu
+ZG9iagoxNSAwIG9iago8PAovVHlwZSAvRm9udAovU3VidHlwZSAvVHJ1ZVR5cGUKL05hbWUgL0Zj
+cGRmMQovQmFzZUZvbnQgL0FyaWFsTVQKL0VuY29kaW5nIDE0IDAgUgovRmlyc3RDaGFyIDMwCi9M
+YXN0Q2hhciAyNTUKL1dpZHRocyBbCjc1MCA3NTAgMjc4IDI3OCAzNTUgNTU2IDU1NiA4ODkgNjY3
+IDE5MSAzMzMgMzMzIDM4OSA1ODQgMjc4IAozMzMgMjc4IDI3OCA1NTYgNTU2IDU1NiA1NTYgNTU2
+IDU1NiA1NTYgNTU2IDU1NiA1NTYgMjc4IDI3OCA1ODQgCjU4NCA1ODQgNTU2IDEwMTUgNjY3IDY2
+NyA3MjIgNzIyIDY2NyA2MTEgNzc4IDcyMiAyNzggNTAwIDY2NyA1NTYgCjgzMyA3MjIgNzc4IDY2
+NyA3NzggNzIyIDY2NyA2MTEgNzIyIDY2NyA5NDQgNjY3IDY2NyA2MTEgMjc4IDI3OCAKMjc4IDQ2
+OSA1NTYgMzMzIDU1NiA1NTYgNTAwIDU1NiA1NTYgMjc4IDU1NiA1NTYgMjIyIDIyMiA1MDAgMjIy
+IAo4MzMgNTU2IDU1NiA1NTYgNTU2IDMzMyA1MDAgMjc4IDU1NiA1MDAgNzIyIDUwMCA1MDAgNTAw
+IDMzNCAyNjAgCjMzNCA1ODQgNzUwIDU1NiA3NTAgMjIyIDU1NiAzMzMgMTAwMCA1NTYgNTU2IDMz
+MyAxMDAwIDY2NyAzMzMgMTAwMCAKNzUwIDYxMSA3NTAgNzUwIDIyMiAyMjIgMzMzIDMzMyAzNTAg
+NTU2IDEwMDAgMzMzIDEwMDAgNTAwIDMzMyA5NDQgCjc1MCA1MDAgNjY3IDI3OCAzMzMgNTU2IDU1
+NiA1NTYgNTU2IDI2MCA1NTYgMzMzIDczNyAzNzAgNTU2IDU4NCAKMzMzIDczNyA1NTIgNDAwIDU0
+OSAzMzMgMzMzIDMzMyA1NzYgNTM3IDMzMyAzMzMgMzMzIDM2NSA1NTYgODM0IAo4MzQgODM0IDYx
+MSA2NjcgNjY3IDY2NyA2NjcgNjY3IDY2NyAxMDAwIDcyMiA2NjcgNjY3IDY2NyA2NjcgMjc4IAoy
+NzggMjc4IDI3OCA3MjIgNzIyIDc3OCA3NzggNzc4IDc3OCA3NzggNTg0IDc3OCA3MjIgNzIyIDcy
+MiA3MjIgCjY2NyA2NjcgNjExIDU1NiA1NTYgNTU2IDU1NiA1NTYgNTU2IDg4OSA1MDAgNTU2IDU1
+NiA1NTYgNTU2IDI3OCAKMjc4IDI3OCAyNzggNTU2IDU1NiA1NTYgNTU2IDU1NiA1NTYgNTU2IDU0
+OSA2MTEgNTU2IDU1NiA1NTYgNTU2IAo1MDAgNTU2IDUwMCBdCi9Gb250RGVzY3JpcHRvciAxMyAw
+IFIKPj4KZW5kb2JqCjE2IDAgb2JqCjw8Ci9UeXBlIC9YT2JqZWN0Ci9TdWJ0eXBlIC9JbWFnZQov
+TmFtZSAvSU1jcGRmMDAKL1dpZHRoIDIwNjIKL0hlaWdodCAyMzMKL0ZpbHRlciAvRmxhdGVEZWNv
+ZGUKL0RlY29kZSBbMSAwXQovQml0c1BlckNvbXBvbmVudCAxCi9Db2xvclNwYWNlIC9EZXZpY2VH
+cmF5Ci9MZW5ndGggNjkyOAo+PgpzdHJlYW0KeJztnc+P20h2xx9dgSuHXtbm5gNNHvIP+FjGMM1D
+Dvk3vNjDHsOGD+Yg2mYpOiiHwJ1jDoP1v5HDAlOCgmgOgX3dw2BcihboSzCuXgMZDobDyntFUq3+
+YU+3V5r2ynyeaaoltlT1YdV736p6LAEM9onbvbsuwJ3bQGAgwO66AHduwV0X4M5taANDGxgIDLFg
+sMETDjb4gcEGG2zwA4NB4ir/swHwjz45uyccVZ47Z6F0ip7CZ8hqlEvO+JMiyBr/INB3VMwdWkD1
+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
+sCWglsZ0BGp+i/VEjIYLiCTH8GGSwFZM4YDzAMdbwYoShM5MYdOCMopj6KOhHqUpzQ/ow1A8B+lz
+rbjfDtL4BrMFAmkR4UjzT3mVo2tHyKU5mk++Qh58yv8NC+rnB35lKQ0MDg49ATYzZ55AymHEb3Hz
+JCqi6ZoAkEMRTtG+2DOn0KE6nZmEspI4yk8UT36Xu6xKaY5IHwoXegKl3eocEY4LbIQffVxW+edY
+vAxl6ZEbV5k1zDF/qejmw1ILKhZKeCJA6VUa5esHEGgExLTROegQMrzuSIBXHD8fkEDmQzwSQMHT
+EmhonlDSPKGKRB1D6nOttjpP6MeG6P0Ok0e5bOjt8yJvoEqMoe3VqaA0T1iqkIolrCcADgtLBDCO
+F2IneQV3aeaTTxMwH2tu089mZuv3sfylmd2CzvrLtvKT3wEr03ddgsEGG2ywwQYbbLD9tf8HYUGJ
+2wplbmRzdHJlYW0KZW5kb2JqCjE3IDAgb2JqCjw8Ci9UeXBlIC9YT2JqZWN0Ci9TdWJ0eXBlIC9J
+bWFnZQovTmFtZSAvSU1jcGRmMDEKL1dpZHRoIDIzNgovSGVpZ2h0IDgxCi9GaWx0ZXIgL0ZsYXRl
+RGVjb2RlCi9EZWNvZGUgWzEgMF0KL0JpdHNQZXJDb21wb25lbnQgMQovQ29sb3JTcGFjZSAvRGV2
+aWNlR3JheQovTGVuZ3RoIDcyNgo+PgpzdHJlYW0KeJztlbGOEzEQQMeshJvTbpsiOv8C5RbR5VeC
+KCgxouAouHVHc7ov4GOMUtBRU87pCrrTShRndEuGmbF3kw0oFeVZirTxczzjN+MNwKlBA1SENvHj
+moh6sL1MN1FpR2hoqEgfiXagC30ja5Cneuh2hkKmFOwAYPqG11TI2w38AYqFRqFWaYPgeDNHocNC
+UahTukZolMauP6SdUhJK/InrkfZMDQm1TK0kQujSAW2UOqYVJ1Lxt6HQZCVLoXxW3oWw4rmdRONM
+hPJUkxjwOUh1jNQxle2aJCGF9pBljZQTDS45yv5SkTVSEeSSzMOBLI3b29+ym3vkiEydUpFVqOjk
+WQ1bVEah+bwkAZ2USyo5ySomdZ7pIHSUhWONZrRS2j+b6jvb2ajKBGf733I+TtcoZVkJ2inuo+b8
+oDlnWT3sc74laYptpior2DjWiIJSQ9qWa1XmimepBz+4AdSVqgS4yrQZuIIdlz5JtCILTMrU7qT6
+UgVZU2SBdPdEndJ1GmXBOh7QZifUjbIw3wWJq5SU7gpN+qQ5C7XSG7Imy8rK9bxCK4pO+rnIIs1e
+6aDdLrQaZeUumSho90+ycpdM3c4ilOJIYUa7JDdnlJX7YLpHLMIVdyorjXuU+zsInWRNEfKbodkp
+HcqBw4m3UjecgGBP/fRpPI3/Pihuzv05YK3fvJm3J/WblV9Cz/RLgF7/LvcD/ebSt5CYbpnaefdi
+u+m9L9SkuprTxUv0CEOm32tzRF/FtxHua7t9QPO5nueM7evwLjB1Px+wurZH1L+B9wF+1Cu/DVWd
+//X3J8IudAHubl4stsHWZnd0XqZxpM+hO4r7IX5EuP3WJaZ0dFtx4dHze/9eKL/8TJzRpdrAe8/n
+ravrv6iYxCuhZ/+grV8BXrSc1dLcHNF2s5QKXqwu78LCfP00y4oreO5rwHPX/8LWbOcVJNw03nL1
+bbzEFm5PvpyOxh+7vLHNCmVuZHN0cmVhbQplbmRvYmoKMTggMCBvYmoKPDwKL1R5cGUgL1BhZ2Vz
+Ci9QYXJlbnQgMyAwIFIKL0NvdW50IDIKL0tpZHMgWyA2IDAgUiA4IDAgUiBdCj4+CmVuZG9iagp4
+cmVmCjAgMTkKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDE1IDAwMDAwIG4gCjAwMDAwMDAw
+ODAgMDAwMDAgbiAKMDAwMDAwMDM5OSAwMDAwMCBuIAowMDAwMDAwNDU5IDAwMDAwIG4gCjAwMDAw
+MDA1MDUgMDAwMDAgbiAKMDAwMDAwMDUzNCAwMDAwMCBuIAowMDAwMDAwNzg0IDAwMDAwIG4gCjAw
+MDAwMDIxNzAgMDAwMDAgbiAKMDAwMDAwMjQyMCAwMDAwMCBuIAowMDAwMDA0MjE2IDAwMDAwIG4g
+CjAwMDAwMDQ0MDQgMDAwMDAgbiAKMDAwMDAwNDQ3MyAwMDAwMCBuIAowMDAwMDA1NTY4IDAwMDAw
+IG4gCjAwMDAwMDU3NTAgMDAwMDAgbiAKMDAwMDAwNTgxOSAwMDAwMCBuIAowMDAwMDA2OTEwIDAw
+MDAwIG4gCjAwMDAwMTQwNDEgMDAwMDAgbiAKMDAwMDAxNDk2NyAwMDAwMCBuIAp0cmFpbGVyCjw8
+Ci9TaXplIDE5Ci9Sb290IDEgMCBSCi9JbmZvIDIgMCBSCi9JRCBbPDEwOGI1YmVhODJlNGI3ZTQ1
+NjAyNDdiOGFmMzM1YjcxPiA8MTA4YjViZWE4MmU0YjdlNDU2MDI0N2I4YWYzMzViNzE+XQo+Pgpz
+dGFydHhyZWYKMTUwNDcKJSVFT0YK&lt;/VEDLEGG_PDF&gt;&lt;/FAKTURA&gt;</Attachment>
+        <Attachment>&lt;FAKTURA&gt;&lt;AKTOR&gt;50153745&lt;/AKTOR&gt;&lt;AKTORNAVN&gt;&amp;lt;![CDATA[BKK Nett AS]]&amp;gt;&lt;/AKTORNAVN&gt;&lt;FAKTURANR&gt;3338748-37345940&lt;/FAKTURANR&gt;&lt;MAALEPUNKT&gt;707057500028672730&lt;/MAALEPUNKT&gt;&lt;FAKTURA_TYPE&gt;UNCL1001&lt;/FAKTURA_TYPE&gt;&lt;KUNDE_TYPE&gt;P&lt;/KUNDE_TYPE&gt;&lt;FAKTURA_MERKE_SO&gt;&lt;/FAKTURA_MERKE_SO&gt;&lt;VEDLEGG_FORMAT&gt;PDF&lt;/VEDLEGG_FORMAT&gt;&lt;VEDLEGG_PDF&gt;JVBERi0xLjMKJdDS5dMKMSAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovUGFnZXMgMyAwIFIKL091
+dGxpbmVzIDQgMCBSCj4+CmVuZG9iagoyIDAgb2JqCjw8Ci9DcmVhdG9yIChQREYvUFJlUyBWZXJz
+aW9uOiA2LjMuMC4wICAgICAgICkKL0NyZWF0aW9uRGF0ZSAoRDoyMDE3MDMxNTAyMjMyMSswMScw
+MCcpCi9Qcm9kdWNlciAoIltDbGliUERGIExpYnJhcnkgMi4wMi1yMS0yXSBXaW5kb3dzIFBERi9Q
+UmVTIFZlcnNpb246IDYuMy4wLjAgICAgICAgIikKL0F1dGhvciAoVXNlcjogV2luZG93cyBYUC8y
+MDAwL05ULzl4IFVzZXIpCi9UaXRsZSAoRDovcHJlcy9EYXRhLzNfSW1wb3J0L1RlbXBQREYvMzcz
+NDU5NDBfSU4ucGRmKQovU3ViamVjdCAoTk9ORSkKL0tleXdvcmRzIChOT05FKQo+PgplbmRvYmoK
+MyAwIG9iago8PAovVHlwZSAvUGFnZXMKL0NvdW50IDIKL0tpZHMgWyAxOCAwIFIgXQo+PgplbmRv
+YmoKNCAwIG9iago8PAovVHlwZSAvT3V0bGluZXMKL0NvdW50IDAKPj4KZW5kb2JqCjUgMCBvYmoK
+Wy9QREYgL1RleHQgXQplbmRvYmoKNiAwIG9iago8PAovVHlwZSAvUGFnZQovUGFyZW50IDE4IDAg
+UgovUmVzb3VyY2VzIDw8Ci9Gb250IDw8Ci9GY3BkZjAgMTIgMCBSCi9GY3BkZjEgMTUgMCBSCj4+
+Ci9YT2JqZWN0IDw8Ci9JTWNwZGYwMCAxNiAwIFIKPj4KL1Byb2NTZXQgNSAwIFIgPj4KL01lZGlh
+Qm94IFswIDAgNTk1IDg0Ml0KL0Nyb3BCb3ggWzAgMCA1OTUgODQyXQovVHJpbUJveCBbMCAwIDU5
+NSA4NDJdCi9Sb3RhdGUgMAovQ29udGVudHMgNyAwIFIKPj4KZW5kb2JqCjcgMCBvYmoKPDwKL0xl
+bmd0aCAyMDE5Ci9GaWx0ZXIgWy9GbGF0ZURlY29kZV0KPj4Kc3RyZWFtCniczVrrbts4Fv49fgoC
+iwFSoGZ5v+RfMk46bZrLxs4MFghQKLacaiJfKivpzAPuo+w79OceSrJlWZStZD3ppomjHPKQ37kf
+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
+S+Ne5FdndL3s5Wv/nVchXLrXqO4mHSodlyS/CT76dHxD+GdL5WerlRXCEFo8KcM+QwMeTh7hlA2f
+4Zdx65suSbSz9sZm6N0Ct1+CSszhoF1dgptnvJGRwKmk3kTxj8P2K3AAwTblgNOh2cgfS/PssFIL
+H1h3gf8CXICSbAplbmRzdHJlYW0KZW5kb2JqCjggMCBvYmoKPDwKL1R5cGUgL1BhZ2UKL1BhcmVu
+dCAxOCAwIFIKL1Jlc291cmNlcyA8PAovRm9udCA8PAovRmNwZGYxIDE1IDAgUgovRmNwZGYwIDEy
+IDAgUgo+PgovWE9iamVjdCA8PAovSU1jcGRmMDEgMTcgMCBSCj4+Ci9Qcm9jU2V0IDUgMCBSID4+
+Ci9NZWRpYUJveCBbMCAwIDU5NSA4NDJdCi9Dcm9wQm94IFswIDAgNTk1IDg0Ml0KL1RyaW1Cb3gg
+WzAgMCA1OTUgODQyXQovUm90YXRlIDAKL0NvbnRlbnRzIDkgMCBSCj4+CmVuZG9iago5IDAgb2Jq
+Cjw8Ci9MZW5ndGggMTczMgovRmlsdGVyIFsvRmxhdGVEZWNvZGVdCj4+CnN0cmVhbQp4nO1ay3Lb
+NhTd6ysw000ylWC8H9k5k+YxrZt07DabzGQUi1IUUZRLUe4X9lP8D172ggRJUKIVKlEoL2qPLfJQ
+AA4uce89FyTFBH4QaXzQxpkRrDi4Xg4Gz68GZy+vbyZTiihDV9PBL1cBSNpAilSJNZqTtuYqAJs0
+Rk1yXGDCHAzsJJPQ2XLw5OV4kW3S8SzdJEk8nj1FV1+2udgWfrsYDEMPZqIk5iWT36Msi6N5tEth
+q+vDeNUYQTP4e1XRQ+6XFmTQSBtMdU7kt+g2SsfJ5D59VnLx9GflwavuRP7eMkXTEpRaTDShxfhK
+5ktGKqzEbguLxS4KXz97c5FbiaIXq8Ef38P1YKMZIM1zo13cxdHNJllkozcvjmG27lQKE4ZcmFGa
+aU7Qhyerm5vZfI1uowmKq9u6XsynWfThaa80vcWswcRWFkuTo6yxw41V0yDEKmn1KWxBCbCQtc/N
+k9k6X0OnsUlAR1IDvsjIz4iAW1H073KTTNYQnbIoQ4ycxFgU2NGc3XmSjbMM3aXr6Sr9lG4WJ7JX
+zYgKoilavP98EsswjW0Rut+lq8nmZOun5vEWVvP03i3oIYqSKJ3Nl3dxBvHoregWdkiYQAi25Rdt
+8UXf4p8B1wIz5jIpx4ZJ5JIHxZzTColbEYaNVRUilYDko/J8TKwIziETKUgygwrRGkvJoQ+uoVcj
+2xDfaj9SjMQ1w0rKisn2fK4HnwfTwWVrWgsZGK5h7rmtpNLOMiFjdzV+oJdWm3fEHlqXWkICh5EF
+5tavS0hCN3co8RoHzZNFjMa3M5eIUnSTgrbDhGNGaKdI/O1U+3FMbwCjMVENcYem43X2KYrvb3p1
+UQG3wqiQEDWEDOH6Ij27S/uNWt44Vrvo1TROEc5PYpqaDrdDCDPoPo3O9kf0wNuc30oCs3JeB8qi
+iENE6AqJWxHwfhBtJSKd1xtW1AXaBOcKWyHyOOQREDBU0ryPhxGLNWj6ahRKIIDCXCsiJXBd8y+h
+uB1i2HJTQy4EKWWroerzgsz1oEL8FOK9SDHtahhvlm3juqB4QDDbn0AUNi7+Ug7Jq5lASihuh3wK
+KaEq3lJuMQ2TCIgDrJtZBGwDYT9PGnkp2Ir4ZnsRPxaXmBlbk9me1d40EjCwD6eR8nKfecRg5lap
+MFiENcNmuYw6xayjMaFCuZOQyjvQ66tJ1CsNxsGz7a5F1hnUdaCupul4lM3jgyXWd94mWH1WNli5
+XZVVv7dIUOZGD1mc38bROnFV1fIu6/dOQbjCgjZtUiS3/qsE70UQw6g6WclbeVBAAy5Tt+k0Qswl
+X9xN+x2NUuVNNSVqJShW4MMY77nKLZ0oINOvDir9pyZweXHZKwWwPeTnBgWm7D4zNBQYpjxPgbDe
+mwqshOJ2qFRHHqrkk0uuIlRhVLjWDRlGoTWzDdXVCsGBDJUYKB3KQiXmget6Hh6J2xCJpQ66gRTO
+c6Xmx6nPCyrXgwrxU4j3IX7e1SjeMNsW/iEyDKQglU0Z5qG4HSplmIdqvQIiUrBQhmmOrW3KMAPa
+3zRE1y7im+1HirEqGebJbM+qkwwzMif3kAzzl08gwwwFjV+V81EcLaMkO40MC6icUobVNB6TDKtZ
+vexeTx9fhzWXS7/qi0EEa66Ty80SLXre6PB+Y6ttsJNudFTOU/N5NAqspvQIFFhNxqkP9Ov716cR
+YjWPzjtSP0CTMbFzizDRfKj7lafemRjUVVw+hi3V0p0CRoE7uUP+w92pV78IJiotmoxn3fZgju4X
+AQ+3iX2CHWzJmfOFkAmzZGjVYUmuVHyMaMwe3ngrL3+v4vuKY7mHmaZMlad7BvN/r0dUQUXoDm4t
+1E9KDJX99tecvh4uIO6B5gpH/fDkdZSOb9HFX+egM9jQCrSalRpoXTwFRNKwoWJ7NXNbtQ+VleCm
+Ue17KG6HygrcQ3WNDjWcJjoEBHgGD6t9Ri1mVIalfRvECNaG1NU+aBlMJKmr/RKoq/0SidsQX4eX
+SFmnl+NU555KUO37KcR7kWLeVbXvDbNt4S7V/rHfbGBCY6vKUgbN0nE2X6MouV+M5gmsn+V4/WWV
+IPeeAVy8TzJUPBtwj5pdaoB0QWA5tq121ULKHIg96HcKWwPsQQD4iDqfRIghcAG2j8u+F+X82cgI
+iq2Vxr341vzGqLW5//AvYu5/K1G6B/DSrTQDeY0UryWe//b8T8I/Wio/Wq2sEIZQf6QM+whFQ7Tc
+UOX+R5+n4fT2DiYhq3FitwZDZ2vcvQsqMad8qwtuqOreBbRUhXOFLH561r0H7l7h3J4HtcRsBbLy
+9nzlLnVYA+ES+A91PWCMCmVuZHN0cmVhbQplbmRvYmoKMTAgMCBvYmoKPDwKL1R5cGUgL0ZvbnRE
+ZXNjcmlwdG9yCi9Bc2NlbnQgOTA1Ci9DYXBIZWlnaHQgOTA1Ci9EZXNjZW50IC0yMTIKL0ZsYWdz
+IDMyCi9Gb250QkJveCBbLTYyNyAtMzc1IDIwMDAgMTA1Nl0KL0ZvbnROYW1lIC9BcmlhbC1Cb2xk
+TVQKL0l0YWxpY0FuZ2xlIDAKL1N0ZW1WIDE1OAovWEhlaWdodCAwCj4+CmVuZG9iagoxMSAwIG9i
+ago8PAovVHlwZSAvRW5jb2RpbmcKL0Jhc2VFbmNvZGluZyAvV2luQW5zaUVuY29kaW5nCj4+CmVu
+ZG9iagoxMiAwIG9iago8PAovVHlwZSAvRm9udAovU3VidHlwZSAvVHJ1ZVR5cGUKL05hbWUgL0Zj
+cGRmMAovQmFzZUZvbnQgL0FyaWFsLUJvbGRNVAovRW5jb2RpbmcgMTEgMCBSCi9GaXJzdENoYXIg
+MzAKL0xhc3RDaGFyIDI1NQovV2lkdGhzIFsKNzUwIDc1MCAyNzggMzMzIDQ3NCA1NTYgNTU2IDg4
+OSA3MjIgMjM4IDMzMyAzMzMgMzg5IDU4NCAyNzggCjMzMyAyNzggMjc4IDU1NiA1NTYgNTU2IDU1
+NiA1NTYgNTU2IDU1NiA1NTYgNTU2IDU1NiAzMzMgMzMzIDU4NCAKNTg0IDU4NCA2MTEgOTc1IDcy
+MiA3MjIgNzIyIDcyMiA2NjcgNjExIDc3OCA3MjIgMjc4IDU1NiA3MjIgNjExIAo4MzMgNzIyIDc3
+OCA2NjcgNzc4IDcyMiA2NjcgNjExIDcyMiA2NjcgOTQ0IDY2NyA2NjcgNjExIDMzMyAyNzggCjMz
+MyA1ODQgNTU2IDMzMyA1NTYgNjExIDU1NiA2MTEgNTU2IDMzMyA2MTEgNjExIDI3OCAyNzggNTU2
+IDI3OCAKODg5IDYxMSA2MTEgNjExIDYxMSAzODkgNTU2IDMzMyA2MTEgNTU2IDc3OCA1NTYgNTU2
+IDUwMCAzODkgMjgwIAozODkgNTg0IDc1MCA1NTYgNzUwIDI3OCA1NTYgNTAwIDEwMDAgNTU2IDU1
+NiAzMzMgMTAwMCA2NjcgMzMzIDEwMDAgCjc1MCA2MTEgNzUwIDc1MCAyNzggMjc4IDUwMCA1MDAg
+MzUwIDU1NiAxMDAwIDMzMyAxMDAwIDU1NiAzMzMgOTQ0IAo3NTAgNTAwIDY2NyAyNzggMzMzIDU1
+NiA1NTYgNTU2IDU1NiAyODAgNTU2IDMzMyA3MzcgMzcwIDU1NiA1ODQgCjMzMyA3MzcgNTUyIDQw
+MCA1NDkgMzMzIDMzMyAzMzMgNTc2IDU1NiAzMzMgMzMzIDMzMyAzNjUgNTU2IDgzNCAKODM0IDgz
+NCA2MTEgNzIyIDcyMiA3MjIgNzIyIDcyMiA3MjIgMTAwMCA3MjIgNjY3IDY2NyA2NjcgNjY3IDI3
+OCAKMjc4IDI3OCAyNzggNzIyIDcyMiA3NzggNzc4IDc3OCA3NzggNzc4IDU4NCA3NzggNzIyIDcy
+MiA3MjIgNzIyIAo2NjcgNjY3IDYxMSA1NTYgNTU2IDU1NiA1NTYgNTU2IDU1NiA4ODkgNTU2IDU1
+NiA1NTYgNTU2IDU1NiAyNzggCjI3OCAyNzggMjc4IDYxMSA2MTEgNjExIDYxMSA2MTEgNjExIDYx
+MSA1NDkgNjExIDYxMSA2MTEgNjExIDYxMSAKNTU2IDYxMSA1NTYgXQovRm9udERlc2NyaXB0b3Ig
+MTAgMCBSCj4+CmVuZG9iagoxMyAwIG9iago8PAovVHlwZSAvRm9udERlc2NyaXB0b3IKL0FzY2Vu
+dCA5MDUKL0NhcEhlaWdodCA5MDUKL0Rlc2NlbnQgLTIxMgovRmxhZ3MgMzIKL0ZvbnRCQm94IFst
+NjY0IC0zMjQgMjAwMCAxMDQwXQovRm9udE5hbWUgL0FyaWFsTVQKL0l0YWxpY0FuZ2xlIDAKL1N0
+ZW1WIDg1Ci9YSGVpZ2h0IDAKPj4KZW5kb2JqCjE0IDAgb2JqCjw8Ci9UeXBlIC9FbmNvZGluZwov
+QmFzZUVuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcKPj4KZW5kb2JqCjE1IDAgb2JqCjw8Ci9UeXBl
+IC9Gb250Ci9TdWJ0eXBlIC9UcnVlVHlwZQovTmFtZSAvRmNwZGYxCi9CYXNlRm9udCAvQXJpYWxN
+VAovRW5jb2RpbmcgMTQgMCBSCi9GaXJzdENoYXIgMzAKL0xhc3RDaGFyIDI1NQovV2lkdGhzIFsK
+NzUwIDc1MCAyNzggMjc4IDM1NSA1NTYgNTU2IDg4OSA2NjcgMTkxIDMzMyAzMzMgMzg5IDU4NCAy
+NzggCjMzMyAyNzggMjc4IDU1NiA1NTYgNTU2IDU1NiA1NTYgNTU2IDU1NiA1NTYgNTU2IDU1NiAy
+NzggMjc4IDU4NCAKNTg0IDU4NCA1NTYgMTAxNSA2NjcgNjY3IDcyMiA3MjIgNjY3IDYxMSA3Nzgg
+NzIyIDI3OCA1MDAgNjY3IDU1NiAKODMzIDcyMiA3NzggNjY3IDc3OCA3MjIgNjY3IDYxMSA3MjIg
+NjY3IDk0NCA2NjcgNjY3IDYxMSAyNzggMjc4IAoyNzggNDY5IDU1NiAzMzMgNTU2IDU1NiA1MDAg
+NTU2IDU1NiAyNzggNTU2IDU1NiAyMjIgMjIyIDUwMCAyMjIgCjgzMyA1NTYgNTU2IDU1NiA1NTYg
+MzMzIDUwMCAyNzggNTU2IDUwMCA3MjIgNTAwIDUwMCA1MDAgMzM0IDI2MCAKMzM0IDU4NCA3NTAg
+NTU2IDc1MCAyMjIgNTU2IDMzMyAxMDAwIDU1NiA1NTYgMzMzIDEwMDAgNjY3IDMzMyAxMDAwIAo3
+NTAgNjExIDc1MCA3NTAgMjIyIDIyMiAzMzMgMzMzIDM1MCA1NTYgMTAwMCAzMzMgMTAwMCA1MDAg
+MzMzIDk0NCAKNzUwIDUwMCA2NjcgMjc4IDMzMyA1NTYgNTU2IDU1NiA1NTYgMjYwIDU1NiAzMzMg
+NzM3IDM3MCA1NTYgNTg0IAozMzMgNzM3IDU1MiA0MDAgNTQ5IDMzMyAzMzMgMzMzIDU3NiA1Mzcg
+MzMzIDMzMyAzMzMgMzY1IDU1NiA4MzQgCjgzNCA4MzQgNjExIDY2NyA2NjcgNjY3IDY2NyA2Njcg
+NjY3IDEwMDAgNzIyIDY2NyA2NjcgNjY3IDY2NyAyNzggCjI3OCAyNzggMjc4IDcyMiA3MjIgNzc4
+IDc3OCA3NzggNzc4IDc3OCA1ODQgNzc4IDcyMiA3MjIgNzIyIDcyMiAKNjY3IDY2NyA2MTEgNTU2
+IDU1NiA1NTYgNTU2IDU1NiA1NTYgODg5IDUwMCA1NTYgNTU2IDU1NiA1NTYgMjc4IAoyNzggMjc4
+IDI3OCA1NTYgNTU2IDU1NiA1NTYgNTU2IDU1NiA1NTYgNTQ5IDYxMSA1NTYgNTU2IDU1NiA1NTYg
+CjUwMCA1NTYgNTAwIF0KL0ZvbnREZXNjcmlwdG9yIDEzIDAgUgo+PgplbmRvYmoKMTYgMCBvYmoK
+PDwKL1R5cGUgL1hPYmplY3QKL1N1YnR5cGUgL0ltYWdlCi9OYW1lIC9JTWNwZGYwMAovV2lkdGgg
+MjA2MgovSGVpZ2h0IDIzMwovRmlsdGVyIC9GbGF0ZURlY29kZQovRGVjb2RlIFsxIDBdCi9CaXRz
+UGVyQ29tcG9uZW50IDEKL0NvbG9yU3BhY2UgL0RldmljZUdyYXkKL0xlbmd0aCA2OTI4Cj4+CnN0
+cmVhbQp4nO2dz4/bSHbHH12BK4de1ubmA00e8g/4WMYwzUMO+Te82MMew4YP5iDaZik6KIfAnWMO
+g/W/kcMCU4KCaA6Bfd3DYFyKFuhLMK5eAxkOhsPKe0VSrf5hT7dXmvbKfJ5pqiW2VPVh1Xvfqnos
+AQz2idu9uy7AndtAYCDA7roAd27BXRfgzm1oA0MbGAgMsWCwwRMONviBwQYbbPADg0HiKv+zAfCP
+Pjm7JxxVnjtnoXSKnsJnyGqUS874kyLIGv8g0HdUzB1aQPXVEFCNk7bCHQHEwRAL2Qgy5x9wfVfl
+3KHh1ad6UksQbYV7AgYJ+H4R1EhA0aNE311Bd2YM64r1LJ1DGL7CPQHbE+BrAqW+u4LuyoKg7fIZ
+tnpGD84JVD2BpCcQYH/ZO7tHBBoKBlcI1D0B1xMQ+0iAPAB2ACKgA+c9fk+g6QiwNYFsPwmU3u0L
+8nzOe/zLBMSagNtHAvfIA2DFNgRBT8B1BLKeANtLAgG1f6wYI8/XtvLLBFxPQOwlgXuegCFJdIWA
+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
+IkDpVRrl6wcQaATEtNE56BAyvO5IgFccPx+QQOZDPBJAwdMSaGieUNI8oYpEHUPqc622Ok/ox4bo
+/Q6TR7ls6O3zIm+gSoyh7dWpoDRPWKqQiiWsJwAOC0sEMI4XYid5BXdp5pNPEzAfa27Tz2Zm6/ex
+/KWZ3YLO+su28pPfASvTd12CwQYbbLDBBhtssP21/wdhQYnbCmVuZHN0cmVhbQplbmRvYmoKMTcg
+MCBvYmoKPDwKL1R5cGUgL1hPYmplY3QKL1N1YnR5cGUgL0ltYWdlCi9OYW1lIC9JTWNwZGYwMQov
+V2lkdGggMjM2Ci9IZWlnaHQgODEKL0ZpbHRlciAvRmxhdGVEZWNvZGUKL0RlY29kZSBbMSAwXQov
+Qml0c1BlckNvbXBvbmVudCAxCi9Db2xvclNwYWNlIC9EZXZpY2VHcmF5Ci9MZW5ndGggNzI2Cj4+
+CnN0cmVhbQp4nO2VsY4TMRBAx6yEm9NumyI6/wLlFtHlV4IoKDGi4Ci4dUdzui/gY4xS0FFTzukK
+utNKFGd0S4aZsXeTDSgV5VmKtPFzPOM34w3AqUEDVIQ28eOaiHqwvUw3UWlHaGioSB+JdqALfSNr
+kKd66HaGQqYU7ABg+obXVMjbDfwBioVGoVZpg+B4M0ehw0JRqFO6RmiUxq4/pJ1SEkr8ieuR9kwN
+CbVMrSRC6NIBbZQ6phUnUvG3odBkJUuhfFbehbDiuZ1E40yE8lSTGPA5SHWM1DGV7ZokIYX2kGWN
+lBMNLjnK/lKRNVIR5JLMw4Esjdvb37Kbe+SITJ1SkVWo6ORZDVtURqH5vCQBnZRLKjnJKiZ1nukg
+dJSFY41mtFLaP5vqO9vZqMoEZ/vfcj5O1yhlWQnaKe6j5vygOWdZPexzviVpim2mKivYONaIglJD
+2pZrVeaKZ6kHP7gB1JWqBLjKtBm4gh2XPkm0IgtMytTupPpSBVlTZIF090Sd0nUaZcE6HtBmJ9SN
+sjDfBYmrlJTuCk36pDkLtdIbsibLysr1vEIrik76ucgizV7poN0utBpl5S6ZKGj3T7Jyl0zdziKU
+4khhRrskN2eUlftgukcswhV3KiuNe5T7OwidZE0R8puh2SkdyoHDibdSN5yAYE/99Gk8jf8+KG7O
+/Tlgrd+8mbcn9ZuVX0LP9EuAXv8u9wP95tK3kJhumdp592K76b0v1KS6mtPFS/QIQ6bfa3NEX8W3
+Ee5ru31A87me54zt6/AuMHU/H7C6tkfUv4H3AX7UK78NVZ3/9fcnwi50Ae5uXiy2wdZmd3RepnGk
+z6E7ivshfkS4/dYlpnR0W3Hh0fN7/14ov/xMnNGl2sB7z+etq+u/qJjEK6Fn/6CtXwFetJzV0twc
+0XazlAperC7vwsJ8/TTLiit47mvAc9f/wtZs5xUk3DTecvVtvMQWbk++nI7GH7u8sc0KZW5kc3Ry
+ZWFtCmVuZG9iagoxOCAwIG9iago8PAovVHlwZSAvUGFnZXMKL1BhcmVudCAzIDAgUgovQ291bnQg
+MgovS2lkcyBbIDYgMCBSIDggMCBSIF0KPj4KZW5kb2JqCnhyZWYKMCAxOQowMDAwMDAwMDAwIDY1
+NTM1IGYgCjAwMDAwMDAwMTUgMDAwMDAgbiAKMDAwMDAwMDA4MCAwMDAwMCBuIAowMDAwMDAwMzk5
+IDAwMDAwIG4gCjAwMDAwMDA0NTkgMDAwMDAgbiAKMDAwMDAwMDUwNSAwMDAwMCBuIAowMDAwMDAw
+NTM0IDAwMDAwIG4gCjAwMDAwMDA3ODQgMDAwMDAgbiAKMDAwMDAwMjg3OCAwMDAwMCBuIAowMDAw
+MDAzMTI4IDAwMDAwIG4gCjAwMDAwMDQ5MzUgMDAwMDAgbiAKMDAwMDAwNTEyMyAwMDAwMCBuIAow
+MDAwMDA1MTkyIDAwMDAwIG4gCjAwMDAwMDYyODcgMDAwMDAgbiAKMDAwMDAwNjQ2OSAwMDAwMCBu
+IAowMDAwMDA2NTM4IDAwMDAwIG4gCjAwMDAwMDc2MjkgMDAwMDAgbiAKMDAwMDAxNDc2MCAwMDAw
+MCBuIAowMDAwMDE1Njg2IDAwMDAwIG4gCnRyYWlsZXIKPDwKL1NpemUgMTkKL1Jvb3QgMSAwIFIK
+L0luZm8gMiAwIFIKL0lEIFs8MDY3ZGQyNzRlYTAzNWVlNzQ5ZTdmZWY0MzI0MWZlNGE+IDwwNjdk
+ZDI3NGVhMDM1ZWU3NDllN2ZlZjQzMjQxZmU0YT5dCj4+CnN0YXJ0eHJlZgoxNTc2NgolJUVPRgo=&lt;/VEDLEGG_PDF&gt;&lt;/FAKTURA&gt;</Attachment>
+        <Attachment>&lt;FAKTURA&gt;&lt;AKTOR&gt;50153687&lt;/AKTOR&gt;&lt;AKTORNAVN&gt;&amp;lt;![CDATA[Fjordkraft AS]]&amp;gt;&lt;/AKTORNAVN&gt;&lt;FAKTURANR&gt;37600150&lt;/FAKTURANR&gt;&lt;MAALEPUNKT&gt;707057500027069074&lt;/MAALEPUNKT&gt;&lt;FAKTURA_TYPE&gt;FAKTURA&lt;/FAKTURA_TYPE&gt;&lt;KUNDE_TYPE&gt;P&lt;/KUNDE_TYPE&gt;&lt;FAKTURA_MERKE_SO&gt;&lt;/FAKTURA_MERKE_SO&gt;&lt;VEDLEGG_FORMAT&gt;EMUXML&lt;/VEDLEGG_FORMAT&gt;&lt;VEDLEGG_EMUXML&gt;&lt;Invoice&gt;&lt;MainInvoiceInfo-101&gt;&lt;InvoiceNo&gt;037600150&lt;/InvoiceNo&gt;&lt;CustomerId&gt;50639188&lt;/CustomerId&gt;&lt;CID&gt;0132972401500&lt;/CID&gt;&lt;PrintDate&gt;2017-03-16&lt;/PrintDate&gt;&lt;DueDate&gt;2017-03-30&lt;/DueDate&gt;&lt;PayInst2Total&gt;394.83&lt;/PayInst2Total&gt;&lt;PaymentDocNo&gt;0&lt;/PaymentDocNo&gt;&lt;GrossPresentation&gt;&amp;lt;![CDATA[J]]&amp;gt;&lt;/GrossPresentation&gt;&lt;E-InvoiceTmpl&gt;&lt;/E-InvoiceTmpl&gt;&lt;StandingOrder&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/StandingOrder&gt;&lt;ProcessCode&gt;&lt;/ProcessCode&gt;&lt;FormTmplCode&gt;&lt;/FormTmplCode&gt;&lt;FormType&gt;&amp;lt;![CDATA[G]]&amp;gt;&lt;/FormType&gt;&lt;DueDateDescription&gt;&amp;lt;![CDATA[BETALINGSFRIST]]&amp;gt;&lt;/DueDateDescription&gt;&lt;MoraInterest&gt;0.00&lt;/MoraInterest&gt;&lt;PrintedAmount&gt;394.83&lt;/PrintedAmount&gt;&lt;PreviouslyPaid&gt;0.00&lt;/PreviouslyPaid&gt;&lt;ToBePaid&gt;394.83&lt;/ToBePaid&gt;&lt;VAT&gt;78.96&lt;/VAT&gt;&lt;TotPrintWithoutDec&gt;394&lt;/TotPrintWithoutDec&gt;&lt;Decimals&gt;83&lt;/Decimals&gt;&lt;Mod10&gt;3&lt;/Mod10&gt;&lt;TotalOutstanding&gt;0.00&lt;/TotalOutstanding&gt;&lt;EInvoiceUrl&gt;&lt;/EInvoiceUrl&gt;&lt;Utility&gt;&amp;lt;![CDATA[Fjordkraft AS]]&amp;gt;&lt;/Utility&gt;&lt;ReminderFee&gt;62.00&lt;/ReminderFee&gt;&lt;ToBePaidNet&gt;315.87&lt;/ToBePaidNet&gt;&lt;InvoiceDate&gt;2017-03-16&lt;/InvoiceDate&gt;&lt;CIDLong&gt;0132972401500&lt;/CIDLong&gt;&lt;IsTestInvoice&gt;&amp;lt;![CDATA[N]]&amp;gt;&lt;/IsTestInvoice&gt;&lt;CreditedInvoiceNo&gt;000000000&lt;/CreditedInvoiceNo&gt;&lt;E-InvoiceReferenceNew&gt;0132972401500&lt;/E-InvoiceReferenceNew&gt;&lt;netPrintet&gt;315.87&lt;/netPrintet&gt;&lt;RegulationRecords&gt;0.00&lt;/RegulationRecords&gt;&lt;TemplateType&gt;&lt;/TemplateType&gt;&lt;Transactions&gt;-394.83&lt;/Transactions&gt;&lt;Balance&gt;0.00&lt;/Balance&gt;&lt;EInvoiceReferenceProposal&gt;0132972401500&lt;/EInvoiceReferenceProposal&gt;&lt;/MainInvoiceInfo-101&gt;&lt;CustomerInfo-103&gt;&lt;Name&gt;&amp;lt;![CDATA[Krogvik]]&amp;gt;&lt;/Name&gt;&lt;Name2&gt;&amp;lt;![CDATA[Svein-Olav]]&amp;gt;&lt;/Name2&gt;&lt;Address1&gt;&amp;lt;![CDATA[Åmundsleitet 20]]&amp;gt;&lt;/Address1&gt;&lt;Address2&gt;&lt;/Address2&gt;&lt;PostalCode&gt;&amp;lt;![CDATA[5115]]&amp;gt;&lt;/PostalCode&gt;&lt;City&gt;&amp;lt;![CDATA[ULSET]]&amp;gt;&lt;/City&gt;&lt;CountryCode&gt;&lt;/CountryCode&gt;&lt;Country&gt;&lt;/Country&gt;&lt;Address3&gt;&lt;/Address3&gt;&lt;Address4&gt;&lt;/Address4&gt;&lt;Address5&gt;&lt;/Address5&gt;&lt;PersIdNo-CoRegNo&gt;&amp;lt;![CDATA[19440527]]&amp;gt;&lt;/PersIdNo-CoRegNo&gt;&lt;PhoneNo&gt;&amp;lt;![CDATA[95179361]]&amp;gt;&lt;/PhoneNo&gt;&lt;MobilePhoneNo&gt;&amp;lt;![CDATA[95179361]]&amp;gt;&lt;/MobilePhoneNo&gt;&lt;EmailAddress&gt;&amp;lt;![CDATA[krogvik@hotmail.com]]&amp;gt;&lt;/EmailAddress&gt;&lt;CountryIsoCode103&gt;&lt;/CountryIsoCode103&gt;&lt;/CustomerInfo-103&gt;&lt;InvoiceAgreementInfo-105&gt;&lt;InvAgreementId&gt;1329724&lt;/InvAgreementId&gt;&lt;AgreementDate&gt;2017-01-01&lt;/AgreementDate&gt;&lt;IndustryPrivate&gt;&amp;lt;![CDATA[P]]&amp;gt;&lt;/IndustryPrivate&gt;&lt;InvoiceLabel&gt;&lt;/InvoiceLabel&gt;&lt;InterestId&gt;&amp;lt;![CDATA[N]]&amp;gt;&lt;/InterestId&gt;&lt;InterestRate&gt;0.00&lt;/InterestRate&gt;&lt;PayerStatus&gt;&lt;/PayerStatus&gt;&lt;AccountNo&gt;&lt;/AccountNo&gt;&lt;TotalPrinted&gt;0.00&lt;/TotalPrinted&gt;&lt;TotalPrintedOtherInvoices&gt;0.00&lt;/TotalPrintedOtherInvoices&gt;&lt;BIC-Customer&gt;&lt;/BIC-Customer&gt;&lt;IBAN-Customer&gt;&lt;/IBAN-Customer&gt;&lt;/InvoiceAgreementInfo-105&gt;&lt;Pass-ThroughInvoiceInfo-109&gt;&lt;FirstInvoice&gt;0&lt;/FirstInvoice&gt;&lt;ExtCustRef&gt;&lt;/ExtCustRef&gt;&lt;ToDate&gt;&lt;/ToDate&gt;&lt;/Pass-ThroughInvoiceInfo-109&gt;&lt;InvoiceOrder&gt;&lt;InvoiceOrderInfo-110&gt;&lt;StartDate&gt;2017-01-01&lt;/StartDate&gt;&lt;BillingGroup&gt;&amp;lt;![CDATA[PA]]&amp;gt;&lt;/BillingGroup&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;CloseCode&gt;&lt;/CloseCode&gt;&lt;TotalPrinted&gt;0.00&lt;/TotalPrinted&gt;&lt;ShortTimeSA&gt;&amp;lt;![CDATA[F]]&amp;gt;&lt;/ShortTimeSA&gt;&lt;IndustryCode&gt;&lt;/IndustryCode&gt;&lt;B-AccountCode&gt;&amp;lt;![CDATA[J]]&amp;gt;&lt;/B-AccountCode&gt;&lt;InvoiceType&gt;&amp;lt;![CDATA[B]]&amp;gt;&lt;/InvoiceType&gt;&lt;ConsumptionCode&gt;&amp;lt;![CDATA[36]]&amp;gt;&lt;/ConsumptionCode&gt;&lt;AreaId&gt;&amp;lt;![CDATA[1201]]&amp;gt;&lt;/AreaId&gt;&lt;LDC1&gt;&amp;lt;![CDATA[BKK Nett AS]]&amp;gt;&lt;/LDC1&gt;&lt;LDC2&gt;&lt;/LDC2&gt;&lt;Supplier1&gt;&amp;lt;![CDATA[Fjordkraft AS]]&amp;gt;&lt;/Supplier1&gt;&lt;Supplier2&gt;&lt;/Supplier2&gt;&lt;B-AccountText&gt;&amp;lt;![CDATA[Beregnet beløp for perioden]]&amp;gt;&lt;/B-AccountText&gt;&lt;Amount&gt;394.83&lt;/Amount&gt;&lt;Instlmnt&gt;1&lt;/Instlmnt&gt;&lt;ActivityId&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/ActivityId&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ActivityName&gt;&amp;lt;![CDATA[Fjordkraft AS]]&amp;gt;&lt;/ActivityName&gt;&lt;CompanyRegNo&gt;&amp;lt;![CDATA[976944682]]&amp;gt;&lt;/CompanyRegNo&gt;&lt;UtilityAccountNo&gt;&amp;lt;![CDATA[15031934610]]&amp;gt;&lt;/UtilityAccountNo&gt;&lt;ActivitySubTypeName&gt;&amp;lt;![CDATA[Omsetning]]&amp;gt;&lt;/ActivitySubTypeName&gt;&lt;YearEffect&gt;0.000&lt;/YearEffect&gt;&lt;ActivityCloseable&gt;&amp;lt;![CDATA[N]]&amp;gt;&lt;/ActivityCloseable&gt;&lt;/InvoiceOrderInfo-110&gt;&lt;ReadingInfo-111&gt;&lt;StartDate&gt;2017-01-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-03-01&lt;/EndDate&gt;&lt;MeterId&gt;&amp;lt;![CDATA[9540674]]&amp;gt;&lt;/MeterId&gt;&lt;StartReading&gt;60088.000&lt;/StartReading&gt;&lt;FinalC-Reading&gt;60835.000&lt;/FinalC-Reading&gt;&lt;AreaFactor&gt;1.000&lt;/AreaFactor&gt;&lt;FixedPricePeriodStart&gt;2017-01-01&lt;/FixedPricePeriodStart&gt;&lt;FixedPricePeriodEnd&gt;2017-03-01&lt;/FixedPricePeriodEnd&gt;&lt;TotalDigits&gt;5&lt;/TotalDigits&gt;&lt;TotalDecimals&gt;3&lt;/TotalDecimals&gt;&lt;Method&gt;&amp;lt;![CDATA[3]]&amp;gt;&lt;/Method&gt;&lt;MethodStartReading&gt;&amp;lt;![CDATA[3]]&amp;gt;&lt;/MethodStartReading&gt;&lt;MethodFinalC-Reading&gt;747.000&lt;/MethodFinalC-Reading&gt;&lt;V-Reading&gt;&amp;lt;![CDATA[S]]&amp;gt;&lt;/V-Reading&gt;&lt;ProdCounterNo&gt;&amp;lt;![CDATA[1]]&amp;gt;&lt;/ProdCounterNo&gt;&lt;MeterCounterNo&gt;1&lt;/MeterCounterNo&gt;&lt;Denomination&gt;&amp;lt;![CDATA[KWH]]&amp;gt;&lt;/Denomination&gt;&lt;TotalDays&gt;59&lt;/TotalDays&gt;&lt;Description&gt;&lt;/Description&gt;&lt;FixedPricePeriodDays&gt;59&lt;/FixedPricePeriodDays&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;TotConsCurrCounter&gt;747.000&lt;/TotConsCurrCounter&gt;&lt;MeterIdNew&gt;&amp;lt;![CDATA[9540674]]&amp;gt;&lt;/MeterIdNew&gt;&lt;/ReadingInfo-111&gt;&lt;InvoiceOrderAmounts-113&gt;&lt;GrossSettled&gt;394.83&lt;/GrossSettled&gt;&lt;NetSettled&gt;315.87&lt;/NetSettled&gt;&lt;VatSettled&gt;78.96&lt;/VatSettled&gt;&lt;GrossB-Account&gt;0.00&lt;/GrossB-Account&gt;&lt;NetB-Account&gt;0.00&lt;/NetB-Account&gt;&lt;VatB-Account&gt;0.00&lt;/VatB-Account&gt;&lt;BAccountTermNo&gt;0&lt;/BAccountTermNo&gt;&lt;GrossWriteBacks&gt;0.00&lt;/GrossWriteBacks&gt;&lt;NetWriteBacks&gt;0.00&lt;/NetWriteBacks&gt;&lt;VatWriteBacks&gt;0.00&lt;/VatWriteBacks&gt;&lt;GrossMisc&gt;0.00&lt;/GrossMisc&gt;&lt;NetMisc&gt;0.00&lt;/NetMisc&gt;&lt;VatMisc&gt;0.00&lt;/VatMisc&gt;&lt;GrossItem&gt;0.00&lt;/GrossItem&gt;&lt;NetItem&gt;0.00&lt;/NetItem&gt;&lt;VatItem&gt;0.00&lt;/VatItem&gt;&lt;VatTotal&gt;78.96&lt;/VatTotal&gt;&lt;GrossTax&gt;0.00&lt;/GrossTax&gt;&lt;NetTotal&gt;315.87&lt;/NetTotal&gt;&lt;GrossTotal&gt;394.83&lt;/GrossTotal&gt;&lt;GrossSettledAndWriteBacks&gt;394.83&lt;/GrossSettledAndWriteBacks&gt;&lt;NetSettledAndWriteBacks&gt;315.87&lt;/NetSettledAndWriteBacks&gt;&lt;VatSettledAndWriteBacks&gt;78.96&lt;/VatSettledAndWriteBacks&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;NetWithTax&gt;315.87&lt;/NetWithTax&gt;&lt;GrossWithTax&gt;394.83&lt;/GrossWithTax&gt;&lt;NetNoTax&gt;0.00&lt;/NetNoTax&gt;&lt;/InvoiceOrderAmounts-113&gt;&lt;VatSpecInvoiceOrder-114&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SumBasis&gt;315.87&lt;/SumBasis&gt;&lt;SumVat&gt;78.96&lt;/SumVat&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;/VatSpecInvoiceOrder-114&gt;&lt;PriceInfo-116&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/StatisticCode&gt;&lt;Gross&gt;0.34825&lt;/Gross&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[27]]&amp;gt;&lt;/PriceCode&gt;&lt;Description&gt;&amp;lt;![CDATA[Strømpris]]&amp;gt;&lt;/Description&gt;&lt;Designation&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/Designation&gt;&lt;PriceDate&gt;2017-03-16&lt;/PriceDate&gt;&lt;Gross_high_precision&gt;0.3482500000&lt;/Gross_high_precision&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;/PriceInfo-116&gt;&lt;PriceInfo-116&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/StatisticCode&gt;&lt;Gross&gt;0.00825&lt;/Gross&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[P14]]&amp;gt;&lt;/PriceCode&gt;&lt;Description&gt;&amp;lt;![CDATA[Påslag              ]]&amp;gt;&lt;/Description&gt;&lt;Designation&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/Designation&gt;&lt;PriceDate&gt;2017-03-16&lt;/PriceDate&gt;&lt;Gross_high_precision&gt;0.0082500000&lt;/Gross_high_precision&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;/PriceInfo-116&gt;&lt;SupplyPointInfo-117&gt;&lt;SupplyPointId&gt;&lt;/SupplyPointId&gt;&lt;InstlnId&gt;&lt;/InstlnId&gt;&lt;StreetNo&gt;&amp;lt;![CDATA[Risnes 62 ]]&amp;gt;&lt;/StreetNo&gt;&lt;Description&gt;&lt;/Description&gt;&lt;MeterId&gt;&amp;lt;![CDATA[9540674]]&amp;gt;&lt;/MeterId&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;MeterLocationId&gt;0&lt;/MeterLocationId&gt;&lt;ObjectId&gt;&amp;lt;![CDATA[707057500027069074]]&amp;gt;&lt;/ObjectId&gt;&lt;GridArea&gt;&lt;/GridArea&gt;&lt;Address1&gt;&lt;/Address1&gt;&lt;Address2&gt;&lt;/Address2&gt;&lt;Address3&gt;&lt;/Address3&gt;&lt;Address4&gt;&lt;/Address4&gt;&lt;Address5&gt;&lt;/Address5&gt;&lt;MeterCode&gt;&lt;/MeterCode&gt;&lt;InstSign&gt;&lt;/InstSign&gt;&lt;HousingCooperative&gt;&lt;/HousingCooperative&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;JunctionId&gt;&lt;/JunctionId&gt;&lt;JunctionDescription&gt;&lt;/JunctionDescription&gt;&lt;readingMateriel&gt;&lt;/readingMateriel&gt;&lt;MeterIdNew&gt;&amp;lt;![CDATA[9540674]]&amp;gt;&lt;/MeterIdNew&gt;&lt;/SupplyPointInfo-117&gt;&lt;ProductParameters-118&gt;&lt;ProdId&gt;&amp;lt;![CDATA[FSP1]]&amp;gt;&lt;/ProdId&gt;&lt;Field1&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/Field1&gt;&lt;Field2&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/Field2&gt;&lt;Field3&gt;450.00000&lt;/Field3&gt;&lt;Field4&gt;0.00000&lt;/Field4&gt;&lt;Field5&gt;0.66000&lt;/Field5&gt;&lt;Field6&gt;0.00000&lt;/Field6&gt;&lt;Field7&gt;0.00000&lt;/Field7&gt;&lt;Field8&gt;0.00000&lt;/Field8&gt;&lt;Field9&gt;0.00000&lt;/Field9&gt;&lt;Field10&gt;0.00000&lt;/Field10&gt;&lt;Field11&gt;0.00000&lt;/Field11&gt;&lt;Field12&gt;0.00000&lt;/Field12&gt;&lt;Field13&gt;0.00000&lt;/Field13&gt;&lt;Field14&gt;0.00000&lt;/Field14&gt;&lt;Field15&gt;0.00000&lt;/Field15&gt;&lt;Field16&gt;0.00000&lt;/Field16&gt;&lt;Field17&gt;0.00000&lt;/Field17&gt;&lt;Field18&gt;0.00000&lt;/Field18&gt;&lt;Field19&gt;0.00000&lt;/Field19&gt;&lt;Field20&gt;0.00000&lt;/Field20&gt;&lt;Label1&gt;&amp;lt;![CDATA[Område]]&amp;gt;&lt;/Label1&gt;&lt;Label2&gt;&amp;lt;![CDATA[Fornybar]]&amp;gt;&lt;/Label2&gt;&lt;Label3&gt;&amp;lt;![CDATA[Avtalenr]]&amp;gt;&lt;/Label3&gt;&lt;Label4&gt;&lt;/Label4&gt;&lt;Label5&gt;&amp;lt;![CDATA[Påslag]]&amp;gt;&lt;/Label5&gt;&lt;Label6&gt;&lt;/Label6&gt;&lt;Label7&gt;&lt;/Label7&gt;&lt;Label8&gt;&lt;/Label8&gt;&lt;Label9&gt;&lt;/Label9&gt;&lt;Label10&gt;&lt;/Label10&gt;&lt;Label11&gt;&lt;/Label11&gt;&lt;Label12&gt;&lt;/Label12&gt;&lt;Label13&gt;&lt;/Label13&gt;&lt;Label14&gt;&lt;/Label14&gt;&lt;Label15&gt;&lt;/Label15&gt;&lt;Label16&gt;&lt;/Label16&gt;&lt;Label17&gt;&lt;/Label17&gt;&lt;Label18&gt;&lt;/Label18&gt;&lt;Label19&gt;&lt;/Label19&gt;&lt;Label20&gt;&lt;/Label20&gt;&lt;Description&gt;&amp;lt;![CDATA[Fjordkraft Spotpris]]&amp;gt;&lt;/Description&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;/ProductParameters-118&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-01-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-02-01&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Januar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;165.16&lt;/Net&gt;&lt;Gross&gt;206.44&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[Strømpris]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[27]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;0.46392&lt;/PriceRate&gt;&lt;Basis&gt;356.000&lt;/Basis&gt;&lt;NoOfDays&gt;31&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;60088.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;60444.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[FKW]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&amp;lt;![CDATA[kWh]]&amp;gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;0.57990&lt;/GrossPrice&gt;&lt;TotalGross&gt;206.44&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[AVL]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;41.28&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;0.57990&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;206.44&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;0.5799000000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;0.5799000000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[Strømpris]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;-165.16000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-01-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-02-01&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Januar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;0.00&lt;/Net&gt;&lt;Gross&gt;0.00&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[R]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[Fornybar energi]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[G]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;0.00000&lt;/PriceRate&gt;&lt;Basis&gt;356.000&lt;/Basis&gt;&lt;NoOfDays&gt;31&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;60088.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;60444.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[FKW]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&amp;lt;![CDATA[kWh]]&amp;gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;0.00000&lt;/GrossPrice&gt;&lt;TotalGross&gt;0.00&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[AVL]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;0.00&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;0.00000&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;0.00&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;0.0000000000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;0.0000000000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[Fornybar energi]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;0.00000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-02-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-03-01&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Mars]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;108.93&lt;/Net&gt;&lt;Gross&gt;136.16&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[Strømpris]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[27]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;0.27860&lt;/PriceRate&gt;&lt;Basis&gt;391.000&lt;/Basis&gt;&lt;NoOfDays&gt;28&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;60444.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;60835.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[FSP1]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&amp;lt;![CDATA[kWh]]&amp;gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;0.34825&lt;/GrossPrice&gt;&lt;TotalGross&gt;136.16&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[AVL]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;27.23&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;0.34825&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;136.16&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;0.3482500000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;0.3482500000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[Strømpris]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;-108.93000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-02-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-03-01&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Mars]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;2.58&lt;/Net&gt;&lt;Gross&gt;3.23&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[2]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[Påslag              ]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[P14]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;0.00660&lt;/PriceRate&gt;&lt;Basis&gt;391.000&lt;/Basis&gt;&lt;NoOfDays&gt;28&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;60444.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;60835.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[FSP1]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&amp;lt;![CDATA[kWh]]&amp;gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;0.00825&lt;/GrossPrice&gt;&lt;TotalGross&gt;3.23&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[AVL]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;0.65&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;0.00825&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;3.23&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;0.0082500000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;0.0082500000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&amp;lt;![CDATA[øre/kWh]]&amp;gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[Påslag              ]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;-2.58000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-02-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-03-01&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Mars]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;0.00&lt;/Net&gt;&lt;Gross&gt;0.00&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[R]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[Fornybar energi]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[G]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;0.00000&lt;/PriceRate&gt;&lt;Basis&gt;391.000&lt;/Basis&gt;&lt;NoOfDays&gt;28&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;60444.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;60835.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[FSP1]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&amp;lt;![CDATA[kWh]]&amp;gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;0.00000&lt;/GrossPrice&gt;&lt;TotalGross&gt;0.00&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[AVL]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;0.00&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;0.00000&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;0.00&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;0.0000000000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;0.0000000000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[Fornybar energi]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;0.00000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-01-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-02-01&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Januar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;39.20&lt;/Net&gt;&lt;Gross&gt;49.00&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[F]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[Strøm fastbeløp]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[FA]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;39.20000&lt;/PriceRate&gt;&lt;Basis&gt;1.000&lt;/Basis&gt;&lt;NoOfDays&gt;31&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;0.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;1.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[FKW]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;49.00000&lt;/GrossPrice&gt;&lt;TotalGross&gt;49.00&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&amp;lt;![CDATA[kr/mnd]]&amp;gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[APB]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;9.80&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;49.00000&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;49.00&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;49.0000000000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;49.0000000000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&amp;lt;![CDATA[kr/mnd]]&amp;gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&amp;lt;![CDATA[kr/mnd]]&amp;gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[Strøm fastbeløp]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;-39.20000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;InvoiceLine-120&gt;&lt;StartDate&gt;2017-02-01&lt;/StartDate&gt;&lt;EndDate&gt;2017-03-01&lt;/EndDate&gt;&lt;StartMonth&gt;&amp;lt;![CDATA[Februar]]&amp;gt;&lt;/StartMonth&gt;&lt;EndMonth&gt;&amp;lt;![CDATA[Mars]]&amp;gt;&lt;/EndMonth&gt;&lt;Net&gt;0.00&lt;/Net&gt;&lt;Gross&gt;0.00&lt;/Gross&gt;&lt;StatisticCode&gt;&amp;lt;![CDATA[F]]&amp;gt;&lt;/StatisticCode&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SuppCode&gt;&lt;/SuppCode&gt;&lt;Text&gt;&amp;lt;![CDATA[FK Spotpris         ]]&amp;gt;&lt;/Text&gt;&lt;PriceCode&gt;&amp;lt;![CDATA[450]]&amp;gt;&lt;/PriceCode&gt;&lt;PriceRate&gt;0.00000&lt;/PriceRate&gt;&lt;Basis&gt;1.000&lt;/Basis&gt;&lt;NoOfDays&gt;28&lt;/NoOfDays&gt;&lt;OldC-Reading&gt;0.000&lt;/OldC-Reading&gt;&lt;FinalC-Reading&gt;1.000&lt;/FinalC-Reading&gt;&lt;TotalTaxPrice&gt;0.0000&lt;/TotalTaxPrice&gt;&lt;UnitCode&gt;&lt;/UnitCode&gt;&lt;ProdId&gt;&amp;lt;![CDATA[FSP1]]&amp;gt;&lt;/ProdId&gt;&lt;ProdDenomination&gt;&lt;/ProdDenomination&gt;&lt;GrossPrice&gt;0.00000&lt;/GrossPrice&gt;&lt;TotalGross&gt;0.00&lt;/TotalGross&gt;&lt;PriceDenomination&gt;&lt;/PriceDenomination&gt;&lt;MiscCode&gt;&amp;lt;![CDATA[0]]&amp;gt;&lt;/MiscCode&gt;&lt;B-Account&gt;&lt;/B-Account&gt;&lt;Type&gt;&amp;lt;![CDATA[APB]]&amp;gt;&lt;/Type&gt;&lt;VAT&gt;0.00&lt;/VAT&gt;&lt;DiscPercent&gt;0.00&lt;/DiscPercent&gt;&lt;GrossPriceWithoutTax&gt;0.00000&lt;/GrossPriceWithoutTax&gt;&lt;TotalGrossWithoutTax&gt;0.00&lt;/TotalGrossWithoutTax&gt;&lt;TotalTaxPrice_high_precision&gt;0.0000000000&lt;/TotalTaxPrice_high_precision&gt;&lt;GrossPrice_high_precision&gt;0.0000000000&lt;/GrossPrice_high_precision&gt;&lt;GrossPriceWithoutTax_high_precision&gt;0.0000000000&lt;/GrossPriceWithoutTax_high_precision&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;ProductCodePass-ThroughInvoice&gt;0&lt;/ProductCodePass-ThroughInvoice&gt;&lt;PriceDenominationGross&gt;&lt;/PriceDenominationGross&gt;&lt;PriceDenominationGrossWithoutTax&gt;&lt;/PriceDenominationGrossWithoutTax&gt;&lt;PriceDenominationTax&gt;&lt;/PriceDenominationTax&gt;&lt;MiscCodeNew&gt;0&lt;/MiscCodeNew&gt;&lt;TextNew&gt;&amp;lt;![CDATA[FK Spotpris         ]]&amp;gt;&lt;/TextNew&gt;&lt;DiscAmount&gt;0.00000&lt;/DiscAmount&gt;&lt;SuppSubscriptionPrice&gt;0.00000&lt;/SuppSubscriptionPrice&gt;&lt;FireValue&gt;0.00000&lt;/FireValue&gt;&lt;ProductSaleId&gt;0&lt;/ProductSaleId&gt;&lt;/InvoiceLine-120&gt;&lt;YearlyConsumption-123&gt;&lt;AnnualConsumption&gt;3331&lt;/AnnualConsumption&gt;&lt;B-AccountAmount&gt;170.00&lt;/B-AccountAmount&gt;&lt;PriceDate&gt;2017-03-16&lt;/PriceDate&gt;&lt;/YearlyConsumption-123&gt;&lt;GenInfoInvoiceOrder-125&gt;&lt;TextCode&gt;&amp;lt;![CDATA[FJOR]]&amp;gt;&lt;/TextCode&gt;&lt;PageIndicator&gt;&amp;lt;![CDATA[B]]&amp;gt;&lt;/PageIndicator&gt;&lt;Text&gt;&amp;lt;![CDATA[Fra 01.07.2013 oppdaterer vi våre betalingsvilkår.]]&amp;gt;&lt;/Text&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;/GenInfoInvoiceOrder-125&gt;&lt;GenInfoInvoiceOrder-125&gt;&lt;TextCode&gt;&amp;lt;![CDATA[FJOR]]&amp;gt;&lt;/TextCode&gt;&lt;PageIndicator&gt;&amp;lt;![CDATA[B]]&amp;gt;&lt;/PageIndicator&gt;&lt;Text&gt;&amp;lt;![CDATA[Se www.fjordkraft.no/avtalevilkar for mer informasjon]]&amp;gt;&lt;/Text&gt;&lt;ActivityType&gt;&amp;lt;![CDATA[EL]]&amp;gt;&lt;/ActivityType&gt;&lt;ActivitySubType&gt;&amp;lt;![CDATA[OM]]&amp;gt;&lt;/ActivitySubType&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;/GenInfoInvoiceOrder-125&gt;&lt;ConsumptionPillars-132&gt;&lt;PeriodDescription1&gt;&amp;lt;![CDATA[JAN-FEB]]&amp;gt;&lt;/PeriodDescription1&gt;&lt;LastYearConsumption1&gt;0.000&lt;/LastYearConsumption1&gt;&lt;ThisYearConsumption1&gt;747.000&lt;/ThisYearConsumption1&gt;&lt;PeriodDescription2&gt;&amp;lt;![CDATA[NOV-DES]]&amp;gt;&lt;/PeriodDescription2&gt;&lt;LastYearConsumption2&gt;0.000&lt;/LastYearConsumption2&gt;&lt;ThisYearConsumption2&gt;0.000&lt;/ThisYearConsumption2&gt;&lt;PeriodDescription3&gt;&amp;lt;![CDATA[SEP-OKT]]&amp;gt;&lt;/PeriodDescription3&gt;&lt;LastYearConsumption3&gt;0.000&lt;/LastYearConsumption3&gt;&lt;ThisYearConsumption3&gt;0.000&lt;/ThisYearConsumption3&gt;&lt;PeriodDescription4&gt;&amp;lt;![CDATA[JUL-AUG]]&amp;gt;&lt;/PeriodDescription4&gt;&lt;LastYearConsumption4&gt;0.000&lt;/LastYearConsumption4&gt;&lt;ThisYearConsumption4&gt;0.000&lt;/ThisYearConsumption4&gt;&lt;PeriodDescription5&gt;&amp;lt;![CDATA[MAI-JUN]]&amp;gt;&lt;/PeriodDescription5&gt;&lt;LastYearConsumption5&gt;0.000&lt;/LastYearConsumption5&gt;&lt;ThisYearConsumption5&gt;0.000&lt;/ThisYearConsumption5&gt;&lt;PeriodDescription6&gt;&amp;lt;![CDATA[MAR-APR]]&amp;gt;&lt;/PeriodDescription6&gt;&lt;LastYearConsumption6&gt;0.000&lt;/LastYearConsumption6&gt;&lt;ThisYearConsumption6&gt;0.000&lt;/ThisYearConsumption6&gt;&lt;PeriodDescription7&gt;&lt;/PeriodDescription7&gt;&lt;PeriodDescription8&gt;&lt;/PeriodDescription8&gt;&lt;PeriodDescription9&gt;&lt;/PeriodDescription9&gt;&lt;PeriodDescription10&gt;&lt;/PeriodDescription10&gt;&lt;PeriodDescription11&gt;&lt;/PeriodDescription11&gt;&lt;PeriodDescription12&gt;&lt;/PeriodDescription12&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;/ConsumptionPillars-132&gt;&lt;InvoiceOrderEndRecord-134&gt;&lt;BillingGroup&gt;&amp;lt;![CDATA[PA]]&amp;gt;&lt;/BillingGroup&gt;&lt;ServiceAgreeSerialNo&gt;2&lt;/ServiceAgreeSerialNo&gt;&lt;/InvoiceOrderEndRecord-134&gt;&lt;/InvoiceOrder&gt;&lt;VatSpecInvoice-142&gt;&lt;VatRate&gt;25.00&lt;/VatRate&gt;&lt;SumBasis&gt;315.87&lt;/SumBasis&gt;&lt;SumVat&gt;78.96&lt;/SumVat&gt;&lt;/VatSpecInvoice-142&gt;&lt;InvoiceEndRecord-199&gt;&lt;TotalLines&gt;26&lt;/TotalLines&gt;&lt;InvoiceNo&gt;312&lt;/InvoiceNo&gt;&lt;/InvoiceEndRecord-199&gt;&lt;/Invoice&gt;&lt;/VEDLEGG_EMUXML&gt;&lt;VEDLEGG_E2B&gt;&lt;/VEDLEGG_E2B&gt;&lt;/FAKTURA&gt;</Attachment>
+      </Attachments>
+      <TaxReport></TaxReport>
+      <DirectDebitAmount></DirectDebitAmount>
+      <DirectDebitAgreementDate></DirectDebitAgreementDate>
+      <DirectDebitBasetype></DirectDebitBasetype>
+      <LegalPartClass>Individual</LegalPartClass>
+      <MinClaimFixedAmount></MinClaimFixedAmount>
+      <BudgetStatementAmount>0.00</BudgetStatementAmount>
+      <RecommendedStatementAmount>3449.78</RecommendedStatementAmount>
+      <Collection></Collection>
+      <AccountType>
+        <Code>INVACC</Code>
+        <Name>Post-Mot-Post</Name>
+      </AccountType>
+      <AccountCategory>
+        <Code>FPMS</Code>
+        <Name>FPMS</Name>
+      </AccountCategory>
+      <Version>1</Version>
+      <StatementType>Invoice</StatementType>
+      <CreditedInvoice></CreditedInvoice>
+    </Statement>
