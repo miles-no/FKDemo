@@ -64,7 +64,7 @@
         src=templates/{{app}}/com.carfey.properties
         dest={{app_basedir}}/{{app}}/current/{{line_item}}
         owner=miles2
-      when: app == "im-preprocessor"
+      when: app == "im-preprocessor" 
 
 
     -
