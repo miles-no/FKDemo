@@ -1,7 +1,9 @@
-app.controller('popupController',function($scope,options,close){
+const popupController = ($scope,options,close) => {
   $scope.options = options;
   $scope.items = options.body.bodyContent
-  $scope.dismissModal = function(result){
+  $scope.dismissModal = (result) => {
     close(result,200);
   }
-});
+};
+
+export {popupController};

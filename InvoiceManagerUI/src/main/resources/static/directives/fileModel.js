@@ -1,6 +1,4 @@
-var app = angular.module('invoiceManagerApp');
-
-app.directive('fileModel', ['$parse', function ($parse) {
+const fileModel = ($parse) => {
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {
@@ -14,4 +12,6 @@ app.directive('fileModel', ['$parse', function ($parse) {
       });
     }
   };
-}]);
+};
+
+export {fileModel}

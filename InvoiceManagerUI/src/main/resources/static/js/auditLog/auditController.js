@@ -1,6 +1,6 @@
-var app  = angular.module('invoiceManagerApp')
+'use strict';
 
-app.controller('auditLogController',function($scope,$http,moment){
+const auditLogController = ($scope,$http,moment) => {
 
   $scope.datepickerConfig ={
     "dateFormat" :'YYYY-MM-DD',
@@ -8,7 +8,7 @@ app.controller('auditLogController',function($scope,$http,moment){
     "maxDate" : moment().add(1,'days')
   }
 
-  $scope.getLogs = function(pageNumber){
+  $scope.getLogs = (pageNumber) => {
     let queryParams = {
       "page": pageNumber ? pageNumber-1 : 0,
       "size": $scope.pageSize
@@ -22,23 +22,24 @@ app.controller('auditLogController',function($scope,$http,moment){
       if($scope.toTime){
         queryParams.toTime = moment($scope.toTime).hour(23).minute(59).second(59).format('YYYY-MM-DD HH:mm:ss')
       }
-    console.log(queryParams)
-    $http.get('/auditRecord',{params:queryParams}).then(function(response){
+    $http.get('/invoicemanager/auditRecord',{params:queryParams}).then((response) => {
       $scope.auditLog = response.data.AUDIT_LOG
       $scope.totalPages = Math.ceil(response.data.TOTAL/$scope.pageSize);
     })
   }
 
-  $scope.onPageChanged = function(pageChangedTo){
+  $scope.onPageChanged = (pageChangedTo) => {
     $scope.getLogs(pageChangedTo)
   }
 
-  $scope.getForamttedDate = function(date){
+  $scope.getForamttedDate = (date) => {
     return (date ? moment(date) : moment()).format('YYYY-MM-DD HH:mm:ss');
   }
 
-  $scope.init = function(){
+  $scope.init = () => {
     $scope.pageSize = 10;
     $scope.getLogs()
   }
-})
+}
+
+export {auditLogController};

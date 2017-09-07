@@ -4,8 +4,8 @@ package no.fjordkraft.im.services.impl;
  * Created by bhavi on 4/28/2017.
  */
 
-import no.fjordkraft.im.repository.ConfigRepository;
 import no.fjordkraft.im.model.Config;
+import no.fjordkraft.im.repository.ConfigRepository;
 import no.fjordkraft.im.services.ConfigService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

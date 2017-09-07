@@ -1,5 +1,4 @@
-app.controller('templateAttributeController',function($scope,$http,ModalService){
-
+const templateAttributeController = ($scope,$http,ModalService) => {
 
   var newRule = {
     name: '',
@@ -10,25 +9,26 @@ app.controller('templateAttributeController',function($scope,$http,ModalService)
   $scope.selectedRule = []
   $scope.tableRule = []
   $scope.alerts =[];
+  $scope.pageSize = ''
 
-  $scope.getRules = function (){
-    $http.get('/layout/attribute').success(function(response){
+  $scope.getRules = () => {
+    $http.get('/invoicemanager/layout/attribute').success((response) => {
       $scope.tableRule = $scope.ruleData = response
       $scope.ruleList = []
-      angular.forEach($scope.ruleData, function(item){
+      angular.forEach($scope.ruleData,(item) => {
         $scope.ruleList.push(item.name)
       })
-      $scope.ruleList = _.uniqBy($scope.ruleList,function(e){
+      $scope.ruleList = _.uniqBy($scope.ruleList,(e) => {
         return e
       })
     })
   }
 
-  function showSelectedRules (){
+  let showSelectedRules = () => {
     $scope.tableRule = []
     if($scope.selectedRule.length > 0){
-      angular.forEach($scope.ruleData,function(item){
-        angular.forEach($scope.selectedRule,function(selectedItems){
+      angular.forEach($scope.ruleData,(item) => {
+        angular.forEach($scope.selectedRule,(selectedItems) => {
           if(selectedItems === item.name){
             $scope.tableRule.push(item)
           }
@@ -39,24 +39,24 @@ app.controller('templateAttributeController',function($scope,$http,ModalService)
     }
   }
 
-  $scope.closeAlert = function(index){
+  $scope.closeAlert = (index) => {
     $scope.alerts.splice(index,1)
   }
 
 
-  $scope.onRuleSelect = function(item,modal){
+  $scope.onRuleSelect = (item,modal) => {
     $scope.selectedRule.push(item)
     showSelectedRules()
   }
-  $scope.onRuleRemoval = function(item,modal){
-    _.remove($scope.selectedRule,function(eachSelectedRule){
+  $scope.onRuleRemoval = (item,modal) => {
+    _.remove($scope.selectedRule,(eachSelectedRule) => {
       return eachSelectedRule === item;
     });
     showSelectedRules()
   }
 
-  function addRule (rule) {
-    $http.post('/layout/attribute',rule).then(function (response) {
+  let addRule = (rule) => {
+    $http.post('/invoicemanager/layout/attribute',rule).then((response) => {
       if(response.status === 200){
         $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
         $scope.getRules()
@@ -64,13 +64,13 @@ app.controller('templateAttributeController',function($scope,$http,ModalService)
       else{
         $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
       }
-    },function(err){
+    },(err) => {
       $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
-  function updateRule(rule) {
-    $http.put('/layout/attribute/'+rule.id,rule).then(function (response) {
+  let updateRule = (rule) => {
+    $http.put('/invoicemanager/layout/attribute/'+rule.id,rule).then((response) => {
       if(response.status === 200){
         $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
         $scope.getRules()
@@ -78,12 +78,12 @@ app.controller('templateAttributeController',function($scope,$http,ModalService)
       else{
         $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
       }
-    },function(err){
+    },(err) => {
       $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
-  $scope.deleteRule = function (rule) {
+  $scope.deleteRule = (rule) => {
     console.log(rule);
     ModalService.showModal({
       templateUrl: 'js/modals/confirmDelete.html',
@@ -105,11 +105,11 @@ app.controller('templateAttributeController',function($scope,$http,ModalService)
           }
         }
       }
-    }).then(function(modal){
+    }).then((modal) => {
       modal.element.modal();
-      modal.close.then(function(result){
+      modal.close.then((result) => {
         if(result=='Delete'){
-          $http.delete('/layout/attribute/'+rule.id).then(function (response) {
+          $http.delete('/invoicemanager/layout/attribute/'+rule.id).then((response) => {
             if(response.status === 200){
               $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
               $scope.getRules()
@@ -117,7 +117,7 @@ app.controller('templateAttributeController',function($scope,$http,ModalService)
             else{
               $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
             }
-          },function(err){
+          },(err) => {
             $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
           })
         }
@@ -126,7 +126,7 @@ app.controller('templateAttributeController',function($scope,$http,ModalService)
   }
 
 
-  function showModal (ruleInfo, type) {
+  let showModal = (ruleInfo, type) => {
     ModalService.showModal({
       templateUrl: 'templates/template-attributes/templateAttributesPopup.html',
       controller: 'templateAttributePopupController',
@@ -147,9 +147,9 @@ app.controller('templateAttributeController',function($scope,$http,ModalService)
           }
         }
       }
-    }).then(function(modal){
+    }).then((modal) => {
       modal.element.modal();
-      modal.close.then(function(response){
+      modal.close.then((response) => {
         if (response === 'Add') {
           addRule(ruleInfo)
         } else if (response === 'Update') {
@@ -158,13 +158,14 @@ app.controller('templateAttributeController',function($scope,$http,ModalService)
       });
     });
   }
-  $scope.addRule = function () {
+  $scope.addRule = () => {
     var rule = angular.copy(newRule);
     showModal(rule, 'Add')
   }
-  $scope.updateRule = function (ruleInfo) {
+  $scope.updateRule = (ruleInfo) => {
     var ruleData = angular.copy(ruleInfo)
     showModal(ruleData, 'Update')
   }
-});
+};
 
+export {templateAttributeController};

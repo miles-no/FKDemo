@@ -1,4 +1,4 @@
-app.controller('GridsController',function($scope, $q, $http,ModalService){
+const GridsController = ($scope, $q, $http,ModalService) => {
   $scope.brands =[];
   var newGrid = {
     brand: '',
@@ -8,17 +8,18 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
   $scope.selectedGrids = []
   $scope.brands = []
   $scope.alerts =[];
+  $scope.pageSize = ''
 
-  function showSelectedGrids () {
+  let showSelectedGrids = () => {
     $scope.allGrids = []
     if ($scope.selectedGrids.length > 0) {
-      angular.forEach($scope.grids, function (gridItem) {
-        angular.forEach($scope.selectedGrids, function (selectedGrid) {
+      angular.forEach($scope.grids, (gridItem) => {
+        angular.forEach($scope.selectedGrids,(selectedGrid) => {
           if(gridItem.gridName === selectedGrid) {
             $scope.allGrids.push(gridItem)
           }
         })
-        $scope.allGrids = _.uniqBy($scope.allGrids,function(e){
+        $scope.allGrids = _.uniqBy($scope.allGrids,(e) => {
           return e
         })
       })
@@ -26,37 +27,36 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
       $scope.allGrids =  $scope.grids;
     }
   }
-  $scope.syncCall = function(){
-    $http.get('/grid/config/brand').then(function(response){
+  $scope.syncCall =() => {
+    $http.get('/invoicemanager/grid/config/brand').then((response) => {
       $scope.brands = response.data
     })
   }
 
-  $scope.closeAlert = function(index){
+  $scope.closeAlert = (index) => {
     $scope.alerts.splice(index,1)
   }
 
 
-  $scope.onGridSelect = function(item,model){
+  $scope.onGridSelect =(item,model) => {
     console.log('onGridSelect ',item,model,$scope.brands)
     $scope.selectedGrids.push(item);
     showSelectedGrids()
   }
-  $scope.onGridRemoval = function(item,model){
-    console.log('onGridRemoval ',item,model,$scope.grids)
-    _.remove($scope.selectedGrids,function(eachSelectedGrid){
+  $scope.onGridRemoval =(item,model) => {
+    _.remove($scope.selectedGrids,(eachSelectedGrid) => {
       return eachSelectedGrid === item;
     });
     showSelectedGrids()
   }
-  $scope.getGrids = function () {
-    $http.get('/grid/config').then(function (response) {
+  $scope.getGrids =() => {
+    $http.get('/invoicemanager/grid/config').then((response) => {
       $scope.allGrids =  $scope.grids = response.data.Grid;
     })
   }
 
-  function addGrid (grid) {
-    $http.post('/grid/config',grid).then(function (response) {
+  let  addGrid = (grid) => {
+    $http.post('/invoicemanager/grid/config',grid).then((response) => {
       if(response.status === 200){
         $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
         $scope.getGrids()
@@ -64,13 +64,13 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
       else{
         $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
       }
-    },function(err){
+    },(err) => {
       $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
-  function updateGrid(grid) {
-    $http.put('/grid/config',grid).then(function (response) {
+  let updateGrid = (grid) => {
+    $http.put('/invoicemanager/grid/config',grid).then((response) => {
       if(response.status === 200){
         $scope.getGrids()
         $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
@@ -78,12 +78,12 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
       else{
         $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
       }
-    },function(err){
+    },(err) => {
       $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
-  $scope.deleteGrid = function (grid) {
+  $scope.deleteGrid =  (grid) => {
     ModalService.showModal({
       templateUrl: 'js/modals/confirmDelete.html',
       controller:'popupController',
@@ -104,11 +104,11 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
           }
         }
       }
-    }).then(function(modal){
+    }).then((modal) => {
       modal.element.modal();
-      modal.close.then(function(result){
+      modal.close.then((result) => {
         if(result=='Delete'){
-          $http.delete('/grid/config/'+grid.id).then(function (response) {
+          $http.delete('/invoicemanager/grid/config/'+grid.id).then(function (response) {
             if (response.status === 200){
               $scope.getGrids();
               $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
@@ -116,7 +116,7 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
             else{
               $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
             }
-          },function(err){
+          },(err) => {
             $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
           })
         }
@@ -125,7 +125,7 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
   }
 
 
-  function showModal (gridInfo, type) {
+  let showModal = (gridInfo, type) =>  {
     ModalService.showModal({
       templateUrl: 'templates/grids/gridsPopup.html',
       controller: 'gridPopupController',
@@ -146,9 +146,9 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
           }
         }
       }
-    }).then(function(modal){
+    }).then((modal) => {
       modal.element.modal();
-      modal.close.then(function(response){
+      modal.close.then((response) => {
         if (response === 'Add') {
           addGrid(gridInfo)
         } else if (response === 'Update') {
@@ -157,12 +157,14 @@ app.controller('GridsController',function($scope, $q, $http,ModalService){
       });
     });
   }
-  $scope.addGrid = function () {
+  $scope.addGrid = () => {
     var grid = angular.copy(newGrid);
     showModal(grid, 'Add')
   }
-  $scope.updateGrid = function (gridInfo) {
+  $scope.updateGrid =  (gridInfo) => {
     var gridData = angular.copy(gridInfo)
     showModal(gridData, 'Update')
   }
-});
+};
+
+export {GridsController};

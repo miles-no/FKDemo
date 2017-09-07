@@ -179,7 +179,7 @@ public class RestStatement {
 
     public List<RestInvoicePdf> getInvoicePdfList() {
         if(null == invoicePdfList) {
-            invoicePdfList = new ArrayList<RestInvoicePdf>();
+            invoicePdfList = new ArrayList<>();
         }
         return invoicePdfList;
     }

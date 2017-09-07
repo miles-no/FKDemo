@@ -9,8 +9,7 @@ import java.sql.Date;
 /**
  * Created by miles on 6/21/2017.
  */
-//@Table(name="SEGMENTCONTROLFILERESULT", schema="eacprod")
-@Table(name="SEGMENTCONTROLFILERESULT")
+@Table(name="SEGMENTCONTROLFILERESULT",schema="eacprod")
 @Entity
 public class SegmentControlFileResult {
 

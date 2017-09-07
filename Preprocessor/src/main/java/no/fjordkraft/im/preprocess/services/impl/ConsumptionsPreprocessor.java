@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Service
 @PreprocessorInfo(order=4)
-public class ConsumptionsPreprocessor extends BasePreprocessor{
+public class ConsumptionsPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(ConsumptionsPreprocessor.class);
 

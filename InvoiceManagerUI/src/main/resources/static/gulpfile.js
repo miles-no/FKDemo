@@ -75,9 +75,11 @@ gulp.task('browserify',['combineAppJs'],function(){
     
     console.log('Came here in browserify');
     var sources = browserify({
-        entries: path.join(__dirname,'/dist/js/app.js'),
+        entries: path.join(__dirname,'/js/invoiceManager.js'),
         debug: false
-    }).transform(babelify.configure());
+    }).transform(babelify.configure({
+        presets: ["es2015"]
+    }));
     return sources.bundle()
 		.pipe(vinylSourceStream('app.min.js'))
 		.pipe(vinylBuffer())
@@ -144,5 +146,14 @@ gulp.task('combileVendorCSS',['clean'],function(){
             .pipe(gulp.dest(path.join(__dirname,'/dist/css')));
 
 })
+//gulp.task('moveComponents',[],() => {
+//    var testFiles = [
+//         './node_modules/app-common/modules/authorization/authorization.component.js',
+//         './node_modules/app-common/modules/authorization/authorization.service.js',
+//         './node_modules/app-common/modules/authorization/authorization.provider.js'
+//    ]
+//    return gulp.src(testFiles)
+//      .pipe(gulp.dest(path.join(__dirname,'./node_modules/app-common/node_modules/')))
+//})
 gulp.task('default',['testGulp','browserify']);
 gulp.task('local',['testGulp','runExpress','watch']);

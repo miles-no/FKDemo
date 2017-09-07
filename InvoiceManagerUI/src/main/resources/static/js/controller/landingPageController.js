@@ -2,9 +2,7 @@
  * Created by Kshitij Bahul on 17-05-2017.
  */
 'use strict';
-var app = angular.module('invoiceManagerApp');
-//const colors = require('js/utils/color');
-app.controller('landingPageController',function($scope,$http,$interval,_,moment,$rootScope){
+const landingPageController = ($scope,$http,$interval,_,moment,$rootScope) => {
     $scope.overview ={};
     var dayStart = moment().hour(0).minute(0).second(0);
     var dayEnd = moment().hour(23).minute(59).second(59);
@@ -60,7 +58,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment,
         })
     }
     let getOverviewDetails = function(item){
-        $http.get(`/dashboard/all`,{params : {fromTime: item.valueFrom.format('YYYY-MM-DD HH:mm:ss'),toTime: item.valueTo.format('YYYY-MM-DD HH:mm:ss')}}).then(
+        $http.get(`/invoicemanager/dashboard/all`,{params : {fromTime: item.valueFrom.format('YYYY-MM-DD HH:mm:ss'),toTime: item.valueTo.format('YYYY-MM-DD HH:mm:ss')}}).then(
             
         function success(result){
             $scope.overviewCount = result.data.TOTAL[0].value;
@@ -82,7 +80,7 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment,
     }
     $scope.getStates = function(){
         let getStateNames = $rootScope.states && $rootScope.states.length ==0 ? true: false
-        $http.get('/dashboard/status').then(
+        $http.get('/invoicemanager/dashboard/status').then(
             function success(result){
                 var getDateAndTime = new Date();
                 var dateTime = moment(getDateAndTime).format('YYYY-MM-DD HH:mm:ss')
@@ -143,4 +141,5 @@ app.controller('landingPageController',function($scope,$http,$interval,_,moment,
         console.log('Came in here $destroy');
         $interval.cancel(refreshDashbord)
     });
-});
+}
+export {landingPageController};

@@ -9,10 +9,10 @@ public enum TransferStatusEnum {
     Stored(13, "File has been stored in the database", "Lagret i databasen", TransferStatusTypeEnum.ok),
     ReadyForZip(20, "File is ready for zipping", "Klar for zipping", TransferStatusTypeEnum.ok),
     Zipping(21, "File is being zipped", "Zippes...", TransferStatusTypeEnum.running),
-    Transfering(31, "File is being uploaded", "Overf?res...", TransferStatusTypeEnum.running),
-    TransferredOk(32, "File has been transferred OK", "Overf?rt OK", TransferStatusTypeEnum.ok),
-    TransferredError(33, "Filetransfer failed", "Overf?r med feil", TransferStatusTypeEnum.error),
-    Transferred(40, "File has been moved to Transferred", "Overf?rt OK", TransferStatusTypeEnum.ok);
+    Transfering(31, "File is being uploaded", "Overføres...", TransferStatusTypeEnum.running),
+    TransferredOk(32, "File has been transferred OK", "Overført OK", TransferStatusTypeEnum.ok),
+    TransferredError(33, "Filetransfer failed", "Overfør med feil", TransferStatusTypeEnum.error),
+    Transferred(40, "File has been moved to Transferred", "Overført OK", TransferStatusTypeEnum.ok);
 
     int id;
     String longDescription;

@@ -1,4 +1,4 @@
-<div class="manage-brands" ng-controller="StateConfigController" ng-init="getStatesConfig()">
+<div class="manage-brands" ng-controller="StateConfigController" ng-init="init()">
     <div uib-alert ng-repeat="alert in alerts" class="alert-width" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}}</div>
     <div class="col-sm-12 text-center header-style">System Configurations</div>
     <div class="col-sm-4">
@@ -12,6 +12,12 @@
                     </ui-select-choices>
                 </ui-select>
             </div>
+        </div>
+    </div>
+    <div class="col-sm-offset-5 col-sm-3 form-horizontal">
+        <label class="text-match search-align col-sm-7">Records per page</label>
+        <div class="col-sm-5">
+            <input  type="text" class="form-control text-center" ng-model="pageSize">
         </div>
     </div>
     <div class="col-sm-12">
@@ -33,7 +39,7 @@
             <tfoot>
             <tr>
                 <td colspan="3" class="text-center">
-                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                    <div st-pagination="" st-items-by-page="pageSize" st-template = './templates/clientPagination/clientPagination.html'></div>
                 </td>
             </tr>
             </tfoot>

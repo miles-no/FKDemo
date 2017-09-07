@@ -114,4 +114,11 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         statementRepository.saveAndFlush(imStatement);
     }
 
+    @Transactional(readOnly = true)
+    public Statement getStatement(Long statementId){
+        Statement stmt = statementRepository.findOne(statementId);
+        stmt.getSystemBatchInput().getTransferFile().getFilename();
+        return stmt;
+    }
+
 }

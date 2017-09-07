@@ -1,10 +1,5 @@
 package no.fjordkraft.im.model;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-
 /**
  * Created by miles on 5/26/2017.
  */

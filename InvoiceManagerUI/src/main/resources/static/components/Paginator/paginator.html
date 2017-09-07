@@ -1,7 +1,62 @@
-<div class="row paginator">
-    <div class="col-md-offset-4 col-md-4">
-        <i class="fa fa-arrow-left" aria-hidden="true" ng-click="$ctrl.getPrevPageData()"></i>
-        {{$ctrl.currentPage}} Of {{$ctrl.totalPages}}
-        <i class="fa fa-arrow-right" aria-hidden="true" ng-click="$ctrl.getNextPageData()"></i>
-    </div>
+<!--<div class="row paginator">-->
+    <!--<div class="col-md-offset-4 col-md-4">-->
+        <!--<i class="fa fa-arrow-left" aria-hidden="true" ng-click="$ctrl.getPrevPageData()"></i>-->
+        <!--{{$ctrl.currentPage}} Of {{$ctrl.totalPages}}-->
+        <!--<i class="fa fa-arrow-right" aria-hidden="true" ng-click="$ctrl.getNextPageData()"></i>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<div class="pagination">
+    <ul class="pagination">
+        <!--<li>-->
+            <!--<a ng-click="selectPage(1)" aria-label="First">-->
+                <!--<span aria-hidden="true">first</span>-->
+            <!--</a>-->
+        <!--</li>-->
+        <li>
+            <a ng-click="$ctrl.goToFirst()" aria-label="First">
+                <span aria-hidden="true">first</span>
+            </a>
+        </li>
+        <li>
+            <a ng-click="$ctrl.getPrevPageData()" aria-label="Previous">
+                <span aria-hidden="true">&larr;</span>
+            </a>
+        </li>
+        <li ng-repeat = "data in fields">
+            <a ng-click="changePage(data)" aria-label="{{data}}"></a>
+            <span aria-hidden="true">&rarr;</span>
+        </li>
+        </li>
+        <li>
+            <a ng-click="$ctrl.getNextPageData()" aria-label="Next">
+                <span aria-hidden="true">&rarr;</span>
+            </a>
+        </li>
+        <li>
+            <a href="" ng-click="$ctrl.goToLast()" aria-label="Last">
+                <span aria-hidden="true">last</span>
+            </a>
+        </li>
+
+        <!--<li ng-repeat="page in pages" ng-class="{active: page==currentPage}"><a ng-click="selectPage(page)">{{page}}</a></li>-->
+
+        <!--<li>-->
+            <!--<a ng-click+="selectPage(currentPage+1)" aria-label="Next">-->
+                <!--<span aria-hidden="true">&rarr;</span>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a href="" ng-click="selectPage(numPages)" aria-label="Last">-->
+                <!--<span aria-hidden="true">last</span>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<input type="text" ng-model="page" ng-change="selectPage(page)">-->
+            <!--<a href="" ng-click="selectPage(numPages)" aria-label="Last">-->
+                <!--<span aria-hidden="true">Select page</span>-->
+            <!--</a>-->
+        <!--</li>-->
+    </ul>
 </div>

@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ import java.util.Map;
 @EnableJpaRepositories(basePackages = {"no.fjordkraft.im"})
 @SpringBootApplication(exclude = {MongoAutoConfiguration.class,})
 @EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
+@EnableEurekaClient
 public class PDFGeneratorApplication {
 
 	public static void main(String[] args) {

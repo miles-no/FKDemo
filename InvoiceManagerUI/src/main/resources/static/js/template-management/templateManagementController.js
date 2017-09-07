@@ -1,5 +1,4 @@
-app.controller('listCtrl',function($scope,ModalService,$http){
-
+const listCtrl = ($scope,ModalService,$http) => {
   var newLayout = {
       brand: '',
       legalPartClass: '',
@@ -11,24 +10,25 @@ app.controller('listCtrl',function($scope,ModalService,$http){
   $scope.selectedTemplate = []
   $scope.templatelist = []
   $scope.alerts =[];
+  $scope.pageSize = ''
 
-  $scope.onTemplateSelect = function(item){
+  $scope.onTemplateSelect = (item) => {
     $scope.selectedTemplate.push(item)
     showSelectedTemplate()
   }
 
-  $scope.onTemplateRemoval = function(item){
-    _.remove($scope.selectedRule,function(eachSelectedTemplate){
+  $scope.onTemplateRemoval = (item) => {
+    _.remove($scope.selectedRule,(eachSelectedTemplate) => {
       return eachSelectedTemplate === item;
     });
     showSelectedTemplate()
   }
 
-  function showSelectedTemplate (){
+  let showSelectedTemplate = () => {
     $scope.tableRule = []
     if($scope.selectedTemplate.length > 0){
-      angular.forEach($scope.allLayouts,function(item){
-        angular.forEach($scope.selectedTemplate,function(selectedItems){
+      angular.forEach($scope.allLayouts,(item) => {
+        angular.forEach($scope.selectedTemplate,(selectedItems) => {
           if(selectedItems === item.brand){
             $scope.tableRule.push(item)
           }
@@ -39,39 +39,39 @@ app.controller('listCtrl',function($scope,ModalService,$http){
     }
   }
 
-  $scope.onTemplateSelect = function(item){
+  $scope.onTemplateSelect = (item) => {
     $scope.selectedTemplate.push(item)
     showSelectedTemplate()
   }
-  $scope.onTemplateRemoval = function(item){
-    _.remove($scope.selectedTemplate,function(eachSelectedTemplate){
+  $scope.onTemplateRemoval = (item) => {
+    _.remove($scope.selectedTemplate,(eachSelectedTemplate) => {
       return eachSelectedTemplate === item;
     });
     showSelectedTemplate()
   }
 
-  $scope.closeAlert = function(index){
+  $scope.closeAlert = (index) => {
     $scope.alerts.splice(index,1)
   }
 
-  function setActiveLayout (active){
+  let setActiveLayout =  (active) => {
     var layoutId = active.layoutID
     var activeId = active.version
-    $http.put('/layout/activate/'+layoutId+'/'+activeId).then(function(response){
+    $http.put('/invoicemanager/layout/activate/'+layoutId+'/'+activeId).then((response) => {
       $scope.getLayouts();
     })
   }
 
-  function deActivateLayout (active){
+  let deActivateLayout = (active) => {
     var layoutId = active.layoutID
     var deActiveId = active.version
-    $http.put('/layout/deActivate/'+layoutId+'/'+deActiveId).then(function(response){
+    $http.put('/invoicemanager/layout/deActivate/'+layoutId+'/'+deActiveId).then((response) => {
       $scope.getLayouts();
     })
   }
 
-  function addLayout (layout) {
-     $http.post('/layout/rule',layout).then(function (response) {
+  let addLayout = (layout) => {
+     $http.post('/invoicemanager/layout/rule',layout).then((response) => {
        if(response.status === 200){
          $scope.getLayouts()
          $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
@@ -79,13 +79,13 @@ app.controller('listCtrl',function($scope,ModalService,$http){
        else{
          $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
        }
-     },function(err){
+     },(err) => {
        $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
      })
   }
   
-  function updateLayout(layout) {
-     $http.put(`/layout/rule/${layout.id}`,layout).then(function (response) {
+  let updateLayout = (layout) => {
+     $http.put(`/invoicemanager/layout/rule/${layout.id}`,layout).then((response) => {
       if(response.status === 200){
         $scope.getLayouts()
         $scope.alerts.push({ type: 'success', msg: 'Record update successfully' })
@@ -93,12 +93,12 @@ app.controller('listCtrl',function($scope,ModalService,$http){
       else{
         $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
       }
-    },function(err){
+    },(err) => {
       $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
-  function toggleLayoutModal (layoutInfo){
+  let toggleLayoutModal = (layoutInfo) => {
     console.log(layoutInfo)
     if (layoutInfo.active === true){
       var bodyTitle = 'Are you sure you want to deactivate '
@@ -127,9 +127,9 @@ app.controller('listCtrl',function($scope,ModalService,$http){
           }
         }
       }
-    }).then(function(modal){
+    }).then((modal) => {
       modal.element.modal();
-      modal.close.then(function(response){
+      modal.close.then((response) => {
         if (response === 'Confirm') {
           var activate = {}
           activate.layoutID = layoutInfo.layoutID
@@ -144,7 +144,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
     })
   }
   
-  function showModal (layoutInfo, type) {
+  let showModal  = (layoutInfo, type) => {
     console.log(layoutInfo)
       ModalService.showModal({
           templateUrl: 'templates/template-management/templateManagementPopup.html',
@@ -166,9 +166,9 @@ app.controller('listCtrl',function($scope,ModalService,$http){
                   }
               }
           }
-      }).then(function(modal){
+      }).then((modal) => {
           modal.element.modal();
-          modal.close.then(function(response){
+          modal.close.then((response) => {
               if (response.operation === 'Add') {
                   addLayout(response.data)
               } else if (response.operation === 'Update') {
@@ -177,22 +177,22 @@ app.controller('listCtrl',function($scope,ModalService,$http){
           });
       });
   }
-  $scope.updateTemplate = function (layoutInfo) {
+  $scope.updateTemplate = (layoutInfo) => {
       var layoutDetails = angular.copy(layoutInfo)
       showModal(layoutDetails, 'Update')
   }
 
-  $scope.addTemplate = function () {
+  $scope.addTemplate = () => {
         //var layout = angular.copy(newLayout);
         showModal(null, 'Add')
   }
   $scope.loading = false
-  $scope.previewLayout = function(layout){
+  $scope.previewLayout = (layout) => {
     var layoutId = layout.layoutID
     var version = layout.version;
     let qp = {layoutId: layoutId, version: version};
     $scope.loading = true
-    $http.get('/layout/preview',{params: qp,responseType: 'arraybuffer'}).success(function(response,status,headers){
+    $http.get('/invoicemanager/layout/preview',{params: qp,responseType: 'arraybuffer'}).success((response,status,headers) => {
       $scope.loading = false
       var file = new Blob([response], {type: 'application/pdf'});
       var fileURL = URL.createObjectURL(file);
@@ -202,26 +202,25 @@ app.controller('listCtrl',function($scope,ModalService,$http){
         inputs:{
           pdfUrl :fileURL
         }
-      }).then(function(modal){
+      }).then((modal) => {
         modal.element.modal();
-        modal.close.then(function(result){
+        modal.close.then((result) => {
           console.log('The modal got closed');
         });
       });
-    }).error(
-      function(error){
+    }).error((error) => {
         $scope.loading = false
         console.log(error);
       }
     )
   }
 
-  $scope.downLoadLayout = function(layout){
+  $scope.downLoadLayout = (layout) => {
     var id = layout.layoutID
     $http({
       method : 'GET',
       url : '/layout/rptdesign?id='+id,
-    }).then(function(response,status,headers){
+    }).then((response,status,headers) => {
       var file = new Blob([response.data], {type: 'application/xml'});
       var downloadLink = angular.element('<a></a>');
       downloadLink.attr('href',window.URL.createObjectURL(file));
@@ -229,33 +228,33 @@ app.controller('listCtrl',function($scope,ModalService,$http){
       downloadLink[0].click();
     })
   }
-  $scope.getLayouts = function () {
-    $http.get('/layout/template/all').then(function (response) {
+  $scope.getLayouts =  () => {
+    $http.get('/invoicemanager/layout/template/all').then( (response)  => {
       $scope.tableRule = $scope.allLayouts =  response.data;
-      angular.forEach($scope.allLayouts, function(item){
+      angular.forEach($scope.allLayouts,(item) => {
         $scope.templatelist.push(item.brand)
       })
-     $scope.templatelist =  _.uniqBy($scope.templatelist,function(e){
+     $scope.templatelist =  _.uniqBy($scope.templatelist,(e) => {
        return e
      })
-    }).catch(function(data){
+    }).catch((data) => {
       $scope.allLayouts  = data;
     })
  }
 
-  $scope.getBrands = function(){
-    $http.get('/layout/rules').then(function(response){
+  $scope.getBrands = () => {
+    $http.get('/invoicemanager/layout/rules').then((response) => {
       $scope.brands = response.data
-    }).catch(function(data){
+    }).catch((data) => {
       $scope.brands = data;
     })
   }
 
-  $scope.toggleLayout = function(rule){
+  $scope.toggleLayout = (rule) => {
       toggleLayoutModal(rule)
   }
 
-  $scope.deleteTemplate = function(template){
+  $scope.deleteTemplate = (template) => {
     var id = template.layoutID
     ModalService.showModal({
       templateUrl: 'js/modals/confirmDelete.html',
@@ -276,11 +275,11 @@ app.controller('listCtrl',function($scope,ModalService,$http){
           }
         }
       }
-    }).then(function(modal){
+    }).then((modal) => {
       modal.element.modal();
-      modal.close.then(function(result){
+      modal.close.then((result) => {
         if(result=='Delete'){
-            $http.delete('/layout/template/'+id).then(function(response){
+            $http.delete('/invoicemanager/layout/template/'+id).then((response) => {
               if (response.status === 200){
                 $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
                 $scope.getLayouts();
@@ -288,7 +287,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
               else{
                 $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
               }
-            },function(err){
+            },(err) => {
               $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
             })
         }
@@ -299,7 +298,7 @@ app.controller('listCtrl',function($scope,ModalService,$http){
 
   $scope.dropdown = {}
   var pre = {}
-  $scope.dropDownList=function(user){
+  $scope.dropDownList= (user) => {
     if(pre === user){
       $scope.dropDown = {}
       pre = {}
@@ -308,4 +307,6 @@ app.controller('listCtrl',function($scope,ModalService,$http){
       pre = user
     }
   }
-});
+};
+
+export {listCtrl}

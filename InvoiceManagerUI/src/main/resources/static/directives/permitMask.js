@@ -1,6 +1,4 @@
-var app = angular.module('invoiceManagerApp')
-
-app.directive('permitMask', function () {
+const permitMask = () => {
   return {
     require: 'ngModel',
     priority: 11,
@@ -26,4 +24,6 @@ app.directive('permitMask', function () {
       }
     }
   }
-})
+}
+
+export {permitMask}

@@ -1,5 +1,5 @@
 server:
-  port: 8802
+  port: 8002
 
 spring:
   main:
@@ -13,8 +13,8 @@ spring:
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:xe
-    username: vimond
-    password: genesis
+    username: bhavik
+    password: bhavik123
 
   #  datasource:
   #   driverClassName: oracle.jdbc.driver.OracleDriver

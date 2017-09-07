@@ -85,7 +85,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public List<String> getFilesInDirectories(String directory) {
-        List<String> filelist = new ArrayList<String>();
+        List<String> filelist = new ArrayList<>();
         getFilesRecursive(directory, ".*", filelist);
         return filelist;
     }

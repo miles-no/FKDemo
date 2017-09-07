@@ -1,0 +1,10 @@
+---
+-
+  hosts: appservers
+  remote_user: miles2
+  tasks:
+    - include: site.yml app={{ item }}
+      with_items:
+        - im-ui
+        - im-pdfgenerator
+        - im-preprocessor

@@ -8,7 +8,7 @@ stage("Build") {
                 env.MAVEN_HOME="${tool 'Maven 3.3.9'}"
                 env.PATH="${env.MAVEN_HOME}/bin:${env.JAVA_HOME}/bin:${env.PATH}"
 
-                git branch: 'master', credentialsId: 'deploykeys-invoice-manager', url: 'git@github.com:milesfk/invoice_manager.git'
+                git branch: 'Multi-Module-Version1.0', credentialsId: 'deploykeys-invoice-manager', url: 'git@github.com:milesfk/invoice_manager.git'
                 try {
 
 
@@ -22,7 +22,7 @@ stage("Build") {
                 catch(e) {
                     throw e
                 }
-                stash includes: "target/**/*.jar,ansible/**", name: "built"
+                stash includes: "PDFGenerator/targer/*.jar,Preprocessor/target/*.jar, InvoiceManagerUI/target/*.jar,ansible/**", name: "built"
             }
         }
     }
@@ -35,7 +35,7 @@ stage('Deploy to Test') {
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 try {
                     ansiblePlaybook(
-                        playbook: "ansible/site.yml",
+                        playbook: "ansible/manage_all.yml",
                         inventory: "ansible/test",
                         credentialsId: "miles2-login",
                         colorized: true)

@@ -17,7 +17,7 @@ public class LayoutRuleMap {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="RULE_ID")
-    private  LayoutRule layoutRule;
+    private LayoutRule layoutRule;
 
     /*@Column(name="RULE_ID")
     private Long ruleId;*/

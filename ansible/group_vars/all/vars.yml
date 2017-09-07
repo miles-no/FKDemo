@@ -1,3 +1,2 @@
-app_basedir: /home/miles2/app-deploy-test/invoice-manager
-app: invoice-manager
-port: 80
+app_basedir: /app-invoicemanager/invoice-manager
+

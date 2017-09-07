@@ -2,6 +2,17 @@
   remote_user: miles2
   serial: "50%"
   tasks:
+    -
+      name: Set the application folder
+        set_fact:
+          appfolder: "{% if app=='im-ui' %}InvoiceManagerUI{% elif app=='im-pdfgenerator'%}PDFGenerator{% else %}Preprocessor{% endif %}"
+    -
+      name: "{{app}}@{{inventory_hostname}} - Making sure base directory {{app_basedir}} exists"
+      become: true
+      file:
+        path={{app_basedir}}
+        state=directory
+        owner=miles2
 
     -
       name: "{{app}}@{{inventory_hostname}} - Making sure directory {{app_basedir}}/{{app}} exists"
@@ -26,10 +37,10 @@
         state=directory
         owner=miles2
     -
-      name: "{{app}}@{{inventory_hostname}} - Making sure directory /var/log/{{app}}/ exists"
+      name: "{{app}}@{{inventory_hostname}} - Making sure directory /var/log/invoicemanager/{{app}}/ exists"
       become: true
       file:
-        path=/var/log/{{app}}/
+        path=/var/log/invoicemanager/{{app}}/
         state=directory
         owner=miles2
 
@@ -40,5 +51,13 @@
         dest={{app_basedir}}/{{app}}/current/
         mode=0700
       with_fileglob :
-        - ../target/*.jar
+        - ../{{appfolder}}/target/*.jar
 
+    -
+      name: "{{app}}@{{inventory_hostname}} - Copying config"
+      template:
+        src=templates/{{app}}/{{item}}
+        dest={{app_basedir}}/{{app}}/current/{{item}}
+        owner=miles2
+      with_items:
+        - application.yml

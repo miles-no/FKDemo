@@ -4,9 +4,10 @@ server:
 spring:
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@bkkexa02-scan:1521/U120.FK.NO
+    #url: jdbc:oracle:thin:@bkkexa01-scan:1521/T120.FK.NO
+    url: jdbc:oracle:oci:@T120
     username: invoiceman
-    password: pfJstHLvmLVAhxs
+    password: NqwTGytxmPcAgut
 
   #datasource:
   #      driverClassName: oracle.jdbc.driver.OracleDriver
@@ -22,7 +23,7 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-  file: /home/miles2/app/logs/application.log
+  file: /home/miles2/app/logs/im-ui.log
   #file: D:\FuelKraft\invoice_manager\logs\application.log
 
 

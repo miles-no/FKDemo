@@ -1,4 +1,4 @@
-app.controller('StateConfigController',function($scope, $q, $http,ModalService){
+const StateConfigController = ($scope, $q, $http,ModalService) => {
   var newState = {
     name: '',
     value: ''
@@ -7,7 +7,7 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
   $scope.alerts =[];
   $scope.selectedKey = ''
 
-  $scope.onPropSelect = function(item){
+  $scope.onPropSelect = (item) => {
     $scope.alldata = []
     angular.forEach($scope.stateConfigs,function(key){
       if(key.name === item){
@@ -17,38 +17,38 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
     })
   }
 
-  $scope.closeAlert = function(index){
+  $scope.closeAlert = (index) => {
     $scope.alerts.splice(index,1)
   }
 
 
-  $scope.$watch('alldata',function(newVal,oldVal){
+  $scope.$watch('alldata',(newVal,oldVal) => {
     if (newVal !== oldVal && !newVal.length){
         $scope.alldata = $scope.stateConfigs
     }
   })
 
   $scope.configName = []
-  $scope.getStatesConfig = function () {
-    $http.get('/config').then(function (response) {
+  $scope.getStatesConfig =  ()  => {
+    $http.get('/invoicemanager/config').then(function (response) {
       $scope.stateConfigs = response.data.config;
       $scope.configName = []
       $scope.alldata = angular.copy($scope.stateConfigs)
-      angular.forEach($scope.alldata,function(key){
+      angular.forEach($scope.alldata,(key) => {
        $scope.configName.push(key.name)
       })
-      $scope.configName = _.uniqBy($scope.configName,function(e){
+      $scope.configName = _.uniqBy($scope.configName,(e) => {
         return e
       })
     })
   }
 
-  function addStateConfig (state) {
+  let addStateConfig = (state) => {
     let queryParams = {
       key : state.name,
       value : state.value
     }
-    $http({url : '/config',method: 'POST',params:queryParams} ).then(function (response) {
+    $http({url : '/invoicemanager/config',method: 'POST',params:queryParams} ).then((response) => {
       if(response.status === 200){
         $scope.getStatesConfig()
         $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
@@ -56,17 +56,17 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
       else{
         $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
       }
-    },function(err){
+    },(err) => {
       $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
-  function updateStateConfig(state) {
+  let updateStateConfig = (state) => {
     var data = angular.copy(state)
     let queryParams = {
       value : data.value
     }
-    $http({url:'/config/'+data.name,method: 'PUT', params:queryParams}).then(function (response) {
+    $http({url:'/invoicemanager/config/'+data.name,method: 'PUT', params:queryParams}).then((response) => {
       if(response.status === 200){
         $scope.getStatesConfig()
         $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
@@ -74,12 +74,12 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
       else{
         $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
       }
-    },function(err){
+    },(err) => {
       $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
-  $scope.deleteStateConfig = function (state) {
+  $scope.deleteStateConfig = (state)  => {
     ModalService.showModal({
       templateUrl: 'js/modals/confirmDelete.html',
       controller:'popupController',
@@ -100,11 +100,11 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
           }
         }
       }
-    }).then(function(modal){
+    }).then((modal) => {
       modal.element.modal();
-      modal.close.then(function(result){
+      modal.close.then((result) => {
         if(result=='Delete'){
-          $http.delete('/config/'+state.name).then(function (response) {
+          $http.delete('/invoicemanager/config/'+state.name).then((response) => {
             if(response.status === 200){
               $scope.getStatesConfig()
               $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
@@ -112,7 +112,7 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
             else{
               $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
             }
-          },function(err){
+          },(err) => {
             $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
           })
         }
@@ -120,7 +120,7 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
     })
   }
 
-  function showModal (stateInfo, type) {
+  let showModal = (stateInfo, type) => {
     ModalService.showModal({
       templateUrl: 'templates/system-configurations/systemConfigurationsPopup.html',
       controller: 'systemConfigurationPopupController',
@@ -140,9 +140,9 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
           }
         }
       }
-    }).then(function(modal){
+    }).then((modal) => {
       modal.element.modal();
-      modal.close.then(function(response){
+      modal.close.then((response) => {
         if (response === 'Add') {
           addStateConfig(stateInfo)
         } else if (response === 'Update') {
@@ -151,12 +151,20 @@ app.controller('StateConfigController',function($scope, $q, $http,ModalService){
       });
     });
   }
-  $scope.addStateConfig = function () {
+  $scope.addStateConfig =  () => {
     var stateInfo = angular.copy(newState);
     showModal(stateInfo, 'Add')
   }
-  $scope.updateStateConfig = function (stateInfo) {
+  $scope.updateStateConfig =  (stateInfo) => {
    var updateStateInfo = angular.copy(stateInfo);
     showModal(updateStateInfo, 'Update')
   }
-});
+
+  $scope.init = () => {
+    $scope.pageSize = '';
+    $scope.getStatesConfig();
+  }
+
+};
+
+export {StateConfigController}

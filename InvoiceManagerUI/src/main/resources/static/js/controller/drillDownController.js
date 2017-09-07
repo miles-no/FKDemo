@@ -1,11 +1,9 @@
 /**
  * Created by Kshitij Bahul on 17-05-2017.
  */
+'use strict';
 
-var app = angular.module('invoiceManagerApp');
-
-app.controller('drillDownController',function($scope,$http,moment,$rootScope,$stateParams,ModalService){
-    
+const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalService) =>{
     let dummyData = {"firstName": "Name ","lastName":"Last Name ","birthDate":moment().format('LLL'),"balance": 22.5};
     $scope.rowCollection = [];
     $scope.searchResults = [];
@@ -63,7 +61,7 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
         $scope.invoiceNumber ? queryParams.invoiceNumber = $scope.invoiceNumber :'';
         $scope.accountNumber ? queryParams.accountNumber = $scope.accountNumber :'';
         $scope.customerID ? queryParams.customerID = $scope.customerID :'';
-        $http.get('/statement/details',{params:queryParams}).then(function success(result){
+        $http.get('/invoicemanager/statement/details',{params:queryParams}).then(function success(result){
             $scope.searchResults = result.data.STATEMENTS
             $scope.totalPages = Math.ceil(result.data.TOTAL/$scope.pageSize);
         },function error(error){
@@ -89,7 +87,7 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
 
     $scope.getInvoiceFile = function(invoiceId){
         $scope.loading = true
-        $http.get('/statement/pdf/'+invoiceId,{responseType: 'arraybuffer'}).success(function(response,status,headers){
+        $http.get('/invoicemanager/statement/pdf/'+invoiceId,{responseType: 'arraybuffer'}).success(function(response,status,headers){
           $scope.loading = false;
           var file = new Blob([response], {type: 'application/pdf'});
 	        var fileURL = URL.createObjectURL(file);
@@ -112,7 +110,7 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
         );
     }
     const getAllBrands = function(){
-        $http.get('/brand/config/brand').then(function success(result){
+        $http.get('/invoicemanager/brand/config/brand').then(function success(result){
             $scope.possibleBrands = result.data;
         },function error(error){
             console.log('Could not get the brands');
@@ -134,4 +132,5 @@ app.controller('drillDownController',function($scope,$http,moment,$rootScope,$st
         $stateParams && $stateParams.processingState ? $scope.states.push($stateParams.processingState) :'';
         $scope.getOverviewDetails();
     }
-});
+}
+export {drillDownController};

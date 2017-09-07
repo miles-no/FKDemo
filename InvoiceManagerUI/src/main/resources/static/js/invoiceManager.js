@@ -3,6 +3,44 @@
  */
 'use strict';
 
+import {mainController} from './controller/mainController'
+import {landingPageController} from './controller/landingPageController';
+import {drillDownController} from './controller/drillDownController';
+import {pdfDisplayController} from './controller/pdfDisplayController';
+import {auditLogController} from './auditLog/auditController';
+import {ManageBrandsController} from './brands/brandCtrl';
+import {ManageBrandsPopupController} from './brands/brandPopUpController';
+import {popupController} from './confirmDelete/confirmDelete';
+import {GridsController} from './grids/gridCtrl';
+import {gridPopupController} from './grids/gridPopUpController';
+import {StateConfigController} from './systemConfiguration/systemConfigurationController';
+import {systemConfigurationPopupController} from './systemConfiguration/systemConfigurationPopup';
+import {templateAttributeController} from './template-attributes/templateAttributeController';
+import {templateAttributePopupController} from './template-attributes/templateAttributePopupController';
+import {listCtrl} from './template-management/templateManagementController';
+import {listPopupController} from './template-management/templateManagementPopupController';
+// import {landingPageController} from './controller/landingPageController';
+// import {drillDownController} from './controller/drillDownController';
+// import {mainController} from './controller/mainController'
+// import {landingPageController} from './controller/landingPageController';
+// import {drillDownController} from './controller/drillDownController';
+//Component Imports
+import {stateCard} from '../components/StateCard/stateCard';
+import {paginator} from '../components/Paginator/paginator';
+import {navigation} from '../components/Navigation/navigation';
+import {spinner} from '../components/Spinner/spinner';
+
+//directive import
+import {fileModel} from '../directives/fileModel'
+import {limitTo} from '../directives/limitTo'
+import {permitMask} from '../directives/permitMask'
+
+
+//external Authentication modules
+//import {authentication} from 'app-common/modules/authentication';
+//external Authorization module
+//import {authorization} from 'app-common/modules/authorization';
+
 let dependencies = [
         'ui.router',
         'ui.bootstrap',
@@ -16,13 +54,53 @@ let dependencies = [
         'ngFlatDatepicker',
         'angularModalService',
         'ngclipboard'
+        //'authentication',
+        //'authorization'
         // 'angular.circular.timepicker'
     ];
 
 var invoiceManager = angular.module('invoiceManagerApp',dependencies);
 
-//Configure Global Constants 
+
+//configure Controllers
+
+invoiceManager.controller('mainController',mainController);
+invoiceManager.controller('landingPageController',landingPageController);
+invoiceManager.controller('drillDownController',drillDownController);
+invoiceManager.controller('pdfDisplayController',pdfDisplayController);
+invoiceManager.controller('auditLogController',auditLogController);
+invoiceManager.controller('ManageBrandsController',ManageBrandsController);
+invoiceManager.controller('ManageBrandsPopupController',ManageBrandsPopupController);
+invoiceManager.controller('popupController',popupController);
+invoiceManager.controller('GridsController',GridsController);
+invoiceManager.controller('gridPopupController',gridPopupController);
+invoiceManager.controller('StateConfigController',StateConfigController);
+invoiceManager.controller('systemConfigurationPopupController',systemConfigurationPopupController);
+invoiceManager.controller('templateAttributeController',templateAttributeController);
+invoiceManager.controller('templateAttributePopupController',templateAttributePopupController);
+invoiceManager.controller('listCtrl',listCtrl);
+invoiceManager.controller('listPopupController',listPopupController);
+
+// invoiceManager.controller('mainController',mainController);
+// invoiceManager.controller('landingPageController',landingPageController);
+// invoiceManager.controller('mainController',mainController);
+// invoiceManager.controller('landingPageController',landingPageController);
+
+
+//configure components
+invoiceManager.component('stateCard',stateCard);
+invoiceManager.component('paginator',paginator);
+invoiceManager.component('navigation',navigation);
+invoiceManager.component('spinner',spinner);
+
+//configure directives
+invoiceManager.directive('fileModel',fileModel);
+invoiceManager.directive('limitTo',limitTo);
+invoiceManager.directive('permitMask',permitMask);
+
+//Configure Global Constants
 invoiceManager.constant('_',window._);
+invoiceManager.constant('loginUrl','https://afitest.fjordkraft.no/app/logon/logon.html?redirect=http://localhost:8080/#/home')
 
 //Configure routes
 

@@ -1,6 +1,21 @@
 <div class="manage-brands" ng-controller="ManageBrandsController" ng-init="getBrands()">
     <div uib-alert ng-repeat="alert in alerts" class="alert-width" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}}</div>
     <div class="col-sm-12 text-center header-style">Brands</div>
+    <!--<auth func="Afi_Standard">-->
+        <!--<div class="col-sm-4">-->
+            <!--<div class="row form-group">-->
+                <!--<label class="control-label col-sm-3 col-lg-2 text-match search-align">Brand</label>-->
+                <!--<div class="col-sm-8">-->
+                    <!--<ui-select multiple ng-model="selectedBrands" theme="bootstrap" title="Choose brand" on-remove="onBrandRemoval($item, $model)" on-select="onBrandSelect($item, $model)">-->
+                        <!--<ui-select-match placeholder="Select Brand">{{$item}}</ui-select-match>-->
+                        <!--<ui-select-choices refresh="syncCall()" refresh-delay="10"  repeat="eachBrand in dropDownData | filter : $select.search" position='down'>-->
+                            <!--<div ng-bind-html="eachBrand | highlight: $select.search"></div>-->
+                        <!--</ui-select-choices>-->
+                    <!--</ui-select>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</auth>-->
     <div class="col-sm-4">
         <div class="row form-group">
             <label class="control-label col-sm-3 col-lg-2 text-match search-align">Brand</label>
@@ -12,6 +27,12 @@
                     </ui-select-choices>
                 </ui-select>
             </div>
+        </div>
+    </div>
+    <div class="col-sm-offset-5 col-sm-3 form-horizontal">
+        <label class="text-match search-align col-sm-7">Records per page</label>
+        <div class="col-sm-5">
+            <input  type="text" class="form-control text-center" ng-model="pageSize">
         </div>
     </div>
     <div class="col-sm-12">
@@ -41,7 +62,7 @@
             <tfoot>
                 <tr>
                     <td colspan="7" class="text-center">
-                        <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                        <div st-pagination="" st-items-by-page="pageSize" st-template = './templates/clientPagination/clientPagination.html'></div>
                     </td>
                 </tr>
             </tfoot>

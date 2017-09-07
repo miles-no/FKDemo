@@ -1,0 +1,8 @@
+_auth = cHJhc2hhbnQ6QVBBeWpXYXZOTUM4WVBMWmhkNEpDZmJrNGt1
+email = prashant.bakshi@miles.in
+always-auth = true
+registry=https://milesfk.jfrog.io/milesfk/api/npm/npm/
+//https://milesfk.jfrog.io/milesfk/api/npm/npm/:_password=QVBBeWpXYXZOTUM4WVBMWmhkNEpDZmJrNGt1
+//https://milesfk.jfrog.io/milesfk/api/npm/npm/:username=prashant
+//https://milesfk.jfrog.io/milesfk/api/npm/npm/:email=prashant.bakshi@miles.in
+//https://milesfk.jfrog.io/milesfk/api/npm/npm/:always-auth=true

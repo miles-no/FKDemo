@@ -7,6 +7,7 @@ import no.fjordkraft.im.services.AuditLogService;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 
@@ -20,6 +21,7 @@ public class AuditLogServiceImpl implements AuditLogService {
     AuditLogRepository auditLogRepository;
 
     @Override
+    @Transactional
     public void saveAuditLog(Long actionOnId, String action, String msg, String logType) {
         AuditLogRecord auditLogRecord = AuditLogRecord.logBuilder()
                 .withActionOnType(IMConstants.STATEMENT)
@@ -44,6 +46,7 @@ public class AuditLogServiceImpl implements AuditLogService {
     }
 
     @Override
+    @Transactional
     public void saveAuditLog(String actionOnType, Long actionOnId, String action, String msg, String logType) {
         AuditLogRecord auditLogRecord = AuditLogRecord.logBuilder()
                 .withActionOnType(actionOnType)

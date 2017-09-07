@@ -1,25 +1,32 @@
-var app = angular.module('invoiceManagerApp');
-
-function paginationController($http){
-    var ctrl = this;
-    ctrl.currentPage=1;
-    console.log('In the component here ',ctrl);
-    let getPageData = function(){
-        ctrl.onPageChange({result: ctrl.currentPage});
-    }   
-    ctrl.getNextPageData = function(){
-        ctrl.currentPage == ctrl.totalPages ? '' : ((ctrl.currentPage = ctrl.currentPage + 1)  && getPageData());
-    }
-    ctrl.getPrevPageData = function(){
-         ctrl.currentPage == 1 ? '' : ((ctrl.currentPage = ctrl.currentPage - 1 ) && getPageData());
-    }
-}
-app.component('paginator',{
+'use strict';
+const paginator = {
     templateUrl: 'components/Paginator/paginator.html',
     bindings: {
         pageSize: '<',
         totalPages :'<',
         onPageChange: '&'
     },
-    controller: paginationController,
-});
+    controller: class paginator{
+        constructor(){
+            this.currentPage=1;
+        }
+        getPageData(){
+            this.onPageChange({result: this.currentPage});
+        }
+        getNextPageData(){
+            this.currentPage == this.totalPages ? '' : ((this.currentPage = this.currentPage + 1)  && this.getPageData());
+        }
+        getPrevPageData(){
+            this.currentPage == 1 ? '' : ((this.currentPage = this.currentPage - 1 ) && this.getPageData());
+        }
+        goToFirst(){
+            this.currentPage =1
+            this.getPageData()
+        }
+        goToLast(){
+            this.currentPage = this.totalPages
+            this.getPageData()
+        }
+    }
+}
+export {paginator}

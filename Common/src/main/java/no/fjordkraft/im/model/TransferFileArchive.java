@@ -8,8 +8,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @IdClass(TransferFileId.class)
-//@Table(name = "transferfile",schema = "eacprod")
-@Table(name = "transferfile")
+@Table(name = "transferfile",schema="eacprod")
 public class TransferFileArchive {
 
     @Id

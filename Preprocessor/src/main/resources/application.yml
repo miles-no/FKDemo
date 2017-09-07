@@ -9,6 +9,8 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+  application:
+    name: im-preprocessor
 
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
@@ -31,4 +33,22 @@ logging:
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
   file: /opt/app/invoice_manager/logs/application.log
   #file: D:\FuelKraft\invoice_manager\logs\application.log
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
+    registerWithEureka: true
+  instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    preferIpAddress: true
+    metadataMap:
+      management:
+        context-path: ${management.context-path}
+
+
+ribbon:
+  eureka:
+    enabled: true
 

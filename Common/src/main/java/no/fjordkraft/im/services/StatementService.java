@@ -29,4 +29,6 @@ public interface StatementService {
 
    // public void splitAndSave(TransferFile transferFile);
 
+    public Statement getStatement(Long statementId);
+
 }

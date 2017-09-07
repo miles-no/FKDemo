@@ -1,8 +1,8 @@
 package no.fjordkraft.im.model;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by miles on 5/2/2017.
@@ -17,9 +17,9 @@ public class Statement {
     @SequenceGenerator(name="SEQ", sequenceName="IM_STATEMENT_SEQ")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name="SI_ID")
-    private  SystemBatchInput systemBatchInput;
+    private SystemBatchInput systemBatchInput;
 
     @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, mappedBy = "statement", fetch = FetchType.LAZY)
     private StatementPayload statementPayload;

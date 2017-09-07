@@ -10,6 +10,10 @@ import java.io.IOException;
  */
 public interface PDFGenerator {
     public void generateInvoicePDF() throws InterruptedException;
-    public void generateInvoicePDFSingleStatement(Statement statement);
+   // public void generateInvoicePDFSingleStatement(Statement statement);
     public byte[] generatePreview(Long layoutId, Integer version) throws IOException, BirtException;
+    public void processStatement(Statement statement);
+    public void processStatement(Long statementId);
+    public void generateInvoicePDFSingleStatement(Statement statement);
+
 }

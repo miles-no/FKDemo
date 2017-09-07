@@ -15,6 +15,12 @@
             </div>
         </div>
     </div>
+    <div class="col-sm-offset-5 col-sm-3 form-horizontal">
+        <label class="text-match search-align col-sm-7">Records per page</label>
+        <div class="col-sm-5">
+            <input  type="text" class="form-control text-center" ng-model="pageSize">
+        </div>
+    </div>
     <div class="col-sm-12">
         <table st-table="displayedCollection" st-safe-src="tableRule" class="table table-align">
             <thead>
@@ -71,7 +77,7 @@
             <tfoot>
             <tr>
                 <td colspan="9" class="text-center">
-                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                    <div st-pagination="" st-items-by-page="pageSize" st-template = './templates/clientPagination/clientPagination.html'></div>
                 </td>
             </tr>
             </tfoot>

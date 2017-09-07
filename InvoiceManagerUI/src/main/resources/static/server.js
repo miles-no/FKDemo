@@ -113,7 +113,7 @@ app.get('/brand/config', function(req, res) {
     url: `${apiUrl}/brand/config`
 },function(error,response,body){
   console.log('/brand/config',body);
-  res.send(body);
+  res.set('X-FK-Functions','Afi_Standard,Afi_Standard_vip,Afi_Meldingsutveksling,Afi_EndreKrav,Afi_Bunting,Afi_Kreditere,Afi_Rabatt,Afi_forsendelsesmaate,Admin_Brukeradministrasjon,Admin_Konfigurasjon,Admin_Jobber,Admin_Epostoppsett,Admin_ZipBackup').send(body);
 })
 });
 

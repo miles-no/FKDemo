@@ -9,6 +9,8 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+  application:
+      name: im-pdfgenerator
 
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver

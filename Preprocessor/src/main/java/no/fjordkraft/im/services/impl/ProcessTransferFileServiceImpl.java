@@ -10,9 +10,11 @@ import no.fjordkraft.im.task.SplitterTask;
 import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -28,7 +30,7 @@ import java.nio.charset.StandardCharsets;
  * Created by miles on 8/21/2017.
  */
 @Service
-public class ProcessTransferFileServiceImpl implements ProcessTransferFileService {
+public class ProcessTransferFileServiceImpl implements ProcessTransferFileService,ApplicationContextAware {
 
     private static final Logger logger = LoggerFactory.getLogger(StatementServiceImpl.class);
 
@@ -95,5 +97,10 @@ public class ProcessTransferFileServiceImpl implements ProcessTransferFileServic
         }
         stopWatch.stop();
         logger.debug("Time for splitting file with id "+ systemBatchInput.getId() + " Filename "+ systemBatchInput.getTransferFile().getFilename() + stopWatch.prettyPrint());
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 }

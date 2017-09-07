@@ -7,6 +7,7 @@ import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.*;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
+import no.fjordkraft.im.task.PDFGeneratorTask;
 import no.fjordkraft.im.util.IMConstants;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.birt.core.exception.BirtException;
@@ -22,9 +23,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 //import org.springframework.core.task.TaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.util.StopWatch;
 
 import javax.annotation.PostConstruct;
@@ -56,7 +60,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     IReportEngine reportEngine;
 
     @Autowired
-    StatementService statementService;
+    StatementServiceTemp statementService;
 
     @Autowired
     LayoutServiceImpl layoutDesignService;
@@ -64,9 +68,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     @Autowired
     LayoutContentServiceImpl layoutContentService;
 
-    /*@Autowired
+    @Autowired
     @Qualifier("PDFGeneratorExecutor")
-    TaskExecutor taskExecutor;*/
+    TaskExecutor taskExecutor;
 
     @Autowired
     InvoiceGenerator invoiceGenerator;
@@ -126,20 +130,26 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     }
 
     @Override
-    @Transactional()
+    @Transactional
     public void generateInvoicePDFSingleStatement(Statement statement) {
         StopWatch stopWatch = new StopWatch();
-        stopWatch.start("PDF generation for statement "+ statement.getId());
+        //Statement statement = null;
+        String systemBatchInputFileName = "";
+        String subFolderName = "";
         try {
-            //statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING);
-            String systemBatchInputFileName = "";
-            String subFolderName = "";
+            logger.debug(" transaction name ::"+ TransactionSynchronizationManager.getCurrentTransactionName());
+            //statement = statementService.getStatement(statementId);
             systemBatchInputFileName = statement.getSystemBatchInput().getTransferFile().getFilename();
+            stopWatch.start("PDF generation for statement "+ statement.getId());
+            //statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING);
+            //statement = statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING);
             subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
             birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName, pdfGeneratedFolderName, xmlFolderName);
-            statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSED);
+            statement = statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSED);
+            //statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSING);
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             invoiceGenerator.generateInvoice(statement);
+            //statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
         } catch (PDFGeneratorException e) {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
@@ -150,9 +160,21 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
         }
         stopWatch.stop();
-        logger.debug("PDF generated for statement with statementId"+ statement.getId()+ "completed");
+        logger.debug("PDF generated for statement with statementId "+ statement.getId()+ "completed");
         logger.debug(stopWatch.prettyPrint());
+        String directoryPath = outputDirectoryPath+ File.separator + subFolderName + File.separator + statement.getInvoiceNumber();
+        logger.debug(" Directory to delete path "+ directoryPath);
+        cleanUpFiles(directoryPath);
     }
+
+    private void cleanUpFiles(String outputDirectoryPath){
+        try {
+            FileUtils.deleteDirectory(new File(outputDirectoryPath));
+        } catch (IOException e) {
+            logger.debug("Exception while deleting directory "+outputDirectoryPath, e);
+        }
+    }
+
 
     private Throwable getCause(Throwable e) {
         Throwable cause = null;
@@ -172,12 +194,6 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         String accountNo = statement.getAccountNumber();
         String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
         try {
-            /*EngineConfig engineConfig = new EngineConfig();\
-            engineConfig.setResourcePath(birtResourcePath);
-            Platform.startup(engineConfig);
-            IReportEngineFactory factory = (IReportEngineFactory) Platform
-                    .createFactoryObject( IReportEngineFactory.EXTENSION_REPORT_ENGINE_FACTORY );
-            reportEngine = factory.createReportEngine(engineConfig);*/
 
             String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + statement.getInvoiceNumber() + File.separator ;
             String xmlFilePath =  basePath + xmlFolderName + File.separator + "statement.xml";
@@ -211,7 +227,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             task.setParameterValue("sourcexml", xmlFilePath);
             task.setParameterValue("campaignImage", campaignImage);
             PDFRenderOption options = new PDFRenderOption();
-            logger.debug("Custom Font path: " + customPdfFontPath);
+            //logger.debug("Custom Font path: " + customPdfFontPath);
             options.setFontDirectory(customPdfFontPath);
             options.setEmbededFont(true);
             options.setOutputFormat("pdf");
@@ -225,7 +241,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         }
 
         long endTime = System.currentTimeMillis();
-        logger.debug("Time to execute report " + (endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
+        logger.debug("Time to generate PDF for statement id  " + statement.getId() + " "+(endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
 
     }
 
@@ -269,5 +285,27 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
         File file = new File(ouputFilePath);
         return FileUtils.readFileToByteArray(file);
+    }
+
+    public void processStatement(Statement statement){
+        if(taskExecutor instanceof ThreadPoolTaskExecutor) {
+            ThreadPoolTaskExecutor executor = (ThreadPoolTaskExecutor)taskExecutor;
+            logger.debug("PDF generator thread queue count " + executor.getThreadPoolExecutor().getQueue().size() +" active threads "+ executor.getActiveCount() + "max pool size "+executor.getMaxPoolSize()+ " :: "+executor.getThreadPoolExecutor().getActiveCount());
+        }
+        PDFGeneratorTask pdfGeneratorTask = applicationContext.getBean(PDFGeneratorTask.class,statement);
+        taskExecutor.execute(pdfGeneratorTask);
+    }
+
+    @Transactional
+    public void processStatement(Long statementId){
+        Statement statement = statementService.getStatement(statementId);
+        statement = statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING);
+        if(taskExecutor instanceof ThreadPoolTaskExecutor) {
+            ThreadPoolTaskExecutor executor = (ThreadPoolTaskExecutor)taskExecutor;
+            logger.debug("PDF generator thread queue count " + executor.getThreadPoolExecutor().getQueue().size() +" active threads "+ executor.getActiveCount() + "max pool size "+executor.getMaxPoolSize()+ " :: "+executor.getThreadPoolExecutor().getActiveCount());
+        }
+        PDFGeneratorTask pdfGeneratorTask = applicationContext.getBean(PDFGeneratorTask.class,statement);
+        taskExecutor.execute(pdfGeneratorTask);
+        logger.debug("exiting PDFGenerator processStatement for statement with ID "+ statementId);
     }
 }

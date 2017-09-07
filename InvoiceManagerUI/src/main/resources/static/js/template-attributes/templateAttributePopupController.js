@@ -1,4 +1,4 @@
-app.controller('templateAttributePopupController',function($scope,options,close){
+const templateAttributePopupController = ($scope,options,close) => {
   $scope.options = options;
   $scope.type = ['STRING','FLOAT','INTEGER']
   $scope.rule = options.body.bodyContent
@@ -18,4 +18,5 @@ app.controller('templateAttributePopupController',function($scope,options,close)
   $(document).on('shown.bs.modal', '.modal', function() {
     $(this).find('[autofocus]').focus();
   });
-});
+};
+export {templateAttributePopupController}

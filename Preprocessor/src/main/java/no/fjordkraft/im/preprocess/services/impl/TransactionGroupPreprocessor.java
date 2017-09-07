@@ -23,7 +23,7 @@ import java.util.Map;
  */
 @Service
 @PreprocessorInfo(order=6)
-public class TransactionGroupPreprocessor  extends BasePreprocessor{
+public class TransactionGroupPreprocessor  extends BasePreprocessor {
 
     @Autowired
     GridConfigService gridConfigService;
@@ -100,7 +100,7 @@ public class TransactionGroupPreprocessor  extends BasePreprocessor{
         resultTransaction.setTransactionType(type);
         resultTransaction.setTransactionCategory(transaction.getTransactionCategory().substring(3));
         resultTransaction.setFreeText(transaction.getFreeText());
-        resultTransaction.setAmountWithVat(transaction.getAmountWithVat()*IMConstants.NEGATIVE);
+        resultTransaction.setAmountWithVat(transaction.getAmountWithVat()* IMConstants.NEGATIVE);
         resultTransaction.setStartDate(transaction.getStartDate());
         resultTransaction.setEndDate(transaction.getEndDate());
         resultTransaction.setReference(transaction.getReference());

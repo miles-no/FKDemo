@@ -17,6 +17,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.StopWatch;
 
 import javax.sql.DataSource;
@@ -43,12 +45,22 @@ public class AppConfig {
     @Autowired
     private Environment env;
 
+    @Bean(name="PDFGeneratorExecutor")
+    @DependsOn("BirtEngine")
+    public TaskExecutor getPDFGeneratorExecutor(ConfigService configService) {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        int maxPool = configService.getInteger(IMConstants.NUM_OF_THREAD_PDFGENERATOR);
+        executor.setCorePoolSize(10);
+        executor.setMaxPoolSize(maxPool);
+        executor.setQueueCapacity((Integer.valueOf(IMConstants.MAX_QUEUE_CAPACITY)));
+        executor.initialize();
+        return executor;
+    }
+
 
     @Bean(name="BirtEngine")
-    //@DependsOn({"liquibase","SpringSchedulerStarter"})
     public IReportEngine getBirtEngine(ConfigService configService) throws BirtException, MalformedURLException {
         StopWatch stopWatch = new StopWatch();
-     //   System.out.print("ULocale.getDefault(ULocale.Category.FORMAT) :: "+ULocale.getDefault(ULocale.Category.FORMAT));
         stopWatch.start("Initializing Birt engine");
         String fontPath = configService.getString(IMConstants.CUSTOM_FONT_PATH);
         try {
@@ -88,18 +100,6 @@ public class AppConfig {
 
         stopWatch.stop();
         logger.debug(stopWatch.prettyPrint());
-
-
-            Runtime runtime = Runtime.getRuntime();
-            long totalMemory = runtime.totalMemory(); // current heap allocated to the VM process
-            System.out.println("Total memomry = "+ totalMemory);
-            long freeMemory = runtime.freeMemory(); // out of the current heap, how much is free
-            long maxMemory = runtime.maxMemory(); // Max heap VM can use e.g. Xmx setting
-            long usedMemory = totalMemory - freeMemory; // how much of the current heap the VM is using
-            long availableMemory = maxMemory - usedMemory; // available memory i.e. Maximum heap size minus the current amount used
-            System.out.println("Total memomry = "+ totalMemory+ " Free memory "+ freeMemory + " max memory "+ maxMemory+" used memory "+ usedMemory+ " available memory "+ availableMemory);
-
-        //}
         return engine;
     }
 }

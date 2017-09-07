@@ -1,5 +1,5 @@
 server:
-  port: 8805
+  port: 8004
 
 spring:
   #datasource:
@@ -11,22 +11,23 @@ spring:
   datasource:
       driverClassName: oracle.jdbc.driver.OracleDriver
       url: jdbc:oracle:thin:@localhost:1521:xe
-      username: vimond
-      password: genesis
+      username: bhavik
+      password: bhavik123
 
 logging:
   level:
     org.springframework.web: ERROR
     no.fjordkraft: DEBUG
+    org.springframework.transaction.interceptor: TRACE
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
   #file: /opt/app/invoice_manager/logs/application.log
-  file: D:\FuelKraft\invoice_manager\logs\application.log
+  file: D:/FuelKraft/invoice_manager/logs/im-preprocess.log
 
 if320.skip.bytes: false
 spring.jackson.serialization.fail-on-empty-beans: false
 
 liquibase:
   context: dev
-  enabled: disable
+  enabled: enable

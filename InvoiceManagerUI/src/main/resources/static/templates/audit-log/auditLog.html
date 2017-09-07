@@ -54,6 +54,12 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-4 form-horizontal">
+            <label class="col-md-2">Records per page</label>
+            <div class="col-md-6">
+                <input  type="text" class="form-control text-center" ng-model="pageSize" ng-change="getLogs()">
+            </div>
+        </div>
     </div>
     <div class="col-sm-12">
         <table st-table="displayedCollection" st-safe-src="auditLog" class="table">

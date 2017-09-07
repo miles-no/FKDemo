@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by miles on 5/4/2017.
  */
-@Repository
+@Repository("imStatementRepository")
 public interface StatementRepository extends JpaRepository<Statement,Long> {
 
     @Query("select s from Statement s where rownum <= 35 and s.status = :status order by s.createTime asc")

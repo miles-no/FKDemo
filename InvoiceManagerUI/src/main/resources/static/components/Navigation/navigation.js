@@ -1,43 +1,49 @@
-var app = angular.module('invoiceManagerApp');
+'use strict';
+const navigation = {
+    templateUrl: 'components/Navigation/navigation.html',
+    controller: class navigation {
+      constructor($state, $scope,$rootScope, $http){
+        this.$http = $http;
+        this.$state = $state;
+        this.$scope = $scope;
+        this.$rootScope = $rootScope;
+        this.showMenu = false;
+        this.activeMenu = 'home'
+        this.isDashbordLive = true;
+        this.disableReset = false;
+        this.time =  this.$rootScope.time
+        this.$rootScope.isDashbordLive = this.isDashbordLive;
+        this.$rootScope.$watch('time', () => {
+          this.time = this.$rootScope.time
+        })
+      }
+      toggleDashbordLive(){
+        this.isDashbordLive = !this.isDashbordLive;
+      }
+      navigateTo(url) {
+        if (! url){
+          this.$state.go('home');
+          this.activeMenu = 'home';
+        }else{
+          this.activeMenu = url;
+          this.showMenu = !this.showMenu;
+          this.$state.go(url);
+        }
+      }
 
-function navigationController($state, $scope,$rootScope, $http){
-  this.showMenu = false;
-  this.activeMenu = 'home'
-  this.isDashbordLive = true;
-  //this.abcd = $rootScope.abcd;
-
-  let self = this
-  $rootScope.$watch('time', function(){
-    self.time =  $rootScope.time
-  })
-  $rootScope.isDashbordLive = this.isDashbordLive;
-  this.toggleDashbordLive = function(){
-    this.isDashbordLive = !this.isDashbordLive;
-  }
-
-  this.navigateTo = function (url) {
-    if (! url){
-      $state.go('home');
-      this.activeMenu = 'home';
-    }else{
-      this.activeMenu = url;
-      this.showMenu = !this.showMenu;
-      $state.go(url);
+      logOff(){
+        this.$http.get('https://afitest.fjordkraft.no/api/openrest/security/logoff').then((response) => {
+          console.log(response);
+        })
+      }
+      resetDashboard() {
+        if (!this.disableReset) {
+          this.disableReset = true
+          this.$http.post('/invoicemanager/transferfile/process').then(function (reponse) {
+            this.disableReset = false
+          })
+        }
+      }
     }
-  }
-
-  this.disableReset = false
-  this.resetDashboard = function () {
-    if (!this.disableReset) {
-      this.disableReset = true
-      var self = this;
-      $http.post('/transferfile/process').then(function (reponse) {
-        self.disableReset = false
-      })
-    }
-  }
 }
-app.component('navigation',{
-  templateUrl: 'components/Navigation/navigation.html',
-  controller: navigationController
-});
+export {navigation};

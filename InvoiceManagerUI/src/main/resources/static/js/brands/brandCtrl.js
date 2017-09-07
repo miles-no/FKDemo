@@ -1,6 +1,4 @@
-var app = angular.module('invoiceManagerApp');
-
-app.controller('ManageBrandsController',function($scope, $q, $http,ModalService){
+const ManageBrandsController = ($scope, $q, $http, ModalService) => {
   $scope.brands =[];
   $scope.alerts =[];
 
@@ -13,19 +11,20 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
     useEABarcode: '0'
   }
 
+  $scope.pageSize = ''
   $scope.selectedBrands = []
   $scope.tableBrands = []
 
-  function showSelectedBrands () {
+  let showSelectedBrands = () => {
     $scope.tableBrands = []
     if($scope.selectedBrands.length > 0){
-      angular.forEach($scope.brands, function(item){
-        angular.forEach($scope.selectedBrands, function(selectedItem){
+      angular.forEach($scope.brands,(item) => {
+        angular.forEach($scope.selectedBrands,(selectedItem) => {
           if (selectedItem === item.brand){
             $scope.tableBrands.push(item)
           }
         })
-        $scope.tableBrands = _.uniqBy($scope.tableBrands,function(e){
+        $scope.tableBrands = _.uniqBy($scope.tableBrands,(e) => {
           return e
         })
       })
@@ -34,35 +33,40 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
       $scope.tableBrands = $scope.brands
     }
   }
-  $scope.syncCall = function(){
-    $http.get('brand/config/brand').then(function(response){
+
+  $scope.isAuthorizedFor = (func) => {
+    return AuthorizationService.hasAccess(func);
+  }
+
+  $scope.syncCall = () => {
+    $http.get('/invoicemanager/brand/config/brand').then((response) => {
       $scope.dropDownData = response.data
     })
   }
 
-  $scope.closeAlert = function(index){
+  $scope.closeAlert = (index) => {
       $scope.alerts.splice(index,1)
   }
 
-  $scope.onBrandSelect = function(item){
+  $scope.onBrandSelect = (item) => {
     $scope.selectedBrands.push(item);
       showSelectedBrands()
   }
-  $scope.onBrandRemoval = function(item){
-    _.remove($scope.selectedBrands,function(eachSelectedBrand){
+  $scope.onBrandRemoval = (item) => {
+    _.remove($scope.selectedBrands,(eachSelectedBrand) => {
       return eachSelectedBrand === item;
     });
     showSelectedBrands()
   }
-  $scope.getBrands = function () {
+  $scope.getBrands = () => {
 
-    $http.get('/brand/config').then(function (response) {
+    $http.get('/invoicemanager/brand/config').then(function (response) {
       $scope.tableBrands= $scope.brands = response.data.Brand;
     })
   }
 
-  function addBrand (brand) {
-    $http.post('/brand/config',brand).then(function (response) {
+  let addBrand = (brand) => {
+    $http.post('/invoicemanager/brand/config',brand).then((response) => {
       if(response.status === 200){
         $scope.getBrands()
         $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
@@ -70,13 +74,13 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
       else{
         $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
       }
-    },function(err){
+    },(err) => {
       $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
     })
   }
 
-  function updateBrand(brand) {
-    $http.put('/brand/config',brand).then(function (response) {
+  let updateBrand = (brand) => {
+    $http.put('/invoicemanager/brand/config',brand).then((response) => {
       if(response.status === 200){
         $scope.getBrands()
         $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
@@ -89,7 +93,7 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
     })
   }
 
-  $scope.deleteBrands = function (brand) {
+  $scope.deleteBrands =  (brand) => {
     ModalService.showModal({
       templateUrl: 'js/modals/confirmDelete.html',
       controller:'popupController',
@@ -112,9 +116,9 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
       }
     }).then(function(modal){
       modal.element.modal();
-      modal.close.then(function(result){
+      modal.close.then((result) => {
         if(result=='Delete'){
-          $http.delete('/brand/config/'+brand.id).then(function (response) {
+          $http.delete('/invoicemanager/brand/config/'+brand.id).then((response) => {
             if (response.status === 200){
               $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
               $scope.getBrands();
@@ -122,7 +126,7 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
             else{
               $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
             }
-          },function(err){
+          },(err) => {
             $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
           })
         }
@@ -130,7 +134,7 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
     })
   }
 
-  function showModal (brandInfo, type) {
+   let showModal = (brandInfo, type) => {
     ModalService.showModal({
       templateUrl: 'templates/brands/brandsPopup.html',
       controller: 'ManageBrandsPopupController',
@@ -151,9 +155,9 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
           }
         }
       }
-    }).then(function(modal){
+    }).then((modal) => {
       modal.element.modal();
-      modal.close.then(function(response){
+      modal.close.then((response) => {
         if (response === 'Add') {
           addBrand(brandInfo)
         } else if (response === 'Update') {
@@ -162,12 +166,13 @@ app.controller('ManageBrandsController',function($scope, $q, $http,ModalService)
       });
     });
   }
-  $scope.addBrand = function () {
+  $scope.addBrand =  () => {
     var brand = angular.copy(newBrand);
     showModal(brand, 'Add')
   }
-  $scope.updateBrand = function (brandInfo) {
+  $scope.updateBrand = (brandInfo) => {
     var brandData = angular.copy(brandInfo)
     showModal(brandData, 'Update')
   }
-});
+};
+export {ManageBrandsController};

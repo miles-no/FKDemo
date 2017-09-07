@@ -1,5 +1,8 @@
-
-app.controller('mainController',function($scope,$rootScope, $state){
+/**
+ * Created by Kshitij Bahul on 17-05-2017.
+ */
+'use strict';
+const mainController = ($scope,$rootScope, $state) => {
   $scope.init = function(){
     console.log('Here in mainController')  ;
   };
@@ -16,4 +19,5 @@ app.controller('mainController',function($scope,$rootScope, $state){
     $scope.showMenu = !$scope.showMenu
     $state.go(url)
   }
-});
+}
+export {mainController};

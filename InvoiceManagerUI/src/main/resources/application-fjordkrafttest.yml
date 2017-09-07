@@ -17,7 +17,7 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-  file: /home/miles2/app-test-env/logs/application.log
+  file: /home/miles2/app-test-env/logs/ui/application.log
 
 
 if320.skip.bytes: true

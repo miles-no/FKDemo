@@ -7,6 +7,7 @@ import no.fjordkraft.im.preprocess.services.PreprocessorEngine;
 import no.fjordkraft.im.preprocess.services.PreprocessorService;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.ConfigService;
+import no.fjordkraft.im.services.PDFGenerator;
 import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.services.impl.AuditLogServiceImpl;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
@@ -66,8 +67,11 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
     @Autowired
     AuditLogServiceImpl auditLogService;
 
+    @Autowired
+    PDFGenerator pdfGenerator;
+
     @Override
-    public Statement unmarshallStatement(String path) throws Exception {
+    public Statement unmarshallStatement(String path) throws IOException {
         try {
             InputStream inputStream = new FileInputStream(path);
             return unmarshallStatement(inputStream);
@@ -78,7 +82,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
     }
 
     @Override
-    public Statement unmarshallStatement(InputStream inputStream) throws Exception {
+    public Statement unmarshallStatement(InputStream inputStream) throws IOException {
         try {
             Reader reader = new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1);
             StreamSource source = new StreamSource(reader);
@@ -95,7 +99,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         StopWatch stopwatch = new StopWatch("Preprocessing");
         stopwatch.start();
         Long numOfThreads = configService.getLong(IMConstants.NUM_OF_THREAD_PREPROCESSOR);
-        List<no.fjordkraft.im.model.Statement> statementList = statementRepository.readStatements(numOfThreads,StatementStatusEnum.PENDING.name());
+        List<no.fjordkraft.im.model.Statement> statementList = statementRepository.readStatements(numOfThreads, StatementStatusEnum.PENDING.name());
         logger.debug("Preprocessing started for "+ statementList.size() + " statements");
         if(taskExecutor instanceof ThreadPoolTaskExecutor) {
             ThreadPoolTaskExecutor executor = (ThreadPoolTaskExecutor)taskExecutor;
@@ -124,7 +128,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             Statement if320statement = unmarshallStatement(new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1)));
             //statementService.updateStatement(getUpdatedStatementEntity(if320statement, statement));
             getUpdatedStatementEntity(if320statement, statement);
-            statementService.updateStatement(statement,StatementStatusEnum.PRE_PROCESSING);
+            statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
             PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request = new PreprocessRequest();
             request.setStatement(if320statement);
             request.setEntity(statement);
@@ -142,6 +146,8 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         stopwatch.stop();
         logger.debug("Preprocessing completed for statement with id "+ statement.getId());
         logger.debug(stopwatch.prettyPrint());
+        statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
+        pdfGenerator.generateInvoicePDF(statement);
     }
 
     public no.fjordkraft.im.model.Statement getUpdatedStatementEntity(Statement statement,no.fjordkraft.im.model.Statement statementEntity) {

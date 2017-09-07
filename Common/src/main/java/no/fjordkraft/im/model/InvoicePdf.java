@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class InvoicePdf {
 
     @Column(name="ID")
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator = "SEQ")
     @SequenceGenerator(name="SEQ", sequenceName="IM_INVOICE_PDFS_SEQ")
     private Long id;

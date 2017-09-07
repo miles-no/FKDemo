@@ -1,6 +1,4 @@
-var app = angular.module('invoiceManagerApp')
-
-app.directive('limitTo',[function(){
+const limitTo = () => {
   return{
     restrict: 'A',
     link: function(scope,elem,attrs){
@@ -14,4 +12,5 @@ app.directive('limitTo',[function(){
       })
     }
   }
-}])
+}
+export {limitTo}

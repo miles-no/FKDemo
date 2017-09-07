@@ -18,10 +18,10 @@ public interface SegmentControlFileRepository extends JpaRepository<SegmentContr
             "s.fromDate <= to_date(:currentDate,'DD-MON-RR') " +
             "order by s.fromDate desc")
     List<SegmentControlFileResult> getSegmentControlFileByAccountNo(@Param("accountNo") String accountNo,
-                                                              @Param("currentDate") String currentDate);
+                                                                    @Param("currentDate") String currentDate);
 
     @Query("select s from SegmentControlFileResult s where s.brand = :brand and s.accountNo is null and " +
             "s.fromDate <= to_date(:currentDate,'DD-MON-RR') order by s.fromDate desc")
     List<SegmentControlFileResult> getSegmentControlFileByBrand(@Param("brand") String brand,
-                                                          @Param("currentDate") String currentDate);
+                                                                @Param("currentDate") String currentDate);
 }

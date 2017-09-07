@@ -4,6 +4,31 @@
 .st-sort-ascent:after {content: '\25B2'}
 .st-sort-descent:after {content: '\25BC'}
 
+.pagination{
+  .active{
+    a{
+      background-color: $brand-color;
+      border-color: $brand-color;
+      &:hover{
+        background-color: $brand-color;
+        border-color: $brand-color;
+      }
+    }
+  }
+  li{
+    a{
+       cursor : default;
+       color: $brand-color;
+       &:hover{
+         color: $brand-color;
+       }
+       span{
+         cursor: default;
+         color: $brand-color;
+       }
+    }
+  }
+}
 .pointer{
   color: $brand-color;
   outline: none;
