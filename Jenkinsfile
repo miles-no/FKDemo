@@ -22,7 +22,7 @@ stage("Build") {
                 catch(e) {
                     throw e
                 }
-                stash includes: "PDFGenerator/targer/*.jar,Preprocessor/target/*.jar, InvoiceManagerUI/target/*.jar,ansible/**", name: "built"
+                stash includes: "PDFGenerator/target/*.jar,Preprocessor/target/*.jar, InvoiceManagerUI/target/*.jar,ansible/**,ansible/**/**", name: "built"
             }
         }
     }
