@@ -2,6 +2,8 @@
 -
   hosts: appservers
   remote_user: miles2
+  vars:
+    appfolderMap: {"im-ui":"InvoiceManagerUI","im-pdfgenerator":"PDFGenerator","im-preprocessor":"Preprocessor"}
   tasks:
     - include: site.yml app={{ item }}
       with_items:

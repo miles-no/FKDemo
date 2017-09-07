@@ -1,12 +1,5 @@
-- hosts: appservers
-  remote_user: miles2
-  serial: "50%"
-  vars:
-      appfolderMap: {"im-ui":"InvoiceManagerUI","im-pdfgenerator":"PDFGenerator","im-preprocessor":"Preprocessor"}
-
-  tasks:
     -
-      name: Set the application folder
+      name: "Set the application folder"
       set_fact:
         appfolder: "{{appfolderMap[app]}}"
     -
@@ -50,17 +43,33 @@
     -
       name: "{{app}}@{{inventory_hostname}} - Copying new binaries"
       copy:
-        src="{{item}}"
-        dest={{app_basedir}}/{{app}}/current/
+        src="../{{appfolder}}/target/{{app}}.jar"
+        dest="{{app_basedir}}/{{app}}/current/"
         mode=0700
-      with_fileglob :
-        - ../{{appfolder}}/target/*.jar
 
     -
       name: "{{app}}@{{inventory_hostname}} - Copying config"
       template:
-        src=templates/{{app}}/{{item}}
-        dest={{app_basedir}}/{{app}}/current/{{item}}
+        src=templates/{{app}}/{{line_item}}
+        dest={{app_basedir}}/{{app}}/current/{{line_item}}
         owner=miles2
       with_items:
         - application.yml
+      loop_control:
+        loop_var: line_item
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Copying obsidian properties"
+      template:
+        src=templates/{{app}}/com.carfey.properties
+        dest={{app_basedir}}/{{app}}/current/{{line_item}}
+        owner=miles2
+      when: app == "im-preprocessor"
+
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Copying JVM config"
+      template:
+        src=templates//{{app}}/jvmconfig.conf
+        dest="{{app_basedir}}/{{app}}/current/{{app}}-app.conf"
+        owner=miles2
