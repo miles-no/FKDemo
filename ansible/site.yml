@@ -1,10 +1,14 @@
 - hosts: appservers
   remote_user: miles2
   serial: "50%"
+  vars:
+      appfolderMap: {"im-ui":"InvoiceManagerUI","im-pdfgenerator":"PDFGenerator","im-preprocessor":"Preprocessor"}
+
   tasks:
     -
       name: Set the application folder
-        set_fact: appfolder="{% if app=='im-ui' %}InvoiceManagerUI{% elif app=='im-pdfgenerator'%}PDFGenerator{% else %}Preprocessor{% endif %}"
+        set_fact:
+          appfolder: "{{appfolderMap[app]}}"
     -
       name: "{{app}}@{{inventory_hostname}} - Making sure base directory {{app_basedir}} exists"
       become: true
