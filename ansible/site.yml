@@ -7,8 +7,8 @@
   tasks:
     -
       name: Set the application folder
-        set_fact:
-          appfolder: "{{appfolderMap[app]}}"
+      set_fact:
+        appfolder: "{{appfolderMap[app]}}"
     -
       name: "{{app}}@{{inventory_hostname}} - Making sure base directory {{app_basedir}} exists"
       become: true
