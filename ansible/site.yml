@@ -4,8 +4,7 @@
   tasks:
     -
       name: Set the application folder
-        set_fact:
-          appfolder: "{% if app=='im-ui' %}InvoiceManagerUI{% elif app=='im-pdfgenerator'%}PDFGenerator{% else %}Preprocessor{% endif %}"
+        set_fact: appfolder="{% if app=='im-ui' %}InvoiceManagerUI{% elif app=='im-pdfgenerator'%}PDFGenerator{% else %}Preprocessor{% endif %}"
     -
       name: "{{app}}@{{inventory_hostname}} - Making sure base directory {{app_basedir}} exists"
       become: true
