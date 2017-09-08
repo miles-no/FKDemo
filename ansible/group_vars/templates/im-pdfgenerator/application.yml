@@ -8,8 +8,6 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-
-spring:
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
     #url: jdbc:oracle:thin:@bkkexa01-scan:1521/T120.FK.NO

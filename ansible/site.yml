@@ -71,14 +71,14 @@
       name: "{{app}}@{{inventory_hostname}} - Copying JVM config"
       template:
         src=templates//{{app}}/jvmconfig.conf
-        dest="{{app_basedir}}/{{app}}/current/{{app}}-app.conf"
+        dest="{{app_basedir}}/{{app}}/current/{{app}}.conf"
         owner=miles2
 
     -
       name: "{{app}}@{{inventory_hostname}} - Creating symlink for service"
       become: true
       file:
-        src="{{app_basedir}}/{{app}}/current/{{app}}-app.jar"
+        src="{{app_basedir}}/{{app}}/current/{{app}}.jar"
         dest="/etc/init.d/{{app}}"
         state=link
       when: app == "im-pdfgenerator"
@@ -90,3 +90,4 @@
         name="{{app}}"
         state=started
         enabled=yes
+      when: app == "im-pdfgenerator"

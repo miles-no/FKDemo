@@ -1,18 +1,19 @@
 server:
-  port: 9040
+  port: 9044
 
 spring:
   main:
     banner-mode: 'off'
-  #profiles.active: dev
   http:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+
+spring:
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
     #url: jdbc:oracle:thin:@bkkexa01-scan:1521/T120.FK.NO
-    url: {{db_url}}
+    url: jdbc:oracle:oci:@T120
     username: invoiceman
     password: NqwTGytxmPcAgut
 
@@ -24,9 +25,8 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-  file: /home/miles2/app-test-env/logs/ui/application.log
-
+  file: /home/miles2/app-test-env/logs/pdfgenerator/application.log
 
 liquibase:
-  context: {{liquibasecontext}}
+  context: fjordkrafttest
   enabled: disable
