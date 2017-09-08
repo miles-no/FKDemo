@@ -14,7 +14,7 @@ spring:
     #url: jdbc:oracle:thin:@bkkexa01-scan:1521/T120.FK.NO
     url: {{db_url}}
     username: invoiceman
-    password: NqwTGytxmPcAgut
+    password: {{db_password}}
 
 logging:
   level:
