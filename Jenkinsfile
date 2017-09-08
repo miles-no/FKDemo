@@ -38,7 +38,7 @@ stage('Deploy to Test') {
                         playbook: "ansible/manage_all.yml",
                         inventory: "ansible/test",
                         credentialsId: "miles2-login",
-                         extras: "--vault-password-file ~/ansible-vault/vault.txt",
+                        extras: "--vault-password-file ~/ansible-vault/mobile.txt",
                         colorized: true)
                 }
                 catch(e) {
