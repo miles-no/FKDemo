@@ -4,6 +4,8 @@ server:
 spring:
   main:
     banner-mode: 'off'
+  application:
+      name: im-pdfgenerator
   http:
     multipart:
       max-file-size: 10MB
@@ -28,3 +30,21 @@ logging:
 liquibase:
   context: {{liquibasecontext}}
   enabled: disable
+
+management:
+  context-path: "/actuator"
+  security:
+    enabled: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: {{ eureka_client_serviceUrl_defaultZone }}
+    registerWithEureka: true
+  instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    preferIpAddress: true
+    metadataMap:
+      management:
+        context-path: ${management.context-path}

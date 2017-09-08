@@ -4,7 +4,8 @@ server:
 spring:
   main:
     banner-mode: 'off'
-  #profiles.active: dev
+  application:
+    name: im-preprocessor
   http:
     multipart:
       max-file-size: 10MB
@@ -28,3 +29,16 @@ logging:
 liquibase:
   context: {{liquibasecontext}}
   enabled: disable
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: {{ eureka_client_serviceUrl_defaultZone }}
+    registerWithEureka: true
+  instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    preferIpAddress: true
+    metadataMap:
+      management:
+        context-path: ${management.context-path}

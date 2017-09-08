@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import no.fjordkraft.im.exceptions.FileNotFoundException;
 import no.fjordkraft.im.services.FileService;
 import org.apache.commons.io.filefilter.RegexFileFilter;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -130,6 +130,7 @@ public class FileServiceImpl implements FileService {
         }
         File dir = new File(dirToCheck);
         return dir.exists() && dir.isDirectory();
+
     }
 
     @Override

@@ -3,7 +3,7 @@ package no.fjordkraft.im;
 import com.itextpdf.text.FontFactory;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.util.IMConstants;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.birt.core.exception.BirtException;
 import org.eclipse.birt.core.framework.Platform;
 import org.eclipse.birt.report.engine.api.EngineConfig;
