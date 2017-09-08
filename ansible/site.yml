@@ -52,6 +52,10 @@
         owner=miles2
 
     -
+      name: "{{app}}@{{inventory_hostname}} - Copying existing files to {{app_basedir}}/{{app}}/previous"
+      command: "cp -a {{app_basedir}}/{{app}}/current/. {{app_basedir}}/{{app}}/previous/"
+
+    -
       name: "{{app}}@{{inventory_hostname}} - Copying new binaries"
       copy:
         src="../{{appfolder}}/target/{{app}}.jar"
@@ -60,9 +64,9 @@
       when: app != 'im-pdfgenerator'
 
     -
-      name: "{{app}}@{{inventory_hostname}} - Copying new binaries"
+      name: "{{app}}@{{inventory_hostname}} - Copying zip binaries"
       copy:
-        src="../{{appfolder}}/target/{{app}}.jar"
+        src="../{{appfolder}}/target/{{app}}.zip"
         dest="{{app_basedir}}/{{app}}/current/"
         mode=0700
       when: app == 'im-pdfgenerator'
