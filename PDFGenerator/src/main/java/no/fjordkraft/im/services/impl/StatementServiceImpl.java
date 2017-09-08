@@ -54,7 +54,7 @@ public class StatementServiceImpl implements StatementServiceTemp,ApplicationCon
     /*@Autowired
     TransferFileServiceImpl transferFileService;*/
 
-    @Value("${if320.skip.bytes}")
+    //@Value("${if320.skip.bytes}")
     Boolean skipBytes;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
