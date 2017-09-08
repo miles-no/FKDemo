@@ -4,7 +4,7 @@ server:
 spring:
   main:
     banner-mode: 'off'
-  profiles.active: dev
+  #profiles.active: dev
   http:
     multipart:
       max-file-size: 10MB
@@ -14,7 +14,7 @@ spring:
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
     #url: jdbc:oracle:thin:@bkkexa01-scan:1521/T120.FK.NO
-    url: jdbc:oracle:oci:@T120
+    url: {{db_url}}
     username: invoiceman
     password: NqwTGytxmPcAgut
 
@@ -30,5 +30,5 @@ logging:
 
 
 liquibase:
-  context: fjordkrafttest
+  context: {{liquibasecontext}}
   enabled: disable

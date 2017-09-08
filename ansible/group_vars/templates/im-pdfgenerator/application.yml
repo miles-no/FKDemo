@@ -13,9 +13,10 @@ spring:
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
     #url: jdbc:oracle:thin:@bkkexa01-scan:1521/T120.FK.NO
-    url: jdbc:oracle:oci:@T120
+    url: {{db_url}}
     username: invoiceman
     password: NqwTGytxmPcAgut
+    maxActive: 500
 
 logging:
   level:
@@ -28,5 +29,5 @@ logging:
   file: /home/miles2/app-test-env/logs/pdfgenerator/application.log
 
 liquibase:
-  context: fjordkrafttest
+  context: {{liquibasecontext}}
   enabled: disable

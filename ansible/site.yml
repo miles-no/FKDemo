@@ -62,7 +62,7 @@
       name: "{{app}}@{{inventory_hostname}} - Copying obsidian properties"
       template:
         src=templates/{{app}}/com.carfey.properties
-        dest={{app_basedir}}/{{app}}/current/{{line_item}}
+        dest={{app_basedir}}/{{app}}/current/
         owner=miles2
       when: app == "im-preprocessor" 
 
@@ -73,3 +73,20 @@
         src=templates//{{app}}/jvmconfig.conf
         dest="{{app_basedir}}/{{app}}/current/{{app}}-app.conf"
         owner=miles2
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Creating symlink for service"
+      become: true
+      file:
+        src="{{app_basedir}}/{{app}}/current/{{app}}-app.jar"
+        dest="/etc/init.d/{{app}}"
+        state=link
+      when: app == "im-pdfgenerator"
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Starting application"
+      become: true
+      service:
+        name="{{app}}"
+        state=started
+        enabled=yes
