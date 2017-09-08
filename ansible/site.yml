@@ -1,7 +1,19 @@
+
     -
       name: "Set the application folder"
       set_fact:
         appfolder: "{{appfolderMap[app]}}"
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Stopping application"
+      become: true
+      service:
+        name="{{app}}"
+        state=stopped
+        enabled=yes
+      when: app == "im-pdfgenerator"
+      ignore_errors: true
+
     -
       name: "{{app}}@{{inventory_hostname}} - Making sure base directory {{app_basedir}} exists"
       become: true
