@@ -82,12 +82,12 @@
       when: app == 'im-pdfgenerator'
 
     -
-      name: "{{app}}@{{inventory_hostname}} - Copying existing files to {{app_basedir}}/{{app}}/previous"
-      command: "mv {{app_basedir}}/{{app}}/current/{{app}}/* {{app_basedir}}/{{app}}/current/"
+      name: "{{app}}@{{inventory_hostname}} - Copying unzip files to {{app_basedir}}/{{app}}/current"
+      command: "mv {{app_basedir}}/{{app}}/current/{{app}}/* {{app_basedir}}/{{app}}/current"
       when: app == 'im-pdfgenerator'
 
     -
-      name: "{{app}}@{{inventory_hostname}} - Copying existing files to {{app_basedir}}/{{app}}/previous"
+      name: "{{app}}@{{inventory_hostname}} -removing zip {{app_basedir}}/{{app}}/current/{{app}}.zip"
       command: "rm {{app_basedir}}/{{app}}/current/{{app}}.zip"
       when: app == 'im-pdfgenerator'
 
