@@ -1,6 +1,3 @@
-[appservers-pdfgenerator]
-fk-utv-lx12.bkk.no ansible_user=miles2
-
 [appservers]
 fk-t-lx12.bkk.no ansible_user=miles2
 
