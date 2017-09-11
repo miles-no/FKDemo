@@ -1,0 +1,8 @@
+    -
+      name: "{{app}}@{{inventory_hostname}} - Stopping application"
+      become: true
+      service:
+        name="{{app}}"
+        state=stopped
+        enabled=yes
+      ignore_errors: true

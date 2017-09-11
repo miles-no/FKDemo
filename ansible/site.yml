@@ -53,7 +53,7 @@
 
     -
       name: "{{app}}@{{inventory_hostname}} - Copying existing files to {{app_basedir}}/{{app}}/previous"
-      command: "cp -a {{app_basedir}}/{{app}}/current/. {{app_basedir}}/{{app}}/previous/"
+      command: "mv {{app_basedir}}/{{app}}/current/* {{app_basedir}}/{{app}}/previous/"
 
     -
       name: "{{app}}@{{inventory_hostname}} - Copying new binaries"
@@ -78,6 +78,16 @@
           dest: "{{app_basedir}}/{{app}}/current/"
           remote_src: yes
           mode: 0700
+      when: app == 'im-pdfgenerator'
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Copying existing files to {{app_basedir}}/{{app}}/previous"
+      command: "mv {{app_basedir}}/{{app}}/current/{{app}}/* {{app_basedir}}/{{app}}/current/"
+      when: app == 'im-pdfgenerator'
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Copying existing files to {{app_basedir}}/{{app}}/previous"
+      command: "rm {{app_basedir}}/{{app}}/current/{{app}}.zip"
       when: app == 'im-pdfgenerator'
 
     -
@@ -114,13 +124,5 @@
         src="{{app_basedir}}/{{app}}/current/{{app}}.jar"
         dest="/etc/init.d/{{app}}"
         state=link
-      when: app == "im-pdfgenerator"
 
-    -
-      name: "{{app}}@{{inventory_hostname}} - Starting application"
-      become: true
-      service:
-        name="{{app}}"
-        state=started
-        enabled=yes
-      when: app == "im-pdfgenerator"
+

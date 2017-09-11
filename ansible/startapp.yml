@@ -1,0 +1,13 @@
+
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Starting application"
+      become: true
+      service:
+        name="{{app}}"
+        state=started
+        enabled=yes
+
+
+
+
