@@ -21,6 +21,14 @@
         owner=miles2
 
     -
+      name: "{{app}}@{{inventory_hostname}} - Making sure directory {{app_basedir}}/{{app}}/current exists"
+      become: true
+      file:
+        path={{app_basedir}}/{{app}}/current
+        state=directory
+        owner=miles2
+
+    -
       name: "{{app}}@{{inventory_hostname}} - Making sure directory {{app_basedir}}/{{app}}/previous exists"
       become: true
       file:
