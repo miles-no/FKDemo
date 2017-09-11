@@ -1,7 +1,7 @@
 ---
 
 -
-  hosts: appservers-pdfgenerator
+  hosts: appservers
   remote_user: miles2
   vars:
     appfolderMap: {"im-ui":"InvoiceManagerUI","im-pdfgenerator":"PDFGenerator","im-preprocessor":"Preprocessor"}
@@ -36,5 +36,6 @@
         - im-preprocessor
       loop_control:
         loop_var: line_item2
+        
 
 
