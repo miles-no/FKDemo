@@ -45,7 +45,6 @@
       file:
         path={{app_basedir}}/{{app}}/current
         state=absent
-        recurse=yes
 
     -
       name: "{{app}}@{{inventory_hostname}} - Making sure directory {{app_basedir}}/{{app}}/current exists"
