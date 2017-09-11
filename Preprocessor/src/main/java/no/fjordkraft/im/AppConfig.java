@@ -69,7 +69,7 @@ public class AppConfig {
         return marshaller;
     }
 
-    @Bean
+    @Bean(name="unmarshaller")
     public Unmarshaller getJaxb2UnMarshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         marshaller.setPackagesToScan("no.fjordkraft.im.if320.models");

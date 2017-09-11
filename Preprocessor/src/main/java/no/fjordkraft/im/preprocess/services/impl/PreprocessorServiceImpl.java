@@ -43,6 +43,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
     private static final Logger logger = LoggerFactory.getLogger(PreprocessorServiceImpl.class);
 
     @Autowired
+    @Qualifier("unmarshaller")
     Unmarshaller unMarshaller;
 
     @Autowired

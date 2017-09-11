@@ -10,6 +10,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.oxm.Unmarshaller;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
@@ -35,6 +36,7 @@ public class GenericPreprocessor extends BasePreprocessor {
     private ConfigService configService;
 
     @Autowired
+    @Qualifier("unmarshaller")
     private Unmarshaller unMarshaller;
 
     @Override
