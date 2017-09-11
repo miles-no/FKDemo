@@ -54,6 +54,7 @@
     -
       name: "{{app}}@{{inventory_hostname}} - Copying existing files to {{app_basedir}}/{{app}}/previous"
       command: "mv {{app_basedir}}/{{app}}/current/* {{app_basedir}}/{{app}}/previous"
+      ignore_errors: true
 
     -
       name: "{{app}}@{{inventory_hostname}} - Copying new binaries"
