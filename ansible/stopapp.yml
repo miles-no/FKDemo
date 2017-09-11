@@ -4,5 +4,4 @@
       service:
         name="{{app}}"
         state=stopped
-        enabled=yes
       ignore_errors: true
