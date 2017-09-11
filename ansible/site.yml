@@ -5,15 +5,6 @@
         appfolder: "{{appfolderMap[app]}}"
 
     -
-      name: "{{app}}@{{inventory_hostname}} - Stopping application"
-      become: true
-      service:
-        name="{{app}}"
-        state=stopped
-        enabled=yes
-      ignore_errors: true
-
-    -
       name: "{{app}}@{{inventory_hostname}} - Making sure base directory {{app_basedir}} exists"
       become: true
       file:
@@ -30,19 +21,13 @@
         owner=miles2
 
     -
-      name: "{{app}}@{{inventory_hostname}} - Making sure directory {{app_basedir}}/{{app}}/current exists"
-      become: true
-      file:
-        path={{app_basedir}}/{{app}}/current
-        state=directory
-        owner=miles2
-    -
       name: "{{app}}@{{inventory_hostname}} - Making sure directory {{app_basedir}}/{{app}}/previous exists"
       become: true
       file:
         path={{app_basedir}}/{{app}}/previous
         state=directory
         owner=miles2
+
     -
       name: "{{app}}@{{inventory_hostname}} - Making sure directory /var/log/invoicemanager/{{app}}/ exists"
       become: true
@@ -55,10 +40,20 @@
       name: "{{app}}@{{inventory_hostname}} - Copying existing files to {{app_basedir}}/{{app}}/previous"
       command: "cp -R {{app_basedir}}/{{app}}/current/. {{app_basedir}}/{{app}}/previous/"
 
-    -
-      name: "{{app}}@{{inventory_hostname}} - remove existing files from {{app_basedir}}/{{app}}/current"
-      command: "rm -R {{app_basedir}}/{{app}}/current/* "
 
+    - name: "{{app}}@{{inventory_hostname}} Delete current directory {{app_basedir}}/{{app}}/current"
+      file:
+        path={{app_basedir}}/{{app}}/current
+        state=absent
+        recurse=yes
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Making sure directory {{app_basedir}}/{{app}}/current exists"
+      become: true
+      file:
+        path={{app_basedir}}/{{app}}/current
+        state=directory
+        owner=miles2
 
     -
       name: "{{app}}@{{inventory_hostname}} - Copying new binaries"
@@ -90,9 +85,11 @@
       command: "cp -R {{app_basedir}}/{{app}}/current/{{app}}/* {{app_basedir}}/{{app}}/current/"
       when: app == 'im-pdfgenerator'
 
-    -
-      name: "{{app}}@{{inventory_hostname}} -removing zip {{app_basedir}}/{{app}}/current/{{app}}.zip"
-      command: "rm -R {{app_basedir}}/{{app}}/current/{{app}}"
+    - name: "{{app}}@{{inventory_hostname}} Delete directory {{app_basedir}}/{{app}}/current/{{app}}"
+      file:
+        path={{app_basedir}}/{{app}}/current/{{app}}
+        state=absent
+        recurse=yes
       when: app == 'im-pdfgenerator'
 
     -
