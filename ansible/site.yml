@@ -115,7 +115,15 @@
         src=templates/{{app}}/com.carfey.properties
         dest={{app_basedir}}/{{app}}/current/
         owner=miles2
-      when: app == "im-preprocessor" 
+      when: app == "im-preprocessor"
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Copying new relic properties"
+      template:
+        src=templates/{{app}}/newrelic.yml
+        dest={{app_basedir}}/{{app}}/current/
+        owner=miles2
+      when: app == "im-ui"
 
 
     -
