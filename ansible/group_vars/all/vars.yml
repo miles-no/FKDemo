@@ -1,3 +1,4 @@
 app_basedir: /app-invoicemanager/invoice-manager
 newrelic_agent_enabled: "false"
+newrelic_licence_key: 123
 

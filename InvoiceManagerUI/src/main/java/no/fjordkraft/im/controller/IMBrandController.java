@@ -3,6 +3,8 @@ package no.fjordkraft.im.controller;
 import no.fjordkraft.im.model.BrandConfig;
 import no.fjordkraft.im.services.UIBrandService;
 import no.fjordkraft.im.util.IMConstants;
+import no.fjordkraft.security.jpa.domain.UserFunctionEnum;
+import no.fjordkraft.security.springmvc.annotation.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,12 +41,14 @@ public class IMBrandController {
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
     @ResponseBody
+    @Function(UserFunctionEnum.Afi_Rabatt)
     void updateBrandConfig(@RequestBody BrandConfig brandConfig) {
         brandService.updateBrandConfig(brandConfig);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseBody
+    @Function(UserFunctionEnum.Admin_Jobber)
     void deleteBrandConfig(@PathVariable(value="id") Long id) {
         brandService.deleteBrandConfig(id);
     }
