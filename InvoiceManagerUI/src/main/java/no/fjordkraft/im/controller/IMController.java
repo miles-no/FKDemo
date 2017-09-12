@@ -26,6 +26,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.*;
 import java.nio.charset.Charset;
@@ -62,6 +64,11 @@ public class IMController {
 
     @Autowired
     InvoicePdfRepository invoicePdfRepository;
+
+    @RequestMapping(value="/error",method=RequestMethod.GET)
+    public void handleError(HttpServletRequest request , HttpServletResponse response){
+        logger.debug(" error handler response is "+response.getStatus());
+    }
 
     /*@PostConstruct
     public void test() throws IOException {
