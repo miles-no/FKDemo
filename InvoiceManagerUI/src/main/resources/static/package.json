@@ -24,7 +24,7 @@
     "angular-route": "1.5.8",
     "angular-sanitize": "1.5.8",
     "angular-ui-bootstrap": "2.5.0",
-    "app-common": "^1.9.1",
+    "app-common": "1.9.9",
     "body-parser": "1.17.2",
     "clipboard": "^1.7.1",
     "express": "4.15.3",
