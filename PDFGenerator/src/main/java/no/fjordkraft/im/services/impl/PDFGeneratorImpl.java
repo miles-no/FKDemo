@@ -133,20 +133,14 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     @Transactional
     public void generateInvoicePDFSingleStatement(Statement statement) {
         StopWatch stopWatch = new StopWatch();
-        //Statement statement = null;
         String systemBatchInputFileName = "";
         String subFolderName = "";
         try {
-            logger.debug(" transaction name ::"+ TransactionSynchronizationManager.getCurrentTransactionName());
-            //statement = statementService.getStatement(statementId);
             systemBatchInputFileName = statement.getSystemBatchInput().getTransferFile().getFilename();
             stopWatch.start("PDF generation for statement "+ statement.getId());
-            //statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING);
-            //statement = statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING);
             subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
             birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName, pdfGeneratedFolderName, xmlFolderName);
             statement = statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSED);
-            //statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSING);
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             invoiceGenerator.generateInvoice(statement);
             //statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
@@ -167,24 +161,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         cleanUpFiles(directoryPath);
     }
 
-    private void cleanUpFiles(String outputDirectoryPath){
-        try {
-            FileUtils.deleteDirectory(new File(outputDirectoryPath));
-        } catch (IOException e) {
-            logger.debug("Exception while deleting directory "+outputDirectoryPath, e);
-        }
-    }
 
-
-    private Throwable getCause(Throwable e) {
-        Throwable cause = null;
-        Throwable result = e;
-
-        while(null != (cause = result.getCause())  && (result != cause) ) {
-            result = cause;
-        }
-        return result;
-    }
 
     public void birtEnginePDFGenerator(Statement statement, String outPutDirectoryPath, String statementFolderName,
                                        String pdfGeneratedFolderName, String xmlFolderName) throws BirtException {
@@ -235,13 +212,12 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
             task.setRenderOption(options);
             task.run();
-
+            long endTime = System.currentTimeMillis();
+            logger.debug("Time to generate PDF for statement id  " + statement.getId() + " "+(endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
         } catch (BirtException e) {
             throw new PDFGeneratorException(e.getMessage());
         }
 
-        long endTime = System.currentTimeMillis();
-        logger.debug("Time to generate PDF for statement id  " + statement.getId() + " "+(endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
 
     }
 
@@ -307,5 +283,24 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         PDFGeneratorTask pdfGeneratorTask = applicationContext.getBean(PDFGeneratorTask.class,statement);
         taskExecutor.execute(pdfGeneratorTask);
         logger.debug("exiting PDFGenerator processStatement for statement with ID "+ statementId);
+    }
+
+    private void cleanUpFiles(String outputDirectoryPath){
+        try {
+            FileUtils.deleteDirectory(new File(outputDirectoryPath));
+        } catch (IOException e) {
+            logger.error("Exception while deleting directory "+outputDirectoryPath, e);
+        }
+    }
+
+
+    private Throwable getCause(Throwable e) {
+        Throwable cause = null;
+        Throwable result = e;
+
+        while(null != (cause = result.getCause())  && (result != cause) ) {
+            result = cause;
+        }
+        return result;
     }
 }

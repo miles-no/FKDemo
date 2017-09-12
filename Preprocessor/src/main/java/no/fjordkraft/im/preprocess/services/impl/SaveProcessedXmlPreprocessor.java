@@ -36,6 +36,12 @@ public class SaveProcessedXmlPreprocessor  extends BasePreprocessor {
             StopWatch stopWatch = new StopWatch();
             logger.debug("Credit limit for statement with is "+request.getEntity().getId() + " is "+request.getStatement().getCreditLimit() + " AvailableCredit :" +request.getStatement().getAvailableCredit());
             stopWatch.start("SaveProcessedXmlPreprocessor");
+            File file  = new File(request.getPathToProcessedXml());
+            if(!file.exists()) {
+                logger.debug("file does not exists create directories" + file.getAbsolutePath());
+                createDirectories(request);
+            }
+
             StreamResult streamResult = new StreamResult(new FileOutputStream(request.getPathToProcessedXml() + File.separator + "statement.xml"));
             marshaller.marshal(request.getStatement(), streamResult);
             if(null != streamResult.getOutputStream()) {

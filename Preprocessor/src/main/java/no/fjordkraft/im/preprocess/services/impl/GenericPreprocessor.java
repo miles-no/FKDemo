@@ -33,9 +33,6 @@ public class GenericPreprocessor extends BasePreprocessor {
     private static final Logger logger = LoggerFactory.getLogger(PDFAttachmentExtractor.class);
 
     @Autowired
-    private ConfigService configService;
-
-    @Autowired
     @Qualifier("unmarshaller")
     private Unmarshaller unMarshaller;
 
@@ -45,36 +42,18 @@ public class GenericPreprocessor extends BasePreprocessor {
         try {
             StopWatch stopWatch = new StopWatch();
             stopWatch.start("Unmarshall Attachments");
-            String invoiceNumber = request.getEntity().getInvoiceNumber();
-            String baseFolder = request.getEntity().getSystemBatchInput().getTransferFile().getFilename();
-            String folderName = baseFolder.substring(0, baseFolder.indexOf('.'));
-            String basePath = configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
-            String pdfGeneratedFolderName = configService.getString(IMConstants.GENERATED_PDF_FOLDER_NAME);
-            String mergePdfFolderName = configService.getString(IMConstants.GENERATED_INVOICE_FOLDER_NAME);
-
-            File baseFile = new File(basePath + folderName + File.separator + invoiceNumber);
-            baseFile.mkdir();
-            File generatedPDFFile = new File(baseFile, pdfGeneratedFolderName);
-            generatedPDFFile.mkdir();
-
-            String processedXmlFolderName = configService.getString(IMConstants.PROCESSED_XML_FOLDER_NAME);
-            File processedXmlFile = new File(baseFile, processedXmlFolderName);
-            processedXmlFile.mkdir();
-
-            File mergePdfFile = new File(baseFile, mergePdfFolderName);
-            mergePdfFile.mkdir();
-
-            request.setPathToProcessedXml(processedXmlFile.getAbsolutePath());
+            createDirectories(request);
             unmarshallAttachments(request.getStatement());
             decodeAndUnmarshalEHFAttachment(request.getStatement());
             stopWatch.stop();
-            logger.debug("generatedPDFFolder " + generatedPDFFile.getAbsolutePath() + " attachmentPDFFile " + processedXmlFile + processedXmlFile.getAbsolutePath());
+
             logger.debug("TIme taken for unmarshalling of attachment of statement with id  " + request.getEntity().getId() + stopWatch.prettyPrint());
         } catch (Exception e) {
             logger.error("Exception in generic preprocessor",e);
             throw new PreprocessorException(e);
         }
     }
+
 
 
     public Statement unmarshallAttachments(Statement statement) throws IOException {

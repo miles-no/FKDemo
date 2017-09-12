@@ -1,7 +1,7 @@
 ---
 
 -
-  hosts: appservers
+  hosts: test-pdfgenerator
   remote_user: miles2
   vars:
     appfolderMap: {"im-ui":"InvoiceManagerUI","im-pdfgenerator":"PDFGenerator","im-preprocessor":"Preprocessor"}
@@ -13,7 +13,7 @@
     - include: startapp.yml app=im-pdfgenerator
 
 -
-  hosts: appservers
+  hosts: test
   remote_user: miles2
   vars:
     appfolderMap: {"im-ui":"InvoiceManagerUI","im-pdfgenerator":"PDFGenerator","im-preprocessor":"Preprocessor"}
@@ -36,6 +36,6 @@
         - im-preprocessor
       loop_control:
         loop_var: line_item2
-        
+
 
 

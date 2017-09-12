@@ -37,9 +37,9 @@ import {permitMask} from '../directives/permitMask'
 
 
 //external Authentication modules
-//import {authentication} from 'app-common/modules/authentication';
+import {authentication} from 'app-common/modules/authentication';
 //external Authorization module
-//import {authorization} from 'app-common/modules/authorization';
+import {authorization} from 'app-common/modules/authorization';
 
 let dependencies = [
         'ui.router',

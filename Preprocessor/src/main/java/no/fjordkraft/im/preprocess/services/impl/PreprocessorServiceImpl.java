@@ -137,18 +137,20 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             preprocessorEngine.execute(request);
             statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
+            stopwatch.stop();
+            logger.debug("Preprocessing completed for statement with id "+ statement.getId());
+            logger.debug(stopwatch.prettyPrint());
+            statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
+            pdfGenerator.generateInvoicePDF(statement);
         } catch (PreprocessorException ex) {
+            logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), ex);
             statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), ex.getMessage(), IMConstants.ERROR);
         } catch (Exception e) {
             logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);
         }
-        stopwatch.stop();
-        logger.debug("Preprocessing completed for statement with id "+ statement.getId());
-        logger.debug(stopwatch.prettyPrint());
-        statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
-        pdfGenerator.generateInvoicePDF(statement);
+
     }
 
     public no.fjordkraft.im.model.Statement getUpdatedStatementEntity(Statement statement,no.fjordkraft.im.model.Statement statementEntity) {
