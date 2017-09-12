@@ -53,9 +53,9 @@ let dependencies = [
         'smart-table',
         'ngFlatDatepicker',
         'angularModalService',
-        'ngclipboard'
-        //'authentication',
-        //'authorization'
+        'ngclipboard',
+        'authentication',
+        'authorization'
         // 'angular.circular.timepicker'
     ];
 
@@ -100,7 +100,7 @@ invoiceManager.directive('permitMask',permitMask);
 
 //Configure Global Constants
 invoiceManager.constant('_',window._);
-invoiceManager.constant('loginUrl','https://afitest.fjordkraft.no/app/logon/logon.html?redirect=http://localhost:8080/#/home')
+invoiceManager.constant('loginUrl','https://afitest.fjordkraft.no/app/logon/logon.html?redirect=/invoicemanager/index.html');
 
 //Configure routes
 
