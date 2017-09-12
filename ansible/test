@@ -2,5 +2,4 @@
 fk-t-lx12.bkk.no ansible_user=miles2
 
 [test-pdfgenerator]
-fk-t-lx12.bkk.no ansible_user=miles2
 fk-utv-lx12.bkk.no ansible_user=miles2
