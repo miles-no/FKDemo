@@ -25,6 +25,7 @@ import javax.sql.DataSource;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.logging.Level;
 
 
@@ -52,7 +53,7 @@ public class AppConfig {
         int maxPool = configService.getInteger(IMConstants.NUM_OF_THREAD_PDFGENERATOR);
         executor.setCorePoolSize(10);
         executor.setMaxPoolSize(maxPool);
-        executor.setQueueCapacity((Integer.valueOf(IMConstants.MAX_QUEUE_CAPACITY)));
+        executor.setQueueCapacity((Integer.valueOf(Integer.MAX_VALUE)));
         executor.initialize();
         return executor;
     }
@@ -60,6 +61,11 @@ public class AppConfig {
 
     @Bean(name="BirtEngine")
     public IReportEngine getBirtEngine(ConfigService configService) throws BirtException, MalformedURLException {
+        try {
+            dataSource.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("Initializing Birt engine");
         String fontPath = configService.getString(IMConstants.CUSTOM_FONT_PATH);
