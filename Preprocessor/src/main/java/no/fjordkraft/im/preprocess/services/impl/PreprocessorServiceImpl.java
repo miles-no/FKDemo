@@ -136,7 +136,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
 
             preprocessorEngine.execute(request);
             statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
+            //auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             stopwatch.stop();
             logger.debug("Preprocessing completed for statement with id "+ statement.getId());
             logger.debug(stopwatch.prettyPrint());
