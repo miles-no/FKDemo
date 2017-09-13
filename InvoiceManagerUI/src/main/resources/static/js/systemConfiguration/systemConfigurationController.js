@@ -30,7 +30,7 @@ const StateConfigController = ($scope, $q, $http,ModalService) => {
 
   $scope.configName = []
   $scope.getStatesConfig =  ()  => {
-    $http.get('/invoicemanager/config').then(function (response) {
+    $http.get('/invoicemanager/api/config').then(function (response) {
       $scope.stateConfigs = response.data.config;
       $scope.configName = []
       $scope.alldata = angular.copy($scope.stateConfigs)
@@ -48,7 +48,7 @@ const StateConfigController = ($scope, $q, $http,ModalService) => {
       key : state.name,
       value : state.value
     }
-    $http({url : '/invoicemanager/config',method: 'POST',params:queryParams} ).then((response) => {
+    $http({url : '/invoicemanager/api/config',method: 'POST',params:queryParams} ).then((response) => {
       if(response.status === 200){
         $scope.getStatesConfig()
         $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
@@ -66,7 +66,7 @@ const StateConfigController = ($scope, $q, $http,ModalService) => {
     let queryParams = {
       value : data.value
     }
-    $http({url:'/invoicemanager/config/'+data.name,method: 'PUT', params:queryParams}).then((response) => {
+    $http({url:'/invoicemanager/api/config/'+data.name,method: 'PUT', params:queryParams}).then((response) => {
       if(response.status === 200){
         $scope.getStatesConfig()
         $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
@@ -104,7 +104,7 @@ const StateConfigController = ($scope, $q, $http,ModalService) => {
       modal.element.modal();
       modal.close.then((result) => {
         if(result=='Delete'){
-          $http.delete('/invoicemanager/config/'+state.name).then((response) => {
+          $http.delete('/invoicemanager/api/config/'+state.name).then((response) => {
             if(response.status === 200){
               $scope.getStatesConfig()
               $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })

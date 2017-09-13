@@ -21,7 +21,7 @@ const listPopupController = ($scope,options,close, $http,_) => {
 
     $scope.hideUpload = true
     let getLayoutRules = (setLayout) => {
-        $http.get('/invoicemanager/layout/attribute').then((response) => {
+        $http.get('/invoicemanager/api/layout/attribute').then((response) => {
             allPossibleRules = angular.copy(response.data);
             if ($scope.templateInfo){
                 $scope.rulesList = $scope.templateInfo.layoutRuleMapList
@@ -128,7 +128,7 @@ const listPopupController = ($scope,options,close, $http,_) => {
 
 
     let getBrands =  () => {
-        $http.get('/invoicemanager/brand/config/brand').then((response) => {
+        $http.get('/invoicemanager/api/brand/config/brand').then((response) => {
             $scope.allBrands = response.data;
             $scope.allBrands.push('All');
         },(error) => {
@@ -137,7 +137,7 @@ const listPopupController = ($scope,options,close, $http,_) => {
     }
     let getLayouts =  (template) => {
 
-        $http.get('/invoicemanager/layout/list').then((response) => {
+        $http.get('/invoicemanager/api/layout/list').then((response) => {
             $scope.allLayouts = response.data;
             template ? $scope.selectedTemplate.selected = _.find($scope.allLayouts,function(l){return l.value==(template.layoutId? template.layoutId: template.id) }):'';
         },(error) => {
@@ -161,7 +161,7 @@ const listPopupController = ($scope,options,close, $http,_) => {
         fd.append('name', $scope.template.name)
         fd.append('description', $scope.template.desc)
         $scope.template.file ? fd.append('file', $scope.template.file) : '';
-        $http.post('/invoicemanager/layout/template',fd,{
+        $http.post('/invoicemanager/api/layout/template',fd,{
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined}
         }).then((response) => {

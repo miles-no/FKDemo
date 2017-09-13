@@ -16,7 +16,7 @@ import java.util.Map;
  * Created by miles on 6/5/2017.
  */
 @RestController
-@RequestMapping("/brand/config")
+@RequestMapping("/api/brand/config")
 public class IMBrandController {
 
     @Autowired

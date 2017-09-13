@@ -39,7 +39,7 @@ const navigation = {
       resetDashboard() {
         if (!this.disableReset) {
           this.disableReset = true
-          this.$http.post('/invoicemanager/transferfile/process').then(function (reponse) {
+          this.$http.post('/invoicemanager/api/transferfile/process').then(function (reponse) {
             this.disableReset = false
           })
         }

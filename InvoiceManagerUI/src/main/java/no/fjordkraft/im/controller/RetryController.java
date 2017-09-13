@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by miles on 7/25/2017.
  */
 @RestController
-@RequestMapping("/retry")
+@RequestMapping("/api/retry")
 public class RetryController {
 
     @RequestMapping(value = "invoiceFeedWatcher", method = RequestMethod.PUT)

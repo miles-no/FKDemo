@@ -61,7 +61,7 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
         $scope.invoiceNumber ? queryParams.invoiceNumber = $scope.invoiceNumber :'';
         $scope.accountNumber ? queryParams.accountNumber = $scope.accountNumber :'';
         $scope.customerID ? queryParams.customerID = $scope.customerID :'';
-        $http.get('/invoicemanager/statement/details',{params:queryParams}).then(function success(result){
+        $http.get('/invoicemanager/api/statement/details',{params:queryParams}).then(function success(result){
             $scope.searchResults = result.data.STATEMENTS
             $scope.totalPages = Math.ceil(result.data.TOTAL/$scope.pageSize);
         },function error(error){
@@ -87,7 +87,7 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
 
     $scope.getInvoiceFile = function(invoiceId){
         $scope.loading = true
-        $http.get('/invoicemanager/statement/pdf/'+invoiceId,{responseType: 'arraybuffer'}).success(function(response,status,headers){
+        $http.get('/invoicemanager/api/statement/pdf/'+invoiceId,{responseType: 'arraybuffer'}).success(function(response,status,headers){
           $scope.loading = false;
           var file = new Blob([response], {type: 'application/pdf'});
 	        var fileURL = URL.createObjectURL(file);
@@ -110,7 +110,7 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
         );
     }
     const getAllBrands = function(){
-        $http.get('/invoicemanager/brand/config/brand').then(function success(result){
+        $http.get('/invoicemanager/api/brand/config/brand').then(function success(result){
             $scope.possibleBrands = result.data;
         },function error(error){
             console.log('Could not get the brands');

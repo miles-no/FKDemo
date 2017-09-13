@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by miles on 6/12/2017.
  */
 @RestController
-@RequestMapping("/grid/config")
+@RequestMapping("/api/grid/config")
 public class IMGridController {
     
     @Autowired

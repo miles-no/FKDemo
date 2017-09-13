@@ -39,7 +39,7 @@ const ManageBrandsController = ($scope, $q, $http, ModalService) => {
   }
 
   $scope.syncCall = () => {
-    $http.get('/invoicemanager/brand/config/brand').then((response) => {
+    $http.get('/invoicemanager/api/brand/config/brand').then((response) => {
       $scope.dropDownData = response.data
     })
   }
@@ -60,13 +60,13 @@ const ManageBrandsController = ($scope, $q, $http, ModalService) => {
   }
   $scope.getBrands = () => {
 
-    $http.get('/invoicemanager/brand/config').then(function (response) {
+    $http.get('/invoicemanager/api/brand/config').then(function (response) {
       $scope.tableBrands= $scope.brands = response.data.Brand;
     })
   }
 
   let addBrand = (brand) => {
-    $http.post('/invoicemanager/brand/config',brand).then((response) => {
+    $http.post('/invoicemanager/api/brand/config',brand).then((response) => {
       if(response.status === 200){
         $scope.getBrands()
         $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
@@ -80,7 +80,7 @@ const ManageBrandsController = ($scope, $q, $http, ModalService) => {
   }
 
   let updateBrand = (brand) => {
-    $http.put('/invoicemanager/brand/config',brand).then((response) => {
+    $http.put('/invoicemanager/api/brand/config',brand).then((response) => {
       if(response.status === 200){
         $scope.getBrands()
         $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
@@ -118,7 +118,7 @@ const ManageBrandsController = ($scope, $q, $http, ModalService) => {
       modal.element.modal();
       modal.close.then((result) => {
         if(result=='Delete'){
-          $http.delete('/invoicemanager/brand/config/'+brand.id).then((response) => {
+          $http.delete('/invoicemanager/api/brand/config/'+brand.id).then((response) => {
             if (response.status === 200){
               $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
               $scope.getBrands();

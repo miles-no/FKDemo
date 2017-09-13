@@ -15,7 +15,7 @@ import java.util.Map;
  * Created by miles on 7/24/2017.
  */
 @RestController
-@RequestMapping("/auditRecord")
+@RequestMapping("/api/auditRecord")
 public class IMAuditLogController {
 
     @Autowired

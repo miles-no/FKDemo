@@ -28,7 +28,7 @@ const GridsController = ($scope, $q, $http,ModalService) => {
     }
   }
   $scope.syncCall =() => {
-    $http.get('/invoicemanager/grid/config/brand').then((response) => {
+    $http.get('/invoicemanager/api/grid/config/brand').then((response) => {
       $scope.brands = response.data
     })
   }
@@ -50,13 +50,13 @@ const GridsController = ($scope, $q, $http,ModalService) => {
     showSelectedGrids()
   }
   $scope.getGrids =() => {
-    $http.get('/invoicemanager/grid/config').then((response) => {
+    $http.get('/invoicemanager/api/grid/config').then((response) => {
       $scope.allGrids =  $scope.grids = response.data.Grid;
     })
   }
 
   let  addGrid = (grid) => {
-    $http.post('/invoicemanager/grid/config',grid).then((response) => {
+    $http.post('/invoicemanager/api/grid/config',grid).then((response) => {
       if(response.status === 200){
         $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
         $scope.getGrids()
@@ -70,7 +70,7 @@ const GridsController = ($scope, $q, $http,ModalService) => {
   }
 
   let updateGrid = (grid) => {
-    $http.put('/invoicemanager/grid/config',grid).then((response) => {
+    $http.put('/invoicemanager/api/grid/config',grid).then((response) => {
       if(response.status === 200){
         $scope.getGrids()
         $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
@@ -108,7 +108,7 @@ const GridsController = ($scope, $q, $http,ModalService) => {
       modal.element.modal();
       modal.close.then((result) => {
         if(result=='Delete'){
-          $http.delete('/invoicemanager/grid/config/'+grid.id).then(function (response) {
+          $http.delete('/invoicemanager/api/grid/config/'+grid.id).then(function (response) {
             if (response.status === 200){
               $scope.getGrids();
               $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })

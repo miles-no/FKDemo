@@ -13,7 +13,7 @@ import java.io.IOException;
  * Created by miles on 6/21/2017.
  */
 @RestController
-@RequestMapping("/segment/file")
+@RequestMapping("/api/segment/file")
 public class SegmentFileController {
 
     @Autowired

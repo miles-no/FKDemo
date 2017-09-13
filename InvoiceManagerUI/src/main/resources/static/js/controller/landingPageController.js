@@ -58,7 +58,7 @@ const landingPageController = ($scope,$http,$interval,_,moment,$rootScope) => {
         })
     }
     let getOverviewDetails = function(item){
-        $http.get(`/invoicemanager/dashboard/all`,{params : {fromTime: item.valueFrom.format('YYYY-MM-DD HH:mm:ss'),toTime: item.valueTo.format('YYYY-MM-DD HH:mm:ss')}}).then(
+        $http.get(`/invoicemanager/api/dashboard/all`,{params : {fromTime: item.valueFrom.format('YYYY-MM-DD HH:mm:ss'),toTime: item.valueTo.format('YYYY-MM-DD HH:mm:ss')}}).then(
             
         function success(result){
             $scope.overviewCount = result.data.TOTAL[0].value;
@@ -80,7 +80,7 @@ const landingPageController = ($scope,$http,$interval,_,moment,$rootScope) => {
     }
     $scope.getStates = function(){
         let getStateNames = $rootScope.states && $rootScope.states.length ==0 ? true: false
-        $http.get('/invoicemanager/dashboard/status').then(
+        $http.get('/invoicemanager/api/dashboard/status').then(
             function success(result){
                 var getDateAndTime = new Date();
                 var dateTime = moment(getDateAndTime).format('YYYY-MM-DD HH:mm:ss')

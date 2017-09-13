@@ -32,7 +32,7 @@ import java.util.List;
  * Created by miles on 6/13/2017.
  */
 @RestController
-@RequestMapping("/layout")
+@RequestMapping("/api/layout")
 public class IMLayoutController {
 
     private static final Logger logger = LoggerFactory.getLogger(IMLayoutController.class);

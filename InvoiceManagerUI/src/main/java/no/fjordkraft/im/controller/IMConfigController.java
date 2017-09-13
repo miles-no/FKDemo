@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by miles on 6/5/2017.
  */
 @RestController
-@RequestMapping("/config")
+@RequestMapping("/api/config")
 public class IMConfigController {
 
     @Autowired

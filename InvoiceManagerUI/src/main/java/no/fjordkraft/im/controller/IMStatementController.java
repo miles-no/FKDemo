@@ -22,7 +22,7 @@ import java.util.Map;
  * Created by miles on 6/7/2017.
  */
 @RestController
-@RequestMapping("/statement")
+@RequestMapping("/api/statement")
 public class IMStatementController {
 
     @Autowired

@@ -22,7 +22,7 @@ const auditLogController = ($scope,$http,moment) => {
       if($scope.toTime){
         queryParams.toTime = moment($scope.toTime).hour(23).minute(59).second(59).format('YYYY-MM-DD HH:mm:ss')
       }
-    $http.get('/invoicemanager/auditRecord',{params:queryParams}).then((response) => {
+    $http.get('/invoicemanager/api/auditRecord',{params:queryParams}).then((response) => {
       $scope.auditLog = response.data.AUDIT_LOG
       $scope.totalPages = Math.ceil(response.data.TOTAL/$scope.pageSize);
     })

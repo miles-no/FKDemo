@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/api")
 public class IMController {
 
     private static final Logger logger = LoggerFactory.getLogger(IMController.class);
@@ -72,7 +73,7 @@ public class IMController {
 
     /*@PostConstruct
     public void test() throws IOException {
-        this.loadIF320Files("E:\\FuelKraft\\DataForIM\\newdata\\toloadfiles", null);
+        this.loadIF320Files("E:\\FuelKraft\\DataForIM\\newdata\\toloadfileRs", null);
         TransferFile transferFile = transferFileService.getOneTransferFileWithEmptyIMStatus();
         logger.debug("Updating status of Transfer file with filename "+ transferFile.getFilename() + " brand "+ transferFile.getBrand() + " batch id" +transferFile.getEkBatchJobId());
         transferFile.setImStatus("PENDING");

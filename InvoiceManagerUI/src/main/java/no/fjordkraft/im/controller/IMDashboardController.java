@@ -18,7 +18,7 @@ import java.util.Map;
  * Created by miles on 6/7/2017.
  */
 @RestController
-@RequestMapping("/dashboard")
+@RequestMapping("/api/dashboard")
 public class IMDashboardController {
 
     @Autowired

@@ -12,7 +12,7 @@ const templateAttributeController = ($scope,$http,ModalService) => {
   $scope.pageSize = ''
 
   $scope.getRules = () => {
-    $http.get('/invoicemanager/layout/attribute').success((response) => {
+    $http.get('/invoicemanager/api/layout/attribute').success((response) => {
       $scope.tableRule = $scope.ruleData = response
       $scope.ruleList = []
       angular.forEach($scope.ruleData,(item) => {
@@ -56,7 +56,7 @@ const templateAttributeController = ($scope,$http,ModalService) => {
   }
 
   let addRule = (rule) => {
-    $http.post('/invoicemanager/layout/attribute',rule).then((response) => {
+    $http.post('/invoicemanager/api/layout/attribute',rule).then((response) => {
       if(response.status === 200){
         $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
         $scope.getRules()
@@ -70,7 +70,7 @@ const templateAttributeController = ($scope,$http,ModalService) => {
   }
 
   let updateRule = (rule) => {
-    $http.put('/invoicemanager/layout/attribute/'+rule.id,rule).then((response) => {
+    $http.put('/invoicemanager/api/layout/attribute/'+rule.id,rule).then((response) => {
       if(response.status === 200){
         $scope.alerts.push({ type: 'success', msg: 'Record updated successfully' })
         $scope.getRules()
@@ -109,7 +109,7 @@ const templateAttributeController = ($scope,$http,ModalService) => {
       modal.element.modal();
       modal.close.then((result) => {
         if(result=='Delete'){
-          $http.delete('/invoicemanager/layout/attribute/'+rule.id).then((response) => {
+          $http.delete('/invoicemanager/api/layout/attribute/'+rule.id).then((response) => {
             if(response.status === 200){
               $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
               $scope.getRules()

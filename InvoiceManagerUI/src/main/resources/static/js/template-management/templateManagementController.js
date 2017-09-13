@@ -57,7 +57,7 @@ const listCtrl = ($scope,ModalService,$http) => {
   let setActiveLayout =  (active) => {
     var layoutId = active.layoutID
     var activeId = active.version
-    $http.put('/invoicemanager/layout/activate/'+layoutId+'/'+activeId).then((response) => {
+    $http.put('/invoicemanager/api/layout/activate/'+layoutId+'/'+activeId).then((response) => {
       $scope.getLayouts();
     })
   }
@@ -65,13 +65,13 @@ const listCtrl = ($scope,ModalService,$http) => {
   let deActivateLayout = (active) => {
     var layoutId = active.layoutID
     var deActiveId = active.version
-    $http.put('/invoicemanager/layout/deActivate/'+layoutId+'/'+deActiveId).then((response) => {
+    $http.put('/invoicemanager/api/layout/deActivate/'+layoutId+'/'+deActiveId).then((response) => {
       $scope.getLayouts();
     })
   }
 
   let addLayout = (layout) => {
-     $http.post('/invoicemanager/layout/rule',layout).then((response) => {
+     $http.post('/invoicemanager/api/layout/rule',layout).then((response) => {
        if(response.status === 200){
          $scope.getLayouts()
          $scope.alerts.push({ type: 'success', msg: 'Record added successfully' })
@@ -85,7 +85,7 @@ const listCtrl = ($scope,ModalService,$http) => {
   }
   
   let updateLayout = (layout) => {
-     $http.put(`/invoicemanager/layout/rule/${layout.id}`,layout).then((response) => {
+     $http.put(`/invoicemanager/api/layout/rule/${layout.id}`,layout).then((response) => {
       if(response.status === 200){
         $scope.getLayouts()
         $scope.alerts.push({ type: 'success', msg: 'Record update successfully' })
@@ -192,7 +192,7 @@ const listCtrl = ($scope,ModalService,$http) => {
     var version = layout.version;
     let qp = {layoutId: layoutId, version: version};
     $scope.loading = true
-    $http.get('/invoicemanager/layout/preview',{params: qp,responseType: 'arraybuffer'}).success((response,status,headers) => {
+    $http.get('/invoicemanager/api/layout/preview',{params: qp,responseType: 'arraybuffer'}).success((response,status,headers) => {
       $scope.loading = false
       var file = new Blob([response], {type: 'application/pdf'});
       var fileURL = URL.createObjectURL(file);
@@ -229,7 +229,7 @@ const listCtrl = ($scope,ModalService,$http) => {
     })
   }
   $scope.getLayouts =  () => {
-    $http.get('/invoicemanager/layout/template/all').then( (response)  => {
+    $http.get('/invoicemanager/api/layout/template/all').then( (response)  => {
       $scope.tableRule = $scope.allLayouts =  response.data;
       angular.forEach($scope.allLayouts,(item) => {
         $scope.templatelist.push(item.brand)
@@ -243,7 +243,7 @@ const listCtrl = ($scope,ModalService,$http) => {
  }
 
   $scope.getBrands = () => {
-    $http.get('/invoicemanager/layout/rules').then((response) => {
+    $http.get('/invoicemanager/api/layout/rules').then((response) => {
       $scope.brands = response.data
     }).catch((data) => {
       $scope.brands = data;
@@ -279,7 +279,7 @@ const listCtrl = ($scope,ModalService,$http) => {
       modal.element.modal();
       modal.close.then((result) => {
         if(result=='Delete'){
-            $http.delete('/invoicemanager/layout/template/'+id).then((response) => {
+            $http.delete('/invoicemanager/api/layout/template/'+id).then((response) => {
               if (response.status === 200){
                 $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
                 $scope.getLayouts();
