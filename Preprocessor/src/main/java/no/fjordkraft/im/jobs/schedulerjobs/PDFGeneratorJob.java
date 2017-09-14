@@ -37,7 +37,7 @@ public class PDFGeneratorJob implements InterruptableJob{
 
     public void execute(Context context) throws InterruptedException {
         logger.debug("PDFGenerator job invoked " );
-        //pdfGenerator.generateInvoicePDF();
+        pdfGenerator.generateInvoicePDF();
     }
 
     @Override
