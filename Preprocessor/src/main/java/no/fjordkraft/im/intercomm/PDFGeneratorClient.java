@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 
 @FeignClient(name="im-pdfgenerator",configuration = PDFGeneratorClient.ClientConfiguration.class)
 public interface PDFGeneratorClient {
 
     @RequestMapping(method = RequestMethod.POST, value = "/pdf/{statementId}")
     void processStatement(@PathVariable("statementId") Long statementId);
+
+    @RequestMapping(method = RequestMethod.POST, value = "/pdf")
+    void processStatement(List<Long> statementList);
 
     @Configuration
     public class ClientConfiguration {

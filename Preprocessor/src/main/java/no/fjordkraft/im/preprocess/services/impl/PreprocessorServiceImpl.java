@@ -140,8 +140,8 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             stopwatch.stop();
             logger.debug("Preprocessing completed for statement with id "+ statement.getId());
             logger.debug(stopwatch.prettyPrint());
-            statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
-            pdfGenerator.generateInvoicePDF(statement);
+            //statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
+            //pdfGenerator.generateInvoicePDF(statement);
         } catch (PreprocessorException ex) {
             logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), ex);
             statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);

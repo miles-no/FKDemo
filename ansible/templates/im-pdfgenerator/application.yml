@@ -16,7 +16,7 @@ spring:
     url: {{db_url}}
     username: invoiceman
     password: {{db_password}}
-    tomcat.maxActive: 700
+    tomcat.maxActive: 500
 
 logging:
   level:

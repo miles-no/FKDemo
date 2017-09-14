@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Created by bhavi on 9/1/2017.
  */
@@ -25,6 +27,15 @@ public class PDFController {
     public void generateInvoicePdf(@PathVariable("statementId") Long statementId){
 
         pdfGenerator.processStatement(statementId);
+
+    }
+
+    @RequestMapping(value = "/pdf", method = RequestMethod.POST)
+    public void generateInvoicePdf(List<Long> statementIdList){
+
+        for(Long statementId : statementIdList) {
+            pdfGenerator.processStatement(statementId);
+        }
 
     }
 }

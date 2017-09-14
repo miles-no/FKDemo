@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,17 +49,28 @@ public class PDFGeneratorImpl implements PDFGenerator {
         List<Statement> statements = statementRepository.readStatements(numOfThreads, StatementStatusEnum.PRE_PROCESSED.getStatus());
         logger.debug("Generate invoice pdf for "+ statements.size() + " statements");
 
+        List<Long> statementList = new ArrayList<>(50);
         for(Statement statement:statements) {
             logger.debug("Statement with id "+ statement.getId()+ " updated to SENT_FOR_PDF_PROCESSING ");
             statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
             //pdfGeneratorClient.processStatement(statement.getId());
+            statementList.add(statement.getId());
+            if(statementList.size() == 50) {
+                pdfGeneratorClient.processStatement(statementList);
+                statementList.clear();
+            }
         }
 
-        for(Statement statement:statements) {
+        if(statementList.size()>0){
+            pdfGeneratorClient.processStatement(statementList);
+            statementList.clear();
+        }
+
+        /*for(Statement statement:statements) {
             logger.debug("Statement with id "+ statement.getId()+ " sent for PDF generation");
             //statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
             pdfGeneratorClient.processStatement(statement.getId());
-        }
+        }*/
     }
 
     public void generateInvoicePDF(Statement statement) {
