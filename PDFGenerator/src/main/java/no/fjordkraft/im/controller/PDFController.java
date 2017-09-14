@@ -5,10 +5,7 @@ import no.fjordkraft.im.services.PDFGenerator;
 import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,7 +28,7 @@ public class PDFController {
     }
 
     @RequestMapping(value = "/pdf", method = RequestMethod.POST)
-    public void generateInvoicePdf(List<Long> statementIdList){
+    public void generateInvoicePdf(@RequestBody List<Long> statementIdList){
 
         for(Long statementId : statementIdList) {
             pdfGenerator.processStatement(statementId);
