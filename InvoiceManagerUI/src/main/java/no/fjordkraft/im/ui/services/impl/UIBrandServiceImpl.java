@@ -1,8 +1,8 @@
-package no.fjordkraft.im.services.impl;
+package no.fjordkraft.im.ui.services.impl;
 
 import no.fjordkraft.im.model.BrandConfig;
 import no.fjordkraft.im.repository.BrandConfigRepository;
-import no.fjordkraft.im.services.UIBrandService;
+import no.fjordkraft.im.ui.services.UIBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +22,7 @@ public class UIBrandServiceImpl implements UIBrandService {
     @Transactional(readOnly=true)
     @Override
     public List<BrandConfig> getBrandConfigs() {
-        List<BrandConfig> brandConfigList = new ArrayList<BrandConfig>();
+        List<BrandConfig> brandConfigList = new ArrayList<>();
         brandConfigList = brandConfigRepository.getBrandConfigs();
         return brandConfigList;
     }

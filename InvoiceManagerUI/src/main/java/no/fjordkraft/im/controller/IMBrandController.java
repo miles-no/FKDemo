@@ -1,7 +1,7 @@
 package no.fjordkraft.im.controller;
 
 import no.fjordkraft.im.model.BrandConfig;
-import no.fjordkraft.im.services.UIBrandService;
+import no.fjordkraft.im.ui.services.UIBrandService;
 import no.fjordkraft.im.util.IMConstants;
 import no.fjordkraft.security.jpa.domain.UserFunctionEnum;
 import no.fjordkraft.security.springmvc.annotation.Function;

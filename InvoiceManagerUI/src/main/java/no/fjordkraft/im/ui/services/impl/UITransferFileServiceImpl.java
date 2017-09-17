@@ -1,4 +1,4 @@
-package no.fjordkraft.im.services.impl;
+package no.fjordkraft.im.ui.services.impl;
 
 import no.fjordkraft.im.model.TransferFile;
 import no.fjordkraft.im.repository.TransferFileRepository;
@@ -13,7 +13,7 @@ import java.util.List;
  * Created by bhavi on 5/9/2017.
  */
 @Service
-public class UITransferFileServiceImpl implements UITransferFileService {
+public class UITransferFileServiceImpl implements no.fjordkraft.im.ui.services.UITransferFileService {
 
     @Autowired
     private TransferFileRepository transferFileRepository;
@@ -25,7 +25,7 @@ public class UITransferFileServiceImpl implements UITransferFileService {
     private SystemBatchInputService systemBatchInputService;
 
     @Autowired
-    UITransferFileArchiveService transferFileArchiveService;
+    no.fjordkraft.im.ui.services.UITransferFileArchiveService transferFileArchiveService;
 
     @Autowired
     StatementService statementService;

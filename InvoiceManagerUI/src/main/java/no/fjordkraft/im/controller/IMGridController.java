@@ -1,7 +1,8 @@
 package no.fjordkraft.im.controller;
 
 import no.fjordkraft.im.model.GridConfig;
-import no.fjordkraft.im.services.UIGridConfigService;
+
+import no.fjordkraft.im.ui.services.UIGridConfigService;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

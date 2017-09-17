@@ -3,7 +3,7 @@ package no.fjordkraft.im.controller;
 import no.fjordkraft.im.domain.RestStatement;
 import no.fjordkraft.im.model.InvoicePdf;
 import no.fjordkraft.im.repository.InvoicePdfRepository;
-import no.fjordkraft.im.services.UIStatementService;
+import no.fjordkraft.im.ui.services.UIStatementService;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -40,11 +40,13 @@ public class IMStatementController {
                                @RequestParam(value = "brand", required=false) String brand,
                                @RequestParam(value = "invoiceNumber", required=false) String invoiceNumber,
                                @RequestParam(value = "accountNumber", required=false) String accountNumber,
+                               @RequestParam(value = "transferFileName", required=false) String transferFileName,
                                @RequestParam(value = "page") int page,
                                @RequestParam(value = "size") int size) {
-        List<RestStatement> restStatements = statementService.getDetails(page, size, status, fromTime, toTime, brand, customerID, invoiceNumber, accountNumber);
-        Long count = getCountByStatus(status, fromTime, toTime, brand, customerID, invoiceNumber, accountNumber);
-        Map<String, Object> resultMap = new HashMap<String, Object>();
+        List<RestStatement> restStatements = statementService.getDetails(page, size, status, fromTime, toTime, brand,
+                customerID, invoiceNumber, accountNumber, transferFileName);
+        Long count = getCountByStatus(status, fromTime, toTime, brand, customerID, invoiceNumber, accountNumber, transferFileName);
+        Map<String, Object> resultMap = new HashMap<>();
         resultMap.put(IMConstants.STATEMENTS, restStatements);
         resultMap.put(IMConstants.TOTAL, count);
         return resultMap;
@@ -58,8 +60,10 @@ public class IMStatementController {
             @RequestParam(value = "brand", required=false) String brand,
             @RequestParam(value = "customerID", required=false) String customerID,
             @RequestParam(value = "invoiceNumber", required=false) String invoiceNumber,
-            @RequestParam(value = "accountNumber", required=false) String accountNumber) {
-        return statementService.getCountByStatus(status, fromTime, toTime, brand, customerID, invoiceNumber, accountNumber);
+            @RequestParam(value = "accountNumber", required=false) String accountNumber,
+            @RequestParam(value = "transferFileName", required=false) String transferFileName) {
+        return statementService.getCountByStatus(status, fromTime, toTime, brand, customerID, invoiceNumber,
+                accountNumber, transferFileName);
     }
 
     @RequestMapping(value = "/pdf/{id}", method = RequestMethod.GET)
@@ -71,6 +75,6 @@ public class IMStatementController {
         headers.setContentLength(invoicePdf.getPayload().length);
         headers.set(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=invoice.pdf");
-        return new ResponseEntity<byte[]>(invoicePdf.getPayload(), headers, HttpStatus.OK);
+        return new ResponseEntity<>(invoicePdf.getPayload(), headers, HttpStatus.OK);
     }
 }

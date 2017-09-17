@@ -1,7 +1,7 @@
 package no.fjordkraft.im.controller;
 
 import no.fjordkraft.im.model.Config;
-import no.fjordkraft.im.services.UIConfigService;
+import no.fjordkraft.im.ui.services.UIConfigService;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

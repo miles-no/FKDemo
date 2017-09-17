@@ -319,3 +319,15 @@ Insert into IM_RULE_ATTRIBUTES (ID,NAME,TYPE,FIELD_MAPPING,OPTIONS) values (1,'P
 --changeset hemlatha:10
 alter table im_system_batch_input add NUM_OF_RECORDS NUMBER;
 
+--changeset hemalatha:11
+create table im_transaction_grp_category(id number, TG_ID number, transaction_category varchar2(255),
+constraint PK_IM_TRANSACTION_GRP_CATEGORY primary key (id),
+constraint FK_IM_TRANSACTION_GRP_CATEGORY foreign key (tg_id)
+references IM_TRANSACTION_GROUP(id));
+alter table im_transaction_group drop column transaction_category;
+
+create sequence im_transactn_grp_category_seq
+start with 1
+increment by 1
+nocache
+nocycle;

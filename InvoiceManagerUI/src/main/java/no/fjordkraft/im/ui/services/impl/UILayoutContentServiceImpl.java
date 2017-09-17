@@ -1,8 +1,8 @@
-package no.fjordkraft.im.services.impl;
+package no.fjordkraft.im.ui.services.impl;
 
 import no.fjordkraft.im.model.LayoutContent;
 import no.fjordkraft.im.repository.LayoutContentRepository;
-import no.fjordkraft.im.services.UILayoutContentService;
+import no.fjordkraft.im.ui.services.UILayoutContentService;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

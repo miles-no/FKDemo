@@ -49,6 +49,8 @@ public class RestStatement {
 
     private List<RestInvoicePdf> invoicePdfList;
 
+    private String if320FileName;
+
     public Long getId() {
         return id;
     }
@@ -194,5 +196,13 @@ public class RestStatement {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public String getIf320FileName() {
+        return if320FileName;
+    }
+
+    public void setIf320FileName(String if320FileName) {
+        this.if320FileName = if320FileName;
     }
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <property name="units">in</property>
+    <property name="theme">defaultTheme</property>
+    <themes>
+        <theme name="defaultTheme" id="4"/>
+    </themes>
+    <components>
+        <grid name="NewGrid3" id="1118">
+            <column id="1119"/>
+            <row id="1120">
+                <cell id="1121">
+                    <grid name="NewGrid22" id="1122">
+                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <column id="1134"/>
+                        <column id="1123"/>
+                        <column id="1124"/>
+                        <column id="1125"/>
+                        <row id="1126">
+                            <cell id="1133">
+                                <label name="NewLabel" id="1135">
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">Side</text-property>
+                                </label>
+                            </cell>
+                            <cell id="1127">
+                                <auto-text name="NewAutoText42" id="1128">
+                                    <property name="type">page-number</property>
+                                </auto-text>
+                            </cell>
+                            <cell id="1129">
+                                <text name="NewText22" id="1130">
+                                    <property name="textAlign">center</property>
+                                    <property name="contentType">plain</property>
+                                    <text-property name="content"><![CDATA[av]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="1131">
+                                <auto-text name="NewAutoText52" id="1132">
+                                    <property name="textAlign">right</property>
+                                    <property name="type">total-page</property>
+                                </auto-text>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+        </grid>
+    </components>
+    <page-setup>
+        <simple-master-page name="NewSimpleMasterPage" id="3"/>
+    </page-setup>
+</library>

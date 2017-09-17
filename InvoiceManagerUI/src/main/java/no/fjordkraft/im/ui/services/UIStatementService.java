@@ -1,4 +1,4 @@
-package no.fjordkraft.im.services;
+package no.fjordkraft.im.ui.services;
 
 import no.fjordkraft.im.domain.RestStatement;
 import no.fjordkraft.im.model.StatusCount;
@@ -18,9 +18,10 @@ public interface UIStatementService {
     Long getInvoiceCountByTime(Timestamp fromTime, Timestamp toTime);
     String getStatementById(Long id);
     List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime,
-                                   String brand, String customerID, String invoice, String accountNumber);
+                                   String brand, String customerID, String invoice, String accountNumber, String transferFileName);
     Long getCountByStatus(String status, Timestamp fromTime,
-                          Timestamp toTime, String brand, String customerID, String invoiceNumber, String accountNumber);
+                          Timestamp toTime, String brand, String customerID, String invoiceNumber,
+                          String accountNumber, String transferFileName);
     List<StatusCount> getStatusAndCountByTransferfile(String transferFile);
     List<StatusCount> getStatusByTransferfileBatchId(Long ekBatchJobId);
 }

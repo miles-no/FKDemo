@@ -1,8 +1,8 @@
-package no.fjordkraft.im.services.impl;
+package no.fjordkraft.im.ui.services.impl;
 
 import no.fjordkraft.im.model.LayoutRule;
 import no.fjordkraft.im.repository.LayoutRuleRepository;
-import no.fjordkraft.im.services.UILayoutRuleService;
+import no.fjordkraft.im.ui.services.UILayoutRuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

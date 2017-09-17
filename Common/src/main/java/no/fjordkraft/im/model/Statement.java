@@ -45,6 +45,7 @@ public class Statement {
     @Column(name="CREATE_TIME")
     private Timestamp createTime;
 
+    @Version
     @Column(name="Update_TIME")
     private Timestamp updateTime;
 

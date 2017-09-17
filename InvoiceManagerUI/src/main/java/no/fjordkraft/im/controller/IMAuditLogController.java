@@ -1,7 +1,7 @@
 package no.fjordkraft.im.controller;
 
 import no.fjordkraft.im.domain.RestAuditLog;
-import no.fjordkraft.im.services.UIAuditLogService;
+import no.fjordkraft.im.ui.services.UIAuditLogService;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

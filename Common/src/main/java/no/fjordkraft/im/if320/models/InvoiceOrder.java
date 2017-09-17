@@ -60,7 +60,8 @@ import java.util.List;
     "genInfoInvoiceOrder125",
     "consumptionPillars132",
         "consumptions",
-    "invoiceOrderEndRecord134"
+    "invoiceOrderEndRecord134",
+    "nettleie"
 })
 @XmlRootElement(name = "InvoiceOrder")
 public class InvoiceOrder {
@@ -93,6 +94,8 @@ public class InvoiceOrder {
     protected InvoiceOrderEndRecord134 invoiceOrderEndRecord134;
     @XmlElement(name = "Consumptions", required = true)
     protected Consumptions consumptions;
+    @XmlElement(name = "Nettleie", required = true)
+    protected Nettleie nettleie;
 
     /**
      * Gets the value of the invoiceOrderInfo110 property.
@@ -100,7 +103,7 @@ public class InvoiceOrder {
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.InvoiceOrderInfo110 }
-     *     
+     *
      */
     public InvoiceOrderInfo110 getInvoiceOrderInfo110() {
         return invoiceOrderInfo110;
@@ -108,11 +111,11 @@ public class InvoiceOrder {
 
     /**
      * Sets the value of the invoiceOrderInfo110 property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.InvoiceOrderInfo110 }
-     *     
+     *
      */
     public void setInvoiceOrderInfo110(InvoiceOrderInfo110 value) {
         this.invoiceOrderInfo110 = value;
@@ -120,11 +123,11 @@ public class InvoiceOrder {
 
     /**
      * Gets the value of the readingInfo111 property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.ReadingInfo111 }
-     *     
+     *
      */
     public ReadingInfo111 getReadingInfo111() {
         return readingInfo111;
@@ -132,11 +135,11 @@ public class InvoiceOrder {
 
     /**
      * Sets the value of the readingInfo111 property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.ReadingInfo111 }
-     *     
+     *
      */
     public void setReadingInfo111(ReadingInfo111 value) {
         this.readingInfo111 = value;
@@ -144,11 +147,11 @@ public class InvoiceOrder {
 
     /**
      * Gets the value of the lastReading112 property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.LastReading112 }
-     *     
+     *
      */
     public LastReading112 getLastReading112() {
         return lastReading112;
@@ -156,11 +159,11 @@ public class InvoiceOrder {
 
     /**
      * Sets the value of the lastReading112 property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.LastReading112 }
-     *     
+     *
      */
     public void setLastReading112(LastReading112 value) {
         this.lastReading112 = value;
@@ -168,11 +171,11 @@ public class InvoiceOrder {
 
     /**
      * Gets the value of the invoiceOrderAmounts113 property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.InvoiceOrderAmounts113 }
-     *     
+     *
      */
     public InvoiceOrderAmounts113 getInvoiceOrderAmounts113() {
         return invoiceOrderAmounts113;
@@ -180,11 +183,11 @@ public class InvoiceOrder {
 
     /**
      * Sets the value of the invoiceOrderAmounts113 property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.InvoiceOrderAmounts113 }
-     *     
+     *
      */
     public void setInvoiceOrderAmounts113(InvoiceOrderAmounts113 value) {
         this.invoiceOrderAmounts113 = value;
@@ -192,11 +195,11 @@ public class InvoiceOrder {
 
     /**
      * Gets the value of the vatSpecInvoiceOrder114 property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.VatSpecInvoiceOrder114 }
-     *     
+     *
      */
     public VatSpecInvoiceOrder114 getVatSpecInvoiceOrder114() {
         return vatSpecInvoiceOrder114;
@@ -204,11 +207,11 @@ public class InvoiceOrder {
 
     /**
      * Sets the value of the vatSpecInvoiceOrder114 property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.VatSpecInvoiceOrder114 }
-     *     
+     *
      */
     public void setVatSpecInvoiceOrder114(VatSpecInvoiceOrder114 value) {
         this.vatSpecInvoiceOrder114 = value;
@@ -216,25 +219,25 @@ public class InvoiceOrder {
 
     /**
      * Gets the value of the priceInfo116 property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the priceInfo116 property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getPriceInfo116().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link no.fjordkraft.im.if320.models.PriceInfo116 }
-     * 
-     * 
+     *
+     *
      */
     public List<PriceInfo116> getPriceInfo116() {
         if (priceInfo116 == null) {
@@ -245,11 +248,11 @@ public class InvoiceOrder {
 
     /**
      * Gets the value of the supplyPointInfo117 property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.SupplyPointInfo117 }
-     *     
+     *
      */
     public SupplyPointInfo117 getSupplyPointInfo117() {
         return supplyPointInfo117;
@@ -257,11 +260,11 @@ public class InvoiceOrder {
 
     /**
      * Sets the value of the supplyPointInfo117 property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.SupplyPointInfo117 }
-     *     
+     *
      */
     public void setSupplyPointInfo117(SupplyPointInfo117 value) {
         this.supplyPointInfo117 = value;
@@ -269,11 +272,11 @@ public class InvoiceOrder {
 
     /**
      * Gets the value of the productParameters118 property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.ProductParameters118 }
-     *     
+     *
      */
     public ProductParameters118 getProductParameters118() {
         return productParameters118;
@@ -281,11 +284,11 @@ public class InvoiceOrder {
 
     /**
      * Sets the value of the productParameters118 property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.ProductParameters118 }
-     *     
+     *
      */
     public void setProductParameters118(ProductParameters118 value) {
         this.productParameters118 = value;
@@ -293,25 +296,25 @@ public class InvoiceOrder {
 
     /**
      * Gets the value of the invoiceLine120 property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the invoiceLine120 property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getInvoiceLine120().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link no.fjordkraft.im.if320.models.InvoiceLine120 }
-     * 
-     * 
+     *
+     *
      */
     public List<InvoiceLine120> getInvoiceLine120() {
         if (invoiceLine120 == null) {
@@ -322,11 +325,11 @@ public class InvoiceOrder {
 
     /**
      * Gets the value of the yearlyConsumption123 property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.YearlyConsumption123 }
-     *     
+     *
      */
     public YearlyConsumption123 getYearlyConsumption123() {
         return yearlyConsumption123;
@@ -334,11 +337,11 @@ public class InvoiceOrder {
 
     /**
      * Sets the value of the yearlyConsumption123 property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.YearlyConsumption123 }
-     *     
+     *
      */
     public void setYearlyConsumption123(YearlyConsumption123 value) {
         this.yearlyConsumption123 = value;
@@ -346,25 +349,25 @@ public class InvoiceOrder {
 
     /**
      * Gets the value of the genInfoInvoiceOrder125 property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the genInfoInvoiceOrder125 property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getGenInfoInvoiceOrder125().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link no.fjordkraft.im.if320.models.GenInfoInvoiceOrder125 }
-     * 
-     * 
+     *
+     *
      */
     public List<GenInfoInvoiceOrder125> getGenInfoInvoiceOrder125() {
         if (genInfoInvoiceOrder125 == null) {
@@ -375,11 +378,11 @@ public class InvoiceOrder {
 
     /**
      * Gets the value of the consumptionPillars132 property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.ConsumptionPillars132 }
-     *     
+     *
      */
     public ConsumptionPillars132 getConsumptionPillars132() {
         return consumptionPillars132;
@@ -387,11 +390,11 @@ public class InvoiceOrder {
 
     /**
      * Sets the value of the consumptionPillars132 property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.ConsumptionPillars132 }
-     *     
+     *
      */
     public void setConsumptionPillars132(ConsumptionPillars132 value) {
         this.consumptionPillars132 = value;
@@ -399,11 +402,11 @@ public class InvoiceOrder {
 
     /**
      * Gets the value of the invoiceOrderEndRecord134 property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.InvoiceOrderEndRecord134 }
-     *     
+     *
      */
     public InvoiceOrderEndRecord134 getInvoiceOrderEndRecord134() {
         return invoiceOrderEndRecord134;
@@ -411,7 +414,7 @@ public class InvoiceOrder {
 
     /**
      * Sets the value of the invoiceOrderEndRecord134 property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.InvoiceOrderEndRecord134 }
@@ -427,5 +430,13 @@ public class InvoiceOrder {
 
     public void setConsumptions(Consumptions consumptions) {
         this.consumptions = consumptions;
+    }
+
+    public Nettleie getNettleie() {
+        return nettleie;
+    }
+
+    public void setNettleie(Nettleie nettleie) {
+        this.nettleie = nettleie;
     }
 }

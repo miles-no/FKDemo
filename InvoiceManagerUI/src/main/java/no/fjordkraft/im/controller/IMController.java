@@ -9,9 +9,10 @@ import no.fjordkraft.im.repository.InvoicePdfRepository;
 import no.fjordkraft.im.repository.TransferFileRepository;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.statusEnum.UIStatementStatusEnum;
-import no.fjordkraft.im.services.UIStatementService;
-import no.fjordkraft.im.services.UITransferFileArchiveService;
-import no.fjordkraft.im.services.UITransferFileService;
+
+import no.fjordkraft.im.ui.services.UIStatementService;
+import no.fjordkraft.im.ui.services.UITransferFileArchiveService;
+import no.fjordkraft.im.ui.services.UITransferFileService;
 import no.fjordkraft.im.util.Util;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;

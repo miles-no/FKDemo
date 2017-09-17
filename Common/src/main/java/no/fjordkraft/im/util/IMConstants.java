@@ -15,6 +15,7 @@ public interface IMConstants {
     String NUM_OF_THREAD_FILESPLITTER ="num.thread.file.splitter";
     String NUM_OF_THREAD_PREPROCESSOR ="num.thread.preprocess";
     String NUM_OF_THREAD_PDFGENERATOR ="num.thread.pdf.generator";
+    String NUM_OF_STMT_PDF_GEN="num.statement.pdf.generation";
     String MAX_QUEUE_CAPACITY="500";
     String BIRT_RPTDESIGN_PATH = "birt.layout.file.path";
     String SAMPLE_STATEMENT_FILE_PATH = "sample.statement.file.path";
@@ -77,4 +78,7 @@ public interface IMConstants {
     static final String CAMPAIGN_IMAGE = "CAMPAIGN_IMAGE";
     static final String SUCCESS = "SUCCESS";
     static final String AUDIT_LOG = "AUDIT_LOG";
+    static final String EMUXML = "EMUXML";
+    static final String PDFE2B = "PDFE2B";
+    static final String PDFEHF = "PDFEHF";
 }

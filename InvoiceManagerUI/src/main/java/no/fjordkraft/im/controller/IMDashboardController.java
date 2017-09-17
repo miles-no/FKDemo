@@ -3,7 +3,8 @@ package no.fjordkraft.im.controller;
 import no.fjordkraft.im.model.StatusCount;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.statusEnum.UIStatementStatusEnum;
-import no.fjordkraft.im.services.UIStatementService;
+
+import no.fjordkraft.im.ui.services.UIStatementService;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

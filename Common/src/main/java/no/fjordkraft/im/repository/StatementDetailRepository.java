@@ -28,7 +28,7 @@ public class StatementDetailRepository {
     @Transactional(readOnly = true)
     public List<Statement> getDetails(int page, int size, String status, Timestamp fromTime,
                                 Timestamp toTime, String brand, String customerID,
-                                      String invoiceNumber, String accountNumber){
+                                      String invoiceNumber, String accountNumber, String transferFileName){
 
         StringBuffer selectQuery = new StringBuffer();
         selectQuery.append("select s from Statement s join s.systemBatchInput where ");
@@ -47,6 +47,10 @@ public class StatementDetailRepository {
         }
         if(null != accountNumber) {
             selectQuery.append(addConditionForQueryValue(accountNumber, "s.accountNumber"));
+            selectQuery.append(AND);
+        }
+        if(null != transferFileName) {
+            selectQuery.append(addConditionForQueryValue(transferFileName, "s.systemBatchInput.transferFile.filename"));
             selectQuery.append(AND);
         }
         selectQuery.append("(:fromTime is null or s.createTime >= :fromTime) ");
@@ -89,7 +93,7 @@ public class StatementDetailRepository {
 
     @Transactional
     public Long getCountByStatus(String status, Timestamp fromTime, Timestamp toTime, String brand,
-                                 String customerID, String invoiceNumber, String accountNumber) {
+                                 String customerID, String invoiceNumber, String accountNumber, String transferFileName) {
         StringBuffer selectQuery = new StringBuffer();
         selectQuery.append("select count(s) from Statement s join s.systemBatchInput where ");
         if(null != status ) {
@@ -106,6 +110,10 @@ public class StatementDetailRepository {
         }
         if(null != accountNumber) {
             selectQuery.append(addConditionForQueryValue(accountNumber, "s.accountNumber"));
+            selectQuery.append(AND);
+        }
+        if(null != transferFileName) {
+            selectQuery.append(addConditionForQueryValue(transferFileName, "s.systemBatchInput.transferFile.filename"));
             selectQuery.append(AND);
         }
         selectQuery.append("(:fromTime is null or s.createTime >= :fromTime) ");

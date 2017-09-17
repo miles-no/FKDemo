@@ -1,4 +1,4 @@
-package no.fjordkraft.im.services;
+package no.fjordkraft.im.ui.services;
 
 
 import no.fjordkraft.im.model.TransferFileArchive;

@@ -151,7 +151,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "accountCategory",
     "version",
     "statementType",
-    "creditedInvoice"
+    "creditedInvoice",
+    "toAddress"
 })
 @XmlRootElement(name = "Statement")
 public class Statement {
@@ -234,7 +235,7 @@ public class Statement {
     protected float totalOpenClaim;
     @XmlElement(name = "TotalAttachment")
     protected int totalAttachment;
-    @XmlElement(name = "")
+    @XmlElement(name = "TotalVatAmount")
     protected float totalVatAmount;
     @XmlElement(name = "CurrentInterestRates", required = true)
     protected CurrentInterestRates currentInterestRates;
@@ -243,7 +244,7 @@ public class Statement {
     @XmlElement(name = "Transactions", required = true)
     protected Transactions transactions;
     @XmlElement(name = "TransactionGroup", required = true)
-    protected  TransactionGroup transactionGroup;
+    protected TransactionGroup transactionGroup;
     @XmlElement(name = "PieChart", required = true)
     protected PieChart pieChart;
     @XmlElement(name = "LineItems", required = true)
@@ -280,6 +281,8 @@ public class Statement {
     protected String statementType;
     @XmlElement(name = "CreditedInvoice", required = true)
     protected String creditedInvoice;
+    @XmlElement(name = "ToAddress", required = true)
+    protected ToAddress toAddress ;
 
     /**
      * Gets the value of the customerReference property.
@@ -803,7 +806,7 @@ public class Statement {
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
-     *     
+     *
      */
     public void setDueDate(XMLGregorianCalendar value) {
         this.dueDate = value;
@@ -811,7 +814,7 @@ public class Statement {
 
     /**
      * Gets the value of the ingoingBalance property.
-     * 
+     *
      */
     public float getIngoingBalance() {
         return ingoingBalance;
@@ -819,7 +822,7 @@ public class Statement {
 
     /**
      * Sets the value of the ingoingBalance property.
-     * 
+     *
      */
     public void setIngoingBalance(float value) {
         this.ingoingBalance = value;
@@ -827,7 +830,7 @@ public class Statement {
 
     /**
      * Gets the value of the outgoingBalance property.
-     * 
+     *
      */
     public float getOutgoingBalance() {
         return outgoingBalance;
@@ -835,7 +838,7 @@ public class Statement {
 
     /**
      * Sets the value of the outgoingBalance property.
-     * 
+     *
      */
     public void setOutgoingBalance(float value) {
         this.outgoingBalance = value;
@@ -843,7 +846,7 @@ public class Statement {
 
     /**
      * Gets the value of the creditLimit property.
-     * 
+     *
      */
     public float getCreditLimit() {
         return creditLimit;
@@ -851,7 +854,7 @@ public class Statement {
 
     /**
      * Sets the value of the creditLimit property.
-     * 
+     *
      */
     public void setCreditLimit(float value) {
         this.creditLimit = value;
@@ -859,7 +862,7 @@ public class Statement {
 
     /**
      * Gets the value of the availableCredit property.
-     * 
+     *
      */
     public float getAvailableCredit() {
         return availableCredit;
@@ -867,7 +870,7 @@ public class Statement {
 
     /**
      * Sets the value of the availableCredit property.
-     * 
+     *
      */
     public void setAvailableCredit(float value) {
         this.availableCredit = value;
@@ -875,7 +878,7 @@ public class Statement {
 
     /**
      * Gets the value of the nonCreditedInterest property.
-     * 
+     *
      */
     public float getNonCreditedInterest() {
         return nonCreditedInterest;
@@ -883,7 +886,7 @@ public class Statement {
 
     /**
      * Sets the value of the nonCreditedInterest property.
-     * 
+     *
      */
     public void setNonCreditedInterest(float value) {
         this.nonCreditedInterest = value;
@@ -891,11 +894,11 @@ public class Statement {
 
     /**
      * Gets the value of the generalMessage property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getGeneralMessage() {
         return generalMessage;
@@ -903,11 +906,11 @@ public class Statement {
 
     /**
      * Sets the value of the generalMessage property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setGeneralMessage(String value) {
         this.generalMessage = value;
@@ -915,11 +918,11 @@ public class Statement {
 
     /**
      * Gets the value of the accountMessage property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getAccountMessage() {
         return accountMessage;
@@ -927,11 +930,11 @@ public class Statement {
 
     /**
      * Sets the value of the accountMessage property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setAccountMessage(String value) {
         this.accountMessage = value;
@@ -939,7 +942,7 @@ public class Statement {
 
     /**
      * Gets the value of the currentClaim property.
-     * 
+     *
      */
     public float getCurrentClaim() {
         return currentClaim;
@@ -947,7 +950,7 @@ public class Statement {
 
     /**
      * Sets the value of the currentClaim property.
-     * 
+     *
      */
     public void setCurrentClaim(float value) {
         this.currentClaim = value;
@@ -955,7 +958,7 @@ public class Statement {
 
     /**
      * Gets the value of the totalOpenClaim property.
-     * 
+     *
      */
     public float getTotalOpenClaim() {
         return totalOpenClaim;
@@ -963,7 +966,7 @@ public class Statement {
 
     /**
      * Sets the value of the totalOpenClaim property.
-     * 
+     *
      */
     public void setTotalOpenClaim(float value) {
         this.totalOpenClaim = value;
@@ -971,7 +974,7 @@ public class Statement {
 
     /**
      * Gets the value of the totalVatAmount property.
-     * 
+     *
      */
     public float getTotalVatAmount() {
         return totalVatAmount;
@@ -979,7 +982,7 @@ public class Statement {
 
     /**
      * Sets the value of the totalVatAmount property.
-     * 
+     *
      */
     public void setTotalVatAmount(float value) {
         this.totalVatAmount = value;
@@ -987,11 +990,11 @@ public class Statement {
 
     /**
      * Gets the value of the currentInterestRates property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.CurrentInterestRates }
-     *     
+     *
      */
     public CurrentInterestRates getCurrentInterestRates() {
         return currentInterestRates;
@@ -999,11 +1002,11 @@ public class Statement {
 
     /**
      * Sets the value of the currentInterestRates property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.CurrentInterestRates }
-     *     
+     *
      */
     public void setCurrentInterestRates(CurrentInterestRates value) {
         this.currentInterestRates = value;
@@ -1011,11 +1014,11 @@ public class Statement {
 
     /**
      * Gets the value of the outstandingClaims property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getOutstandingClaims() {
         return outstandingClaims;
@@ -1023,11 +1026,11 @@ public class Statement {
 
     /**
      * Sets the value of the outstandingClaims property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setOutstandingClaims(String value) {
         this.outstandingClaims = value;
@@ -1035,11 +1038,11 @@ public class Statement {
 
     /**
      * Gets the value of the transactions property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.Transactions }
-     *     
+     *
      */
     public Transactions getTransactions() {
         return transactions;
@@ -1047,11 +1050,11 @@ public class Statement {
 
     /**
      * Sets the value of the transactions property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.Transactions }
-     *     
+     *
      */
     public void setTransactions(Transactions value) {
         this.transactions = value;
@@ -1059,11 +1062,11 @@ public class Statement {
 
     /**
      * Gets the value of the lineItems property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getLineItems() {
         return lineItems;
@@ -1071,11 +1074,11 @@ public class Statement {
 
     /**
      * Sets the value of the lineItems property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setLineItems(String value) {
         this.lineItems = value;
@@ -1083,11 +1086,11 @@ public class Statement {
 
     /**
      * Gets the value of the instalmentAccounts property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getInstalmentAccounts() {
         return instalmentAccounts;
@@ -1095,11 +1098,11 @@ public class Statement {
 
     /**
      * Sets the value of the instalmentAccounts property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setInstalmentAccounts(String value) {
         this.instalmentAccounts = value;
@@ -1107,11 +1110,11 @@ public class Statement {
 
     /**
      * Gets the value of the attachments property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.Attachments }
-     *     
+     *
      */
     public Attachments getAttachments() {
         return attachments;
@@ -1119,11 +1122,11 @@ public class Statement {
 
     /**
      * Sets the value of the attachments property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.Attachments }
-     *     
+     *
      */
     public void setAttachments(Attachments value) {
         this.attachments = value;
@@ -1131,11 +1134,11 @@ public class Statement {
 
     /**
      * Gets the value of the taxReport property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getTaxReport() {
         return taxReport;
@@ -1143,11 +1146,11 @@ public class Statement {
 
     /**
      * Sets the value of the taxReport property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setTaxReport(String value) {
         this.taxReport = value;
@@ -1155,11 +1158,11 @@ public class Statement {
 
     /**
      * Gets the value of the directDebitAmount property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getDirectDebitAmount() {
         return directDebitAmount;
@@ -1167,11 +1170,11 @@ public class Statement {
 
     /**
      * Sets the value of the directDebitAmount property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setDirectDebitAmount(String value) {
         this.directDebitAmount = value;
@@ -1179,11 +1182,11 @@ public class Statement {
 
     /**
      * Gets the value of the directDebitAgreementDate property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getDirectDebitAgreementDate() {
         return directDebitAgreementDate;
@@ -1191,11 +1194,11 @@ public class Statement {
 
     /**
      * Sets the value of the directDebitAgreementDate property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setDirectDebitAgreementDate(String value) {
         this.directDebitAgreementDate = value;
@@ -1203,11 +1206,11 @@ public class Statement {
 
     /**
      * Gets the value of the directDebitBasetype property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getDirectDebitBasetype() {
         return directDebitBasetype;
@@ -1215,11 +1218,11 @@ public class Statement {
 
     /**
      * Sets the value of the directDebitBasetype property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setDirectDebitBasetype(String value) {
         this.directDebitBasetype = value;
@@ -1227,11 +1230,11 @@ public class Statement {
 
     /**
      * Gets the value of the legalPartClass property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getLegalPartClass() {
         return legalPartClass;
@@ -1239,11 +1242,11 @@ public class Statement {
 
     /**
      * Sets the value of the legalPartClass property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setLegalPartClass(String value) {
         this.legalPartClass = value;
@@ -1251,11 +1254,11 @@ public class Statement {
 
     /**
      * Gets the value of the minClaimFixedAmount property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getMinClaimFixedAmount() {
         return minClaimFixedAmount;
@@ -1263,11 +1266,11 @@ public class Statement {
 
     /**
      * Sets the value of the minClaimFixedAmount property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setMinClaimFixedAmount(String value) {
         this.minClaimFixedAmount = value;
@@ -1275,7 +1278,7 @@ public class Statement {
 
     /**
      * Gets the value of the budgetStatementAmount property.
-     * 
+     *
      */
     public float getBudgetStatementAmount() {
         return budgetStatementAmount;
@@ -1283,7 +1286,7 @@ public class Statement {
 
     /**
      * Sets the value of the budgetStatementAmount property.
-     * 
+     *
      */
     public void setBudgetStatementAmount(float value) {
         this.budgetStatementAmount = value;
@@ -1291,7 +1294,7 @@ public class Statement {
 
     /**
      * Gets the value of the recommendedStatementAmount property.
-     * 
+     *
      */
     public float getRecommendedStatementAmount() {
         return recommendedStatementAmount;
@@ -1299,7 +1302,7 @@ public class Statement {
 
     /**
      * Sets the value of the recommendedStatementAmount property.
-     * 
+     *
      */
     public void setRecommendedStatementAmount(float value) {
         this.recommendedStatementAmount = value;
@@ -1307,11 +1310,11 @@ public class Statement {
 
     /**
      * Gets the value of the collection property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getCollection() {
         return collection;
@@ -1319,11 +1322,11 @@ public class Statement {
 
     /**
      * Sets the value of the collection property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setCollection(String value) {
         this.collection = value;
@@ -1331,11 +1334,11 @@ public class Statement {
 
     /**
      * Gets the value of the accountType property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.AccountType }
-     *     
+     *
      */
     public AccountType getAccountType() {
         return accountType;
@@ -1343,11 +1346,11 @@ public class Statement {
 
     /**
      * Sets the value of the accountType property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.AccountType }
-     *     
+     *
      */
     public void setAccountType(AccountType value) {
         this.accountType = value;
@@ -1355,11 +1358,11 @@ public class Statement {
 
     /**
      * Gets the value of the accountCategory property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link no.fjordkraft.im.if320.models.AccountCategory }
-     *     
+     *
      */
     public AccountCategory getAccountCategory() {
         return accountCategory;
@@ -1367,7 +1370,7 @@ public class Statement {
 
     /**
      * Sets the value of the accountCategory property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link no.fjordkraft.im.if320.models.AccountCategory }
@@ -1495,5 +1498,13 @@ public class Statement {
 
     public void setTotalAttachment(int totalAttachment) {
         this.totalAttachment = totalAttachment;
+    }
+
+    public ToAddress getToAddress() {
+        return toAddress;
+    }
+
+    public void setToAddress(ToAddress toAddress) {
+        this.toAddress = toAddress;
     }
 }

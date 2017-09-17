@@ -3,6 +3,7 @@ package no.fjordkraft.im.preprocess.services.impl;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.if320.models.Transaction;
 import no.fjordkraft.im.if320.models.TransactionGroup;
+import no.fjordkraft.im.model.TransactionGroupCategory;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.repository.TransactionGroupRepository;
@@ -30,30 +31,30 @@ public class CustomTransactionGroupPreprocessor  extends BasePreprocessor {
         Map<String, Transaction> diverseRabatter = new HashMap<String, Transaction>();
 
         List<Transaction> transactions = request.getStatement().getTransactions().getTransaction();
-        List<no.fjordkraft.im.model.TransactionGroup> diverseList = transactionGroupRepository.queryTransactionGroupByName(IMConstants.DIVERSE);
-        List<no.fjordkraft.im.model.TransactionGroup> rabatterList = transactionGroupRepository.queryTransactionGroupByName(IMConstants.RABATTER);
-        List<Transaction> processedTransaction = request.getStatement().getTransactionGroup().getTransaction();
-        TransactionGroup transactionGroup = new TransactionGroup();
         Iterator mapIterator = null;
         int totalTransactions = request.getStatement().getTransactionGroup().getTotalTransactions();
+        List<Transaction> processedTransaction = request.getStatement().getTransactionGroup().getTransaction();
+        TransactionGroup transactionGroup = new TransactionGroup();
 
+        Float amountWithVatTotal = 0.0f;
+        Float vatTotalAmount = 0.0f;
+
+        List<no.fjordkraft.im.model.TransactionGroup> transactionGroupList = transactionGroupRepository.findAll();
 
         for(Transaction transaction:transactions) {
-            if(null != rabatterList && IMConstants.ZERO != rabatterList.size()) {
-                for (no.fjordkraft.im.model.TransactionGroup rabatter : rabatterList) {
-                    if (rabatter.getTransactionCategory().equals(transaction.getTransactionCategory())) {
-                        diverseRabatter.put(IMConstants.RABATTER, createDiverseRabatterTransactionEntry(diverseRabatter, transaction, rabatter, IMConstants.RABATTER));
-                    }
-                }
-            }
-            if(null != diverseList && IMConstants.ZERO != diverseList.size()) {
-                for (no.fjordkraft.im.model.TransactionGroup diverse : diverseList) {
-                    if (diverse.getTransactionCategory().equals(transaction.getTransactionCategory())) {
-                        diverseRabatter.put(IMConstants.DIVERSE, createDiverseRabatterTransactionEntry(diverseRabatter, transaction, diverse, IMConstants.DIVERSE));
+            if (null != transactionGroupList && IMConstants.ZERO != transactionGroupList.size()) {
+                for (no.fjordkraft.im.model.TransactionGroup group : transactionGroupList) {
+                    for (TransactionGroupCategory category : group.getTransactionGroupCategoryList()) {
+                        if (category.getTransactionCategory().equals(transaction.getTransactionCategory())) {
+                            diverseRabatter.put(group.getLabel(), createDiverseRabatterTransactionEntry(diverseRabatter, transaction, group, group.getName()));
+                            amountWithVatTotal += transaction.getAmountWithVat();
+                            vatTotalAmount += transaction.getVatAmount();
+                        }
                     }
                 }
             }
         }
+
         Transaction transaction;
         mapIterator = diverseRabatter.entrySet().iterator();
         while(mapIterator.hasNext()) {
@@ -67,6 +68,8 @@ public class CustomTransactionGroupPreprocessor  extends BasePreprocessor {
         transactionGroup.setTransaction(processedTransaction);
         transactionGroup.setTotalTransactions(totalTransactions);
         request.getStatement().setTransactionGroup(transactionGroup);
+        request.getStatement().getTransactions().setDiAmountWithVat(amountWithVatTotal);
+        request.getStatement().getTransactions().setDiVatTotal(vatTotalAmount);
     }
 
     private Transaction createDiverseRabatterTransactionEntry(Map<String, Transaction> diverseRabatter, Transaction transaction,

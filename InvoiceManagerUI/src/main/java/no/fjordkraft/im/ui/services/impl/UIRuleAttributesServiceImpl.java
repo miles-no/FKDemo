@@ -1,10 +1,10 @@
-package no.fjordkraft.im.services.impl;
+package no.fjordkraft.im.ui.services.impl;
 
 import no.fjordkraft.im.domain.NameValuePair;
 import no.fjordkraft.im.domain.RestRuleAttribute;
 import no.fjordkraft.im.model.RuleAttributes;
 import no.fjordkraft.im.repository.RuleAttributesRepository;
-import no.fjordkraft.im.services.UIRuleAttributesService;
+import no.fjordkraft.im.ui.services.UIRuleAttributesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +24,7 @@ public class UIRuleAttributesServiceImpl implements UIRuleAttributesService {
     @Override
     public List<RestRuleAttribute> getAllLayoutConfig() {
         List<RuleAttributes> ruleAttributesList = ruleAttributesRepository.findAll();
-        List<RestRuleAttribute> restRuleAttributeList = new ArrayList<RestRuleAttribute>();
+        List<RestRuleAttribute> restRuleAttributeList = new ArrayList<>();
         RestRuleAttribute restRuleAttribute;
         for(RuleAttributes ruleAttributes:ruleAttributesList) {
             restRuleAttribute = new RestRuleAttribute();
@@ -65,7 +65,7 @@ public class UIRuleAttributesServiceImpl implements UIRuleAttributesService {
     @Override
     public List<NameValuePair> getAllRuleAttributes() {
         List<RuleAttributes> ruleAttributesList = ruleAttributesRepository.findAll();
-        List<NameValuePair> nameValuePairList = new ArrayList<NameValuePair>();
+        List<NameValuePair> nameValuePairList = new ArrayList<>();
         NameValuePair nameValuePair;
         for(RuleAttributes ruleAttributes:ruleAttributesList) {
             nameValuePair = new NameValuePair();

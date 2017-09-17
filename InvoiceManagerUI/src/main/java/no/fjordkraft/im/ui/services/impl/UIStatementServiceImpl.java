@@ -1,4 +1,4 @@
-package no.fjordkraft.im.services.impl;
+package no.fjordkraft.im.ui.services.impl;
 
 import no.fjordkraft.im.domain.RestInvoicePdf;
 import no.fjordkraft.im.domain.RestStatement;
@@ -9,10 +9,10 @@ import no.fjordkraft.im.repository.StatementDetailRepository;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.repository.SystemBatchInputRepository;
 import no.fjordkraft.im.services.SystemBatchInputService;
-import no.fjordkraft.im.services.UIStatementService;
-import no.fjordkraft.im.services.UITransferFileService;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.statusEnum.UIStatementStatusEnum;
+import no.fjordkraft.im.ui.services.UIStatementService;
+import no.fjordkraft.im.ui.services.UITransferFileService;
 import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,14 +84,15 @@ public class UIStatementServiceImpl implements UIStatementService {
     @Override
     @Transactional(readOnly = true)
     public List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime,
-                                          String brand, String customerID, String invoiceNumber, String accountNumber) {
+                                          String brand, String customerID, String invoiceNumber, String accountNumber, String transferFileName) {
         String mappedStatus = mapStatus(status);
-        String mappedBrand = mapBrand(brand);
+        String mappedBrand = mapStringData(brand);
+        String mappedTransferFileName = mapStringData(transferFileName);
 
         List<Statement> statementList = statementDetailRepository.getDetails(page, size, mappedStatus, fromTime, toTime,
-                mappedBrand, customerID, invoiceNumber, accountNumber);
+                mappedBrand, customerID, invoiceNumber, accountNumber, mappedTransferFileName);
 
-        List<RestStatement> restStatementList = new ArrayList<RestStatement>();
+        List<RestStatement> restStatementList = new ArrayList<>();
         //List<Long> statementIdList =  new ArrayList<>();
         Map<Long,RestStatement> statementMap = new HashMap<Long,RestStatement>();
         if(null != statementList) {
@@ -111,6 +112,7 @@ public class UIStatementServiceImpl implements UIStatementService {
                 restStatement.setStatementId(statement.getStatementId());
                 restStatement.setDueDate(statement.getDueDate());
                 restStatement.setCreateTime(statement.getCreateTime());
+                restStatement.setIf320FileName(statement.getSystemBatchInput().getTransferFile().getFilename());
                 restStatementList.add(restStatement);
                 //statementIdList.add(statement.getId());
                 statementMap.put(statement.getId(),restStatement);
@@ -131,11 +133,13 @@ public class UIStatementServiceImpl implements UIStatementService {
     @Override
     @Transactional(readOnly = true)
     public Long getCountByStatus(String status, Timestamp fromTime,
-                                 Timestamp toTime, String brand, String customerID, String invoiceNumber, String accountNumber) {
+                                 Timestamp toTime, String brand, String customerID, String invoiceNumber,
+                                 String accountNumber, String transferFileName) {
         String mappedStatus = mapStatus(status);
-        String mappedBrand = mapBrand(brand);
+        String mappedBrand = mapStringData(brand);
+        String mappedTransferFileName = mapStringData(transferFileName);
         return statementDetailRepository.getCountByStatus(mappedStatus, fromTime, toTime,
-                mappedBrand, customerID, invoiceNumber, accountNumber);
+                mappedBrand, customerID, invoiceNumber, accountNumber, mappedTransferFileName);
     }
 
     private String mapStatus(String states) {
@@ -179,18 +183,18 @@ public class UIStatementServiceImpl implements UIStatementService {
         return mappedStatusList.toString();
     }
 
-    private String mapBrand(String brands) {
-        if(null == brands) {
+    private String mapStringData(String values) {
+        if(null == values) {
             return null;
         }
-        String[] brandList = brands.split(",");
+        String[] valueList = values.split(",");
         StringBuffer mappedBrand = new StringBuffer();
 
-        for(String brand:brandList) {
+        for(String value:valueList) {
             if(!mappedBrand.toString().equals(IMConstants.EMPTY_STRING)) {
                 mappedBrand.append(",");
             }
-            mappedBrand.append("'" + brand + "'");
+            mappedBrand.append("'" + value + "'");
         }
         return mappedBrand.toString();
     }
@@ -205,7 +209,7 @@ public class UIStatementServiceImpl implements UIStatementService {
     @Override
     public List<StatusCount> getStatusByTransferfileBatchId(Long ekBatchJobId) {
         List<TransferFile> transferFileList = transferFileService.readTransferFileByBatchJobId(ekBatchJobId);
-        List<StatusCount> statusCountList = new ArrayList<StatusCount>();
+        List<StatusCount> statusCountList = new ArrayList<>();
         Integer numOfRecords = 0;
         Long totalRecords = 0l;
 

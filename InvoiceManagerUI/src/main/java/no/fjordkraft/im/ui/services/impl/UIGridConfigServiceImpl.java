@@ -1,9 +1,9 @@
-package no.fjordkraft.im.services.impl;
+package no.fjordkraft.im.ui.services.impl;
 
 
 import no.fjordkraft.im.model.GridConfig;
 import no.fjordkraft.im.repository.GridConfigRepository;
-import no.fjordkraft.im.services.UIGridConfigService;
+import no.fjordkraft.im.ui.services.UIGridConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

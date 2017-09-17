@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by miles on 5/12/2017.
@@ -40,28 +42,40 @@ public class PDFGeneratorImpl implements PDFGenerator {
     @Autowired
     PDFGeneratorClient pdfGeneratorClient;
 
+    private static Set<Long> statementIdSet = new HashSet<>();
+
 
     @Override
     @Transactional
     public void generateInvoicePDF() throws InterruptedException {
-        Long numOfThreads = configService.getLong(IMConstants.NUM_OF_THREAD_PDFGENERATOR);
+        Long numOfThreads = configService.getLong(IMConstants.NUM_OF_STMT_PDF_GEN);
 
         List<Statement> statements = statementRepository.readStatements(numOfThreads, StatementStatusEnum.PRE_PROCESSED.getStatus());
         logger.debug("Generate invoice pdf for "+ statements.size() + " statements");
 
         List<Long> statementList = new ArrayList<>(50);
         for(Statement statement:statements) {
+            if(statementIdSet.contains(statement.getId())){
+                logger.debug("Statement with id "+ statement.getId() +  " already sent for pdf generation");
+            }
             logger.debug("Statement with id "+ statement.getId()+ " updated to SENT_FOR_PDF_PROCESSING ");
-            statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
+            try {
+                statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
+            }catch (Exception e ){
+                logger.error("error comminting transaction in sendpdf",e);
+            }
+
             //pdfGeneratorClient.processStatement(statement.getId());
             statementList.add(statement.getId());
             if(statementList.size() == 50) {
+                statementIdSet.addAll(statementList);
                 pdfGeneratorClient.processStatement(statementList);
                 statementList.clear();
             }
         }
 
         if(statementList.size()>0){
+            statementIdSet.addAll(statementList);
             pdfGeneratorClient.processStatement(statementList);
             statementList.clear();
         }

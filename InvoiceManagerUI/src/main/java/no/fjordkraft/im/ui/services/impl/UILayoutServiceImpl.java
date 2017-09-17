@@ -1,4 +1,4 @@
-package no.fjordkraft.im.services.impl;
+package no.fjordkraft.im.ui.services.impl;
 
 import no.fjordkraft.im.domain.NameValuePair;
 import no.fjordkraft.im.domain.RestLayout;
@@ -7,9 +7,9 @@ import no.fjordkraft.im.model.Layout;
 import no.fjordkraft.im.model.LayoutContent;
 import no.fjordkraft.im.model.LayoutRule;
 import no.fjordkraft.im.repository.LayoutRepository;
-import no.fjordkraft.im.services.UILayoutContentService;
-import no.fjordkraft.im.services.UILayoutRuleService;
-import no.fjordkraft.im.services.UILayoutService;
+import no.fjordkraft.im.ui.services.UILayoutContentService;
+import no.fjordkraft.im.ui.services.UILayoutRuleService;
+import no.fjordkraft.im.ui.services.UILayoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,7 +50,7 @@ public class UILayoutServiceImpl implements UILayoutService {
     @Override
     public List<RestLayout> getLayoutByBrand(String brand) {
         List<LayoutRule> layoutRuleList = layoutRuleService.getLayoutRuleByBrand(brand);
-        List<RestLayout> restLayoutList = new ArrayList<RestLayout>();
+        List<RestLayout> restLayoutList = new ArrayList<>();
         RestLayout restLayout;
         Layout layout;
         LayoutContent layoutContent;
@@ -77,7 +77,7 @@ public class UILayoutServiceImpl implements UILayoutService {
     @Override
     public List<RestLayout> getAllLayout() {
         List<LayoutRule> layoutRuleList = layoutRuleService.getAllLayoutRule();
-        List<RestLayout> restLayoutList = new ArrayList<RestLayout>();
+        List<RestLayout> restLayoutList = new ArrayList<>();
         RestLayout restLayout;
         Layout layout;
         LayoutContent layoutContent;
@@ -99,14 +99,13 @@ public class UILayoutServiceImpl implements UILayoutService {
                 restLayoutList.add(restLayout);
             }
         }
-
         return restLayoutList;
     }
 
     @Override
     public List<NameValuePair> getLayoutList() {
         List<Layout> layoutList = layoutRepository.findAll();
-        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        List<NameValuePair> nameValuePairs = new ArrayList<>();
         NameValuePair nameValuePair;
         for(Layout layout:layoutList) {
             nameValuePair = new NameValuePair();

@@ -1,8 +1,8 @@
-package no.fjordkraft.im.services.impl;
+package no.fjordkraft.im.ui.services.impl;
 
 import no.fjordkraft.im.model.Config;
 import no.fjordkraft.im.repository.ConfigRepository;
-import no.fjordkraft.im.services.UIConfigService;
+import no.fjordkraft.im.ui.services.UIConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,7 @@ import java.util.Map;
  * Created by miles on 8/10/2017.
  */
 @Service
-public class UIConfigServiceImpl implements UIConfigService {
+public class UIConfigServiceImpl implements UIConfigService  {
 
     @Autowired
     @Resource

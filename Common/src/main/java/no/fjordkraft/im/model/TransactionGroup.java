@@ -1,6 +1,7 @@
 package no.fjordkraft.im.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by miles on 5/23/2017.
@@ -20,8 +21,9 @@ public class TransactionGroup {
     @Column(name="LABEL")
     private String label;
 
-    @Column(name="TRANSACTION_CATEGORY")
-    private String transactionCategory;
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name="TG_ID")
+    private List<TransactionGroupCategory> transactionGroupCategoryList;
 
     public String getName() {
         return name;
@@ -39,11 +41,11 @@ public class TransactionGroup {
         this.label = label;
     }
 
-    public String getTransactionCategory() {
-        return transactionCategory;
+    public List<TransactionGroupCategory> getTransactionGroupCategoryList() {
+        return transactionGroupCategoryList;
     }
 
-    public void setTransactionCategory(String transactionCategory) {
-        this.transactionCategory = transactionCategory;
+    public void setTransactionGroupCategoryList(List<TransactionGroupCategory> transactionGroupCategoryList) {
+        this.transactionGroupCategoryList = transactionGroupCategoryList;
     }
 }

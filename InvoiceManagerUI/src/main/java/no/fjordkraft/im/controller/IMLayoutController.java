@@ -10,6 +10,7 @@ import no.fjordkraft.im.model.LayoutRule;
 import no.fjordkraft.im.model.RuleAttributes;
 import no.fjordkraft.im.services.*;
 
+import no.fjordkraft.im.ui.services.*;
 import org.apache.commons.io.FileUtils;
 //import org.eclipse.birt.core.exception.BirtException;
 import org.slf4j.Logger;

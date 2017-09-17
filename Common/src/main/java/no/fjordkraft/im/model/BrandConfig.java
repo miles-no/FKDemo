@@ -12,13 +12,19 @@ public class BrandConfig {
     public BrandConfig() {
     }
 
-    public BrandConfig(String brand, char useEABarcode, String agreementNumber, String serviceLevel, String prefixKID, String kontonummer) {
+    public BrandConfig(String brand, char useEABarcode, String agreementNumber, String serviceLevel, String prefixKID, String kontonummer,
+                       String description, String postcode, String city, String nationalId, String region) {
         this.brand = brand;
         this.useEABarcode = useEABarcode;
         this.agreementNumber = agreementNumber;
         this.serviceLevel = serviceLevel;
         this.prefixKID = prefixKID;
         this.kontonummer = kontonummer;
+        this.description = description;
+        this.postcode = postcode;
+        this.city = city;
+        this.nationalId = nationalId;
+        this.region = region;
     }
 
     @Column(name="ID")
@@ -44,6 +50,21 @@ public class BrandConfig {
 
     @Column(name="KONTONUMMER")
     private String kontonummer;
+
+    @Column(name="DESCRIPTION")
+    private String description;
+
+    @Column(name="POSTCODE")
+    private String postcode;
+
+    @Column(name="CITY")
+    private String city;
+
+    @Column(name="NATIONALID")
+    private String nationalId;
+
+    @Column(name="REGION")
+    private String region;
 
     public String getBrand() {
         return brand;
@@ -99,5 +120,45 @@ public class BrandConfig {
 
     public void setKontonummer(String kontonummer) {
         this.kontonummer = kontonummer;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getNationalId() {
+        return nationalId;
+    }
+
+    public void setNationalId(String nationalId) {
+        this.nationalId = nationalId;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 }

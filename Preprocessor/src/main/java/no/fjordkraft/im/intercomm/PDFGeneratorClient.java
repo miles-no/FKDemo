@@ -27,7 +27,7 @@ public interface PDFGeneratorClient {
         @Bean
         public Request.Options options() {
             Request.Options options = new Request.Options(
-                    5000, 10000
+                    5000, 20000
             );
             return options;
         }

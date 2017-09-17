@@ -1,9 +1,9 @@
-package no.fjordkraft.im.services.impl;
+package no.fjordkraft.im.ui.services.impl;
 
 import no.fjordkraft.im.domain.RestAuditLog;
 import no.fjordkraft.im.model.AuditLog;
 import no.fjordkraft.im.repository.AuditLogDetailRepository;
-import no.fjordkraft.im.services.UIAuditLogService;
+import no.fjordkraft.im.ui.services.UIAuditLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class UIAuditLogServiceImpl implements UIAuditLogService {
     @Override
     public List<RestAuditLog> getAuditLogRecords(int page, int size, Timestamp fromTime, Timestamp toTime, String action, String actionOnType, String logType,
                                                  String invoiceNo, String customerID, String accountNumber) {
-        List<RestAuditLog> restAuditLogs = new ArrayList<RestAuditLog>();
+        List<RestAuditLog> restAuditLogs = new ArrayList<>();
         RestAuditLog restAuditLog;
         List<AuditLog> auditLogList = auditLogDetailRepository.getDetails(page, size, fromTime, toTime, action, actionOnType, logType, invoiceNo, customerID, accountNumber);
 

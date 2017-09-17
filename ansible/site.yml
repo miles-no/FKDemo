@@ -13,6 +13,15 @@
         owner=miles2
 
     -
+      name: "{{app}}@{{inventory_hostname}} - Making sure file output directory {{file_out_directory}} exists"
+      become: true
+      file:
+        path={{file_out_directory}}
+        state=directory
+        owner=miles2
+        recurse=yes
+
+    -
       name: "{{app}}@{{inventory_hostname}} - Making sure directory {{app_basedir}}/{{app}} exists"
       become: true
       file:
@@ -97,6 +106,8 @@
         path={{app_basedir}}/{{app}}/current/{{app}}
         state=absent
       when: app == 'im-pdfgenerator'
+
+
 
     -
       name: "{{app}}@{{inventory_hostname}} - Copying config"

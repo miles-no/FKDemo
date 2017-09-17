@@ -1,6 +1,7 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
 import no.fjordkraft.im.if320.models.Statement;
+import no.fjordkraft.im.if320.models.ToAddress;
 import no.fjordkraft.im.model.BrandConfig;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
@@ -35,6 +36,7 @@ public class BarcodePreprocessor extends BasePreprocessor {
         no.fjordkraft.im.model.Statement statement = request.getEntity();
         String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
         BrandConfig brandConfig = brandService.getBrandConfigByName(brand);
+
         if(null != brandConfig) {
             if (IMConstants.TRUE == brandConfig.getUseEABarcode()) {
                 String barcode = IMConstants.BARCODE_PREFIX + brandConfig.getAgreementNumber() + brandConfig.getServiceLevel()
@@ -42,6 +44,14 @@ public class BarcodePreprocessor extends BasePreprocessor {
                 logger.debug("Barcode for statementId " + statement.getId() + " is " + barcode);
                 request.getStatement().setBarcode(Long.parseLong(barcode));
                 request.getStatement().setKontonummer(brandConfig.getKontonummer());
+
+                ToAddress toAddress = new ToAddress();
+                toAddress.setDescription(brandConfig.getDescription());
+                toAddress.setPostcode(brandConfig.getPostcode());
+                toAddress.setCity(brandConfig.getCity());
+                toAddress.setNationalId(brandConfig.getNationalId());
+                toAddress.setRegion(brandConfig.getRegion());
+                request.getStatement().setToAddress(toAddress);
             }
         } else {
             String errorMessage = "Brand not found";
