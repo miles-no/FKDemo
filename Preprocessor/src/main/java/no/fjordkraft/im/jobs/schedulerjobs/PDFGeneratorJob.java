@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Created by miles on 5/12/2017.
  */
@@ -37,7 +39,8 @@ public class PDFGeneratorJob implements InterruptableJob{
 
     public void execute(Context context) throws InterruptedException {
         logger.debug("PDFGenerator job invoked " );
-        pdfGenerator.generateInvoicePDF();
+        List<Long> statementIdList = pdfGenerator.getStatementIDsForPDFGen();
+        pdfGenerator.generateInvoicePDF(statementIdList);
     }
 
     @Override

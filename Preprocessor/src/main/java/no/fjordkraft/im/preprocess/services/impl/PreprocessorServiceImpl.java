@@ -129,13 +129,13 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             Statement if320statement = unmarshallStatement(new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1)));
             //statementService.updateStatement(getUpdatedStatementEntity(if320statement, statement));
             getUpdatedStatementEntity(if320statement, statement);
-            statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
+            statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
             PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request = new PreprocessRequest();
             request.setStatement(if320statement);
             request.setEntity(statement);
 
             preprocessorEngine.execute(request);
-            statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
+            statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
             //auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             stopwatch.stop();
             logger.debug("Preprocessing completed for statement with id "+ statement.getId());
@@ -144,7 +144,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             //pdfGenerator.generateInvoicePDF(statement);
         } catch (PreprocessorException ex) {
             logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), ex);
-            statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);
+            statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), ex.getMessage(), IMConstants.ERROR);
         } catch (Exception e) {
             logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), e);

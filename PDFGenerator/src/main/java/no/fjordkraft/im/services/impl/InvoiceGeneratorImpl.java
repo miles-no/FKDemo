@@ -42,7 +42,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     InvoiceService invoiceService;
 
     @Autowired
-    StatementServiceTemp statementService;
+    StatementService statementService;
 
     @Autowired
     SegmentFileService segmentFileService;

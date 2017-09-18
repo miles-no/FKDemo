@@ -31,7 +31,6 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         InvoiceSummary invoiceSummary;
         InvoiceTotals invoiceTotals;
 
-
         for(Attachment attachment:attachments.getAttachment()) {
             if(IMConstants.EMUXML.equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
 
@@ -65,9 +64,11 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                                 baseItemDetails.setUnitPrice(Float.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString()));
                                 baseItemDetails.setPriceDenomination(invoiceLineType.getPrice().getPriceAmount().getCurrencyID());
                                 baseItemDetails.setLineItemGrossAmount(Float.valueOf(invoiceLineType.getLineExtensionAmount().getValue().toString()));
-                                //mapping is not done for start date and end date
-                                baseItemDetails.setStartDate(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getIssueDate().getValue());
-                                baseItemDetails.setEndDate(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getIssueDate().getValue());
+                                if(null != invoiceLineType.getInvoicePeriods()
+                                        && IMConstants.ZERO != invoiceLineType.getInvoicePeriods().size()) {
+                                    baseItemDetails.setStartDate(invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue());
+                                    baseItemDetails.setEndDate(invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue());
+                                }
                                 baseItemDetailsList.add(baseItemDetails);
                             }
 
@@ -92,10 +93,6 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             }
         }
         attachments.setAttachment(attachmentList);
-        if(request.getStatement().getTransactionGroup().getTotalTransactions() <= 10) {
-            request.getStatement().setTotalAttachment(attachmentList.size());
-        } else {
-            request.getStatement().setTotalAttachment(attachmentList.size() + 1);
-        }
+        request.getStatement().setTotalAttachment(attachmentList.size());
     }
 }

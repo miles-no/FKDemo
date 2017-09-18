@@ -39,3 +39,8 @@ function getYear(date) {
     var year = parseInt(date.substr(0,4));
     return year;
 }
+
+function trimDI(value) {
+	value = value.replace("DI;", "");
+	return value;
+}

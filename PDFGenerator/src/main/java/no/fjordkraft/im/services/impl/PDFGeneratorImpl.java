@@ -60,7 +60,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     IReportEngine reportEngine;
 
     @Autowired
-    StatementServiceTemp statementService;
+    StatementService statementService;
 
     @Autowired
     LayoutServiceImpl layoutDesignService;

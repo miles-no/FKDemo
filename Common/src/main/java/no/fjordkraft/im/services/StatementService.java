@@ -15,17 +15,17 @@ public interface StatementService {
 
    // public void splitSystemBatchInputFile();
 
-    public void updateStatement(Statement statement);
+    public Statement updateStatement(Statement statement);
 
     public List<Statement> getStatementsByStatus(StatementStatusEnum statementStatusEnum);
 
 //    public void fetchAndSplit();
 
-    void saveIMStatementinDB(File statementFile, Statement imStatement) throws IOException;
+    Statement saveIMStatementinDB(File statementFile, Statement imStatement) throws IOException;
 
-    public void saveIMStatementinDB(String xml, Statement imStatement) throws IOException;
+    public Statement saveIMStatementinDB(String xml, Statement imStatement) throws IOException;
 
-    public void updateStatement(Statement statement, StatementStatusEnum status);
+    public Statement updateStatement(Statement statement, StatementStatusEnum status);
 
    // public void splitAndSave(TransferFile transferFile);
 

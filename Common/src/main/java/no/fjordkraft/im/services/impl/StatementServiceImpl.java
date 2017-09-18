@@ -60,15 +60,15 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     Boolean skipBytes;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void updateStatement(Statement statement){
-        statementRepository.saveAndFlush(statement);
+    public Statement updateStatement(Statement statement){
+        return statementRepository.saveAndFlush(statement);
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void updateStatement(Statement statement, StatementStatusEnum status){
+    public Statement updateStatement(Statement statement, StatementStatusEnum status){
         statement.setStatus(status.getStatus());
         statement.setUpdateTime(new Timestamp(System.currentTimeMillis()));
-        statementRepository.saveAndFlush(statement);
+        return statementRepository.saveAndFlush(statement);
     }
 
 
@@ -83,7 +83,7 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     }
 
     @Transactional()
-    public void saveIMStatementinDB(File statementFile, Statement imStatement) throws IOException {
+    public Statement saveIMStatementinDB(File statementFile, Statement imStatement) throws IOException {
         String xml = FileUtils.readFileToString(statementFile, String.valueOf(StandardCharsets.ISO_8859_1));
 
         //imStatement.setPayload(xml);
@@ -94,11 +94,11 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         StatementPayload statementPayload = new StatementPayload();
         statementPayload.setPayload(xml);
         statementPayload.setStatement(imStatement);
-        statementRepository.saveAndFlush(imStatement);
+        return statementRepository.saveAndFlush(imStatement);
     }
 
     @Transactional()
-    public void saveIMStatementinDB(String xml, Statement imStatement) throws IOException {
+    public Statement saveIMStatementinDB(String xml, Statement imStatement) throws IOException {
        // String xml = FileUtils.readFileToString(statementFile, StandardCharsets.ISO_8859_1);
 
         //imStatement.setPayload(xml);
@@ -111,7 +111,7 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         statementPayload.setStatement(imStatement);
 
         imStatement.setStatementPayload(statementPayload);
-        statementRepository.saveAndFlush(imStatement);
+        return statementRepository.saveAndFlush(imStatement);
     }
 
     @Transactional(readOnly = true)

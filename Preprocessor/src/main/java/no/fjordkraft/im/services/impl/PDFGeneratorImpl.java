@@ -8,6 +8,7 @@ import no.fjordkraft.im.services.PDFGenerator;
 import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
+import org.apache.commons.collections4.ListUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,9 +88,38 @@ public class PDFGeneratorImpl implements PDFGenerator {
         }*/
     }
 
-    public void generateInvoicePDF(Statement statement) {
+    @Override
+    @Transactional
+    public List<Long> getStatementIDsForPDFGen() throws InterruptedException {
+        Long numOfThreads = configService.getLong(IMConstants.NUM_OF_STMT_PDF_GEN);
+
+        List<Statement> statements = statementRepository.readStatements(numOfThreads, StatementStatusEnum.PRE_PROCESSED.getStatus());
+        logger.debug("Generate invoice pdf for "+ statements.size() + " statements");
+
+        List<Long> statementList = new ArrayList<Long>(numOfThreads.intValue());
+        for(Statement statement:statements) {
+            if(statementIdSet.contains(statement.getId())){
+                logger.debug("Statement with id "+ statement.getId() +  " already sent for pdf generation");
+            }
+            logger.debug("Statement with id "+ statement.getId()+ " updated to SENT_FOR_PDF_PROCESSING ");
+            try {
+                statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
+            }catch (Exception e ){
+                logger.error("error comminting transaction in sendpdf",e);
+            }
+            statementList.add(statement.getId());
+        }
+
+        return statementList;
+    }
+
+
+    public void generateInvoicePDF(List<Long> statementIdList) {
         //statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
-        pdfGeneratorClient.processStatement(statement.getId());
+        List<List<Long>> lists = ListUtils.partition(statementIdList, 50);
+        for(List<Long> list : lists) {
+            pdfGeneratorClient.processStatement(list);
+        }
     }
 
 }
