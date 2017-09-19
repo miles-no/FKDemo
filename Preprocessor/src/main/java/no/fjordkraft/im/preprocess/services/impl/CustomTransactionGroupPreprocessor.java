@@ -1,5 +1,6 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
+import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.if320.models.Transaction;
 import no.fjordkraft.im.if320.models.TransactionGroup;
@@ -21,7 +22,7 @@ import java.util.Map;
  */
 @Service
 @PreprocessorInfo(order=7)
-public class CustomTransactionGroupPreprocessor  extends BasePreprocessor {
+public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
 
     @Autowired
     TransactionGroupRepository transactionGroupRepository;
@@ -39,42 +40,46 @@ public class CustomTransactionGroupPreprocessor  extends BasePreprocessor {
         Float amountWithVatTotal = 0.0f;
         Float vatTotalAmount = 0.0f;
 
-        List<no.fjordkraft.im.model.TransactionGroup> transactionGroupList = transactionGroupRepository.findAll();
+        try {
+            List<no.fjordkraft.im.model.TransactionGroup> transactionGroupList = transactionGroupRepository.findAll();
 
-        for(Transaction transaction:transactions) {
-            if (null != transactionGroupList && IMConstants.ZERO != transactionGroupList.size()) {
-                for (no.fjordkraft.im.model.TransactionGroup group : transactionGroupList) {
-                    for (TransactionGroupCategory category : group.getTransactionGroupCategoryList()) {
-                        if (category.getTransactionCategory().equals(transaction.getTransactionCategory())) {
-                            diverseRabatter.put(group.getLabel(), createDiverseRabatterTransactionEntry(diverseRabatter, transaction, group, group.getName()));
-                            amountWithVatTotal += transaction.getAmountWithVat();
-                            vatTotalAmount += transaction.getVatAmount();
+            for (Transaction transaction : transactions) {
+                if (null != transactionGroupList && IMConstants.ZERO != transactionGroupList.size()) {
+                    for (no.fjordkraft.im.model.TransactionGroup group : transactionGroupList) {
+                        for (TransactionGroupCategory category : group.getTransactionGroupCategoryList()) {
+                            if (category.getTransactionCategory().equals(transaction.getTransactionCategory())) {
+                                diverseRabatter.put(group.getLabel(), createDiverseRabatterTransactionEntry(diverseRabatter, transaction, group, group.getName()));
+                                amountWithVatTotal += transaction.getAmountWithVat();
+                                vatTotalAmount += transaction.getVatAmount();
+                            }
                         }
                     }
                 }
             }
-        }
 
-        Transaction transaction;
-        mapIterator = diverseRabatter.entrySet().iterator();
-        while(mapIterator.hasNext()) {
-            Map.Entry pair = (Map.Entry) mapIterator.next();
-            transaction = new Transaction();
-            transaction = (Transaction) pair.getValue();
-            transaction.setTransactionSequence(++totalTransactions);
-            processedTransaction.add((Transaction) pair.getValue());
-        }
+            Transaction transaction;
+            mapIterator = diverseRabatter.entrySet().iterator();
+            while (mapIterator.hasNext()) {
+                Map.Entry pair = (Map.Entry) mapIterator.next();
+                transaction = new Transaction();
+                transaction = (Transaction) pair.getValue();
+                transaction.setTransactionSequence(++totalTransactions);
+                processedTransaction.add((Transaction) pair.getValue());
+            }
 
-        transactionGroup.setTransaction(processedTransaction);
-        transactionGroup.setTotalTransactions(totalTransactions);
-        request.getStatement().setTransactionGroup(transactionGroup);
-        request.getStatement().getTransactions().setDiAmountWithVat(amountWithVatTotal);
-        request.getStatement().getTransactions().setDiVatTotal(vatTotalAmount);
+            transactionGroup.setTransaction(processedTransaction);
+            transactionGroup.setTotalTransactions(totalTransactions);
+            request.getStatement().setTransactionGroup(transactionGroup);
+            request.getStatement().getTransactions().setDiAmountWithVat(amountWithVatTotal);
+            request.getStatement().getTransactions().setDiVatTotal(vatTotalAmount);
+        } catch(Exception e) {
+            throw new PreprocessorException(e.getMessage());
+        }
     }
 
     private Transaction createDiverseRabatterTransactionEntry(Map<String, Transaction> diverseRabatter, Transaction transaction,
                                                               no.fjordkraft.im.model.TransactionGroup group, String groupName) {
-        Map<String, Transaction> existingElement = new HashMap<String, Transaction>();
+        Transaction existingElement = new Transaction();
         Transaction resultTransaction = new Transaction();
         float newAmount;
         Iterator existingElementIterator;
@@ -83,17 +88,12 @@ public class CustomTransactionGroupPreprocessor  extends BasePreprocessor {
         if(diverseRabatter.isEmpty()) {
             resultTransaction.setAmountWithVat(transaction.getAmountWithVat());
         } else {
-            existingElement = (Map<String, Transaction>) diverseRabatter.get(groupName);
-            if(null == existingElement || existingElement.isEmpty()) {
+            existingElement = diverseRabatter.get(groupName);
+            if(null == existingElement) {
                 resultTransaction.setAmountWithVat(transaction.getAmountWithVat());
             } else {
-                existingElementIterator = existingElement.entrySet().iterator();
-                while(existingElementIterator.hasNext()) {
-                    Map.Entry entry = (Map.Entry) existingElementIterator.next();
-                    resultTransaction = (Transaction) entry.getValue();
-                    newAmount = resultTransaction.getAmountWithVat() + transaction.getAmountWithVat();
-                    resultTransaction.setAmountWithVat(newAmount);
-                }
+                newAmount = existingElement.getAmountWithVat() + transaction.getAmountWithVat();
+                resultTransaction.setAmountWithVat(newAmount);
             }
         }
         return resultTransaction;

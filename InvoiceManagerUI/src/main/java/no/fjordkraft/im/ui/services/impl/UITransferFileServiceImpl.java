@@ -1,8 +1,13 @@
 package no.fjordkraft.im.ui.services.impl;
 
 import no.fjordkraft.im.model.TransferFile;
+import no.fjordkraft.im.model.TransferTypeEnum;
 import no.fjordkraft.im.repository.TransferFileRepository;
-import no.fjordkraft.im.services.*;
+import no.fjordkraft.im.services.ConfigService;
+import no.fjordkraft.im.services.StatementService;
+import no.fjordkraft.im.services.SystemBatchInputService;
+import no.fjordkraft.im.ui.services.UITransferFileArchiveService;
+import no.fjordkraft.im.ui.services.UITransferFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +18,7 @@ import java.util.List;
  * Created by bhavi on 5/9/2017.
  */
 @Service
-public class UITransferFileServiceImpl implements no.fjordkraft.im.ui.services.UITransferFileService {
+public class UITransferFileServiceImpl implements UITransferFileService {
 
     @Autowired
     private TransferFileRepository transferFileRepository;
@@ -25,14 +30,14 @@ public class UITransferFileServiceImpl implements no.fjordkraft.im.ui.services.U
     private SystemBatchInputService systemBatchInputService;
 
     @Autowired
-    no.fjordkraft.im.ui.services.UITransferFileArchiveService transferFileArchiveService;
+    UITransferFileArchiveService transferFileArchiveService;
 
     @Autowired
     StatementService statementService;
 
 
     public TransferFile getOneTransferFileWithEmptyIMStatus(){
-        return transferFileRepository.readSingleTransferFile();
+        return transferFileRepository.readSingleTransferFile(TransferTypeEnum.if320);
     }
 
     @Override
@@ -42,8 +47,8 @@ public class UITransferFileServiceImpl implements no.fjordkraft.im.ui.services.U
     }
 
     @Override
-    public List<TransferFile> readTransferFileByBatchJobId(Long batchJobId) {
-        return transferFileRepository.readTransferfileByBatchJobId(batchJobId);
+    public List<TransferFile> readTransferFileByBatchJobId(Long batchJobId, TransferTypeEnum transferType) {
+        return transferFileRepository.readTransferfileByBatchJobId(batchJobId, TransferTypeEnum.if320);
     }
 
     public TransferFileRepository getTransferFileRepository() {

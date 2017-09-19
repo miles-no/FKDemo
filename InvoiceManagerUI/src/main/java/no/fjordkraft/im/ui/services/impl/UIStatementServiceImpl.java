@@ -5,6 +5,7 @@ import no.fjordkraft.im.domain.RestStatement;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.model.StatusCount;
 import no.fjordkraft.im.model.TransferFile;
+import no.fjordkraft.im.model.TransferTypeEnum;
 import no.fjordkraft.im.repository.StatementDetailRepository;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.repository.SystemBatchInputRepository;
@@ -208,7 +209,7 @@ public class UIStatementServiceImpl implements UIStatementService {
 
     @Override
     public List<StatusCount> getStatusByTransferfileBatchId(Long ekBatchJobId) {
-        List<TransferFile> transferFileList = transferFileService.readTransferFileByBatchJobId(ekBatchJobId);
+        List<TransferFile> transferFileList = transferFileService.readTransferFileByBatchJobId(ekBatchJobId, TransferTypeEnum.if320);
         List<StatusCount> statusCountList = new ArrayList<>();
         Integer numOfRecords = 0;
         Long totalRecords = 0l;

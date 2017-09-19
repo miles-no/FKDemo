@@ -1,5 +1,6 @@
 package no.fjordkraft.im.services.impl;
 
+import no.fjordkraft.im.jobs.schedulerjobs.InvoiceFeedWatcherJob;
 import no.fjordkraft.im.model.SystemBatchInput;
 import no.fjordkraft.im.model.TransferFile;
 import no.fjordkraft.im.model.TransferTypeEnum;
@@ -19,6 +20,7 @@ import org.springframework.util.StopWatch;
 
 import java.io.File;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +29,7 @@ import java.util.List;
 @Service
 public class TransferFileServiceImpl implements TransferFileService {
 
-    private static final Logger logger = LoggerFactory.getLogger(TransferFileServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(InvoiceFeedWatcherJob.class);
 
     @Autowired
     TransferFileRepository transferFileRepository;
@@ -42,7 +44,18 @@ public class TransferFileServiceImpl implements TransferFileService {
     public void fetchAndProcess() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        List<TransferFile> transferFiles = transferFileRepository.readPendingTransferFiles("PENDING", TransferTypeEnum.if320);
+        String afiFlag = configService.getString(IMConstants.AFI_TRANSFER_FILE_AUTO_PICK);
+        List<TransferFile> transferFiles = new ArrayList<>();
+
+        if(null != afiFlag && !afiFlag.isEmpty() && IMConstants.YES.equals(afiFlag)) {
+            Long numOfThreads = configService.getLong(IMConstants.NUM_OF_THREAD_FILESPLITTER);
+            if(null == numOfThreads) {
+                numOfThreads = 1l;
+            }
+            transferFiles = transferFileRepository.readTransferFileForAutoMode(numOfThreads, TransferTypeEnum.if320);
+        } else {
+            transferFiles = transferFileRepository.readPendingTransferFiles("PENDING", TransferTypeEnum.if320);
+        }
         logger.debug("Files to be read "+ transferFiles.size());
         if (null != transferFiles) {
             for(TransferFile transferFile: transferFiles) {

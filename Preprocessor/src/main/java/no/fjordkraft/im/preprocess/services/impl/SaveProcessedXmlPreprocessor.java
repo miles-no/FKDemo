@@ -4,6 +4,7 @@ import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
+import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class SaveProcessedXmlPreprocessor  extends BasePreprocessor {
                 createDirectories(request);
             }
 
-            StreamResult streamResult = new StreamResult(new FileOutputStream(request.getPathToProcessedXml() + File.separator + "statement.xml"));
+            StreamResult streamResult = new StreamResult(new FileOutputStream(request.getPathToProcessedXml() + File.separator + IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME));
             marshaller.marshal(request.getStatement(), streamResult);
             if(null != streamResult.getOutputStream()) {
                 logger.debug("closing stream in SaveProcessedXmlPreprocessor");

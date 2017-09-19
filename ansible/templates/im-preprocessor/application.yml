@@ -30,6 +30,11 @@ liquibase:
   context: {{liquibasecontext}}
   enabled: disable
 
+management:
+  context-path: "/actuator"
+  security:
+    enabled: false
+
 eureka:
   client:
     serviceUrl:

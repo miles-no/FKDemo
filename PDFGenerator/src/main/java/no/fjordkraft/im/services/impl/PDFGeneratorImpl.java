@@ -139,7 +139,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             systemBatchInputFileName = statement.getSystemBatchInput().getTransferFile().getFilename();
             stopWatch.start("PDF generation for statement "+ statement.getId());
             subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
-            birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName, pdfGeneratedFolderName, xmlFolderName);
+            birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName);
             statement = statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSED);
             //auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             invoiceGenerator.generateInvoice(statement);
@@ -163,8 +163,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
 
 
-    public void birtEnginePDFGenerator(Statement statement, String outPutDirectoryPath, String statementFolderName,
-                                       String pdfGeneratedFolderName, String xmlFolderName) throws BirtException {
+    public void birtEnginePDFGenerator(Statement statement, String outPutDirectoryPath, String statementFolderName) throws BirtException {
         logger.debug("Generating Invoice PDF for Statement ID: " + statement.getId());
 
         long startTime = System.currentTimeMillis();
@@ -173,7 +172,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         try {
 
             String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + statement.getInvoiceNumber() + File.separator ;
-            String xmlFilePath =  basePath + xmlFolderName + File.separator + "statement.xml";
+            String xmlFilePath =  basePath + File.separator + IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME;
             String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
 
             String campaignImage = segmentFileService.getImageContent(accountNo, brand);
@@ -208,7 +207,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             options.setFontDirectory(customPdfFontPath);
             options.setEmbededFont(true);
             options.setOutputFormat("pdf");
-            options.setOutputFileName(basePath + pdfGeneratedFolderName + File.separator + statement.getInvoiceNumber() + ".pdf");
+            options.setOutputFileName(basePath  + File.separator + statement.getInvoiceNumber() + ".pdf");
 
             task.setRenderOption(options);
             task.run();

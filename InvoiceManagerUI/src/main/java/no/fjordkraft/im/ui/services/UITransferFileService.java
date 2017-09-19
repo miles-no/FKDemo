@@ -1,5 +1,6 @@
 package no.fjordkraft.im.ui.services;
 import no.fjordkraft.im.model.TransferFile;
+import no.fjordkraft.im.model.TransferTypeEnum;
 
 import java.util.List;
 
@@ -12,6 +13,6 @@ public interface UITransferFileService {
 
     public TransferFile saveTransferFile(TransferFile transferFile);
 
-    List<TransferFile> readTransferFileByBatchJobId(Long batchJobId);
+    List<TransferFile> readTransferFileByBatchJobId(Long batchJobId, TransferTypeEnum transferType);
 
 }
