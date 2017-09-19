@@ -116,6 +116,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                         "Attach_PDF not found", IMConstants.WARNING);
             }
             byte[] outputBytes =  byteArrayOutputStream.toByteArray();
+            byteArrayOutputStream.close();
             pdfCombineUsingJava.close();
             logger.debug(" save created pdf in database ");
             InvoicePdf invoicePdf = saveInvoicePDFs(outputBytes, statement);

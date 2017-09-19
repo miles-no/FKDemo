@@ -161,7 +161,7 @@ const listPopupController = ($scope,options,close, $http,_) => {
         fd.append('name', $scope.template.name)
         fd.append('description', $scope.template.desc)
         $scope.template.file ? fd.append('file', $scope.template.file) : '';
-        $http.post('/invoicemanager/api/layout/template',fd,{
+        $http.post('/zuul/invoicemanager/api/layout/template',fd,{
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined}
         }).then((response) => {
