@@ -115,9 +115,8 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                 auditLogService.saveAuditLog(IMConstants.ATTACH_PDF, statement.getId(), StatementStatusEnum.INVOICE_PROCESSING.getStatus(),
                         "Attach_PDF not found", IMConstants.WARNING);
             }
-            byte[] outputBytes =  byteArrayOutputStream.toByteArray();
-            byteArrayOutputStream.close();
             pdfCombineUsingJava.close();
+            byte[] outputBytes =  byteArrayOutputStream.toByteArray();
             logger.debug(" save created pdf in database ");
             InvoicePdf invoicePdf = saveInvoicePDFs(outputBytes, statement);
             invoiceService.saveInvoicePdf(invoicePdf);
@@ -135,6 +134,35 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         }
     }
 
+    /*public static void main(String[] args) throws DocumentException, IOException {
+        Document pdfCombineUsingJava = new Document();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        //PdfCopy copy = new PdfCopy(pdfCombineUsingJava, new FileOutputStream(invoiceGeneratedFilePath));
+        PdfCopy copy = new PdfCopy(pdfCombineUsingJava, byteArrayOutputStream);
+        pdfCombineUsingJava.open();
+        PdfReader readInputPDF;
+        int number_of_pages;
+
+        readInputPDF = new PdfReader("E:\\FuelKraft\\fwdfwexamples\\pdf_700664300661.pdf");
+        number_of_pages = readInputPDF.getNumberOfPages();
+        for (int page = 0; page < number_of_pages; ) {
+            copy.addPage(copy.getImportedPage(readInputPDF, ++page));
+        }
+
+            readInputPDF = new PdfReader("E:\\FuelKraft\\fwdfwexamples\\00089920150289504703205960741.pdf");
+            number_of_pages = readInputPDF.getNumberOfPages();
+            for (int page = 0; page < number_of_pages; ) {
+                copy.addPage(copy.getImportedPage(readInputPDF, ++page));
+            }
+        byteArrayOutputStream.close();
+
+        pdfCombineUsingJava.close();
+        byte[] outputBytes =  byteArrayOutputStream.toByteArray();
+        FileOutputStream fos = new FileOutputStream("E:\\FuelKraft\\fwdfwexamples\\abc.pdf");
+        fos.write(outputBytes);
+        fos.close();
+        logger.debug(" save created pdf in database ");
+    }*/
 
     private InvoicePdf saveInvoicePDFs(String invoiceGeneratedFilePath, Statement statement) throws IOException {
         File invoiceFile = new File(invoiceGeneratedFilePath);
