@@ -125,6 +125,25 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <dependency>
+            <groupId>no.fjordkraft.common</groupId>
+            <artifactId>security-spring-webmvc-authorization</artifactId>
+            <version>2.0.45</version>
+        </dependency>
+
+        <dependency>
+            <groupId>no.fjordkraft.common</groupId>
+            <artifactId>security</artifactId>
+            <version>2.0.45</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.newrelic.agent.java/newrelic-api -->
+        <dependency>
+            <groupId>com.newrelic.agent.java</groupId>
+            <artifactId>newrelic-api</artifactId>
+            <version>3.36.0</version>
+        </dependency>
+
+
 
     </dependencies>
 
