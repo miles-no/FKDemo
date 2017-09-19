@@ -3971,15 +3971,15 @@
         <grid id="148">
             <property name="pageBreakAfter">always</property>
             <property name="height">6.65625in</property>
-            <property name="width">7.291666666666667in</property>
+            <property name="width">7.28125in</property>
             <column id="149">
                 <property name="width">2.4270833333333335in</property>
             </column>
             <column id="150">
-                <property name="width">2.4270833333333335in</property>
+                <property name="width">2.3in</property>
             </column>
             <column id="151">
-                <property name="width">2.4375in</property>
+                <property name="width">2.3020833333333335in</property>
             </column>
             <row id="152">
                 <property name="height">2.7083333333333335in</property>
@@ -4506,7 +4506,7 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                     <property name="rowSpan">1</property>
                     <property name="paddingTop">30pt</property>
                     <image id="667">
-                        <property name="height">1.3541666666666667in</property>
+                        <property name="height">1.4583333333333333in</property>
                         <property name="width">4.708333333333333in</property>
                         <expression name="altText" type="javascript">""</expression>
                         <list-property name="visibility">
@@ -5401,8 +5401,8 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                         <property name="outputFormat">SVG</property>
                         <property name="inheritColumns">false</property>
                         <property name="paddingTop">20pt</property>
-                        <property name="height">130pt</property>
-                        <property name="width">186pt</property>
+                        <property name="height">128.25pt</property>
+                        <property name="width">181.5pt</property>
                         <property name="dataSet">PieChartInfo</property>
                         <list-property name="visibility">
                             <structure>
@@ -7495,7 +7495,7 @@ year = year + "";</expression>
                                             <property name="height">2.125in</property>
                                             <property name="width">5.197916666666667in</property>
                                             <column id="461">
-                                                <property name="width">1.8in</property>
+                                                <property name="width">1.7in</property>
                                             </column>
                                             <column id="462">
                                                 <property name="width">3.5833333333333335in</property>
@@ -8971,8 +8971,8 @@ så ofte du ønsker til din netteier.]]></text-property>
 ]]></xml-property>
                                                         <property name="outputFormat">SVG</property>
                                                         <property name="inheritColumns">false</property>
-                                                        <property name="height">94.5pt</property>
-                                                        <property name="width">223.5pt</property>
+                                                        <property name="height">102pt</property>
+                                                        <property name="width">243pt</property>
                                                         <structure name="toc"/>
                                                         <property name="dataSet">AttachmentBarGraphJoinDataSet</property>
                                                         <list-property name="boundDataColumns">
