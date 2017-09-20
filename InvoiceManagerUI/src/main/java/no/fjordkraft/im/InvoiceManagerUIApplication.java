@@ -30,29 +30,5 @@ public class InvoiceManagerUIApplication {
 		SpringApplication.run(InvoiceManagerUIApplication.class, args);
 	}
 
-	private @Autowired
-	AutowireCapableBeanFactory beanFactory;
 
-	@Bean
-	public FilterRegistrationBean myFilter() {
-		FilterRegistrationBean registration = new FilterRegistrationBean();
-		SecurityFilter securityFilter = new SecurityFilter();
-		beanFactory.autowireBean(securityFilter);
-		registration.setFilter(securityFilter);
-		registration.addUrlPatterns("/api/*");
-		return registration;
-	}
-
-
-	@Bean
-    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-        return args -> {
-            String[] beanNames = ctx.getBeanDefinitionNames();
-            Arrays.sort(beanNames);
-            for (String beanName : beanNames) {
-                System.out.println(beanName);
-            }
-
-        };
-    }
 }
