@@ -117,9 +117,7 @@ public class IMLayoutController {
         logger.debug("saveLayoutTemplate encoding "+ encoding);
 
         if(null != file) {
-            //ByteArrayOutputStream baos= new ByteArrayOutputStream();
             template = IOUtils.toString(file.getBytes(), encoding);
-            //template = FileUtils.readFileToString(convert(file), Charset.forName(encoding));
         }
         RestLayoutTemplate restLayoutTemplate = new RestLayoutTemplate();
         restLayoutTemplate.setName(name);
@@ -139,9 +137,7 @@ public class IMLayoutController {
         encoding = encoding == null ? "UTF-8":encoding;
         logger.debug("saveLayoutTemplate encoding "+ encoding);
         if(null != file) {
-            //ByteArrayOutputStream baos= new ByteArrayOutputStream();
             template = IOUtils.toString(file.getBytes(), encoding);
-            //template = FileUtils.readFileToString(convert(file), Charset.forName(encoding));
         }
         RestLayoutTemplate restLayoutTemplate = new RestLayoutTemplate();
         restLayoutTemplate.setName(name);
@@ -159,9 +155,7 @@ public class IMLayoutController {
         encoding = encoding == null ? "UTF-8":encoding;
         logger.debug("saveLayoutTemplate encoding "+ encoding);
         if(null != file) {
-            //ByteArrayOutputStream baos= new ByteArrayOutputStream();
             template = IOUtils.toString(file.getBytes(), encoding);
-            //template = FileUtils.readFileToString(convert(file), Charset.forName(encoding));
         }
         return layoutService.updateLayoutVersion(id, template);
     }
@@ -172,14 +166,14 @@ public class IMLayoutController {
         layoutService.deleteLayout(id);
     }
 
-    public File convert(MultipartFile file) throws IOException {
+    /*public File convert(MultipartFile file) throws IOException {
         File convFile = new File(file.getOriginalFilename());
         convFile.createNewFile();
         FileOutputStream fos = new FileOutputStream(convFile);
         fos.write(file.getBytes());
         fos.close();
         return convFile;
-    }
+    }*/
 
     @RequestMapping(value="activate/{layoutId}/{version}", method = RequestMethod.PUT)
     @ResponseBody

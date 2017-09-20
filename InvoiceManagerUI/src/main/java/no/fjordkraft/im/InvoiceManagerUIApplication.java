@@ -1,7 +1,6 @@
 package no.fjordkraft.im;
 
-import liquibase.integration.spring.SpringLiquibase;
-import no.fjordkraft.im.filter.RequestLoggingFilter;
+
 import no.fjordkraft.security.filter.SecurityFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -15,17 +14,12 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
-import java.sql.SQLException;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 @SpringBootApplication(scanBasePackages = {"no.fjordkraft.im","no.fjordkraft.im.controller","no.fjordkraft.security"})
-
 @EnableAutoConfiguration(exclude={LiquibaseAutoConfiguration.class})
 @EnableEurekaClient
 @EnableJpaRepositories(basePackages = {"no.fjordkraft.im","no.fjordkraft.security.jpa.repository"})
@@ -46,30 +40,9 @@ public class InvoiceManagerUIApplication {
 		beanFactory.autowireBean(securityFilter);
 		registration.setFilter(securityFilter);
 		registration.addUrlPatterns("/api/*");
-		//registration.setOrder(Integer.MAX_VALUE-1);
 		return registration;
 	}
 
-	/*@Bean
-	public FilterRegistrationBean requestLoggingFilter() {
-		FilterRegistrationBean registration = new FilterRegistrationBean();
-		RequestLoggingFilter requestLoggingFilter = new RequestLoggingFilter();
-		registration.setFilter(requestLoggingFilter);
-		registration.setOrder(Integer.MAX_VALUE);
-		return registration;
-	}*/
-
-	//@Bean
-	/*public CommonsRequestLoggingFilter logFilter() {
-		CommonsRequestLoggingFilter filter
-				= new CommonsRequestLoggingFilter();
-		filter.setIncludeQueryString(true);
-		filter.setIncludePayload(true);
-		filter.setMaxPayloadLength(100000);
-		filter.setIncludeHeaders(false);
-		filter.setAfterMessagePrefix("REQUEST DATA : ");
-		return filter;
-	}*/
 
 	@Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
