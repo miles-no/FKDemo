@@ -107,16 +107,18 @@
         state=absent
       when: app == 'im-pdfgenerator'
 
-    - name: "{{app}}@{{inventory_hostname}} copy layout & Sample folder to  {{birt.resource.path}}"
-      copy:
-        src="{{app_basedir}}/{{app}}/current/{{directory}}"
-        dest="{{birt.resource.path}}"
-        mode=0700
-      with_items:
-        - Layout
-        - sampleFile
-      loop_control:
-        loop_var: directory
+    -
+      name: "{{app}}@{{inventory_hostname}} - Making sure directory {{birt_resource_path}} exists"
+      become: true
+      file:
+        path="{{birt_resource_path}}"
+        state=directory
+        owner=miles2
+      when: app == 'im-pdfgenerator'
+
+    -
+      name: "{{app}}@{{inventory_hostname}} -  move layout & Sample folder to  {{birt_resource_path}}"
+      command: "mv {{app_basedir}}/{{app}}/current/Layout {{app_basedir}}/{{app}}/current/sampleFile  {{birt_resource_path}} "
       when: app == 'im-pdfgenerator'
 
     -
