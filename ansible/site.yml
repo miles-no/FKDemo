@@ -107,7 +107,17 @@
         state=absent
       when: app == 'im-pdfgenerator'
 
-
+    - name: "{{app}}@{{inventory_hostname}} copy layout & Sample folder to  {{birt.resource.path}}"
+      copy:
+        src="{{app_basedir}}/{{app}}/current/{{directory}}"
+        dest="{{birt.resource.path}}"
+        mode=0700
+      with_items:
+        - Layout
+        - sampleFile
+      loop_control:
+        loop_var: directory
+      when: app == 'im-pdfgenerator'
 
     -
       name: "{{app}}@{{inventory_hostname}} - Copying config"

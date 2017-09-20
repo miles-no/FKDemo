@@ -28,14 +28,14 @@ public class IMConfigController {
         return configService.getString(key);
     }
 
-    @no.fjordkraft.security.springmvc.annotation.Function(UserFunctionEnum.Afi_Standard)
+    @no.fjordkraft.security.springmvc.annotation.Function(UserFunctionEnum.Api_Access)
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
     void saveConfig(@RequestParam("key") String key, @RequestParam("value") String value) {
         configService.saveConfig(key, value);
     }
 
-    @no.fjordkraft.security.springmvc.annotation.Function(UserFunctionEnum.Admin_Jobber)
+    @no.fjordkraft.security.springmvc.annotation.Function(UserFunctionEnum.Api_Access)
     @RequestMapping(value = "{key}", method = RequestMethod.PUT)
     @ResponseBody
     void updateConfig(@PathVariable("key") String key, @RequestParam("value") String value) {
@@ -48,6 +48,7 @@ public class IMConfigController {
         configService.deleteConfig(key);
     }
 
+    @no.fjordkraft.security.springmvc.annotation.Function(UserFunctionEnum.Api_Access)
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     Map<String, Object> getConfig() {

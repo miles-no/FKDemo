@@ -49,13 +49,13 @@ public class SegmentFileServiceImpl implements SegmentFileService {
         SegmentControlFileResult segmentControlFileResult;
         Integer campaignID;
         segmentControlFileResult = segmentControlFileService.getSegmentControlByAccountNo(accountNo);
-        if(null != segmentControlFileResult) {
+        if(null != segmentControlFileResult && null != segmentControlFileResult.getIdCampaign()) {
             campaignID = segmentControlFileResult.getIdCampaign();
             fileContent = getFileContent(Long.valueOf(campaignID));
         } else {
             segmentControlFileResult = segmentControlFileService.getSegmentControlByBrand(brand);
             logger.debug("Get segment for brand "+brand);
-            if(null != segmentControlFileResult) {
+            if(null != segmentControlFileResult && null != segmentControlFileResult.getIdCampaign()) {
                 campaignID = segmentControlFileResult.getIdCampaign();
                 logger.debug("Get segment for brand "+brand+ " campaignId "+ campaignID);
                 fileContent = getFileContent(Long.valueOf(campaignID));
@@ -70,12 +70,12 @@ public class SegmentFileServiceImpl implements SegmentFileService {
         SegmentControlFileResult segmentControlFileResult;
         Integer attachID;
         segmentControlFileResult = segmentControlFileService.getSegmentControlByAccountNo(accountNo);
-        if(null != segmentControlFileResult) {
+        if(null != segmentControlFileResult && null != segmentControlFileResult.getIdAttach()) {
             attachID = segmentControlFileResult.getIdAttach();
             fileContent = getFileContent(Long.valueOf(attachID));
         } else {
             segmentControlFileResult = segmentControlFileService.getSegmentControlByBrand(brand);
-            if(null != segmentControlFileResult) {
+            if(null != segmentControlFileResult && null != segmentControlFileResult.getIdAttach()) {
                 attachID = segmentControlFileResult.getIdAttach();
                 fileContent = getFileContent(Long.valueOf(attachID));
             }

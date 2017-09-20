@@ -75,7 +75,7 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
     $scope.downloadXml = function(id,invoiceid){
         $http({
             method : 'GET',
-            url : '/layout/statement/xml/'+id,
+            url : '/invoicemanager/api/layout/statement/xml/'+id,
         }).then(function(response,status,headers){
             var file = new Blob([response.data], {type: 'application/xml'});
             var downloadLink = angular.element('<a></a>');
