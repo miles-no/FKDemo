@@ -13,6 +13,7 @@ import org.eclipse.birt.report.engine.api.IReportEngineFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,6 +48,9 @@ public class AppConfig {
 
     @Autowired
     private Environment env;
+
+    private @Autowired
+    AutowireCapableBeanFactory beanFactory;
 
     @Bean(name="PDFGeneratorExecutor")
     @DependsOn("BirtEngine")

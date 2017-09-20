@@ -13,6 +13,7 @@ import no.fjordkraft.im.services.*;
 import no.fjordkraft.im.ui.services.*;
 import org.apache.commons.io.FileUtils;
 //import org.eclipse.birt.core.exception.BirtException;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -113,8 +115,11 @@ public class IMLayoutController {
         String encoding = configService.getString("save.layout.encoding");
         encoding = encoding == null ? "UTF-8":encoding;
         logger.debug("saveLayoutTemplate encoding "+ encoding);
+
         if(null != file) {
-            template = FileUtils.readFileToString(convert(file), Charset.forName(encoding));
+            //ByteArrayOutputStream baos= new ByteArrayOutputStream();
+            template = IOUtils.toString(file.getBytes(), encoding);
+            //template = FileUtils.readFileToString(convert(file), Charset.forName(encoding));
         }
         RestLayoutTemplate restLayoutTemplate = new RestLayoutTemplate();
         restLayoutTemplate.setName(name);
@@ -134,7 +139,9 @@ public class IMLayoutController {
         encoding = encoding == null ? "UTF-8":encoding;
         logger.debug("saveLayoutTemplate encoding "+ encoding);
         if(null != file) {
-            template = FileUtils.readFileToString(convert(file), Charset.forName(encoding));
+            //ByteArrayOutputStream baos= new ByteArrayOutputStream();
+            template = IOUtils.toString(file.getBytes(), encoding);
+            //template = FileUtils.readFileToString(convert(file), Charset.forName(encoding));
         }
         RestLayoutTemplate restLayoutTemplate = new RestLayoutTemplate();
         restLayoutTemplate.setName(name);
@@ -152,7 +159,9 @@ public class IMLayoutController {
         encoding = encoding == null ? "UTF-8":encoding;
         logger.debug("saveLayoutTemplate encoding "+ encoding);
         if(null != file) {
-            template = FileUtils.readFileToString(convert(file), Charset.forName(encoding));
+            //ByteArrayOutputStream baos= new ByteArrayOutputStream();
+            template = IOUtils.toString(file.getBytes(), encoding);
+            //template = FileUtils.readFileToString(convert(file), Charset.forName(encoding));
         }
         return layoutService.updateLayoutVersion(id, template);
     }
