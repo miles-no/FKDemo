@@ -145,6 +145,11 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             invoiceGenerator.generateInvoice(statement);
             //statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
            // auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
+            logger.debug("PDF generated for statement with statementId "+ statement.getId()+ "completed");
+            logger.debug(stopWatch.prettyPrint());
+            String directoryPath = outputDirectoryPath+ File.separator + subFolderName + File.separator + statement.getInvoiceNumber();
+            logger.debug(" Directory to delete path "+ directoryPath);
+            cleanUpFiles(directoryPath);
         } catch (PDFGeneratorException e) {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
@@ -154,11 +159,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
         }
         stopWatch.stop();
-        logger.debug("PDF generated for statement with statementId "+ statement.getId()+ "completed");
-        logger.debug(stopWatch.prettyPrint());
-        String directoryPath = outputDirectoryPath+ File.separator + subFolderName + File.separator + statement.getInvoiceNumber();
-        logger.debug(" Directory to delete path "+ directoryPath);
-        cleanUpFiles(directoryPath);
+
     }
 
 
