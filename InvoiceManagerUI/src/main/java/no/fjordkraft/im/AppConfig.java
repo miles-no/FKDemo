@@ -17,7 +17,7 @@ import java.util.Arrays;
 /**
  * Created by bhavi on 9/20/2017.
  */
-@Configuration
+//@Configuration
 public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Autowired

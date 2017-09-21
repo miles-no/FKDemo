@@ -31,7 +31,6 @@
 
     - include: startapp.yml app={{ line_item2 }}
       with_items:
-        - im-ui
         - im-preprocessor
       loop_control:
         loop_var: line_item2
