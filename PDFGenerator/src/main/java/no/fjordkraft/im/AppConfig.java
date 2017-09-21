@@ -122,7 +122,6 @@ public class AppConfig {
         beanFactory.autowireBean(securityFilter);
         registration.setFilter(securityFilter);
         registration.addUrlPatterns("/api/*");
-        registration.setOrder(Integer.MAX_VALUE-1);
         return registration;
     }
 }

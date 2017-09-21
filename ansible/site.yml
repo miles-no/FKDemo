@@ -117,7 +117,7 @@
       when: app == 'im-pdfgenerator'
 
     -
-      name: "{{app}}@{{inventory_hostname}} -  move layout & Sample folder to  {{birt_resource_path}}"
+      name: "{{app}}@{{inventory_hostname}} -  move layout & Sample folder to  mv {{app_basedir}}/{{app}}/current/Layout {{app_basedir}}/{{app}}/current/sampleFile  {{birt_resource_path}}"
       command: "mv {{app_basedir}}/{{app}}/current/Layout {{app_basedir}}/{{app}}/current/sampleFile  {{birt_resource_path}} "
       when: app == 'im-pdfgenerator'
 
@@ -152,7 +152,7 @@
     -
       name: "{{app}}@{{inventory_hostname}} - Copying JVM config"
       template:
-        src=templates//{{app}}/jvmconfig.conf
+        src=templates/{{app}}/jvmconfig.conf
         dest="{{app_basedir}}/{{app}}/current/{{app}}.conf"
         owner=miles2
 
