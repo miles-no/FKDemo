@@ -10,7 +10,7 @@
 
     - include: site.yml app=im-pdfgenerator
 
-    
+
 -
   hosts: test
   remote_user: miles2
