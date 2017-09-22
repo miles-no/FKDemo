@@ -125,7 +125,7 @@
 
     - name: "{{app}}@{{inventory_hostname}} Delete directory {{birt_resource_path}}/sampleFile"
       file:
-        path={{birt_resource_path}}/Layout
+        path={{birt_resource_path}}/sampleFile
         state=absent
       when: app == 'im-pdfgenerator'
 
