@@ -51,6 +51,7 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
                                 diverseRabatter.put(group.getLabel(), createDiverseRabatterTransactionEntry(diverseRabatter, transaction, group, group.getName()));
                                 amountWithVatTotal += transaction.getAmountWithVat();
                                 vatTotalAmount += transaction.getVatAmount();
+                                break;
                             }
                         }
                     }
