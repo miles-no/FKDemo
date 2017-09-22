@@ -12,7 +12,6 @@ spring:
       max-request-size: 10MB
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
-    #url: jdbc:oracle:thin:@bkkexa01-scan:1521/T120.FK.NO
     url: {{db_url}}
     username: invoiceman
     password: {{db_password}}
@@ -23,13 +22,10 @@ logging:
     org.springframework.web: ERROR
     no.fjordkraft: DEBUG
   pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-  file: /home/miles2/app-test-env/logs/pdfgenerator/application.log
+  file: {{log_base_dir_path}}/{{env}}/im-pdfgenerator/application.log
 
-liquibase:
-  context: {{liquibasecontext}}
-  enabled: disable
 
 management:
   context-path: "/actuator"

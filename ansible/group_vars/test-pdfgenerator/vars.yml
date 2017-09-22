@@ -2,6 +2,7 @@ env: TEST
 db_url: jdbc:oracle:oci:@T120
 liquibasecontext: fjordkrafttest
 eureka_client_serviceUrl_defaultZone: http://fk-t-lx03.bkk.no:8761/eureka/
-birt_resource_path: /home/miles2/app/im
+birt_resource_path: /home/miles2/app/im/birt
+log_base_dir_path: /home/miles2/app/im/logs
 
 

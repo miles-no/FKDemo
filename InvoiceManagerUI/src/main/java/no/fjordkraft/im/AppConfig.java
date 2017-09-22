@@ -17,7 +17,7 @@ import java.util.Arrays;
 /**
  * Created by bhavi on 9/20/2017.
  */
-//@Configuration
+@Configuration
 public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
@@ -31,9 +31,9 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        if(Arrays.stream(environment.getActiveProfiles()).noneMatch(s -> s.equals("dev"))) {
+        /*if(Arrays.stream(environment.getActiveProfiles()).noneMatch(s -> s.equals("dev"))) {
             registry.addInterceptor(new AuthorizationInterceptor("no.fjordkraft", userRolesRepository));
-        }
+        }*/
     }
 
     @Bean

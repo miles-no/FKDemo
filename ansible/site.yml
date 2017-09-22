@@ -116,6 +116,24 @@
         owner=miles2
       when: app == 'im-pdfgenerator'
 
+    - name: "{{app}}@{{inventory_hostname}} Delete directory {{birt_resource_path}}/Layout"
+      file:
+        path={{birt_resource_path}}/Layout
+        state=absent
+      when: app == 'im-pdfgenerator'
+
+
+    - name: "{{app}}@{{inventory_hostname}} Delete directory {{birt_resource_path}}/sampleFile"
+      file:
+        path={{birt_resource_path}}/Layout
+        state=absent
+      when: app == 'im-pdfgenerator'
+
+    -
+      name: "{{app}}@{{inventory_hostname}} -  move layout & Sample folder to  mv {{app_basedir}}/{{app}}/current/Layout {{app_basedir}}/{{app}}/current/sampleFile  {{birt_resource_path}}"
+      command: "mv {{app_basedir}}/{{app}}/current/Layout {{app_basedir}}/{{app}}/current/sampleFile  {{birt_resource_path}} "
+      when: app == 'im-pdfgenerator'
+
 
     -
       name: "{{app}}@{{inventory_hostname}} - Copying config"
