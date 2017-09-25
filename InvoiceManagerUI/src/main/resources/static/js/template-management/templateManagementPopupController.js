@@ -161,7 +161,7 @@ const listPopupController = ($scope,options,close, $http,_) => {
         fd.append('name', $scope.template.name)
         fd.append('description', $scope.template.desc)
         $scope.template.file ? fd.append('file', $scope.template.file) : '';
-        $http.post('/zuul/invoicemanager/api/layout/template',fd,{
+        $http.post('/invoicemanager/api//layout/template',fd,{
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined}
         }).then((response) => {
@@ -170,7 +170,21 @@ const listPopupController = ($scope,options,close, $http,_) => {
             getLayouts(response.data);
             $scope.skipToRules()
         })//add error callback
-        console.log('test')
+    }
+
+    $scope.postLayout = () => {
+        var fd = new FormData()
+        fd.append('name', $scope.template.name)
+        fd.append('description', $scope.template.desc)
+        $scope.template.file ? fd.append('file', $scope.template.file) : '';
+        $http.put('/invoicemanager/api/layout/template/'+$scope.templateInfo.id , fd, {
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined}
+        }).then((response) => {
+            getLayoutRules();
+            getLayouts(response.data);
+            $scope.skipToRules()
+        })
     }
 
     $scope.$watch('template.file',(newVal, oldVal) => {

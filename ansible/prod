@@ -1,0 +1,5 @@
+[prod]
+fklx12 ansible_user=miles2
+
+[prod-pdfgenerator]
+fk-utv-lx12.bkk.no ansible_user=miles2

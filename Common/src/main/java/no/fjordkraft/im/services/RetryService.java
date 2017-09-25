@@ -5,5 +5,5 @@ package no.fjordkraft.im.services;
  */
 public interface RetryService {
 
-    void updateTransferfileStatus(String transfertype, String brand, String filename, String status);
+    void retryStatementFromPending(Long statementId);
 }

@@ -10,7 +10,7 @@ const navigation = {
         this.showMenu = false;
         this.activeMenu = 'home'
         this.isDashbordLive = true;
-        this.disableReset = false;
+        //this.disableReset = false;
         this.time =  this.$rootScope.time
         this.$rootScope.isDashbordLive = this.isDashbordLive;
         this.$rootScope.$watch('time', () => {
@@ -36,13 +36,17 @@ const navigation = {
           console.log(response);
         })
       }
+      //resetDashboard() {
+      //  if (!this.disableReset) {
+      //    this.disableReset = true
+      //    this.$http.post('/transferfile/process').then(function (reponse) {
+      //      this.disableReset = false
+      //    })
+      //  }
+      //}
       resetDashboard() {
-        if (!this.disableReset) {
-          this.disableReset = true
-          this.$http.post('/invoicemanager/api/transferfile/process').then(function (reponse) {
-            this.disableReset = false
-          })
-        }
+        this.$http.post('/transferfile/process').then(function (reponse) {
+        })
       }
     }
 }

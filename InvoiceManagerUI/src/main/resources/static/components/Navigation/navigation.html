@@ -43,7 +43,8 @@
                        <i ng-click="$ctrl.logOff()" class="fa fa-sign-out"></i>
                     </li>
                     <li>
-                        <i ng-click="$ctrl.resetDashboard()" class="fa fa-2x fa-retweet  " ng-class="{'disableReset' :$ctrl.disableReset,'faa-flash animated':$ctrl.disableReset}" uib-tooltip="{{$ctrl.disableReset ? 'Loading file from AFI' : 'Click to process a file from AFI'}}"  tooltip-placement="bottom" ng-disabled="$ctrl.disableReset"></i>
+                        <!--<i ng-click="$ctrl.resetDashboard()" class="fa fa-2x fa-retweet" ng-class="{'disableReset' :$ctrl.disableReset,'faa-flash animated':$ctrl.disableReset}" uib-tooltip="{{$ctrl.disableReset ? 'Loading file from AFI' : 'Click to process a file from AFI'}}"  tooltip-placement="bottom" ng-disabled="$ctrl.disableReset"></i>-->
+                        <i ng-click="$ctrl.resetDashboard()" class="fa fa-2x fa-retweet" uib-tooltip="Click to process a file from AFI" tooltip-placement="bottom" ng-disabled="$ctrl.disableReset"></i>
                     </li>
                     <li>
                         <!--<div class="pulse fa fa-spin fa-genderless" title="{{$ctrl.disableReset ? 'Inactive' : 'Active'}}"></div>-->

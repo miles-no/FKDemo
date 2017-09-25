@@ -49,10 +49,18 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
     $scope.onPageChanged = function(pageChangedTo){
         $scope.getOverviewDetails(pageChangedTo)
     }
+
+    $scope.resetInvoice = (statementId) => {
+        $http.put('/retry/statement',{},{
+            params: { statementId : statementId }
+        }).then(function success(result){
+            $scope.getOverviewDetails();
+        })
+    }
     $scope.getOverviewDetails = function(pageNumber){
         let queryParams = {
-            "fromTime" :moment($scope.fromDate).format('YYYY-MM-DD HH:mm:ss'),
-            "toTime" : moment($scope.toDate).hour(23).minute(59).second(59).format('YYYY-MM-DD HH:mm:ss'),
+            "fromTime" : $scope.fromDate === '' ? null : moment($scope.fromDate).format('YYYY-MM-DD HH:mm:ss'),
+            "toTime" : $scope.toDate === '' ? null : moment($scope.toDate).hour(23).minute(59).second(59).format('YYYY-MM-DD HH:mm:ss'),
             "page": pageNumber? pageNumber-1 : 0 ,
             "size":$scope.pageSize
         }

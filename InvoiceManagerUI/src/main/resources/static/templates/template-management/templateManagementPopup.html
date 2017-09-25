@@ -121,7 +121,8 @@
             </div>
         </div>
         <div class="modal-footer"  ng-show="!addBrands">
-            <button   type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid)">Next</button>
+            <button ng-if="templateInfo === null" type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid)">Next</button>
+            <button ng-if="templateInfo !== null" type="button" ng-click="postLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid)">Next</button>
         </div>
     </div>
 </div>

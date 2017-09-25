@@ -86,6 +86,7 @@
                     <th>City</th>
                     <th st-sort="dueDate">Due Date</th>
                     <th st-sort="updateTime">Updated Date</th>
+                    <th>if320File</th>
                     <th>Links</th>
                     <!--<th class="text-center">Download</th>-->
                 </tr>
@@ -109,6 +110,7 @@
                     <td>{{row.city}}</td>
                     <td>{{getForamttedDate(row.dueDate)}}</td>
                     <td>{{getForamttedDate(row.updateTime)}}</td>
+                    <td>{{row.if320FileName}}</td>
                     <td>
                         <!--<button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
                             <i class="glyphicon glyphicon-remove-circle">
@@ -116,7 +118,8 @@
                         </button>-->
                         <div class="row">
                             <i class="fa col-md-2" uib-tooltip="Click to view {{eachPdf.type === 'INVOICE_PDF' ? 'Invoice pdf' : 'Grid pdf'}}" tooltip-placement ="bottom" ng-class="{'fa-file-pdf-o': isInvoicePDF(eachPdf),'fa-file':!isInvoicePDF(eachPdf) }" aria-hidden="true" ng-repeat="eachPdf in row.invoicePdfList | orderBy : 'type'" ng-click="getInvoiceFile(eachPdf.id)"></i>
-                            <i uib-tooltip="Click to download" uib-tooltip="Click to download xml" tooltip-placement="bottom" class="fa fa-file-code-o col-md-2" aria-hidden="true" ng-click="downloadXml(row.id,row.invoiceNumber)"></i>
+                            <i uib-tooltip="Click to download xml" tooltip-placement="bottom" class="fa fa-file-code-o col-md-2" aria-hidden="true" ng-click="downloadXml(row.id,row.invoiceNumber)"></i>
+                            <i ng-show="row.status === 'PRE_PROCESSING_FAILED'" ng-click="resetInvoice(row.id)" uib-tooltip="Reset Status" tooltip-placement="bottom" class="fa fa-retweet"></i>
                         </div>
                         <!--<div class="row">-->
                             <!--<span ng-repeat="eachPdf in row.invoicePdfList track by eachPdf.id">-->

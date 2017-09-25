@@ -49,3 +49,39 @@ stage('Deploy to Test') {
     }
 }
 
+
+stage('Promote to production?') {
+    timeout(time:5, unit:'DAYS') {
+        milestone()
+        def inputResponse = input(message: 'Promote to production?', submitter: "bhavik,prashant", submitterParameter: 'approver', parameters:[booleanParam(defaultValue: true, description: 'I understand that this will update PRODUCTION', name: 'Confirmation')] )
+        if(!inputResponse['Confirmation']) {
+            error("You need to confirm that you want to deploy to production")
+        }
+        env.APPROVER = inputResponse['approver']
+        milestone()
+    }
+}
+
+
+stage('Deploy to production') {
+    lock("Deploy to prod") {
+        node {
+            unstash 'built'
+            wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
+                try {
+                    ansiblePlaybook(
+                        playbook: "ansible/site.yml",
+                        inventory: "ansible/prod",
+                        credentialsId: "bad1dbcc-9d24-4922-a66e-8be042ab725b",
+                        extras: "--vault-password-file ~/ansible-vault/mobile.txt",
+                        colorized: true)
+                }
+                catch(e) {
+                    slack ('danger', ":boom: ${env.JOB_BASE_NAME}: Deploy to production FAILED: ${env.BUILD_URL}")
+                    throw e
+                }
+            }
+            slack ('good', ":carlton: ${env.JOB_BASE_NAME}: Deploy to production COMPLETE: ${env.BUILD_URL}")
+        }
+    }
+}

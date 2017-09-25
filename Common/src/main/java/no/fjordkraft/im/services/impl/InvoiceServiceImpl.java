@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by bhavi on 6/16/2017.
  */
@@ -23,4 +25,18 @@ public class InvoiceServiceImpl implements InvoiceService {
         invoicePdf = invoicePdfRepository.saveAndFlush(invoicePdf);
         return invoicePdf;
     }
+
+    @Override
+    public void deleteInvoicePDFsByStatementId(Long statementId) {
+        List<InvoicePdf> invoicePdfList = getInvoicePdfsByStatementId(statementId);
+        for(InvoicePdf invoicePdf:invoicePdfList) {
+            invoicePdfRepository.delete(invoicePdf.getId());
+        }
+    }
+
+    @Override
+    public List<InvoicePdf> getInvoicePdfsByStatementId(Long statementId) {
+        return invoicePdfRepository.getInvoicePDFsByStatementId(statementId);
+    }
+
 }

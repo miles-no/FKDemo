@@ -31,6 +31,20 @@ app.listen(appConfig.application_port,function(){
  })
  });*/
 
+app.put('/retry/statement',function(req,res){
+  console.log(req.query.statementId)
+  var qp = {
+    statementId : req.query.statementId
+  }
+  request({
+    url: `${apiUrl}/statement/details`,
+    qs: qp,
+    method : 'PUT'
+  }),function(error,response,body){
+      res.send(body);
+  }
+})
+
 
 app.get('/statement/details', function(req, res) {
   var fromTime = req.query.fromTime;
@@ -40,6 +54,7 @@ app.get('/statement/details', function(req, res) {
   var page = req.query.page;
   var customerID = req.query.customerID
   var accountNumber = req.query.accountNumber
+  var states = req.query.states
   var qp = {
     fromTime:fromTime,
     invoice:invoice,
@@ -47,7 +62,8 @@ app.get('/statement/details', function(req, res) {
     size:size,
     page:page,
     customerID:customerID,
-    accountNumber:accountNumber
+    accountNumber:accountNumber,
+    states : states
   }
 
   console.log(qp)
@@ -425,6 +441,31 @@ app.post('/layout/template',upload.single('file'), function(req, res) {
   res.send(body);
 })
 });
+
+app.put('/layout/template/:id',upload.single('file'),function(req,res) {
+  var formData = {}
+  if(req.file){
+    var formData = {
+      name : req.body.name,
+      description : req.body.description,
+      file :  fs.createReadStream(`${req.file.destination}${req.file.filename}`)
+  }
+  } else {
+  var formData = {
+    name : req.body.name,
+    description : req.body.description
+    }
+  }
+  console.log(formData)
+  request({
+    url: `${apiUrl}/layout/template`+req.params.id,
+    method : 'PUT',
+    formData : formData
+  },function(error,response,body){
+  //fs.rm(`${req.file.destination}${req.file.filename}`);
+    res.send(body);
+  })
+})
 app.get('/layout/preview', function(req, res) {
   console.log('in layout/preview',req.query);
   let qp ={
