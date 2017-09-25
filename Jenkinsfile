@@ -70,18 +70,16 @@ stage('Deploy to production') {
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 try {
                     ansiblePlaybook(
-                        playbook: "ansible/site.yml",
+                        playbook: "ansible/manage_all_prod.yml",
                         inventory: "ansible/prod",
                         credentialsId: "bad1dbcc-9d24-4922-a66e-8be042ab725b",
                         extras: "--vault-password-file ~/ansible-vault/mobile.txt",
                         colorized: true)
                 }
                 catch(e) {
-                    slack ('danger', ":boom: ${env.JOB_BASE_NAME}: Deploy to production FAILED: ${env.BUILD_URL}")
                     throw e
                 }
             }
-            slack ('good', ":carlton: ${env.JOB_BASE_NAME}: Deploy to production COMPLETE: ${env.BUILD_URL}")
         }
     }
 }
