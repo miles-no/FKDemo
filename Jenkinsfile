@@ -51,7 +51,7 @@ stage('Deploy to Test') {
 
 
 stage('Promote to production?') {
-    timeout(time:5, unit:'DAYS') {
+    timeout(time:1, unit:'DAYS') {
         milestone()
         def inputResponse = input(message: 'Promote to production?', submitter: "bhavik,prashant", submitterParameter: 'approver', parameters:[booleanParam(defaultValue: true, description: 'I understand that this will update PRODUCTION', name: 'Confirmation')] )
         if(!inputResponse['Confirmation']) {
