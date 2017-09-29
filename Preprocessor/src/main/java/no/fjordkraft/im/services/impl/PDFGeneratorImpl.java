@@ -80,12 +80,6 @@ public class PDFGeneratorImpl implements PDFGenerator {
             pdfGeneratorClient.processStatement(statementList);
             statementList.clear();
         }
-
-        /*for(Statement statement:statements) {
-            logger.debug("Statement with id "+ statement.getId()+ " sent for PDF generation");
-            //statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
-            pdfGeneratorClient.processStatement(statement.getId());
-        }*/
     }
 
     @Override
@@ -115,10 +109,17 @@ public class PDFGeneratorImpl implements PDFGenerator {
 
 
     public void generateInvoicePDF(List<Long> statementIdList) {
-        //statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
         List<List<Long>> lists = ListUtils.partition(statementIdList, 50);
         for(List<Long> list : lists) {
-            pdfGeneratorClient.processStatement(list);
+            try {
+                pdfGeneratorClient.processStatement(list);
+            } catch (Exception e) {
+                logger.error("Error in sending request to PDF Generator", e);
+                for(Long statementId : list ) {
+                    Statement stmt = statementService.getStatement(statementId);
+                    statementService.updateStatement(stmt,StatementStatusEnum.PRE_PROCESSED);
+                }
+            }
         }
     }
 

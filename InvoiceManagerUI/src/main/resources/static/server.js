@@ -434,7 +434,7 @@ app.post('/layout/template',upload.single('file'), function(req, res) {
   request({
     url: `${apiUrl}/layout/template`,
     method : 'POST',
-    formData : formData,
+    formData : formData
 },function(error,response,body){
   console.log('POST /layout/template',JSON.stringify(response.request.headers))
   //fs.rm(`${req.file.destination}${req.file.filename}`);
@@ -518,3 +518,54 @@ app.get('/auditRecord',function(req,res){
   console.log(qp)
   request({url : `${apiUrl}/auditRecord`,qs: qp}).pipe(res);
 })
+
+
+/**********Custom Transaction Group*****/
+
+app.get('/custom/transaction/group/all',function(req,res){
+  request({
+    url: `${apiUrl}/custom/transaction/group/all`
+},function(error,response,body){
+  res.send(body);
+})
+})
+
+app.get('/custom/transaction/category',function(req,res){
+  request({
+    url: `${apiUrl}/custom/transaction/category`
+  },function(error,response,body){
+  res.send(body)
+})
+})
+
+app.post('/custom/transaction/group',function(req,res){
+  console.log(req.body)
+ request ({
+   url : `${apiUrl}/custom/transaction/group`,
+   method: 'POST',
+   json: req.body
+ },function(error,response,body){
+   res.send(body);
+ })
+})
+
+app.delete('/custom/transaction/group/:id',function(req,res){
+  request({
+    url :`${apiUrl}/custom/transaction/group/`+req.params.id,
+      method : 'DELETE'
+},function(error,response,body){
+  res.send(body);
+})
+})
+
+app.put('/custom/transaction/group/:id',function(req,res){
+  request({
+    url : `${apiUrl}/custom/transaction/group`+req.params.id,
+    method: 'PUT',
+    json : req.body
+  },function(error,response,body){
+  res.send(body)
+})
+})
+
+/**********Custom Transaction Group end*****/

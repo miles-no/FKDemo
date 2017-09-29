@@ -7,7 +7,9 @@ public enum SystemBatchInputStatusEnum {
     PENDING("PENDING"),
     PROCESSING("PROCESSING"),
     PROCESSED("PROCESSED"),
-    FAILED("FAILED");
+    FAILED("FAILED"),
+    PARTIAL_PROCESSED("PARTIAL_PROCESSED"),
+    ALL_PROCESSED("ALL_PROCESSED");
 
     private String status;
     SystemBatchInputStatusEnum(String status) {

@@ -16,4 +16,10 @@ public interface TransactionGroupRepository extends JpaRepository<TransactionGro
 
     @Query("select t from TransactionGroup t where t.name = :name")
     List<TransactionGroup> queryTransactionGroupByName(@Param("name") String name);
+
+    @Query("select t from TransactionGroup t where t.brand = :brand")
+    List<TransactionGroup> queryTransactionGroupByBrand(@Param("brand") String brand);
+
+    @Query("select t.name from TransactionGroup t where t.brand = :brand")
+    List<String> queryCategoriesThroughBrand(@Param("brand") String brand);
 }

@@ -25,4 +25,7 @@ public interface SystemBatchInputRepository extends JpaRepository<SystemBatchInp
 
     @Query("select s.numOfRecords from SystemBatchInput s where s.id = :id")
     Integer getNumOfRecordsById(@Param("id") Long id);
+
+    @Query("select s from SystemBatchInput s where s.status = :status order by s.id asc")
+    List<SystemBatchInput> findAllByStatus(@Param("status") String status);
 }

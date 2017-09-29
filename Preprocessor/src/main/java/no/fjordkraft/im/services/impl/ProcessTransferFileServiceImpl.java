@@ -52,6 +52,9 @@ public class ProcessTransferFileServiceImpl implements ProcessTransferFileServic
     @Autowired
     AuditLogService auditLogService;
 
+    @Autowired
+    TransferFileService transferFileService;
+
     @Transactional
     public void processTransferFile(SystemBatchInput systemBatchInput){
         logger.debug("Fetch and split file "+systemBatchInput.getTransferFile().getFilename());
@@ -87,16 +90,14 @@ public class ProcessTransferFileServiceImpl implements ProcessTransferFileServic
             systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSED.getStatus());
             auditLogService.saveAuditLog(IMConstants.SYSTEM_BATCH_FILE, systemBatchInput.getId(), SystemBatchInputStatusEnum.PROCESSED.getStatus(),
                     null, IMConstants.SUCCESS);
+            stopWatch.stop();
             logger.debug("File split successful for file " + transferFileArchive.getFilename() + " with id " + systemBatchInput.getId()+ stopWatch.prettyPrint());
-        } catch (StatementSplitterException ex) {
-            auditLogService.saveAuditLog(IMConstants.SYSTEM_BATCH_FILE, systemBatchInput.getId(), SystemBatchInputStatusEnum.FAILED.getStatus(),
-                    ex.getMessage(), IMConstants.ERROR);
         }   catch (Exception e) {
             logger.error("Exception while splitting file " +systemBatchInput.getTransferFile().getFilename()+ " id " + systemBatchInput.getId(), e);
             systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.FAILED.getStatus());
+            transferFileService.updateTransferFile(systemBatchInput.getTransferFile().getCompositeKey(), SystemBatchInputStatusEnum.FAILED.getStatus());
         }
-        stopWatch.stop();
-        logger.debug("Time for splitting file with id "+ systemBatchInput.getId() + " Filename "+ systemBatchInput.getTransferFile().getFilename() + stopWatch.prettyPrint());
+
     }
 
     @Override

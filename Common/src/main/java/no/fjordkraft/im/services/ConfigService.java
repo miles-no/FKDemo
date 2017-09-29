@@ -6,6 +6,9 @@ package no.fjordkraft.im.services;
 
 import no.fjordkraft.im.model.Config;
 
+import java.util.Map;
+import java.util.Set;
+
 public interface ConfigService {
 
     Config findById(String id);
@@ -20,5 +23,5 @@ public interface ConfigService {
 
     void clearCache();
 
-
+    Map<String, Set<String>> getTransactionGroupForBrand(String brand);
 }

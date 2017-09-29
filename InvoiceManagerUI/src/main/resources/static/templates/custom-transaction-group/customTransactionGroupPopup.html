@@ -1,0 +1,52 @@
+<div class="modal fade {{options.classes.body}}  modal-wrapper" ng-class="{'modal-without-header': !options.header, 'modal-with-header': options.header}">
+    <div ng-if="!options.header" class="close-modal " ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</div>
+    <div class="modal-dialog modal-content-container">
+        <div class="modal-header" ng-if="options.header">
+            <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-center">{{options.header}}</h4>
+        </div>
+        <div class="modal-body {{options.classes.modalBody}}">
+            <div class="manage-brands">
+                <div class="form-horizontal" novalidate>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="name">Name</label>
+                        <div class="col-sm-6">
+                            <input name="Name" type="text" class="form-control brand" ng-model="transactionName" id="name" ng-minlength="1" limit-to="20" permit-mask="\w" ng-pattern="/^$|^[A-Za-z0-9]+/" autofocus>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Brand</label>
+                        <div class="col-sm-6">
+                            <ui-select ng-model="selectedBrand" theme="bootstrap" title="Choose Brands" on-select="onBrandSelect($item, $model)">
+                                <ui-select-match placeholder="Choose Brands">{{selectedBrand}}</ui-select-match>
+                                <ui-select-choices  repeat="brands in transactionBrands" position='down'>
+                                    <div ng-bind-html="brands | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<label class="control-label col-sm-4" for="transaction_type">Transaction type</label>-->
+                        <!--<div class="col-sm-6">-->
+                            <!--<input name="transaction Type" type="text" class="form-control brand" ng-model="transactionType" id="transaction_type" ng-minlength="1" limit-to="20" permit-mask="\w" ng-pattern="/^$|^[A-Za-z0-9]+/">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Transaction category</label>
+                        <div class="col-sm-6">
+                            <ui-select multiple ng-model="selectedTransactionCategory" theme="bootstrap" title="Choose Transaction category" on-remove="onItemRemoval($item, $model)" on-select="onItemSelect($item, $model)">
+                                <ui-select-match placeholder="Choose Transaction category">{{$item.category}}</ui-select-match>
+                                <ui-select-choices  repeat="value.category as value in transactionsCategory | filter" position='down'>
+                                    <div ng-bind-html="value.category | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal">{{btns.name}}</button>
+        </div>
+    </div>
+</div>

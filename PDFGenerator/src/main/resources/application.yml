@@ -34,3 +34,20 @@ logging:
   file: /opt/app/invoice_manager/logs/application.log
   #file: D:\FuelKraft\invoice_manager\logs\application.log
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
+    registerWithEureka: true
+  instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    preferIpAddress: true
+    metadataMap:
+      management:
+        context-path: ${management.context-path}
+
+
+ribbon:
+  eureka:
+    enabled: true

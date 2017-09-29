@@ -19,6 +19,8 @@ import {templateAttributeController} from './template-attributes/templateAttribu
 import {templateAttributePopupController} from './template-attributes/templateAttributePopupController';
 import {listCtrl} from './template-management/templateManagementController';
 import {listPopupController} from './template-management/templateManagementPopupController';
+import {customTransactionGroupController} from './custom-transaction-group/customTransactionGroupCtrl';
+import {customTransactionGroupPopupCtrl} from './custom-transaction-group/customTransactionGroupPopupCtrl';
 // import {landingPageController} from './controller/landingPageController';
 // import {drillDownController} from './controller/drillDownController';
 // import {mainController} from './controller/mainController'
@@ -80,6 +82,8 @@ invoiceManager.controller('templateAttributeController',templateAttributeControl
 invoiceManager.controller('templateAttributePopupController',templateAttributePopupController);
 invoiceManager.controller('listCtrl',listCtrl);
 invoiceManager.controller('listPopupController',listPopupController);
+invoiceManager.controller('customTransactionGroupController',customTransactionGroupController);
+invoiceManager.controller('customTransactionGroupPopupCtrl',customTransactionGroupPopupCtrl);
 
 // invoiceManager.controller('mainController',mainController);
 // invoiceManager.controller('landingPageController',landingPageController);
@@ -135,7 +139,10 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
       }).state('audit_log',{
         url: '/audit_log',
         templateUrl: 'templates/audit-log/auditLog.html'
-      });
+      }).state('transaction_group',{
+            url: '/transaction_group',
+            templateUrl: 'templates/custom-transaction-group/customTransactionGroup.html'
+        });
     $urlRouterProvider.otherwise('/home');
 });
 

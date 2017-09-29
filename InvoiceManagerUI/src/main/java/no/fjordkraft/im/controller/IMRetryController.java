@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by miles on 9/21/2017.
  */
 @RestController
-@RequestMapping("/retry")
+@RequestMapping("/api/retry")
 public class IMRetryController {
 
     @Autowired

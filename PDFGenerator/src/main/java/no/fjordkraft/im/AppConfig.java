@@ -75,7 +75,7 @@ public class AppConfig {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("Initializing Birt engine");
         String fontPath = configService.getString(IMConstants.CUSTOM_FONT_PATH);
-        try {
+       /* try {
             FontFactory.register(fontPath + File.separator + "FjordkraftNeoSan.ttf", "Fjordkraft Neo Sans");
             FontFactory.register(fontPath + File.separator + "FjordkraftNeoSanMed.ttf", "Fjordkraft Neo Sans Medium");
             FontFactory.register(fontPath + File.separator + "FjordNeoSanLigIta.ttf", "Fjordkraft Neo Sans Lt It");
@@ -86,7 +86,7 @@ public class AppConfig {
             FontFactory.register(fontPath + File.separator + "FjordkraftNeoSanLig.ttf ", "Fjordkraft Neo Sans Lt");
         } catch(Exception e) {
             logger.error("Exception registering Fonts",e);
-        }
+        }*/
         EngineConfig engineConfig = new EngineConfig();
 
         IReportEngine engine = null;

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by bhavi on 5/22/2017.
@@ -80,6 +81,10 @@ public class SystemBatchInputServiceImpl implements SystemBatchInputService {
 
     public Integer getNumOfRecordsById(Long id) {
         return systemBatchInputRepository.getNumOfRecordsById(id);
+    }
+
+    public List<SystemBatchInput> getAllByStatus(String status){
+        return systemBatchInputRepository.findAllByStatus(status);
     }
 
 }

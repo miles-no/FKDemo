@@ -31,3 +31,5 @@ dist
 *.logs
 *birt*
 logs/**
+
+*.bak

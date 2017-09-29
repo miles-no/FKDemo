@@ -320,6 +320,12 @@ Insert into IM_RULE_ATTRIBUTES (ID,NAME,TYPE,FIELD_MAPPING,OPTIONS) values (1,'P
 alter table im_system_batch_input add NUM_OF_RECORDS NUMBER;
 
 --changeset hemalatha:11
+alter table IM_BRAND_CONFIG add DESCRIPTION varchar2(100);
+alter table IM_BRAND_CONFIG add POSTCODE varchar2(10);
+alter table IM_BRAND_CONFIG add CITY varchar2(50);
+alter table IM_BRAND_CONFIG add NATIONALID varchar2(10);
+alter table IM_BRAND_CONFIG add REGION varchar2(50);
+
 create table im_transaction_grp_category(id number, TG_ID number, transaction_category varchar2(255),
 constraint PK_IM_TRANSACTION_GRP_CATEGORY primary key (id),
 constraint FK_IM_TRANSACTION_GRP_CATEGORY foreign key (tg_id)
@@ -331,3 +337,23 @@ start with 1
 increment by 1
 nocache
 nocycle;
+
+--changeset hemalatha:12
+CREATE TABLE IM_TRANSACTION_CATEGORY(ID NUMBER, TYPE VARCHAR2(50), DESCRIPTION VARCHAR2(100), CATEGORY VARCHAR2(250),
+CONSTRAINT PK_IM_TRANSACTION_CATEGORY PRIMARY KEY(ID));
+
+create sequence IM_TRANSACTION_CATEGORY_SEQ
+start with 1
+increment by 1
+nocache
+nocycle;
+
+alter table im_transaction_grp_category drop column transaction_category;
+alter table im_transaction_grp_category add TC_ID NUMBER;
+
+alter table im_transaction_grp_category add constraint FK_IM_TRNCTN_GRP_CATEGORY_TC foreign key(TC_ID)
+references IM_TRANSACTION_CATEGORY(ID);
+
+alter table im_transaction_group drop column label;
+alter table im_transaction_group add type varchar2(50);
+alter table im_transaction_group add description varchar2(250);

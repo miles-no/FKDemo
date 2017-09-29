@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by miles on 6/5/2017.
  */
@@ -20,5 +22,10 @@ public class BrandServiceImpl implements BrandService {
     @Transactional(readOnly=true)
     public BrandConfig getBrandConfigByName(String brand) {
         return brandConfigRepository.getBarcodeConfigByBrand(brand);
+    }
+
+    @Override
+    public List<String> getBrandsList() {
+        return brandConfigRepository.getAllBrands();
     }
 }

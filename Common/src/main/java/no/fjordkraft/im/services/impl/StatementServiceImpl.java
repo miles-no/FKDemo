@@ -29,7 +29,9 @@ import javax.annotation.Resource;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by bhavi on 5/9/2017.
@@ -99,9 +101,6 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
 
     @Transactional()
     public Statement saveIMStatementinDB(String xml, Statement imStatement) throws IOException {
-       // String xml = FileUtils.readFileToString(statementFile, StandardCharsets.ISO_8859_1);
-
-        //imStatement.setPayload(xml);
         imStatement.setStatus(StatementStatusEnum.PENDING.getStatus());
         imStatement.setCreateTime(new Timestamp(System.currentTimeMillis()));
         imStatement.setUpdateTime(new Timestamp(System.currentTimeMillis()));
@@ -119,6 +118,21 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         Statement stmt = statementRepository.findOne(statementId);
         stmt.getSystemBatchInput().getTransferFile().getFilename();
         return stmt;
+    }
+
+    public Map<String, Integer> getStatementBySystemBatchId(Long systemBatchInputId) {
+        List<StatusCount> statusCountList =  statementRepository.getStatementBySbiId(systemBatchInputId);
+        Map<String, Integer> statusCountMap = new HashMap<>(statusCountList.size());
+        for (StatusCount statusCount : statusCountList ) {
+            statusCountMap.put(statusCount.getName(),statusCount.getValue().intValue());
+        }
+
+        for(StatementStatusEnum statusEnum : StatementStatusEnum.values()) {
+            if(null == statusCountMap.get(statusEnum.getStatus())) {
+                statusCountMap.put(statusEnum.getStatus(),0);
+            }
+        }
+        return statusCountMap;
     }
 
 }

@@ -1,5 +1,7 @@
 package no.fjordkraft.im.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,12 +20,18 @@ public class TransactionGroup {
     @Column(name="NAME")
     private String name;
 
-    @Column(name="LABEL")
-    private String label;
+    @Column(name="BRAND")
+    private String brand;
 
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name="TG_ID")
-    private List<TransactionGroupCategory> transactionGroupCategoryList;
+    @Column(name="TYPE")
+    private String type;
+
+    @Column(name="DESCRIPTION")
+    private String description;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "transactionGroup",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<TransactionGroupCategory> transactionGroupCategories;
 
     public String getName() {
         return name;
@@ -33,19 +41,44 @@ public class TransactionGroup {
         this.name = name;
     }
 
-    public String getLabel() {
-        return label;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
-    public List<TransactionGroupCategory> getTransactionGroupCategoryList() {
-        return transactionGroupCategoryList;
+    public String getType() {
+        return type;
     }
 
-    public void setTransactionGroupCategoryList(List<TransactionGroupCategory> transactionGroupCategoryList) {
-        this.transactionGroupCategoryList = transactionGroupCategoryList;
+    public void setType(String type) {
+        this.type = type;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<TransactionGroupCategory> getTransactionGroupCategories() {
+        return transactionGroupCategories;
+    }
+
+    public void setTransactionGroupCategories(List<TransactionGroupCategory> transactionGroupCategories) {
+        this.transactionGroupCategories = transactionGroupCategories;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
 }

@@ -33,5 +33,12 @@
                 <include>*</include>
             </includes>
         </fileSet>
+        <fileSet>
+            <directory>src/main/resources/font/</directory>
+            <outputDirectory>/font</outputDirectory>
+            <includes>
+                <include>*</include>
+            </includes>
+        </fileSet>
     </fileSets>
 </assembly>

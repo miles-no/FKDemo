@@ -4,18 +4,14 @@ import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.if320.models.Transaction;
 import no.fjordkraft.im.if320.models.TransactionGroup;
-import no.fjordkraft.im.model.TransactionGroupCategory;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
-import no.fjordkraft.im.repository.TransactionGroupRepository;
-import no.fjordkraft.im.util.IMConstants;
+import no.fjordkraft.im.services.ConfigService;
+import no.fjordkraft.im.services.TransactionGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by miles on 5/23/2017.
@@ -25,7 +21,10 @@ import java.util.Map;
 public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
 
     @Autowired
-    TransactionGroupRepository transactionGroupRepository;
+    TransactionGroupService transactionGroupService;
+
+    @Autowired
+    ConfigService configService;
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
@@ -36,56 +35,52 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
         int totalTransactions = request.getStatement().getTransactionGroup().getTotalTransactions();
         List<Transaction> processedTransaction = request.getStatement().getTransactionGroup().getTransaction();
         TransactionGroup transactionGroup = new TransactionGroup();
+        String brand = request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
 
         Float amountWithVatTotal = 0.0f;
         Float vatTotalAmount = 0.0f;
 
         try {
-            List<no.fjordkraft.im.model.TransactionGroup> transactionGroupList = transactionGroupRepository.findAll();
+            Map<String, Set<String>> transactionGroupMap = configService.getTransactionGroupForBrand(brand);
 
-            for (Transaction transaction : transactions) {
-                if (null != transactionGroupList && IMConstants.ZERO != transactionGroupList.size()) {
-                    for (no.fjordkraft.im.model.TransactionGroup group : transactionGroupList) {
-                        for (TransactionGroupCategory category : group.getTransactionGroupCategoryList()) {
-                            if (category.getTransactionCategory().equals(transaction.getTransactionCategory())) {
-                                diverseRabatter.put(group.getLabel(), createDiverseRabatterTransactionEntry(diverseRabatter, transaction, group, group.getName()));
-                                amountWithVatTotal += transaction.getAmountWithVat();
-                                vatTotalAmount += transaction.getVatAmount();
-                                break;
-                            }
+            if(null != transactionGroupMap) {
+                Set<Map.Entry<String, Set<String>>> entrySet = transactionGroupMap.entrySet();
+                for (Transaction transaction : transactions) {
+                    for (Map.Entry<String, Set<String>> entry : entrySet) {
+                        if (entry.getValue().contains(transaction.getTransactionCategory())) {
+                            diverseRabatter.put(entry.getKey(), createDiverseRabatterTransactionEntry(diverseRabatter, transaction, entry.getKey()));
+                            amountWithVatTotal += transaction.getAmountWithVat();
+                            vatTotalAmount += transaction.getVatAmount();
+                            break;
                         }
                     }
                 }
-            }
 
-            Transaction transaction;
-            mapIterator = diverseRabatter.entrySet().iterator();
-            while (mapIterator.hasNext()) {
-                Map.Entry pair = (Map.Entry) mapIterator.next();
-                transaction = new Transaction();
-                transaction = (Transaction) pair.getValue();
-                transaction.setTransactionSequence(++totalTransactions);
-                processedTransaction.add((Transaction) pair.getValue());
-            }
+                Transaction transaction;
+                for (Map.Entry<String, Transaction> entry : diverseRabatter.entrySet()) {
+                    transaction = entry.getValue();
+                    transaction.setTransactionSequence(++totalTransactions);
+                    processedTransaction.add(entry.getValue());
+                }
 
-            transactionGroup.setTransaction(processedTransaction);
-            transactionGroup.setTotalTransactions(totalTransactions);
-            request.getStatement().setTransactionGroup(transactionGroup);
-            request.getStatement().getTransactions().setDiAmountWithVat(amountWithVatTotal);
-            request.getStatement().getTransactions().setDiVatTotal(vatTotalAmount);
+                transactionGroup.setTransaction(processedTransaction);
+                transactionGroup.setTotalTransactions(totalTransactions);
+                request.getStatement().setTransactionGroup(transactionGroup);
+                request.getStatement().getTransactions().setDiAmountWithVat(amountWithVatTotal);
+                request.getStatement().getTransactions().setDiVatTotal(vatTotalAmount);
+            }
         } catch(Exception e) {
             throw new PreprocessorException(e.getMessage());
         }
     }
 
     private Transaction createDiverseRabatterTransactionEntry(Map<String, Transaction> diverseRabatter, Transaction transaction,
-                                                              no.fjordkraft.im.model.TransactionGroup group, String groupName) {
+                                                              String groupName) {
         Transaction existingElement = new Transaction();
         Transaction resultTransaction = new Transaction();
         float newAmount;
-        Iterator existingElementIterator;
 
-        resultTransaction.setTransactionCategory(group.getLabel());
+        resultTransaction.setTransactionCategory(groupName);
         if(diverseRabatter.isEmpty()) {
             resultTransaction.setAmountWithVat(transaction.getAmountWithVat());
         } else {
@@ -100,7 +95,7 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
         return resultTransaction;
     }
 
-    public void setTransactionGroupRepository(TransactionGroupRepository transactionGroupRepository) {
-        this.transactionGroupRepository = transactionGroupRepository;
+    public void setTransactionGroupService(TransactionGroupService transactionGroupService) {
+        this.transactionGroupService = transactionGroupService;
     }
 }
