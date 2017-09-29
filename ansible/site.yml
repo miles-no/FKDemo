@@ -5,7 +5,7 @@
         appfolder: "{{appfolderMap[app]}}"
 
     -
-      name: "{{app}}@{{inventory_hostname}} - Making sure file output directory {{file_out_directory}} exists"
+      name: "{{app}}@{{inventory_hostname}} - Making sure folder output directory {{file_out_directory}} exists"
       become: true
       file:
         path={{file_out_directory}}

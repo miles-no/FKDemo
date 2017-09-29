@@ -26,7 +26,7 @@ import java.util.Map;
 @Service
 public class TransferFileServiceImpl implements TransferFileService {
 
-    private static final Logger logger = LoggerFactory.getLogger(InvoiceFeedWatcherJob.class);
+    private static final Logger logger = LoggerFactory.getLogger(TransferFileServiceImpl.class);
 
     @Autowired
     TransferFileRepository transferFileRepository;
