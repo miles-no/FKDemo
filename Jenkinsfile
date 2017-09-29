@@ -8,7 +8,7 @@ stage("Build") {
                 env.MAVEN_HOME="${tool 'Maven 3.3.9'}"
                 env.PATH="${env.MAVEN_HOME}/bin:${env.JAVA_HOME}/bin:${env.PATH}"
 
-                git branch: 'Multi-Module-Version1.0', credentialsId: 'deploykeys-invoice-manager', url: 'git@github.com:milesfk/invoice_manager.git'
+                git branch: 'develop', credentialsId: 'fkjenkins-at-github', url: 'git@github.com:milesfk/invoice_manager.git'
                 try {
 
 
