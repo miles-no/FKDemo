@@ -17,7 +17,6 @@ import org.springframework.util.StopWatch;
 
 import java.io.File;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -68,7 +67,7 @@ public class TransferFileServiceImpl implements TransferFileService {
                 processTransferFileService.processTransferFile(systemBatchInput);
                 transferFile.setImStatus(SystemBatchInputStatusEnum.PROCESSING.getStatus());
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                transferFile.setImsSatusChanged(timestamp);
+                transferFile.setImSatusChanged(timestamp);
                 transferFileRepository.save(transferFile);
             }
             logger.debug("moved files " + transferFiles.size() + " " + stopWatch.prettyPrint());
@@ -103,7 +102,7 @@ public class TransferFileServiceImpl implements TransferFileService {
                 TransferFile transferFile = systemBatchInput.getTransferFile();
                 transferFile.setImStatus(status);
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                transferFile.setImsSatusChanged(timestamp);
+                transferFile.setImSatusChanged(timestamp);
                 transferFileRepository.save(transferFile);
                 systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, status);
             }
@@ -116,7 +115,7 @@ public class TransferFileServiceImpl implements TransferFileService {
         TransferFile transferFile = transferFileRepository.findOne(tfId);
         transferFile.setImStatus(status);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        transferFile.setImsSatusChanged(timestamp);
+        transferFile.setImSatusChanged(timestamp);
         transferFileRepository.save(transferFile);
     }
 

@@ -66,6 +66,12 @@ public class TransferFile implements Serializable{
     @Column(name = "IMSTATUS")
     private String imStatus;
 
+    @Column(name = "IMSTATUSCHANGED")
+    private Timestamp imSatusChanged;
+
+    @Column(name = "INVOICEMANAGER",updatable = false)
+    private Boolean invoiceManager;
+
     public TransferFile() {
     }
 
@@ -224,6 +230,22 @@ public class TransferFile implements Serializable{
 
     public void setImStatus(String imStatus) {
         this.imStatus = imStatus;
+    }
+
+    public Timestamp getImSatusChanged() {
+        return imSatusChanged;
+    }
+
+    public void setImSatusChanged(Timestamp imSatusChanged) {
+        this.imSatusChanged = imSatusChanged;
+    }
+
+    public Boolean getInvoiceManager() {
+        return invoiceManager;
+    }
+
+    public void setInvoiceManager(Boolean invoiceManager) {
+        this.invoiceManager = invoiceManager;
     }
 }
 
