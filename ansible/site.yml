@@ -5,14 +5,20 @@
         appfolder: "{{appfolderMap[app]}}"
 
     -
+      name: "{{app}}@{{inventory_hostname}} - Making sure file output directory {{file_out_directory}} exists"
+      become: true
+      file:
+        path={{file_out_directory}}
+        state=directory
+        owner=miles2
+
+    -
       name: "{{app}}@{{inventory_hostname}} - Making sure base directory {{app_basedir}} exists"
       become: true
       file:
         path={{app_basedir}}
         state=directory
         owner=miles2
-
-
 
     -
       name: "{{app}}@{{inventory_hostname}} - Making sure directory {{app_basedir}}/{{app}} exists"
