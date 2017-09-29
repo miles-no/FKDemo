@@ -60,7 +60,7 @@ const ManageBrandsController = ($scope, $q, $http, ModalService) => {
   }
   $scope.getBrands = () => {
 
-    $http.get('/brand/config').then((response) => {
+    $http.get('/invoicemanager/api/brand/config').then((response) => {
       $scope.tableBrands= $scope.brands = response.data.Brand;
     })
   }
