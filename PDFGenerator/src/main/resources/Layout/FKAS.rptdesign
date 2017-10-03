@@ -3459,6 +3459,9 @@
         <style name="Custom_Font" id="873">
             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
         </style>
+        <style name="chartFont" id="1318">
+            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+        </style>
     </styles>
     <page-setup>
         <simple-master-page name="SimpleMasterPage" id="2">
@@ -3569,7 +3572,7 @@
             <property name="backgroundPositionX">center</property>
             <property name="backgroundPositionY">bottom</property>
             <property name="backgroundRepeat">no-repeat</property>
-            <property name="height">2.9375in</property>
+            <property name="height">2.6145833333333335in</property>
             <property name="width">7.3125in</property>
             <column id="770">
                 <property name="width">7.3125in</property>
@@ -3579,10 +3582,10 @@
                 <property name="backgroundPositionX">center</property>
                 <property name="backgroundPositionY">bottom</property>
                 <property name="backgroundRepeat">no-repeat</property>
-                <property name="height">2.9375in</property>
+                <property name="height">2.6145833333333335in</property>
                 <cell id="772">
                     <grid id="5">
-                        <property name="height">2.8854166666666665in</property>
+                        <property name="height">2.6041666666666665in</property>
                         <property name="width">7.25in</property>
                         <list-property name="boundDataColumns">
                             <structure>
@@ -3609,7 +3612,7 @@
                             <property name="width">2.5416666666666665in</property>
                         </column>
                         <row id="9">
-                            <property name="height">0.8958333333333334in</property>
+                            <property name="height">0.7708333333333334in</property>
                             <cell id="10">
                                 <property name="colSpan">3</property>
                                 <property name="rowSpan">1</property>
@@ -3665,7 +3668,7 @@
                                     <property name="color">#F47B20</property>
                                     <property name="textAlign">right</property>
                                     <property name="contentType">auto</property>
-                                    <text-property name="content"><![CDATA[Telefon kundesenter: 06100]]></text-property>
+                                    <text-property name="content"><![CDATA[Telefon kundesenter: 23 00 61 00]]></text-property>
                                 </text>
                                 <label id="717">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
@@ -3703,7 +3706,7 @@
                             <property name="paddingTop">1pt</property>
                             <property name="paddingBottom">1pt</property>
                             <property name="canShrink">true</property>
-                            <property name="height">1.9895833333333333in</property>
+                            <property name="height">1.8333333333333333in</property>
                             <cell id="14">
                                 <property name="colSpan">4</property>
                                 <property name="rowSpan">1</property>
@@ -3820,8 +3823,8 @@
                                 <property name="backgroundRepeat">no-repeat</property>
                                 <data id="122">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
-                                    <property name="fontSize">10.5pt</property>
-                                    <property name="paddingTop">5pt</property>
+                                    <property name="fontSize">10pt</property>
+                                    <property name="paddingTop">3pt</property>
                                     <property name="textAlign">right</property>
                                     <property name="lineHeight">10pt</property>
                                     <property name="dataSet">MainInfo</property>
@@ -3838,8 +3841,8 @@
                                 </data>
                                 <data id="504">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
-                                    <property name="fontSize">10.5pt</property>
-                                    <property name="paddingTop">5pt</property>
+                                    <property name="fontSize">10pt</property>
+                                    <property name="paddingTop">3pt</property>
                                     <property name="textAlign">right</property>
                                     <property name="lineHeight">10pt</property>
                                     <property name="dataSet">MainInfo</property>
@@ -3856,8 +3859,8 @@
                                 </data>
                                 <data id="125">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
-                                    <property name="fontSize">10.5pt</property>
-                                    <property name="paddingTop">5pt</property>
+                                    <property name="fontSize">10pt</property>
+                                    <property name="paddingTop">3pt</property>
                                     <property name="textAlign">right</property>
                                     <property name="lineHeight">10pt</property>
                                     <property name="dataSet">MainInfo</property>
@@ -3874,8 +3877,8 @@
                                 </data>
                                 <data id="126">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
-                                    <property name="fontSize">10.5pt</property>
-                                    <property name="paddingTop">5pt</property>
+                                    <property name="fontSize">10pt</property>
+                                    <property name="paddingTop">3pt</property>
                                     <property name="textAlign">right</property>
                                     <property name="lineHeight">10pt</property>
                                     <property name="dataSet">MainInfo</property>
@@ -3892,8 +3895,8 @@
                                 </data>
                                 <data id="127">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
-                                    <property name="fontSize">10.5pt</property>
-                                    <property name="paddingTop">5pt</property>
+                                    <property name="fontSize">10pt</property>
+                                    <property name="paddingTop">3pt</property>
                                     <property name="textAlign">right</property>
                                     <property name="lineHeight">10pt</property>
                                     <property name="dataSet">MainInfo</property>
@@ -3910,8 +3913,8 @@
                                 </data>
                                 <data id="128">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
-                                    <property name="fontSize">10.5pt</property>
-                                    <property name="paddingTop">5pt</property>
+                                    <property name="fontSize">10pt</property>
+                                    <property name="paddingTop">3pt</property>
                                     <property name="textAlign">right</property>
                                     <property name="lineHeight">10pt</property>
                                     <property name="dataSet">MainInfo</property>
@@ -3956,7 +3959,9 @@
                                                     <ref-entry baseId="1164" id="1164"/>
                                                     <ref-entry baseId="1165" name="NewText" id="1165"/>
                                                     <ref-entry baseId="1166" id="1166"/>
-                                                    <ref-entry baseId="1167" name="NewAutoText1" id="1167"/>
+                                                    <ref-entry baseId="1167" name="NewAutoText1" id="1167">
+                                                        <property name="textAlign">right</property>
+                                                    </ref-entry>
                                                 </overridden-values>
                                             </grid>
                                         </cell>
@@ -3970,16 +3975,16 @@
         </grid>
         <grid id="148">
             <property name="pageBreakAfter">always</property>
-            <property name="height">6.65625in</property>
-            <property name="width">7.28125in</property>
+            <property name="height">6.770833333333333in</property>
+            <property name="width">7.302083333333333in</property>
             <column id="149">
                 <property name="width">2.4270833333333335in</property>
             </column>
             <column id="150">
-                <property name="width">2.3in</property>
+                <property name="width">2.21875in</property>
             </column>
             <column id="151">
-                <property name="width">2.3020833333333335in</property>
+                <property name="width">2.65625in</property>
             </column>
             <row id="152">
                 <property name="height">2.7083333333333335in</property>
@@ -4173,7 +4178,8 @@ else&#13;
                                     <property name="rowSpan">1</property>
                                     <data id="502">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
-                                        <property name="fontSize">9pt</property>
+                                        <property name="fontSize">7pt</property>
+                                        <property name="fontStyle">italic</property>
                                         <property name="textAlign">right</property>
                                         <property name="dataSet">TransactionInfo</property>
                                         <list-property name="boundDataColumns">
@@ -4254,11 +4260,13 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                 </image>
                             </cell>
                             <cell id="701">
+                                <property name="paddingTop">5pt</property>
                                 <text id="704">
-                                    <property name="fontSize">12pt</property>
+                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontSize">10pt</property>
                                     <property name="paddingTop">4pt</property>
                                     <property name="contentType">html</property>
-                                    <text-property name="content"><![CDATA[Du har inngått avtale om AvtaleGiro med oss, og <U>faktura blir trukket automatisk ved forfall</U>.]]></text-property>
+                                    <text-property name="content"><![CDATA[<FONT font-family="Fjordkraft Neo Sans">Du har inngått avtale om AvtaleGiro med oss, og <U>faktura blir trukket automatisk ved forfall</U>.</FONT>]]></text-property>
                                 </text>
                             </cell>
                         </row>
@@ -4481,12 +4489,22 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                         <property name="fontSize">9pt</property>
                                         <property name="paddingTop">5pt</property>
                                         <property name="textAlign">center</property>
+                                        <list-property name="highlightRules">
+                                            <structure>
+                                                <property name="operator">eq</property>
+                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                <expression name="testExpr" type="javascript">row["DirectDebit"]</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">"YES"</value>
+                                                </simple-property-list>
+                                            </structure>
+                                        </list-property>
                                         <property name="resultSetColumn">DueDate</property>
                                     </data>
                                 </cell>
                                 <cell id="175">
                                     <data id="190">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="paddingTop">5pt</property>
                                         <property name="paddingRight">10pt</property>
@@ -4500,14 +4518,14 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                 </cell>
             </row>
             <row id="160">
-                <property name="height">2in</property>
+                <property name="height">2.1145833333333335in</property>
                 <cell id="161">
                     <property name="colSpan">2</property>
                     <property name="rowSpan">1</property>
-                    <property name="paddingTop">30pt</property>
+                    <property name="paddingTop">1pt</property>
                     <image id="667">
-                        <property name="height">1.4583333333333333in</property>
-                        <property name="width">4.708333333333333in</property>
+                        <property name="height">5cm</property>
+                        <property name="width">11cm</property>
                         <expression name="altText" type="javascript">""</expression>
                         <list-property name="visibility">
                             <structure>
@@ -4732,7 +4750,7 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
           <Value></Value>
           <Font>
             <Name>Fjordkraft Neo Sans</Name>
-            <Size>8.0</Size>
+            <Size>7.0</Size>
             <Alignment/>
           </Font>
         </Caption>
@@ -5839,13 +5857,13 @@ year = year + "";</expression>
                             <property name="paddingRight">0pt</property>
                             <grid id="399">
                                 <property name="borderBottomStyle">solid</property>
-                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderBottomWidth">1pt</property>
                                 <property name="borderLeftStyle">solid</property>
-                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderLeftWidth">1pt</property>
                                 <property name="borderRightStyle">solid</property>
-                                <property name="borderRightWidth">1px</property>
+                                <property name="borderRightWidth">1pt</property>
                                 <property name="borderTopStyle">solid</property>
-                                <property name="borderTopWidth">1px</property>
+                                <property name="borderTopWidth">1pt</property>
                                 <property name="pageBreakAfter">auto</property>
                                 <property name="height">7.5625in</property>
                                 <property name="width">5.260416666666667in</property>
@@ -5862,6 +5880,7 @@ year = year + "";</expression>
                                     <property name="height">0.8958333333333334in</property>
                                     <cell id="403">
                                         <property name="fontSize">8pt</property>
+                                        <property name="paddingRight">5pt</property>
                                         <grid id="385">
                                             <property name="height">1in</property>
                                             <property name="width">5.375in</property>
@@ -6345,10 +6364,9 @@ year = year + "";</expression>
                                             </column>
                                             <header>
                                                 <row id="420">
-                                                    <property name="borderBottomColor">#C0C0C0</property>
+                                                    <property name="borderBottomColor">#B3B3B3</property>
                                                     <property name="borderBottomStyle">solid</property>
-                                                    <property name="borderBottomWidth">1px</property>
-                                                    <property name="height">0.22916666666666666in</property>
+                                                    <property name="borderBottomWidth">0.5pt</property>
                                                     <cell id="421">
                                                         <label id="443">
                                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -6394,28 +6412,31 @@ year = year + "";</expression>
                                             <detail>
                                                 <row id="426">
                                                     <property name="lineHeight">10pt</property>
-                                                    <property name="height">0.22916666666666666in</property>
                                                     <cell id="427">
                                                         <data id="444">
                                                             <property name="textAlign">left</property>
+                                                            <property name="lineHeight">8pt</property>
                                                             <property name="resultSetColumn">Text</property>
                                                         </data>
                                                     </cell>
                                                     <cell id="428">
                                                         <data id="446">
                                                             <property name="textAlign">left</property>
+                                                            <property name="lineHeight">8pt</property>
                                                             <property name="resultSetColumn">StartDate</property>
                                                         </data>
                                                     </cell>
                                                     <cell id="429">
                                                         <data id="448">
                                                             <property name="textAlign">right</property>
+                                                            <property name="lineHeight">8pt</property>
                                                             <property name="resultSetColumn">Basis</property>
                                                         </data>
                                                     </cell>
                                                     <cell id="430">
                                                         <data id="450">
                                                             <property name="textAlign">right</property>
+                                                            <property name="lineHeight">8pt</property>
                                                             <property name="resultSetColumn">GrossPrice</property>
                                                         </data>
                                                     </cell>
@@ -6426,6 +6447,7 @@ year = year + "";</expression>
                                                         <property name="borderTopStyle">none</property>
                                                         <data id="452">
                                                             <property name="textAlign">right</property>
+                                                            <property name="lineHeight">8pt</property>
                                                             <property name="resultSetColumn">TotalGross</property>
                                                         </data>
                                                     </cell>
@@ -6433,10 +6455,9 @@ year = year + "";</expression>
                                             </detail>
                                             <footer>
                                                 <row id="432">
-                                                    <property name="borderTopColor">#C0C0C0</property>
+                                                    <property name="borderTopColor">#B3B3B3</property>
                                                     <property name="borderTopStyle">solid</property>
-                                                    <property name="borderTopWidth">1px</property>
-                                                    <property name="height">0.28125in</property>
+                                                    <property name="borderTopWidth">0.5pt</property>
                                                     <cell id="433">
                                                         <label id="456">
                                                             <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
@@ -6766,9 +6787,9 @@ year = year + "";</expression>
                                             </column>
                                             <header>
                                                 <row id="929">
-                                                    <property name="borderBottomColor">#C0C0C0</property>
+                                                    <property name="borderBottomColor">#B3B3B3</property>
                                                     <property name="borderBottomStyle">solid</property>
-                                                    <property name="borderBottomWidth">1px</property>
+                                                    <property name="borderBottomWidth">0.5pt</property>
                                                     <cell id="930">
                                                         <label id="969">
                                                             <property name="backgroundAttachment">scroll</property>
@@ -7075,7 +7096,7 @@ year = year + "";</expression>
                                                             <property name="paddingRight">1pt</property>
                                                             <property name="textAlign">left</property>
                                                             <property name="letterSpacing">normal</property>
-                                                            <property name="lineHeight">10pt</property>
+                                                            <property name="lineHeight">8pt</property>
                                                             <property name="orphans">2</property>
                                                             <property name="textTransform">none</property>
                                                             <property name="whiteSpace">normal</property>
@@ -7128,7 +7149,7 @@ year = year + "";</expression>
                                                             <property name="paddingRight">1pt</property>
                                                             <property name="textAlign">left</property>
                                                             <property name="letterSpacing">normal</property>
-                                                            <property name="lineHeight">10pt</property>
+                                                            <property name="lineHeight">8pt</property>
                                                             <property name="orphans">2</property>
                                                             <property name="textTransform">none</property>
                                                             <property name="whiteSpace">normal</property>
@@ -7181,7 +7202,7 @@ year = year + "";</expression>
                                                             <property name="paddingRight">1pt</property>
                                                             <property name="textAlign">right</property>
                                                             <property name="letterSpacing">normal</property>
-                                                            <property name="lineHeight">10pt</property>
+                                                            <property name="lineHeight">8pt</property>
                                                             <property name="orphans">2</property>
                                                             <property name="textTransform">none</property>
                                                             <property name="whiteSpace">normal</property>
@@ -7234,7 +7255,7 @@ year = year + "";</expression>
                                                             <property name="paddingRight">1pt</property>
                                                             <property name="textAlign">right</property>
                                                             <property name="letterSpacing">normal</property>
-                                                            <property name="lineHeight">10pt</property>
+                                                            <property name="lineHeight">8pt</property>
                                                             <property name="orphans">2</property>
                                                             <property name="textTransform">none</property>
                                                             <property name="whiteSpace">normal</property>
@@ -7287,7 +7308,7 @@ year = year + "";</expression>
                                                             <property name="paddingRight">1pt</property>
                                                             <property name="textAlign">right</property>
                                                             <property name="letterSpacing">normal</property>
-                                                            <property name="lineHeight">10pt</property>
+                                                            <property name="lineHeight">8pt</property>
                                                             <property name="orphans">2</property>
                                                             <property name="textTransform">none</property>
                                                             <property name="whiteSpace">normal</property>
@@ -7307,9 +7328,9 @@ year = year + "";</expression>
                                             </detail>
                                             <footer>
                                                 <row id="941">
-                                                    <property name="borderTopColor">#C0C0C0</property>
+                                                    <property name="borderTopColor">#B3B3B3</property>
                                                     <property name="borderTopStyle">solid</property>
-                                                    <property name="borderTopWidth">1px</property>
+                                                    <property name="borderTopWidth">0.5pt</property>
                                                     <cell id="942">
                                                         <label id="959">
                                                             <property name="backgroundAttachment">scroll</property>
@@ -9044,7 +9065,7 @@ så ofte du ønsker til din netteier.]]></text-property>
                                                                 <property name="allowExport">true</property>
                                                             </structure>
                                                         </list-property>
-                                                        <property name="style">Custom_Font</property>
+                                                        <property name="style">chartFont</property>
                                                     </extended-item>
                                                     <grid id="855">
                                                         <property name="width">3.4375in</property>
@@ -9114,13 +9135,13 @@ så ofte du ønsker til din netteier.]]></text-property>
                             </grid>
                             <grid id="1252">
                                 <property name="borderBottomStyle">solid</property>
-                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderBottomWidth">1pt</property>
                                 <property name="borderLeftStyle">solid</property>
-                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderLeftWidth">1pt</property>
                                 <property name="borderRightStyle">solid</property>
-                                <property name="borderRightWidth">1px</property>
+                                <property name="borderRightWidth">1pt</property>
                                 <property name="borderTopStyle">solid</property>
-                                <property name="borderTopWidth">1px</property>
+                                <property name="borderTopWidth">1pt</property>
                                 <property name="width">5.28125in</property>
                                 <property name="dataSet">DiverseInfo</property>
                                 <list-property name="visibility">
@@ -9355,9 +9376,9 @@ så ofte du ønsker til din netteier.]]></text-property>
                                             </detail>
                                             <footer>
                                                 <row id="1301">
-                                                    <property name="borderTopColor">#C0C0C0</property>
+                                                    <property name="borderTopColor">#B3B3B3</property>
                                                     <property name="borderTopStyle">solid</property>
-                                                    <property name="borderTopWidth">1px</property>
+                                                    <property name="borderTopWidth">0.5pt</property>
                                                     <cell id="1302">
                                                         <label id="1317">
                                                             <property name="backgroundAttachment">scroll</property>
@@ -9407,7 +9428,7 @@ så ofte du ønsker til din netteier.]]></text-property>
                                                             <property name="showIfBlank">false</property>
                                                             <property name="canShrink">false</property>
                                                             <property name="overflow">hidden</property>
-                                                            <text-property name="text">Sum strøm</text-property>
+                                                            <text-property name="text">Sum</text-property>
                                                         </label>
                                                     </cell>
                                                     <cell id="1303">
@@ -9534,6 +9555,7 @@ så ofte du ønsker til din netteier.]]></text-property>
                             <property name="borderTopStyle">none</property>
                             <property name="paddingLeft">10pt</property>
                             <grid id="807">
+                                <property name="verticalAlign">bottom</property>
                                 <property name="height">9.510416666666666in</property>
                                 <column id="808"/>
                                 <row id="811">
@@ -9558,9 +9580,9 @@ så ofte du ønsker til din netteier.]]></text-property>
                                         </label>
                                         <label id="815">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                            <property name="fontSize">14pt</property>
+                                            <property name="fontSize">13pt</property>
                                             <property name="fontWeight">normal</property>
-                                            <text-property name="text">Ring 06100</text-property>
+                                            <text-property name="text">Ring 23 00 61 00</text-property>
                                         </label>
                                         <label id="816">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -9621,8 +9643,19 @@ og forbruk.</text-property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
                                             <text-property name="text">For mer informasjon om&#13;
-strømregningen, se&#13;
-fjordkraft.no/fakturaforklaring</text-property>
+strømregningen, se</text-property>
+                                        </label>
+                                        <label id="1319">
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                            <property name="fontSize">7pt</property>
+                                            <text-property name="text">fjordkraft.no/fakturaforklaring</text-property>
+                                            <list-property name="action">
+                                                <structure>
+                                                    <property name="linkType">hyperlink</property>
+                                                    <expression name="uri" type="constant">https://www.fjordkraft.no/fakturaforklaring</expression>
+                                                    <property name="targetWindow">_blank</property>
+                                                </structure>
+                                            </list-property>
                                         </label>
                                         <label id="827">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>

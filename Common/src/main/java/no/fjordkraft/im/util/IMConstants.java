@@ -26,7 +26,7 @@ public interface IMConstants {
     static final String RABATTER = "rabatter";
     static final String DIVERSE = "diverse";
     static final String NETTLEIE = "Nettleie";
-    static final String STROM = "STROM";
+    static final String STROM = "Strøm";
     static final char TRUE = '1';
     static final char FALSE = '0';
     static final String BARCODE_PREFIX = "2";
@@ -83,4 +83,5 @@ public interface IMConstants {
     static final String AFI_TRANSFER_FILE_AUTO_PICK = "afi.transfer.file.auto.pick";
     static final String PROCESSED_STATEMENT_XML_FILE_NAME="processes_statemet.xml";
     static String NUM_OF_STMT_PDF_GEN="num.statement.pdf.generation";
+
 }

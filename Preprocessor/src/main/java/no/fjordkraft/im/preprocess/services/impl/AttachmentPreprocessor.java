@@ -30,15 +30,17 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         List<BaseItemDetails> baseItemDetailsList = new ArrayList<>();
         InvoiceSummary invoiceSummary;
         InvoiceTotals invoiceTotals;
+        Float taxAmount;
 
-        for(Attachment attachment:attachments.getAttachment()) {
+        for(int i = 0; i<attachments.getAttachment().size(); i++) {
+            Attachment attachment = attachments.getAttachment().get(i);
             if(IMConstants.EMUXML.equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
 
-                for(Attachment pdfAttachment:attachments.getAttachment()) {
+                for(int j=i+1; j<attachments.getAttachment().size() && j<=i+1; j++) {
+                    Attachment pdfAttachment = attachments.getAttachment().get(j);
                     if(attachment.getFAKTURA().getMAALEPUNKT() == pdfAttachment.getFAKTURA().getMAALEPUNKT()) {
                         if(IMConstants.PDFEHF.equals(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
                             nettleie = new Nettleie();
-                            baseItemDetails = new BaseItemDetails();
                             invoiceSummary = new InvoiceSummary();
                             invoiceTotals = new InvoiceTotals();
                             invoiceSummary.setInvoiceTotals(invoiceTotals);
@@ -63,7 +65,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                                 baseItemDetails.setUnitOfMeasure(invoiceLineType.getInvoicedQuantity().getUnitCode());
                                 baseItemDetails.setUnitPrice(Float.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString()));
                                 baseItemDetails.setPriceDenomination(invoiceLineType.getPrice().getPriceAmount().getCurrencyID());
-                                baseItemDetails.setLineItemGrossAmount(Float.valueOf(invoiceLineType.getLineExtensionAmount().getValue().toString()));
+                                taxAmount = invoiceLineType.getTaxTotals().get(0).getTaxAmount().getValue().floatValue();
+                                baseItemDetails.setLineItemGrossAmount(Float.valueOf(invoiceLineType.getLineExtensionAmount().getValue().toString()) + taxAmount);
                                 if(null != invoiceLineType.getInvoicePeriods()
                                         && IMConstants.ZERO != invoiceLineType.getInvoicePeriods().size()) {
                                     baseItemDetails.setStartDate(invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue());

@@ -1,5 +1,6 @@
 server:
   port: 8804
+  contextPath: /invoicemanager
 
 spring:
   #datasource:
@@ -30,3 +31,22 @@ spring.jackson.serialization.fail-on-empty-beans: false
 
 #  context: dev
 #  enabled: disable
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
+    registerWithEureka: true
+  instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    preferIpAddress: true
+    metadataMap:
+      management:
+        context-path: ${management.context-path}
+
+
+ribbon:
+  eureka:
+    enabled: true

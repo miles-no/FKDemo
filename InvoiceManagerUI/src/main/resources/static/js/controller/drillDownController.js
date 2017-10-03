@@ -69,6 +69,7 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
         $scope.invoiceNumber ? queryParams.invoiceNumber = $scope.invoiceNumber :'';
         $scope.accountNumber ? queryParams.accountNumber = $scope.accountNumber :'';
         $scope.customerID ? queryParams.customerID = $scope.customerID :'';
+        $scope.transferFileName ?  queryParams.transferFileName = $scope.transferFileName : '';
         $http.get('/invoicemanager/api/statement/details',{params:queryParams}).then(function success(result){
             $scope.searchResults = result.data.STATEMENTS
             $scope.totalPages = Math.ceil(result.data.TOTAL/$scope.pageSize);

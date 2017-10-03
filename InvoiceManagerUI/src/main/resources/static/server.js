@@ -55,6 +55,7 @@ app.get('/statement/details', function(req, res) {
   var customerID = req.query.customerID
   var accountNumber = req.query.accountNumber
   var states = req.query.states
+  var transferFileName = req.query.transferFileName
   var qp = {
     fromTime:fromTime,
     invoice:invoice,
@@ -63,7 +64,8 @@ app.get('/statement/details', function(req, res) {
     page:page,
     customerID:customerID,
     accountNumber:accountNumber,
-    states : states
+    states : states,
+    transferFileName:transferFileName
   }
 
   console.log(qp)

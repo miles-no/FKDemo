@@ -15,6 +15,8 @@ spring:
     url: jdbc:oracle:thin:@localhost:1521:xe
     username: bhavik
     password: bhavik123
+  application:
+      name: invoicemanager
 
   #  datasource:
   #   driverClassName: oracle.jdbc.driver.OracleDriver

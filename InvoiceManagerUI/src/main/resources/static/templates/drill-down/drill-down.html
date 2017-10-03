@@ -62,9 +62,9 @@
                 </div>
             </div>
             <div class="row form-group">
-                <label class="control-label col-md-3">Customer ID</label>
+                <label class="control-label col-md-3">IF320</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" theme="bootstrap" ng-model="customerID" ng-change="getOverviewDetails()">
+                    <input type="text" class="form-control" theme="bootstrap" ng-model="transferFileName" ng-change="getOverviewDetails()">
                 </div>
             </div>
         </div>
@@ -118,26 +118,17 @@
                     <td>{{getForamttedDate(row.updateTime)}}</td>
                     <td>{{row.if320FileName}}</td>
                     <td>
-                        <!--<button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
-                            <i class="glyphicon glyphicon-remove-circle">
-                            </i>
-                        </button>-->
                         <div class="row">
-                            <i class="fa col-md-2" uib-tooltip="Click to view {{eachPdf.type === 'INVOICE_PDF' ? 'Invoice pdf' : 'Grid pdf'}}" tooltip-placement ="bottom" ng-class="{'fa-file-pdf-o': isInvoicePDF(eachPdf),'fa-file':!isInvoicePDF(eachPdf) }" aria-hidden="true" ng-repeat="eachPdf in row.invoicePdfList | orderBy : 'type'" ng-click="getInvoiceFile(eachPdf.id)"></i>
+                            <!--<i class="fa col-md-2" uib-tooltip="Click to view {{eachPdf.type === 'INVOICE_PDF' ? 'Invoice pdf' : 'Grid pdf'}}" tooltip-placement ="bottom" ng-class="{'fa-file-pdf-o': isInvoicePDF(eachPdf),'fa-file':!isInvoicePDF(eachPdf) }" aria-hidden="true" ng-repeat="eachPdf in row.invoicePdfList | orderBy : 'type'" ng-click="getInvoiceFile(eachPdf.id)"></i>-->
+                            <i class="fa col-md-2 fa-file-pdf-o" uib-tooltip="Click to view invoice pdf" tooltip-placement ="bottom" aria-hidden="true" ng-repeat="eachPdf in row.invoicePdfList | filter : {type: 'INVOICE_PDF'}" ng-click="getInvoiceFile(eachPdf.id)"></i>
+                            <i class="fa col-md-2 fa-file" uib-popover-template ="'if320.html'" popover-is-open="isOpen" popover-placement="bottom" popover-title="Click to download"></i>
                             <i uib-tooltip="Click to download xml" tooltip-placement="bottom" class="fa fa-file-code-o col-md-2" aria-hidden="true" ng-click="downloadXml(row.id,row.invoiceNumber)"></i>
                             <i ng-show="row.status === 'PRE_PROCESSING_FAILED'" ng-click="resetInvoice(row.id)" uib-tooltip="Reset Status" tooltip-placement="bottom" class="fa fa-retweet"></i>
+                            <script type="text/ng-template" id = "if320.html">
+                                <i class="fa col-md-2 fa-file" ng-repeat="eachPdf in row.invoicePdfList | filter : {type: 'PDFE2B'}" ng-click="getInvoiceFile(eachPdf.id)"></i>
+                            </script>
                         </div>
-                        <!--<div class="row">-->
-                            <!--<span ng-repeat="eachPdf in row.invoicePdfList track by eachPdf.id">-->
-                                <!--<i class="fa col-md-2 fa-file-pdf-o" uib-tooltip="Click to view invoice pdf" tooltip-placement ="bottom" aria-hidden="true" ng-click="getInvoiceFile(eachPdf.id)"></i>-->
-                                <!--<i class="fa col-md-2 fa-file" uib-tooltip="Click to view grid pdf" tooltip-placement ="bottom" aria-hidden="true" ng-click="getInvoiceFile(eachPdf.id)"></i>-->
-                            <!--</span>-->
-                            <!--&lt;!&ndash;<i ng-repeat="eachPdf in row.invoicePdfList" ng-click="getInvoiceFile(eachPdf.id)"></i>&ndash;&gt;-->
-                        <!--</div>-->
                     </td>
-                    <!--<td class="text-center">-->
-                        <!--<i uib-tooltip="Click to download" tooltip-placement="bottom" class="fa fa-file-code-o text-center" aria-hidden="true" ng-click="downloadXml(row.id,row.invoiceNumber)"></i>-->
-                    <!--</td>-->
                 </tr>
 			</tbody>
             <tfoot>
