@@ -160,6 +160,14 @@
       when: app == "im-preprocessor"
 
     -
+      name: "{{app}}@{{inventory_hostname}} - Copying fontsConfig.xml"
+      template:
+        src=templates/{{app}}/fontsConfig.xml
+        dest={{birt_resource_path}}/font/
+        owner=miles2
+      when: app == "im-pdfgenerator"
+
+    -
       name: "{{app}}@{{inventory_hostname}} - Copying new relic properties"
       template:
         src=templates/{{app}}/newrelic.yml
