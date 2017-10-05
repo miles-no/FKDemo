@@ -58,7 +58,7 @@ app.get('/statement/details', function(req, res) {
   var transferFileName = req.query.transferFileName
   var qp = {
     fromTime:fromTime,
-    invoice:invoice,
+    invoiceNumber:invoice,
     toTime:toTime,
     size:size,
     page:page,
@@ -74,7 +74,11 @@ app.get('/statement/details', function(req, res) {
   qs: qp
 },function(error,response,body){
   res.send(body);
+  console.log(body)
 })
+
+console.log(req)
+console.log(res)
 });
 
 app.get('/statement/pdf/:id', function(req, res) {
@@ -460,7 +464,7 @@ app.put('/layout/template/:id',upload.single('file'),function(req,res) {
   }
   console.log(formData)
   request({
-    url: `${apiUrl}/layout/template`+req.params.id,
+    url: `${apiUrl}/layout/template/`+req.params.id,
     method : 'PUT',
     formData : formData
   },function(error,response,body){

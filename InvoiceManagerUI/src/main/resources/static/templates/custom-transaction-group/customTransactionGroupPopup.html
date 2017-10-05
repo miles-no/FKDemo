@@ -7,17 +7,18 @@
         </div>
         <div class="modal-body {{options.classes.modalBody}}">
             <div class="manage-brands">
-                <div class="form-horizontal" novalidate>
+                <form name="transactionValidations" class="form-horizontal" novalidate>
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="name">Name</label>
+                        <label class="control-label col-sm-4" for="transactionName">Name</label>
                         <div class="col-sm-6">
-                            <input name="Name" type="text" class="form-control brand" ng-model="transactionName" id="name" ng-minlength="1" limit-to="20" permit-mask="\w" ng-pattern="/^$|^[A-Za-z0-9]+/" autofocus>
+                            <input name="transactionName" type="text" class="form-control brand" ng-model="transactionName" id="transactionName" ng-minlength="1" permit-mask="\w" ng-pattern="/^$|^[A-Za-z0-9]+/" autofocus required>
+                            <span class="error-msg" ng-show="transactionValidations.transactionName.$invalid && transactionValidations.transactionName.$touched">Field cannot be empty</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4">Brand</label>
                         <div class="col-sm-6">
-                            <ui-select ng-model="selectedBrand" theme="bootstrap" title="Choose Brands" on-select="onBrandSelect($item, $model)">
+                            <ui-select ng-model="selectedBrand" theme="bootstrap" title="Choose Brands" on-select="onBrandSelect($item, $model)" ng-required="true">
                                 <ui-select-match placeholder="Choose Brands">{{selectedBrand}}</ui-select-match>
                                 <ui-select-choices  repeat="brands in transactionBrands" position='down'>
                                     <div ng-bind-html="brands | highlight: $select.search"></div>
@@ -34,7 +35,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-4">Transaction category</label>
                         <div class="col-sm-6">
-                            <ui-select multiple ng-model="selectedTransactionCategory" theme="bootstrap" title="Choose Transaction category" on-remove="onItemRemoval($item, $model)" on-select="onItemSelect($item, $model)">
+                            <ui-select multiple ng-model="selectedTransactionCategory" theme="bootstrap" title="Choose Transaction category" on-remove="onItemRemoval($item, $model)" on-select="onItemSelect($item, $model)" ng-required="true">
                                 <ui-select-match placeholder="Choose Transaction category">{{$item.category}}</ui-select-match>
                                 <ui-select-choices  repeat="value.category as value in transactionsCategory | filter" position='down'>
                                     <div ng-bind-html="value.category | highlight: $select.search"></div>
@@ -42,11 +43,11 @@
                             </ui-select>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         <div class="modal-footer">
-            <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal">{{btns.name}}</button>
+            <button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal" ng-disabled="transactionValidations.$invalid && (btns.name == 'Update' || btns.name == 'Add')">{{btns.name}}</button>
         </div>
     </div>
 </div>

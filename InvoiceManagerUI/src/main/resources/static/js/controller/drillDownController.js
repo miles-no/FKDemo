@@ -21,7 +21,9 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
         console.error('Action:', e.action);
         console.error('Trigger:', e.trigger);
     }
-
+    $scope.hasPdf = (invoicePdfList) => {
+        return invoicePdfList.filter((invoicePdf) => { return invoicePdf.type === 'PDFE2B' || invoicePdf.type === ' EHF' }).length > 0
+    }
     $scope.onStateSelect = function(item,model){
         console.log('onStateSelect ',item,model,$scope.states)
         $scope.states.push(item);
@@ -70,6 +72,7 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
         $scope.accountNumber ? queryParams.accountNumber = $scope.accountNumber :'';
         $scope.customerID ? queryParams.customerID = $scope.customerID :'';
         $scope.transferFileName ?  queryParams.transferFileName = $scope.transferFileName : '';
+        $scope.searchResults = []
         $http.get('/invoicemanager/api/statement/details',{params:queryParams}).then(function success(result){
             $scope.searchResults = result.data.STATEMENTS
             $scope.totalPages = Math.ceil(result.data.TOTAL/$scope.pageSize);

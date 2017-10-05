@@ -18,7 +18,7 @@
     <!--</auth>-->
     <div class="col-sm-4">
         <div class="row form-group">
-            <label class="control-label col-sm-3 col-lg-2 text-match search-align">Brand</label>
+            <label class="control-label col-sm-3 col-lg-2 text-match">Brand</label>
             <div class="col-sm-8">
                 <ui-select multiple ng-model="selectedBrands" theme="bootstrap" title="Choose brand" on-remove="onBrandRemoval($item, $model)" on-select="onBrandSelect($item, $model)">
                     <ui-select-match placeholder="Select Brand">{{$item}}</ui-select-match>
@@ -29,10 +29,17 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-offset-5 col-sm-3 form-horizontal">
-        <label class="text-match search-align col-sm-7">Records per page</label>
-        <div class="col-sm-5">
-            <input  type="text" class="form-control text-center" ng-model="pageSize">
+    <div class="col-sm-offset-5 col-sm-3 form-horizontal change-dropdown">
+        <div class="col-sm-offset-3 col-sm-9">
+            <label class="text-match col-sm-6">Records</label>
+            <div class="col-sm-6">
+                <ui-select name="count" ng-model="pageSize" theme="bootstrap" on-select="onCountSelect($item, $model)">
+                    <ui-select-match>{{pageSize}}</ui-select-match>
+                    <ui-select-choices  repeat="count in allCounts" position='down'>
+                        <div ng-bind-html="count | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
         </div>
     </div>
     <div class="col-sm-12">
@@ -40,10 +47,10 @@
             <thead>
                 <tr>
                     <th class="table-left" st-sort="brand"><span class="pointer">Brand</span></th>
-                    <th class="table-left">Agreement No</th>
+                    <th class="table-left" st-sort="agreementNumber">Agreement No</th>
                     <th>Service Level No</th>
                     <th class="table-left">Prefix KID</th>
-                    <th class="table-left">Kontonummer</th>
+                    <th class="table-left" st-sort="kontonummer">Kontonummer</th>
                     <th>Use Barcode</th>
                     <th></th>
                 </tr>

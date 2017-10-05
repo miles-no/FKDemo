@@ -18,13 +18,18 @@ const customTransactionGroupPopupCtrl = ($scope,options, close, $http,ModalServi
 
     $scope.onItemSelect = (item) => {
         $scope.selectedTransactionCategory.push(item)
+        _.remove($scope.transactionsCategory,(selectedItem) => {
+            return selectedItem === item
+        })
+        console.log($scope.transactionsCategory)
     }
-
 
     $scope.onItemRemoval = (item) => {
         _.remove($scope.selectedTransactionCategory,(eachSelectedTemplate) => {
             return eachSelectedTemplate === item;
         });
+        $scope.transactionsCategory.push(item)
+        console.log($scope.transactionsCategory)
     }
 
     $scope.onBrandSelect = (item,model) => {
@@ -35,7 +40,9 @@ const customTransactionGroupPopupCtrl = ($scope,options, close, $http,ModalServi
         let model = {
             name : $scope.transactionName,
             brand : $scope.selectedBrand,
-            transactionCategories : $scope.selectedTransactionCategory
+            transactionCategories : _.uniqBy($scope.selectedTransactionCategory,(e) => {
+                return e
+            })
         }
         return  model
     }

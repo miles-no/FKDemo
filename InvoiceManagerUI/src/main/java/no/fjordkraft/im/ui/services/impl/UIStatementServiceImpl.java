@@ -88,13 +88,11 @@ public class UIStatementServiceImpl implements UIStatementService {
                                           String brand, String customerID, String invoiceNumber, String accountNumber, String transferFileName) {
         String mappedStatus = mapStatus(status);
         String mappedBrand = mapStringData(brand);
-        String mappedTransferFileName = mapStringData(transferFileName);
 
         List<Statement> statementList = statementDetailRepository.getDetails(page, size, mappedStatus, fromTime, toTime,
-                mappedBrand, customerID, invoiceNumber, accountNumber, mappedTransferFileName);
+                mappedBrand, customerID, invoiceNumber, accountNumber, transferFileName);
 
         List<RestStatement> restStatementList = new ArrayList<>();
-        //List<Long> statementIdList =  new ArrayList<>();
         Map<Long,RestStatement> statementMap = new HashMap<Long,RestStatement>();
         if(null != statementList) {
             for (Statement statement : statementList) {
@@ -138,9 +136,8 @@ public class UIStatementServiceImpl implements UIStatementService {
                                  String accountNumber, String transferFileName) {
         String mappedStatus = mapStatus(status);
         String mappedBrand = mapStringData(brand);
-        String mappedTransferFileName = mapStringData(transferFileName);
         return statementDetailRepository.getCountByStatus(mappedStatus, fromTime, toTime,
-                mappedBrand, customerID, invoiceNumber, accountNumber, mappedTransferFileName);
+                mappedBrand, customerID, invoiceNumber, accountNumber, transferFileName);
     }
 
     private String mapStatus(String states) {

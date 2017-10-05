@@ -300,8 +300,9 @@ public class IMController {
     public void getControlFiles(@RequestParam(value = "filePath",required = false) String filePath,@RequestParam(value = "host",required = false) String host,
                                 @RequestParam(value = "userName",required = false) String userName,
                                 @RequestParam(value = "password",required = false) String password,@RequestParam(value = "service",required = false) String service,
-                                @RequestParam(value = "encoding",required = false) String encoding ,@RequestParam(value = "port",required = false) Integer port){
-
+                                @RequestParam(value = "encoding",required = false) String encoding ,@RequestParam(value = "port",required = false) Integer port,
+                                @RequestParam(value= "type") String type, @RequestParam(value= "id",required = false) Long id)
+    {
         String filename = null;
         Connection conn = null;
         try {
@@ -313,8 +314,20 @@ public class IMController {
                 logger.debug("url is "+url);
                 conn = DriverManager.getConnection(url, userName, password);
             }
-            String query = "select * from eacprod.SEGMENTFILE";
+
+            String query = "";
+            if(null != id) {
+                query = "select * from eacprod.SEGMENTFILE where type=? and id =?";
+            } else {
+                query = "select * from eacprod.SEGMENTFILE where type=?";
+            }
             PreparedStatement stmt = conn.prepareStatement(query);
+            if(null != id) {
+                stmt.setString(1, type);
+                stmt.setLong(2, id);
+            } else {
+                stmt.setString(1, type);
+            }
             ResultSet rs = stmt.executeQuery();
             while(rs.next()) {
                 filename = rs.getString("FILENAME");
@@ -322,7 +335,7 @@ public class IMController {
                 String content = rs.getString("FILECONTENT");
                 byte[] decoded = Base64.decodeBase64(content.getBytes());
 
-                File f = new File(filePath);
+                //File f = new File(filePath);
                 File file = new File(filePath,filename);
                 FileWriter writer = new FileWriter(file);
                 Reader reader = new InputStreamReader(new ByteArrayInputStream(decoded));

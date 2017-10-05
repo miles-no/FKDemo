@@ -26,9 +26,9 @@
                         <li><span ng-class="{'active': $ctrl.activeMenu == 'listGrid'}" ng-click="$ctrl.navigateTo('listGrid')">Grids</span></li>
                         <li><span ng-class="{'active': $ctrl.activeMenu == 'templates'}" ng-click="$ctrl.navigateTo('templates')">Template Management</span></li>
                         <li><span ng-class="{'active': $ctrl.activeMenu == 'attributes'}" ng-click="$ctrl.navigateTo('attributes')">Template Attributes</span></li>
+                        <li><span ng-class="{'active': $ctrl.activeMenu == 'transaction_group'}" ng-click="$ctrl.navigateTo('transaction_group')">Transaction Group</span></li>
                         <li><span ng-class="{'active': $ctrl.activeMenu == 'audit_log'}" ng-click="$ctrl.navigateTo('audit_log')">Audit Logs</span></li>
                         <li><span ng-class="{'active': $ctrl.activeMenu == 'system_config'}" ng-click="$ctrl.navigateTo('system_config')">System Configurations</span></li>
-                        <li><span ng-class="{'active': $ctrl.activeMenu == 'transaction_group'}" ng-click="$ctrl.navigateTo('transaction_group')">Transaction Group</span></li>
                     </ul>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                     <li ng-hide="true">
                        <i ng-click="$ctrl.logOff()" class="fa fa-sign-out"></i>
                     </li>
-                    <li>
+                    <li ng-hide="true">
                         <!--<i ng-click="$ctrl.resetDashboard()" class="fa fa-2x fa-retweet" ng-class="{'disableReset' :$ctrl.disableReset,'faa-flash animated':$ctrl.disableReset}" uib-tooltip="{{$ctrl.disableReset ? 'Loading file from AFI' : 'Click to process a file from AFI'}}"  tooltip-placement="bottom" ng-disabled="$ctrl.disableReset"></i>-->
                         <i ng-click="$ctrl.resetDashboard()" class="fa fa-2x fa-retweet" uib-tooltip="Click to process a file from AFI" tooltip-placement="bottom" ng-disabled="$ctrl.disableReset"></i>
                     </li>

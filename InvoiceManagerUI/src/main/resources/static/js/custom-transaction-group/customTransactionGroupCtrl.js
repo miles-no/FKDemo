@@ -2,12 +2,16 @@ const customTransactionGroupController = ($scope, $http, ModalService) => {
     $scope.allTransactions = []
     let transactionCopy = []
     $scope.selectedBrand = []
+    $scope.alerts =[];
     let transcationModal = {
         name : '',
         transactionType : '',
         brand : '',
         transactionCategories: '',
     }
+
+    $scope.pageSize = 10
+    $scope.allCounts = [10,25,50,100]
 
     var categoryList = ''
     $scope.transactionInit = () => {
@@ -31,6 +35,9 @@ const customTransactionGroupController = ($scope, $http, ModalService) => {
        })
     }
 
+    $scope.onCountSelect = (item, model) => {
+        $scope.pageSize = item
+    }
     let showSelectedBrands  = () => {
         $scope.allTransactions = []
         if($scope.selectedBrand.length > 0){
@@ -49,6 +56,10 @@ const customTransactionGroupController = ($scope, $http, ModalService) => {
     $scope.onBrandSelect = (item) => {
         $scope.selectedBrand.push(item);
         showSelectedBrands()
+    }
+
+    $scope.closeAlert = (index) => {
+        $scope.alerts.splice(index,1)
     }
 
     $scope.onBrandRemoval = (item) => {
@@ -89,10 +100,13 @@ const customTransactionGroupController = ($scope, $http, ModalService) => {
             if(result=='Delete'){
             $http.delete('/invoicemanager/api/custom/transaction/group/'+data.id).then((response) => {
                 if (response.status === 200){
+                    $scope.alerts.push({ type: 'success', msg: 'Record deleted successfully' })
                     getCustomRecords();
-                }
+                } else {
+                    $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+            }
             },(err) => {
-                        console.log('Some error Occured')
+                    $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
                     })
                 }
             })
@@ -101,7 +115,7 @@ const customTransactionGroupController = ($scope, $http, ModalService) => {
 
     let showModal = (transactionInfo, type) =>  {
         ModalService.showModal({
-            templateUrl: 'templates/custom-transaction-group/customTransactionGroupPopup.html',
+            templateUrl: '/templates/custom-transaction-group/customTransactionGroupPopup.html',
             controller: 'customTransactionGroupPopupCtrl',
             inputs: {
                 options: {
@@ -133,13 +147,27 @@ const customTransactionGroupController = ($scope, $http, ModalService) => {
     }
 
     let updateTransactionCategory = (updatedTransaction,id) => {
-     $http.put('/invoicemanager/api/custom/transaction/group/' + id , updatedTransaction).then((response) => {
-         getCustomRecords()
-     })
+         $http.put('/invoicemanager/api/custom/transaction/group/' + id , updatedTransaction).then((response) => {
+             if(response.status === 200){
+                $scope.alerts.push({ type: 'success', msg: 'Record Updated successfully' })
+                getCustomRecords()
+             } else {
+                $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+             }
+         },(err) => {
+            $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+        })
     }
     let addTransactionCategory = (data) => {
         $http.post('/invoicemanager/api/custom/transaction/group',data).then((response) => {
-            getCustomRecords()
+            if(response.status === 200){
+                $scope.alerts.push({ type: 'success', msg: 'Record Added successfully' })
+                getCustomRecords()
+            } else {
+                $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
+            }
+        },(err) => {
+            $scope.alerts.push({ type: 'danger', msg: 'Some unknown error occurred ! please try again' })
         })
     }
     $scope.addTransaction = () => {

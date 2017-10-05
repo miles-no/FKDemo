@@ -18,6 +18,13 @@
       background: skyblue;
     }
   }
+  .system-ellipsis{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 565px;
+    display: inline-block;
+  }
   .table-left{
     text-align: left !important;
   }
@@ -45,6 +52,11 @@
     }
     .state-box{
       min-width: 231px;
+    }
+  }
+  .change-dropdown{
+    .dropdown-menu{
+      min-width: 96px;
     }
   }
   .rules-wrapper {

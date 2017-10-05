@@ -43,6 +43,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
             List<Transaction> nettTransaction = new ArrayList<Transaction>();
             List<Distribution> distributions = new ArrayList<Distribution>();
             Distribution distribuion = null;
+            int invoiceLineSize;
             int i = 0;
 
             for (Transaction transaction : transactions) {
@@ -73,6 +74,34 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                             kraftTransaction.add(createTransactionEntry(transaction, IMConstants.KRAFT));
                             i++;
                         } else if (IMConstants.NETT.equals(distribuion.getName())) {
+                            for(Attachment attachment:attachments) {
+                                if(attachment.getFAKTURA().getFAKTURANR().equals(transaction.getReference())) {
+                                    if(IMConstants.PDFEHF.equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
+
+                                        transaction.setStartDate(attachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines()
+                                        .get(0).getInvoicePeriods().get(0).getStartDate().getValue());
+
+                                        invoiceLineSize = attachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().size();
+
+                                        transaction.setEndDate(attachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines()
+                                                .get(invoiceLineSize-1).getInvoicePeriods().get(0).getEndDate().getValue());
+
+                                        break;
+                                    } else if(IMConstants.PDFE2B.equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
+
+                                        transaction.setStartDate(attachment.getFAKTURA().getVedlegge2BObj().getInvoice().getInvoiceDetails()
+                                        .getBaseItemDetails().get(0).getStartDate());
+
+                                        invoiceLineSize = attachment.getFAKTURA().getVedlegge2BObj().getInvoice().getInvoiceDetails()
+                                                .getBaseItemDetails().size();
+
+                                        transaction.setEndDate(attachment.getFAKTURA().getVedlegge2BObj().getInvoice().getInvoiceDetails()
+                                                .getBaseItemDetails().get(invoiceLineSize-1).getEndDate());
+
+                                        break;
+                                    }
+                                }
+                            }
                             nettTransaction.add(createTransactionEntry(transaction, IMConstants.NETT));
                             i++;
                         }

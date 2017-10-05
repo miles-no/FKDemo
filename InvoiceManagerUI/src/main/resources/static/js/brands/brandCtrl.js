@@ -1,7 +1,7 @@
 const ManageBrandsController = ($scope, $q, $http, ModalService) => {
   $scope.brands =[];
   $scope.alerts =[];
-
+  $scope.allCounts = [10,25,50,100]
   var newBrand = {
     brand: '',
     agreementNumber: '',
@@ -11,7 +11,7 @@ const ManageBrandsController = ($scope, $q, $http, ModalService) => {
     useEABarcode: '0'
   }
 
-  $scope.pageSize = ''
+  $scope.pageSize = 10
   $scope.selectedBrands = []
   $scope.tableBrands = []
 
@@ -44,6 +44,9 @@ const ManageBrandsController = ($scope, $q, $http, ModalService) => {
     })
   }
 
+  $scope.onCountSelect = (item, model) => {
+    $scope.pageSize = item
+  }
   $scope.closeAlert = (index) => {
       $scope.alerts.splice(index,1)
   }

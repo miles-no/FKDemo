@@ -6,6 +6,8 @@ const StateConfigController = ($scope, $q, $http,ModalService) => {
 
   $scope.alerts =[];
   $scope.selectedKey = ''
+  $scope.pageSize = 10
+  $scope.allCounts = [10,25,50,100]
 
   $scope.onPropSelect = (item) => {
     $scope.alldata = []
@@ -21,6 +23,9 @@ const StateConfigController = ($scope, $q, $http,ModalService) => {
     $scope.alerts.splice(index,1)
   }
 
+  $scope.onCountSelect = (item, model) => {
+    $scope.pageSize = item
+  }
 
   $scope.$watch('alldata',(newVal,oldVal) => {
     if (newVal !== oldVal && !newVal.length){
@@ -30,7 +35,7 @@ const StateConfigController = ($scope, $q, $http,ModalService) => {
 
   $scope.configName = []
   $scope.getStatesConfig =  ()  => {
-    $http.get('/invoicemanager/api/config').then(function (response) {
+    $http.get('/config').then(function (response) {
       $scope.stateConfigs = response.data.config;
       $scope.configName = []
       $scope.alldata = angular.copy($scope.stateConfigs)

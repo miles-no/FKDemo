@@ -1,9 +1,8 @@
 package no.fjordkraft.im.services.impl;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.PdfCopy;
-import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
+import javafx.scene.transform.Rotate;
 import no.fjordkraft.im.model.InvoicePdf;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.repository.StatementRepository;
@@ -11,6 +10,7 @@ import no.fjordkraft.im.services.*;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import org.apache.axis.encoding.Base64;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 
 import javax.annotation.PostConstruct;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 
 /**
@@ -105,6 +102,8 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             String attachPDF = segmentFileService.getPDFContent(accountNo, brand);
             if(null != attachPDF) {
                 byte[] pdfBytes = Base64.decode(attachPDF);
+                pdfBytes = merge(pdfBytes);
+                pdfBytes = rotator(pdfBytes);
                 readInputPDF = new PdfReader(pdfBytes);
                 number_of_pages = readInputPDF.getNumberOfPages();
                 for (int page = 0; page < number_of_pages; ) {
@@ -134,36 +133,6 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         }
     }
 
-    /*public static void main(String[] args) throws DocumentException, IOException {
-        Document pdfCombineUsingJava = new Document();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        //PdfCopy copy = new PdfCopy(pdfCombineUsingJava, new FileOutputStream(invoiceGeneratedFilePath));
-        PdfCopy copy = new PdfCopy(pdfCombineUsingJava, byteArrayOutputStream);
-        pdfCombineUsingJava.open();
-        PdfReader readInputPDF;
-        int number_of_pages;
-
-        readInputPDF = new PdfReader("E:\\FuelKraft\\fwdfwexamples\\pdf_700664300661.pdf");
-        number_of_pages = readInputPDF.getNumberOfPages();
-        for (int page = 0; page < number_of_pages; ) {
-            copy.addPage(copy.getImportedPage(readInputPDF, ++page));
-        }
-
-            readInputPDF = new PdfReader("E:\\FuelKraft\\fwdfwexamples\\00089920150289504703205960741.pdf");
-            number_of_pages = readInputPDF.getNumberOfPages();
-            for (int page = 0; page < number_of_pages; ) {
-                copy.addPage(copy.getImportedPage(readInputPDF, ++page));
-            }
-        byteArrayOutputStream.close();
-
-        pdfCombineUsingJava.close();
-        byte[] outputBytes =  byteArrayOutputStream.toByteArray();
-        FileOutputStream fos = new FileOutputStream("E:\\FuelKraft\\fwdfwexamples\\abc.pdf");
-        fos.write(outputBytes);
-        fos.close();
-        logger.debug(" save created pdf in database ");
-    }*/
-
     private InvoicePdf saveInvoicePDFs(String invoiceGeneratedFilePath, Statement statement) throws IOException {
         File invoiceFile = new File(invoiceGeneratedFilePath);
         byte[] byteArray = Files.readAllBytes(invoiceFile.toPath());
@@ -183,4 +152,65 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         invoicePdf.setType(IMConstants.INVOICE_PDF);
         return invoicePdf;
     }
+
+
+    private byte[] rotator(byte[] inputPdf) throws IOException, DocumentException {
+        PdfReader reader = new PdfReader(inputPdf);
+        int n = reader.getNumberOfPages();
+        PdfDictionary page;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        for (int p = 1; p <= n; p++) {
+            page = reader.getPageN(p);
+            if(p== 1)
+                page.put(PdfName.ROTATE, new PdfNumber(-90));
+            if(p==2)
+                page.put(PdfName.ROTATE, new PdfNumber(90));
+        }
+        PdfStamper stamper = new PdfStamper(reader, baos);
+        stamper.close();
+        reader.close();
+        return baos.toByteArray();
+    }
+
+
+    private byte[] merge(byte[] inputPdf) throws IOException, DocumentException {
+        PdfReader reader = new PdfReader(inputPdf);
+        Document doc = new Document(new RectangleReadOnly(842f, 595f), 0, 0, 0, 0);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PdfWriter writer = PdfWriter.getInstance(doc, baos);
+        doc.open();
+        int totalPages = reader.getNumberOfPages();
+        for (int i = 1; i <= totalPages; i = i + 2) {
+            doc.newPage();
+            PdfContentByte cb = writer.getDirectContent();
+            PdfImportedPage page = writer.getImportedPage(reader, i+1); // page #1
+            float documentWidth = doc.getPageSize().getWidth() / 2;
+            float documentHeight = doc.getPageSize().getHeight();
+            float pageWidth = page.getWidth();
+            float pageHeight = page.getHeight();
+            float widthScale = documentWidth / pageWidth;
+            float heightScale = documentHeight / pageHeight;
+            float scale = Math.min(widthScale, heightScale);
+
+            //float offsetX = 50f;
+            float offsetX = (documentWidth - (pageWidth * scale)) / 2;
+            float offsetY = 0f;
+
+            cb.addTemplate(page, scale, 0, 0, scale, offsetX, offsetY);
+
+            if (i+1 <= totalPages) {
+                PdfImportedPage page2 = writer.getImportedPage(reader, i); // page #2
+                pageWidth = page.getWidth();
+                pageHeight = page.getHeight();
+                widthScale = documentWidth / pageWidth;
+                heightScale = documentHeight / pageHeight;
+                scale = Math.min(widthScale, heightScale);
+                offsetX = ((documentWidth - (pageWidth * scale)) / 2) + documentWidth;
+                cb.addTemplate(page2, scale, 0, 0, scale, offsetX, offsetY);
+            }
+        }
+        doc.close();
+        return baos.toByteArray();
+    }
+
 }

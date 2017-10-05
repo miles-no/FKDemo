@@ -1,7 +1,41 @@
+@import 'base';
+
+.ng-flat-datepicker-wrapper{
+    width: 100%;
+}
 .overview-details{
     margin-top: 2em;
     .clipboard-position{
         margin-left: 11px;
+    }
+    .pdf-pointer{
+        cursor: pointer;
+    }
+    .pdf-width{
+        max-width: 100px;
+        .margin-file{
+            margin: 0 0 8px 0;
+        }
+    }
+    .popover{
+        .popover-title{
+            text-align: center;
+            font-size: 11px;
+            font-weight: bold;
+            color: $brand-color;
+        }
+    }
+    .if-clipboard{
+        position: relative;
+        bottom: 5px;
+        margin-left: 4px;
+    }
+    .drill-ellipis{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 110px;
+        display: inline-block;
     }
 }
 .label-align{

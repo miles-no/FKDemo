@@ -9,7 +9,8 @@ const templateAttributeController = ($scope,$http,ModalService) => {
   $scope.selectedRule = []
   $scope.tableRule = []
   $scope.alerts =[];
-  $scope.pageSize = ''
+  $scope.pageSize = 10
+  $scope.allCounts = [10,25,50,100]
 
   $scope.getRules = () => {
     $http.get('/invoicemanager/api/layout/attribute').success((response) => {
@@ -22,6 +23,10 @@ const templateAttributeController = ($scope,$http,ModalService) => {
         return e
       })
     })
+  }
+
+  $scope.onCountSelect = (item, model) => {
+    $scope.pageSize = item
   }
 
   let showSelectedRules = () => {

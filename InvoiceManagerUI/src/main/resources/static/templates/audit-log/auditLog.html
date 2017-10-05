@@ -2,37 +2,26 @@
     <div class="col-sm-12 text-center header-style">Audit Logs</div>
     <div class="col-sm-12">
         <div class="col-sm-4">
-            <!--<div class="row form-group">-->
-                <!--<label class="control-label col-sm-3 col-lg-2 search-align text-match">to be added</label>-->
-                <!--<div class="col-sm-8">-->
-                    <!--<ui-select multiple ng-model="selectedGrids" theme="bootstrap" title="Choose audit" on-remove="onauditRemoval($item, $model)" on-select="onGridSelect($item, $model)">-->
-                        <!--<ui-select-match placeholder="Select audit">{{$item}}</ui-select-match>-->
-                        <!--<ui-select-choices repeat="eachBrand in brands | filter : $select.search" position='down'>-->
-                            <!--<div ng-bind-html="eachBrand | highlight: $select.search"></div>-->
-                        <!--</ui-select-choices>-->
-                    <!--</ui-select>-->
-                <!--</div>-->
-            <!--</div>-->
             <div class="row form-group">
-                <label class="control-label col-md-2">Invoice No</label>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" theme="bootstrap" ng-model="invoiceNo" ng-change="getLogs()">
+                <label class="control-label col-sm-2">Invoice</label>
+                <div class="col-sm-6">
+                    <input placeholder="Enter Invoice No." type="text" class="form-control" theme="bootstrap" ng-model="invoiceNo" ng-change="getLogs()">
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="row form-group">
-                <label class="control-label col-md-2">From</label>
-                <div class="col-md-8">
-                    <input type="text" ng-model="fromTime" class="form-control" theme="bootstrap"  datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getLogs()">
+                <label class="control-label col-sm-2">From</label>
+                <div class="col-sm-6">
+                    <input type="text" placeholder="Select From Date" ng-model="fromTime" class="form-control" theme="bootstrap"  datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getLogs()">
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="form-group">
-                <label class="control-label col-md-2">To</label>
-                <div class="col-md-8">
-                    <input type="text" ng-model="toTime" class="form-control" theme="bootstrap" datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getLogs()">
+                <label class="control-label col-sm-2">To</label>
+                <div class="col-sm-6">
+                    <input type="text" placeholder="Select To Date" ng-model="toTime" class="form-control" theme="bootstrap" datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getLogs()">
                 </div>
             </div>
         </div>
@@ -40,22 +29,22 @@
     <div class="col-sm-12">
         <div class="col-sm-4">
             <div class="row form-group">
-                <label class="control-label col-md-2">Customer No</label>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" theme="bootstrap" ng-model="customerID" ng-change="getLogs()">
+                <label class="control-label col-sm-2">Customer</label>
+                <div class="col-sm-6">
+                    <input type="text" placeholder="Enter Customer No." class="form-control" theme="bootstrap" ng-model="customerID" ng-change="getLogs()">
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="row form-group">
-                <label class="control-label col-md-2">Account No</label>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" theme="bootstrap" ng-model="accountNumber" ng-change="getLogs()">
+                <label class="control-label col-sm-2">Account</label>
+                <div class="col-sm-6">
+                    <input type="text" placeholder="Enter Account No." class="form-control" theme="bootstrap" ng-model="accountNumber" ng-change="getLogs()">
                 </div>
             </div>
         </div>
         <div class="col-sm-4 form-horizontal">
-            <label class="col-md-2">Records per page</label>
+            <label class="col-md-2">Records</label>
             <div class="col-md-6">
                 <input  type="text" class="form-control text-center" ng-model="pageSize" ng-change="getLogs()">
             </div>
@@ -85,7 +74,7 @@
                 <td>{{logs.actionOnType}}</td>
                 <td>{{getForamttedDate(logs.dateTime)}}</td>
                 <td>{{logs.logType}}</td>
-                <td><span class="audit-ellipsis" ng-click="showHiddenText(this)">{{logs.msg || "N/A"}}</span></td>
+                <td><span class="audit-ellipsis" title="{{logs.msg}}">{{logs.msg || "N/A"}}</span></td>
                 <td>{{logs.userName}}</td>
             </tr>
             </tbody>

@@ -8,7 +8,8 @@ const GridsController = ($scope, $q, $http,ModalService) => {
   $scope.selectedGrids = []
   $scope.brands = []
   $scope.alerts =[];
-  $scope.pageSize = ''
+  $scope.pageSize = 10
+  $scope.allCounts = [10,25,50,100]
 
   let showSelectedGrids = () => {
     $scope.allGrids = []
@@ -26,6 +27,9 @@ const GridsController = ($scope, $q, $http,ModalService) => {
     } else {
       $scope.allGrids =  $scope.grids;
     }
+  }
+  $scope.onCountSelect = (item, model) => {
+    $scope.pageSize = item
   }
   $scope.syncCall =() => {
     $http.get('/invoicemanager/api/grid/config/brand').then((response) => {

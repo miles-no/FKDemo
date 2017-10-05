@@ -49,23 +49,23 @@ public class StatementDetailRepository {
             selectQuery.append(addConditionForQueryValue(accountNumber, "s.accountNumber"));
             selectQuery.append(AND);
         }
-        if(null != transferFileName) {
-            selectQuery.append(addConditionForQueryValue(transferFileName, "s.systemBatchInput.transferFile.filename"));
-            selectQuery.append(AND);
-        }
-        selectQuery.append("(:fromTime is null or s.createTime >= :fromTime) ");
+
+        selectQuery.append("(:fromTime is null or s.updateTime >= :fromTime) ");
         selectQuery.append(AND);
-        selectQuery.append("(:toTime is null or s.createTime <= :toTime) ");
+        selectQuery.append("(:toTime is null or s.updateTime <= :toTime) ");
         selectQuery.append(AND);
         selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
+        selectQuery.append(AND);
+        selectQuery.append("(:transferFileName is null or s.systemBatchInput.transferFile.filename like :transferFileName) ");
         selectQuery.append("order by s.createTime desc");
 
         Query query = entityManager.createQuery(selectQuery.toString(), Statement.class)
-                .setFirstResult(page*size)
+                .setFirstResult(page * size)
                 .setMaxResults(size)
                 .setParameter("fromTime", fromTime)
                 .setParameter("toTime", toTime)
-                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'));
+                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'))
+                .setParameter("transferFileName", (null == transferFileName?null:'%' + transferFileName + '%'));
 
         List<Statement> statementList = query.getResultList();
         return statementList;
@@ -112,21 +112,21 @@ public class StatementDetailRepository {
             selectQuery.append(addConditionForQueryValue(accountNumber, "s.accountNumber"));
             selectQuery.append(AND);
         }
-        if(null != transferFileName) {
-            selectQuery.append(addConditionForQueryValue(transferFileName, "s.systemBatchInput.transferFile.filename"));
-            selectQuery.append(AND);
-        }
-        selectQuery.append("(:fromTime is null or s.createTime >= :fromTime) ");
+
+        selectQuery.append("(:fromTime is null or s.updateTime >= :fromTime) ");
         selectQuery.append(AND);
-        selectQuery.append("(:toTime is null or s.createTime <= :toTime) ");
+        selectQuery.append("(:toTime is null or s.updateTime <= :toTime) ");
         selectQuery.append(AND);
         selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
+        selectQuery.append(AND);
+        selectQuery.append("(:transferFileName is null or s.systemBatchInput.transferFile.filename like :transferFileName) ");
         selectQuery.append("order by s.createTime desc");
 
         Query query = entityManager.createQuery(selectQuery.toString(), Long.class)
                 .setParameter("fromTime", fromTime)
                 .setParameter("toTime", toTime)
-                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'));
+                .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'))
+                .setParameter("transferFileName", (null == transferFileName?null:'%' + transferFileName + '%'));
 
         Long count = (Long) query.getSingleResult();
         return count;

@@ -10,7 +10,8 @@ const listCtrl = ($scope,ModalService,$http) => {
   $scope.selectedTemplate = []
   $scope.templatelist = []
   $scope.alerts =[];
-  $scope.pageSize = ''
+  $scope.pageSize = 10
+  $scope.allCounts = [10,25,50,100]
 
   $scope.onTemplateSelect = (item) => {
     $scope.selectedTemplate.push(item)
@@ -22,6 +23,10 @@ const listCtrl = ($scope,ModalService,$http) => {
       return eachSelectedTemplate === item;
     });
     showSelectedTemplate()
+  }
+
+  $scope.onCountSelect = (item, model) => {
+    $scope.pageSize = item
   }
 
   let showSelectedTemplate = () => {
@@ -192,7 +197,7 @@ const listCtrl = ($scope,ModalService,$http) => {
     var version = layout.version;
     let qp = {layoutId: layoutId, version: version};
     $scope.loading = true
-    $http.get('/im-pdfgenerator/api/preview',{params: qp,responseType: 'arraybuffer'}).success((response,status,headers) => {
+    $http.get('/zuul/invoicemanager/api/layout/preview',{params: qp,responseType: 'arraybuffer'}).success((response,status,headers) => {
       $scope.loading = false
       var file = new Blob([response], {type: 'application/pdf'});
       var fileURL = URL.createObjectURL(file);
@@ -219,7 +224,7 @@ const listCtrl = ($scope,ModalService,$http) => {
     var id = layout.layoutID
     $http({
       method : 'GET',
-      url : '/invoicemanager/api/layout/rptdesign?id='+id,
+      url : '/zuul/invoicemanager/api/layout/rptdesign?id='+id,
     }).then((response,status,headers) => {
       var file = new Blob([response.data], {type: 'application/xml'});
       var downloadLink = angular.element('<a></a>');

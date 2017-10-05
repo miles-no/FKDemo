@@ -7,7 +7,7 @@
                 <label class="control-label col-md-3 label-align">State</label>
                 <div class="col-md-9">
                     <ui-select multiple ng-model="states" title="Choose State" on-remove="onStateRemoval($item, $model)"on-select="onStateSelect($item, $model)">
-                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
+                        <ui-select-match placeholder="Select State">{{$item}}</ui-select-match>
                         <ui-select-choices  repeat="eachOverview in possibleStates" position='down'>
                             <div ng-bind-html="eachOverview | highlight: $select.search"></div>
                         </ui-select-choices>
@@ -17,7 +17,7 @@
             <div class="row form-group">
                 <label class="control-label col-md-3">Invoice</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" theme="bootstrap" ng-model="invoiceNumber" ng-change="getOverviewDetails()">
+                    <input type="text" placeholder="Enter Invoice No." class="form-control" theme="bootstrap" ng-model="invoiceNumber" ng-change="getOverviewDetails()">
                 </div>
             </div>
         </div>
@@ -25,14 +25,14 @@
             <div class="row form-group">
                 <label class="control-label col-md-3 label-align">From</label>
                 <div class="col-md-9">
-                    <input type="text" ng-model="fromDate" class="form-control" datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">
+                    <input type="text" ng-model="fromDate" class="form-control date-width" datepicker-config ="datepickerConfig" ng-flat-datepicker ng-change="getOverviewDetails()">
                 </div>
             </div>
             <div class="row form-group">
                 <label class="control-label col-md-3">Brand</label>
                 <div class="col-md-9">
-                    <ui-select multiple ng-model="brands" theme="bootstrap" title="Choose State" on-remove="onBrandRemoval($item, $model)"on-select="onBrandSelect($item, $model)">
-                        <ui-select-match placeholder="Select Filter">{{$item}}</ui-select-match>
+                    <ui-select multiple ng-model="brands" theme="bootstrap" title="Choose Brand" on-remove="onBrandRemoval($item, $model)"on-select="onBrandSelect($item, $model)">
+                        <ui-select-match placeholder="Select Brand">{{$item}}</ui-select-match>
                         <ui-select-choices  repeat="eachBrand in possibleBrands" position='down'>
                             <div ng-bind-html="eachBrand | highlight: $select.search"></div>
                         </ui-select-choices>
@@ -48,23 +48,23 @@
                 </div>
             </div>
             <div class="row form-group">
-                <label class="control-label col-md-3">Account No</label>
+                <label class="control-label col-md-3">Account</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" theme="bootstrap" ng-model="accountNumber" ng-change="getOverviewDetails()">
+                    <input type="text" placeholder="Enter Account No." class="form-control" theme="bootstrap" ng-model="accountNumber" ng-change="getOverviewDetails()">
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="row form-group">
-                <label class="control-label col-md-3">Customer ID</label>
+                <label class="control-label col-md-3">Customer</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" theme="bootstrap" ng-model="customerID" ng-change="getOverviewDetails()">
+                    <input type="text" placeholder="Enter Customer Id" class="form-control" theme="bootstrap" ng-model="customerID" ng-change="getOverviewDetails()">
                 </div>
             </div>
             <div class="row form-group">
                 <label class="control-label col-md-3">IF320</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" theme="bootstrap" ng-model="transferFileName" ng-change="getOverviewDetails()">
+                    <input type="text" placeholder="Enter IF320 Filename" class="form-control" theme="bootstrap" ng-model="transferFileName" ng-change="getOverviewDetails()">
                 </div>
             </div>
         </div>
@@ -72,29 +72,17 @@
     <div class="col-md-12 overview-details">
         <table st-table="displayedCollection" st-safe-src="searchResults" class="table">
 			<thead>
-                <!--<tr>
-                    <th>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Search </label>
-                            <div class="col-md-8">
-                            <input placeholder="search firstname" st-search="firstName">
-                            </div>
-                        </div>
-                    </th>
-                </tr>-->
                 <tr>
-                    <th st-sort="customerId">Customer id</th>
+                    <th st-sort="customerId">Customer Id</th>
                     <th st-sort="accountNumber">Account No</th>
-                    <th>Invoice No</th>
-                    <th>Distribution Method</th>
+                    <th st-sort="invoiceNumber">Invoice No</th>
+                    <th st-sort="distributionMethod">Distribution Method</th>
                     <th st-sort="amount">Amount</th>
-                    <!--<th >Invoice Date</th>-->
-                    <th>City</th>
+                    <th st-sort="city">City</th>
                     <th st-sort="dueDate">Due Date</th>
-                    <th st-sort="updateTime">Updated Date</th>
-                    <th>IF320</th>
+                    <th st-sort="udateTime">Updated Date</th>
+                    <th st-sort="if320FileName">IF320</th>
                     <th>Links</th>
-                    <!--<th class="text-center">Download</th>-->
                 </tr>
             </thead>
 			<tbody>
@@ -115,17 +103,22 @@
                     <td>{{row.amount}}</td>
                     <td>{{row.city}}</td>
                     <td>{{getForamttedDate(row.dueDate)}}</td>
-                    <td>{{getForamttedDate(row.updateTime)}}</td>
-                    <td>{{row.if320FileName}}</td>
+                    <td>{{getForamttedDate(row.udateTime)}}</td>
+                    <td>
+                        <span title="{{row.if320FileName}}" class="drill-ellipis">{{row.if320FileName}}</span>
+                        <span><span class="clipboard-position fa fa-clipboard if-clipboard" uib-tooltip="Copy to Clipboard" tooltip-placement="bottom" ngclipboard-error="onError(e);" ngclipboard data-clipboard-text="{{row.if320FileName}}"></span></span>
+                    </td>
                     <td>
                         <div class="row">
                             <!--<i class="fa col-md-2" uib-tooltip="Click to view {{eachPdf.type === 'INVOICE_PDF' ? 'Invoice pdf' : 'Grid pdf'}}" tooltip-placement ="bottom" ng-class="{'fa-file-pdf-o': isInvoicePDF(eachPdf),'fa-file':!isInvoicePDF(eachPdf) }" aria-hidden="true" ng-repeat="eachPdf in row.invoicePdfList | orderBy : 'type'" ng-click="getInvoiceFile(eachPdf.id)"></i>-->
                             <i class="fa col-md-2 fa-file-pdf-o" uib-tooltip="Click to view invoice pdf" tooltip-placement ="bottom" aria-hidden="true" ng-repeat="eachPdf in row.invoicePdfList | filter : {type: 'INVOICE_PDF'}" ng-click="getInvoiceFile(eachPdf.id)"></i>
-                            <i class="fa col-md-2 fa-file" uib-popover-template ="'if320.html'" popover-is-open="isOpen" popover-placement="bottom" popover-title="Click to download"></i>
                             <i uib-tooltip="Click to download xml" tooltip-placement="bottom" class="fa fa-file-code-o col-md-2" aria-hidden="true" ng-click="downloadXml(row.id,row.invoiceNumber)"></i>
-                            <i ng-show="row.status === 'PRE_PROCESSING_FAILED'" ng-click="resetInvoice(row.id)" uib-tooltip="Reset Status" tooltip-placement="bottom" class="fa fa-retweet"></i>
+                            <i ng-show="hasPdf(row.invoicePdfList)" class="fa col-md-2 fa-file pdf-pointer" uib-popover-template ="'if320.html'" popover-placement="bottom" popover-trigger="'outsideClick'" popover-title="Click to preview"></i>
+                            <i ng-show="row.status === 'PRE_PROCESSING_FAILED'" ng-click="resetInvoice(row.id)" uib-tooltip="Reset Status" tooltip-placement="bottom" class="fa fa-retweet col-md-2"></i>
                             <script type="text/ng-template" id = "if320.html">
-                                <i class="fa col-md-2 fa-file" ng-repeat="eachPdf in row.invoicePdfList | filter : {type: 'PDFE2B'}" ng-click="getInvoiceFile(eachPdf.id)"></i>
+                                <div class="pdf-width">
+                                    <i class="fa col-md-2 fa-file margin-file" ng-repeat="eachPdf in row.invoicePdfList | filter : {type: 'PDFE2B' ||  'EHF'}" ng-click="getInvoiceFile(eachPdf.id)"></i>
+                                </div>
                             </script>
                         </div>
                     </td>
