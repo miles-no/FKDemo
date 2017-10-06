@@ -9,6 +9,7 @@ const listPopupController = ($scope,options,close, $http,_) => {
         file : null
     };
     $scope.rulesList =[];
+    $scope.loading = false;
     $scope.selectedBrand = '';
     $scope.selectedTemplate={};
     let allPossibleRules = {}
@@ -161,15 +162,16 @@ const listPopupController = ($scope,options,close, $http,_) => {
         fd.append('name', $scope.template.name)
         fd.append('description', $scope.template.desc)
         $scope.template.file ? fd.append('file', $scope.template.file) : '';
+        $scope.loading = true;
         $http.post('/zuul/invoicemanager/api/layout/template',fd,{
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined}
         }).then((response) => {
-            console.log(response)
+            $scope.loading = false;
             getLayoutRules();
             getLayouts(response.data);
             $scope.skipToRules()
-        })//add error callback
+        });//add error callback
     }
 
     $scope.postLayout = () => {

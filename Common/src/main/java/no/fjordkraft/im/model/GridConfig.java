@@ -18,6 +18,9 @@ public class GridConfig {
     @Column(name="GRID_NAME")
     private String gridName;
 
+    @Column(name="GRID_LABEL")
+    private String gridLabel;
+
     @Column(name="EMAIL")
     private String email;
 
@@ -38,6 +41,14 @@ public class GridConfig {
 
     public void setGridName(String gridName) {
         this.gridName = gridName;
+    }
+
+    public String getGridLabel() {
+        return gridLabel;
+    }
+
+    public void setGridLabel(String gridLabel) {
+        this.gridLabel = gridLabel;
     }
 
     public String getEmail() {

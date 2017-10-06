@@ -4,6 +4,7 @@ package no.fjordkraft.im.statusEnum;
  * Created by miles on 5/8/2017.
  */
 public enum SystemBatchInputStatusEnum {
+    NEW("NEW"),
     PENDING("PENDING"),
     PROCESSING("PROCESSING"),
     PROCESSED("PROCESSED"),

@@ -58,7 +58,7 @@ public class ProcessTransferFileServiceImpl implements ProcessTransferFileServic
     @Transactional
     public void processTransferFile(SystemBatchInput systemBatchInput){
         logger.debug("Fetch and split file "+systemBatchInput.getTransferFile().getFilename());
-        systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSING.getStatus());
+        systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.NEW.getStatus());
         SplitterTask splitterTask = applicationContext.getBean(SplitterTask.class,systemBatchInput);
         taskExecutor.execute(splitterTask);
     }
@@ -68,7 +68,7 @@ public class ProcessTransferFileServiceImpl implements ProcessTransferFileServic
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("SplitStatementFile with systemBatchInputId " + systemBatchInput.getId() + " Filename " + systemBatchInput.getTransferFile().getFilename() );
         try {
-            systemBatchInput = systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSING.getStatus());
+            //systemBatchInput = systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSING.getStatus());
             TransferFileId transferFileId = systemBatchInput.getTransferFile().getCompositeKey();
             TransferFileArchive transferFileArchive = transferFileArchiveService.findOne(transferFileId);
             String payload = transferFileArchive.getFileContent();
@@ -87,15 +87,17 @@ public class ProcessTransferFileServiceImpl implements ProcessTransferFileServic
 
             statementSplitter.batchFileSplit(pushbackInputStream, transferFileArchive.getFilename(), systemBatchInput);
 
-            systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSED.getStatus());
-            auditLogService.saveAuditLog(IMConstants.SYSTEM_BATCH_FILE, systemBatchInput.getId(), SystemBatchInputStatusEnum.PROCESSED.getStatus(),
-                    null, IMConstants.SUCCESS);
+            systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.PROCESSING.getStatus());
+            /*auditLogService.saveAuditLog(IMConstants.SYSTEM_BATCH_FILE, systemBatchInput.getId(), SystemBatchInputStatusEnum.PROCESSING.getStatus(),
+                    null, IMConstants.SUCCESS);*/
             stopWatch.stop();
             logger.debug("File split successful for file " + transferFileArchive.getFilename() + " with id " + systemBatchInput.getId()+ stopWatch.prettyPrint());
         }   catch (Exception e) {
             logger.error("Exception while splitting file " +systemBatchInput.getTransferFile().getFilename()+ " id " + systemBatchInput.getId(), e);
             systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.FAILED.getStatus());
             transferFileService.updateTransferFile(systemBatchInput.getTransferFile().getCompositeKey(), SystemBatchInputStatusEnum.FAILED.getStatus());
+            auditLogService.saveAuditLog(IMConstants.SYSTEM_BATCH_FILE, systemBatchInput.getId(), SystemBatchInputStatusEnum.FAILED.getStatus(),
+                    e.getMessage(), IMConstants.SUCCESS);
         }
 
     }

@@ -197,7 +197,7 @@ const listCtrl = ($scope,ModalService,$http) => {
     var version = layout.version;
     let qp = {layoutId: layoutId, version: version};
     $scope.loading = true
-    $http.get('/zuul/invoicemanager/api/layout/preview',{params: qp,responseType: 'arraybuffer'}).success((response,status,headers) => {
+    $http.get('/zuul/im-pdfgenerator/api/layout/preview',{params: qp,responseType: 'arraybuffer'}).success((response,status,headers) => {
       $scope.loading = false
       var file = new Blob([response], {type: 'application/pdf'});
       var fileURL = URL.createObjectURL(file);
@@ -224,7 +224,7 @@ const listCtrl = ($scope,ModalService,$http) => {
     var id = layout.layoutID
     $http({
       method : 'GET',
-      url : '/zuul/invoicemanager/api/layout/rptdesign?id='+id,
+      url : '/invoicemanager/api/layout/rptdesign?id='+id,
     }).then((response,status,headers) => {
       var file = new Blob([response.data], {type: 'application/xml'});
       var downloadLink = angular.element('<a></a>');

@@ -36,6 +36,7 @@ public class UIGridConfigServiceImpl implements UIGridConfigService {
     public void updateGridConfig(GridConfig gridConfig) {
         GridConfig grid = gridConfigRepository.findOne(gridConfig.getId());
         grid.setGridName(gridConfig.getGridName());
+        grid.setGridLabel(gridConfig.getGridLabel());
         grid.setEmail(gridConfig.getEmail());
         grid.setPhone(gridConfig.getPhone());
 

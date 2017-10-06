@@ -14,4 +14,6 @@ public interface SegmentFileService {
     String getImageContent(String accountNo, String brand);
     String getPDFContent(String accountNo, String brand);
     String getCampaignForPreview(String path) throws IOException;
+    SegmentFile getSegmentFile(Long id);
+    public SegmentFile getSegmentFile(String accountNo, String brand);
 }

@@ -43,6 +43,12 @@ public class SegmentFileServiceImpl implements SegmentFileService {
         return segmentFile.getFileContent();
     }
 
+
+    public SegmentFile getSegmentFile(Long id) {
+        SegmentFile segmentFile = segmentFileRepository.findOne(id);
+        return segmentFile;
+    }
+
     @Override
     public String getImageContent(String accountNo, String brand) {
         String fileContent = null;
@@ -81,6 +87,24 @@ public class SegmentFileServiceImpl implements SegmentFileService {
             }
         }
         return fileContent;
+    }
+
+
+    public SegmentFile getSegmentFile(String accountNo, String brand) {
+        SegmentControlFileResult segmentControlFileResult;
+        Integer attachID;
+        segmentControlFileResult = segmentControlFileService.getSegmentControlByAccountNo(accountNo);
+        if(null != segmentControlFileResult && null != segmentControlFileResult.getIdAttach()) {
+            attachID = segmentControlFileResult.getIdAttach();
+            return getSegmentFile(Long.valueOf(attachID));
+        } else {
+            segmentControlFileResult = segmentControlFileService.getSegmentControlByBrand(brand);
+            if(null != segmentControlFileResult && null != segmentControlFileResult.getIdAttach()) {
+                attachID = segmentControlFileResult.getIdAttach();
+                return getSegmentFile(Long.valueOf(attachID));
+            }
+        }
+        return null;
     }
 
     @Override

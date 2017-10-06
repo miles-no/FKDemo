@@ -165,7 +165,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
 
         GridConfig gridConfig = gridConfigService.getGridConfigByBrand(ldc1);
         if(null != gridConfig) {
-            grid.setName(gridConfig.getGridName());
+            grid.setName(gridConfig.getGridLabel());
             grid.setEmail(gridConfig.getEmail());
             grid.setTelephone(gridConfig.getPhone());
         } else {

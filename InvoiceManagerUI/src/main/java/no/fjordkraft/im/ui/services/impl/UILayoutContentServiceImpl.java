@@ -61,6 +61,7 @@ public class UILayoutContentServiceImpl implements UILayoutContentService {
     public void updateLayoutContent(Long layoutId, String file) {
         LayoutContent layoutContent = layoutContentRepository.getLayoutContentByLayoutId(layoutId);
         layoutContent.setFileContent(file);
+        layoutContent.setActive(Boolean.FALSE);
         layoutContentRepository.saveAndFlush(layoutContent);
     }
 

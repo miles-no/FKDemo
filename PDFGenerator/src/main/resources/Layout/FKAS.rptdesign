@@ -4141,9 +4141,9 @@ else&#13;
                             <row id="245">
                                 <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                 <property name="fontStyle">normal</property>
-                                <property name="borderBottomColor">#C0C0C0</property>
+                                <property name="borderBottomColor">#B3B3B3</property>
                                 <property name="borderBottomStyle">solid</property>
-                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderBottomWidth">0.5pt</property>
                                 <cell id="246">
                                     <label id="264">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -4220,12 +4220,12 @@ else&#13;
                         </detail>
                         <footer>
                             <row id="496">
-                                <property name="borderBottomColor">#C0C0C0</property>
+                                <property name="borderBottomColor">#B3B3B3</property>
                                 <property name="borderBottomStyle">solid</property>
-                                <property name="borderBottomWidth">1px</property>
-                                <property name="borderTopColor">#C0C0C0</property>
+                                <property name="borderBottomWidth">0.5pt</property>
+                                <property name="borderTopColor">#B3B3B3</property>
                                 <property name="borderTopStyle">solid</property>
-                                <property name="borderTopWidth">1px</property>
+                                <property name="borderTopWidth">0.5pt</property>
                                 <cell id="497">
                                     <data id="689">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>

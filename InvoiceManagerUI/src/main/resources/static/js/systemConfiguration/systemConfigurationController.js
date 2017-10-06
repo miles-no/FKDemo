@@ -35,7 +35,7 @@ const StateConfigController = ($scope, $q, $http,ModalService) => {
 
   $scope.configName = []
   $scope.getStatesConfig =  ()  => {
-    $http.get('/config').then(function (response) {
+    $http.get('/invoicemanager/api/config').then(function (response) {
       $scope.stateConfigs = response.data.config;
       $scope.configName = []
       $scope.alldata = angular.copy($scope.stateConfigs)

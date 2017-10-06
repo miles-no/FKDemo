@@ -1,4 +1,5 @@
 <div class="modal fade {{options.classes.body}}  modal-wrapper" ng-class="{'modal-without-header': !options.header, 'modal-with-header': options.header}">
+    <spinner size="medium" class-name="cover" ng-show="loading"></spinner>
     <div ng-if="!options.header" class="close-modal " ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</div>
     <div class="modal-dialog modal-content-container modal-width">
         <div class="modal-header" ng-if="options.header">

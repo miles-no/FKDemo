@@ -2,6 +2,7 @@ const GridsController = ($scope, $q, $http,ModalService) => {
   $scope.brands =[];
   var newGrid = {
     brand: '',
+    label: '',
     email: '',
     phone: ''
   }

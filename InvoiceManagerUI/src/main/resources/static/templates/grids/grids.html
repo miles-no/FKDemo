@@ -14,10 +14,17 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-offset-5 col-sm-3 form-horizontal">
-        <label class="text-match search-align col-sm-7">Records per page</label>
-        <div class="col-sm-5">
-            <input  type="text" class="form-control text-center" ng-model="pageSize">
+    <div class="col-sm-offset-5 col-sm-3 form-horizontal change-dropdown">
+        <div class="col-sm-offset-3 col-sm-9">
+            <label class="text-match col-sm-6">Records</label>
+            <div class="col-sm-6">
+                <ui-select name="count" ng-model="pageSize" theme="bootstrap" on-select="onCountSelect($item, $model)">
+                    <ui-select-match>{{pageSize}}</ui-select-match>
+                    <ui-select-choices  repeat="count in allCounts" position='down'>
+                        <div ng-bind-html="count | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
         </div>
     </div>
     <div class="col-sm-12">
@@ -25,6 +32,7 @@
             <thead>
             <tr>
                 <th st-sort="gridName"><span class="pointer">Name</span></th>
+                <th>Label</th>
                 <th>E-mail Address</th>
                 <th >Phone No</th>
                 <th width="40px"></th>
@@ -33,6 +41,7 @@
             <tbody>
                 <tr ng-repeat="gridItem in displayedCollection">
                     <td><span class="pointer" ng-click="updateGrid(gridItem)">{{gridItem.gridName}}</span></td>
+                    <td>{{gridItem.gridLabel}}</td>
                     <td>{{gridItem.email}}</td>
                     <td>{{gridItem.phone}}</td>
                     <td ng-click="deleteGrid(gridItem)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
