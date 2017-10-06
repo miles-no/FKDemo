@@ -42,7 +42,7 @@ public class PDFController {
 
     }
 
-    @RequestMapping(value = "/api/preview", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/layout/preview", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<byte[]> getDesignPreview(@RequestParam("layoutId") Long layoutId,
                                                    @RequestParam("version") Integer version) throws IOException, BirtException {
