@@ -109,7 +109,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                 for (int page = 0; page < number_of_pages; ) {
                     copy.addPage(copy.getImportedPage(readInputPDF, ++page));
                 }
-                logger.debug(" Current page number is "+copy.getCurrentPageNumber());
+                logger.debug(" Current page number is " + copy.getCurrentPageNumber());
             } else {
                 logger.warn(" Attach_PDF not found ");
                 auditLogService.saveAuditLog(IMConstants.ATTACH_PDF, statement.getId(), StatementStatusEnum.INVOICE_PROCESSING.getStatus(),
@@ -137,7 +137,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     private byte[] getSegmentFile(String accountNo, String brand) throws IOException, DocumentException {
         SegmentFile segmentFile = segmentFileService.getSegmentFile(accountNo, brand);
         String basePath = configService.getString(IMConstants.CONTROL_FILE_PATH);
-        String fileName = segmentFile.getFileType()+ "_" +segmentFile.getId() + "_" + segmentFile.getChanged().getTime();
+        String fileName = segmentFile.getFileType()+ "_" +segmentFile.getId() + "_" + segmentFile.getChanged().getTime()+".pdf";
 
         synchronized (InvoiceGeneratorImpl.class) {
             File f = new File(basePath + fileName);
@@ -150,8 +150,9 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                     byte[] pdfBytes = Base64.decode(attachPDF);
                     pdfBytes = PDFUtil.merge(pdfBytes);
                     pdfBytes = PDFUtil.rotator(pdfBytes);
-                    logger.debug("file written to "+f.getAbsolutePath());
-                    IOUtils.write(pdfBytes, new FileOutputStream(fileName));
+                    OutputStream oos = new FileOutputStream(f);
+                    oos.write(pdfBytes);
+                    oos.close();
                     return pdfBytes;
                 }
             }
