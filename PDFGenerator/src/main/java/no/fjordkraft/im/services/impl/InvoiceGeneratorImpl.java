@@ -143,7 +143,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             File f = new File(basePath + fileName);
             logger.debug(" SegmentFile " + segmentFile.getId() + "file is "+ f.getAbsolutePath() + " exists "+ f.exists());
             if (f.exists()) {
-                return IOUtils.toByteArray(new FileInputStream(fileName));
+                return IOUtils.toByteArray(new FileInputStream(f));
             } else {
                 String attachPDF = segmentFileService.getPDFContent(accountNo, brand);
                 if (null != attachPDF) {
