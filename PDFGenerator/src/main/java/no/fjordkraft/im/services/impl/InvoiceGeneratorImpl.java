@@ -135,10 +135,10 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
 
     private byte[] getSegmentFile(String accountNo, String brand) throws IOException, DocumentException {
         SegmentFile segmentFile = segmentFileService.getSegmentFile(accountNo, brand);
-        String basePath = configService.getString(IMConstants.BIRT_RESOURCE_PATH);
+        String basePath = configService.getString(IMConstants.CONTROL_FILE_PATH);
         String fileName = segmentFile.getFileType()+ "_" +segmentFile.getId() + "_" + segmentFile.getChanged().getTime();
         synchronized (InvoiceGeneratorImpl.class) {
-            File f = new File(basePath + File.pathSeparator + "controlfiles" + fileName);
+            File f = new File(basePath + fileName);
             if (f.exists()) {
                 return IOUtils.toByteArray(new FileInputStream(fileName));
             } else {
