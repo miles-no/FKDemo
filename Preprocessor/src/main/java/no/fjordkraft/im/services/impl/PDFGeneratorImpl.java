@@ -109,7 +109,7 @@ public class PDFGeneratorImpl implements PDFGenerator {
 
 
     public void generateInvoicePDF(List<Long> statementIdList) {
-        List<List<Long>> lists = ListUtils.partition(statementIdList, 50);
+        List<List<Long>> lists = ListUtils.partition(statementIdList,150 );
         for(List<Long> list : lists) {
             try {
                 pdfGeneratorClient.processStatement(list);
