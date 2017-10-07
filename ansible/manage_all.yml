@@ -4,6 +4,7 @@
 
 -
   hosts: test-pdfgenerator
+  serial: 1
   remote_user: miles2
   vars:
     appfolderMap: {"im-ui":"InvoiceManagerUI","im-pdfgenerator":"PDFGenerator","im-preprocessor":"Preprocessor"}
