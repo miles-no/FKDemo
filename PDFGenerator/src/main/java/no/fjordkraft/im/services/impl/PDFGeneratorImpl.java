@@ -274,13 +274,13 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
     @Transactional
     public void processStatement(Long statementId){
-        Statement statement = statementService.getStatement(statementId);
-        statement = statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING);
+        //Statement statement = statementService.getStatement(statementId);
+        //statement = statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING);
         if(taskExecutor instanceof ThreadPoolTaskExecutor) {
             ThreadPoolTaskExecutor executor = (ThreadPoolTaskExecutor)taskExecutor;
             logger.debug("PDF generator thread queue count " + executor.getThreadPoolExecutor().getQueue().size() +" active threads "+ executor.getActiveCount() + "max pool size "+executor.getMaxPoolSize()+ " :: "+executor.getThreadPoolExecutor().getActiveCount());
         }
-        PDFGeneratorTask pdfGeneratorTask = applicationContext.getBean(PDFGeneratorTask.class,statement);
+        PDFGeneratorTask pdfGeneratorTask = applicationContext.getBean(PDFGeneratorTask.class,statementId);
         taskExecutor.execute(pdfGeneratorTask);
         logger.debug("exiting PDFGenerator processStatement for statement with ID "+ statementId);
     }

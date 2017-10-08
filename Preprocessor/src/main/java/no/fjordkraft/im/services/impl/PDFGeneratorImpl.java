@@ -95,9 +95,10 @@ public class PDFGeneratorImpl implements PDFGenerator {
             if(statementIdSet.contains(statement.getId())){
                 logger.debug("Statement with id "+ statement.getId() +  " already sent for pdf generation");
             }
-            logger.debug("Statement with id "+ statement.getId()+ " updated to SENT_FOR_PDF_PROCESSING ");
+            //logger.debug("Statement with id "+ statement.getId()+ " updated to SENT_FOR_PDF_PROCESSING ");
             try {
-                statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
+                statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING);
+                statementIdSet.add(statement.getId());
             }catch (Exception e ){
                 logger.error("error comminting transaction in sendpdf",e);
             }
@@ -109,15 +110,21 @@ public class PDFGeneratorImpl implements PDFGenerator {
 
 
     public void generateInvoicePDF(List<Long> statementIdList) {
-        List<List<Long>> lists = ListUtils.partition(statementIdList,150 );
+        Long numOfThreads = configService.getLong(IMConstants.NUM_OF_STMT_PDF_GEN);
+        List<List<Long>> lists = ListUtils.partition(statementIdList,numOfThreads.intValue());
         for(List<Long> list : lists) {
             try {
                 pdfGeneratorClient.processStatement(list);
             } catch (Exception e) {
                 logger.error("Error in sending request to PDF Generator", e);
-                for(Long statementId : list ) {
-                    Statement stmt = statementService.getStatement(statementId);
-                    statementService.updateStatement(stmt,StatementStatusEnum.PRE_PROCESSED);
+                logger.error("Error in sending request to PDF Generator message", e.getMessage());
+                if(e.getMessage().contains("Read timed out")) {
+                    logger.debug("read time out in feign client");
+                } else {
+                    /*for (Long statementId : list) {
+                        Statement stmt = statementService.getStatement(statementId);
+                        statementService.updateStatement(stmt, StatementStatusEnum.PRE_PROCESSED);
+                    }*/
                 }
             }
         }

@@ -3,6 +3,7 @@ package no.fjordkraft.im.task;
 import no.fjordkraft.im.model.Statement;
 //import no.fjordkraft.im.services.PDFGenerator;
 import no.fjordkraft.im.services.PDFGenerator;
+import no.fjordkraft.im.services.StatementService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class PDFGeneratorTask implements Runnable {
 
     Long statementId;
 
+    @Autowired
+    StatementService statementService;
+
     public PDFGeneratorTask(Statement statement){
         this.statement = statement;
     }
@@ -39,6 +43,7 @@ public class PDFGeneratorTask implements Runnable {
     //@Transactional
     public void run() {
         logger.debug(" transaction name ::"+ TransactionSynchronizationManager.getCurrentTransactionName());
+       statement =  statementService.getStatement(statementId);
        pdfGenerator.generateInvoicePDFSingleStatement(statement);
     }
 }
