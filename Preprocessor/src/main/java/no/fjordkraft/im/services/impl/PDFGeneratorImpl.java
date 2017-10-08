@@ -111,7 +111,7 @@ public class PDFGeneratorImpl implements PDFGenerator {
 
     public void generateInvoicePDF(List<Long> statementIdList) {
         Long numOfThreads = configService.getLong(IMConstants.NUM_OF_STMT_PDF_GEN);
-        List<List<Long>> lists = ListUtils.partition(statementIdList,numOfThreads.intValue());
+        List<List<Long>> lists = ListUtils.partition(statementIdList,150);
         for(List<Long> list : lists) {
             try {
                 pdfGeneratorClient.processStatement(list);
