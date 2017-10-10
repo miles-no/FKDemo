@@ -101,6 +101,10 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                 copy.addPage(copy.getImportedPage(readInputPDF, ++page));
             }
 
+            if ( null != readInputPDF && number_of_pages % 2 != 0){
+                copy.addPage(readInputPDF.getPageSize(1), readInputPDF.getPageRotation(1));
+            }
+
             //String attachPDF = segmentFileService.getPDFContent(accountNo, brand);
             byte[] pdfBytes = getSegmentFile(accountNo, brand);
             if(null != pdfBytes) {
