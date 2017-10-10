@@ -575,3 +575,13 @@ app.put('/custom/transaction/group/:id',function(req,res){
 })
 
 /**********Custom Transaction Group end*****/
+
+/**********LogOff Express Script*****/
+
+app.get('/api/openrest/security/logoff',function(req,res){
+  request({
+    url: `${apiUrl}/api/openrest/security/logoff`
+},function(error,response,body){
+  res.send(body)
+})
+})

@@ -43,6 +43,10 @@ import {authentication} from 'app-common/modules/authentication';
 //external Authorization module
 import {authorization} from 'app-common/modules/authorization';
 
+
+//import external logoff constant
+import * as myModule from '../appconfig';
+
 let dependencies = [
         'ui.router',
         'ui.bootstrap',
@@ -104,7 +108,8 @@ invoiceManager.directive('permitMask',permitMask);
 
 //Configure Global Constants
 invoiceManager.constant('_',window._);
-invoiceManager.constant('loginUrl','https://afitest.fjordkraft.no/app/logon/logon.html?redirect=/invoicemanager/index.html');
+invoiceManager.constant('loginUrl','https://afitest.fjordkraft.no/app/logon/logon.html?redirect=/invoicemanager/index.html')
+invoiceManager.constant('logoffConfig',myModule.logoffConfig)
 
 //Configure routes
 
@@ -156,7 +161,3 @@ invoiceManager.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('dark-green').backgroundPalette('green').dark();
   $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
 });
-
-invoiceManager.run(function($rootScope){
-  $rootScope.abcd = 1234;
-})

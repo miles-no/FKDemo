@@ -40,8 +40,8 @@
                     <li ng-hide="true">
                         <i ng-click="$ctrl.isDashbordLive = !$ctrl.isDashbordLive" class="fa fa-2x animated" ng-class="{'fa-play-circle': !$ctrl.isDashbordLive, 'fa-pause-circle' : $ctrl.isDashbordLive}"></i>
                     </li>
-                    <li ng-hide="true">
-                       <i ng-click="$ctrl.logOff()" class="fa fa-sign-out"></i>
+                    <li>
+                       <i ng-click="$ctrl.logOff()" class="fa fa-sign-out push-bottom"></i>
                     </li>
                     <li ng-hide="true">
                         <!--<i ng-click="$ctrl.resetDashboard()" class="fa fa-2x fa-retweet" ng-class="{'disableReset' :$ctrl.disableReset,'faa-flash animated':$ctrl.disableReset}" uib-tooltip="{{$ctrl.disableReset ? 'Loading file from AFI' : 'Click to process a file from AFI'}}"  tooltip-placement="bottom" ng-disabled="$ctrl.disableReset"></i>-->

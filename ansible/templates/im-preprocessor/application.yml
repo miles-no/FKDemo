@@ -47,3 +47,13 @@ eureka:
     metadataMap:
       management:
         context-path: ${management.context-path}
+
+
+ribbon:
+  eureka:
+    enabled: false
+
+im-pdfgenerator:
+   ribbon:
+     NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+     listOfServers: fk-t-lx14:9044,fk-utv-lx12:9044

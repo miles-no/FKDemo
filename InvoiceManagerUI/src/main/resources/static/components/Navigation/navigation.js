@@ -2,7 +2,7 @@
 const navigation = {
     templateUrl: 'components/Navigation/navigation.html',
     controller: class navigation {
-      constructor($state, $scope,$rootScope, $http){
+      constructor($state, $scope,$rootScope, $http, $window, logoffConfig, loginUrl){
         this.$http = $http;
         this.$state = $state;
         this.$scope = $scope;
@@ -10,9 +10,12 @@ const navigation = {
         this.showMenu = false;
         this.activeMenu = 'home'
         this.isDashbordLive = true;
+        this.window = $window
         //this.disableReset = false;
         this.time =  this.$rootScope.time
         this.$rootScope.isDashbordLive = this.isDashbordLive;
+        this.logoffConfig = logoffConfig
+        this.loginUrl = loginUrl
         this.$rootScope.$watch('time', () => {
           this.time = this.$rootScope.time
         })
@@ -31,9 +34,13 @@ const navigation = {
         }
       }
 
+      redirectAfterLogOff(){
+        this.window.location = this.loginUrl
+      }
+
       logOff(){
-        this.$http.get('https://afitest.fjordkraft.no/api/openrest/security/logoff').then((response) => {
-          console.log(response);
+        this.$http.get(this.logoffConfig).then((response) => {
+          this.redirectAfterLogOff()
         })
       }
       //resetDashboard() {
