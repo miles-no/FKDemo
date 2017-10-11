@@ -274,8 +274,6 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
     @Transactional
     public void processStatement(Long statementId){
-        //Statement statement = statementService.getStatement(statementId);
-        //statement = statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING);
         if(taskExecutor instanceof ThreadPoolTaskExecutor) {
             ThreadPoolTaskExecutor executor = (ThreadPoolTaskExecutor)taskExecutor;
             logger.debug("PDF generator thread queue count " + executor.getThreadPoolExecutor().getQueue().size() +" active threads "+ executor.getActiveCount() + "max pool size "+executor.getMaxPoolSize()+ " :: "+executor.getThreadPoolExecutor().getActiveCount());
@@ -286,8 +284,11 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     }
 
     private void cleanUpFiles(String outputDirectoryPath){
+        Boolean cleanUpDirectory = configService.getBoolean(IMConstants.CLEAN_UP_DIRECTORY);
         try {
-            FileUtils.deleteDirectory(new File(outputDirectoryPath));
+            if(null == cleanUpDirectory || cleanUpDirectory) {
+                FileUtils.deleteDirectory(new File(outputDirectoryPath));
+            }
         } catch (IOException e) {
             logger.error("Exception while deleting directory "+outputDirectoryPath, e);
         }

@@ -82,7 +82,9 @@ public interface IMConstants {
     static final String PDFEHF = "PDFEHF";
     static final String AFI_TRANSFER_FILE_AUTO_PICK = "afi.transfer.file.auto.pick";
     static final String PROCESSED_STATEMENT_XML_FILE_NAME="processes_statemet.xml";
-    static String NUM_OF_STMT_PDF_GEN="num.statement.pdf.generation";
+    static final String NUM_OF_STMT_PDF_GEN="num.statement.pdf.generation";
+    static final String USE_KAFKA_PDF_PROCESSING="use.kafka.pdf.processing";
+    static final String CLEAN_UP_DIRECTORY="clean.directory";
 
 
 }

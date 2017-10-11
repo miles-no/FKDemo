@@ -44,3 +44,6 @@ eureka:
     metadataMap:
       management:
         context-path: ${management.context-path}
+
+kafka:
+  bootstrap-servers: {{kafka_host}}:{{kafka_port}}

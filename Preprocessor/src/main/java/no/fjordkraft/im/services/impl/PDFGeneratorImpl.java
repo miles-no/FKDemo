@@ -2,6 +2,8 @@ package no.fjordkraft.im.services.impl;
 
 import no.fjordkraft.im.intercomm.PDFGeneratorClient;
 import no.fjordkraft.im.model.Statement;
+import no.fjordkraft.im.model.StatementsList;
+import no.fjordkraft.im.publisher.InvoiceGeneratorPublisher;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.PDFGenerator;
@@ -44,6 +46,9 @@ public class PDFGeneratorImpl implements PDFGenerator {
     PDFGeneratorClient pdfGeneratorClient;
 
     private static Set<Long> statementIdSet = new HashSet<>();
+
+    @Autowired
+    InvoiceGeneratorPublisher invoiceGeneratorPublisher;
 
 
     @Override
@@ -95,12 +100,12 @@ public class PDFGeneratorImpl implements PDFGenerator {
             if(statementIdSet.contains(statement.getId())){
                 logger.debug("Statement with id "+ statement.getId() +  " already sent for pdf generation");
             }
-            //logger.debug("Statement with id "+ statement.getId()+ " updated to SENT_FOR_PDF_PROCESSING ");
+            logger.debug("Statement with id "+ statement.getId()+ " updated to SENT_FOR_PDF_PROCESSING ");
             try {
                 statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING);
                 statementIdSet.add(statement.getId());
             }catch (Exception e ){
-                logger.error("error comminting transaction in sendpdf",e);
+                logger.error("error commiting transaction in sendpdf",e);
             }
             statementList.add(statement.getId());
         }
@@ -112,9 +117,16 @@ public class PDFGeneratorImpl implements PDFGenerator {
     public void generateInvoicePDF(List<Long> statementIdList) {
         Long numOfThreads = configService.getLong(IMConstants.NUM_OF_STMT_PDF_GEN);
         List<List<Long>> lists = ListUtils.partition(statementIdList,150);
+        Boolean useKafkaForPDFProcessing = configService.getBoolean(IMConstants.USE_KAFKA_PDF_PROCESSING);
         for(List<Long> list : lists) {
             try {
-                pdfGeneratorClient.processStatement(list);
+                if (useKafkaForPDFProcessing) {
+                    StatementsList statementsList = new StatementsList(list);
+                    logger.debug("Sending statement to kafka size "+ list.size());
+                    invoiceGeneratorPublisher.publish(statementsList);
+                } else {
+                    pdfGeneratorClient.processStatement(list);
+                }
             } catch (Exception e) {
                 logger.error("Error in sending request to PDF Generator", e);
                 logger.error("Error in sending request to PDF Generator message", e.getMessage());

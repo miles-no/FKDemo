@@ -57,3 +57,8 @@ im-pdfgenerator:
    ribbon:
      NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
      listOfServers: fk-t-lx14:9044,fk-utv-lx12:9044
+
+
+
+kafka:
+  bootstrap-servers: {{kafka_host}}:{{kafka_port}}

@@ -51,18 +51,10 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     AuditLogServiceImpl auditLogService;
 
     private String outputDirectoryPath;
-    private String pdfGeneratedFolderName;
-    private String invoiceGeneratedFolderName;
-    private String controlFileDirectory;
-    private String controlFileName;
 
     @PostConstruct
     public void setConfig(){
         outputDirectoryPath = configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
-        //pdfGeneratedFolderName = configService.getString(IMConstants.GENERATED_PDF_FOLDER_NAME);
-        //invoiceGeneratedFolderName = configService.getString(IMConstants.GENERATED_INVOICE_FOLDER_NAME);
-        controlFileDirectory = configService.getString(IMConstants.CONTROL_FILE_PATH);
-        controlFileName = configService.getString(IMConstants.CONTROL_FILE_NAME);
     }
 
     @Override
@@ -75,9 +67,6 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
 
         String systemBatchInputFileName = statement.getSystemBatchInput().getTransferFile().getFilename();
         String subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
-        String invoiceGeneratedFilePath = outputDirectoryPath + subFolderName + File.separator +
-                statement.getInvoiceNumber() + File.separator +
-                statement.getInvoiceNumber() + "_Merged.pdf";
 
         try {
             logger.info("Start of PDF merging for invoice number: " + statement.getInvoiceNumber() + " statement id "+ statement.getId());
@@ -87,11 +76,10 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             String filePath = outputDirectoryPath + subFolderName + File.separator + statement.getInvoiceNumber() + File.separator +
                               statement.getInvoiceNumber() + ".pdf";
 
-            Document pdfCombineUsingJava = new Document();
+            Document pdfCombine = new Document();
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            //PdfCopy copy = new PdfCopy(pdfCombineUsingJava, new FileOutputStream(invoiceGeneratedFilePath));
-            PdfCopy copy = new PdfCopy(pdfCombineUsingJava, byteArrayOutputStream);
-            pdfCombineUsingJava.open();
+            PdfCopy copy = new PdfCopy(pdfCombine, byteArrayOutputStream);
+            pdfCombine.open();
             PdfReader readInputPDF;
             int number_of_pages;
 
@@ -105,7 +93,6 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                 copy.addPage(readInputPDF.getPageSize(1), readInputPDF.getPageRotation(1));
             }
 
-            //String attachPDF = segmentFileService.getPDFContent(accountNo, brand);
             byte[] pdfBytes = getSegmentFile(accountNo, brand);
             if(null != pdfBytes) {
                 readInputPDF = new PdfReader(pdfBytes);
@@ -119,16 +106,14 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                 auditLogService.saveAuditLog(IMConstants.ATTACH_PDF, statement.getId(), StatementStatusEnum.INVOICE_PROCESSING.getStatus(),
                         "Attach_PDF not found", IMConstants.WARNING);
             }
-            pdfCombineUsingJava.close();
+            pdfCombine.close();
             byte[] outputBytes =  byteArrayOutputStream.toByteArray();
-            logger.debug(" save created pdf in database ");
             InvoicePdf invoicePdf = saveInvoicePDFs(outputBytes, statement);
             invoiceService.saveInvoicePdf(invoicePdf);
-            logger.debug(" update statement status to  INVOICE_PROCESSED ");
             statement = statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
+            logger.debug(" saved invoice pdf and update statement status to INVOICE_PROCESSED "+ statement.getId());
             stopWatch.stop();
             logger.debug(stopWatch.prettyPrint());
-            logger.info("End of PDF merging for invoice number: " + statement.getInvoiceNumber()+ " statement id "+ statement.getId());
 
         } catch (Exception ex) {
             statement.setStatus(StatementStatusEnum.INVOICE_PROCESSING_FAILED.getStatus());
@@ -176,23 +161,11 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     }
 
     private InvoicePdf saveInvoicePDFs(byte[] outputBytes, Statement statement) throws IOException {
-        //File invoiceFile = new File(invoiceGeneratedFilePath);
-        //byte[] byteArray = Files.readAllBytes(invoiceFile.toPath());
         InvoicePdf invoicePdf = new InvoicePdf();
         invoicePdf.setStatement(statement);
         invoicePdf.setPayload(outputBytes);
         invoicePdf.setType(IMConstants.INVOICE_PDF);
         return invoicePdf;
-    }
-
-
-
-
-    public static void main(String[] args) throws IOException {
-
-        String str = IOUtils.toString(new FileReader("C:\\Users\\bhavi\\Desktop\\fk\\PROD\\TKAS_p_642.txt"));
-        byte[] pdfBytes = Base64.decode(str);
-        IOUtils.write(pdfBytes, new FileOutputStream("C:\\Users\\bhavi\\Desktop\\fk\\PROD\\TKAS_p_642.pdf"));
     }
 
 }

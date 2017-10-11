@@ -10,6 +10,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.kafka.annotation.EnableKafka;
 
 @ServletComponentScan({"no.fjordkraft.im"})
 @EnableJpaRepositories(basePackages = {"no.fjordkraft.im"})
@@ -17,6 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableEurekaClient
 @EnableDiscoveryClient
 @EnableFeignClients
+@EnableKafka
 public class PreprocessorApplication {
 
 	public static void main(String[] args) {

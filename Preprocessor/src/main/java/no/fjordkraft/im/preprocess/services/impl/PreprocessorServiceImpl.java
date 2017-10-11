@@ -85,7 +85,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
     @Override
     public Statement unmarshallStatement(InputStream inputStream) throws IOException {
         try {
-            Reader reader = new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1);
+            Reader reader = new InputStreamReader(inputStream);
             StreamSource source = new StreamSource(reader);
             Statement stmt = (Statement)unMarshaller.unmarshal(source);
             return stmt;
@@ -122,12 +122,10 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         StopWatch stopwatch = new StopWatch("Preprocessing");
         stopwatch.start();
         try {
-            //
             logger.debug("Preprocessing statement with id " + statement.getId());
             String payload = statement.getStatementPayload().getPayload();
             statement.getSystemBatchInput().getTransferFile().getFilename();
-            Statement if320statement = unmarshallStatement(new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1)));
-            //statementService.updateStatement(getUpdatedStatementEntity(if320statement, statement));
+            Statement if320statement = unmarshallStatement(new ByteArrayInputStream(payload.getBytes()));
             getUpdatedStatementEntity(if320statement, statement);
             statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
             PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request = new PreprocessRequest();
@@ -140,8 +138,6 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             stopwatch.stop();
             logger.debug("Preprocessing completed for statement with id "+ statement.getId());
             logger.debug(stopwatch.prettyPrint());
-            //statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
-            //pdfGenerator.generateInvoicePDF(statement);
         } catch (PreprocessorException ex) {
             logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), ex);
             statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);

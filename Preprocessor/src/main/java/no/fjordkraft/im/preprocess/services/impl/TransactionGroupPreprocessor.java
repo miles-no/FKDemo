@@ -41,7 +41,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
 
             List<Transaction> kraftTransaction = new ArrayList<Transaction>();
             List<Transaction> nettTransaction = new ArrayList<Transaction>();
-            List<Distribution> distributions = new ArrayList<Distribution>();
+            List<Distribution> distributions;
             Distribution distribuion = null;
             int invoiceLineSize;
             int i = 0;
@@ -68,7 +68,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                     attachment.getFAKTURA().setFreeText(transaction.getFreeText());
                                     attachment.getFAKTURA().setGrid(getGridConfigInfo(attachment.getFAKTURA().getVEDLEGGEMUXML()
                                             .getInvoice().getInvoiceOrder().getInvoiceOrderInfo110().getLDC1(),
-                                            request.getEntity().getId(), request.getEntity().getInvoiceNumber()));
+                                            request.getEntity().getId()));
                                 }
                             }
                             kraftTransaction.add(createTransactionEntry(transaction, IMConstants.KRAFT));
@@ -114,15 +114,12 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
             transactionGroup.setTotalTransactions(i);
             request.getStatement().setTransactionGroup(transactionGroup);
             request.getStatement().setTotalVatAmount(IMConstants.NEGATIVE * request.getStatement().getTotalVatAmount());
-            /*if(i > 10) {
-                request.getStatement().setTotalAttachment(attachments.size() + 1);
-            } else {
-                request.getStatement().setTotalAttachment(attachments.size());
-            }*/
         } catch (Exception ex) {
             throw new PreprocessorException("Failed in Transaction Group Pre-Processor with message: " + ex.getMessage());
         }
     }
+
+
 
     private Transaction createTransactionEntry(Transaction transaction, String type) {
         Transaction resultTransaction = new Transaction();
@@ -160,7 +157,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
         return transactions;
     }
 
-    private Grid getGridConfigInfo(String ldc1, Long id, String invoiceNo) {
+    private Grid getGridConfigInfo(String ldc1, Long id) {
         Grid grid = new Grid();
 
         GridConfig gridConfig = gridConfigService.getGridConfigByBrand(ldc1);

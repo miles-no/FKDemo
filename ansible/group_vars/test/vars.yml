@@ -4,4 +4,5 @@ liquibasecontext: fjordkrafttest
 eureka_client_serviceUrl_defaultZone: http://fk-t-lx03.bkk.no:8761/eureka/
 birt_resource_path: /home/miles2/app/im/birt
 log_base_dir_path: /home/miles2/app/im/logs
-
+kafka_host: fk-t-lx02
+kafka_port: 9092
