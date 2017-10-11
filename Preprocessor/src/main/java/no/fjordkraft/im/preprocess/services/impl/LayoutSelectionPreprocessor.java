@@ -40,7 +40,6 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
             throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, InstantiationException {
         Long layoutID = 0l;
         String statementBrand = request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
-        //String statementBrand = "TKAS";
         Statement statement = request.getStatement();
         boolean foundLayout = false;
 

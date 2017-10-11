@@ -41,24 +41,12 @@ public abstract class BasePreprocessor implements Preprocessor {
         String baseFolder = request.getEntity().getSystemBatchInput().getTransferFile().getFilename();
         String folderName = baseFolder.substring(0, baseFolder.indexOf('.'));
         String basePath = configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
-        //String pdfGeneratedFolderName = configService.getString(IMConstants.GENERATED_PDF_FOLDER_NAME);
-        //String mergePdfFolderName = configService.getString(IMConstants.GENERATED_INVOICE_FOLDER_NAME);
 
         File baseFile = new File(basePath + folderName + File.separator + invoiceNumber);
         baseFile.mkdirs();
-        //File generatedPDFFile = new File(baseFile, pdfGeneratedFolderName);
-        //generatedPDFFile.mkdirs();
-
-        //String processedXmlFolderName = configService.getString(IMConstants.PROCESSED_XML_FOLDER_NAME);
-        //File processedXmlFile = new File(baseFile, processedXmlFolderName);
-        //processedXmlFile.mkdirs();
-
-        //File mergePdfFile = new File(baseFile, mergePdfFolderName);
-        //mergePdfFile.mkdirs();
 
         request.setPathToProcessedXml(baseFile.getAbsolutePath());
-        //logger.debug("generatedPDFFolder " + generatedPDFFile.getAbsolutePath() + " attachmentPDFFile " + processedXmlFile.getAbsolutePath());
-        logger.debug("Generate base File "+ baseFile);
+        logger.debug("Generated base File "+ baseFile);
     }
 
 }

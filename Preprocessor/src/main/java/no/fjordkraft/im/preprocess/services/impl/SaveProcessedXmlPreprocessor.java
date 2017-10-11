@@ -34,28 +34,21 @@ public class SaveProcessedXmlPreprocessor  extends BasePreprocessor {
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
 
         try {
-            StopWatch stopWatch = new StopWatch();
-            logger.debug("Credit limit for statement with is "+request.getEntity().getId() + " is "+request.getStatement().getCreditLimit() + " AvailableCredit :" +request.getStatement().getAvailableCredit());
-            stopWatch.start("SaveProcessedXmlPreprocessor");
+            logger.debug("Credit limit for statement with statement id  "+request.getEntity().getId() + " is "+request.getStatement().getCreditLimit() + " AvailableCredit :" +request.getStatement().getAvailableCredit());
             File file  = new File(request.getPathToProcessedXml());
             if(!file.exists()) {
                 logger.debug("file does not exists create directories" + file.getAbsolutePath());
                 createDirectories(request);
             }
-
             StreamResult streamResult = new StreamResult(new FileOutputStream(request.getPathToProcessedXml() + File.separator + IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME));
             marshaller.marshal(request.getStatement(), streamResult);
             if(null != streamResult.getOutputStream()) {
                 logger.debug("closing stream in SaveProcessedXmlPreprocessor");
                 streamResult.getOutputStream().close();
             }
-            stopWatch.stop();
-            logger.debug(stopWatch.prettyPrint());
         }catch (Exception e) {
             logger.error("Exception in save processed xml",e);
             throw new PreprocessorException("Exception while saving processed xml",e);
         }
-
-
     }
 }

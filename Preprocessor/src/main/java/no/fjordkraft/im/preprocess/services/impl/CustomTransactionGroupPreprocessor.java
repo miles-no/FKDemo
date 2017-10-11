@@ -8,6 +8,8 @@ import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.TransactionGroupService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,8 @@ import java.util.*;
 @PreprocessorInfo(order=7)
 public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
 
+    private static final Logger logger = LoggerFactory.getLogger(CustomTransactionGroupPreprocessor.class);
+
     @Autowired
     TransactionGroupService transactionGroupService;
 
@@ -28,10 +32,9 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
-        Map<String, Transaction> diverseRabatter = new HashMap<String, Transaction>();
 
+        Map<String, Transaction> diverseRabatter = new HashMap<String, Transaction>();
         List<Transaction> transactions = request.getStatement().getTransactions().getTransaction();
-        Iterator mapIterator = null;
         int totalTransactions = request.getStatement().getTransactionGroup().getTotalTransactions();
         List<Transaction> processedTransaction = request.getStatement().getTransactionGroup().getTransaction();
         TransactionGroup transactionGroup = new TransactionGroup();
@@ -68,6 +71,8 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
                 request.getStatement().setTransactionGroup(transactionGroup);
                 request.getStatement().getTransactions().setDiAmountWithVat(amountWithVatTotal);
                 request.getStatement().getTransactions().setDiVatTotal(vatTotalAmount);
+            } else {
+                logger.info("Transaction groups not defined for brand "+ brand);
             }
         } catch(Exception e) {
             throw new PreprocessorException(e.getMessage());
@@ -76,7 +81,7 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
 
     private Transaction createDiverseRabatterTransactionEntry(Map<String, Transaction> diverseRabatter, Transaction transaction,
                                                               String groupName) {
-        Transaction existingElement = new Transaction();
+        Transaction existingElement;
         Transaction resultTransaction = new Transaction();
         float newAmount;
 

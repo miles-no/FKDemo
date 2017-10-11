@@ -78,7 +78,6 @@ public class AppConfig {
 
 
     @Bean(name="FileSplitterExecutor")
-    //@DependsOn("BirtEngine")
     public TaskExecutor getFileSplitterExecutor(ConfigService configService) {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         //executor.setCorePoolSize(5);
@@ -90,7 +89,6 @@ public class AppConfig {
     }
 
     @Bean(name="PreprocessorExecutor")
-    //@DependsOn("BirtEngine")
      public TaskExecutor getPreprocessorExecutor(ConfigService configService) {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         int maxPool = configService.getInteger(IMConstants.NUM_OF_THREAD_PREPROCESSOR);
@@ -111,7 +109,6 @@ public class AppConfig {
         Resource resource = resourceLoader.getResource(changelogFile);
         Assert.state(resource.exists(), "Unable to find file: " + changelogFile);
 
-        // Configure Liquibase
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setChangeLog(changelogFile);
         liquibase.setDataSource(dataSource);
@@ -123,18 +120,10 @@ public class AppConfig {
         String context = env.getProperty("liquibase.context");
         liquibase.setContexts(context);
 
-        // Verbose logging
         Map<String, String> params = new HashMap<String, String>();
         params.put("verbose", "true");
         liquibase.setChangeLogParameters(params);
 
         return liquibase;
     }
-
-    /*@LoadBalanced
-    @Bean
-    RestTemplate restTemplate() {
-        return new RestTemplate();
-    }*/
-
 }

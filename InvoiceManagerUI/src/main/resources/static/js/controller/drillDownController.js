@@ -22,7 +22,7 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
         console.error('Trigger:', e.trigger);
     }
     $scope.hasPdf = (invoicePdfList) => {
-        return invoicePdfList.filter((invoicePdf) => { return invoicePdf.type === 'PDFE2B' || invoicePdf.type === ' EHF' }).length > 0
+        return invoicePdfList.filter((invoicePdf) => { return invoicePdf.type === 'PDFE2B' || invoicePdf.type === ' EHF' || invoicePdf.type === 'PDF' }).length > 0
     }
     $scope.onStateSelect = function(item,model){
         console.log('onStateSelect ',item,model,$scope.states)
@@ -120,6 +120,9 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
                 console.log(error);
             }
         );
+        $('.popover').remove();
+        var result = document.getElementsByClassName('.popover');
+        angular.element(result).scope().tt_isOpen = false;
     }
     const getAllBrands = function(){
         $http.get('/invoicemanager/api/brand/config/brand').then(function success(result){

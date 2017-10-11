@@ -55,10 +55,9 @@ public class PieChartPreprocessor extends BasePreprocessor {
         } else {
             distributionDetails.setAmount(otherAmount);
         }
+
         distributionList.add(distributionDetails);
-
         pieChart.setDistribution(distributionList);
-
         request.getStatement().setPieChart(pieChart);
     }
 }

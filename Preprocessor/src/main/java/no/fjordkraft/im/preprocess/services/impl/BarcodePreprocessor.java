@@ -43,16 +43,15 @@ public class BarcodePreprocessor extends BasePreprocessor {
                         + brandConfig.getPrefixKID() + request.getStatement().getAccountNumber();
                 logger.debug("Barcode for statementId " + statement.getId() + " is " + barcode);
                 request.getStatement().setBarcode(Long.parseLong(barcode));
-                request.getStatement().setKontonummer(brandConfig.getKontonummer());
-
-                ToAddress toAddress = new ToAddress();
-                toAddress.setDescription(brandConfig.getDescription());
-                toAddress.setPostcode(brandConfig.getPostcode());
-                toAddress.setCity(brandConfig.getCity());
-                toAddress.setNationalId(brandConfig.getNationalId());
-                toAddress.setRegion(brandConfig.getRegion());
-                request.getStatement().setToAddress(toAddress);
             }
+            request.getStatement().setKontonummer(brandConfig.getKontonummer());
+            ToAddress toAddress = new ToAddress();
+            toAddress.setDescription(brandConfig.getDescription());
+            toAddress.setPostcode(brandConfig.getPostcode());
+            toAddress.setCity(brandConfig.getCity());
+            toAddress.setNationalId(brandConfig.getNationalId());
+            toAddress.setRegion(brandConfig.getRegion());
+            request.getStatement().setToAddress(toAddress);
         } else {
             String errorMessage = "Brand not found";
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);

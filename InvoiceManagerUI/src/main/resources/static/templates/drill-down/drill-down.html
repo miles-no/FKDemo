@@ -117,7 +117,7 @@
                             <i ng-show="row.status === 'PRE_PROCESSING_FAILED'" ng-click="resetInvoice(row.id)" uib-tooltip="Reset Status" tooltip-placement="bottom" class="fa fa-retweet col-md-2"></i>
                             <script type="text/ng-template" id = "if320.html">
                                 <div class="pdf-width">
-                                    <i class="fa col-md-2 fa-file margin-file" ng-repeat="eachPdf in row.invoicePdfList | filter : {type: 'PDFE2B' ||  'EHF'}" ng-click="getInvoiceFile(eachPdf.id)"></i>
+                                    <i class="fa col-md-2 fa-file margin-file" ng-repeat="eachPdf in row.invoicePdfList | filter : {type: 'PDFE2B', type:  'EHF', type: 'PDF'}" ng-click="getInvoiceFile(eachPdf.id)"></i>
                                 </div>
                             </script>
                         </div>
