@@ -30,13 +30,11 @@
 
     - include: site.yml app={{ item }}
       with_items:
-        - im-pdfgenerator
         - im-ui
         - im-preprocessor
 
     - include: startapp.yml app={{ line_item2 }}
       with_items:
-        - im-pdfgenerator
         - im-ui
         - im-preprocessor
       loop_control:

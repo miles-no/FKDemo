@@ -30,7 +30,7 @@
             <directory>src/main/resources/font/</directory>
             <outputDirectory>/font</outputDirectory>
             <includes>
-                <include>*/*</include>
+                <include>**/*</include>
             </includes>
         </fileSet>
     </fileSets>
