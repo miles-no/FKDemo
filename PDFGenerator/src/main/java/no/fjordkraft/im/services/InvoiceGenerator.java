@@ -10,5 +10,7 @@ import java.io.IOException;
  */
 public interface InvoiceGenerator {
 
-    void generateInvoice(Statement statement) throws IOException, DocumentException;
+    void generateInvoice(Statement statement, byte[] generatedPdf) throws IOException, DocumentException;
+
+    //void generateInvoice(Statement statement) throws IOException, DocumentException;
 }

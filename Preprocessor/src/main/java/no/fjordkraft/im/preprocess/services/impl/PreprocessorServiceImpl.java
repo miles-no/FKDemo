@@ -85,7 +85,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
     @Override
     public Statement unmarshallStatement(InputStream inputStream) throws IOException {
         try {
-            Reader reader = new InputStreamReader(inputStream);
+            Reader reader = new InputStreamReader(inputStream,StandardCharsets.ISO_8859_1);
             StreamSource source = new StreamSource(reader);
             Statement stmt = (Statement)unMarshaller.unmarshal(source);
             return stmt;
@@ -125,7 +125,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             logger.debug("Preprocessing statement with id " + statement.getId());
             String payload = statement.getStatementPayload().getPayload();
             statement.getSystemBatchInput().getTransferFile().getFilename();
-            Statement if320statement = unmarshallStatement(new ByteArrayInputStream(payload.getBytes()));
+            Statement if320statement = unmarshallStatement(new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1)));
             getUpdatedStatementEntity(if320statement, statement);
             statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
             PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request = new PreprocessRequest();

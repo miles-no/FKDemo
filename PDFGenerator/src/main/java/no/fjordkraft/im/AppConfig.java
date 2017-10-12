@@ -108,7 +108,7 @@ public class AppConfig {
         IReportEngineFactory factory = (IReportEngineFactory) Platform
                 .createFactoryObject( IReportEngineFactory.EXTENSION_REPORT_ENGINE_FACTORY );
         engine = factory.createReportEngine( engineConfig );
-        engine.changeLogLevel( Level.WARNING );
+        engine.changeLogLevel( Level.SEVERE );
 
         stopWatch.stop();
         logger.debug(stopWatch.prettyPrint());

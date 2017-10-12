@@ -32,10 +32,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.StopWatch;
 
 import javax.annotation.PostConstruct;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.List;
 
@@ -139,10 +136,13 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             systemBatchInputFileName = statement.getSystemBatchInput().getTransferFile().getFilename();
             stopWatch.start("PDF generation for statement "+ statement.getId());
             subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
-            birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName);
+            byte[] generatedPdf = birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName);
             statement = statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSED);
+            if(generatedPdf !=null && generatedPdf.length >0 ){
+                logger.debug("generated pdf bytes of length " + generatedPdf.length);
+            }
             //auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
-            invoiceGenerator.generateInvoice(statement);
+            invoiceGenerator.generateInvoice(statement, generatedPdf);
             //statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
            // auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             logger.debug("PDF generated for statement with statementId "+ statement.getId()+ "completed");
@@ -164,7 +164,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
 
 
-    public void birtEnginePDFGenerator(Statement statement, String outPutDirectoryPath, String statementFolderName) throws BirtException {
+    /*public void birtEnginePDFGenerator(Statement statement, String outPutDirectoryPath, String statementFolderName) throws BirtException {
         logger.debug("Generating Invoice PDF for Statement ID: " + statement.getId());
 
         long startTime = System.currentTimeMillis();
@@ -214,6 +214,67 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             task.run();
             long endTime = System.currentTimeMillis();
             logger.debug("Time to generate PDF for statement id  " + statement.getId() + " "+(endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
+        } catch (BirtException e) {
+            throw new PDFGeneratorException(e.getMessage());
+        }
+
+
+    }*/
+
+    public byte[] birtEnginePDFGenerator(Statement statement, String outPutDirectoryPath, String statementFolderName) throws BirtException {
+        logger.debug("Generating Invoice PDF for Statement ID: " + statement.getId());
+
+        long startTime = System.currentTimeMillis();
+        String accountNo = statement.getAccountNumber();
+        String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
+        ByteArrayOutputStream baos = null;
+        try {
+
+            String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + statement.getInvoiceNumber() + File.separator ;
+            String xmlFilePath =  basePath + File.separator + IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME;
+            String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
+
+            String campaignImage = segmentFileService.getImageContent(accountNo, brand);
+            if(null == campaignImage) {
+                auditLogService.saveAuditLog(IMConstants.CAMPAIGN_IMAGE, statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(),
+                        "Campaign Image not found", IMConstants.WARNING);
+            }
+            IReportRunnable runnable = null;
+
+            Boolean readFromFile =  configService.getBoolean("read.layout.from.file");
+            String encoding = configService.getString("layout.encoding");
+            encoding = encoding == null ? "UTF-8":encoding;
+            logger.debug("read layout from filesystem "+readFromFile+" encoding "+ encoding);
+            if(readFromFile ) {
+                runnable = reportEngine.openReportDesign(reportDesignFilePath);
+            } else {
+                String rptDesign = layoutDesignService.getRptDesignFile(statement.getLayoutID());
+                if(null != rptDesign) {
+                    logger.debug(" layout is "+ statement.getLayoutID());
+                } else {
+                    throw new PDFGeneratorException("Layout not found");
+                }
+                InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(Charset.forName(encoding)));
+                runnable = reportEngine.openReportDesign(designStream);
+            }
+            baos = new ByteArrayOutputStream();
+            IRunAndRenderTask task  = reportEngine.createRunAndRenderTask(runnable);
+            task.setParameterValue("sourcexml", xmlFilePath);
+            task.setParameterValue("campaignImage", campaignImage);
+            PDFRenderOption options = new PDFRenderOption();
+            //logger.debug("Custom Font path: " + customPdfFontPath);
+            //options.setFontDirectory(customPdfFontPath);
+            options.setEmbededFont(true);
+            options.setOutputFormat("pdf");
+            options.setOutputStream(baos);
+            //options.setOutputFileName(basePath  + File.separator + statement.getInvoiceNumber() + ".pdf");
+
+            task.setRenderOption(options);
+            task.run();
+            task.close();
+            long endTime = System.currentTimeMillis();
+            logger.debug("Time to generate PDF for statement id  " + statement.getId() + " "+(endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
+            return baos.toByteArray();
         } catch (BirtException e) {
             throw new PDFGeneratorException(e.getMessage());
         }
