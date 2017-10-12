@@ -13,6 +13,14 @@
         owner=miles2
 
     -
+      name: "{{app}}@{{inventory_hostname}} - Making sure directory /var/log/{{app}} exists"
+      become: true
+      file:
+        path=/var/log/{{app}}
+        state=directory
+        owner=miles2
+
+    -
       name: "{{app}}@{{inventory_hostname}} - Making sure base directory {{app_basedir}} exists"
       become: true
       file:
@@ -107,41 +115,7 @@
       when: app == 'im-pdfgenerator'
 
     -
-      name: "{{app}}@{{inventory_hostname}} - Making sure directory {{birt_resource_path}} exists"
-      become: true
-      file:
-        path="{{birt_resource_path}}"
-        state=directory
-        owner=miles2
-      when: app == 'im-pdfgenerator'
-
-    - name: "{{app}}@{{inventory_hostname}} Delete directory {{birt_resource_path}}/Layout"
-      file:
-        path={{birt_resource_path}}/Layout
-        state=absent
-      when: app == 'im-pdfgenerator'
-
-
-    - name: "{{app}}@{{inventory_hostname}} Delete directory {{birt_resource_path}}/sampleFile"
-      file:
-        path={{birt_resource_path}}/sampleFile
-        state=absent
-      when: app == 'im-pdfgenerator'
-
-    - name: "{{app}}@{{inventory_hostname}} Delete directory {{birt_resource_path}}/font"
-      file:
-        path={{birt_resource_path}}/font
-        state=absent
-      when: app == 'im-pdfgenerator'
-
-    -
-      name: "{{app}}@{{inventory_hostname}} -  move layout & Sample folder to  mv {{app_basedir}}/{{app}}/current/Layout {{app_basedir}}/{{app}}/current/sampleFile  {{birt_resource_path}}"
-      command: "mv {{app_basedir}}/{{app}}/current/Layout {{app_basedir}}/{{app}}/current/sampleFile  {{app_basedir}}/{{app}}/current/font {{birt_resource_path}} "
-      when: app == 'im-pdfgenerator'
-
-
-    -
-      name: "{{app}}@{{inventory_hostname}} - Copying config"
+      name: "{{app}}@{{inventory_hostname}} - Copying application.yml"
       template:
         src=templates/{{app}}/{{line_item}}
         dest={{app_basedir}}/{{app}}/current/{{line_item}}
@@ -163,7 +137,7 @@
       name: "{{app}}@{{inventory_hostname}} - Copying fontsConfig.xml"
       template:
         src=templates/{{app}}/fontsConfig.xml
-        dest={{birt_resource_path}}/font/
+        dest={{app_basedir}}/{{app}}/current/font/
         owner=miles2
       when: app == "im-pdfgenerator"
 

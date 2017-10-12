@@ -176,24 +176,24 @@
 		<path path="/usr/share/fonts/zh_CN/TrueType" />
 		<path path="/usr/share/fonts/zh_TW/TrueType" />
 		<path path="/var/lib/defoma/x-ttcidfont-conf.d/dirs/TrueType" />
-		<path path="{{birt_resource_path}}/font" />
-		<path path="{{birt_resource_path}}/font/FjordkraftNeoSan.ttf" />
-		<path path="{{birt_resource_path}}/font/FjordkraftNeoSanBol.ttf" />
-		<path path="{{birt_resource_path}}/font/FjordkraftNeoSanLig.ttf" />
-		<path path="{{birt_resource_path}}/font/FjordkraftNeoSanMed.ttf" />
-		<path path="{{birt_resource_path}}/font/FjordNeoSanBolIta.ttf" />
-		<path path="{{birt_resource_path}}/font/FjordNeoSanIta.ttf" />
-		<path path="{{birt_resource_path}}/font/FjordNeoSanLigIta.ttf" />
-		<path path="{{birt_resource_path}}/font/FjordNeoSanMedIta.ttf" />
-		<path path="{{birt_resource_path}}/font/arial/arial.ttf" />
-		<path path="{{birt_resource_path}}/font/arial/arialbd.ttf" />
-		<path path="{{birt_resource_path}}/font/arial/arialbi.ttf" />
-		<path path="{{birt_resource_path}}/font/arial/ariali.ttf" />
-		<path path="{{birt_resource_path}}/font/arial/ARIALN.TTF" />
-		<path path="{{birt_resource_path}}/font/arial/ARIALNB.TTF" />
-		<path path="{{birt_resource_path}}/font/arial/ARIALNBI.TTF" />
-		<path path="{{birt_resource_path}}/font/arial/ARIALNI.TTF" />
-		<path path="{{birt_resource_path}}/font/arial/ariblk.ttf" />
+		<path path="{{app_basedir}}/{{app}}/current/font" />
+		<path path="{{app_basedir}}/{{app}}/current/font/FjordkraftNeoSan.ttf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/FjordkraftNeoSanBol.ttf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/FjordkraftNeoSanLig.ttf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/FjordkraftNeoSanMed.ttf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/FjordNeoSanBolIta.ttf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/FjordNeoSanIta.ttf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/FjordNeoSanLigIta.ttf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/FjordNeoSanMedIta.ttf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/arial/arial.ttf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/arial/arialbd.ttf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/arial/arialbi.ttf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/arial/ariali.ttf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/arial/ARIALN.TTF" />
+		<path path="{{app_basedir}}/{{app}}/current/font/arial/ARIALNB.TTF" />
+		<path path="{{app_basedir}}/{{app}}/current/font/arial/ARIALNBI.TTF" />
+		<path path="{{app_basedir}}/{{app}}/current/font/arial/ARIALNI.TTF" />
+		<path path="{{app_basedir}}/{{app}}/current/font/arial/ariblk.ttf" />
 
 	</font-paths>
 <!--
