@@ -233,7 +233,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 task.setParameterValue("sourcexml", sampleStatementFilePath);
                 task.setParameterValue("campaignImage", campaignImage);
                 PDFRenderOption options = new PDFRenderOption();
-                logger.debug("sampleStatementFilePath: " + sampleStatementFilePath + " campaignImage " + campaignImage);
+                logger.debug("sampleStatementFilePath: " + sampleStatementFilePath + " sampleCampaignImagePath " + sampleCampaignImagePath);
                 //options.setFontDirectory(customPdfFontPath);
                 options.setEmbededFont(true);
                 options.setOutputFormat("pdf");
@@ -243,6 +243,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 task.close();
             }
         } catch (Exception e) {
+            logger.error("exception in preview generation ",e);
             throw new RuntimeException("Can not generate preview !");
         }
         return baos.toByteArray();

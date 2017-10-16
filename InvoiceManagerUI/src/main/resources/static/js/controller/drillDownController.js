@@ -53,7 +53,7 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
     }
 
     $scope.resetInvoice = (statementId) => {
-        $http.put('/retry/statement',{},{
+        $http.put('/invoicemanager/api/retry/statement',{},{
             params: { statementId : statementId }
         }).then(function success(result){
             $scope.getOverviewDetails();
