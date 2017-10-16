@@ -163,7 +163,6 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
         ByteArrayOutputStream baos = null;
         try {
-
             String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + statement.getInvoiceNumber() + File.separator ;
             String xmlFilePath =  basePath + File.separator + IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME;
             String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
@@ -220,39 +219,33 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
     @Override
     public byte[] generatePreview(Long layoutId, Integer version) throws IOException, BirtException {
-        String ouputFilePath = "src/main/resources/preview.pdf";
+        ByteArrayOutputStream baos = null;
         try {
             String rptDesign = layoutContentService.getLayoutContentByLayoutIdandVersion(layoutId, version);
-            String encoding = configService.getString("layout.encoding");
-            encoding = encoding == null ? "UTF-8":encoding;
-            InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(Charset.forName(encoding)));
-            String campaignImage = segmentFileService.getCampaignForPreview(sampleCampaignImagePath);
-            IReportRunnable runnable = reportEngine.openReportDesign(designStream);
-
-            try {
-                Font font = FontFactory.getFont("Fjordkraft Neo Sans");
-                logger.debug("FontFactory.getFont(Fjordkraft Neo Sans): " + font.getFamilyname());
-            } catch(Exception e) {
-                throw new RuntimeException(e.getMessage());
+            if(null != rptDesign) {
+                String encoding = configService.getString("layout.encoding");
+                encoding = encoding == null ? "UTF-8" : encoding;
+                InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(Charset.forName(encoding)));
+                String campaignImage = segmentFileService.getCampaignForPreview(sampleCampaignImagePath);
+                IReportRunnable runnable = reportEngine.openReportDesign(designStream);
+                baos = new ByteArrayOutputStream();
+                IRunAndRenderTask task = reportEngine.createRunAndRenderTask(runnable);
+                task.setParameterValue("sourcexml", sampleStatementFilePath);
+                task.setParameterValue("campaignImage", campaignImage);
+                PDFRenderOption options = new PDFRenderOption();
+                logger.debug("sampleStatementFilePath: " + sampleStatementFilePath + " campaignImage " + campaignImage);
+                //options.setFontDirectory(customPdfFontPath);
+                options.setEmbededFont(true);
+                options.setOutputFormat("pdf");
+                options.setOutputStream(baos);
+                task.setRenderOption(options);
+                task.run();
+                task.close();
             }
-
-            IRunAndRenderTask task = reportEngine.createRunAndRenderTask(runnable);
-            task.setParameterValue("sourcexml", sampleStatementFilePath);
-            task.setParameterValue("campaignImage", campaignImage);
-            PDFRenderOption options = new PDFRenderOption();
-            logger.debug("Custom Font path: " + customPdfFontPath);
-            options.setFontDirectory(customPdfFontPath);
-            options.setEmbededFont(true);
-            options.setOutputFormat("pdf");
-            options.setOutputFileName(ouputFilePath);
-            task.setRenderOption(options);
-            task.run();
         } catch (Exception e) {
             throw new RuntimeException("Can not generate preview !");
         }
-
-        File file = new File(ouputFilePath);
-        return FileUtils.readFileToByteArray(file);
+        return baos.toByteArray();
     }
 
     public void processStatement(Statement statement){

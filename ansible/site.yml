@@ -79,6 +79,15 @@
         owner=miles2
 
     -
+      name: "{{app}}@{{inventory_hostname}} - Making sure directory {{app_basedir}}/{{app}}/current/controlfiles exists"
+      become: true
+      file:
+        path={{app_basedir}}/{{app}}/current/controlfiles
+        state=directory
+        owner=miles2
+      when: app == 'im-pdfgenerator'
+
+    -
       name: "{{app}}@{{inventory_hostname}} - Copying new binaries"
       copy:
         src="../{{appfolder}}/target/{{app}}.jar"
