@@ -114,10 +114,10 @@
                             <i class="fa col-md-2 fa-file-pdf-o" uib-tooltip="Click to view invoice pdf" tooltip-placement ="bottom" aria-hidden="true" ng-repeat="eachPdf in row.invoicePdfList | filter : {type: 'INVOICE_PDF'}" ng-click="getInvoiceFile(eachPdf.id)"></i>
                             <i uib-tooltip="Click to download xml" tooltip-placement="bottom" class="fa fa-file-code-o col-md-2" aria-hidden="true" ng-click="downloadXml(row.id,row.invoiceNumber)"></i>
                             <i ng-show="hasPdf(row.invoicePdfList)" class="fa col-md-2 fa-file pdf-pointer" uib-popover-template ="'if320.html'" popover-placement="bottom" popover-trigger="'outsideClick'" popover-title="Click to preview"></i>
-                            <i ng-show="row.status === 'PRE_PROCESSING_FAILED'" ng-click="resetInvoice(row.id)" uib-tooltip="Reset Status" tooltip-placement="bottom" class="fa fa-retweet col-md-2"></i>
+                            <i ng-show="row.status === 'PRE_PROCESSING_FAILED' || row.status === 'INVOICE_PROCESSING_FAILED' || row.status === 'PDF_PROCESSING_FAILED'" ng-click="resetInvoice(row.id)" uib-tooltip="Reset Status" tooltip-placement="bottom" class="fa fa-retweet col-md-2"></i>
                             <script type="text/ng-template" id = "if320.html">
                                 <div class="pdf-width">
-                                    <i class="fa col-md-2 fa-file margin-file" ng-repeat="eachPdf in row.invoicePdfList | filter : {type: 'PDFE2B', type:  'EHF', type: 'PDF'}" ng-click="getInvoiceFile(eachPdf.id)"></i>
+                                    <i ng-hide="eachPdf.type === 'INVOICE_PDF'" class="fa col-md-2 fa-file margin-file" ng-repeat="eachPdf in row.invoicePdfList" ng-click="getInvoiceFile(eachPdf.id)"></i>
                                 </div>
                             </script>
                         </div>

@@ -109,11 +109,6 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     public void generateInvoicePDF() throws InterruptedException {
         Long numOfThreads = configService.getLong(IMConstants.NUM_OF_THREAD_PDFGENERATOR);
 
-        /*if(taskExecutor instanceof ThreadPoolTaskExecutor) {
-            ThreadPoolTaskExecutor executor = (ThreadPoolTaskExecutor)taskExecutor;
-            logger.debug("PDF generator thread queue count " + executor.getThreadPoolExecutor().getQueue().size() +" active threads "+ executor.getActiveCount() + "max pool size "+executor.getMaxPoolSize()+ " :: "+executor.getThreadPoolExecutor().getActiveCount());
-        }*/
-
         List<Statement> statements = statementRepository.readStatements(numOfThreads, StatementStatusEnum.PRE_PROCESSED.getStatus());
         logger.debug("Generate invoice pdf for "+ statements.size() + " statements");
 
@@ -121,8 +116,6 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             logger.debug("PDF generation will start for statement with id "+ statement.getId());
             statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING);
             statement.getSystemBatchInput().getTransferFile().getFilename();
-            //PDFGeneratorTask pdfGeneratorTask = applicationContext.getBean(PDFGeneratorTask.class,statement);
-            //taskExecutor.execute(pdfGeneratorTask);
         }
     }
 
@@ -161,65 +154,6 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         stopWatch.stop();
 
     }
-
-
-
-    /*public void birtEnginePDFGenerator(Statement statement, String outPutDirectoryPath, String statementFolderName) throws BirtException {
-        logger.debug("Generating Invoice PDF for Statement ID: " + statement.getId());
-
-        long startTime = System.currentTimeMillis();
-        String accountNo = statement.getAccountNumber();
-        String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
-        try {
-
-            String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + statement.getInvoiceNumber() + File.separator ;
-            String xmlFilePath =  basePath + File.separator + IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME;
-            String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
-
-            String campaignImage = segmentFileService.getImageContent(accountNo, brand);
-            if(null == campaignImage) {
-                auditLogService.saveAuditLog(IMConstants.CAMPAIGN_IMAGE, statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(),
-                        "Campaign Image not found", IMConstants.WARNING);
-            }
-            IReportRunnable runnable = null;
-
-            Boolean readFromFile =  configService.getBoolean("read.layout.from.file");
-            String encoding = configService.getString("layout.encoding");
-            encoding = encoding == null ? "UTF-8":encoding;
-            logger.debug("read layout from filesystem "+readFromFile+" encoding "+ encoding);
-            if(readFromFile ) {
-                runnable = reportEngine.openReportDesign(reportDesignFilePath);
-            } else {
-                String rptDesign = layoutDesignService.getRptDesignFile(statement.getLayoutID());
-                if(null != rptDesign) {
-                    logger.debug(" layout is "+ statement.getLayoutID());
-                } else {
-                    throw new PDFGeneratorException("Layout not found");
-                }
-                InputStream designStream = new ByteArrayInputStream(rptDesign.getBytes(Charset.forName(encoding)));
-                runnable = reportEngine.openReportDesign(designStream);
-            }
-
-            IRunAndRenderTask task  = reportEngine.createRunAndRenderTask(runnable);
-            task.setParameterValue("sourcexml", xmlFilePath);
-            task.setParameterValue("campaignImage", campaignImage);
-            PDFRenderOption options = new PDFRenderOption();
-            //logger.debug("Custom Font path: " + customPdfFontPath);
-            options.setFontDirectory(customPdfFontPath);
-            options.setEmbededFont(true);
-            options.setOutputFormat("pdf");
-            options.setOutputFileName(basePath  + File.separator + statement.getInvoiceNumber() + ".pdf");
-
-            task.setRenderOption(options);
-            task.run();
-            long endTime = System.currentTimeMillis();
-            logger.debug("Time to generate PDF for statement id  " + statement.getId() + " "+(endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
-        } catch (BirtException e) {
-            throw new PDFGeneratorException(e.getMessage());
-        }
-
-
-    }*/
 
     public byte[] birtEnginePDFGenerator(Statement statement, String outPutDirectoryPath, String statementFolderName) throws BirtException {
         logger.debug("Generating Invoice PDF for Statement ID: " + statement.getId());
@@ -262,12 +196,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             task.setParameterValue("sourcexml", xmlFilePath);
             task.setParameterValue("campaignImage", campaignImage);
             PDFRenderOption options = new PDFRenderOption();
-            //logger.debug("Custom Font path: " + customPdfFontPath);
-            //options.setFontDirectory(customPdfFontPath);
             options.setEmbededFont(true);
             options.setOutputFormat("pdf");
             options.setOutputStream(baos);
-            //options.setOutputFileName(basePath  + File.separator + statement.getInvoiceNumber() + ".pdf");
 
             task.setRenderOption(options);
             task.run();
@@ -345,9 +276,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     }
 
     private void cleanUpFiles(String outputDirectoryPath){
-        Boolean cleanUpDirectory = configService.getBoolean(IMConstants.CLEAN_UP_DIRECTORY);
+        Boolean deleteFiles = configService.getBoolean(IMConstants.DELETE_GENERATED_FILES);
         try {
-            if(null == cleanUpDirectory || cleanUpDirectory) {
+            if(null == deleteFiles || deleteFiles) {
                 FileUtils.deleteDirectory(new File(outputDirectoryPath));
             }
         } catch (IOException e) {

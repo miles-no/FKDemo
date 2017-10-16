@@ -7,8 +7,6 @@ public interface IMConstants {
 
     String BASE_DESTINATION_FOLDER_PATH = "base.destination.dir";
     String GENERATED_PDF_FOLDER_NAME = "generated.pdf.folder.name";
-    String ATTACHMENT_PDF_FOLDER_NAME = "attachment.pdf.folder.name";
-    String BIRT_ENGINE_HOME_PATH = "birt.EngineHomePath";
     String BIRT_ENGINE_LOG_PATH = "birt.log.path";
     String PROCESSED_XML_FOLDER_NAME = "processedxml.folder.name";
     String CUSTOM_FONT_PATH="fjordkraft.custom.fonts.path";
@@ -19,8 +17,6 @@ public interface IMConstants {
     String BIRT_RPTDESIGN_PATH = "birt.layout.file.path";
     String SAMPLE_STATEMENT_FILE_PATH = "sample.statement.file.path";
     String SAMPLE_CAMPAIGN_IMAGE_PATH = "sample.campaign.image.path";
-    static final String DESTINATION_PATH = "destinationPath";
-    static final String PDF_GENERATED_FOLDER_NAME = "pdfGeneratedFolderName";
     static final String NETT = "NETT";
     static final String KRAFT = "Kraft";
     static final String RABATTER = "rabatter";
@@ -35,7 +31,6 @@ public interface IMConstants {
     static final String TOTAL = "TOTAL";
     static final String STATUS_BY_CITY = "STATUS_BY_CITY";
     static final String STATUS_BY_BRAND = "STATUS_BY_BRAND";
-    static final String GENERATED_INVOICE_FOLDER_NAME = "generated.invoice.folder.name";
     static final String CONTROL_FILE_PATH = "control.file.dir";
     static final String CONTROL_FILE_NAME = "control.file.name";
     static final String INVOICE_PDF = "INVOICE_PDF";
@@ -84,7 +79,5 @@ public interface IMConstants {
     static final String PROCESSED_STATEMENT_XML_FILE_NAME="processes_statemet.xml";
     static final String NUM_OF_STMT_PDF_GEN="num.statement.pdf.generation";
     static final String USE_KAFKA_PDF_PROCESSING="use.kafka.pdf.processing";
-    static final String CLEAN_UP_DIRECTORY="clean.directory";
-
-
+    static final String DELETE_GENERATED_FILES="delete.generated.files";
 }

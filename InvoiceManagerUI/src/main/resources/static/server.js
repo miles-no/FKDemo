@@ -37,7 +37,7 @@ app.put('/retry/statement',function(req,res){
     statementId : req.query.statementId
   }
   request({
-    url: `${apiUrl}/statement/details`,
+    url: `${apiUrl}/retry/statement`,
     qs: qp,
     method : 'PUT'
   }),function(error,response,body){

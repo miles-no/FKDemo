@@ -733,6 +733,16 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">TotalTransactions</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">StatementDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">StatementDate</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">OutgoingBalance</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">OutgoingBalance</text-property>
+                </structure>
             </list-property>
             <list-property name="filter">
                 <structure>
@@ -789,6 +799,16 @@
                     <structure>
                         <property name="position">9</property>
                         <property name="name">TotalTransactions</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">StatementDate</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">OutgoingBalance</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -858,8 +878,22 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">StatementDate</property>
+                    <property name="nativeName">StatementDate</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">OutgoingBalance</property>
+                    <property name="nativeName">OutgoingBalance</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/TransactionGroup/Transaction]#:#{TransactionCategory;STRING;/TransactionCategory},{AmountWithVat;STRING;/AmountWithVat},{FreeText;STRING;/FreeText},{CurrentClaim;STRING;../../CurrentClaim},{TotalVatAmount;STRING;../../TotalVatAmount},{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{TransactionSequence;STRING;/TransactionSequence},{TotalTransactions;STRING;../TotalTransactions}]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/TransactionGroup/Transaction]#:#{TransactionCategory;STRING;/TransactionCategory},{AmountWithVat;STRING;/AmountWithVat},{FreeText;STRING;/FreeText},{CurrentClaim;STRING;../../CurrentClaim},{TotalVatAmount;STRING;../../TotalVatAmount},{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{TransactionSequence;STRING;/TransactionSequence},{TotalTransactions;STRING;../TotalTransactions},{StatementDate;STRING;../../StatementDate},{OutgoingBalance;STRING;../../OutgoingBalance}]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -4114,21 +4148,15 @@
         </grid>
         <grid id="148">
             <property name="pageBreakAfter">always</property>
-            <property name="height">7.510416666666667in</property>
+            <property name="height">7.677083333333333in</property>
             <property name="width">7.177083333333333in</property>
             <column id="149">
                 <property name="width">2.4270833333333335in</property>
             </column>
-            <column id="150">
-                <property name="width">2in</property>
-            </column>
-            <column id="151">
-                <property name="width">2.53125in</property>
-            </column>
             <row id="152">
-                <property name="height">2.625in</property>
+                <property name="height">0.6145833333333334in</property>
                 <cell id="153">
-                    <property name="colSpan">3</property>
+                    <property name="colSpan">1</property>
                     <property name="rowSpan">1</property>
                     <property name="paddingTop">10pt</property>
                     <property name="paddingLeft">4pt</property>
@@ -4196,117 +4224,31 @@ if(null == dataSetRow["StartDate"]) {&#13;
                             <structure>
                                 <property name="name">TotalTransactions</property>
                                 <text-property name="displayName">Total Claim</text-property>
-                                <expression name="expression" type="javascript">if(dataSetRow["TotalTransactions"] &lt;= 10 )&#13;
-	"Totalt å betale"&#13;
-else&#13;
-	"Forts. neste side."</expression>
+                                <expression name="expression" type="javascript">"Ditt månedsbeløp å betale i " + monthNumToName(dataSetRow["StatementDate"])</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
                         </list-property>
                         <column id="260">
                             <property name="verticalAlign">bottom</property>
-                            <property name="width">2in</property>
+                            <property name="width">2.1979166666666665in</property>
                         </column>
                         <column id="261">
-                            <property name="width">1.78125in</property>
+                            <property name="width">1.8020833333333333in</property>
                         </column>
                         <column id="262">
                             <property name="width">1.3in</property>
                         </column>
                         <column id="263">
-                            <property name="width">1.5833333333333333in</property>
+                            <property name="width">1in</property>
                         </column>
-                        <header>
-                            <row id="245">
-                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                <property name="fontStyle">normal</property>
-                                <property name="borderBottomColor">#B3B3B3</property>
-                                <property name="borderBottomStyle">solid</property>
-                                <property name="borderBottomWidth">0.5pt</property>
-                                <cell id="246">
-                                    <label id="264">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                        <property name="fontSize">9pt</property>
-                                        <property name="fontStyle">italic</property>
-                                        <property name="textAlign">left</property>
-                                        <text-property name="text">Betalingsoversikt</text-property>
-                                    </label>
-                                </cell>
-                                <cell id="247">
-                                    <label id="266">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                        <property name="fontSize">9pt</property>
-                                        <property name="fontStyle">italic</property>
-                                        <property name="textAlign">left</property>
-                                        <text-property name="text">Leveringsadresse</text-property>
-                                    </label>
-                                </cell>
-                                <cell id="248">
-                                    <label id="270">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                        <property name="fontSize">9pt</property>
-                                        <property name="fontStyle">italic</property>
-                                        <property name="textAlign">left</property>
-                                        <text-property name="text">Periode</text-property>
-                                    </label>
-                                </cell>
-                                <cell id="249">
-                                    <label id="268">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                        <property name="fontSize">9pt</property>
-                                        <property name="fontStyle">italic</property>
-                                        <property name="textAlign">right</property>
-                                        <text-property name="text">Beløp</text-property>
-                                    </label>
-                                </cell>
-                            </row>
-                        </header>
-                        <detail>
-                            <row id="250">
-                                <cell id="251">
-                                    <data id="265">
-                                        <property name="fontSize">9pt</property>
-                                        <property name="resultSetColumn">TransactionCategory</property>
-                                    </data>
-                                </cell>
-                                <cell id="252">
-                                    <data id="267">
-                                        <property name="fontSize">9pt</property>
-                                        <property name="resultSetColumn">FreeText</property>
-                                    </data>
-                                </cell>
-                                <cell id="253">
-                                    <data id="477">
-                                        <property name="fontSize">9pt</property>
-                                        <property name="textAlign">left</property>
-                                        <list-property name="visibility">
-                                            <structure>
-                                                <property name="format">pdf</property>
-                                                <expression name="valueExpr" type="javascript">null == row["StartDate"]</expression>
-                                            </structure>
-                                        </list-property>
-                                        <property name="resultSetColumn">StartDate</property>
-                                    </data>
-                                </cell>
-                                <cell id="254">
-                                    <data id="269">
-                                        <property name="fontSize">9pt</property>
-                                        <property name="textAlign">right</property>
-                                        <property name="resultSetColumn">AmountWithVat</property>
-                                    </data>
-                                </cell>
-                            </row>
-                        </detail>
                         <footer>
                             <row id="496">
                                 <property name="borderBottomColor">#B3B3B3</property>
                                 <property name="borderBottomStyle">solid</property>
                                 <property name="borderBottomWidth">0.5pt</property>
-                                <property name="borderTopColor">#B3B3B3</property>
-                                <property name="borderTopStyle">solid</property>
-                                <property name="borderTopWidth">0.5pt</property>
                                 <cell id="497">
+                                    <property name="paddingBottom">3pt</property>
                                     <data id="689">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
@@ -4347,8 +4289,7 @@ else&#13;
                                             <structure>
                                                 <property name="name">CurrentClaim</property>
                                                 <text-property name="displayName">CurrentClaim</text-property>
-                                                <expression name="expression" type="javascript">if(dataSetRow["TotalTransactions"] &lt;= 10)&#13;
-formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
+                                                <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                                 <property name="dataType">string</property>
                                                 <property name="allowExport">true</property>
                                             </structure>
@@ -4361,65 +4302,139 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                     </table>
                 </cell>
             </row>
-            <row id="692">
-                <property name="height">0.40625in</property>
-                <cell id="693">
-                    <property name="colSpan">3</property>
+            <row id="160">
+                <property name="height">3.625in</property>
+                <cell id="161">
+                    <property name="colSpan">1</property>
                     <property name="rowSpan">1</property>
-                    <grid id="696">
-                        <property name="height">0.34375in</property>
-                        <property name="dataSet">MainInfo</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if("NO" == row["DirectDebit"]) {&#13;
-	true;&#13;
-} else {&#13;
-	false;&#13;
-}</expression>
-                            </structure>
-                        </list-property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">DirectDebit</property>
-                                <text-property name="displayName">DirectDebit</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["DirectDebit"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                        <column id="697">
-                            <property name="width">1.3in</property>
+                    <property name="paddingTop">1pt</property>
+                    <property name="paddingLeft">0pt</property>
+                    <property name="paddingRight">0pt</property>
+                    <grid id="714">
+                        <property name="height">2.9895833333333335in</property>
+                        <property name="width">7.104166666666667in</property>
+                        <column id="715">
+                            <property name="width">3.5in</property>
                         </column>
-                        <column id="698"/>
-                        <row id="699">
-                            <property name="height">0.34375in</property>
-                            <cell id="700">
-                                <image id="1367">
-                                    <property name="height">0.1875in</property>
-                                    <property name="width">1.1041666666666667in</property>
-                                    <property name="source">embed</property>
-                                    <property name="imageName">AvtaleGiro.jpg</property>
-                                </image>
-                            </cell>
-                            <cell id="701">
-                                <property name="paddingTop">1pt</property>
-                                <text id="704">
+                        <column id="716">
+                            <property name="width">1.6in</property>
+                        </column>
+                        <row id="909">
+                            <property name="height">2.9895833333333335in</property>
+                            <cell id="910">
+                                <property name="paddingTop">30pt</property>
+                                <label id="721">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Du har tilleggstjenesten Full Kontroll</text-property>
+                                </label>
+                                <label id="724">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                    <property name="fontSize">10pt</property>
-                                    <property name="paddingTop">4pt</property>
-                                    <property name="contentType">html</property>
-                                    <text-property name="content"><![CDATA[<FONT font-family="Fjordkraft Neo Sans">Du har inngått avtale om AvtaleGiro med oss, og <U>faktura blir trukket automatisk ved forfall</U>.</FONT>]]></text-property>
-                                </text>
+                                    <property name="paddingTop">5pt</property>
+                                    <property name="paddingBottom">10pt</property>
+                                    <text-property name="text">Full Kontroll er en betalingstjeneste som gir deg som kunde et fast beløp&#13;
+å betale hver mnd. Vi deler de årlige strømkostnadene dine på 12, slik at&#13;
+du betaler det samme beløpet hver måned – hele året gjennom.</text-property>
+                                </label>
+                                <grid id="1403">
+                                    <property name="width">4.291666666666667in</property>
+                                    <column id="1404">
+                                        <property name="width">0.8in</property>
+                                    </column>
+                                    <column id="1405"/>
+                                    <row id="1406">
+                                        <cell id="1407">
+                                            <label id="1409">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontSize">10pt</property>
+                                                <text-property name="text">Les mer på</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="1408">
+                                            <label id="1410">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontStyle">italic</property>
+                                                <text-property name="text">fjordkraft.no/full-kontroll</text-property>
+                                                <list-property name="action">
+                                                    <structure>
+                                                        <property name="linkType">hyperlink</property>
+                                                        <expression name="uri" type="constant">https://www.fjordkraft.no/full-kontroll</expression>
+                                                        <property name="targetWindow">_blank</property>
+                                                    </structure>
+                                                </list-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                </grid>
+                                <grid id="726">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <column id="727"/>
+                                    <column id="728">
+                                        <property name="width">1in</property>
+                                    </column>
+                                    <row id="729">
+                                        <property name="borderBottomColor">#808080</property>
+                                        <property name="borderBottomStyle">solid</property>
+                                        <property name="borderBottomWidth">1px</property>
+                                        <cell id="730">
+                                            <label id="732">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="paddingTop">15pt</property>
+                                                <property name="paddingBottom">5pt</property>
+                                                <property name="textAlign">left</property>
+                                                <text-property name="text">Kundesaldo når denne faktura er betalt</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="731">
+                                            <data id="911">
+                                                <property name="paddingTop">15pt</property>
+                                                <property name="paddingBottom">5pt</property>
+                                                <property name="textAlign">right</property>
+                                                <property name="dataSet">TransactionInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">CurrentClaim</property>
+                                                        <text-property name="displayName">CurrentClaim</text-property>
+                                                        <expression name="expression" type="javascript">var value = parseFloat(dataSetRow["OutgoingBalance"]) + parseFloat(dataSetRow["CurrentClaim"]);&#13;
+"kr. " + formatMoney(value, 2, '', '.', ',')</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">CurrentClaim</property>
+                                            </data>
+                                        </cell>
+                                    </row>
+                                </grid>
+                                <label id="725">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontSize">7.5pt</property>
+                                    <property name="fontStyle">italic</property>
+                                    <property name="paddingTop">5pt</property>
+                                    <text-property name="text">Gjennom året vil denne saldoen endre seg og det er forventet at saldoen går mot 0 ved en12 mnd periode. Dersom forbruket er vesentlig høyere/lavere, gjør vi endring på ditt faste beløp.</text-property>
+                                </label>
+                            </cell>
+                            <cell id="912">
+                                <property name="paddingTop">30pt</property>
+                                <property name="paddingLeft">10pt</property>
+                                <property name="textAlign">right</property>
+                                <image id="720">
+                                    <property name="height">1.6041666666666667in</property>
+                                    <property name="width">2.15625in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">barChart.png</property>
+                                </image>
                             </cell>
                         </row>
                     </grid>
                 </cell>
             </row>
-            <row id="156">
-                <property name="height">2.3229166666666665in</property>
-                <cell id="157">
-                    <property name="colSpan">3</property>
-                    <property name="rowSpan">1</property>
+            <row id="1401">
+                <property name="height">1.5833333333333333in</property>
+                <cell id="1402">
+                    <property name="paddingTop">1pt</property>
+                    <property name="paddingLeft">0pt</property>
+                    <property name="paddingRight">0pt</property>
                     <grid id="705">
                         <property name="dataSet">PaymentInfo</property>
                         <list-property name="visibility">
@@ -4561,7 +4576,7 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
                                         <property name="textAlign">center</property>
-                                        <text-property name="text">Trekkdato</text-property>
+                                        <text-property name="text">Betalingsfrist</text-property>
                                     </label>
                                 </cell>
                                 <cell id="170">
@@ -4571,7 +4586,7 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                         <property name="fontStyle">italic</property>
                                         <property name="paddingRight">10pt</property>
                                         <property name="textAlign">right</property>
-                                        <text-property name="text">Beløp</text-property>
+                                        <text-property name="text">Å betale</text-property>
                                     </label>
                                 </cell>
                             </row>
@@ -4659,2104 +4674,22 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                     </table>
                 </cell>
             </row>
-            <row id="160">
-                <property name="height">2.15625in</property>
-                <cell id="161">
-                    <property name="colSpan">2</property>
-                    <property name="rowSpan">1</property>
+            <row id="1396">
+                <property name="height">1.8541666666666667in</property>
+                <cell id="1397">
                     <property name="paddingTop">1pt</property>
                     <property name="paddingLeft">0pt</property>
                     <property name="paddingRight">0pt</property>
-                    <image id="667">
-                        <property name="height">5cm</property>
-                        <property name="width">11cm</property>
-                        <expression name="altText" type="javascript">""</expression>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if(null == params["campaignImage"].value || "" == params["campaignImage"].value) &#13;
-{&#13;
-	true;&#13;
-} else {&#13;
-	false;&#13;
-}</expression>
-                            </structure>
-                        </list-property>
+                    <property name="textAlign">center</property>
+                    <image id="1400">
+                        <property name="height">3.5cm</property>
+                        <property name="width">17.5cm</property>
                         <property name="source">expr</property>
-                        <property name="fitToContainer">true</property>
                         <expression name="valueExpr">org.apache.commons.codec.binary.Base64.decodeBase64(params["campaignImage"])</expression>
                     </image>
                 </cell>
-                <cell id="163">
-                    <extended-item extensionName="Chart" id="383">
-                        <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
-  <Version>2.6.1</Version>
-  <Type>Pie Chart</Type>
-  <SubType>Standard</SubType>
-  <Block>
-    <Children xsi:type="layout:TitleBlock">
-      <Bounds>
-        <Left>0.0</Left>
-        <Top>0.0</Top>
-        <Width>0.0</Width>
-        <Height>0.0</Height>
-      </Bounds>
-      <Insets>
-        <Top>3.0</Top>
-        <Left>3.0</Left>
-        <Bottom>0.0</Bottom>
-        <Right>3.0</Right>
-      </Insets>
-      <Row>-1</Row>
-      <Column>-1</Column>
-      <Rowspan>-1</Rowspan>
-      <Columnspan>-1</Columnspan>
-      <Outline>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Outline>
-      <Visible>true</Visible>
-      <Cursor>
-        <Type>Auto</Type>
-      </Cursor>
-      <Label>
-        <Caption>
-          <Value>Fordeling strøm og nettleie denne perioden</Value>
-          <Font>
-            <Name>Fjordkraft Neo Sans</Name>
-            <Size>8.0</Size>
-            <Bold>true</Bold>
-            <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
-            </Alignment>
-          </Font>
-        </Caption>
-        <Background xsi:type="attribute:ColorDefinition">
-          <Transparency>0</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Background>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>5.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>5.0</Right>
-        </Insets>
-        <Visible>true</Visible>
-      </Label>
-    </Children>
-    <Children xsi:type="layout:Plot">
-      <Bounds>
-        <Left>0.0</Left>
-        <Top>0.0</Top>
-        <Width>0.0</Width>
-        <Height>0.0</Height>
-      </Bounds>
-      <Insets>
-        <Top>3.0</Top>
-        <Left>3.0</Left>
-        <Bottom>3.0</Bottom>
-        <Right>3.0</Right>
-      </Insets>
-      <Row>-1</Row>
-      <Column>-1</Column>
-      <Rowspan>-1</Rowspan>
-      <Columnspan>-1</Columnspan>
-      <Outline>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Outline>
-      <Visible>true</Visible>
-      <HorizontalSpacing>5</HorizontalSpacing>
-      <VerticalSpacing>5</VerticalSpacing>
-      <ClientArea>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>0</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>0.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>0.0</Right>
-        </Insets>
-      </ClientArea>
-    </Children>
-    <Children xsi:type="layout:Legend">
-      <Bounds>
-        <Left>0.0</Left>
-        <Top>0.0</Top>
-        <Width>0.0</Width>
-        <Height>0.0</Height>
-      </Bounds>
-      <Insets>
-        <Top>3.0</Top>
-        <Left>3.0</Left>
-        <Bottom>3.0</Bottom>
-        <Right>3.0</Right>
-      </Insets>
-      <Row>-1</Row>
-      <Column>-1</Column>
-      <Rowspan>-1</Rowspan>
-      <Columnspan>-1</Columnspan>
-      <Outline>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Outline>
-      <Visible>false</Visible>
-      <Cursor>
-        <Type>Auto</Type>
-      </Cursor>
-      <ClientArea>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>0</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>2.0</Top>
-          <Left>2.0</Left>
-          <Bottom>2.0</Bottom>
-          <Right>2.0</Right>
-        </Insets>
-      </ClientArea>
-      <Text>
-        <Value></Value>
-        <Font>
-          <Name>Fjordkraft Neo Sans</Name>
-          <Size>7.0</Size>
-          <Alignment/>
-        </Font>
-      </Text>
-      <Orientation>Vertical</Orientation>
-      <Direction>Left_Right</Direction>
-      <Separator>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Separator>
-      <Position>Below</Position>
-      <ItemType>Categories</ItemType>
-      <Title>
-        <Caption>
-          <Value></Value>
-          <Font>
-            <Name>Fjordkraft Neo Sans</Name>
-            <Size>7.0</Size>
-            <Alignment/>
-          </Font>
-        </Caption>
-        <Background xsi:type="attribute:ColorDefinition">
-          <Transparency>0</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Background>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>2.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>3.0</Right>
-        </Insets>
-        <Visible>true</Visible>
-      </Title>
-      <TitlePosition>Above</TitlePosition>
-    </Children>
-    <Bounds>
-      <Left>0.0</Left>
-      <Top>0.0</Top>
-      <Width>186.0</Width>
-      <Height>130.0</Height>
-    </Bounds>
-    <Insets>
-      <Top>3.0</Top>
-      <Left>3.0</Left>
-      <Bottom>0.0</Bottom>
-      <Right>3.0</Right>
-    </Insets>
-    <Row>-1</Row>
-    <Column>-1</Column>
-    <Rowspan>-1</Rowspan>
-    <Columnspan>-1</Columnspan>
-    <Outline>
-      <Style>Solid</Style>
-      <Thickness>1</Thickness>
-      <Color>
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>0</Green>
-        <Blue>0</Blue>
-      </Color>
-      <Visible>false</Visible>
-    </Outline>
-    <Visible>true</Visible>
-    <Cursor>
-      <Type>Auto</Type>
-    </Cursor>
-  </Block>
-  <Dimension>Two_Dimensional_With_Depth</Dimension>
-  <Units>Points</Units>
-  <SeriesThickness>10.0</SeriesThickness>
-  <GridColumnCount>0</GridColumnCount>
-  <ExtendedProperties>
-    <Name>enable.area.alt</Name>
-    <Value>false</Value>
-  </ExtendedProperties>
-  <SampleData>
-    <BaseSampleData>
-      <DataSetRepresentation>'A','B','C','D','E'</DataSetRepresentation>
-    </BaseSampleData>
-    <OrthogonalSampleData>
-      <DataSetRepresentation>6,4,12,8,10</DataSetRepresentation>
-      <SeriesDefinitionIndex>0</SeriesDefinitionIndex>
-    </OrthogonalSampleData>
-  </SampleData>
-  <Interactivity>
-    <LegendBehavior>None</LegendBehavior>
-  </Interactivity>
-  <EmptyMessage>
-    <Caption>
-      <Value>This chart contains no data.</Value>
-      <Font>
-        <Alignment>
-          <horizontalAlignment>Center</horizontalAlignment>
-          <verticalAlignment>Center</verticalAlignment>
-        </Alignment>
-      </Font>
-    </Caption>
-    <Background xsi:type="attribute:ColorDefinition">
-      <Transparency>64</Transparency>
-      <Red>127</Red>
-      <Green>127</Green>
-      <Blue>127</Blue>
-    </Background>
-    <Outline>
-      <Color>
-        <Transparency>128</Transparency>
-        <Red>127</Red>
-        <Green>127</Green>
-        <Blue>127</Blue>
-      </Color>
-      <Visible>true</Visible>
-    </Outline>
-    <Insets>
-      <Top>10.0</Top>
-      <Left>10.0</Left>
-      <Bottom>10.0</Bottom>
-      <Right>10.0</Right>
-    </Insets>
-    <Visible>false</Visible>
-  </EmptyMessage>
-  <SeriesDefinitions>
-    <Query>
-      <Definition></Definition>
-    </Query>
-    <SeriesPalette>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>40</Red>
-        <Green>167</Green>
-        <Blue>215</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>220</Red>
-        <Green>67</Green>
-        <Blue>16</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>232</Red>
-        <Green>172</Green>
-        <Blue>57</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>255</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>64</Red>
-        <Green>128</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>170</Red>
-        <Green>85</Green>
-        <Blue>85</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>0</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>192</Red>
-        <Green>192</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>255</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>192</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>7</Red>
-        <Green>146</Green>
-        <Blue>94</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>128</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>255</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>128</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>0</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>64</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>80</Red>
-        <Green>240</Green>
-        <Blue>120</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>64</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>0</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>0</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>64</Green>
-        <Blue>0</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>0</Green>
-        <Blue>0</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>255</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>0</Blue>
-      </Entries>
-    </SeriesPalette>
-    <SeriesDefinitions>
-      <Query>
-        <Definition></Definition>
-      </Query>
-      <SeriesPalette>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>40</Red>
-          <Green>167</Green>
-          <Blue>215</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>220</Red>
-          <Green>67</Green>
-          <Blue>16</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>232</Red>
-          <Green>172</Green>
-          <Blue>57</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>255</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>64</Red>
-          <Green>128</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>170</Red>
-          <Green>85</Green>
-          <Blue>85</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>0</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>192</Red>
-          <Green>192</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>192</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>7</Red>
-          <Green>146</Green>
-          <Blue>94</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>128</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>128</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>0</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>64</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>80</Red>
-          <Green>240</Green>
-          <Blue>120</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>64</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>0</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>0</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>64</Green>
-          <Blue>0</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>0</Blue>
-        </Entries>
-      </SeriesPalette>
-      <Series xsi:type="type:PieSeries">
-        <Visible>true</Visible>
-        <Label>
-          <Caption>
-            <Value></Value>
-            <Font>
-              <Alignment/>
-            </Font>
-          </Caption>
-          <Background xsi:type="attribute:ColorDefinition">
-            <Transparency>0</Transparency>
-            <Red>255</Red>
-            <Green>255</Green>
-            <Blue>255</Blue>
-          </Background>
-          <Outline>
-            <Style>Solid</Style>
-            <Thickness>1</Thickness>
-            <Color>
-              <Transparency>255</Transparency>
-              <Red>0</Red>
-              <Green>0</Green>
-              <Blue>0</Blue>
-            </Color>
-            <Visible>false</Visible>
-          </Outline>
-          <Insets>
-            <Top>0.0</Top>
-            <Left>2.0</Left>
-            <Bottom>0.0</Bottom>
-            <Right>3.0</Right>
-          </Insets>
-          <Visible>false</Visible>
-        </Label>
-        <DataDefinition>
-          <Definition>row[&quot;Amount&quot;]</Definition>
-          <Grouping>
-            <GroupType>Text</GroupType>
-            <AggregateExpression>Sum</AggregateExpression>
-          </Grouping>
-        </DataDefinition>
-        <DataPoint>
-          <Components>
-            <Type>Orthogonal_Value</Type>
-          </Components>
-          <Separator>, </Separator>
-        </DataPoint>
-        <LabelPosition>Outside</LabelPosition>
-        <Stacked>false</Stacked>
-        <Triggers>
-          <Condition>onmouseover</Condition>
-          <Action>
-            <Type>Show_Tooltip</Type>
-            <Value xsi:type="attribute:TooltipValue">
-              <Text></Text>
-              <Delay>200</Delay>
-            </Value>
-          </Action>
-        </Triggers>
-        <Explosion>0</Explosion>
-        <Title>
-          <Caption>
-            <Value></Value>
-            <Font>
-              <Size>16.0</Size>
-              <Bold>true</Bold>
-              <Alignment/>
-            </Font>
-          </Caption>
-          <Background xsi:type="attribute:ColorDefinition">
-            <Transparency>0</Transparency>
-            <Red>255</Red>
-            <Green>255</Green>
-            <Blue>255</Blue>
-          </Background>
-          <Outline>
-            <Style>Solid</Style>
-            <Thickness>1</Thickness>
-            <Color>
-              <Transparency>255</Transparency>
-              <Red>0</Red>
-              <Green>0</Green>
-              <Blue>0</Blue>
-            </Color>
-            <Visible>false</Visible>
-          </Outline>
-          <Insets>
-            <Top>0.0</Top>
-            <Left>2.0</Left>
-            <Bottom>0.0</Bottom>
-            <Right>3.0</Right>
-          </Insets>
-          <Visible>false</Visible>
-        </Title>
-        <TitlePosition>Below</TitlePosition>
-        <LeaderLineAttributes>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Visible>false</Visible>
-        </LeaderLineAttributes>
-        <LeaderLineStyle>Stretch_To_Side</LeaderLineStyle>
-        <LeaderLineLength>10.0</LeaderLineLength>
-        <Ratio>0.5</Ratio>
-        <Rotation>0.0</Rotation>
-        <Clockwise>true</Clockwise>
-      </Series>
-      <Grouping>
-        <GroupType>Text</GroupType>
-        <AggregateExpression>Sum</AggregateExpression>
-      </Grouping>
-    </SeriesDefinitions>
-    <Series>
-      <Visible>true</Visible>
-      <Label>
-        <Caption>
-          <Value></Value>
-          <Font>
-            <Alignment/>
-          </Font>
-        </Caption>
-        <Background xsi:type="attribute:ColorDefinition">
-          <Transparency>0</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Background>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>2.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>3.0</Right>
-        </Insets>
-        <Visible>false</Visible>
-      </Label>
-      <DataDefinition>
-        <Definition>row[&quot;Type&quot;] + &quot;: &quot; + formatMoney(row[&quot;Amount&quot;], 2, '', '.', ',')</Definition>
-      </DataDefinition>
-      <SeriesIdentifier></SeriesIdentifier>
-      <DataPoint>
-        <Components>
-          <Type>Orthogonal_Value</Type>
-        </Components>
-        <Separator>, </Separator>
-      </DataPoint>
-      <LabelPosition>Outside</LabelPosition>
-      <Stacked>false</Stacked>
-    </Series>
-    <Grouping>
-      <Enabled>true</Enabled>
-      <GroupType>Text</GroupType>
-      <AggregateExpression>Sum</AggregateExpression>
-    </Grouping>
-  </SeriesDefinitions>
-  <Coverage>0.7</Coverage>
-</model:ChartWithoutAxes>
-]]></xml-property>
-                        <property name="outputFormat">SVG</property>
-                        <property name="inheritColumns">false</property>
-                        <property name="marginTop">-15pt</property>
-                        <property name="marginBottom">-15pt</property>
-                        <property name="paddingTop">20pt</property>
-                        <property name="height">108pt</property>
-                        <property name="width">184.5pt</property>
-                        <property name="dataSet">PieChartInfo</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if(0.0 == row["Amount"])&#13;
-	true;&#13;
-else&#13;
-	false;</expression>
-                            </structure>
-                        </list-property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">Type</property>
-                                <text-property name="displayName">Type</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Type"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">Amount</property>
-                                <text-property name="displayName">Amount</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Amount"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                    </extended-item>
-                    <extended-item extensionName="Chart" id="1395">
-                        <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
-  <Version>2.6.1</Version>
-  <Type>Pie Chart</Type>
-  <SubType>Standard</SubType>
-  <Block>
-    <Children xsi:type="layout:TitleBlock">
-      <Bounds>
-        <Left>0.0</Left>
-        <Top>0.0</Top>
-        <Width>0.0</Width>
-        <Height>0.0</Height>
-      </Bounds>
-      <Insets>
-        <Top>3.0</Top>
-        <Left>3.0</Left>
-        <Bottom>3.0</Bottom>
-        <Right>3.0</Right>
-      </Insets>
-      <Row>-1</Row>
-      <Column>-1</Column>
-      <Rowspan>-1</Rowspan>
-      <Columnspan>-1</Columnspan>
-      <Outline>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Outline>
-      <Visible>false</Visible>
-      <Cursor>
-        <Type>Auto</Type>
-      </Cursor>
-      <Label>
-        <Caption>
-          <Value>Fordeling strøm og nettleie denne perioden</Value>
-          <Font>
-            <Name>Fjordkraft Neo Sans</Name>
-            <Size>8.0</Size>
-            <Bold>true</Bold>
-            <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
-            </Alignment>
-          </Font>
-        </Caption>
-        <Background xsi:type="attribute:ColorDefinition">
-          <Transparency>0</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Background>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>2.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>3.0</Right>
-        </Insets>
-        <Visible>true</Visible>
-      </Label>
-    </Children>
-    <Children xsi:type="layout:Plot">
-      <Bounds>
-        <Left>0.0</Left>
-        <Top>0.0</Top>
-        <Width>0.0</Width>
-        <Height>0.0</Height>
-      </Bounds>
-      <Insets>
-        <Top>3.0</Top>
-        <Left>3.0</Left>
-        <Bottom>3.0</Bottom>
-        <Right>3.0</Right>
-      </Insets>
-      <Row>-1</Row>
-      <Column>-1</Column>
-      <Rowspan>-1</Rowspan>
-      <Columnspan>-1</Columnspan>
-      <Outline>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Outline>
-      <Visible>true</Visible>
-      <HorizontalSpacing>5</HorizontalSpacing>
-      <VerticalSpacing>5</VerticalSpacing>
-      <ClientArea>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>0</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>0.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>0.0</Right>
-        </Insets>
-      </ClientArea>
-    </Children>
-    <Children xsi:type="layout:Legend">
-      <Bounds>
-        <Left>0.0</Left>
-        <Top>0.0</Top>
-        <Width>0.0</Width>
-        <Height>0.0</Height>
-      </Bounds>
-      <Insets>
-        <Top>0.0</Top>
-        <Left>0.0</Left>
-        <Bottom>0.0</Bottom>
-        <Right>0.0</Right>
-      </Insets>
-      <Row>-1</Row>
-      <Column>-1</Column>
-      <Rowspan>-1</Rowspan>
-      <Columnspan>-1</Columnspan>
-      <Outline>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Outline>
-      <Visible>true</Visible>
-      <Cursor>
-        <Type>Auto</Type>
-      </Cursor>
-      <ClientArea>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>0</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>2.0</Left>
-          <Bottom>2.0</Bottom>
-          <Right>2.0</Right>
-        </Insets>
-      </ClientArea>
-      <Text>
-        <Value></Value>
-        <Font>
-          <Name>Fjordkraft Neo Sans</Name>
-          <Size>7.0</Size>
-          <Alignment/>
-        </Font>
-      </Text>
-      <Orientation>Vertical</Orientation>
-      <Direction>Left_Right</Direction>
-      <Separator>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Separator>
-      <Position>Above</Position>
-      <ItemType>Categories</ItemType>
-      <Title>
-        <Caption>
-          <Value></Value>
-          <Font>
-            <Name>Fjordkraft Neo Sans</Name>
-            <Size>7.0</Size>
-            <Alignment/>
-          </Font>
-        </Caption>
-        <Background xsi:type="attribute:ColorDefinition">
-          <Transparency>0</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Background>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>2.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>3.0</Right>
-        </Insets>
-        <Visible>true</Visible>
-      </Title>
-      <TitlePosition>Above</TitlePosition>
-      <MaxPercent>1.0</MaxPercent>
-      <TitlePercent>0.01</TitlePercent>
-    </Children>
-    <Bounds>
-      <Left>0.0</Left>
-      <Top>0.0</Top>
-      <Width>186.0</Width>
-      <Height>130.0</Height>
-    </Bounds>
-    <Insets>
-      <Top>3.0</Top>
-      <Left>3.0</Left>
-      <Bottom>3.0</Bottom>
-      <Right>3.0</Right>
-    </Insets>
-    <Row>-1</Row>
-    <Column>-1</Column>
-    <Rowspan>-1</Rowspan>
-    <Columnspan>-1</Columnspan>
-    <Outline>
-      <Style>Solid</Style>
-      <Thickness>1</Thickness>
-      <Color>
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>0</Green>
-        <Blue>0</Blue>
-      </Color>
-      <Visible>false</Visible>
-    </Outline>
-    <Visible>true</Visible>
-    <Cursor>
-      <Type>Auto</Type>
-    </Cursor>
-  </Block>
-  <Dimension>Two_Dimensional</Dimension>
-  <Units>Points</Units>
-  <SeriesThickness>10.0</SeriesThickness>
-  <GridColumnCount>0</GridColumnCount>
-  <ExtendedProperties>
-    <Name>enable.area.alt</Name>
-    <Value>false</Value>
-  </ExtendedProperties>
-  <SampleData>
-    <BaseSampleData>
-      <DataSetRepresentation>'A','B','C','D','E'</DataSetRepresentation>
-    </BaseSampleData>
-    <OrthogonalSampleData>
-      <DataSetRepresentation>6,4,12,8,10</DataSetRepresentation>
-      <SeriesDefinitionIndex>0</SeriesDefinitionIndex>
-    </OrthogonalSampleData>
-  </SampleData>
-  <Interactivity>
-    <LegendBehavior>None</LegendBehavior>
-  </Interactivity>
-  <EmptyMessage>
-    <Caption>
-      <Value>This chart contains no data.</Value>
-      <Font>
-        <Alignment>
-          <horizontalAlignment>Center</horizontalAlignment>
-          <verticalAlignment>Center</verticalAlignment>
-        </Alignment>
-      </Font>
-    </Caption>
-    <Background xsi:type="attribute:ColorDefinition">
-      <Transparency>64</Transparency>
-      <Red>127</Red>
-      <Green>127</Green>
-      <Blue>127</Blue>
-    </Background>
-    <Outline>
-      <Color>
-        <Transparency>128</Transparency>
-        <Red>127</Red>
-        <Green>127</Green>
-        <Blue>127</Blue>
-      </Color>
-      <Visible>true</Visible>
-    </Outline>
-    <Insets>
-      <Top>10.0</Top>
-      <Left>10.0</Left>
-      <Bottom>10.0</Bottom>
-      <Right>10.0</Right>
-    </Insets>
-    <Visible>false</Visible>
-  </EmptyMessage>
-  <SeriesDefinitions>
-    <Query>
-      <Definition></Definition>
-    </Query>
-    <SeriesPalette>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>40</Red>
-        <Green>167</Green>
-        <Blue>215</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>220</Red>
-        <Green>67</Green>
-        <Blue>16</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>232</Red>
-        <Green>172</Green>
-        <Blue>57</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>255</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>64</Red>
-        <Green>128</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>170</Red>
-        <Green>85</Green>
-        <Blue>85</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>0</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>192</Red>
-        <Green>192</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>255</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>192</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>7</Red>
-        <Green>146</Green>
-        <Blue>94</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>128</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>255</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>128</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>0</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>64</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>80</Red>
-        <Green>240</Green>
-        <Blue>120</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>64</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>0</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>0</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>64</Green>
-        <Blue>0</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>0</Green>
-        <Blue>0</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>255</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>0</Blue>
-      </Entries>
-    </SeriesPalette>
-    <SeriesDefinitions>
-      <Query>
-        <Definition></Definition>
-      </Query>
-      <SeriesPalette>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>40</Red>
-          <Green>167</Green>
-          <Blue>215</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>220</Red>
-          <Green>67</Green>
-          <Blue>16</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>232</Red>
-          <Green>172</Green>
-          <Blue>57</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>255</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>64</Red>
-          <Green>128</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>170</Red>
-          <Green>85</Green>
-          <Blue>85</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>0</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>192</Red>
-          <Green>192</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>192</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>7</Red>
-          <Green>146</Green>
-          <Blue>94</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>128</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>128</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>0</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>64</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>80</Red>
-          <Green>240</Green>
-          <Blue>120</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>64</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>0</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>0</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>64</Green>
-          <Blue>0</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>0</Blue>
-        </Entries>
-      </SeriesPalette>
-      <Series xsi:type="type:PieSeries">
-        <Visible>false</Visible>
-        <Label>
-          <Caption>
-            <Value></Value>
-            <Font>
-              <Alignment/>
-            </Font>
-          </Caption>
-          <Background xsi:type="attribute:ColorDefinition">
-            <Transparency>0</Transparency>
-            <Red>255</Red>
-            <Green>255</Green>
-            <Blue>255</Blue>
-          </Background>
-          <Outline>
-            <Style>Solid</Style>
-            <Thickness>1</Thickness>
-            <Color>
-              <Transparency>255</Transparency>
-              <Red>0</Red>
-              <Green>0</Green>
-              <Blue>0</Blue>
-            </Color>
-            <Visible>false</Visible>
-          </Outline>
-          <Insets>
-            <Top>0.0</Top>
-            <Left>2.0</Left>
-            <Bottom>0.0</Bottom>
-            <Right>3.0</Right>
-          </Insets>
-          <Visible>false</Visible>
-        </Label>
-        <DataDefinition>
-          <Definition>row[&quot;Amount&quot;]</Definition>
-          <Grouping>
-            <GroupType>Text</GroupType>
-            <AggregateExpression>Sum</AggregateExpression>
-          </Grouping>
-        </DataDefinition>
-        <SeriesIdentifier></SeriesIdentifier>
-        <DataPoint>
-          <Components>
-            <Type>Orthogonal_Value</Type>
-          </Components>
-          <Separator>, </Separator>
-        </DataPoint>
-        <LabelPosition>Outside</LabelPosition>
-        <Stacked>false</Stacked>
-        <Triggers>
-          <Condition>onmouseover</Condition>
-          <Action>
-            <Type>Show_Tooltip</Type>
-            <Value xsi:type="attribute:TooltipValue">
-              <Text></Text>
-              <Delay>200</Delay>
-            </Value>
-          </Action>
-        </Triggers>
-        <Explosion>0</Explosion>
-        <Title>
-          <Caption>
-            <Value></Value>
-            <Font>
-              <Size>16.0</Size>
-              <Bold>true</Bold>
-              <Alignment/>
-            </Font>
-          </Caption>
-          <Background xsi:type="attribute:ColorDefinition">
-            <Transparency>0</Transparency>
-            <Red>255</Red>
-            <Green>255</Green>
-            <Blue>255</Blue>
-          </Background>
-          <Outline>
-            <Style>Solid</Style>
-            <Thickness>1</Thickness>
-            <Color>
-              <Transparency>255</Transparency>
-              <Red>0</Red>
-              <Green>0</Green>
-              <Blue>0</Blue>
-            </Color>
-            <Visible>false</Visible>
-          </Outline>
-          <Insets>
-            <Top>0.0</Top>
-            <Left>2.0</Left>
-            <Bottom>0.0</Bottom>
-            <Right>3.0</Right>
-          </Insets>
-          <Visible>false</Visible>
-        </Title>
-        <TitlePosition>Below</TitlePosition>
-        <LeaderLineAttributes>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Visible>false</Visible>
-        </LeaderLineAttributes>
-        <LeaderLineStyle>Stretch_To_Side</LeaderLineStyle>
-        <LeaderLineLength>10.0</LeaderLineLength>
-        <Ratio>0.5</Ratio>
-        <Rotation>0.0</Rotation>
-        <Clockwise>true</Clockwise>
-      </Series>
-      <Grouping>
-        <GroupType>Text</GroupType>
-        <AggregateExpression>Sum</AggregateExpression>
-      </Grouping>
-    </SeriesDefinitions>
-    <Series>
-      <Visible>true</Visible>
-      <Label>
-        <Caption>
-          <Value></Value>
-          <Font>
-            <Alignment/>
-          </Font>
-        </Caption>
-        <Background xsi:type="attribute:ColorDefinition">
-          <Transparency>0</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Background>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>2.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>3.0</Right>
-        </Insets>
-        <Visible>false</Visible>
-      </Label>
-      <DataDefinition>
-        <Definition>row[&quot;Type&quot;] + &quot;: &quot; + formatMoney(row[&quot;Amount&quot;], 2, '', '.', ',')</Definition>
-      </DataDefinition>
-      <SeriesIdentifier></SeriesIdentifier>
-      <DataPoint>
-        <Components>
-          <Type>Orthogonal_Value</Type>
-        </Components>
-        <Separator>, </Separator>
-      </DataPoint>
-      <LabelPosition>Outside</LabelPosition>
-      <Stacked>false</Stacked>
-    </Series>
-    <Grouping>
-      <Enabled>true</Enabled>
-      <GroupType>Text</GroupType>
-      <AggregateExpression>Sum</AggregateExpression>
-    </Grouping>
-  </SeriesDefinitions>
-</model:ChartWithoutAxes>
-]]></xml-property>
-                        <property name="outputFormat">SVG</property>
-                        <property name="inheritColumns">false</property>
-                        <property name="paddingTop">20pt</property>
-                        <property name="height">42.75pt</property>
-                        <property name="width">185.25pt</property>
-                        <property name="dataSet">PieChartInfo</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if(0.0 == row["Amount"])&#13;
-	true;&#13;
-else&#13;
-	false;</expression>
-                            </structure>
-                        </list-property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">Type</property>
-                                <text-property name="displayName">Type</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Type"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">Amount</property>
-                                <text-property name="displayName">Amount</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Amount"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                    </extended-item>
-                </cell>
             </row>
         </grid>
-        <table id="624">
-            <property name="width">7.1875in</property>
-            <property name="dataSet">ExtraTransactionInfo</property>
-            <list-property name="visibility">
-                <structure>
-                    <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">null == row["TransactionCategory"]</expression>
-                </structure>
-            </list-property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">TransactionSequence</property>
-                    <text-property name="displayName">TransactionSequence</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["TransactionSequence"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">TransactionCategory</property>
-                    <text-property name="displayName">TransactionCategory</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["TransactionCategory"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">Amount</property>
-                    <text-property name="displayName">Amount</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["Amount"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">VatAmount</property>
-                    <text-property name="displayName">VatAmount</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["VatAmount"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">AmountWithVat</property>
-                    <text-property name="displayName">AmountWithVat</text-property>
-                    <expression name="expression" type="javascript">formatMoney(dataSetRow["AmountWithVat"], 2, '', '.', ',')</expression>
-                    <property name="dataType">string</property>
-                    <property name="allowExport">true</property>
-                </structure>
-                <structure>
-                    <property name="name">FreeText</property>
-                    <text-property name="displayName">FreeText</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["FreeText"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">StartDate</property>
-                    <text-property name="displayName">StartDate</text-property>
-                    <expression name="expression" type="javascript">var output;&#13;
-&#13;
-if(null == dataSetRow["StartDate"]) {&#13;
-	output = "";&#13;
-} else {&#13;
-	output = getFormattedDate(dataSetRow["StartDate"]) +"-"+ getFormattedDate(dataSetRow["EndDate"]);&#13;
-}</expression>
-                    <property name="dataType">string</property>
-                    <property name="allowExport">true</property>
-                </structure>
-                <structure>
-                    <property name="name">EndDate</property>
-                    <text-property name="displayName">EndDate</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["EndDate"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">CurrentClaim</property>
-                    <text-property name="displayName">CurrentClaim</text-property>
-                    <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
-                    <property name="dataType">string</property>
-                    <property name="allowExport">true</property>
-                </structure>
-                <structure>
-                    <property name="name">TotalVatAmount</property>
-                    <text-property name="displayName">TotalVatAmount</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["TotalVatAmount"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="640">
-                <property name="width">2in</property>
-            </column>
-            <column id="641">
-                <property name="width">1.6354166666666667in</property>
-            </column>
-            <column id="642">
-                <property name="width">1.6770833333333333in</property>
-            </column>
-            <column id="643">
-                <property name="width">1.3645833333333333in</property>
-            </column>
-            <header>
-                <row id="625">
-                    <property name="borderBottomColor">#B3B3B3</property>
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">0.5pt</property>
-                    <cell id="626">
-                        <label id="644">
-                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                            <property name="textAlign">left</property>
-                            <text-property name="text">Betalingsoversikt</text-property>
-                        </label>
-                    </cell>
-                    <cell id="627">
-                        <label id="645">
-                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                            <property name="textAlign">left</property>
-                            <text-property name="text">Leveringsadresse</text-property>
-                        </label>
-                    </cell>
-                    <cell id="628">
-                        <label id="646">
-                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Periode</text-property>
-                        </label>
-                    </cell>
-                    <cell id="629">
-                        <label id="647">
-                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                            <property name="textAlign">right</property>
-                            <text-property name="text">Beløp</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="630">
-                    <cell id="631">
-                        <data id="649">
-                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                            <property name="resultSetColumn">TransactionCategory</property>
-                        </data>
-                    </cell>
-                    <cell id="632">
-                        <data id="650">
-                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                            <property name="resultSetColumn">FreeText</property>
-                        </data>
-                    </cell>
-                    <cell id="633">
-                        <data id="651">
-                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                            <property name="textAlign">center</property>
-                            <property name="resultSetColumn">StartDate</property>
-                        </data>
-                    </cell>
-                    <cell id="634">
-                        <data id="652">
-                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                            <property name="textAlign">right</property>
-                            <property name="resultSetColumn">AmountWithVat</property>
-                        </data>
-                    </cell>
-                </row>
-            </detail>
-            <footer>
-                <row id="635">
-                    <property name="borderBottomColor">#B3B3B3</property>
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">0.5pt</property>
-                    <property name="borderTopColor">#B3B3B3</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">0.5pt</property>
-                    <cell id="636">
-                        <label id="648">
-                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                            <text-property name="text">Totalt å betale</text-property>
-                        </label>
-                    </cell>
-                    <cell id="637">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <data id="654">
-                            <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
-                            <property name="fontSize">7pt</property>
-                            <property name="fontStyle">italic</property>
-                            <property name="textAlign">right</property>
-                            <property name="dataSet">ExtraTransactionInfo</property>
-                            <list-property name="boundDataColumns">
-                                <structure>
-                                    <property name="name">TransactionSequence</property>
-                                    <text-property name="displayName">TransactionSequence</text-property>
-                                    <expression name="expression" type="javascript">dataSetRow["TransactionSequence"]</expression>
-                                    <property name="dataType">string</property>
-                                </structure>
-                                <structure>
-                                    <property name="name">TransactionCategory</property>
-                                    <text-property name="displayName">TransactionCategory</text-property>
-                                    <expression name="expression" type="javascript">dataSetRow["TransactionCategory"]</expression>
-                                    <property name="dataType">string</property>
-                                </structure>
-                                <structure>
-                                    <property name="name">Amount</property>
-                                    <text-property name="displayName">Amount</text-property>
-                                    <expression name="expression" type="javascript">dataSetRow["Amount"]</expression>
-                                    <property name="dataType">string</property>
-                                </structure>
-                                <structure>
-                                    <property name="name">VatAmount</property>
-                                    <text-property name="displayName">VatAmount</text-property>
-                                    <expression name="expression" type="javascript">dataSetRow["VatAmount"]</expression>
-                                    <property name="dataType">string</property>
-                                </structure>
-                                <structure>
-                                    <property name="name">AmountWithVat</property>
-                                    <text-property name="displayName">AmountWithVat</text-property>
-                                    <expression name="expression" type="javascript">dataSetRow["AmountWithVat"]</expression>
-                                    <property name="dataType">string</property>
-                                </structure>
-                                <structure>
-                                    <property name="name">FreeText</property>
-                                    <text-property name="displayName">FreeText</text-property>
-                                    <expression name="expression" type="javascript">dataSetRow["FreeText"]</expression>
-                                    <property name="dataType">string</property>
-                                </structure>
-                                <structure>
-                                    <property name="name">StartDate</property>
-                                    <text-property name="displayName">StartDate</text-property>
-                                    <expression name="expression" type="javascript">dataSetRow["StartDate"]</expression>
-                                    <property name="dataType">string</property>
-                                </structure>
-                                <structure>
-                                    <property name="name">EndDate</property>
-                                    <text-property name="displayName">EndDate</text-property>
-                                    <expression name="expression" type="javascript">dataSetRow["EndDate"]</expression>
-                                    <property name="dataType">string</property>
-                                </structure>
-                                <structure>
-                                    <property name="name">CurrentClaim</property>
-                                    <text-property name="displayName">CurrentClaim</text-property>
-                                    <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
-                                    <property name="dataType">string</property>
-                                </structure>
-                                <structure>
-                                    <property name="name">TotalVatAmount</property>
-                                    <text-property name="displayName">TotalVatAmount</text-property>
-                                    <expression name="expression" type="javascript">"(Herav MVA " + formatMoney(dataSetRow["TotalVatAmount"], 2, '', '.', ',') + ")"</expression>
-                                    <property name="dataType">string</property>
-                                    <property name="allowExport">true</property>
-                                </structure>
-                            </list-property>
-                            <property name="resultSetColumn">TotalVatAmount</property>
-                        </data>
-                    </cell>
-                    <cell id="639">
-                        <data id="653">
-                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                            <property name="textAlign">right</property>
-                            <property name="resultSetColumn">CurrentClaim</property>
-                        </data>
-                    </cell>
-                </row>
-            </footer>
-        </table>
         <list id="384">
             <property name="pageBreakAfter">always</property>
             <property name="pageBreakBefore">always</property>
@@ -14702,6 +12635,291 @@ etter gjeldende satser.&#13;
                 YBJHZyGuAAAAwLYUggEAAAAAAAAARXBb2E0p3PoFAAAAANVTCAYAAAAAAAAAFGlSGBYRcWzoTx/G/6rw
                 CwAAAAAaohAMAAAAAAAAAKhGhcVhir4AAAAAgIhQCAYAAAAAAAAANOB82PVv/q2cisSG6X/z+Pzae2IA
                 AAAAwFsKwQAAAAAAAACA5r25SeyWrxSPDZ/8z93sBQAAAAB8y/8AwRquEvbPJmMAAAAASUVORK5CYII=
+</property>
+        </structure>
+        <structure>
+            <property name="name">barChart.png</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAAUEAAADjCAIAAACUzzE3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+                YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAED2SURBVHhe7Z2HfxxHduf9n9ifgwJ9vvPp7L092Wff2euP
+                76xby/b5zgI32Ltay1ppvbbXljbZIKm40ipLq0AqkgKYM8Ug5gjmDCYwZxJMIEiEGWCauF/1q35d83pI
+                PlZDCzZY7/P9zKe6purNm+p6lbq6+1f6gwQJUmQJPhwkSLEl+HCQIMWW4MNBghRbgg8HCVJsCT4cJEix
+                JfhwkCDFluDDQYIUW4IPBwlSbAk+HCRIsSX4cJAgxZbgw0GCFFuCDwcJUmwJPhwkSLHlC/Hh9kuXTp08
+                uWdXizdHjxxuCxLk9hZb3QdbBtiH4bpLFi/+bO7cQCCwft06eIT1jS9MBtKHt2zeRKavWrVqx47tJ3LI
+                nt27oCEQuG3ZumUL6vkNZNEi25nBL3rLZeskX4AMmA+TA8NueGBXd08gEIAvLFu2DH6BDtn6yRcgA+PD
+                GDCQA3d0dIi/EQjcycAjyI2PHjlsvWWgZWB8ePnyFbAy9MCBQJYzZ87AO+Aj1lsGWgbAhzs7O2EiGhth
+                eiAQIKgr/oJmxQPgw21tbbAPs3x7HCRIkGqBd8BHvqDLUV+sD3e2rj3ROFLDmWkv9105Z7MFCTK0pDA+
+                LMYPxye/uGX4MD3bvn3fxZaVQkkgMAQopA+3H96x9WvDbpW9DQ+6SgKBoUEhffjU5Be3Dx/mgaskEBga
+                FNKHj41t2DF8mAeukkBgaFBIHz4xrmHn8GEeuEoCgaFBUX24ZfgwD1wlgcDQoJA+fHJsw676YR64Sm5z
+                lq9cU/erv7Z5yzaEx0+YgrAbuCWQ6+VX3xCReuhH97UeFPF+kDaAgPiKOHu27YknfkR/PKChMD5sj2Np
+                axq5p36YBzZ/EeSDD8eiore3X0b46Wee+/KXvuwGbkkeeOCrT/7wx/bg1gWWQIM9yC34UzBm/oJF9Ney
+                MmnydKTZ2bLbHge5mRTSh881jdxbf68HNn8RBBWd3XX48K9/97uPuwFUcbeiI5689LXX30IufAUQQCSF
+                CcoFh8QnmgORHkqOHDmGNJQA4CvE4JASQ/AtDKBvEU8GUHOD7BQPJ6TEyEUxAD/EGQH9NWTkX0cYMZwA
+                wPiaPzeUpOfUXrEf6QZ0bF1gs1VLYXzYHTycHtfQWn+vB66S25wH/uR/P/roYxRGDabBMAdoRIphp5uA
+                IkeP+WjOZ/MJJKBIfIvBOQaoCEMtfYWUnB7DV4QRid+FN7IGUo40CGA4DZfjbxFAYsRDIeJJD8JIj0j6
+                XXxSYvw0so966llE0iH9OgzDIcUjEpBaSlPz54YMF1tWbn/4PrGL4cYcfPURoQQEH75NofqNAKoyOQMH
+                EIlKj/pNKTmevALVneIJ8iWkEWEADdBDYVaIBNx2AJqWk07yNG446OcQgGuhCRCRFEB2iidcsxHgXACJ
+                kQUB1na9nxsy7Pze/cJFNWS3GxbSh89+OuJA/b0euEpuZ8hzyF3hPwjD8TiASLgZexrFIwuqOzorhPEV
+                L0GhIUBMNkyezw6PjKSQ/ByHpMF1e05DsDZ8kvsBOB71lmwMfwVYg/h1/BYfcpbr/dyQQWxAUnJsbIPQ
+                U0gfbvt0xMH6ezxwldzOuJ7DddetxG4XKjooHOJbQE4IN+AhqBt2WwSAMCtEc8Aa3B9FAIcUBtAGNxPe
+                iEjX8agvZc0cpl/nhoaNcbt9BLI/x4dDALF5QcmJccGHiwBVfQqz43EA4Fvu3zDy5HiCujVyAHzFQ1Y3
+                7Ho+pWeFAL0oabjejyIBtSM3GJ8T+EX6IfdX3F+nNMiIgKuNEwP+OTocGgjnVDJ0fPjw8Hs8cJXczrie
+                w47neiAqNMLor1DLEUZ61HI4AGIAdZ7cm+Fbmpe6XkE9HlIiGQ16EUPZXQ3ujyIZoAQI4HdFR02eDzNc
+                Y6CB/gv9IllCvTd8EglIAxnGvwvNNX+OfmhoIDYgKSmwD9vjWC5OGHVk+D0e2Py3vaC+8uUc1Gm+7kIB
+                CF1EBajc+Hzt9bfmL1iEXBT5wANf5ZR8gWdnfGFpTfN6iofwV3T9pr39MmkDUAWdSIMwBSDQwAmQha70
+                PPnDHyOSE+ArfLrG4FtKCZNwyJeF6RAgJVuLlJQRP4pw9ueGkogNSErONI60+RMppA+3Txh1bPg9Htj8
+                QXQCt4H/wCHtcT6Bt6NxsQdB+vvd3Ud62poK68Pu4OF84wjhnEpcJYEbg+EujWzzj2Bp9gswwBZf3cm4
+                Vz31nB4a8+ELjSOO19/tgaskcGPI6+DGIt4DTI9piivi73CEcyoZIj58sbHh1PC7PXCVBAKDi9i8oOTs
+                pyOEnuDDgcDgcLD+Xg+GiA9famw4U3+3B66SQGBwEZsXlLQNDR9ub2o4W3+XB66SQGBwEZsXlAwVH25s
+                OPvQXR64SgKBwUVsXlByrrGwPmyPY+mcOPLcQ3d5YPMHCXIbiLjwqaR9wiibP5FC+nDXxJHnH6rzwOYP
+                EuQ2EOGcSgrsw+7goaOp4cJDdR64SvJzfPKLexoe1LDvueHn188R2QN3OGLzgpILxR1Lu0ZfbWq4+FCd
+                B66SnOxteFDcnH1T2pY1CSWBOxlx4VPJxcYhsccDPnzpoToPXCV5OLe8advwYbdKy+P3Cz2BOxnhnEqG
+                iA93jh9xub7OA1dJHsKLJgL5EZsXlFwaGj7cNWFER32dB1VKchBeNBHIj7jwqaQ9+PCAEF40ESDaD+84
+                PvnFI5803JTsakjbQ3d5cHmI+PD4ho6H6jyoUpKDO+FFE4GbAu8Vr7m+MS1PfOXKueOcXWxeUNJRXB+2
+                x7GUJo0SzqnE5s8td8KLJoLcWK5sXSCuO2g48sajNn9/v9i8oKRr4pB4jseg+/C5ppHirk4lNn+Q4sup
+                xpHiqbEadj58n83f3y8ufCrpLq4PV40fBnssfSc8pD5wY/KvawrnVHK1aajMhy//1b/zoEpJDob8Q+oD
+                NyX/umZ7fZ0HneOHxD6tQffhIf+A68BNyb+uKS6aKOmaEHw4oW1Z056GB8XKYU22ffu+A6884q4oDvkH
+                XAduyqlxDe5qpR7WIJxTydDxYTHRVcIa4MBiwfCm7Pze/ezG5xpHiLs6lbABgaKTf01EVE4lqPysgbhD
+                fXjPE18Rm5k1nJz8ImUPD8cNBB/WCvuwPY4l/7UlsY1ZyenkEfvhIfVBLowfJRYsldj8/f2icipB5bf5
+                EymkD5cnj+oYXueBzd/fL5b7lZxJHrF/ecIocVenEsoeZAgIfFgsWCqx+e9AH64aP0wY0fG1Og9Yg1ju
+                V8KvqwoPxw3kX9cUC65Khsp8GD789ToPWIO7TqjnVOLDlxobTtff7QEbECg6+dc1hXMqGSo+PHFExzfq
+                PGANe+vv9YB9uL2p4Uz9XR6wAYGik39dUzinkqHiw5NGdPx1nQesQSwVKuFX3YSH4wbgw8eH3+MBaxAT
+                XSVDyIf/ps4D1iCWCpXwazI6GhvEHWFK2IBA0bnQOOLk8Ls9YA3COZUMGR8e2fHtOg9Yg1gqVMKP2O9o
+                ahB3hClhAwJFJ/+6pnBOJUPFhyeP7Hi4zgPWIJYKlbAPX7kNHqwZGFzyr2uKC59KCrzX0h7HUp7+VMd3
+                6jyw+fv7xVKhkovJ47l7Jo4ST8xUQtmDDAG5OnGUeJuXEpu/v19c+FRSnjw09njAh/+2zgObP/cj9kuT
+                Rok7wpRQ9iBDQK5OGCmedKXE5ocPZ659aiiwD1eNH6aO6vi7uzxgDWKpUMl5fsT+YD+ULzDo5F/X7Phm
+                nQddEws7lq6ye+pTHY/e7QFrEEuFStLXZAQfvuPJ/8IgcdFESdekoeHD057qeOweD1iDWCpUkj5if7Af
+                BhQYdPK/MKjjW3UedE0ayRqIgvrw01ceG+YBaxDPzleSPmI/+PAdT+f4EWKxQwlrEBdNlHRNHho+PP2Z
+                K9/7dQ9Yg9g+pSR9xH7w4UDu+ZS4aKKka8qQ8OHu6c9e+f5veMAaxDKDkvTx3IP9QK/A4JPfhzPXTTQU
+                2IftcSy9c1648g//0QObP/fjuUuTRgnnVELZgwwByf8gio5H7vKgPONpmz+Rgvrwi1f/8Tc9sPlzP547
+                +HCQAfDhzHUTDeUZz9j8iRTGh93BQ/esn139wX0esAaxfUpJ+njuMB8O5K4D4qKJkq5pT7EGoqA+/OLV
+                f/4tD1iDeC+xkvTx3MGHA7nXRMRFEyVd055mDURhffhfftsD1iCWGZSk283DHo9Afh/OXDfR0DX9GdZA
+                FNOHZ/+888kvecAaRPeoBKfNaoAPZzaja2ADAoUnvw9nrpto6J7+LGsgiunDc17qfPLLHrAG4ZxKqnw4
+                sxldAxsQKDy551PioomS7hnPsQaioD78cueT/9UD1iCKVUnqwxNHiJ3oStiAQOHJ7cPioomS7pnPswai
+                mD782SudP/odD1iDGN4oSX0498OAAoUn95qIuGiipHvWC6yBKIwP2+NYehe83vmT3/XA5u/vF86ppJQ8
+                nrs87SnxlB8llD3IEBDzooLMeocGm7+/X1w0UdI79yWbP5GC+vAbnT/5PQ9s/gHx4cxmdA2UfUCks3Xt
+                3hF/Jl7ReD22PXzfieRFM0EGRIwPZ9Y7NNj88OEnvuRB77yXbf5ECuPD7uChZ+5rnf/6+x6wBjFFUZKO
+                paeMFDvRlbABObly7vj2h+8Tb2a8KcfGJvYH8pN7TaTzyf/iQffsl1gDMfg+/MraPwgEAr8crNepJfhw
+                IHB7Yb1OLcGHA4HbC+t1agk+HAjcXlivU0vw4UDg9sJ6nVqCDwcCtxfW69Si8uEbS83rw31LR3c9+1UP
+                bP7+fnHZVkl52lOUPf+DRHJK/pfQB8kp5ZnPijt7ldj8/f1dDX/oQd/CX9j8iRTm+rA9jqVv6Zju5//U
+                A5sfPpy5cquhPJ19+MWr//SfPKDs+eXihFFHMq+S0WDzB8kt5VnPX3n81z2w+eHDI/7Ig76Fb9v8iRTG
+                h92L2qXF73X/7M88YA0dj9R50DXVPo6se9YLV3/wWx6wATnJ/wLrQE7Mgxn//t97kCoZ9cce9Cx4K9UQ
+                U1AfHt39wp97wBrEO1yUdE0dRdnzP4QgJxcaRxyvv9sDoSfgTfeM58RESUmq5Kn/5UHP579INcQU04eX
+                jOl+8S88YA0d373Hg66p9lFG8UMI5CY4DWxATvK//DaQk+6Zz4u7ApWkSp55wIOez99ONcQU14f/0gPW
+                IJ5RpIQfZZT/BuacXGpsEO+gUCL0BLyJ51PyxkANqZLn/tSD0qJ3Uw0xxfThpe93v/R/PWAN4hlFSvhR
+                RsaHf3i/B2xATtobG8Q7KJQIPQFv8j+YUSy4KhkyPvxB90t/5QFruPL9/+ABPwbFPITgx7/rARuQk/wv
+                zgzkBPMpcVegklRDZs1VQ2nxe6yBKIwP2+NYKis/6X75IQ9s/v5+MUVR0jvnRcqe/wbmnNI9caR4fr0S
+                mz9Ibumd/6qYKCmx+XESX/gLDyrLP7D5EymmD6/6pOeVeg9sfvhwZpaiofezn1P2vs/f7PzX/+4BZc8v
+                PRNHiefXK7H5h4T0XTl3+PVHdz5+v3jgQU32jviz9tWTbM6BkN75r4mJkhKbHz6cWXPVUGAfdgcPpeUf
+                9bw63APWIKYoSjAFouw9817vavgDHxID8nLHP+D6yrnju574injIwU1pW9Yk9HiTfz7V/fO/9KC0ZAxr
+                IIrpwys+7nnt6x6wBjFFUYIpEGXvmf9m14iv+JAYkJc73ofb5r27Y/iwW2XfEwN2CnrmviomSkpYg1hw
+                VVJa+j5rIArpw+UVn/S8/g0PWIN47rSS7jn2MShmr0xmA42KxIC83PEvizkxrqFl+DAPhB5v8j8Qqvvl
+                v/KgtOwD1kAU04dXjut58689YA1iiqKke87LlN3slclsoFGRGJCXO96HT41r2FM/zAOhx5v886nuV+o9
+                KC37kDUQxfXhv/GANYgpihJMgSi72SuT2UCjIjEgL3f8S8xPj2torb/XA6HHm/zzKbFYo6S0/CPWQBTT
+                h1d92vPWtzxgDWKKogRTIMpurrNnNtCoSAwAF1tWHnjlkT0ND2o48knDlXPH0+x3vA+f/XTEwfp7PRB6
+                vMk/nxKLNUpKKz5mDURRfbj0i4c9YA3iko+SnrmvU3Zz49TzD3rABpxfP0csmd6UXe56zB0/lm77dMTh
+                4fd4IPR4k38+JRZrlJRXfMIaiML4sD2OJVo7ofT2dzyw+c3t15lZioK+hW9R9sryD8QdUUooO6T1yT8S
+                S6YaLn0+hrKbB5Rn1pw1UPYhIJcG+w7qviXvyYmSDpu/v7/njb/2oLKm0eZPpJg+vG5i6Z1HPLD5c99+
+                bXw4c/FdA2WHiMVSJWea7Lsa8r8opOhyeeKo48Pv8cDmzy19S8fIiZIOmx8+nFmv0RA1N9n8iRTGh93B
+                Q3nN+NI7f+dBqkRMUXTw7df5b5xyV0r1nBrnvHjxG3UesAFFZ9Dvvsw/n+p581selFeOYw1EMX24eULp
+                3e96kCp5+k884Fs38984JRZLlZxmH540ouOv6zxgA4rOoN99mf9BFGKxRkl51aesgSioD08svfeYB6mS
+                zOPyNPQsfIey579xSiyWKjn76QirYdJI8UZFJWxA0bnc2ND20F0eCD3th3ecXz9Hg8iY/0EUYrFGSXl1
+                I2sgCurDk0qjH/eANYh7MpXwrZulZR+KK+9K2ACxWKqkjX14sF/aNuh0NDWcf6jOA9Zw5dzxfc8NF7dG
+                3IAdj99/sWUlZzc+nNnMrCHVkFmv0VBeI7d8F9OH104qjfmeB6xB3JOphG/dzH/ThXhUnZLzjYkPTx0p
+                ntenhA0oOlebGsRtlUpYw6FXH9k+fNgtsfPh+/gqfTyf+n8esAFisUZJec141kAU1Icnl97/ew9Ygxje
+                KMEUiLLnv+ni5PC7PbiQ+vBTHY/e7QEbUHQ6x4+4XF/nAWsQa/5KTk+x972Uln0gdjIrYQPEYo2ScvME
+                1kAUxoftcSzRxumlD/7BA5vf3Lr5fzyorPiQslfWNPa8/k0PKDvkdP3dHlyZmLzEfOZzVx671wPKPgQk
+                /xVyseavpC25vJf/JnaxWKMkWj/F5k+kmD68aUbpo3/ywOaHD2dWjDVUVn5E2aPmJnE3hRLKDhGPuVJy
+                dUJyfXj28+KpxUoo+xCQ0qRRYguaEpu/v1+s+Ss5xz68elzPa1/zgLJDSmMe9yDaONXmT6QwPuwOHsrr
+                pwrnVMIaxHKxktJSe9tXfNOFvHCngQ0Qj7lS0tFory0NwMONu3uOfNKw7dv3iZWb67Gn4UF3RWfwyb3b
+                VKz5K+FLA6UVn4iJkhI2QEz0lGAiyRqIYvrwhmmlj//ZA9YglouV8G1f8Ybtb3vABoiFFiVXmxIfnvkz
+                8RYYJWzAsbENYsHmprgrOoNP7rs+xJq/Er40UF4xVuyCVMIGlD74vgfldVNYA1FYH/7kXzxgDWK5WAnf
+                9lVe3Siu2ilhA8RCi5LO8bYC5X8w6p7H798Jt7xFTk22TyMafHL3w2LNXwlfGsh/A2zpw3/0YMj48IzS
+                2Cc8YA1ieKMEwydrwJomcdVOCRsgFlqUdE1IfDj3iybEUo2SdLPnQIBe/fRn72BIr0GO5HM/jUis+Svh
+                SwP5b4AVEz0lmEiyBqKwPjzuSQ9YQ88b3/QAwydrQO4N26JzUILOh7Lnf9GEWKpRkm72zE374R07v3e/
+                uL/yxmD8n2qAD2fu6NDAGsQeTCWXkiUJMxb7xXc8YANKH/3Ag6Hkwz/0gDWI4Y0S3m4eb/b8rgdsgJik
+                KUl9OPdDFcV7iZWkG8Vyc2DEg2KgriHtjSeO6PhmnQdsgNiDqeRy6sNNpbcf8YANEBM9JZhIsgaimD68
+                caZwTiWsQQxvlPB2c+PDox/zgA0QzqmEfdg8VPGnv+cBGyDuqlVyjjeZ5GZX/TAPTnJXPGlkx7fqPGAD
+                LjxU50FHsqyYfywmJnpK0IGxBqIwPmyPY4m2flb69Mce2Pz9/WJ4oyRaO4GyRxunil2cSig7RAySlZQm
+                2T0efQvf7Pq3/+EBZYeIu2qVXE42meQXMUpXwpdny9OfElvBlVB2SHt9nQd8CqL1k8UOKiWUHSKcU0m0
+                ZbbNn0hhfbjxJx7Y/Ci+zAhHQ7R2ImWPNk4rvf99Dyg7pGN4nQflyezDb8snremg7BBxV60S3iiWX8R1
+                VyUXxlsDyjOeFlvBlVB2iFjrUsKnINowRQyylFB2iFisUVJgH3YHD+VNs0tNP/WANYjhjRLebl5eN0Xs
+                4lTCBnR8vc4DXpfO/0A2sQNMSXsyG8yPuO6qJJ2QT31KvB1aCRsgxjhKeDqT/8YbMdFTgokkayCK6cOb
+                Z5fG/9QD1iCGN0p4u3n+jWIdf1PnQdekxIdzPxxX7ABTwhvF8iOuuypJ79ya/syVx3/dAzZAOKcSx4fz
+                3nhT+vRHHgwZH55TGv+vHrAGMbxRUm6eaA0wPiwX/TWwAR0P13nQNXkkZS/lfjiu2AGmhDeK5UeM0pVc
+                dHebZl4uq4ENEOuFSlIfzj0WExM9JeVNs1gDUUwf3jKnPOHfPGANYnijBMMna0DujWIdf1vnQdeUxIcX
+                vyfubVaSGpCZ6WngwXx+ztbf5UH7wO02FR2sktSHc4/FxERPCSaSrIEoqA9/VprQ4AFrEEtNSni7ef6N
+                YuK2XiWYBFL2/A+CEVVTCdfg/IhRupL0ro/cu03FeqESbsXyj8XERE8JJpKsgSioD88tTRzhAWsQe1CV
+                8FbV/BvFrjw+zIOu6U9T9vwPghHOqWQAfVi8GFlJetfH7JfENlIlbIB44qeSrqQW5R+LiYmeEkwkWQNR
+                VB8uTxrpAWsQwxslvM0t/yaTK9//DQ8wCaTs+R/KJ6Z5SoQPn/7snX3PDXffKXM9DrzySPvhHW5eMUpX
+                wt2g2W2aeamdhtSAzPYPDV1JLco/FhODRCUYhLIGojA+bI9jiXZ8Xp48ygObv79f3JOoJNo8i7JHW+eU
+                xv3IA8oOEZM0Jb1zXqTs+R8iITpYJbzDAXLk9Ue3DR+mZ+fD93W2rrWZcxvQu+CNzp/8Nw8oO0Ts/VBS
+                nv4UZY+2zBaDLCWUHVKeOMKDaPt8mz+RO9WHMyMcDY4P590odvVfftuD3rkvU/b4IRLytioNlB0ipnlK
+                uAyvrJkkHjSl4cCTf0TZIaKHVzKAO9U6/u4uD8oznqbscTsux1kaKDtETPSURNsX2PyJFMaH3cFDecs8
+                1zP1sAYxvFHCW1XzbzIRbydXwi8xNzegZx7WpYENEHcCKOHZ4KlxDXvr7/WADRDOqYQH8/GrQ+XLdFQk
+                BnQ8dq8HXdPssqKZT2Uu3mpgA8RET8uWuayBKKYPb51fnvyUB6xBNI1KUh/Ovcmk80e/4wG/ADn/Deji
+                2fFKeDaY/9WhYpCsJPVh89rB/+lDYoB40piS7unPUvbyplniyq0SNkB0MFq2zGMNRHF9+GkPWIOYpirh
+                LTL5N5l0/vT3PeiZ+5o1wNyA/m0P2ABx5VkJX6A+1zhC3NKkJDUgc2evhnS36cJ3xFs4tCQGXP3H3/Sg
+                e+bzlD3/WEw6p5Kh48NTnvGANYhpqpLyRrtFJv8FavFWVCU98+wLkOObV//WAzZAXHlWwheoLzSOOF5/
+                twepAZl3QWng3ab5X1kmrhsr6Z5ln0aUfywmBolats5nDUQxfXjbgvK05zxgDaJpVMJbZPJfoJa3Iujg
+                Fy/mv3lV7CJW0jXdtoPtTQ1n6u/ygA0Q20iVpLtNF48W21eUsAFirUFJ9+xkScKMxf7NAzZAOqeSIeLD
+                2z8vT3veA9YgmkYlvEUm/wVqeSuCDn7xYv4HiYhn1irhC9QdjQ1iB5USNqDjkbs86JpqFybz73IRaw1K
+                0iWJ3GMxMUjUUlwftsexRC1LytN/5oHN398vmkYl0bZ5lD3/xS3xNjYlfUvHUPb4IQTy6eEaKDvk6g/+
+                swe9n/2csvdMHCV2UCmh7BDxAgol5ZnPUvbKyo/FO1CUUHaIWGtQ0vf5m5Q92r5ADLKUUHZIeeqzHkQt
+                i23+RIrpw7uWlme84IHNDx/OtI4a+PL6APjwC3/hQWX5B5Q9fgiBvKlNA2WHiB2ISnrnvULZ8V/EDiol
+                lB0itqApKc+2DXFl1Vjx5GAllB3S1fAVD/oW/oKyRzsWiEGWEsoOERM9JQX2YXfwUN6xuDzzJQ9Yg2ga
+                lfCluXhhPDNRUcAGiAGeEgwgrQHrpoi93ErYALEDUUn3nJethtyPd776T/d50D3zZ5S9vOKTnte/4QEb
+                0PXUH3tgrmmRAbk3KYhBopbtn7MGorA+POslD1INmdZRRZUPywtXGtgAMcBTUlqWvCwm900zYoiohC9u
+                wYfF7gslbMDVJ77kQfds+9rB/FfI5TUnHfwe+QHw4cw4UcWOhayBKKYP71zSO+cVD1INmZJVkVyaMz4s
+                Vhp0sAFigKckfdFE7ptmxBBRSc/8N2z23I9oFz28Eh4IxK/LedgDNkDcWa2E30GdfyxWnvlzH3YsYg1E
+                MX24ZVnvnNc8SDUI51TCPrxtgVhpUMIGiAGeEgwgrQG5b5qRu5d08EjSPN45c1+eBjag8ye/50HP3Fcp
+                e/7HO4sX0ypJpzO5x2JikKhlx2LWQBTWhz97w4NUQ6Z1VJEs6+e/uCUGeErSh9TnvvlRPqNHR2nRuzb7
+                pJFiG6aS1ICGP/SABwLl5gmldx/1gA0Qr+dXUlr6vjUgdzsuBolKMAhlDcTt7sOnTp6EfXt273KNLu9a
+                3jvvLQ9SDZlRrgr24R0L5SxFBxsgBnhKyqsarQEbZ4k9ZErYgO4X/tyD0uLRVsPUkeKZr0rYANHDK0mX
+                lJonlUY/7gEbIOYpStLpTO6NRmKQqAQdGGsgbncf3rOrBfadOHHCNbq8e0Xv/F94kGrItI4qti2w2Xcs
+                Ks940QM2QLxLTUn6cNxNs8VOeiVsQPeLf+kBjyS7pj0trtwqYQNED6+EBwL5Hysp7spUkr43b/tCuWKs
+                gw3onfuGB+jAWANRGB+2x7FE+9b0zn/bA5vfXJqTo1wNUcsSyh7tXiZnKTooO0Rsn1ISrZ9C2aNtc8Ue
+                MiWUHSJWvJVUVn5M2XvnvCC2cCmh7BDRwytxrpDPEJfNlFB2iJinKImamyh7vElBttEaKDtEDBKVRPtW
+                2/yJFNOHW5v7Pn/PA5sfPpwZ5WrAaaPs0Z7l5dmveEDZIeKJmUqijVMpe7R9Xjnz1E4NlB3S89rXPKis
+                HkfZe+e+JG4GUELZIeLSt5LKig8pe7RpprhspoSyQ8SLeJSk7+tBO57ZgKCBskPEIFEJOjCbP5FijqX3
+                rOpb+J4HqQaxXq8kWdbPvzAunjmsJH0oX+6bLsTL6ZXw21vzvzy1++WHPCgt+5CyD8DjrDJTFQ3pdGbn
+                kvLslz1gA3oXvONBeU/1e5iLOh/eu7pv4RgPUg2ZUa6KZFnfLKplJioa2ADxtD0l6UP5ct90Ie4rVsJv
+                fuyZ+6q46qMkNSAz1dRQWvExZTc+nFl118AGlN57zIP0PQG523ExSFSCDow1EAX14ea+xR96wBp657zq
+                QXnnUmtA7oVxsfVCSXnDdGtA/qcRZXoYDeU1TZTdXOPJ7ABRkRgg5plKnKtreVfmxVqXkvQZ47nb8b6F
+                oz1AB8YaiGL68L7mviUfecAaej973QNe1o8XxuWCmQY2QDzrUEn6MKDcm4TEapkS7oXMXZBP/4kPbEBm
+                qqmhvDq5upb/vXmZ5S4N6XQmdzvet+h9D8p717AGopg+3LqusmysB6yhd+6bHvCyPuYkfZ+/6wEbIJ6T
+                piR9GFDuTUKie1HCvVD+l8WIhxMoSaej+d+5lXn2sAZ+DX/+dlwMEpVgEMoaiGL68P71leXjPGANYq1P
+                CU6bNSD3opq4bKskfZBI/ieZZHoYDdwLmVvwM1ePNaQGZHZfaCg3J6+8yv++nsxyl4Z0KLRnZe+Cd12i
+                g+ujDTNEZBY2oG/ZJx6UW9eyBqIwPmyPY6kc3lxZ2eiBzW+eMC6X+zRErc2UPTqwrm/RGJdrXZeiXctE
+                ZBbKDhGdg5L0IQT5n4KQ6WE08BO2Kys/6X6l3gPKDil98H1BtHVOdPm05EBzeVJDmmbjdMpe4/bd6c9H
+                RzZfu3IO3+ITYcTINM7tu2Ktq7Lsw/LEEXyIcN/Ct/mQgZGUPdq/VjTQFN/f2xOdPxztWx2tnSwSEDYZ
+                ylCME0+0RAfWIxBtmn2t+zKIWpZWJYiJDm20+RMppg8f2VJZPd4lWjelcmr3tZ4OF5EG2PzmCeOyZPuW
+                flQ5vQeuiG/xiTBiRBqcNsqOshYjnOjMvsrxHSIyC2WH8GP7mejUrr6l74tIQfoQgmSDgQnvXenuHHCF
+                0rjYL1CDMz2MBn4JfWXNp+J+DCWUHSKW3AE81n5XLYhP02yaaSMzj2GIjm5BPLyXMGmObhFpQJzbiBjj
+                IKay4mM+RPhaqZMPmWjrXMoet+NVM9Vo05xo35rK6b1Ui0yaQxtFGkBfQUQHc627I9q1PGqejAAaAnwC
+                kcZweLPNn0ghx9Klgxsrqye6RJdO2gyOiDSANYhrTqBy3DwqBKVPmOzHt4s0vCSI8YwY4aDQ49+sEpEG
+                sAGicwBog0zvmomvgm9gTu6gvtZ5IWoxYQSy2EtiDmyAeOyuAW3E3hXXOs64iDTphNw8HPdbHqQGZBoI
+                /BxaMT5EGGUYbZyGz/K0ZyjyBqt6pu/dNo8PEUYMHzKpATy6SRomIdeutHEahl9ZduOLI9HmudGFI1Ai
+                4gEbUFnV5ILEpgk4tdsEdq8ACIg0oHxgA2sgiuvDk1yQsnJos4jMwhpEsYLo8tno0Kb08NAmxPAhwcsJ
+                2UU1GvwIRBrABojOAeCUXyt3cTdCiDTpzY8tS8VVRyVsgOheQHT+EJW5KyJNOiE3D9aUV540pAZkhqno
+                9zCg5UOEYUDUbEZPHF+1qld9RwpKL2qewIcII4YPmdSAZIbct2QMitr81oXDXPIYFlVWfcppGH5lWbYd
+                j9ZOiXYuMeP57sum7GD2iZ0iDWADKqsnuESX7GCzcmqPOdy/Fma4CYjygY2sgSioD2+Kmqe4XLt6AeNb
+                EZmFNYhiBfgtnAA+RBgxfEjwcgLaQjnC0cEGiOViEP9dKSINKq7Nbi5OVq2Zm6H+7uXXOi+6iDSADRDd
+                C8DPmfeAZeJd0l4ouW2I7Lye8FoUkxpQ3TqAax1oRjeWZ7yAsNnZunel8eoVZod238J3KU3aiGRu/7x2
+                9Tz9aFbcZGyAGOMgWd/nb4vIGvBQKLOwSr8FudbRVjmyNdr2uUhAsAGig0F6DCcxI7OH+9dx2AUdGGsg
+                iunDhzZHa6dVcf5IdKZVRmZgDVygNOuwM5CONj6kMCcjcNooO9pCMdPGhBz176YTcjagLO6IUsI3TmXu
+                3Kqc3GWLLBHMCEQawAa4GzAJ9DzmXXCZeJe0Bq+bQts/08WnWvAuUSY1INNAZMe00c6FlVVjzbw0SZM2
+                Iplbx4zPX71QEzcZGyDGOH0L3xYxteGhULYdP7krOrQh2jBDxlfDBogORgk6MNZAFNSHt0Trprv095Vt
+                BkdEGsAauEBt0lqCsQ0nI3gqUmNCfk4ORGMfrkoD2ACxXAx657xaObaNOhN8Imx2holk2+2zlGpc2Gg/
+                He1dhQCym8O9qzCz4m+Z1ABRNc1g/jC8hQeThEiT1uAN08SStRI2QLQORLR+Cq0t47Nmg5JdEbhV2AAx
+                xokuHDV3tnAMBgKI4UOGh0KZdhxErc2oCTj1+ESbLr4l2ADRwUQbZqEfutZzBWfQLG4d2FCzW0IHxhqI
+                Yvrw4a3R+pku10pXs4g0gDWIYlXCUxG0hZU1k11Q9OaK15rJsNnEHN5sxkXVaQAbIO5lAdHBDcjLXQfC
+                iBFp0g3bZsd41RY8k37bAgpUVo1HGCMLNwGRGpBZ7EHGrIg0aQ0225Wr9pDZDNUi0gDHgOrWYfIot+1g
+                RBpnRSD385iqr5yb6fTFY32LRyMcrZ2IQ9jvJrAkQ6HsokzlkFwxrrlGwwaIDgYeiyzWh9EWtDYjLNOs
+                m44OjDUQxfThI9uijbM9YA2iWAnMQGwjummOmcxkTgBPReLB/FQXmBpfEowD2xdhco6hgZuAYAN4DzaD
+                bj9qXZMetq5BDB8S6YbtzKKoWZPbvogC17raQXZNDrABcpSuhAfzmbf+YTZbBbr0jrMiDUgNEK3DrTYi
+                ma2OaKFMH955EbmidVOjHQtxKNKA1IDqG0v7ln6A4Q9cFyMgaEAY8yORxpA8VrLmokzl9F4+NBeZrl7g
+                Q4YNEB0Mep3K0W0IGPtb1wITqE4D0IGxBqIwPmyPYzFXw+FmLlvnV47vcDthINNsslfnIaJYQeWwubpI
+                Eu1dDSfMngAUMSWoHNsuWkfTZB7caMLt9iKnGdxWpwH0FUQsNQFERptm8yHC2WTRvlVx7n7Mu8R6m2mA
+                4jW5aOMsWhWP9qx0ExCUHSJH6dN/ZmpwBpEmfQrCtnk8R60JJrfRyRYRCSg7RLYOGaIDa6NjW2Vk8oT0
+                7HMgKke3Ip6uC0Zb5oJ4RaAqDYhzGxG3BIK+RaOjs6YzNJf6F40W3xLRnuWU3dSB6lGuGYsd2cqHCJta
+                4SQgKDtEdDBofaK2AwiYr3A22w6YmOo0oHJiJ2VnKaYPn9xtrr+5JOvyLMaHRZrN9uo8RLgWMB6L6Ufs
+                ZjSSySbDaYtz4xzvjDbMrGLvqmjbQhPAD104amhZWpUghrJDRMUCqHBwe3wSJlzupjCn4fu/o0ObKis+
+                9YCyQ8QsEdgvqkWkiXYvo/ibvuUAs1l0xSISUHaI7N8yRJvnmEZERPJjGDLbpKLLZzAUQsB8u20+QMBN
+                QMS5jdB9LPbgOsK3uzDR3pX0Ffw8Wj+jimQwTCBsapRIs35GnNuI6GCg0H6RSOXUHpEGVE7IxctijqWP
+                7oi2zHOBx5rOeYvZiohPhK91tPG3DGsQxQqMBjOSMUUMB0bYtALVaUqH7VQk/2BeVCwQnT8c/+Mawmn4
+                3lFeUEHjRWvgWcyaXPV8HrABYpaYJTq8CU2+iEzv3Mrc/GhtdSQ6vVukAWyAaB2A2KAST1CPizTOikCt
+                2USriTQ/jenMoU2YULgJCDaAFuqplbwevJ7P8J75uA7MqgJ17OIxVBsYYCrPxWMmRqRJXn8L3N6FMN04
+                Tmg8ikThi28JVH7WQBTTh4/tNBfTHJAS01cKmM0u6DD7et0EBGsQrmVoO4C89gTQnArnoDoNTps14Oh2
+                2y5i8lk9gGdMlXKaT4INEBVLCW8y4QUV2HkD4Zk8wwaIqpkF88lsJU7v+sg8mdUdgQP02L3z3hBpQGpA
+                pouzRidiRpKYXFSnSRuR7L1rJ1pMrnh/BVpwfCJGpnG22fBd9dHaydHB9a7rmrsX1k7mBC7cjJaOJHXg
+                FmEDuGu5JYaKDx9vibYvdDFLERjbIBBvuIEg4CYgWIMoVsPWBVHbQfgeZTcOjJjqNHBda0AyEKDE1xMu
+                d4YNEBXLJVo3zVwZOrIlu9MLFdcacHBz1DzVEM/bzY/1lW3LTfHXgQ0QVRO4ldhQ7sZ4XqRJBwK5n87L
+                E4RbIm1EMpdno+bJlZO7zKX+WMzcEjHVaQAb0LfoA4BaQemzgq8ojQvfvmvqQHUPqYQNSHuXXSsw6kYd
+                ZswgHJGcwKF0rIU1EAX14V1msORycGO0Z5UJ7FoWXTplaF1blSCGNaR+de6QSUnhXcsqp/elX2XgJtAM
+                BODhWxeg86cmHxJdOhntX0/x14MNEJtgjf54ryy3QUZ6ZbL0AvXhLVXj/NZm9mRzpt2vqmEDRA8P4p9M
+                xaxsxwvdLulu09yvy+EJQhb8U7OacGgDmhLxVdoNZi7RK2EDqFk0o19zh9ASbihNZMsSE3nxmBtJpM2o
+                qQPzgS2vmoLBYJzGhQ2wXUtrM5LZ9K4gb2uzTeOADow1EMX04RO7ox2LPWAN7FQoKTMIj8MI4Bf5qyw4
+                bdYAMRDA/PnkbjSfJvuBDVVfVcMG8OA22r8Oc9f4v6ZiWpY9KzkNk17cqjUhpyU3s6SZ+YpJDcjUTg1c
+                g/nSDhl8PTGd+f61fF0HsAHiESvRhhnR7hVmsfDyWZsZ0iuTlffxbMJe2jGXc5xttpXDW+x6EprU9TM5
+                nmEDqFk0CweHNlLYhXbdiUiQNqPHWmzfiD5TcP4Iu6VN48AGUJ00l8ExisRM2KmoZk073jzvRhKo/KyB
+                KKYPn9xj2umWpTTwuC5XL1RO7KKUBGtgp8JP4KxTmC4v8VdZuAmsPRC4dMpow8kQXzmkBiRXjM0aZrwk
+                jsGz2Z3jXGrOwnt00gk5cWADzeFNP4wz7X5VDRsg1rqU8C4XfgpC1fA7Q3T5jDHK6UhTA5LBLQYgPABm
+                MSPhXcs5DZMdiZizHC9GGuje2r6ydeMLR228Q2pA3CwaR615twxGWGannYxPm9FsHQAY0104Sg6MGhid
+                PSATuHVg5xJgZkxohuKwi7m8jLFAJn7I+PBeU9132St1N5JKL6UkWAO3aijoyqm9FIb7IQd/lYWLzwwE
+                qEx3rTBlHffARlWtk+GSGpBUKbsAduGoqYgYOyUL45zAJV0YTybkZv2c7lbFgAITAUwlnMF/FjaAt47R
+                hZDrEU8Q1nFi3qyrfKRZtGORMc2JSQ1IBrdwFXQ45jrKoU0oIsSYEjDDkHQAzGRHIiYxDT22zIP38iFG
+                JaZgnTEIwQbYC7aXTpm/uW8NX781oFkx//1UVWRM2oyiDjh1w/ScvBYDt0wqVZbUAJysXeZanbnUHIdd
+                7KgqE4/KzxqIwviwPY4lajsY7V55U+hquBtD2SFp55xsyagpaTLi7H4bj/Y1LlC0ERQDMZdzq+FyZ2xS
+                aOC+kbtQR8xMDP0MTjkni+Frg6axiIcGdHg94REEY7/AV0m7YI9vIOjbk8R8DdNsLM2MMzVQdgh7hW0s
+                zh8xQ5jYl8y3wqkSqGZDeI+AabxoMS/eI2CmIbR6dND0yTbsEOc2YvYng/3r7HFGTFtAaRww2rffnt1P
+                tQJNZ7qQ1n7aOKRbZzJQSohZtdq1AlXI3GOTqTxGp+mBTJoq2g7a/IkU04fNdHH1zWlday4aOzE2vym+
+                pHNGvFkSzJRgTJqMOGuuP5nsaETiAnV9WEqtE2C/goZMD1k5tMnUhmRhnESmOWluEDfxmHTFjTrNpmpT
+                azZF2SGidbguB9a7ien6DQT9P3fOtwRlh6R94/51tVuxQ5vN4JOTxVC7DDEdXTy9NGuKfb3XutoRadbh
+                MN6J49HKoBAo7ELZIdGmzyyYh5/aSwMiwijfvSJN4MDNaFoHEjFXE88fkVRXAGBTI/2eVQDVzB5nxNTA
+                OE0V5+TdNcXw4f2tre7goXx6f7R3jQeswe2c9ZRP7UsMaHWbBj2pAdVzJIHpkc4eME5YHY85GGXnFYFb
+                JTWgunW4LjAGQ9zkMF2Zz9x2oiQ1INNDouc0ExPRilWnSQ04kQxlW9dh7IqUprj2rubWynTOmFQnh0xq
+                QMa9NfClnbgOGKfqr/SRqTUl9b2E1IBM/dSAys8aiNvdh2EZ7Nu6pepejfKZA2bx4NZhDaJclHDxGQP2
+                NXuQGlA9T1bCE3K0JqJ1V5IaUN06KEkbkfxXRzPjfBczlbCtWFV8uqyYvxXLuLeG9BTk70gy1UMD6h5r
+                IJqbm+Ej7ZfsQ7wGVgbAh3vLZdi3aFHafILymYNofT1gDcK3lXDxDUAjkvEuDc5AIHcFalnmAS+o1F6V
+                VeAYIL1LA1yXsptWLDNQ0pAaICZKOrgEBqAOZOqnBlR+1gA6OjrgIIsXp7OkgZUB8GHIls2bYSUGDGx3
+                +ewhs5vi1mENolyUcPENgAEZ79JQNRDIVA4NqQGZcb4GDCApO18auFVSA3av8qB8yhpgSiDTR2lIDcgU
+                r4b0FOSvA5mvNOB3WQOgThhTTustAy039+Fr4Nq1KLpWiaJKpdJXqfT29pV6+3rKZdQTsvLc+fMLFixw
+                3bh89nDlwEYPKDuo7N/gAX43NSDzrQY2QLQOSgayEcm4t4aqkUjGPTQMmAGD347nrQOicirhSogeeOOG
+                DfCLJYsXY7hqPWqg5VfYFTu7uq5e7ey4cuXy5Y729ssXL106f+Fi27lz4Gxb2+kzZ0+dPn3i5Alw/Pjx
+                o0ePgCOHDx86eODgwQMH9u/fuWP7/PnzYS4G1fDkc4f2dB/e7sGJRES8kotHWyk7AuIrJZQd0n1omwcX
+                j+yj7BeP7hOalVB2iNCsJDXgyL7uQ1s9oOwQoVlJtQHyWw2UHSLilTinIHcdyHylAb+7v7V165Yt1LEt
+                XrzkcvsXMhMm+RV4L1z3SsZ14bdnzhq/PXnqlOu3hw8dIqfd37qvtXXf3r179uzetWvXzpaWndu2blm2
+                bBmMDgQCRPOaNXAfuBJ1h3CuS5cuwdHQWULQccIB0YmiK8XYFoNcCMa8EOugCqkaSyOfGTPHQmPmnlKp
+                O+mi8ZP4cQybsz3zsWPHuFuGY2/fvm0tJgHNsB+yGrIqlpWxrFixYvnyFcuWLYfDQ5bGsmQJhhtGFsWy
+                cCFY+HksaMwg8+eD+fPmzZ87bx6wZfQZ+GzOHGBkdiyzZs2aGTNj5swZM2fMmDEdQKbFMjWWKWDKlMkx
+                UyYbmTRp0sSECRMnWhJpahrPNDY1NTZaPhUyzjJ23Lix48ayfJLIxx8nfPQx+Ijlww8JIR+wvF+D96vI
+                I6ke8ROGRKxNjlizE6E/ZUj+phVbDGNNmYwby6WEjypphNiCdQu8afx4OgvjJ9jzwmcqFnP6zEnEqYTQ
+                CZ46lU43BKc+rgMz4vowk+rGLKors2dTzUEtMpI4HipYLKhxEKqApiqiTsZiqihVV9RbCNXhuDovh6CG
+                Q9avX4debefOHeje0Mmhq0OHB+9A54cuEJ6C7pD6RXSQcCJ0lvCpm3q79VVHBmZNi4RmzhA0BGgC+vr6
+                0ApgGlAuldAWUHMQj9UvwzJYd/HixQsXLlCjANPp/7jjc/zbfejp9+7ZnXT1KBEM1Ldt2wq2btm8ZfPm
+                zZs2YcoBWbdu3dpY4paD2g1uMkx7wS0Fyh9nAacibiA+x0mipiFuFEyLgDOLc2zaAog5+aYNQG1AvUDl
+                IM+3bh/7OerY+FhM/UNN/LTRVFB48thxqL6GWFClTT2PhRwWbgGMp7z/wZgx74PRY8aMHj3mvdGjAeTd
+                995715V3Ut6J5W0hv/gFeEsjb755ExRCP2d/OhEyzDW1St4z/yz5g2Pwf+mPA9OIxE0FtRZUUCgxbgqo
+                MKklQAlTUccODzeHGD/HGYHEbh030Ik3G0+ePh1n05xT68OJ91qnte6a+Grqp+Sf5JyoUKhXqF2oYqhp
+                6KtQ5VD31q9fj3q4aeNG1EnUTKqi6MxQYwFqL+owajLqM9wYdft6box+EZ6MPhJOAdfIerJ1NkcG0od/
+                OWJaCqexYDB2QHtRSpoMtBcATRfaL/zzzs5ODCWuXr2KFoQbjrZzbWfPnj0Ty+kzKLxTp05iXEGCUj2O
+                BoUmC24jQu0ITg+dJ7S13JrgFFKDgjPKbYoZksTNCs56MiiJBySmeTFCTQy1MklDw6OSuLlJBiYQ0x3E
+                TU/cOdDwxLRBPEIhbJeSSDxUSQcsENRgxjRYLh5SrcFV7oi1IZWk02Poj9CfSoT+cdoHUoGwg1FfSG5G
+                wj0hShilzC5nTsGa1PEg5Hs4X+R+OIPWA7duYSfEuaaTTt0pagL1qOSN1KmiyyGHRIUhn8TINOuW8EV4
+                Yywd5JOok6aD7epCvUXtRZ9nhEbClQpV8puOqovnw0UU2+4kTQ+J2wAZMBGKSaWvj4cw3CqlbVPcPEFM
+                C2VAbUBLZSRurUyDBUE1sSTScQUVKKaWoH5hfITWjRq4rFCT5y1WiyP0Ww5mJClAmwtgs/0PkPhPOWL+
+                shUqirhYrMTFxaXHRQpQwvAf14XMWRCnJp6gppKczdtEgg8HCVJsCT4cJEixJfhwkCDFluDDQYIUW4IP
+                BwlSbAk+HCRIsWXAfLjjO3U3xSYNckOZuPV3bopNOqjywYdjv/ylL0+anL6hKsigyGD68NPPPIdKUPer
+                v0agTtgvbia3lJjltdffws/Zg9tDhg//+ne/K9/TL9y1JjZpIlDCxfjAA1+9ceHA65DMHuQQKDly5FjN
+                IsVXyhPU3n75yR/+eGeLfYBRVm7JWqhCkdqD20xqnusBkUHzYZxjnBv4FQIEKoT97oaypnk9MuLTHqsF
+                JfgFFaK34I+gIbMHiQh3rYlNGgvcgPTMX7AIoEhxeIPukZpOe+AI9NxSpwo9+KGsr97SCSIXvYEPX8/a
+                moL2K1uet4nQObIHAyqD5sNolmo2magT3Dlz/UAYp4dKgc46gUiqK24CHOITh3HWftQPxCMZ1NK3UEsx
+                lIAENRgefuOfphgSuAri6StqYikjAlCFBPQr+Iri2T3Ix5is2wh3rYlNGovwGXZphNEssmH8j9wOgcYm
+                +BZ/BPFIc71ycIVzAeQSjW/NEwRB+0LFBUgtJwPoQhGT1exaW/PvsNAfZ6AKkfhRhNlCFAv0I1BTFcJk
+                4S/tXA+IDJoP4y+JkoJQWeCfo+jxLcLwQHJClBciUWR0GhAGiETJigTQ4554qlKUBmH6iWxpkifgWyih
+                os/+tE0aC34CZlB6TkO/hUgkQAwnQBjxiCTNFIlaizB+ItaXinDXmtiksUAb9JB5qJpUbmQwDICdCFMk
+                VWUEYAYCrjEIoCQRWbMcEM9CP+f+BVEy2ROESFKL9IhkY6AZ5iEBIqGkpmZ8krXX+zssruWkCjEIUwAJ
+                WFtNVYNyrgdEBseHqbxc8M8Rj4LAv6U0EMSjCNgJKRIpKTEE3+IrkQCCQzrxECpKKn0qSjqjQkgVnzyE
+                sz/tCuJx+hHA6UcYKRGmWoKMCKNq8n8h5QjgD1IuCNUeCrsi3LUmNmks9KdcyAAynio6GYYYKnkEKIZK
+                iTUgXLMcKEwi/gIOKcySPUEIkK9SJBuDsFtKWc1sLWJq/p04rRVKYA9iyxFDjk1nnP9aTVUU+Us+1wMi
+                g+PD5FEoCwQIlA6dMIQpDZUXDskJKRKCohH+KRK4BQ1BfUIRU8mCmg4MoUpD4ev9NAsloPPn1hIK01/g
+                BBAohw3iD5JhFHZFuGtNbNJYoASWQy2BQzgM4kk/TCLw01TgCMASisEn/iPS89+vWQ50CBF/ARnZXVmy
+                J4iqOzQLY5AAASqlmprZWsTU/DuUmIQKmcKkDcnop0ktDCNPq6lqUM71gMjg+HDN8qIThiJzD1EW7v+n
+                AnX9k062W0BuQUPwFc4cdzXixLNACaAwWyI0s7g/gZOHMOoKh2Fz9hQC8Qe5SgkR7loTmzQW6CSnJeGy
+                heUIuMBg/pZMRWnADPqnpIRMNYoyZwTCJ4UOEUaVpTBJzRNExSVAJMVTKdXU7NaTmn+HviKhmkBhGIAE
+                ZDkC+LOu/pqqkPeXf64HRAbHh2uWFxWKPYgHePjnCCAl/39xppGAmj23gOj82YP4FKIqUBrSSedACKmi
+                MALZn3bFPZecmML002SDsNP9g9Q/IIYOXRHuWhObNOlw2HIIypZsrqmfS57cA4ZBAxmDGMTXLAcW9y+Q
+                u4qfqHmCqDSyxe6WUk3Nbj2hGArXFCSgvwBxnR824BCquKWrqWpQzvWAyOD4cM3y4uqIekDngP62+/+p
+                aJAA4KygvLI1iaoRShYBKmiKQRqUJrJkf5pKmX6afoJqA+WiNK4gJZ9Lt/lH2PUQiiTlsIf+IL7iX2FT
+                KSWJcNea2KRJBcI/giqAAA6pPsESGEbxgCPp71NGSkAlCTuvVw4s1CnRX8CfRVh0hvy/WC1OkPvHCTKG
+                SgmHSFNTs1tPav4dFqoGXJJIyR6LAClELoqpqQoJvtBzjb/D31LigZLB8WH8k5rlRf8WoNQoAZUFVxRE
+                4itKg0JEvEhAQlWZ0uDTTUN1V6THIaUnUPSIrKmZxD2XsIfSUxinHAEYgDQUSXrwiTD/QYAa4H7FIty1
+                JjZptUIAq1gbAvT3AQyjqoMwsqDGUz2mb5EMMfi2ZjkIwR+kbyk76qX9IpbsCaJ4/DrHszGwkCLph7Ka
+                8QmFsYLaf4eFLOf/jn9HJwJCRcRtASSrCjEIf6HnGn/H/XYAZXB8+HYTKm5RHQdLhLvWxCb1FVSjmvX1
+                tiqHIEoZMB8utKBBRbNqD+5gCeVQRAk+bASDJR4v3ckSyqGIEnw4SJBiS/DhIEGKLcGHgwQptgQfDhKk
+                2BJ8OEiQYkvw4SBBii3Bh4MEKbYEHw4SpNgSfDhIkCJLf///Bw3d/DhGS04LAAAAAElFTkSuQmCC
 </property>
         </structure>
     </list-property>

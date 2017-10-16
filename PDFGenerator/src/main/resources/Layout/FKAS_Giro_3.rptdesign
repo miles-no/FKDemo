@@ -3460,6 +3460,294 @@
                 </ex-property>
             </list-property>
         </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.datatools.enablement.oda.xml.dataSet" name="GiroToAddressInfo" id="1151">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Description</property>
+                    <text-property name="heading">Description</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PostCode</property>
+                    <text-property name="heading">PostCode</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">City</property>
+                    <text-property name="heading">City</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NationalId</property>
+                    <text-property name="heading">NationalId</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Region</property>
+                    <text-property name="heading">Region</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Description</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">PostCode</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">City</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">NationalId</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">Region</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Description</property>
+                    <property name="nativeName">Description</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">PostCode</property>
+                    <property name="nativeName">PostCode</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">City</property>
+                    <property name="nativeName">City</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">NationalId</property>
+                    <property name="nativeName">NationalId</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">Region</property>
+                    <property name="nativeName">Region</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/ToAddress]#:#{Description;STRING;/Description},{PostCode;STRING;/PostCode},{City;STRING;/City},{NationalId;STRING;/NationalId},{Region;STRING;/Region}]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Description</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Description</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PostCode</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PostCode</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>City</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>City</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>NationalId</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>NationalId</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Region</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Region</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>MAX_ROW</name>
+                    <value>-1</value>
+                </ex-property>
+                <ex-property>
+                    <name>XML_FILE</name>
+                </ex-property>
+            </list-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.datatools.enablement.oda.xml.dataSet" name="BillingInfo" id="1144">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TotalOpenClaim</property>
+                    <text-property name="heading">TotalOpenClaim</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">UtilityAccountNo</property>
+                    <text-property name="heading">UtilityAccountNo</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TotalOpenClaim</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">UtilityAccountNo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TotalOpenClaim</property>
+                    <property name="nativeName">TotalOpenClaim</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">UtilityAccountNo</property>
+                    <property name="nativeName">UtilityAccountNo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{TotalOpenClaim;STRING;/TotalOpenClaim},{UtilityAccountNo;STRING;/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/UtilityAccountNo}]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TotalOpenClaim</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TotalOpenClaim</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>UtilityAccountNo</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>UtilityAccountNo</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>MAX_ROW</name>
+                    <value>-1</value>
+                </ex-property>
+                <ex-property>
+                    <name>XML_FILE</name>
+                </ex-property>
+            </list-property>
+        </oda-data-set>
     </data-sets>
     <styles>
         <style name="chart" id="872">
@@ -3592,48 +3880,6 @@
                     </row>
                 </grid>
             </page-header>
-            <page-footer>
-                <grid id="204">
-                    <property name="borderTopColor">#EC7600</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">1px</property>
-                    <property name="pageBreakAfter">always</property>
-                    <property name="width">7.104166666666667in</property>
-                    <method name="onRender"><![CDATA[if(pageNumber > 1){
-    this.getStyle().display ="none"
-} ]]></method>
-                    <column id="205">
-                        <property name="width">0.65in</property>
-                    </column>
-                    <column id="206">
-                        <property name="width">6.354166666666667in</property>
-                    </column>
-                    <row id="207">
-                        <cell id="208">
-                            <property name="paddingLeft">0pt</property>
-                            <property name="paddingRight">0pt</property>
-                            <label id="210">
-                                <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
-                                <property name="fontSize">7.3pt</property>
-                                <property name="fontWeight">bold</property>
-                                <property name="paddingTop">5pt</property>
-                                <property name="paddingLeft">0pt</property>
-                                <text-property name="text">Fjordkraft AS</text-property>
-                            </label>
-                        </cell>
-                        <cell id="209">
-                            <label id="211">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                <property name="fontSize">7.3pt</property>
-                                <property name="paddingTop">5pt</property>
-                                <property name="paddingLeft">0pt</property>
-                                <property name="paddingRight">0pt</property>
-                                <text-property name="text">Postboks 3507, Fyllingsdalen. 5845 Bergen | Foretaksregisteret NO 976944682 MVA | IBAN nr. NO0215031934610 | SWIFT: DNBANOKKXXX</text-property>
-                            </label>
-                        </cell>
-                    </row>
-                </grid>
-            </page-footer>
         </simple-master-page>
     </page-setup>
     <body>
@@ -4114,7 +4360,7 @@
         </grid>
         <grid id="148">
             <property name="pageBreakAfter">always</property>
-            <property name="height">7.510416666666667in</property>
+            <property name="height">7.614583333333333in</property>
             <property name="width">7.177083333333333in</property>
             <column id="149">
                 <property name="width">2.4270833333333335in</property>
@@ -4123,10 +4369,10 @@
                 <property name="width">2in</property>
             </column>
             <column id="151">
-                <property name="width">2.53125in</property>
+                <property name="width">2.6041666666666665in</property>
             </column>
             <row id="152">
-                <property name="height">2.625in</property>
+                <property name="height">2.7083333333333335in</property>
                 <cell id="153">
                     <property name="colSpan">3</property>
                     <property name="rowSpan">1</property>
@@ -4362,2142 +4608,261 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                 </cell>
             </row>
             <row id="692">
-                <property name="height">0.40625in</property>
+                <property name="height">0.78125in</property>
                 <cell id="693">
                     <property name="colSpan">3</property>
                     <property name="rowSpan">1</property>
-                    <grid id="696">
-                        <property name="height">0.34375in</property>
-                        <property name="dataSet">MainInfo</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if("NO" == row["DirectDebit"]) {&#13;
-	true;&#13;
-} else {&#13;
-	false;&#13;
-}</expression>
-                            </structure>
-                        </list-property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">DirectDebit</property>
-                                <text-property name="displayName">DirectDebit</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["DirectDebit"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                        <column id="697">
-                            <property name="width">1.3in</property>
+                    <grid id="888">
+                        <property name="borderBottomColor">#000000</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="pageBreakAfter">auto</property>
+                        <property name="height">0.28125in</property>
+                        <property name="width">7.114583333333333in</property>
+                        <method name="onRender"><![CDATA[if(pageNumber > 1){
+    this.getStyle().display ="none"
+} ]]></method>
+                        <column id="889">
+                            <property name="width">0.7083333333333334in</property>
                         </column>
-                        <column id="698"/>
-                        <row id="699">
-                            <property name="height">0.34375in</property>
-                            <cell id="700">
-                                <image id="1367">
-                                    <property name="height">0.1875in</property>
-                                    <property name="width">1.1041666666666667in</property>
-                                    <property name="source">embed</property>
-                                    <property name="imageName">AvtaleGiro.jpg</property>
-                                </image>
+                        <column id="890">
+                            <property name="width">6.40625in</property>
+                        </column>
+                        <row id="891">
+                            <property name="height">0.28125in</property>
+                            <cell id="892">
+                                <label id="893">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
+                                    <property name="fontSize">7.2pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="paddingTop">5pt</property>
+                                    <text-property name="text">Fjordkraft AS</text-property>
+                                </label>
                             </cell>
-                            <cell id="701">
-                                <property name="paddingTop">1pt</property>
-                                <text id="704">
+                            <cell id="894">
+                                <label id="895">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                    <property name="fontSize">10pt</property>
-                                    <property name="paddingTop">4pt</property>
-                                    <property name="contentType">html</property>
-                                    <text-property name="content"><![CDATA[<FONT font-family="Fjordkraft Neo Sans">Du har inngått avtale om AvtaleGiro med oss, og <U>faktura blir trukket automatisk ved forfall</U>.</FONT>]]></text-property>
-                                </text>
+                                    <property name="fontSize">7.2pt</property>
+                                    <property name="color">#808080</property>
+                                    <property name="paddingTop">5pt</property>
+                                    <text-property name="text">Postboks 3507, Fyllingsdalen. 5845 Bergen | Foretaksregisteret NO 976944682 MVA | IBAN nr. NO0215031934610 | SWIFT: DNBANOKKXXX</text-property>
+                                </label>
                             </cell>
                         </row>
                     </grid>
                 </cell>
             </row>
             <row id="156">
-                <property name="height">2.3229166666666665in</property>
+                <property name="height">4.125in</property>
                 <cell id="157">
                     <property name="colSpan">3</property>
                     <property name="rowSpan">1</property>
-                    <grid id="705">
-                        <property name="dataSet">PaymentInfo</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if("YES" == row["DirectDebit"]) {&#13;
-	true&#13;
-} else {&#13;
-	false&#13;
-}</expression>
-                            </structure>
-                        </list-property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">DirectDebit</property>
-                                <text-property name="displayName">DirectDebit</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["DirectDebit"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                        <column id="706"/>
-                        <row id="707">
-                            <cell id="708">
-                                <label id="192">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                    <property name="fontSize">9pt</property>
-                                    <property name="paddingBottom">5pt</property>
-                                    <text-property name="text">BETALINGSINFORMASJON:</text-property>
+                    <grid id="1088">
+                        <property name="width">7.635416666666667in</property>
+                        <column id="1089">
+                            <property name="width">2.5104166666666665in</property>
+                        </column>
+                        <column id="1090"/>
+                        <row id="1091">
+                            <cell id="1092">
+                                <property name="paddingBottom">30pt</property>
+                                <label id="1094">
+                                    <text-property name="text">***********</text-property>
                                 </label>
+                            </cell>
+                            <cell id="1093">
+                                <data id="1095">
+                                    <property name="paddingLeft">20pt</property>
+                                    <property name="dataSet">TransactionInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">CurrentClaim</property>
+                                            <text-property name="displayName">CurrentClaim</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">CurrentClaim</property>
+                                </data>
                             </cell>
                         </row>
                     </grid>
-                    <table id="165">
-                        <property name="borderBottomColor">#DADADA</property>
-                        <property name="borderBottomStyle">solid</property>
-                        <property name="borderBottomWidth">4px</property>
-                        <property name="borderLeftColor">#DADADA</property>
-                        <property name="borderLeftStyle">solid</property>
-                        <property name="borderLeftWidth">3px</property>
-                        <property name="borderRightColor">#DADADA</property>
-                        <property name="borderRightStyle">solid</property>
-                        <property name="borderRightWidth">5px</property>
-                        <property name="borderTopColor">#DADADA</property>
-                        <property name="borderTopStyle">solid</property>
-                        <property name="borderTopWidth">2px</property>
-                        <property name="dataSet">PaymentInfo</property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">StatementOcrNumber</property>
-                                <text-property name="displayName">StatementOcrNumber</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["StatementOcrNumber"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">DueDate</property>
-                                <text-property name="displayName">DueDate</text-property>
-                                <expression name="expression" type="javascript">getFormattedFullDate(dataSetRow["DueDate"])</expression>
-                                <property name="dataType">string</property>
-                                <property name="allowExport">true</property>
-                            </structure>
-                            <structure>
-                                <property name="name">CurrentClaim</property>
-                                <text-property name="displayName">CurrentClaim</text-property>
-                                <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
-                                <property name="dataType">string</property>
-                                <property name="allowExport">true</property>
-                            </structure>
-                            <structure>
-                                <property name="name">Kontonummer</property>
-                                <text-property name="displayName">Kontonummer</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Kontonummer"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">DirectDebit</property>
-                                <text-property name="displayName">DirectDebit</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["DirectDebit"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                        <column id="181"/>
-                        <column id="182"/>
-                        <column id="183"/>
-                        <column id="184"/>
-                        <header>
-                            <row id="166">
-                                <property name="backgroundColor">#DADADA</property>
-                                <cell id="167">
-                                    <property name="borderRightColor">#DADADA</property>
-                                    <property name="borderRightStyle">solid</property>
-                                    <property name="borderRightWidth">1px</property>
-                                    <label id="185">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                        <property name="fontSize">9pt</property>
-                                        <property name="fontStyle">italic</property>
-                                        <property name="paddingLeft">10pt</property>
-                                        <property name="textAlign">left</property>
-                                        <list-property name="highlightRules">
-                                            <structure>
-                                                <property name="operator">eq</property>
-                                                <property name="color">#808080</property>
-                                                <expression name="testExpr" type="javascript">row["DirectDebit"]</expression>
-                                                <simple-property-list name="value1">
-                                                    <value type="javascript">"YES"</value>
-                                                </simple-property-list>
-                                            </structure>
-                                        </list-property>
-                                        <text-property name="text">KID-nummer</text-property>
-                                    </label>
-                                </cell>
-                                <cell id="168">
-                                    <property name="borderRightColor">#DADADA</property>
-                                    <property name="borderRightStyle">solid</property>
-                                    <property name="borderRightWidth">1px</property>
-                                    <label id="193">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                        <property name="fontSize">9pt</property>
-                                        <property name="fontStyle">italic</property>
-                                        <property name="textAlign">center</property>
-                                        <list-property name="highlightRules">
-                                            <structure>
-                                                <property name="operator">eq</property>
-                                                <property name="color">#808080</property>
-                                                <expression name="testExpr" type="javascript">row["DirectDebit"]</expression>
-                                                <simple-property-list name="value1">
-                                                    <value type="javascript">"YES"</value>
-                                                </simple-property-list>
-                                            </structure>
-                                        </list-property>
-                                        <text-property name="text">Kontonummer</text-property>
-                                    </label>
-                                </cell>
-                                <cell id="169">
-                                    <property name="borderRightColor">#DADADA</property>
-                                    <property name="borderRightStyle">solid</property>
-                                    <property name="borderRightWidth">1px</property>
-                                    <label id="187">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                        <property name="fontSize">9pt</property>
-                                        <property name="fontStyle">italic</property>
-                                        <property name="textAlign">center</property>
-                                        <text-property name="text">Trekkdato</text-property>
-                                    </label>
-                                </cell>
-                                <cell id="170">
-                                    <label id="189">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                        <property name="fontSize">9pt</property>
-                                        <property name="fontStyle">italic</property>
-                                        <property name="paddingRight">10pt</property>
-                                        <property name="textAlign">right</property>
-                                        <text-property name="text">Beløp</text-property>
-                                    </label>
-                                </cell>
-                            </row>
-                        </header>
-                        <detail>
-                            <row id="171">
-                                <cell id="172">
-                                    <property name="borderRightColor">#DADADA</property>
-                                    <property name="borderRightStyle">solid</property>
-                                    <property name="borderRightWidth">1px</property>
-                                    <data id="186">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                        <property name="fontSize">9pt</property>
-                                        <property name="paddingTop">5pt</property>
-                                        <property name="paddingLeft">10pt</property>
-                                        <list-property name="highlightRules">
-                                            <structure>
-                                                <property name="operator">eq</property>
-                                                <property name="color">#808080</property>
-                                                <expression name="testExpr" type="javascript">row["DirectDebit"]</expression>
-                                                <simple-property-list name="value1">
-                                                    <value type="javascript">"YES"</value>
-                                                </simple-property-list>
-                                            </structure>
-                                        </list-property>
-                                        <property name="resultSetColumn">StatementOcrNumber</property>
-                                    </data>
-                                </cell>
-                                <cell id="173">
-                                    <property name="borderRightColor">#DADADA</property>
-                                    <property name="borderRightStyle">solid</property>
-                                    <property name="borderRightWidth">1px</property>
-                                    <property name="paddingTop">5pt</property>
+                    <grid id="1096">
+                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <column id="1097"/>
+                        <column id="1098"/>
+                        <column id="1099">
+                            <property name="width">2in</property>
+                        </column>
+                        <column id="1100"/>
+                        <row id="1101">
+                            <cell id="1102">
+                                <label id="1106">
+                                    <text-property name="text">Kundenummer:</text-property>
+                                </label>
+                                <data id="1108">
+                                    <property name="paddingTop">10pt</property>
+                                    <property name="dataSet">MainInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">NationalId</property>
+                                            <text-property name="displayName">NationalId</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["NationalId"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">NationalId</property>
+                                </data>
+                                <label id="1110">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontWeight">normal</property>
+                                    <property name="paddingTop">10pt</property>
+                                    <text-property name="text">BIC</text-property>
+                                </label>
+                                <label id="1112">
+                                    <text-property name="text">Need to be mapped</text-property>
+                                </label>
+                                <data id="1114">
+                                    <property name="paddingTop">20pt</property>
+                                    <property name="dataSet">MainInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">Name</property>
+                                            <text-property name="displayName">Name</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">Name</property>
+                                </data>
+                                <data id="1115">
+                                    <property name="paddingTop">2pt</property>
+                                    <property name="dataSet">MainInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">Address</property>
+                                            <text-property name="displayName">Address</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Address"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">Address</property>
+                                </data>
+                                <data id="1116">
+                                    <property name="paddingTop">2pt</property>
+                                    <property name="dataSet">MainInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">City</property>
+                                            <text-property name="displayName">City</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["PostCode"] + " " + dataSetRow["City"]</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">City</property>
+                                </data>
+                            </cell>
+                            <cell id="1103">
+                                <label id="1107">
+                                    <text-property name="text">Fakturanummer:</text-property>
+                                </label>
+                                <data id="1109">
+                                    <property name="paddingTop">10pt</property>
+                                    <property name="dataSet">MainInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">AccountNumber</property>
+                                            <text-property name="displayName">AccountNumber</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["AccountNumber"] + dataSetRow["SequenceNumber"]</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">AccountNumber</property>
+                                </data>
+                                <label id="1111">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontWeight">normal</property>
+                                    <property name="paddingTop">10pt</property>
+                                    <text-property name="text">IBAN</text-property>
+                                </label>
+                                <label id="1113">
+                                    <text-property name="text">Need to be mapped</text-property>
+                                </label>
+                            </cell>
+                            <cell id="1104">
+                                <property name="paddingTop">80pt</property>
+                                <data id="1152">
+                                    <property name="dataSet">GiroToAddressInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">Description</property>
+                                            <text-property name="displayName">Description</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Description"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">Description</property>
+                                </data>
+                                <data id="1153">
+                                    <property name="paddingTop">2pt</property>
+                                    <property name="dataSet">GiroToAddressInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">City</property>
+                                            <text-property name="displayName">City</text-property>
+                                            <expression name="expression" type="javascript">"Postboks " + dataSetRow["PostCode"] + ", " + dataSetRow["City"]</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">City</property>
+                                </data>
+                                <data id="1154">
+                                    <property name="paddingTop">2pt</property>
+                                    <property name="dataSet">GiroToAddressInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">Region</property>
+                                            <text-property name="displayName">Region</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["NationalId"] + " " + dataSetRow["Region"]</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">Region</property>
+                                </data>
+                            </cell>
+                            <cell id="1105">
+                                <property name="textAlign">right</property>
+                                <data id="1124">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                     <property name="textAlign">center</property>
-                                    <data id="655">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                        <property name="fontSize">9pt</property>
-                                        <list-property name="highlightRules">
-                                            <structure>
-                                                <property name="operator">eq</property>
-                                                <property name="color">#808080</property>
-                                                <expression name="testExpr" type="javascript">row["DirectDebit"]</expression>
-                                                <simple-property-list name="value1">
-                                                    <value type="javascript">"YES"</value>
-                                                </simple-property-list>
-                                            </structure>
-                                        </list-property>
-                                        <property name="resultSetColumn">Kontonummer</property>
-                                    </data>
-                                </cell>
-                                <cell id="174">
-                                    <property name="borderRightColor">#DADADA</property>
-                                    <property name="borderRightStyle">solid</property>
-                                    <property name="borderRightWidth">1px</property>
-                                    <data id="188">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                        <property name="fontSize">9pt</property>
-                                        <property name="paddingTop">5pt</property>
-                                        <property name="textAlign">center</property>
-                                        <list-property name="highlightRules">
-                                            <structure>
-                                                <property name="operator">eq</property>
-                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                <expression name="testExpr" type="javascript">row["DirectDebit"]</expression>
-                                                <simple-property-list name="value1">
-                                                    <value type="javascript">"YES"</value>
-                                                </simple-property-list>
-                                            </structure>
-                                        </list-property>
-                                        <property name="resultSetColumn">DueDate</property>
-                                    </data>
-                                </cell>
-                                <cell id="175">
-                                    <data id="190">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                        <property name="fontSize">9pt</property>
-                                        <property name="paddingTop">5pt</property>
-                                        <property name="paddingRight">10pt</property>
-                                        <property name="textAlign">right</property>
-                                        <property name="resultSetColumn">CurrentClaim</property>
-                                    </data>
-                                </cell>
-                            </row>
-                        </detail>
-                    </table>
-                </cell>
-            </row>
-            <row id="160">
-                <property name="height">2.15625in</property>
-                <cell id="161">
-                    <property name="colSpan">2</property>
-                    <property name="rowSpan">1</property>
-                    <property name="paddingTop">1pt</property>
-                    <property name="paddingLeft">0pt</property>
-                    <property name="paddingRight">0pt</property>
-                    <image id="667">
-                        <property name="height">5cm</property>
-                        <property name="width">11cm</property>
-                        <expression name="altText" type="javascript">""</expression>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if(null == params["campaignImage"].value || "" == params["campaignImage"].value) &#13;
-{&#13;
-	true;&#13;
-} else {&#13;
-	false;&#13;
-}</expression>
-                            </structure>
-                        </list-property>
-                        <property name="source">expr</property>
-                        <property name="fitToContainer">true</property>
-                        <expression name="valueExpr">org.apache.commons.codec.binary.Base64.decodeBase64(params["campaignImage"])</expression>
-                    </image>
-                </cell>
-                <cell id="163">
-                    <extended-item extensionName="Chart" id="383">
-                        <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
-  <Version>2.6.1</Version>
-  <Type>Pie Chart</Type>
-  <SubType>Standard</SubType>
-  <Block>
-    <Children xsi:type="layout:TitleBlock">
-      <Bounds>
-        <Left>0.0</Left>
-        <Top>0.0</Top>
-        <Width>0.0</Width>
-        <Height>0.0</Height>
-      </Bounds>
-      <Insets>
-        <Top>3.0</Top>
-        <Left>3.0</Left>
-        <Bottom>0.0</Bottom>
-        <Right>3.0</Right>
-      </Insets>
-      <Row>-1</Row>
-      <Column>-1</Column>
-      <Rowspan>-1</Rowspan>
-      <Columnspan>-1</Columnspan>
-      <Outline>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Outline>
-      <Visible>true</Visible>
-      <Cursor>
-        <Type>Auto</Type>
-      </Cursor>
-      <Label>
-        <Caption>
-          <Value>Fordeling strøm og nettleie denne perioden</Value>
-          <Font>
-            <Name>Fjordkraft Neo Sans</Name>
-            <Size>8.0</Size>
-            <Bold>true</Bold>
-            <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
-            </Alignment>
-          </Font>
-        </Caption>
-        <Background xsi:type="attribute:ColorDefinition">
-          <Transparency>0</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Background>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>5.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>5.0</Right>
-        </Insets>
-        <Visible>true</Visible>
-      </Label>
-    </Children>
-    <Children xsi:type="layout:Plot">
-      <Bounds>
-        <Left>0.0</Left>
-        <Top>0.0</Top>
-        <Width>0.0</Width>
-        <Height>0.0</Height>
-      </Bounds>
-      <Insets>
-        <Top>3.0</Top>
-        <Left>3.0</Left>
-        <Bottom>3.0</Bottom>
-        <Right>3.0</Right>
-      </Insets>
-      <Row>-1</Row>
-      <Column>-1</Column>
-      <Rowspan>-1</Rowspan>
-      <Columnspan>-1</Columnspan>
-      <Outline>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Outline>
-      <Visible>true</Visible>
-      <HorizontalSpacing>5</HorizontalSpacing>
-      <VerticalSpacing>5</VerticalSpacing>
-      <ClientArea>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>0</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>0.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>0.0</Right>
-        </Insets>
-      </ClientArea>
-    </Children>
-    <Children xsi:type="layout:Legend">
-      <Bounds>
-        <Left>0.0</Left>
-        <Top>0.0</Top>
-        <Width>0.0</Width>
-        <Height>0.0</Height>
-      </Bounds>
-      <Insets>
-        <Top>3.0</Top>
-        <Left>3.0</Left>
-        <Bottom>3.0</Bottom>
-        <Right>3.0</Right>
-      </Insets>
-      <Row>-1</Row>
-      <Column>-1</Column>
-      <Rowspan>-1</Rowspan>
-      <Columnspan>-1</Columnspan>
-      <Outline>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Outline>
-      <Visible>false</Visible>
-      <Cursor>
-        <Type>Auto</Type>
-      </Cursor>
-      <ClientArea>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>0</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>2.0</Top>
-          <Left>2.0</Left>
-          <Bottom>2.0</Bottom>
-          <Right>2.0</Right>
-        </Insets>
-      </ClientArea>
-      <Text>
-        <Value></Value>
-        <Font>
-          <Name>Fjordkraft Neo Sans</Name>
-          <Size>7.0</Size>
-          <Alignment/>
-        </Font>
-      </Text>
-      <Orientation>Vertical</Orientation>
-      <Direction>Left_Right</Direction>
-      <Separator>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Separator>
-      <Position>Below</Position>
-      <ItemType>Categories</ItemType>
-      <Title>
-        <Caption>
-          <Value></Value>
-          <Font>
-            <Name>Fjordkraft Neo Sans</Name>
-            <Size>7.0</Size>
-            <Alignment/>
-          </Font>
-        </Caption>
-        <Background xsi:type="attribute:ColorDefinition">
-          <Transparency>0</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Background>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>2.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>3.0</Right>
-        </Insets>
-        <Visible>true</Visible>
-      </Title>
-      <TitlePosition>Above</TitlePosition>
-    </Children>
-    <Bounds>
-      <Left>0.0</Left>
-      <Top>0.0</Top>
-      <Width>186.0</Width>
-      <Height>130.0</Height>
-    </Bounds>
-    <Insets>
-      <Top>3.0</Top>
-      <Left>3.0</Left>
-      <Bottom>0.0</Bottom>
-      <Right>3.0</Right>
-    </Insets>
-    <Row>-1</Row>
-    <Column>-1</Column>
-    <Rowspan>-1</Rowspan>
-    <Columnspan>-1</Columnspan>
-    <Outline>
-      <Style>Solid</Style>
-      <Thickness>1</Thickness>
-      <Color>
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>0</Green>
-        <Blue>0</Blue>
-      </Color>
-      <Visible>false</Visible>
-    </Outline>
-    <Visible>true</Visible>
-    <Cursor>
-      <Type>Auto</Type>
-    </Cursor>
-  </Block>
-  <Dimension>Two_Dimensional_With_Depth</Dimension>
-  <Units>Points</Units>
-  <SeriesThickness>10.0</SeriesThickness>
-  <GridColumnCount>0</GridColumnCount>
-  <ExtendedProperties>
-    <Name>enable.area.alt</Name>
-    <Value>false</Value>
-  </ExtendedProperties>
-  <SampleData>
-    <BaseSampleData>
-      <DataSetRepresentation>'A','B','C','D','E'</DataSetRepresentation>
-    </BaseSampleData>
-    <OrthogonalSampleData>
-      <DataSetRepresentation>6,4,12,8,10</DataSetRepresentation>
-      <SeriesDefinitionIndex>0</SeriesDefinitionIndex>
-    </OrthogonalSampleData>
-  </SampleData>
-  <Interactivity>
-    <LegendBehavior>None</LegendBehavior>
-  </Interactivity>
-  <EmptyMessage>
-    <Caption>
-      <Value>This chart contains no data.</Value>
-      <Font>
-        <Alignment>
-          <horizontalAlignment>Center</horizontalAlignment>
-          <verticalAlignment>Center</verticalAlignment>
-        </Alignment>
-      </Font>
-    </Caption>
-    <Background xsi:type="attribute:ColorDefinition">
-      <Transparency>64</Transparency>
-      <Red>127</Red>
-      <Green>127</Green>
-      <Blue>127</Blue>
-    </Background>
-    <Outline>
-      <Color>
-        <Transparency>128</Transparency>
-        <Red>127</Red>
-        <Green>127</Green>
-        <Blue>127</Blue>
-      </Color>
-      <Visible>true</Visible>
-    </Outline>
-    <Insets>
-      <Top>10.0</Top>
-      <Left>10.0</Left>
-      <Bottom>10.0</Bottom>
-      <Right>10.0</Right>
-    </Insets>
-    <Visible>false</Visible>
-  </EmptyMessage>
-  <SeriesDefinitions>
-    <Query>
-      <Definition></Definition>
-    </Query>
-    <SeriesPalette>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>40</Red>
-        <Green>167</Green>
-        <Blue>215</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>220</Red>
-        <Green>67</Green>
-        <Blue>16</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>232</Red>
-        <Green>172</Green>
-        <Blue>57</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>255</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>64</Red>
-        <Green>128</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>170</Red>
-        <Green>85</Green>
-        <Blue>85</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>0</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>192</Red>
-        <Green>192</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>255</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>192</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>7</Red>
-        <Green>146</Green>
-        <Blue>94</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>128</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>255</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>128</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>0</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>64</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>80</Red>
-        <Green>240</Green>
-        <Blue>120</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>64</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>0</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>0</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>64</Green>
-        <Blue>0</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>0</Green>
-        <Blue>0</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>255</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>0</Blue>
-      </Entries>
-    </SeriesPalette>
-    <SeriesDefinitions>
-      <Query>
-        <Definition></Definition>
-      </Query>
-      <SeriesPalette>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>40</Red>
-          <Green>167</Green>
-          <Blue>215</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>220</Red>
-          <Green>67</Green>
-          <Blue>16</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>232</Red>
-          <Green>172</Green>
-          <Blue>57</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>255</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>64</Red>
-          <Green>128</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>170</Red>
-          <Green>85</Green>
-          <Blue>85</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>0</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>192</Red>
-          <Green>192</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>192</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>7</Red>
-          <Green>146</Green>
-          <Blue>94</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>128</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>128</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>0</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>64</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>80</Red>
-          <Green>240</Green>
-          <Blue>120</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>64</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>0</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>0</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>64</Green>
-          <Blue>0</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>0</Blue>
-        </Entries>
-      </SeriesPalette>
-      <Series xsi:type="type:PieSeries">
-        <Visible>true</Visible>
-        <Label>
-          <Caption>
-            <Value></Value>
-            <Font>
-              <Alignment/>
-            </Font>
-          </Caption>
-          <Background xsi:type="attribute:ColorDefinition">
-            <Transparency>0</Transparency>
-            <Red>255</Red>
-            <Green>255</Green>
-            <Blue>255</Blue>
-          </Background>
-          <Outline>
-            <Style>Solid</Style>
-            <Thickness>1</Thickness>
-            <Color>
-              <Transparency>255</Transparency>
-              <Red>0</Red>
-              <Green>0</Green>
-              <Blue>0</Blue>
-            </Color>
-            <Visible>false</Visible>
-          </Outline>
-          <Insets>
-            <Top>0.0</Top>
-            <Left>2.0</Left>
-            <Bottom>0.0</Bottom>
-            <Right>3.0</Right>
-          </Insets>
-          <Visible>false</Visible>
-        </Label>
-        <DataDefinition>
-          <Definition>row[&quot;Amount&quot;]</Definition>
-          <Grouping>
-            <GroupType>Text</GroupType>
-            <AggregateExpression>Sum</AggregateExpression>
-          </Grouping>
-        </DataDefinition>
-        <DataPoint>
-          <Components>
-            <Type>Orthogonal_Value</Type>
-          </Components>
-          <Separator>, </Separator>
-        </DataPoint>
-        <LabelPosition>Outside</LabelPosition>
-        <Stacked>false</Stacked>
-        <Triggers>
-          <Condition>onmouseover</Condition>
-          <Action>
-            <Type>Show_Tooltip</Type>
-            <Value xsi:type="attribute:TooltipValue">
-              <Text></Text>
-              <Delay>200</Delay>
-            </Value>
-          </Action>
-        </Triggers>
-        <Explosion>0</Explosion>
-        <Title>
-          <Caption>
-            <Value></Value>
-            <Font>
-              <Size>16.0</Size>
-              <Bold>true</Bold>
-              <Alignment/>
-            </Font>
-          </Caption>
-          <Background xsi:type="attribute:ColorDefinition">
-            <Transparency>0</Transparency>
-            <Red>255</Red>
-            <Green>255</Green>
-            <Blue>255</Blue>
-          </Background>
-          <Outline>
-            <Style>Solid</Style>
-            <Thickness>1</Thickness>
-            <Color>
-              <Transparency>255</Transparency>
-              <Red>0</Red>
-              <Green>0</Green>
-              <Blue>0</Blue>
-            </Color>
-            <Visible>false</Visible>
-          </Outline>
-          <Insets>
-            <Top>0.0</Top>
-            <Left>2.0</Left>
-            <Bottom>0.0</Bottom>
-            <Right>3.0</Right>
-          </Insets>
-          <Visible>false</Visible>
-        </Title>
-        <TitlePosition>Below</TitlePosition>
-        <LeaderLineAttributes>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Visible>false</Visible>
-        </LeaderLineAttributes>
-        <LeaderLineStyle>Stretch_To_Side</LeaderLineStyle>
-        <LeaderLineLength>10.0</LeaderLineLength>
-        <Ratio>0.5</Ratio>
-        <Rotation>0.0</Rotation>
-        <Clockwise>true</Clockwise>
-      </Series>
-      <Grouping>
-        <GroupType>Text</GroupType>
-        <AggregateExpression>Sum</AggregateExpression>
-      </Grouping>
-    </SeriesDefinitions>
-    <Series>
-      <Visible>true</Visible>
-      <Label>
-        <Caption>
-          <Value></Value>
-          <Font>
-            <Alignment/>
-          </Font>
-        </Caption>
-        <Background xsi:type="attribute:ColorDefinition">
-          <Transparency>0</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Background>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>2.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>3.0</Right>
-        </Insets>
-        <Visible>false</Visible>
-      </Label>
-      <DataDefinition>
-        <Definition>row[&quot;Type&quot;] + &quot;: &quot; + formatMoney(row[&quot;Amount&quot;], 2, '', '.', ',')</Definition>
-      </DataDefinition>
-      <SeriesIdentifier></SeriesIdentifier>
-      <DataPoint>
-        <Components>
-          <Type>Orthogonal_Value</Type>
-        </Components>
-        <Separator>, </Separator>
-      </DataPoint>
-      <LabelPosition>Outside</LabelPosition>
-      <Stacked>false</Stacked>
-    </Series>
-    <Grouping>
-      <Enabled>true</Enabled>
-      <GroupType>Text</GroupType>
-      <AggregateExpression>Sum</AggregateExpression>
-    </Grouping>
-  </SeriesDefinitions>
-  <Coverage>0.7</Coverage>
-</model:ChartWithoutAxes>
-]]></xml-property>
-                        <property name="outputFormat">SVG</property>
-                        <property name="inheritColumns">false</property>
-                        <property name="marginTop">-15pt</property>
-                        <property name="marginBottom">-15pt</property>
+                                    <property name="dataSet">MainInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">DueDate</property>
+                                            <text-property name="displayName">DueDate</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["DueDate"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">DueDate</property>
+                                </data>
+                            </cell>
+                        </row>
+                    </grid>
+                    <label id="1121">
+                        <property name="paddingTop">30pt</property>
+                        <property name="textAlign">center</property>
+                        <text-property name="text">X   X   X   X   X   X   X   X   X   X   X</text-property>
+                    </label>
+                    <label id="1123">
                         <property name="paddingTop">20pt</property>
-                        <property name="height">108pt</property>
-                        <property name="width">184.5pt</property>
-                        <property name="dataSet">PieChartInfo</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if(0.0 == row["Amount"])&#13;
-	true;&#13;
-else&#13;
-	false;</expression>
-                            </structure>
-                        </list-property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">Type</property>
-                                <text-property name="displayName">Type</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Type"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">Amount</property>
-                                <text-property name="displayName">Amount</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Amount"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                    </extended-item>
-                    <extended-item extensionName="Chart" id="1395">
-                        <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
-  <Version>2.6.1</Version>
-  <Type>Pie Chart</Type>
-  <SubType>Standard</SubType>
-  <Block>
-    <Children xsi:type="layout:TitleBlock">
-      <Bounds>
-        <Left>0.0</Left>
-        <Top>0.0</Top>
-        <Width>0.0</Width>
-        <Height>0.0</Height>
-      </Bounds>
-      <Insets>
-        <Top>3.0</Top>
-        <Left>3.0</Left>
-        <Bottom>3.0</Bottom>
-        <Right>3.0</Right>
-      </Insets>
-      <Row>-1</Row>
-      <Column>-1</Column>
-      <Rowspan>-1</Rowspan>
-      <Columnspan>-1</Columnspan>
-      <Outline>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Outline>
-      <Visible>false</Visible>
-      <Cursor>
-        <Type>Auto</Type>
-      </Cursor>
-      <Label>
-        <Caption>
-          <Value>Fordeling strøm og nettleie denne perioden</Value>
-          <Font>
-            <Name>Fjordkraft Neo Sans</Name>
-            <Size>8.0</Size>
-            <Bold>true</Bold>
-            <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
-            </Alignment>
-          </Font>
-        </Caption>
-        <Background xsi:type="attribute:ColorDefinition">
-          <Transparency>0</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Background>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>2.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>3.0</Right>
-        </Insets>
-        <Visible>true</Visible>
-      </Label>
-    </Children>
-    <Children xsi:type="layout:Plot">
-      <Bounds>
-        <Left>0.0</Left>
-        <Top>0.0</Top>
-        <Width>0.0</Width>
-        <Height>0.0</Height>
-      </Bounds>
-      <Insets>
-        <Top>3.0</Top>
-        <Left>3.0</Left>
-        <Bottom>3.0</Bottom>
-        <Right>3.0</Right>
-      </Insets>
-      <Row>-1</Row>
-      <Column>-1</Column>
-      <Rowspan>-1</Rowspan>
-      <Columnspan>-1</Columnspan>
-      <Outline>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Outline>
-      <Visible>true</Visible>
-      <HorizontalSpacing>5</HorizontalSpacing>
-      <VerticalSpacing>5</VerticalSpacing>
-      <ClientArea>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>0</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>0.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>0.0</Right>
-        </Insets>
-      </ClientArea>
-    </Children>
-    <Children xsi:type="layout:Legend">
-      <Bounds>
-        <Left>0.0</Left>
-        <Top>0.0</Top>
-        <Width>0.0</Width>
-        <Height>0.0</Height>
-      </Bounds>
-      <Insets>
-        <Top>0.0</Top>
-        <Left>0.0</Left>
-        <Bottom>0.0</Bottom>
-        <Right>0.0</Right>
-      </Insets>
-      <Row>-1</Row>
-      <Column>-1</Column>
-      <Rowspan>-1</Rowspan>
-      <Columnspan>-1</Columnspan>
-      <Outline>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Outline>
-      <Visible>true</Visible>
-      <Cursor>
-        <Type>Auto</Type>
-      </Cursor>
-      <ClientArea>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>0</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>2.0</Left>
-          <Bottom>2.0</Bottom>
-          <Right>2.0</Right>
-        </Insets>
-      </ClientArea>
-      <Text>
-        <Value></Value>
-        <Font>
-          <Name>Fjordkraft Neo Sans</Name>
-          <Size>7.0</Size>
-          <Alignment/>
-        </Font>
-      </Text>
-      <Orientation>Vertical</Orientation>
-      <Direction>Left_Right</Direction>
-      <Separator>
-        <Style>Solid</Style>
-        <Thickness>1</Thickness>
-        <Color>
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Color>
-        <Visible>false</Visible>
-      </Separator>
-      <Position>Above</Position>
-      <ItemType>Categories</ItemType>
-      <Title>
-        <Caption>
-          <Value></Value>
-          <Font>
-            <Name>Fjordkraft Neo Sans</Name>
-            <Size>7.0</Size>
-            <Alignment/>
-          </Font>
-        </Caption>
-        <Background xsi:type="attribute:ColorDefinition">
-          <Transparency>0</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Background>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>2.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>3.0</Right>
-        </Insets>
-        <Visible>true</Visible>
-      </Title>
-      <TitlePosition>Above</TitlePosition>
-      <MaxPercent>1.0</MaxPercent>
-      <TitlePercent>0.01</TitlePercent>
-    </Children>
-    <Bounds>
-      <Left>0.0</Left>
-      <Top>0.0</Top>
-      <Width>186.0</Width>
-      <Height>130.0</Height>
-    </Bounds>
-    <Insets>
-      <Top>3.0</Top>
-      <Left>3.0</Left>
-      <Bottom>3.0</Bottom>
-      <Right>3.0</Right>
-    </Insets>
-    <Row>-1</Row>
-    <Column>-1</Column>
-    <Rowspan>-1</Rowspan>
-    <Columnspan>-1</Columnspan>
-    <Outline>
-      <Style>Solid</Style>
-      <Thickness>1</Thickness>
-      <Color>
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>0</Green>
-        <Blue>0</Blue>
-      </Color>
-      <Visible>false</Visible>
-    </Outline>
-    <Visible>true</Visible>
-    <Cursor>
-      <Type>Auto</Type>
-    </Cursor>
-  </Block>
-  <Dimension>Two_Dimensional</Dimension>
-  <Units>Points</Units>
-  <SeriesThickness>10.0</SeriesThickness>
-  <GridColumnCount>0</GridColumnCount>
-  <ExtendedProperties>
-    <Name>enable.area.alt</Name>
-    <Value>false</Value>
-  </ExtendedProperties>
-  <SampleData>
-    <BaseSampleData>
-      <DataSetRepresentation>'A','B','C','D','E'</DataSetRepresentation>
-    </BaseSampleData>
-    <OrthogonalSampleData>
-      <DataSetRepresentation>6,4,12,8,10</DataSetRepresentation>
-      <SeriesDefinitionIndex>0</SeriesDefinitionIndex>
-    </OrthogonalSampleData>
-  </SampleData>
-  <Interactivity>
-    <LegendBehavior>None</LegendBehavior>
-  </Interactivity>
-  <EmptyMessage>
-    <Caption>
-      <Value>This chart contains no data.</Value>
-      <Font>
-        <Alignment>
-          <horizontalAlignment>Center</horizontalAlignment>
-          <verticalAlignment>Center</verticalAlignment>
-        </Alignment>
-      </Font>
-    </Caption>
-    <Background xsi:type="attribute:ColorDefinition">
-      <Transparency>64</Transparency>
-      <Red>127</Red>
-      <Green>127</Green>
-      <Blue>127</Blue>
-    </Background>
-    <Outline>
-      <Color>
-        <Transparency>128</Transparency>
-        <Red>127</Red>
-        <Green>127</Green>
-        <Blue>127</Blue>
-      </Color>
-      <Visible>true</Visible>
-    </Outline>
-    <Insets>
-      <Top>10.0</Top>
-      <Left>10.0</Left>
-      <Bottom>10.0</Bottom>
-      <Right>10.0</Right>
-    </Insets>
-    <Visible>false</Visible>
-  </EmptyMessage>
-  <SeriesDefinitions>
-    <Query>
-      <Definition></Definition>
-    </Query>
-    <SeriesPalette>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>40</Red>
-        <Green>167</Green>
-        <Blue>215</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>220</Red>
-        <Green>67</Green>
-        <Blue>16</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>232</Red>
-        <Green>172</Green>
-        <Blue>57</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>255</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>64</Red>
-        <Green>128</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>170</Red>
-        <Green>85</Green>
-        <Blue>85</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>0</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>192</Red>
-        <Green>192</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>255</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>192</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>7</Red>
-        <Green>146</Green>
-        <Blue>94</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>128</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>255</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>128</Green>
-        <Blue>192</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>0</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>64</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>80</Red>
-        <Green>240</Green>
-        <Blue>120</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>64</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>0</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>0</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>64</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>128</Red>
-        <Green>128</Green>
-        <Blue>128</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>64</Green>
-        <Blue>0</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>0</Red>
-        <Green>0</Green>
-        <Blue>0</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>255</Green>
-        <Blue>255</Blue>
-      </Entries>
-      <Entries xsi:type="attribute:ColorDefinition">
-        <Transparency>255</Transparency>
-        <Red>255</Red>
-        <Green>128</Green>
-        <Blue>0</Blue>
-      </Entries>
-    </SeriesPalette>
-    <SeriesDefinitions>
-      <Query>
-        <Definition></Definition>
-      </Query>
-      <SeriesPalette>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>40</Red>
-          <Green>167</Green>
-          <Blue>215</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>220</Red>
-          <Green>67</Green>
-          <Blue>16</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>232</Red>
-          <Green>172</Green>
-          <Blue>57</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>255</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>64</Red>
-          <Green>128</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>170</Red>
-          <Green>85</Green>
-          <Blue>85</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>0</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>192</Red>
-          <Green>192</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>192</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>7</Red>
-          <Green>146</Green>
-          <Blue>94</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>128</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>128</Green>
-          <Blue>192</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>0</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>64</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>80</Red>
-          <Green>240</Green>
-          <Blue>120</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>64</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>0</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>0</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>64</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>128</Red>
-          <Green>128</Green>
-          <Blue>128</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>64</Green>
-          <Blue>0</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Entries>
-        <Entries xsi:type="attribute:ColorDefinition">
-          <Transparency>255</Transparency>
-          <Red>255</Red>
-          <Green>128</Green>
-          <Blue>0</Blue>
-        </Entries>
-      </SeriesPalette>
-      <Series xsi:type="type:PieSeries">
-        <Visible>false</Visible>
-        <Label>
-          <Caption>
-            <Value></Value>
-            <Font>
-              <Alignment/>
-            </Font>
-          </Caption>
-          <Background xsi:type="attribute:ColorDefinition">
-            <Transparency>0</Transparency>
-            <Red>255</Red>
-            <Green>255</Green>
-            <Blue>255</Blue>
-          </Background>
-          <Outline>
-            <Style>Solid</Style>
-            <Thickness>1</Thickness>
-            <Color>
-              <Transparency>255</Transparency>
-              <Red>0</Red>
-              <Green>0</Green>
-              <Blue>0</Blue>
-            </Color>
-            <Visible>false</Visible>
-          </Outline>
-          <Insets>
-            <Top>0.0</Top>
-            <Left>2.0</Left>
-            <Bottom>0.0</Bottom>
-            <Right>3.0</Right>
-          </Insets>
-          <Visible>false</Visible>
-        </Label>
-        <DataDefinition>
-          <Definition>row[&quot;Amount&quot;]</Definition>
-          <Grouping>
-            <GroupType>Text</GroupType>
-            <AggregateExpression>Sum</AggregateExpression>
-          </Grouping>
-        </DataDefinition>
-        <SeriesIdentifier></SeriesIdentifier>
-        <DataPoint>
-          <Components>
-            <Type>Orthogonal_Value</Type>
-          </Components>
-          <Separator>, </Separator>
-        </DataPoint>
-        <LabelPosition>Outside</LabelPosition>
-        <Stacked>false</Stacked>
-        <Triggers>
-          <Condition>onmouseover</Condition>
-          <Action>
-            <Type>Show_Tooltip</Type>
-            <Value xsi:type="attribute:TooltipValue">
-              <Text></Text>
-              <Delay>200</Delay>
-            </Value>
-          </Action>
-        </Triggers>
-        <Explosion>0</Explosion>
-        <Title>
-          <Caption>
-            <Value></Value>
-            <Font>
-              <Size>16.0</Size>
-              <Bold>true</Bold>
-              <Alignment/>
-            </Font>
-          </Caption>
-          <Background xsi:type="attribute:ColorDefinition">
-            <Transparency>0</Transparency>
-            <Red>255</Red>
-            <Green>255</Green>
-            <Blue>255</Blue>
-          </Background>
-          <Outline>
-            <Style>Solid</Style>
-            <Thickness>1</Thickness>
-            <Color>
-              <Transparency>255</Transparency>
-              <Red>0</Red>
-              <Green>0</Green>
-              <Blue>0</Blue>
-            </Color>
-            <Visible>false</Visible>
-          </Outline>
-          <Insets>
-            <Top>0.0</Top>
-            <Left>2.0</Left>
-            <Bottom>0.0</Bottom>
-            <Right>3.0</Right>
-          </Insets>
-          <Visible>false</Visible>
-        </Title>
-        <TitlePosition>Below</TitlePosition>
-        <LeaderLineAttributes>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Visible>false</Visible>
-        </LeaderLineAttributes>
-        <LeaderLineStyle>Stretch_To_Side</LeaderLineStyle>
-        <LeaderLineLength>10.0</LeaderLineLength>
-        <Ratio>0.5</Ratio>
-        <Rotation>0.0</Rotation>
-        <Clockwise>true</Clockwise>
-      </Series>
-      <Grouping>
-        <GroupType>Text</GroupType>
-        <AggregateExpression>Sum</AggregateExpression>
-      </Grouping>
-    </SeriesDefinitions>
-    <Series>
-      <Visible>true</Visible>
-      <Label>
-        <Caption>
-          <Value></Value>
-          <Font>
-            <Alignment/>
-          </Font>
-        </Caption>
-        <Background xsi:type="attribute:ColorDefinition">
-          <Transparency>0</Transparency>
-          <Red>255</Red>
-          <Green>255</Green>
-          <Blue>255</Blue>
-        </Background>
-        <Outline>
-          <Style>Solid</Style>
-          <Thickness>1</Thickness>
-          <Color>
-            <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
-          </Color>
-          <Visible>false</Visible>
-        </Outline>
-        <Insets>
-          <Top>0.0</Top>
-          <Left>2.0</Left>
-          <Bottom>0.0</Bottom>
-          <Right>3.0</Right>
-        </Insets>
-        <Visible>false</Visible>
-      </Label>
-      <DataDefinition>
-        <Definition>row[&quot;Type&quot;] + &quot;: &quot; + formatMoney(row[&quot;Amount&quot;], 2, '', '.', ',')</Definition>
-      </DataDefinition>
-      <SeriesIdentifier></SeriesIdentifier>
-      <DataPoint>
-        <Components>
-          <Type>Orthogonal_Value</Type>
-        </Components>
-        <Separator>, </Separator>
-      </DataPoint>
-      <LabelPosition>Outside</LabelPosition>
-      <Stacked>false</Stacked>
-    </Series>
-    <Grouping>
-      <Enabled>true</Enabled>
-      <GroupType>Text</GroupType>
-      <AggregateExpression>Sum</AggregateExpression>
-    </Grouping>
-  </SeriesDefinitions>
-</model:ChartWithoutAxes>
-]]></xml-property>
-                        <property name="outputFormat">SVG</property>
-                        <property name="inheritColumns">false</property>
-                        <property name="paddingTop">20pt</property>
-                        <property name="height">42.75pt</property>
-                        <property name="width">185.25pt</property>
-                        <property name="dataSet">PieChartInfo</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if(0.0 == row["Amount"])&#13;
-	true;&#13;
-else&#13;
-	false;</expression>
-                            </structure>
-                        </list-property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">Type</property>
-                                <text-property name="displayName">Type</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Type"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">Amount</property>
-                                <text-property name="displayName">Amount</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Amount"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                    </extended-item>
+                        <property name="textAlign">center</property>
+                        <text-property name="text">***************                     ******         **        *     ***********</text-property>
+                    </label>
                 </cell>
             </row>
         </grid>
@@ -10632,6 +8997,47 @@ så ofte du ønsker til din netteier.]]></text-property>
                                                 </row>
                                             </footer>
                                         </table>
+                                    </cell>
+                                </row>
+                            </grid>
+                            <grid id="1461">
+                                <property name="height">0.3854166666666667in</property>
+                                <column id="1462"/>
+                                <row id="1463">
+                                    <property name="height">0.3854166666666667in</property>
+                                    <cell id="1464"/>
+                                </row>
+                            </grid>
+                            <grid id="1465">
+                                <property name="height">1.6458333333333333in</property>
+                                <property name="dataSet">MainInfo</property>
+                                <list-property name="visibility">
+                                    <structure>
+                                        <property name="format">all</property>
+                                        <expression name="valueExpr" type="javascript">if(row["TotalAttachment"] != vars["AttachmentIndex"] || null == params["campaignImage"].value || "" == params["campaignImage"].value) {&#13;
+	true;&#13;
+} else {&#13;
+	false;&#13;
+}</expression>
+                                    </structure>
+                                </list-property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">TotalAttachment</property>
+                                        <text-property name="displayName">TotalAttachment</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["TotalAttachment"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                </list-property>
+                                <column id="1466"/>
+                                <row id="1467">
+                                    <cell id="1468">
+                                        <image id="1470">
+                                            <property name="height">1.0668896321070234in</property>
+                                            <property name="width">5.036789297658863in</property>
+                                            <property name="source">expr</property>
+                                            <expression name="valueExpr">org.apache.commons.codec.binary.Base64.decodeBase64(params["campaignImage"])</expression>
+                                        </image>
                                     </cell>
                                 </row>
                             </grid>

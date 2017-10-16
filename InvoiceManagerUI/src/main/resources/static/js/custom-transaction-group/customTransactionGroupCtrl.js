@@ -115,7 +115,7 @@ const customTransactionGroupController = ($scope, $http, ModalService) => {
 
     let showModal = (transactionInfo, type) =>  {
         ModalService.showModal({
-            templateUrl: '/templates/custom-transaction-group/customTransactionGroupPopup.html',
+            templateUrl: 'templates/custom-transaction-group/customTransactionGroupPopup.html',
             controller: 'customTransactionGroupPopupCtrl',
             inputs: {
                 options: {
