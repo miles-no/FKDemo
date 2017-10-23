@@ -29,7 +29,7 @@ import java.util.HashMap;
 /**
  * Created by bhavi on 10/10/2017.
  */
-@Component
+//@Component
 public class InvoiceConsumer implements MessageListener<Long, StatementsList> {
 
     private static final Logger logger = LoggerFactory.getLogger(InvoiceConsumer.class);

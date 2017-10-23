@@ -158,7 +158,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     public byte[] birtEnginePDFGenerator(Statement statement, String outPutDirectoryPath, String statementFolderName) throws BirtException {
         logger.debug("Generating Invoice PDF for Statement ID: " + statement.getId());
 
-        long startTime = System.currentTimeMillis();
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start("Birt report generation");
         String accountNo = statement.getAccountNumber();
         String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
         ByteArrayOutputStream baos = null;
@@ -202,8 +203,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             task.setRenderOption(options);
             task.run();
             task.close();
-            long endTime = System.currentTimeMillis();
-            logger.debug("Time to generate PDF for statement id  " + statement.getId() + " "+(endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
+            stopWatch.stop();
+            logger.debug(stopWatch.prettyPrint());
+            //logger.debug("Time to generate PDF for statement id  " + statement.getId() + " "+(endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
             return baos.toByteArray();
         } catch (BirtException e) {
             throw new PDFGeneratorException(e.getMessage());

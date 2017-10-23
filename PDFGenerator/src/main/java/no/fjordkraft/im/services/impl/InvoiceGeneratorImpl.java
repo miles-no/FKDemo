@@ -50,14 +50,6 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     @Autowired
     AuditLogServiceImpl auditLogService;
 
-    private String outputDirectoryPath;
-
-    @PostConstruct
-    public void setConfig(){
-        outputDirectoryPath = configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
-    }
-
-
     @Override
     @Transactional
     public void generateInvoice(Statement statement, byte[] generatedPdf) throws IOException, DocumentException {

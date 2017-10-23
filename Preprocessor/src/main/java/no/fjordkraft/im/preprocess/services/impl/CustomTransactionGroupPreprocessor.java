@@ -8,6 +8,7 @@ import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.TransactionGroupService;
+import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,14 +64,16 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
                 for (Map.Entry<String, Transaction> entry : diverseRabatter.entrySet()) {
                     transaction = entry.getValue();
                     transaction.setTransactionSequence(++totalTransactions);
+                    transaction.setAmountWithVat(IMConstants.NEGATIVE * transaction.getAmountWithVat());
+                    transaction.setVatAmount(IMConstants.NEGATIVE * transaction.getVatAmount());
                     processedTransaction.add(entry.getValue());
                 }
 
                 transactionGroup.setTransaction(processedTransaction);
                 transactionGroup.setTotalTransactions(totalTransactions);
                 request.getStatement().setTransactionGroup(transactionGroup);
-                request.getStatement().getTransactions().setDiAmountWithVat(amountWithVatTotal);
-                request.getStatement().getTransactions().setDiVatTotal(vatTotalAmount);
+                request.getStatement().getTransactions().setDiAmountWithVat(IMConstants.NEGATIVE * amountWithVatTotal);
+                request.getStatement().getTransactions().setDiVatTotal(IMConstants.NEGATIVE * vatTotalAmount);
             } else {
                 logger.info("Transaction groups not defined for brand "+ brand);
             }

@@ -1,6 +1,7 @@
 package no.fjordkraft.im;
 
 import com.itextpdf.text.FontFactory;
+import no.fjordkraft.im.consumer.InvoiceConsumer;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.util.IMConstants;
 import no.fjordkraft.security.filter.SecurityFilter;
@@ -43,21 +44,19 @@ public class AppConfig {
     @Autowired
     private DataSource dataSource;
 
-    @Autowired
-    private ResourceLoader resourceLoader;
-
-    @Autowired
-    private Environment env;
-
     private @Autowired
     AutowireCapableBeanFactory beanFactory;
+
+    @Autowired
+    private ConfigService configService;
+
 
     @Bean(name="PDFGeneratorExecutor")
     @DependsOn("BirtEngine")
     public TaskExecutor getPDFGeneratorExecutor(ConfigService configService) {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         int maxPool = configService.getInteger(IMConstants.NUM_OF_THREAD_PDFGENERATOR);
-        executor.setCorePoolSize(10);
+        executor.setCorePoolSize(maxPool);
         executor.setMaxPoolSize(maxPool);
         executor.setQueueCapacity((Integer.valueOf(Integer.MAX_VALUE)));
         executor.initialize();
@@ -75,22 +74,10 @@ public class AppConfig {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("Initializing Birt engine");
         String fontPath = configService.getString(IMConstants.CUSTOM_FONT_PATH);
-       /* try {
-            FontFactory.register(fontPath + File.separator + "FjordkraftNeoSan.ttf", "Fjordkraft Neo Sans");
-            FontFactory.register(fontPath + File.separator + "FjordkraftNeoSanMed.ttf", "Fjordkraft Neo Sans Medium");
-            FontFactory.register(fontPath + File.separator + "FjordNeoSanLigIta.ttf", "Fjordkraft Neo Sans Lt It");
-            FontFactory.register(fontPath + File.separator + "FjordkraftNeoSanBol.ttf", "Fjordkraft Neo Sans Bd");
-            FontFactory.register(fontPath + File.separator + "FjordNeoSanBolIta.ttf", "Fjordkraft Neo Sans Bd It");
-            FontFactory.register(fontPath + File.separator + "FjordNeoSanMedIta.ttf", "Fjordkraft Neo Sans Med It");
-            FontFactory.register(fontPath + File.separator + "FjordNeoSanIta.ttf", "Fjordkraft Neo Sans It");
-            FontFactory.register(fontPath + File.separator + "FjordkraftNeoSanLig.ttf ", "Fjordkraft Neo Sans Lt");
-        } catch(Exception e) {
-            logger.error("Exception registering Fonts",e);
-        }*/
+
         EngineConfig engineConfig = new EngineConfig();
 
         IReportEngine engine = null;
-        //engineConfig.setEngineHome(IMConstants.BIRT_ENGINE_HOME_PATH);
         String logPath = configService.getString(IMConstants.BIRT_ENGINE_LOG_PATH);
        if(StringUtils.isNotEmpty(logPath)) {
             engineConfig.setLogConfig(logPath, Level.FINE);
@@ -122,6 +109,21 @@ public class AppConfig {
         beanFactory.autowireBean(securityFilter);
         registration.setFilter(securityFilter);
         registration.addUrlPatterns("/api/*");
+
         return registration;
+    }
+
+    @Bean
+    @DependsOn("BirtEngine")
+    public InvoiceConsumer kafkaConsumer(){
+        logger.debug("java temp dir "+System.getProperty("java.io.tmpdir"));
+        Boolean useKafkaForPDFProcessing = configService.getBoolean(IMConstants.USE_KAFKA_PDF_PROCESSING);
+        if(useKafkaForPDFProcessing) {
+            InvoiceConsumer consumer = beanFactory.createBean(InvoiceConsumer.class);
+            logger.debug(" kafka consumer created ");
+            return consumer;
+        } else {
+            return null;
+        }
     }
 }
