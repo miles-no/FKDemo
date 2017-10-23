@@ -190,7 +190,7 @@ public class Statement {
     @XmlElement(name = "Address2", required = true)
     protected String address2;
     @XmlElement(name = "PostCode")
-    protected short postCode;
+    protected String postCode;
     @XmlElement(name = "City", required = true)
     protected String city;
     @XmlElement(name = "Region", required = true)
@@ -592,7 +592,7 @@ public class Statement {
      * Gets the value of the postCode property.
      * 
      */
-    public short getPostCode() {
+    public String getPostCode() {
         return postCode;
     }
 
@@ -600,7 +600,7 @@ public class Statement {
      * Sets the value of the postCode property.
      * 
      */
-    public void setPostCode(short value) {
+    public void setPostCode(String value) {
         this.postCode = value;
     }
 

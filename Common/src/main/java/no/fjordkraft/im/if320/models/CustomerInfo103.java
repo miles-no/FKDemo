@@ -76,7 +76,7 @@ public class CustomerInfo103 {
     @XmlElement(name = "Address2", required = true)
     protected String address2;
     @XmlElement(name = "PostalCode")
-    protected short postalCode;
+    protected String postalCode;
     @XmlElement(name = "City", required = true)
     protected String city;
     @XmlElement(name = "CountryCode", required = true)
@@ -200,7 +200,7 @@ public class CustomerInfo103 {
      * Gets the value of the postalCode property.
      * 
      */
-    public short getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 
@@ -208,7 +208,7 @@ public class CustomerInfo103 {
      * Sets the value of the postalCode property.
      * 
      */
-    public void setPostalCode(short value) {
+    public void setPostalCode(String value) {
         this.postalCode = value;
     }
 

@@ -1164,8 +1164,8 @@ public class ObjectFactory {
      *
      */
     @XmlElementDecl(namespace = "", name = "PostalCode")
-    public JAXBElement<Short> createPostalCode(Short value) {
-        return new JAXBElement<Short>(_PostalCode_QNAME, Short.class, null, value);
+    public JAXBElement<String> createPostalCode(String value) {
+        return new JAXBElement<String>(_PostalCode_QNAME, String.class, null, value);
     }
 
     /**
@@ -3540,8 +3540,8 @@ public class ObjectFactory {
      *
      */
     @XmlElementDecl(namespace = "", name = "PostCode")
-    public JAXBElement<Short> createPostCode(Short value) {
-        return new JAXBElement<Short>(_PostCode_QNAME, Short.class, null, value);
+    public JAXBElement<String> createPostCode(String value) {
+        return new JAXBElement<String>(_PostCode_QNAME, String.class, null, value);
     }
 
     /**
