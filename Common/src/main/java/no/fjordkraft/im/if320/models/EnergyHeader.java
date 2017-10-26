@@ -55,7 +55,7 @@ public class EnergyHeader {
     @XmlElement(name = "Description", required = true)
     protected String description;
     @XmlElement(name = "MeterId")
-    protected long meterId;
+    protected String meterId;
     @XmlElement(name = "ObjectId")
     protected long objectId;
     @XmlElement(name = "AnnualConsumption", required = true)
@@ -139,7 +139,7 @@ public class EnergyHeader {
      * Gets the value of the meterId property.
      * 
      */
-    public long getMeterId() {
+    public String getMeterId() {
         return meterId;
     }
 
@@ -147,7 +147,7 @@ public class EnergyHeader {
      * Sets the value of the meterId property.
      * 
      */
-    public void setMeterId(long value) {
+    public void setMeterId(String value) {
         this.meterId = value;
     }
 

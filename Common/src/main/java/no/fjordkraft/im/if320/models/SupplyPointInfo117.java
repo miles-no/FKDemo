@@ -88,7 +88,7 @@ public class SupplyPointInfo117 {
     @XmlElement(name = "Description", required = true)
     protected String description;
     @XmlElement(name = "MeterId")
-    protected long meterId;
+    protected String meterId;
     @XmlElement(name = "ActivityType", required = true)
     protected String activityType;
     @XmlElement(name = "MeterLocationId")
@@ -122,7 +122,7 @@ public class SupplyPointInfo117 {
     @XmlElement(required = true)
     protected String readingMateriel;
     @XmlElement(name = "MeterIdNew")
-    protected long meterIdNew;
+    protected String meterIdNew;
 
     /**
      * Gets the value of the supplyPointId property.
@@ -224,7 +224,7 @@ public class SupplyPointInfo117 {
      * Gets the value of the meterId property.
      * 
      */
-    public long getMeterId() {
+    public String getMeterId() {
         return meterId;
     }
 
@@ -232,7 +232,7 @@ public class SupplyPointInfo117 {
      * Sets the value of the meterId property.
      * 
      */
-    public void setMeterId(long value) {
+    public void setMeterId(String value) {
         this.meterId = value;
     }
 
@@ -600,7 +600,7 @@ public class SupplyPointInfo117 {
      * Gets the value of the meterIdNew property.
      * 
      */
-    public long getMeterIdNew() {
+    public String getMeterIdNew() {
         return meterIdNew;
     }
 
@@ -608,7 +608,7 @@ public class SupplyPointInfo117 {
      * Sets the value of the meterIdNew property.
      * 
      */
-    public void setMeterIdNew(long value) {
+    public void setMeterIdNew(String value) {
         this.meterIdNew = value;
     }
 

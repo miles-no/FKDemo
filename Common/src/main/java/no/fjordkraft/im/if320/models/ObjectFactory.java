@@ -1632,8 +1632,8 @@ public class ObjectFactory {
      *
      */
     @XmlElementDecl(namespace = "", name = "MeterId")
-    public JAXBElement<Long> createMeterId(Long value) {
-        return new JAXBElement<Long>(_MeterId_QNAME, Long.class, null, value);
+    public JAXBElement<String> createMeterId(String value) {
+        return new JAXBElement<String>(_MeterId_QNAME, String.class, null, value);
     }
 
     /**
@@ -1803,8 +1803,8 @@ public class ObjectFactory {
      *
      */
     @XmlElementDecl(namespace = "", name = "MeterIdNew")
-    public JAXBElement<Long> createMeterIdNew(Long value) {
-        return new JAXBElement<Long>(_MeterIdNew_QNAME, Long.class, null, value);
+    public JAXBElement<String> createMeterIdNew(String value) {
+        return new JAXBElement<String>(_MeterIdNew_QNAME, String.class, null, value);
     }
 
     /**
