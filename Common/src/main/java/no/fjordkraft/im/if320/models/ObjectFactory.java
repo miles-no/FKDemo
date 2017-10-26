@@ -2955,8 +2955,8 @@ public class ObjectFactory {
      *
      */
     @XmlElementDecl(namespace = "", name = "AnnualConsumption")
-    public JAXBElement<Short> createAnnualConsumption(Short value) {
-        return new JAXBElement<Short>(_AnnualConsumption_QNAME, Short.class, null, value);
+    public JAXBElement<Long> createAnnualConsumption(Long value) {
+        return new JAXBElement<Long>(_AnnualConsumption_QNAME, Long.class, null, value);
     }
 
     /**

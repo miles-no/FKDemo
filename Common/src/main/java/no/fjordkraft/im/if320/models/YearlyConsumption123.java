@@ -43,7 +43,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class YearlyConsumption123 {
 
     @XmlElement(name = "AnnualConsumption")
-    protected short annualConsumption;
+    protected long annualConsumption;
     @XmlElement(name = "B-AccountAmount")
     protected float bAccountAmount;
     @XmlElement(name = "PriceDate", required = true)
@@ -54,7 +54,7 @@ public class YearlyConsumption123 {
      * Gets the value of the annualConsumption property.
      * 
      */
-    public short getAnnualConsumption() {
+    public long getAnnualConsumption() {
         return annualConsumption;
     }
 
@@ -62,7 +62,7 @@ public class YearlyConsumption123 {
      * Sets the value of the annualConsumption property.
      * 
      */
-    public void setAnnualConsumption(short value) {
+    public void setAnnualConsumption(long value) {
         this.annualConsumption = value;
     }
 
