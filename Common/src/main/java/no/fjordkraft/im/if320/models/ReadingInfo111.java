@@ -89,7 +89,7 @@ public class ReadingInfo111 {
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar endDate;
     @XmlElement(name = "MeterId")
-    protected int meterId;
+    protected long meterId;
     @XmlElement(name = "StartReading")
     protected float startReading;
     @XmlElement(name = "FinalC-Reading")
@@ -131,7 +131,7 @@ public class ReadingInfo111 {
     @XmlElement(name = "TotConsCurrCounter")
     protected float totConsCurrCounter;
     @XmlElement(name = "MeterIdNew")
-    protected int meterIdNew;
+    protected long meterIdNew;
 
     /**
      * Gets the value of the startDate property.
@@ -185,7 +185,7 @@ public class ReadingInfo111 {
      * Gets the value of the meterId property.
      *
      */
-    public int getMeterId() {
+    public long getMeterId() {
         return meterId;
     }
 
@@ -193,7 +193,7 @@ public class ReadingInfo111 {
      * Sets the value of the meterId property.
      *
      */
-    public void setMeterId(int value) {
+    public void setMeterId(long value) {
         this.meterId = value;
     }
 
@@ -545,7 +545,7 @@ public class ReadingInfo111 {
      * Gets the value of the meterIdNew property.
      * 
      */
-    public int getMeterIdNew() {
+    public long getMeterIdNew() {
         return meterIdNew;
     }
 
@@ -553,7 +553,7 @@ public class ReadingInfo111 {
      * Sets the value of the meterIdNew property.
      * 
      */
-    public void setMeterIdNew(int value) {
+    public void setMeterIdNew(long value) {
         this.meterIdNew = value;
     }
 

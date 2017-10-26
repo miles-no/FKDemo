@@ -3705,8 +3705,7 @@
                                                         <property name="paddingBottom">0pt</property>
                                                         <property name="paddingRight">0pt</property>
                                                         <image id="1394">
-                                                            <property name="height">0.219in</property>
-                                                            <property name="width">2.948in</property>
+                                                            <property name="width">2.35in</property>
                                                             <property name="source">embed</property>
                                                             <property name="imageName">logo-topp (1).png</property>
                                                         </image>
@@ -3714,7 +3713,8 @@
                                                             <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
                                                             <property name="fontSize">8pt</property>
                                                             <property name="color">#808080</property>
-                                                            <property name="paddingTop">3pt</property>
+                                                            <property name="marginTop">2pt</property>
+                                                            <property name="paddingTop">1.6pt</property>
                                                             <property name="paddingLeft">0pt</property>
                                                             <property name="textAlign">left</property>
                                                             <property name="contentType">auto</property>
@@ -4561,7 +4561,23 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
                                         <property name="textAlign">center</property>
+                                        <list-property name="visibility">
+                                            <structure>
+                                                <property name="format">all</property>
+                                                <expression name="valueExpr" type="javascript">if("NO" == row["DirectDebit"]) {&#13;
+	true;&#13;
+} else {&#13;
+	false;&#13;
+}</expression>
+                                            </structure>
+                                        </list-property>
                                         <text-property name="text">Trekkdato</text-property>
+                                    </label>
+                                    <label id="1402">
+                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontStyle">italic</property>
+                                        <text-property name="text">Betalingsfrist</text-property>
                                     </label>
                                 </cell>
                                 <cell id="170">
@@ -4571,7 +4587,25 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                         <property name="fontStyle">italic</property>
                                         <property name="paddingRight">10pt</property>
                                         <property name="textAlign">right</property>
+                                        <list-property name="visibility">
+                                            <structure>
+                                                <property name="format">all</property>
+                                                <expression name="valueExpr" type="javascript">if("NO" == row["DirectDebit"]) {&#13;
+	true;&#13;
+} else {&#13;
+	false;&#13;
+}</expression>
+                                            </structure>
+                                        </list-property>
                                         <text-property name="text">Beløp</text-property>
+                                    </label>
+                                    <label id="1403">
+                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontStyle">italic</property>
+                                        <property name="paddingRight">10pt</property>
+                                        <property name="textAlign">right</property>
+                                        <text-property name="text">Betale</text-property>
                                     </label>
                                 </cell>
                             </row>
@@ -8652,14 +8686,16 @@ year = year + "";</expression>
                                                         </row>
                                                         <row id="486">
                                                             <cell id="487">
-                                                                <text id="491">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                                <label id="1401">
                                                                     <property name="fontSize">7pt</property>
                                                                     <property name="paddingTop">10pt</property>
-                                                                    <property name="contentType">auto</property>
-                                                                    <text-property name="content"><![CDATA[Husk at du kan melde inn målerstand
-så ofte du ønsker til din netteier.]]></text-property>
-                                                                </text>
+                                                                    <text-property name="text">Husk at du kan melde inn målerstand&#13;</text-property>
+                                                                </label>
+                                                                <label id="1400">
+                                                                    <property name="fontSize">7pt</property>
+                                                                    <property name="paddingTop">2.3pt</property>
+                                                                    <text-property name="text">så ofte du ønsker til din netteier.&#13;</text-property>
+                                                                </label>
                                                             </cell>
                                                         </row>
                                                     </grid>
@@ -10662,7 +10698,6 @@ så ofte du ønsker til din netteier.]]></text-property>
                                         <property name="paddingLeft">5pt</property>
                                         <property name="paddingRight">0pt</property>
                                         <image id="1346">
-                                            <property name="height">0.19791666666666666in</property>
                                             <property name="width">1.1145833333333333in</property>
                                             <property name="source">embed</property>
                                             <property name="imageName">Fjordkraft_logo_Sort.png</property>
@@ -13882,8 +13917,6 @@ etter gjeldende satser.&#13;
                 qVcYTkE9VERlzTyhpz4NCAA7
 </property>
         </structure>
-        
-        
         <structure>
             <property name="name">logo-topp (1).png</property>
             <property name="type">image/png</property>
