@@ -77,16 +77,17 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                             for(Attachment attachment:attachments) {
                                 if(attachment.getFAKTURA().getFAKTURANR().equals(transaction.getReference())) {
                                     if(IMConstants.PDFEHF.equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
+                                        if(null != attachment.getFAKTURA().getVedleggehfObj()) {
+                                            transaction.setStartDate(attachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines()
+                                                    .get(0).getInvoicePeriods().get(0).getStartDate().getValue());
 
-                                        transaction.setStartDate(attachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines()
-                                        .get(0).getInvoicePeriods().get(0).getStartDate().getValue());
+                                            invoiceLineSize = attachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().size();
 
-                                        invoiceLineSize = attachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().size();
+                                            transaction.setEndDate(attachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines()
+                                                    .get(invoiceLineSize - 1).getInvoicePeriods().get(0).getEndDate().getValue());
 
-                                        transaction.setEndDate(attachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines()
-                                                .get(invoiceLineSize-1).getInvoicePeriods().get(0).getEndDate().getValue());
-
-                                        break;
+                                            break;
+                                        }
                                     } else if(IMConstants.PDFE2B.equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
 
                                         transaction.setStartDate(attachment.getFAKTURA().getVedlegge2BObj().getInvoice().getInvoiceDetails()
@@ -115,7 +116,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
             request.getStatement().setTransactionGroup(transactionGroup);
             request.getStatement().setTotalVatAmount(IMConstants.NEGATIVE * request.getStatement().getTotalVatAmount());
         } catch (Exception ex) {
-            throw new PreprocessorException("Failed in Transaction Group Pre-Processor with message: " + ex.getMessage());
+            throw new PreprocessorException("Failed in Transaction Group Pre-Processor with message: ",ex );
         }
     }
 
