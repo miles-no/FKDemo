@@ -78,15 +78,26 @@ public class GenericPreprocessor extends BasePreprocessor {
         for(Attachment attachment : statement.getAttachments().getAttachment()){
             if("PDFEHF".equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
                 String data = attachment.getFAKTURA().getVedleggehf();
+                byte[] decoded = null;
                 if(null != data) {
-                    byte[] decoded = Base64.decodeBase64(data);
-                    logger.debug("decoded ehf is " +new String(decoded));
-                    StreamSource source = new StreamSource(new InputStreamReader(new ByteArrayInputStream(decoded),StandardCharsets.ISO_8859_1));
-                    oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice invoice = (oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice)unMarshaller.unmarshal(source);
-                    VEDLEGGEHF ehf = new VEDLEGGEHF();
-                    ehf.setInvoice(invoice);
-                    attachment.getFAKTURA().setVedleggehfObj(ehf);
-                    attachment.getFAKTURA().setVedleggehf(null);
+                    try {
+                        decoded = Base64.decodeBase64(data);
+                        //logger.debug("decoded ehf is " +new String(decoded));
+                        StreamSource source = new StreamSource(new InputStreamReader(new ByteArrayInputStream(decoded), StandardCharsets.ISO_8859_1));
+                        oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice invoice = (oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice) unMarshaller.unmarshal(source);
+                        VEDLEGGEHF ehf = new VEDLEGGEHF();
+                        ehf.setInvoice(invoice);
+                        attachment.getFAKTURA().setVedleggehfObj(ehf);
+                        attachment.getFAKTURA().setVedleggehf(null);
+                    } catch(Exception e) {
+                        //if ehf is credit note continue to next
+                        String ehf = new String(decoded);
+                        if(ehf.endsWith("</CreditNote>")){
+                            continue;
+                        } else {
+                            throw e;
+                        }
+                    }
                 }
             } else if("PDFE2B".equals(attachment.getFAKTURA().getVEDLEGGFORMAT())){
                 String data = attachment.getFAKTURA().getVedlegge2B();
