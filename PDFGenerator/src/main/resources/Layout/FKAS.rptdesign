@@ -7960,7 +7960,7 @@ formatMoney(dataSetRow["GrossPrice"], 2, '', '.', ',') + " " + dataSetRow["Strom
                                                 <structure>
                                                     <property name="name">QuantityInvoiced</property>
                                                     <text-property name="displayName">NettInfo::QuantityInvoiced</text-property>
-                                                    <expression name="expression" type="javascript">dataSetRow["QuantityInvoiced"] + " " + dataSetRow["UnitOfMeasure"]</expression>
+                                                    <expression name="expression" type="javascript">dataSetRow["QuantityInvoiced"] + " " + (dataSetRow["UnitOfMeasure"] == null ? '':dataSetRow["UnitOfMeasure"])</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
@@ -10863,16 +10863,31 @@ måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <property name="paddingBottom">2pt</property>
                                             <text-property name="text">Full oversikt på Min side:</text-property>
                                         </label>
+                                        <label id="1404">
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                            <property name="fontSize">7pt</property>
+                                            <property name="paddingTop">1pt</property>
+                                            <property name="paddingBottom">1pt</property>
+                                            <text-property name="text">Denne fakturaen oppsummerer kostnadene dine for både strøm og nettleie. Om du ønsker flere detaljer eller vil se originalfakturaen fra netteieren din finner du dette på </text-property>
+                                        </label>
+                                        <label id="1405">
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                            <property name="fontSize">7pt</property>
+                                            <text-property name="text">fjordkraft.no/minside</text-property>
+                                            <list-property name="action">
+                                                <structure>
+                                                    <property name="linkType">hyperlink</property>
+                                                    <expression name="uri" type="constant">https://www.fjordkraft.no/minside</expression>
+                                                    <property name="targetWindow">_blank</property>
+                                                </structure>
+                                            </list-property>
+                                        </label>
                                         <label id="820">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
+                                            <property name="paddingTop">1pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Du finner flere detaljer og&#13;
-spesifiserte nettleiekostnader på&#13;
-fjordkraft.no/minside&#13;
-Her finner også du oversikt over ditt&#13;
-kundeforhold, fakturahistorikk, anlegg&#13;
-og forbruk.</text-property>
+                                            <text-property name="text">Her får du også oversikt over ditt kundeforhold, strømforbruk og fakturaer.</text-property>
                                         </label>
                                         <label id="824">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -10892,7 +10907,7 @@ strømregningen, se</text-property>
                                         <label id="1319">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
-                                            <text-property name="text">fjordkraft.no/fakturaforklaring</text-property>
+                                            <text-property name="text">Fjordkraft.no/faktura</text-property>
                                             <list-property name="action">
                                                 <structure>
                                                     <property name="linkType">hyperlink</property>
