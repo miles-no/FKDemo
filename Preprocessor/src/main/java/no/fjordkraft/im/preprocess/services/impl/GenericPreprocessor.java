@@ -61,7 +61,11 @@ public class GenericPreprocessor extends BasePreprocessor {
             for (String data : statement.getAttachments().getAttachmentList()) {
                 data = data.replaceAll("&lt;!\\[CDATA\\[", "");
                 data = data.replaceAll("\\]\\]&gt;", "");
+                if(!data.contains("VEDLEGG_EHF")) {
+                    data = data.replaceAll("&", "&amp;");
+                }
                 data = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n" + data;
+                logger.debug("attachment is "+data.getBytes(StandardCharsets.ISO_8859_1));
                 StreamSource source = new StreamSource(new ByteArrayInputStream(data.getBytes(StandardCharsets.ISO_8859_1)));
                 FAKTURA faktura = (FAKTURA) unMarshaller.unmarshal(source);
                 Attachment attachment = new Attachment();
