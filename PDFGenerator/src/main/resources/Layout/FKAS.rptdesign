@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">C:\Users\miles12\Downloads\statement (3).xml</property>
+            <property name="FILELIST">C:\Users\bhavi\workspace\Test\processed_statement.xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -1098,6 +1098,21 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">Telephone</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">StatementDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">StatementDate</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ReferenceNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">ReferenceNumber</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">InvoiceType</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">InvoiceType</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -1162,6 +1177,11 @@
                         <property name="name">ReferenceNumber</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">InvoiceType</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <property name="dataSource">Data Source</property>
@@ -1171,63 +1191,94 @@
                     <property name="name">Address1</property>
                     <property name="nativeName">Address1</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">Description</property>
                     <property name="nativeName">Description</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">MeterId</property>
                     <property name="nativeName">MeterId</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">ObjectId</property>
                     <property name="nativeName">ObjectId</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">AnnualConsumption</property>
                     <property name="nativeName">AnnualConsumption</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
                     <property name="name">InvoiceNo</property>
                     <property name="nativeName">InvoiceNo</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">FREE_TEXT</property>
                     <property name="nativeName">FREE_TEXT</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
                     <property name="name">Name</property>
                     <property name="nativeName">Name</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">9</property>
                     <property name="name">Email</property>
                     <property name="nativeName">Email</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">10</property>
                     <property name="name">Telephone</property>
                     <property name="nativeName">Telephone</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">StatementDate</property>
+                    <property name="nativeName">StatementDate</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">ReferenceNumber</property>
+                    <property name="nativeName">ReferenceNumber</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">InvoiceType</property>
+                    <property name="nativeName">InvoiceType</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{Address1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/CustomerInfo-103/Address1},{Description;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Description},{MeterId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/MeterId},{ObjectId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/ObjectId},{AnnualConsumption;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/YearlyConsumption-123/AnnualConsumption},{InvoiceNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/MainInvoiceInfo-101/InvoiceNo},{FREE_TEXT;STRING;/FAKTURA/FREE_TEXT},{Name;STRING;/FAKTURA/GRID/Name},{Email;STRING;/FAKTURA/GRID/Email},{Telephone;STRING;/FAKTURA/GRID/Telephone},{StatementDate;STRING;../../StatementDate},{ReferenceNumber;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/ReferenceNumber}]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{Address1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/CustomerInfo-103/Address1},{Description;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Description},{MeterId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/MeterId},{ObjectId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/ObjectId},{AnnualConsumption;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/YearlyConsumption-123/AnnualConsumption},{InvoiceNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/MainInvoiceInfo-101/InvoiceNo},{FREE_TEXT;STRING;/FAKTURA/FREE_TEXT},{Name;STRING;/FAKTURA/GRID/Name},{Email;STRING;/FAKTURA/GRID/Email},{Telephone;STRING;/FAKTURA/GRID/Telephone},{StatementDate;STRING;../../StatementDate},{ReferenceNumber;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/ReferenceNumber},{InvoiceType;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/InvoiceType}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -5560,7 +5611,7 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
           <Visible>false</Visible>
         </Label>
         <DataDefinition>
-          <Definition>row[&quot;Amount&quot;]</Definition>
+          <Definition>row[&quot;ProcessedAmount&quot;]</Definition>
           <Grouping>
             <GroupType>Text</GroupType>
             <AggregateExpression>Sum</AggregateExpression>
@@ -5700,15 +5751,6 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                         <property name="height">108pt</property>
                         <property name="width">184.5pt</property>
                         <property name="dataSet">PieChartInfo</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if(0.0 == row["Amount"])&#13;
-	true;&#13;
-else&#13;
-	false;</expression>
-                            </structure>
-                        </list-property>
                         <list-property name="boundDataColumns">
                             <structure>
                                 <property name="name">Type</property>
@@ -5721,6 +5763,16 @@ else&#13;
                                 <text-property name="displayName">Amount</text-property>
                                 <expression name="expression" type="javascript">dataSetRow["Amount"]</expression>
                                 <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ProcessedAmount</property>
+                                <expression name="expression" type="javascript">if(parseFloat(dataSetRow["Amount"]) == 0.0){&#13;
+	null;&#13;
+} else {&#13;
+	dataSetRow["Amount"];&#13;
+}</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
                             </structure>
                         </list-property>
                     </extended-item>
@@ -6605,15 +6657,6 @@ else&#13;
                         <property name="height">42.75pt</property>
                         <property name="width">185.25pt</property>
                         <property name="dataSet">PieChartInfo</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if(0.0 == row["Amount"])&#13;
-	true;&#13;
-else&#13;
-	false;</expression>
-                            </structure>
-                        </list-property>
                         <list-property name="boundDataColumns">
                             <structure>
                                 <property name="name">Type</property>
@@ -7019,6 +7062,12 @@ year = year + "";</expression>
                     <expression name="expression" type="javascript">dataSetRow["StatementDate"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">InvoiceType</property>
+                    <text-property name="displayName">InvoiceType</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["InvoiceType"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <detail>
                 <grid id="782">
@@ -7246,6 +7295,69 @@ year = year + "";</expression>
                                             <column id="1006"/>
                                             <row id="1007">
                                                 <cell id="1008">
+                                                    <label id="1406">
+                                                        <property name="backgroundAttachment">scroll</property>
+                                                        <property name="backgroundPositionX">0%</property>
+                                                        <property name="backgroundPositionY">0%</property>
+                                                        <property name="backgroundRepeat">repeat</property>
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                        <property name="fontSize">7pt</property>
+                                                        <property name="fontWeight">normal</property>
+                                                        <property name="fontStyle">normal</property>
+                                                        <property name="fontVariant">normal</property>
+                                                        <property name="color">black</property>
+                                                        <property name="textLineThrough">none</property>
+                                                        <property name="textOverline">none</property>
+                                                        <property name="textUnderline">none</property>
+                                                        <property name="borderBottomColor">black</property>
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderBottomWidth">medium</property>
+                                                        <property name="borderLeftColor">black</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderLeftWidth">medium</property>
+                                                        <property name="borderRightColor">black</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderRightWidth">medium</property>
+                                                        <property name="borderTopColor">black</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                        <property name="borderTopWidth">medium</property>
+                                                        <property name="marginTop">0pt</property>
+                                                        <property name="marginLeft">0pt</property>
+                                                        <property name="marginBottom">0pt</property>
+                                                        <property name="marginRight">0pt</property>
+                                                        <property name="paddingTop">1pt</property>
+                                                        <property name="paddingLeft">1pt</property>
+                                                        <property name="paddingBottom">1pt</property>
+                                                        <property name="paddingRight">1pt</property>
+                                                        <property name="textAlign">left</property>
+                                                        <property name="letterSpacing">normal</property>
+                                                        <property name="lineHeight">normal</property>
+                                                        <property name="orphans">2</property>
+                                                        <property name="textTransform">none</property>
+                                                        <property name="whiteSpace">normal</property>
+                                                        <property name="widows">2</property>
+                                                        <property name="wordSpacing">normal</property>
+                                                        <property name="display">block</property>
+                                                        <property name="pageBreakAfter">auto</property>
+                                                        <property name="pageBreakBefore">auto</property>
+                                                        <property name="pageBreakInside">avoid</property>
+                                                        <property name="showIfBlank">false</property>
+                                                        <property name="canShrink">false</property>
+                                                        <property name="overflow">hidden</property>
+                                                        <list-property name="visibility">
+                                                            <structure>
+                                                                <property name="format">all</property>
+                                                                <expression name="valueExpr" type="javascript">if("O" == row["InvoiceType"])&#13;
+{&#13;
+false;&#13;
+}&#13;
+else&#13;
+{&#13;
+true;}</expression>
+                                                            </structure>
+                                                        </list-property>
+                                                        <text-property name="text">Opphør strøm</text-property>
+                                                    </label>
                                                     <label id="1010">
                                                         <property name="backgroundAttachment">scroll</property>
                                                         <property name="backgroundPositionX">0%</property>
@@ -7295,6 +7407,16 @@ year = year + "";</expression>
                                                         <property name="showIfBlank">false</property>
                                                         <property name="canShrink">false</property>
                                                         <property name="overflow">hidden</property>
+                                                        <list-property name="visibility">
+                                                            <structure>
+                                                                <property name="format">all</property>
+                                                                <expression name="valueExpr" type="javascript">if("O" == row["InvoiceType"]) {&#13;
+	true;&#13;
+} else {&#13;
+	false;&#13;
+}</expression>
+                                                            </structure>
+                                                        </list-property>
                                                         <text-property name="text">Strøm</text-property>
                                                     </label>
                                                 </cell>
