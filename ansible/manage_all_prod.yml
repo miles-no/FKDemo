@@ -22,7 +22,6 @@
   tasks:
     - include: stopapp.yml app={{ line_item }}
       with_items:
-        - im-pdfgenerator
         - im-ui
         - im-preprocessor
       loop_control:

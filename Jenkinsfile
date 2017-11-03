@@ -53,7 +53,7 @@ stage('Deploy to Test') {
 stage('Promote to production?') {
     timeout(time:1, unit:'DAYS') {
         milestone()
-        def inputResponse = input(message: 'Promote to production?', submitter: "bhavik,prashant", submitterParameter: 'approver', parameters:[booleanParam(defaultValue: true, description: 'I understand that this will update PRODUCTION', name: 'Confirmation')] )
+        def inputResponse = input(message: 'Promote to production?', submitter: "bhavik", submitterParameter: 'approver', parameters:[booleanParam(defaultValue: true, description: 'I understand that this will update PRODUCTION', name: 'Confirmation')] )
         if(!inputResponse['Confirmation']) {
             error("You need to confirm that you want to deploy to production")
         }
@@ -72,8 +72,8 @@ stage('Deploy to production') {
                     ansiblePlaybook(
                         playbook: "ansible/manage_all_prod.yml",
                         inventory: "ansible/prod",
-                        credentialsId: "bad1dbcc-9d24-4922-a66e-8be042ab725b",
-                        extras: "--vault-password-file ~/ansible-vault/mobile.txt",
+                         credentialsId: "miles2-login",
+                         extras: "--vault-password-file ~/ansible-vault/mobile.txt",
                         colorized: true)
                 }
                 catch(e) {

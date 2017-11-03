@@ -30,8 +30,10 @@ public class InvoiceGeneratorPublisher {
     @Autowired
     public InvoiceGeneratorPublisher(@Value("${kafka.bootstrap-servers}") String kafkaBootstrapServers,
                                  ObjectMapper objectMapper) {
-        Map<String, Object> config = Collections.singletonMap(BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServers);
-        this.kafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<>(config, new LongSerializer(), new JsonSerializer<StatementsList>(objectMapper)));
+        if(null != kafkaBootstrapServers && !kafkaBootstrapServers.isEmpty() && kafkaBootstrapServers.length() > 5) {
+            Map<String, Object> config = Collections.singletonMap(BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServers);
+            this.kafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<>(config, new LongSerializer(), new JsonSerializer<StatementsList>(objectMapper)));
+        }
     }
 
     @Transactional

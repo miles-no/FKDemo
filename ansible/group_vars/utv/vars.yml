@@ -1,6 +1,6 @@
 env: TEST
 db_url: jdbc:oracle:oci:@U120
-liquibasecontext: fjordkrafttest
+liquibase_context: fjordkrafttest
 eureka_client_serviceUrl_defaultZone: http://fk-utv-lx01.bkk.no:8761/eureka/
 
 

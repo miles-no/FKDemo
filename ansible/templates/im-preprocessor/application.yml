@@ -27,8 +27,8 @@ logging:
   file: /var/log/{{app}}/application.log
 
 liquibase:
-  context: {{liquibasecontext}}
-  enabled: disable
+  context: {{liquibase_context}}
+  enabled: {{liquibase_enable}}
 
 management:
   context-path: "/actuator"
@@ -57,7 +57,6 @@ im-pdfgenerator:
    ribbon:
      NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
      listOfServers: {{listOfServers_pdfgenerator}}
-
 
 
 kafka:
