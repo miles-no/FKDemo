@@ -9,6 +9,10 @@
   tasks:
     - include: stopapp.yml app=im-pdfgenerator
 
+    - include: site.yml app=im-pdfgenerator
+
+    - include: startapp.yml app=im-pdfgenerator
+
 
 -
   hosts: prod
@@ -25,10 +29,12 @@
 
     - include: site.yml app={{ item }}
       with_items:
+        - im-ui
         - im-preprocessor
 
     - include: startapp.yml app={{ line_item2 }}
       with_items:
+        - im-ui
         - im-preprocessor
       loop_control:
         loop_var: line_item2
