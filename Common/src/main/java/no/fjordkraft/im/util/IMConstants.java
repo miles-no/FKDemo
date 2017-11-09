@@ -80,4 +80,7 @@ public interface IMConstants {
     static final String NUM_OF_STMT_PDF_GEN="num.statement.pdf.generation";
     static final String USE_KAFKA_PDF_PROCESSING="use.kafka.pdf.processing";
     static final String DELETE_GENERATED_FILES="delete.generated.files";
+    static final String BASE_PATH_CAMPAIGN="base.path.campaign";
+    static final String READ_CAMPAIGN_IMAGE_FILESYSTEM="read.campaign.image.filesystem";
+    static final String READ_ADVT_PDF_FILESYSTEM="read.advt.pdf.filesystem";
 }

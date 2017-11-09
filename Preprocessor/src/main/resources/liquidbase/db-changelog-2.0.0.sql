@@ -360,3 +360,9 @@ Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (103,2,44);
 Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (104,2,75);
 Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (105,2,45);
 
+
+--changeset bhavik:8 context:prod
+Insert into IM_CONFIG (NAME,VALUE) values ('base.path.campaign','/app-invoicemanager/invoice-manager/im-pdfgenerator/current/campaign/');
+Insert into IM_CONFIG (NAME,VALUE) values ('read.campaign.image.filesystem','true');
+Insert into IM_CONFIG (NAME,VALUE) values ('read.advt.pdf.filesystem','true');
+

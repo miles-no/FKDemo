@@ -9,7 +9,9 @@ import no.fjordkraft.im.services.*;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.task.PDFGeneratorTask;
 import no.fjordkraft.im.util.IMConstants;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.eclipse.birt.core.exception.BirtException;
 import org.eclipse.birt.report.engine.api.IReportEngine;
 import org.eclipse.birt.report.engine.api.IReportRunnable;
@@ -86,6 +88,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     private String sampleStatementFilePath;
     private String sampleCampaignImagePath;
     private String customPdfFontPath;
+    private String basePathCampaign;
+    private boolean readCampaignFilesystem;
 
     public PDFGeneratorImpl(ConfigService configService) {
         this.configService = configService;
@@ -100,8 +104,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         birtResourcePath = configService.getString(IMConstants.BIRT_RESOURCE_PATH);
         sampleStatementFilePath = configService.getString(IMConstants.SAMPLE_STATEMENT_FILE_PATH);
         sampleCampaignImagePath = configService.getString(IMConstants.SAMPLE_CAMPAIGN_IMAGE_PATH);
-        customPdfFontPath = configService.getString(IMConstants.CUSTOM_FONT_PATH);
-
+        basePathCampaign =  configService.getString(IMConstants.BASE_PATH_CAMPAIGN);
+        readCampaignFilesystem = configService.getBoolean(IMConstants.READ_CAMPAIGN_IMAGE_FILESYSTEM);
     }
 
     @Override
@@ -135,7 +139,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 logger.debug("generated pdf bytes of length " + generatedPdf.length);
             }
             //auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
-            invoiceGenerator.generateInvoice(statement, generatedPdf);
+            invoiceGenerator.mergeInvoice(statement, generatedPdf);
             //statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
            // auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             logger.debug("PDF generated for statement with statementId "+ statement.getId()+ "completed");
@@ -168,8 +172,22 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             String xmlFilePath =  basePath + File.separator + IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME;
             String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
 
-            String campaignImage = segmentFileService.getImageContent(accountNo, brand);
-            if(null == campaignImage) {
+
+            String campaignImage = null;
+            logger.debug("readCampaignFilesystem " + readCampaignFilesystem);
+            if (readCampaignFilesystem) {
+                String path = basePathCampaign+brand+File.separator+brand.toLowerCase()+".jpg";
+                logger.debug(" reading campaign from FS for statement "+statement.getId() + " path is "+ path);
+                File f = new File(path);
+                if(f.exists()) {
+                    logger.debug(" reading campaign from FS file exists");
+                    byte[] image = IOUtils.toByteArray(new FileInputStream(f));
+                    campaignImage = Base64.encodeBase64String(image);
+                }
+            } else {
+                campaignImage = segmentFileService.getImageContent(accountNo, brand);
+            }
+            if (null == campaignImage) {
                 auditLogService.saveAuditLog(IMConstants.CAMPAIGN_IMAGE, statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(),
                         "Campaign Image not found", IMConstants.WARNING);
             }
@@ -207,7 +225,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             logger.debug(stopWatch.prettyPrint());
             //logger.debug("Time to generate PDF for statement id  " + statement.getId() + " "+(endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
             return baos.toByteArray();
-        } catch (BirtException e) {
+        } catch (Exception e) {
             throw new PDFGeneratorException(e.getMessage());
         }
 

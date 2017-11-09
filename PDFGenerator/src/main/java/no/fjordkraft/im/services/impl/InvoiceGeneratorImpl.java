@@ -50,9 +50,20 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     @Autowired
     AuditLogServiceImpl auditLogService;
 
+    private String basePathCampaign;
+
+    private boolean readAdvtPdfFileSystem;
+
+    @PostConstruct
+    public void initIt() throws Exception {
+
+        basePathCampaign =  configService.getString(IMConstants.BASE_PATH_CAMPAIGN);
+        readAdvtPdfFileSystem = configService.getBoolean(IMConstants.READ_ADVT_PDF_FILESYSTEM);
+    }
+
     @Override
     @Transactional
-    public void generateInvoice(Statement statement, byte[] generatedPdf) throws IOException, DocumentException {
+    public void mergeInvoice(Statement statement, byte[] generatedPdf) throws IOException, DocumentException {
         String accountNo = statement.getAccountNumber();
         String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
         StopWatch stopWatch = new StopWatch();
@@ -81,7 +92,15 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                 copy.addPage(readInputPDF.getPageSize(1), readInputPDF.getPageRotation(1));
             }
 
-            byte[] pdfBytes = getSegmentFile(accountNo, brand);
+
+            byte[] pdfBytes = null;
+            logger.debug("readAdvtPdfFileSystem " + readAdvtPdfFileSystem);
+            if(readAdvtPdfFileSystem) {
+                pdfBytes = getSegmentFileFromFS(brand);
+            } else {
+                pdfBytes = getSegmentFile(accountNo, brand);
+            }
+
             if(null != pdfBytes) {
                 readInputPDF = new PdfReader(pdfBytes);
                 number_of_pages = readInputPDF.getNumberOfPages();
@@ -110,6 +129,21 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             throw ex;
         }
     }
+
+    private byte[] getSegmentFileFromFS(String brand) throws IOException, DocumentException {
+        String path = basePathCampaign+brand+File.separator+brand.toLowerCase()+".pdf";
+        logger.debug(" reading campaign from FS path is "+ path);
+        File f = new File(path);
+        if(f.exists()) {
+            logger.debug(" reading campaign from FS file exists");
+            byte[] pdf = IOUtils.toByteArray(new FileInputStream(f));
+            pdf = PDFUtil.merge(pdf);
+            pdf = PDFUtil.rotator(pdf);
+            return pdf;
+        }
+        return null;
+    }
+
 
     private byte[] getSegmentFile(String accountNo, String brand) throws IOException, DocumentException {
         SegmentFile segmentFile = segmentFileService.getSegmentFile(accountNo, brand);
