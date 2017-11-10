@@ -35,9 +35,9 @@ public class TransferFile implements Serializable{
     @Column(name = "ehf",updatable = false)
     private Boolean ehf;
 
-    @Column(name = "transferstatus",updatable = false)
+    /*@Column(name = "transferstatus",updatable = false)
     @Enumerated(EnumType.STRING)
-    TransferStatusEnum transferStatus;
+    TransferStatusEnum transferStatus;*/
 
     @Column(name = "statusupdated",updatable = false)
     Timestamp statusUpdated;
@@ -86,14 +86,6 @@ public class TransferFile implements Serializable{
         setFileSize(fileSize);
     }
 
-    public TransferFile(TransferTypeEnum transferType, String brand, String filename, long created, Long fileSize, TransferStatusEnum transferStatus) {
-        setTransferType(transferType);
-        setBrand(brand);
-        setFilename(filename);
-        setCreated(new Timestamp(created));
-        setFileSize(fileSize);
-        setTransferStatus(transferStatus);
-    }
 
     public TransferFileId getCompositeKey() {
         TransferFileId tfId = new TransferFileId();
@@ -168,13 +160,13 @@ public class TransferFile implements Serializable{
         this.statusUpdated = statusUpdated;
     }
 
-    public TransferStatusEnum getTransferStatus() {
+    /*public TransferStatusEnum getTransferStatus() {
         return transferStatus;
     }
 
     public void setTransferStatus(TransferStatusEnum transferStatus) {
         this.transferStatus = transferStatus;
-    }
+    }*/
 
     public Boolean getEhf() {
         return ehf;

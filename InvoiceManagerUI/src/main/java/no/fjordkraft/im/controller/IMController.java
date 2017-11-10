@@ -102,7 +102,7 @@ public class IMController {
                     encoding = "UTF-8";
                 }
                 String xml = FileUtils.readFileToString(xmlFile, Charset.forName(encoding));
-                transferFile.setTransferStatus(TransferStatusEnum.Stored);
+                //transferFile.setTransferStatus(TransferStatusEnum.Stored);
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 transferFile.setCreated(timestamp);
                 //transferFile.setImStatus("PENDING");
