@@ -106,6 +106,9 @@ public class GenericPreprocessor extends BasePreprocessor {
             } else if("PDFE2B".equals(attachment.getFAKTURA().getVEDLEGGFORMAT())){
                 String data = attachment.getFAKTURA().getVedlegge2B();
                 if(null != data) {
+                    if(data.endsWith("&gt;")) {
+                        data = data.replaceAll("&gt;","");
+                    }
                     byte[] decoded = Base64.decodeBase64(data);
                     StreamSource source = new StreamSource(new InputStreamReader(new ByteArrayInputStream(decoded),StandardCharsets.ISO_8859_1));
                     Invoice invoice = (Invoice)unMarshaller.unmarshal(source);
