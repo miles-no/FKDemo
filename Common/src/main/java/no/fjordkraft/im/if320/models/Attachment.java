@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.*;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "faktura","addedToList","displayStromData"
+    "faktura","addedToList","displayStromData","attachmentNumber"
 })
 @XmlRootElement(name = "Attachment")
 public class Attachment {
@@ -45,6 +45,10 @@ public class Attachment {
 
     @XmlElement(name = "DisplayStromData", required = true)
     protected Boolean displayStromData;
+
+    @XmlElement(name = "AttachmentNumber")
+    protected int attachmentNumber;
+
 
     /**
      * Gets the value of the faktura property.
@@ -86,5 +90,19 @@ public class Attachment {
         this.displayStromData = displayStromData;
     }
 
+    public FAKTURA getFaktura() {
+        return faktura;
+    }
 
+    public void setFaktura(FAKTURA faktura) {
+        this.faktura = faktura;
+    }
+
+    public int getAttachmentNumber() {
+        return attachmentNumber;
+    }
+
+    public void setAttachmentNumber(int attachmentNumber) {
+        this.attachmentNumber = attachmentNumber;
+    }
 }

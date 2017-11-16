@@ -10,6 +10,7 @@ package no.fjordkraft.im.if320.models;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.List;
 
 
 /**
@@ -55,7 +56,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "unitOfMeasure",
     "vatInfo",
     "startDate",
-    "endDate"
+    "endDate",
+    "unitPriceGross",
+    "ref"
 })
 @XmlRootElement(name = "BaseItemDetails")
 public class BaseItemDetails {
@@ -83,10 +86,14 @@ public class BaseItemDetails {
     @XmlElement(name = "StartDate", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar startDate;
-    @XmlElement(name = "EndDate", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar endDate;
 
+    @XmlElement(name = "UnitPriceGross")
+    protected float unitPriceGross;
+
+    @XmlElement(name = "Ref")
+    protected List<Ref> ref;
     /**
      * Gets the value of the level property.
      * 
@@ -327,4 +334,19 @@ public class BaseItemDetails {
         this.endDate = value;
     }
 
+    public float getUnitPriceGross() {
+        return unitPriceGross;
+    }
+
+    public void setUnitPriceGross(float unitPriceGross) {
+        this.unitPriceGross = unitPriceGross;
+    }
+
+    public List<Ref> getRef() {
+        return ref;
+    }
+
+    public void setRef(List<Ref> ref) {
+        this.ref = ref;
+    }
 }

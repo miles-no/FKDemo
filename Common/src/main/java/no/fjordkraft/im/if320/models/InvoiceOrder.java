@@ -61,7 +61,8 @@ import java.util.List;
     "consumptionPillars132",
         "consumptions",
     "invoiceOrderEndRecord134",
-    "nettleie"
+    "nettleie",
+    "nettleieList"
 })
 @XmlRootElement(name = "InvoiceOrder")
 public class InvoiceOrder {
@@ -96,6 +97,8 @@ public class InvoiceOrder {
     protected Consumptions consumptions;
     @XmlElement(name = "Nettleie", required = true)
     protected Nettleie nettleie;
+    @XmlElement(name = "NettleieList")
+    protected List<Nettleie> nettleieList;
 
     /**
      * Gets the value of the invoiceOrderInfo110 property.
@@ -438,5 +441,15 @@ public class InvoiceOrder {
 
     public void setNettleie(Nettleie nettleie) {
         this.nettleie = nettleie;
+    }
+
+    public List<Nettleie> getNettleieList() {
+        if(null == nettleieList)
+            return new ArrayList<Nettleie>();
+        return nettleieList;
+    }
+
+    public void setNettleieList(List<Nettleie> nettleieList) {
+        this.nettleieList = nettleieList;
     }
 }
