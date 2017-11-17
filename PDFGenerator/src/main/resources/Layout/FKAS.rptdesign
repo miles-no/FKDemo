@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement (4).xml</property>
+            <property name="FILELIST">E:\FuelKraft\Processed files\16nov\20171027_FKAS_1509079054702_statement\71370116023\processed_statement.xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -2940,6 +2940,7 @@
             </list-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.datatools.enablement.oda.xml.dataSet" name="NettInfo" id="1047">
+            <property name="nullsOrdering">nulls lowest</property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">ReferenceNumber</property>
@@ -3005,6 +3006,11 @@
                     <property name="columnName">AttachmentNumber</property>
                     <property name="analysis">dimension</property>
                     <text-property name="heading">AttachmentNumber</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">UnitPriceGross</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">UnitPriceGross</text-property>
                 </structure>
             </list-property>
             <list-property name="parameters"/>
@@ -3073,6 +3079,11 @@
                     <structure>
                         <property name="position">13</property>
                         <property name="name">AttachmentNumber</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">UnitPriceGross</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -3170,8 +3181,15 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">UnitPriceGross</property>
+                    <property name="nativeName">UnitPriceGross</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/baseItemDetails]#:#{ReferenceNumber;STRING;../ReferenceNumber},{Description;STRING;/Description},{UnitPrice;STRING;/UnitPrice},{PriceDenomination;STRING;/PriceDenomination},{LineItemGrossAmount;STRING;/LineItemGrossAmount},{QuantityInvoiced;STRING;/QuantityInvoiced},{UnitOfMeasure;STRING;/UnitOfMeasure},{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{GrossAmount;STRING;../InvoiceSummary/InvoiceTotals/GrossAmount},{VatTotalsAmount;STRING;../InvoiceSummary/InvoiceTotals/VatTotalsAmount},{InvoiceNo;STRING;../../../MainInvoiceInfo-101/InvoiceNo},{AttachmentNumber;STRING;../../../../../../AttachmentNumber}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/baseItemDetails]#:#{ReferenceNumber;STRING;../ReferenceNumber},{Description;STRING;/Description},{UnitPrice;STRING;/UnitPrice},{PriceDenomination;STRING;/PriceDenomination},{LineItemGrossAmount;STRING;/LineItemGrossAmount},{QuantityInvoiced;STRING;/QuantityInvoiced},{UnitOfMeasure;STRING;/UnitOfMeasure},{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{GrossAmount;STRING;../InvoiceSummary/InvoiceTotals/GrossAmount},{VatTotalsAmount;STRING;../InvoiceSummary/InvoiceTotals/VatTotalsAmount},{InvoiceNo;STRING;../../../MainInvoiceInfo-101/InvoiceNo},{AttachmentNumber;STRING;../../../../../../AttachmentNumber},{UnitPriceGross;STRING;/UnitPriceGross}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -3533,6 +3551,17 @@
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">AttachmentHeaderInfo::ReferenceNumber</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::DisplayStromData</property>
+                    <property name="alias">AttachmentHeaderInfo::DisplayStromData</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">NettInfo::UnitPriceGross</property>
+                    <property name="alias">NettInfo::UnitPriceGross</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NettInfo::UnitPriceGross</text-property>
+                </structure>
             </list-property>
             <list-property name="filter">
                 <structure>
@@ -3683,6 +3712,11 @@
                     <structure>
                         <property name="position">28</property>
                         <property name="name">NettInfo::AttachmentNumber</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">29</property>
+                        <property name="name">NettInfo::UnitPriceGross</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -8442,8 +8476,8 @@ formatMoney(dataSetRow["GrossPrice"], 3, '', '.', ',') + " " + dataSetRow["Strom
                                                 </structure>
                                                 <structure>
                                                     <property name="name">UnitPrice</property>
-                                                    <text-property name="displayName">NettInfo::UnitPrice</text-property>
-                                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["UnitPrice"], 3, '', '.', ',') + " " + dataSetRow["PriceDenomination"];</expression>
+                                                    <text-property name="displayName">NettInfo::UnitPriceGross</text-property>
+                                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 3, '', '.', ',') + " " + dataSetRow["PriceDenomination"];</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
