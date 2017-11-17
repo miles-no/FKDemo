@@ -148,7 +148,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 if (null != nettleieList && nettleieList.size() >= 1) {
                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().setNettleie(nettleieList.get(0));
                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().setNettleieList(null);
-                    attachment.setAttachmentNumber(index++);
+                    //attachment.setAttachmentNumber(index++);
                     attachment.setDisplayStromData(true);
                     attachmentList.add(attachment);
                     for (int i = 1; i < nettleieList.size(); i++) {
@@ -162,6 +162,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 }
             }
 
+            for(Attachment attachment: attachmentList) {
+                attachment.setAttachmentNumber(index++);
+            }
             attachments.setAttachment(attachmentList);
             request.getStatement().setTotalAttachment(attachmentList.size());
         } catch (Exception e) {

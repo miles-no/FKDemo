@@ -86,6 +86,7 @@ public class BaseItemDetails {
     @XmlElement(name = "StartDate", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar startDate;
+    @XmlElement(name = "EndDate", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar endDate;
 
