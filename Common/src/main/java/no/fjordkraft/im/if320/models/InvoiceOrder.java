@@ -445,7 +445,7 @@ public class InvoiceOrder {
 
     public List<Nettleie> getNettleieList() {
         if(null == nettleieList)
-            return new ArrayList<Nettleie>();
+            nettleieList = new ArrayList<>();
         return nettleieList;
     }
 
