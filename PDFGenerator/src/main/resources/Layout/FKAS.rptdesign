@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">C:\Users\bhavi\workspace\Test\processed_statement.xml</property>
+            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement (4).xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -1113,6 +1113,16 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">InvoiceType</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">AttachmentNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">AttachmentNumber</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DisplayStromData</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">DisplayStromData</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -1180,6 +1190,16 @@
                     <structure>
                         <property name="position">13</property>
                         <property name="name">InvoiceType</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">AttachmentNumber</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">DisplayStromData</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -1277,8 +1297,22 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">AttachmentNumber</property>
+                    <property name="nativeName">AttachmentNumber</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">DisplayStromData</property>
+                    <property name="nativeName">DisplayStromData</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{Address1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/CustomerInfo-103/Address1},{Description;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Description},{MeterId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/MeterId},{ObjectId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/ObjectId},{AnnualConsumption;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/YearlyConsumption-123/AnnualConsumption},{InvoiceNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/MainInvoiceInfo-101/InvoiceNo},{FREE_TEXT;STRING;/FAKTURA/FREE_TEXT},{Name;STRING;/FAKTURA/GRID/Name},{Email;STRING;/FAKTURA/GRID/Email},{Telephone;STRING;/FAKTURA/GRID/Telephone},{StatementDate;STRING;../../StatementDate},{ReferenceNumber;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/ReferenceNumber},{InvoiceType;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/InvoiceType}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{Address1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/CustomerInfo-103/Address1},{Description;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Description},{MeterId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/MeterId},{ObjectId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/ObjectId},{AnnualConsumption;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/YearlyConsumption-123/AnnualConsumption},{InvoiceNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/MainInvoiceInfo-101/InvoiceNo},{FREE_TEXT;STRING;/FAKTURA/FREE_TEXT},{Name;STRING;/FAKTURA/GRID/Name},{Email;STRING;/FAKTURA/GRID/Email},{Telephone;STRING;/FAKTURA/GRID/Telephone},{StatementDate;STRING;../../StatementDate},{ReferenceNumber;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/ReferenceNumber},{InvoiceType;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/InvoiceType},{AttachmentNumber;STRING;/AttachmentNumber},{DisplayStromData;STRING;/DisplayStromData}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -1458,6 +1492,11 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">NoOfDays</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">AttachmentNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">AttachmentNumber</text-property>
+                </structure>
             </list-property>
             <list-property name="filter">
                 <structure>
@@ -1531,6 +1570,11 @@
                         <property name="name">NoOfDays</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">AttachmentNumber</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <property name="dataSource">Data Source</property>
@@ -1540,75 +1584,94 @@
                     <property name="name">StartDate</property>
                     <property name="nativeName">StartDate</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">EndDate</property>
                     <property name="nativeName">EndDate</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">Text</property>
                     <property name="nativeName">Text</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">Basis</property>
                     <property name="nativeName">Basis</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">GrossPrice</property>
                     <property name="nativeName">GrossPrice</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
                     <property name="name">TotalGross</property>
                     <property name="nativeName">TotalGross</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">InvoiceNo</property>
                     <property name="nativeName">InvoiceNo</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
                     <property name="name">ProdDenomination</property>
                     <property name="nativeName">ProdDenomination</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">9</property>
                     <property name="name">PriceDenomination</property>
                     <property name="nativeName">PriceDenomination</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">10</property>
                     <property name="name">VatTotal</property>
                     <property name="nativeName">VatTotal</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">11</property>
                     <property name="name">GrossTotal</property>
                     <property name="nativeName">GrossTotal</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">12</property>
                     <property name="name">NoOfDays</property>
                     <property name="nativeName">NoOfDays</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">AttachmentNumber</property>
+                    <property name="nativeName">AttachmentNumber</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceLine-120]#:#{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{Text;STRING;/Text},{Basis;STRING;/Basis},{GrossPrice;STRING;/GrossPrice},{TotalGross;STRING;/TotalGross},{InvoiceNo;STRING;../../MainInvoiceInfo-101/InvoiceNo},{ProdDenomination;STRING;/ProdDenomination},{PriceDenomination;STRING;/PriceDenomination},{VatTotal;STRING;../InvoiceOrderAmounts-113/VatTotal},{GrossTotal;STRING;../InvoiceOrderAmounts-113/GrossTotal},{NoOfDays;STRING;/NoOfDays}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceLine-120]#:#{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{Text;STRING;/Text},{Basis;STRING;/Basis},{GrossPrice;STRING;/GrossPrice},{TotalGross;STRING;/TotalGross},{InvoiceNo;STRING;../../MainInvoiceInfo-101/InvoiceNo},{ProdDenomination;STRING;/ProdDenomination},{PriceDenomination;STRING;/PriceDenomination},{VatTotal;STRING;../InvoiceOrderAmounts-113/VatTotal},{GrossTotal;STRING;../InvoiceOrderAmounts-113/GrossTotal},{NoOfDays;STRING;/NoOfDays},{AttachmentNumber;STRING;../../../../../AttachmentNumber}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -1747,52 +1810,16 @@
                     <text-property name="displayName">AttachmentHeaderInfo::Telephone</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">AttachmentHeaderInfo::ObjectId</property>
-                    <property name="alias">ObjectId</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">AttachmentHeaderInfo::ObjectId</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">AttachmentHeaderInfo::FREE_TEXT</property>
-                    <property name="alias">FREE_TEXT</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">AttachmentHeaderInfo::FREE_TEXT</text-property>
-                </structure>
-                <structure>
                     <property name="columnName">StromInfo::GrossPrice</property>
                     <property name="alias">GrossPrice</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">StromInfo::GrossPrice</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">StromInfo::ProdDenomination</property>
-                    <property name="alias">ProdDenomination</property>
+                    <property name="columnName">AttachmentHeaderInfo::StatementDate</property>
+                    <property name="alias">StatementDate</property>
                     <property name="analysis">dimension</property>
-                    <text-property name="displayName">StromInfo::ProdDenomination</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">StromInfo::InvoiceNo</property>
-                    <property name="alias">StromInfo::InvoiceNo</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">StromInfo::InvoiceNo</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">StromInfo::Text</property>
-                    <property name="alias">Text</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">StromInfo::Text</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">AttachmentHeaderInfo::Address1</property>
-                    <property name="alias">Address1</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">AttachmentHeaderInfo::Address1</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">StromInfo::EndDate</property>
-                    <property name="alias">EndDate</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">StromInfo::EndDate</text-property>
+                    <text-property name="displayName">AttachmentHeaderInfo::StatementDate</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">AttachmentHeaderInfo::MeterId</property>
@@ -1819,28 +1846,10 @@
                     <text-property name="displayName">StromInfo::Basis</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">StromInfo::TotalGross</property>
-                    <property name="alias">TotalGross</property>
+                    <property name="columnName">AttachmentHeaderInfo::AttachmentNumber</property>
+                    <property name="alias">AttachmentHeaderInfo::AttachmentNumber</property>
                     <property name="analysis">dimension</property>
-                    <text-property name="displayName">StromInfo::TotalGross</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">StromInfo::NoOfDays</property>
-                    <property name="alias">NoOfDays</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">StromInfo::NoOfDays</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">StromInfo::GrossTotal</property>
-                    <property name="alias">GrossTotal</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">StromInfo::GrossTotal</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">AttachmentHeaderInfo::AnnualConsumption</property>
-                    <property name="alias">AnnualConsumption</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">AttachmentHeaderInfo::AnnualConsumption</text-property>
+                    <text-property name="displayName">AttachmentHeaderInfo::AttachmentNumber</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">StromInfo::PriceDenomination</property>
@@ -1860,13 +1869,97 @@
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">AttachmentHeaderInfo::InvoiceNo</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::ObjectId</property>
+                    <property name="alias">ObjectId</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::ObjectId</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::FREE_TEXT</property>
+                    <property name="alias">FREE_TEXT</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::FREE_TEXT</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">StromInfo::ProdDenomination</property>
+                    <property name="alias">ProdDenomination</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">StromInfo::ProdDenomination</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">StromInfo::InvoiceNo</property>
+                    <property name="alias">StromInfo::InvoiceNo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">StromInfo::InvoiceNo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::ReferenceNumber</property>
+                    <property name="alias">ReferenceNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::ReferenceNumber</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">StromInfo::Text</property>
+                    <property name="alias">Text</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">StromInfo::Text</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::Address1</property>
+                    <property name="alias">Address1</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::Address1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">StromInfo::EndDate</property>
+                    <property name="alias">EndDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">StromInfo::EndDate</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::InvoiceType</property>
+                    <property name="alias">InvoiceType</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::InvoiceType</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">StromInfo::TotalGross</property>
+                    <property name="alias">TotalGross</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">StromInfo::TotalGross</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">StromInfo::NoOfDays</property>
+                    <property name="alias">NoOfDays</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">StromInfo::NoOfDays</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">StromInfo::AttachmentNumber</property>
+                    <property name="alias">StromInfo::AttachmentNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">StromInfo::AttachmentNumber</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">StromInfo::GrossTotal</property>
+                    <property name="alias">GrossTotal</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">StromInfo::GrossTotal</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::AnnualConsumption</property>
+                    <property name="alias">AnnualConsumption</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::AnnualConsumption</text-property>
+                </structure>
             </list-property>
             <list-property name="filter">
                 <structure>
                     <property name="operator">eq</property>
-                    <expression name="expr" type="javascript">row["StromInfo::InvoiceNo"]</expression>
+                    <expression name="expr" type="javascript">row["StromInfo::AttachmentNumber"]</expression>
                     <simple-property-list name="value1">
-                        <value>vars["invoiceNo"]</value>
+                        <value>vars["AttachmentNumber"]</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -1924,72 +2017,92 @@
                     </structure>
                     <structure>
                         <property name="position">11</property>
-                        <property name="name">AttachmentHeaderInfo::StatementDate</property>
+                        <property name="name">StatementDate</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">12</property>
-                        <property name="name">AttachmentHeaderInfo::ReferenceNumber</property>
+                        <property name="name">ReferenceNumber</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">13</property>
-                        <property name="name">StartDate</property>
+                        <property name="name">InvoiceType</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">14</property>
-                        <property name="name">EndDate</property>
+                        <property name="name">AttachmentHeaderInfo::AttachmentNumber</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">15</property>
-                        <property name="name">Text</property>
+                        <property name="name">AttachmentHeaderInfo::DisplayStromData</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">16</property>
-                        <property name="name">Basis</property>
+                        <property name="name">StartDate</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">17</property>
-                        <property name="name">GrossPrice</property>
+                        <property name="name">EndDate</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">18</property>
-                        <property name="name">TotalGross</property>
+                        <property name="name">Text</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">19</property>
-                        <property name="name">StromInfo::InvoiceNo</property>
+                        <property name="name">Basis</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">20</property>
-                        <property name="name">ProdDenomination</property>
+                        <property name="name">GrossPrice</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">21</property>
-                        <property name="name">PriceDenomination</property>
+                        <property name="name">TotalGross</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">22</property>
-                        <property name="name">VatTotal</property>
+                        <property name="name">StromInfo::InvoiceNo</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">23</property>
-                        <property name="name">GrossTotal</property>
+                        <property name="name">ProdDenomination</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">24</property>
+                        <property name="name">PriceDenomination</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">25</property>
+                        <property name="name">VatTotal</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">26</property>
+                        <property name="name">GrossTotal</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">27</property>
                         <property name="name">NoOfDays</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">28</property>
+                        <property name="name">StromInfo::AttachmentNumber</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -2004,8 +2117,8 @@
                     <property name="joinOperator">eq</property>
                     <property name="leftDataSet">AttachmentHeaderInfo</property>
                     <property name="rightDataSet">StromInfo</property>
-                    <expression name="leftExpression">dataSetRow["InvoiceNo"]</expression>
-                    <expression name="rightExpression">dataSetRow["InvoiceNo"]</expression>
+                    <expression name="leftExpression">dataSetRow["AttachmentNumber"]</expression>
+                    <expression name="rightExpression">dataSetRow["AttachmentNumber"]</expression>
                 </structure>
             </list-property>
         </joint-data-set>
@@ -2036,6 +2149,11 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">ConsumptionSequence</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">AttachmentNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">AttachmentNumber</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -2063,6 +2181,11 @@
                     <structure>
                         <property name="position">5</property>
                         <property name="name">ConsumptionSequence</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">AttachmentNumber</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -2104,8 +2227,15 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">AttachmentNumber</property>
+                    <property name="nativeName">AttachmentNumber</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Consumptions/Consumption]#:#{PeriodDescription;STRING;/PeriodDescription},{LastYearConsumption;STRING;/LastYearConsumption},{ThisYearConsumption;STRING;/ThisYearConsumption},{InvoiceNo;STRING;../../../MainInvoiceInfo-101/InvoiceNo},{ConsumptionSequence;STRING;/ConsumptionSequence}]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Consumptions/Consumption]#:#{PeriodDescription;STRING;/PeriodDescription},{LastYearConsumption;STRING;/LastYearConsumption},{ThisYearConsumption;STRING;/ThisYearConsumption},{InvoiceNo;STRING;../../../MainInvoiceInfo-101/InvoiceNo},{ConsumptionSequence;STRING;/ConsumptionSequence},{AttachmentNumber;STRING;../../../../../../AttachmentNumber}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -2216,10 +2346,22 @@
                     <text-property name="displayName">BarGraphInfo::LastYearConsumption</text-property>
                 </structure>
                 <structure>
+                    <property name="columnName">BarGraphInfo::ConsumptionSequence</property>
+                    <property name="alias">ConsumptionSequence</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">BarGraphInfo::ConsumptionSequence</text-property>
+                </structure>
+                <structure>
                     <property name="columnName">AttachmentHeaderInfo::Description</property>
                     <property name="alias">Description</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">AttachmentHeaderInfo::Description</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::Email</property>
+                    <property name="alias">Email</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::Email</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">BarGraphInfo::ThisYearConsumption</property>
@@ -2228,16 +2370,76 @@
                     <text-property name="displayName">BarGraphInfo::ThisYearConsumption</text-property>
                 </structure>
                 <structure>
+                    <property name="columnName">AttachmentHeaderInfo::Telephone</property>
+                    <property name="alias">Telephone</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::Telephone</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">BarGraphInfo::AttachmentNumber</property>
+                    <property name="alias">BarGraphInfo::AttachmentNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">BarGraphInfo::AttachmentNumber</text-property>
+                </structure>
+                <structure>
                     <property name="columnName">AttachmentHeaderInfo::ObjectId</property>
                     <property name="alias">ObjectId</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">AttachmentHeaderInfo::ObjectId</text-property>
                 </structure>
                 <structure>
+                    <property name="columnName">AttachmentHeaderInfo::FREE_TEXT</property>
+                    <property name="alias">FREE_TEXT</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::FREE_TEXT</text-property>
+                </structure>
+                <structure>
                     <property name="columnName">BarGraphInfo::InvoiceNo</property>
                     <property name="alias">BarGraphInfo::InvoiceNo</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">BarGraphInfo::InvoiceNo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::ReferenceNumber</property>
+                    <property name="alias">ReferenceNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::ReferenceNumber</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::Address1</property>
+                    <property name="alias">Address1</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::Address1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::StatementDate</property>
+                    <property name="alias">StatementDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::StatementDate</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::MeterId</property>
+                    <property name="alias">MeterId</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::MeterId</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::Name</property>
+                    <property name="alias">Name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::Name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::InvoiceType</property>
+                    <property name="alias">InvoiceType</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::InvoiceType</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::AttachmentNumber</property>
+                    <property name="alias">AttachmentHeaderInfo::AttachmentNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::AttachmentNumber</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">BarGraphInfo::PeriodDescription</property>
@@ -2252,10 +2454,10 @@
                     <text-property name="displayName">AttachmentHeaderInfo::AnnualConsumption</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">AttachmentHeaderInfo::Address1</property>
-                    <property name="alias">Address1</property>
+                    <property name="columnName">AttachmentHeaderInfo::DisplayStromData</property>
+                    <property name="alias">DisplayStromData</property>
                     <property name="analysis">dimension</property>
-                    <text-property name="displayName">AttachmentHeaderInfo::Address1</text-property>
+                    <text-property name="displayName">AttachmentHeaderInfo::DisplayStromData</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">AttachmentHeaderInfo::InvoiceNo</property>
@@ -2263,25 +2465,13 @@
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">AttachmentHeaderInfo::InvoiceNo</text-property>
                 </structure>
-                <structure>
-                    <property name="columnName">AttachmentHeaderInfo::MeterId</property>
-                    <property name="alias">MeterId</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">AttachmentHeaderInfo::MeterId</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">BarGraphInfo::ConsumptionSequence</property>
-                    <property name="alias">BarGraphInfo::ConsumptionSequence</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">BarGraphInfo::ConsumptionSequence</text-property>
-                </structure>
             </list-property>
             <list-property name="filter">
                 <structure>
                     <property name="operator">eq</property>
-                    <expression name="expr" type="javascript">row["BarGraphInfo::InvoiceNo"]</expression>
+                    <expression name="expr" type="javascript">row["BarGraphInfo::AttachmentNumber"]</expression>
                     <simple-property-list name="value1">
-                        <value>vars["invoiceNo"]</value>
+                        <value>vars["AttachmentNumber"]</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -2319,27 +2509,77 @@
                     </structure>
                     <structure>
                         <property name="position">7</property>
-                        <property name="name">PeriodDescription</property>
+                        <property name="name">FREE_TEXT</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">8</property>
-                        <property name="name">LastYearConsumption</property>
+                        <property name="name">Name</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">9</property>
-                        <property name="name">ThisYearConsumption</property>
+                        <property name="name">Email</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">10</property>
-                        <property name="name">BarGraphInfo::InvoiceNo</property>
+                        <property name="name">Telephone</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">11</property>
-                        <property name="name">BarGraphInfo::ConsumptionSequence</property>
+                        <property name="name">StatementDate</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">ReferenceNumber</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">InvoiceType</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">AttachmentHeaderInfo::AttachmentNumber</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">DisplayStromData</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">PeriodDescription</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">LastYearConsumption</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">ThisYearConsumption</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">BarGraphInfo::InvoiceNo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">ConsumptionSequence</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">21</property>
+                        <property name="name">BarGraphInfo::AttachmentNumber</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -2354,8 +2594,8 @@
                     <property name="joinOperator">eq</property>
                     <property name="leftDataSet">AttachmentHeaderInfo</property>
                     <property name="rightDataSet">BarGraphInfo</property>
-                    <expression name="leftExpression">dataSetRow["InvoiceNo"]</expression>
-                    <expression name="rightExpression">dataSetRow["InvoiceNo"]</expression>
+                    <expression name="leftExpression">dataSetRow["AttachmentNumber"]</expression>
+                    <expression name="rightExpression">dataSetRow["AttachmentNumber"]</expression>
                 </structure>
             </list-property>
         </joint-data-set>
@@ -2761,6 +3001,11 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">InvoiceNo</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">AttachmentNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">AttachmentNumber</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -2823,6 +3068,11 @@
                     <structure>
                         <property name="position">12</property>
                         <property name="name">InvoiceNo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">AttachmentNumber</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -2913,8 +3163,15 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">AttachmentNumber</property>
+                    <property name="nativeName">AttachmentNumber</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/baseItemDetails]#:#{ReferenceNumber;STRING;../ReferenceNumber},{Description;STRING;/Description},{UnitPrice;STRING;/UnitPrice},{PriceDenomination;STRING;/PriceDenomination},{LineItemGrossAmount;STRING;/LineItemGrossAmount},{QuantityInvoiced;STRING;/QuantityInvoiced},{UnitOfMeasure;STRING;/UnitOfMeasure},{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{GrossAmount;STRING;../InvoiceSummary/InvoiceTotals/GrossAmount},{VatTotalsAmount;STRING;../InvoiceSummary/InvoiceTotals/VatTotalsAmount},{InvoiceNo;STRING;../../../MainInvoiceInfo-101/InvoiceNo}]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/baseItemDetails]#:#{ReferenceNumber;STRING;../ReferenceNumber},{Description;STRING;/Description},{UnitPrice;STRING;/UnitPrice},{PriceDenomination;STRING;/PriceDenomination},{LineItemGrossAmount;STRING;/LineItemGrossAmount},{QuantityInvoiced;STRING;/QuantityInvoiced},{UnitOfMeasure;STRING;/UnitOfMeasure},{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{GrossAmount;STRING;../InvoiceSummary/InvoiceTotals/GrossAmount},{VatTotalsAmount;STRING;../InvoiceSummary/InvoiceTotals/VatTotalsAmount},{InvoiceNo;STRING;../../../MainInvoiceInfo-101/InvoiceNo},{AttachmentNumber;STRING;../../../../../../AttachmentNumber}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -3157,10 +3414,22 @@
                     <text-property name="displayName">NettInfo::StartDate</text-property>
                 </structure>
                 <structure>
+                    <property name="columnName">NettInfo::AttachmentNumber</property>
+                    <property name="alias">NettInfo::AttachmentNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NettInfo::AttachmentNumber</text-property>
+                </structure>
+                <structure>
                     <property name="columnName">NettInfo::Description</property>
                     <property name="alias">NettInfo::Description</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">NettInfo::Description</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::AttachmentNumber</property>
+                    <property name="alias">AttachmentHeaderInfo::AttachmentNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::AttachmentNumber</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">NettInfo::PriceDenomination</property>
@@ -3187,6 +3456,12 @@
                     <text-property name="displayName">NettInfo::QuantityInvoiced</text-property>
                 </structure>
                 <structure>
+                    <property name="columnName">NettInfo::ReferenceNumber</property>
+                    <property name="alias">NettInfo::ReferenceNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NettInfo::ReferenceNumber</text-property>
+                </structure>
+                <structure>
                     <property name="columnName">NettInfo::UnitOfMeasure</property>
                     <property name="alias">UnitOfMeasure</property>
                     <property name="analysis">dimension</property>
@@ -3205,12 +3480,6 @@
                     <text-property name="displayName">AttachmentHeaderInfo::FREE_TEXT</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">NettInfo::ReferenceNumber</property>
-                    <property name="alias">ReferenceNumber</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">NettInfo::ReferenceNumber</text-property>
-                </structure>
-                <structure>
                     <property name="columnName">AttachmentHeaderInfo::Address1</property>
                     <property name="alias">Address1</property>
                     <property name="analysis">dimension</property>
@@ -3227,6 +3496,12 @@
                     <property name="alias">LineItemGrossAmount</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">NettInfo::LineItemGrossAmount</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::InvoiceType</property>
+                    <property name="alias">InvoiceType</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::InvoiceType</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">NettInfo::UnitPrice</property>
@@ -3252,13 +3527,19 @@
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">AttachmentHeaderInfo::AnnualConsumption</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">AttachmentHeaderInfo::ReferenceNumber</property>
+                    <property name="alias">AttachmentHeaderInfo::ReferenceNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AttachmentHeaderInfo::ReferenceNumber</text-property>
+                </structure>
             </list-property>
             <list-property name="filter">
                 <structure>
                     <property name="operator">eq</property>
-                    <expression name="expr" type="javascript">row["AttachmentHeaderInfo::InvoiceNo"]</expression>
+                    <expression name="expr" type="javascript">row["AttachmentHeaderInfo::AttachmentNumber"]</expression>
                     <simple-property-list name="value1">
-                        <value>vars["invoiceNo"]</value>
+                        <value>vars["AttachmentNumber"]</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -3326,62 +3607,82 @@
                     </structure>
                     <structure>
                         <property name="position">13</property>
-                        <property name="name">ReferenceNumber</property>
+                        <property name="name">InvoiceType</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">14</property>
-                        <property name="name">NettInfo::Description</property>
+                        <property name="name">AttachmentHeaderInfo::AttachmentNumber</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">15</property>
-                        <property name="name">UnitPrice</property>
+                        <property name="name">AttachmentHeaderInfo::DisplayStromData</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">16</property>
-                        <property name="name">PriceDenomination</property>
+                        <property name="name">NettInfo::ReferenceNumber</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">17</property>
-                        <property name="name">LineItemGrossAmount</property>
+                        <property name="name">NettInfo::Description</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">18</property>
-                        <property name="name">QuantityInvoiced</property>
+                        <property name="name">UnitPrice</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">19</property>
-                        <property name="name">UnitOfMeasure</property>
+                        <property name="name">PriceDenomination</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">20</property>
-                        <property name="name">StartDate</property>
+                        <property name="name">LineItemGrossAmount</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">21</property>
-                        <property name="name">EndDate</property>
+                        <property name="name">QuantityInvoiced</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">22</property>
-                        <property name="name">GrossAmount</property>
+                        <property name="name">UnitOfMeasure</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">23</property>
-                        <property name="name">VatTotalsAmount</property>
+                        <property name="name">StartDate</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">24</property>
+                        <property name="name">EndDate</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">25</property>
+                        <property name="name">GrossAmount</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">26</property>
+                        <property name="name">VatTotalsAmount</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">27</property>
                         <property name="name">NettInfo::InvoiceNo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">28</property>
+                        <property name="name">NettInfo::AttachmentNumber</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -3396,8 +3697,8 @@
                     <property name="joinOperator">eq</property>
                     <property name="leftDataSet">AttachmentHeaderInfo</property>
                     <property name="rightDataSet">NettInfo</property>
-                    <expression name="leftExpression">dataSetRow["InvoiceNo"]</expression>
-                    <expression name="rightExpression">dataSetRow["InvoiceNo"]</expression>
+                    <expression name="leftExpression">dataSetRow["AttachmentNumber"]</expression>
+                    <expression name="rightExpression">dataSetRow["AttachmentNumber"]</expression>
                 </structure>
             </list-property>
         </joint-data-set>
@@ -5611,7 +5912,7 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
           <Visible>false</Visible>
         </Label>
         <DataDefinition>
-          <Definition>row[&quot;ProcessedAmount&quot;]</Definition>
+          <Definition>row[&quot;Amount&quot;]</Definition>
           <Grouping>
             <GroupType>Text</GroupType>
             <AggregateExpression>Sum</AggregateExpression>
@@ -5751,6 +6052,15 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                         <property name="height">108pt</property>
                         <property name="width">184.5pt</property>
                         <property name="dataSet">PieChartInfo</property>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">if(0.0 == row["Amount"])&#13;
+	true;&#13;
+else&#13;
+	false;</expression>
+                            </structure>
+                        </list-property>
                         <list-property name="boundDataColumns">
                             <structure>
                                 <property name="name">Type</property>
@@ -5763,16 +6073,6 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                 <text-property name="displayName">Amount</text-property>
                                 <expression name="expression" type="javascript">dataSetRow["Amount"]</expression>
                                 <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">ProcessedAmount</property>
-                                <expression name="expression" type="javascript">if(parseFloat(dataSetRow["Amount"]) == 0.0){&#13;
-	null;&#13;
-} else {&#13;
-	dataSetRow["Amount"];&#13;
-}</expression>
-                                <property name="dataType">string</property>
-                                <property name="allowExport">true</property>
                             </structure>
                         </list-property>
                     </extended-item>
@@ -6657,6 +6957,15 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                         <property name="height">42.75pt</property>
                         <property name="width">185.25pt</property>
                         <property name="dataSet">PieChartInfo</property>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">if(0.0 == row["Amount"])&#13;
+	true;&#13;
+else&#13;
+	false;</expression>
+                            </structure>
+                        </list-property>
                         <list-property name="boundDataColumns">
                             <structure>
                                 <property name="name">Type</property>
@@ -6940,7 +7249,8 @@ if(null == dataSetRow["StartDate"]) {&#13;
                 <structure>
                     <property name="name">Address1</property>
                     <text-property name="displayName">Leveringsadresse</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["FREE_TEXT"]</expression>
+                    <expression name="expression" type="javascript">vars["AttachmentNumber"] = dataSetRow["AttachmentNumber"];&#13;
+dataSetRow["FREE_TEXT"]</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
@@ -7066,6 +7376,24 @@ year = year + "";</expression>
                     <property name="name">InvoiceType</property>
                     <text-property name="displayName">InvoiceType</text-property>
                     <expression name="expression" type="javascript">dataSetRow["InvoiceType"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">FREE_TEXT</property>
+                    <text-property name="displayName">FREE_TEXT</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["FREE_TEXT"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">AttachmentNumber</property>
+                    <text-property name="displayName">AttachmentNumber</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["AttachmentNumber"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">DisplayStromData</property>
+                    <text-property name="displayName">DisplayStromData</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["DisplayStromData"]</expression>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
@@ -7285,6 +7613,16 @@ year = year + "";</expression>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
                                     <property name="height">0.198in</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">if("true" == row["DisplayStromData"] || null == row["DisplayStromData"]) {&#13;
+	false;&#13;
+} else {&#13;
+	true;&#13;
+}</expression>
+                                        </structure>
+                                    </list-property>
                                     <cell id="981">
                                         <property name="backgroundColor">#DADADA</property>
                                         <property name="paddingLeft">5pt</property>
@@ -7602,6 +7940,16 @@ true;}</expression>
                                     <property name="pageBreakAfter">avoid</property>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">if("true" == row["DisplayStromData"] || null == row["DisplayStromData"]) {&#13;
+	false;&#13;
+} else {&#13;
+	true;&#13;
+}</expression>
+                                        </structure>
+                                    </list-property>
                                     <cell id="406">
                                         <property name="colSpan">1</property>
                                         <property name="rowSpan">1</property>
@@ -7649,11 +7997,11 @@ dataSetRow["Basis"] + " " + dataSetRow["ProdDenomination"] &#13;
                                                     <text-property name="displayName">StromInfo::GrossPrice</text-property>
                                                     <expression name="expression" type="javascript">if(dataSetRow["StromInfo::PriceDenomination"] == "øre/kWh")&#13;
 {&#13;
-formatMoney(dataSetRow["GrossPrice"] * 100, 2, '', '.', ',') + " " + dataSetRow["StromInfo::PriceDenomination"] &#13;
+formatMoney(dataSetRow["GrossPrice"] * 100, 3, '', '.', ',') + " " + dataSetRow["StromInfo::PriceDenomination"] &#13;
 }&#13;
 else &#13;
 {&#13;
-formatMoney(dataSetRow["GrossPrice"], 2, '', '.', ',') + " " + dataSetRow["StromInfo::PriceDenomination"]&#13;
+formatMoney(dataSetRow["GrossPrice"], 3, '', '.', ',') + " " + dataSetRow["StromInfo::PriceDenomination"]&#13;
 }</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
@@ -7891,7 +8239,7 @@ formatMoney(dataSetRow["GrossPrice"], 2, '', '.', ',') + " " + dataSetRow["Strom
                                     <property name="pageBreakAfter">avoid</property>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
-                                    <property name="height">0.198in</property>
+                                    <property name="height">0.19791666666666666in</property>
                                     <list-property name="visibility">
                                         <structure>
                                             <property name="format">all</property>
@@ -7913,7 +8261,7 @@ formatMoney(dataSetRow["GrossPrice"], 2, '', '.', ',') + " " + dataSetRow["Strom
                                                 <structure>
                                                     <property name="name">ReferenceNumber</property>
                                                     <text-property name="displayName">NettInfo::ReferenceNumber</text-property>
-                                                    <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["ReferenceNumber"]</expression>
+                                                    <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["NettInfo::ReferenceNumber"]</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
@@ -8082,14 +8430,20 @@ formatMoney(dataSetRow["GrossPrice"], 2, '', '.', ',') + " " + dataSetRow["Strom
                                                 <structure>
                                                     <property name="name">QuantityInvoiced</property>
                                                     <text-property name="displayName">NettInfo::QuantityInvoiced</text-property>
-                                                    <expression name="expression" type="javascript">dataSetRow["QuantityInvoiced"] + " " + (dataSetRow["UnitOfMeasure"] == null ? '':dataSetRow["UnitOfMeasure"])</expression>
+                                                    <expression name="expression" type="javascript">if(dataSetRow["UnitOfMeasure"] == null) {&#13;
+	dataSetRow["QuantityInvoiced"] + " " +'';&#13;
+} else if(dataSetRow["UnitOfMeasure"] == 'ANN' || dataSetRow["UnitOfMeasure"] == 'MON') {&#13;
+	dataSetRow["QuantityInvoiced"] + " " +'';&#13;
+} else {&#13;
+	dataSetRow["QuantityInvoiced"] + " " + dataSetRow["UnitOfMeasure"];&#13;
+}</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
                                                 <structure>
                                                     <property name="name">UnitPrice</property>
                                                     <text-property name="displayName">NettInfo::UnitPrice</text-property>
-                                                    <expression name="expression" type="javascript">dataSetRow["UnitPrice"] + " " + dataSetRow["PriceDenomination"]</expression>
+                                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["UnitPrice"], 3, '', '.', ',') + " " + dataSetRow["PriceDenomination"];</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
@@ -11172,6 +11526,9 @@ etter gjeldende satser.&#13;
         </variable-element>
         <variable-element name="LegalPartClassvar">
             <expression name="value" type="javascript">Individual</expression>
+            <property name="type">report</property>
+        </variable-element>
+        <variable-element name="AttachmentNumber">
             <property name="type">report</property>
         </variable-element>
     </property>
