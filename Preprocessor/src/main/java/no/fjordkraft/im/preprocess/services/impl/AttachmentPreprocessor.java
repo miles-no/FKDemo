@@ -86,22 +86,15 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     isMeterMonthStromAttachmentFound = true;
                 }
 
-                    /*if (null != stromAttachment && stromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().getNettleie() != null) {
-                        stromAttachment = deepClone(stromAttachment);
-                    }*/
                 Nettleie nettleie = null;
                 if (null != stromAttachment) {
                     if (IMConstants.PDFEHF.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
                         logger.debug("createEHFEntry " + " invoice number " + invoicenumber);
-                        //stromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().setNettleie(createEHFEntry(gridAttachment));
                         nettleie = createEHFEntry(gridAttachment);
-
                     } else if (IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
                         logger.debug("createE2BEntry " + " invoice number " + invoicenumber);
-                        //stromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().setNettleie(createE2BEntry(gridAttachment));
                         nettleie = createE2BEntry(gridAttachment);
                     }
-
                     List<Nettleie> nettleieList = stromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().getNettleieList();
                     if (isMeterMonthStromAttachmentFound && nettleieList.size() == 0) {
                         nettleieList.add(nettleie);
@@ -113,8 +106,6 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     } else {
                         nettleieList.add(nettleie);
                     }
-                    //stromAttachment.setAddedToList(true);
-                    //attachmentList.add(stromAttachment);
                 }
             }
         }
@@ -139,16 +130,11 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
             int index = 1;
             for (Attachment attachment : meterIdMapEMUXML.values()) {
-                /*if (null == attachment.getAddedToList() || !(attachment.getAddedToList())) {
-                    logger.debug("Added strom attachment "+ attachment.getFAKTURA().getMAALEPUNKT() +" invoice number " + invoicenumber);
-                    attachmentList.add(attachment);
-                }*/
                 List<Nettleie> nettleieList = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().getNettleieList();
                 logger.debug(" nettleieList "+ nettleieList.size());
                 if (null != nettleieList && nettleieList.size() >= 1) {
                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().setNettleie(nettleieList.get(0));
                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().setNettleieList(null);
-                    //attachment.setAttachmentNumber(index++);
                     attachment.setDisplayStromData(true);
                     attachmentList.add(attachment);
                     for (int i = 1; i < nettleieList.size(); i++) {
