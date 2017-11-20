@@ -8466,9 +8466,11 @@ formatMoney(dataSetRow["GrossPrice"], 3, '', '.', ',') + " " + dataSetRow["Strom
                                                     <text-property name="displayName">NettInfo::QuantityInvoiced</text-property>
                                                     <expression name="expression" type="javascript">if(dataSetRow["UnitOfMeasure"] == null) {&#13;
 	dataSetRow["QuantityInvoiced"] + " " +'';&#13;
-} else if(dataSetRow["UnitOfMeasure"] == 'ANN' || dataSetRow["UnitOfMeasure"] == 'MON') {&#13;
-	dataSetRow["QuantityInvoiced"] + " " +'';&#13;
-} else {&#13;
+} else if(dataSetRow["UnitOfMeasure"] == 'ANN') {&#13;
+	dataSetRow["QuantityInvoiced"] + " " +'år';&#13;
+} else if(dataSetRow["UnitOfMeasure"] == 'MON') {&#13;
+	dataSetRow["QuantityInvoiced"] + " " +'mnd';&#13;
+}else {&#13;
 	dataSetRow["QuantityInvoiced"] + " " + dataSetRow["UnitOfMeasure"];&#13;
 }</expression>
                                                     <property name="dataType">string</property>
@@ -8477,7 +8479,18 @@ formatMoney(dataSetRow["GrossPrice"], 3, '', '.', ',') + " " + dataSetRow["Strom
                                                 <structure>
                                                     <property name="name">UnitPrice</property>
                                                     <text-property name="displayName">NettInfo::UnitPriceGross</text-property>
-                                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 3, '', '.', ',') + " " + dataSetRow["PriceDenomination"];</expression>
+                                                    <expression name="expression" type="javascript">if(null != dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"].toUpperCase() == 'KWH' ) {&#13;
+	if(dataSetRow["NettInfo::UnitPriceGross"] !=null &amp;&amp;  parseFloat(dataSetRow["NettInfo::UnitPriceGross"]) &lt;1) {&#13;
+		&#13;
+		formatMoney(parseFloat(dataSetRow["NettInfo::UnitPriceGross"])*100, 3, '', '.', ',') + " " + 'øre/kwh';&#13;
+	}else {&#13;
+		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 3, '', '.', ',') + " " + 'øre/kwh';&#13;
+		}&#13;
+&#13;
+} else {&#13;
+&#13;
+	formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 3, '', '.', ',') + " " + dataSetRow["PriceDenomination"];&#13;
+}</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
