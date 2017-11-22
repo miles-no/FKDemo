@@ -9,6 +9,7 @@
 package no.fjordkraft.im.if320.models;
 
 import javax.xml.bind.annotation.*;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -32,7 +33,7 @@ import javax.xml.bind.annotation.*;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "faktura","addedToList","displayStromData","attachmentNumber"
+    "faktura","addedToList","displayStromData","attachmentNumber","startDate","endDate"
 })
 @XmlRootElement(name = "Attachment")
 public class Attachment {
@@ -48,6 +49,13 @@ public class Attachment {
 
     @XmlElement(name = "AttachmentNumber")
     protected int attachmentNumber;
+
+    @XmlElement(name = "StartDate")
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar startDate;
+    @XmlElement(name = "EndDate")
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar endDate;
 
 
     /**
@@ -104,5 +112,21 @@ public class Attachment {
 
     public void setAttachmentNumber(int attachmentNumber) {
         this.attachmentNumber = attachmentNumber;
+    }
+
+    public XMLGregorianCalendar getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(XMLGregorianCalendar startDate) {
+        this.startDate = startDate;
+    }
+
+    public XMLGregorianCalendar getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(XMLGregorianCalendar endDate) {
+        this.endDate = endDate;
     }
 }
