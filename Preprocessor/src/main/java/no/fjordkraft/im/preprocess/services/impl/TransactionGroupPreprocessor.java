@@ -13,6 +13,7 @@ import org.apache.commons.collections4.map.MultiValueMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -56,15 +57,26 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                             for (Attachment attachment : attachments) {
                                 if (transaction.getReference().equals(attachment.getFAKTURA().getFAKTURANR())) {
 
-                                    ReadingInfo111 readingInfo111 = attachment.getFAKTURA().getVEDLEGGEMUXML()
-                                            .getInvoice().getInvoiceOrder().getReadingInfo111();
-                                    if (null != readingInfo111) {
-                                        transaction.setStartDate(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice()
-                                                .getInvoiceOrder().getReadingInfo111().getStartDate());
-
-                                        transaction.setEndDate(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice()
-                                                .getInvoiceOrder().getReadingInfo111().getEndDate());
+                                    List<InvoiceLine120> invoiceLine120List = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().getInvoiceLine120();
+                                    XMLGregorianCalendar startDate = null;
+                                    XMLGregorianCalendar endDate = null;
+                                    if(null != invoiceLine120List) {
+                                        for (InvoiceLine120 invoiceLine120 : invoiceLine120List) {
+                                            if (null == startDate) {
+                                                startDate = invoiceLine120.getStartDate();
+                                                endDate = invoiceLine120.getEndDate();
+                                            } else {
+                                                if (startDate.toGregorianCalendar().compareTo(invoiceLine120.getStartDate().toGregorianCalendar()) > 0) {
+                                                    startDate = invoiceLine120.getStartDate();
+                                                }
+                                                if (endDate.toGregorianCalendar().compareTo(invoiceLine120.getEndDate().toGregorianCalendar()) < 0) {
+                                                    endDate = invoiceLine120.getEndDate();
+                                                }
+                                            }
+                                        }
                                     }
+                                    transaction.setStartDate(startDate);
+                                    transaction.setEndDate(endDate);
                                     attachment.getFAKTURA().setFreeText(transaction.getFreeText());
                                     attachment.getFAKTURA().setGrid(getGridConfigInfo(attachment.getFAKTURA().getVEDLEGGEMUXML()
                                             .getInvoice().getInvoiceOrder().getInvoiceOrderInfo110().getLDC1(),
