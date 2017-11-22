@@ -8,6 +8,7 @@ import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.util.IMConstants;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.InvoiceLineType;
+import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.TaxCategoryType;
 import oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -206,7 +208,20 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             baseItemDetails.setUnitOfMeasure(invoiceLineType.getInvoicedQuantity().getUnitCode());
             baseItemDetails.setUnitPrice(Float.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString()));
             baseItemDetails.setPriceDenomination(invoiceLineType.getPrice().getPriceAmount().getCurrencyID());
-            baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
+            List<TaxCategoryType> categoryTypeList = invoiceLineType.getItem().getClassifiedTaxCategories();
+            BigDecimal vat = null;
+            for(TaxCategoryType taxCategoryType: categoryTypeList) {
+                logger.debug("taxScheme " + taxCategoryType.getTaxScheme().getID().getValue()+ " vat "+ taxCategoryType.getPercent().getValue());
+                if("VAT".equals(taxCategoryType.getTaxScheme().getID().getValue())) {
+                    vat = taxCategoryType.getPercent().getValue();
+                    break;
+                }
+            }
+            if(null != vat) {
+                baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice() + ((vat.floatValue()/100)*baseItemDetails.getUnitPrice()));
+            } else {
+                baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
+            }
 
             if (null != invoiceLineType.getTaxTotals() && invoiceLineType.getTaxTotals().size() > 0 && null != invoiceLineType.getTaxTotals().get(0)) {
                 taxAmount = invoiceLineType.getTaxTotals().get(0).getTaxAmount().getValue().floatValue();
