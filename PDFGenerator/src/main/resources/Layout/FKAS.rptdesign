@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">E:\FuelKraft\Processed files\16nov\20171027_FKAS_1509079054702_statement\71370116023\processed_statement.xml</property>
+            <property name="FILELIST">E:\FuelKraft\filesfromtest\before change\20171026_FKAS_1508998882676_statement\700119090457\processed_statement.xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -3012,6 +3012,11 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">UnitPriceGross</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">NoOfDays</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">NoOfDays</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -3084,6 +3089,11 @@
                     <structure>
                         <property name="position">14</property>
                         <property name="name">UnitPriceGross</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">NoOfDays</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -3188,8 +3198,15 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">NoOfDays</property>
+                    <property name="nativeName">NoOfDays</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/baseItemDetails]#:#{ReferenceNumber;STRING;../ReferenceNumber},{Description;STRING;/Description},{UnitPrice;STRING;/UnitPrice},{PriceDenomination;STRING;/PriceDenomination},{LineItemGrossAmount;STRING;/LineItemGrossAmount},{QuantityInvoiced;STRING;/QuantityInvoiced},{UnitOfMeasure;STRING;/UnitOfMeasure},{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{GrossAmount;STRING;../InvoiceSummary/InvoiceTotals/GrossAmount},{VatTotalsAmount;STRING;../InvoiceSummary/InvoiceTotals/VatTotalsAmount},{InvoiceNo;STRING;../../../MainInvoiceInfo-101/InvoiceNo},{AttachmentNumber;STRING;../../../../../../AttachmentNumber},{UnitPriceGross;STRING;/UnitPriceGross}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/baseItemDetails]#:#{ReferenceNumber;STRING;../ReferenceNumber},{Description;STRING;/Description},{UnitPrice;STRING;/UnitPrice},{PriceDenomination;STRING;/PriceDenomination},{LineItemGrossAmount;STRING;/LineItemGrossAmount},{QuantityInvoiced;STRING;/QuantityInvoiced},{UnitOfMeasure;STRING;/UnitOfMeasure},{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{GrossAmount;STRING;../InvoiceSummary/InvoiceTotals/GrossAmount},{VatTotalsAmount;STRING;../InvoiceSummary/InvoiceTotals/VatTotalsAmount},{InvoiceNo;STRING;../../../MainInvoiceInfo-101/InvoiceNo},{AttachmentNumber;STRING;../../../../../../AttachmentNumber},{UnitPriceGross;STRING;/UnitPriceGross},{NoOfDays;STRING;/NoOfDays}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -3562,6 +3579,10 @@
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">NettInfo::UnitPriceGross</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">NettInfo::NoOfDays</property>
+                    <property name="alias">NettInfo::NoOfDays</property>
+                </structure>
             </list-property>
             <list-property name="filter">
                 <structure>
@@ -3717,6 +3738,11 @@
                     <structure>
                         <property name="position">29</property>
                         <property name="name">NettInfo::UnitPriceGross</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">30</property>
+                        <property name="name">NettInfo::NoOfDays</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -8017,11 +8043,11 @@ true;}</expression>
                                                     <text-property name="displayName">StromInfo::Basis</text-property>
                                                     <expression name="expression" type="javascript">if (vars["LegalPartClassvar"] == "Individual" &amp;&amp; dataSetRow["Basis"] == parseFloat("1") )&#13;
 {&#13;
-dataSetRow["NoOfDays"]  + " " + "Dager";&#13;
+dataSetRow["NoOfDays"]  + " " + "dager";&#13;
 }&#13;
 else &#13;
 {&#13;
-dataSetRow["Basis"] + " " + dataSetRow["ProdDenomination"] &#13;
+truncateDecimal(dataSetRow["Basis"]) + " " + dataSetRow["ProdDenomination"] &#13;
 }</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
@@ -8029,13 +8055,16 @@ dataSetRow["Basis"] + " " + dataSetRow["ProdDenomination"] &#13;
                                                 <structure>
                                                     <property name="name">GrossPrice</property>
                                                     <text-property name="displayName">StromInfo::GrossPrice</text-property>
-                                                    <expression name="expression" type="javascript">if(dataSetRow["StromInfo::PriceDenomination"] == "øre/kWh")&#13;
+                                                    <expression name="expression" type="javascript">if(parseFloat(dataSetRow["GrossPrice"]) == 0 &amp;&amp; parseFloat(dataSetRow["TotalGross"]) != 0) {&#13;
+	'';&#13;
+}&#13;
+else if(dataSetRow["StromInfo::PriceDenomination"] == "øre/kWh")&#13;
 {&#13;
-formatMoney(dataSetRow["GrossPrice"] * 100, 3, '', '.', ',') + " " + dataSetRow["StromInfo::PriceDenomination"] &#13;
+	formatMoney(dataSetRow["GrossPrice"] * 100, 2, '', '.', ',') + " " + dataSetRow["StromInfo::PriceDenomination"] ;&#13;
 }&#13;
 else &#13;
 {&#13;
-formatMoney(dataSetRow["GrossPrice"], 3, '', '.', ',') + " " + dataSetRow["StromInfo::PriceDenomination"]&#13;
+	formatMoney(dataSetRow["GrossPrice"], 2, '', '.', ',') + " " + dataSetRow["StromInfo::PriceDenomination"];&#13;
 }</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
@@ -8464,14 +8493,20 @@ formatMoney(dataSetRow["GrossPrice"], 3, '', '.', ',') + " " + dataSetRow["Strom
                                                 <structure>
                                                     <property name="name">QuantityInvoiced</property>
                                                     <text-property name="displayName">NettInfo::QuantityInvoiced</text-property>
-                                                    <expression name="expression" type="javascript">if(dataSetRow["UnitOfMeasure"] == null) {&#13;
-	dataSetRow["QuantityInvoiced"] + " " +'';&#13;
-} else if(dataSetRow["UnitOfMeasure"] == 'ANN') {&#13;
-	dataSetRow["QuantityInvoiced"] + " " +'år';&#13;
-} else if(dataSetRow["UnitOfMeasure"] == 'MON') {&#13;
-	dataSetRow["QuantityInvoiced"] + " " +'mnd';&#13;
-}else {&#13;
-	dataSetRow["QuantityInvoiced"] + " " + dataSetRow["UnitOfMeasure"];&#13;
+                                                    <expression name="expression" type="javascript">if(dataSetRow["PriceDenomination"] !=null &amp;&amp; ('kr/mnd' == dataSetRow["PriceDenomination"] || 'kr/år' == dataSetRow["PriceDenomination"])) {&#13;
+	dataSetRow["NettInfo::NoOfDays"] + " "+ 'dager'; &#13;
+}&#13;
+else if(dataSetRow["UnitOfMeasure"] == null) {&#13;
+	truncateDecimal(dataSetRow["QuantityInvoiced"]) &#13;
+} else if(dataSetRow["UnitOfMeasure"]  == 'ANN' || dataSetRow["UnitOfMeasure"] == 'MON') {&#13;
+	dataSetRow["NettInfo::NoOfDays"] + " " +'dager'; 	&#13;
+} &#13;
+else {&#13;
+	if('KWH' == dataSetRow["UnitOfMeasure"]) {&#13;
+		truncateDecimal(dataSetRow["QuantityInvoiced"]) + " " + 'kWh';&#13;
+	} else {&#13;
+		truncateDecimal(dataSetRow["QuantityInvoiced"]) + " " + dataSetRow["UnitOfMeasure"];&#13;
+	}&#13;
 }</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
@@ -8480,16 +8515,18 @@ formatMoney(dataSetRow["GrossPrice"], 3, '', '.', ',') + " " + dataSetRow["Strom
                                                     <property name="name">UnitPrice</property>
                                                     <text-property name="displayName">NettInfo::UnitPriceGross</text-property>
                                                     <expression name="expression" type="javascript">if(null != dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"].toUpperCase() == 'KWH' ) {&#13;
-	if(dataSetRow["NettInfo::UnitPriceGross"] !=null &amp;&amp;  parseFloat(dataSetRow["NettInfo::UnitPriceGross"]) &lt;1) {&#13;
-		&#13;
-		formatMoney(parseFloat(dataSetRow["NettInfo::UnitPriceGross"])*100, 3, '', '.', ',') + " " + 'øre/kwh';&#13;
+	if(dataSetRow["NettInfo::UnitPriceGross"] !=null &amp;&amp;  parseFloat(dataSetRow["NettInfo::UnitPriceGross"]) &lt;1) {		&#13;
+		formatMoney(parseFloat(dataSetRow["NettInfo::UnitPriceGross"])*100, 2, '', '.', ',') + " " + 'øre/kWh';&#13;
 	}else {&#13;
-		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 3, '', '.', ',') + " " + 'øre/kwh';&#13;
+		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'øre/kWh';&#13;
 		}&#13;
 &#13;
 } else {&#13;
-&#13;
-	formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 3, '', '.', ',') + " " + dataSetRow["PriceDenomination"];&#13;
+	if(null != dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"].toUpperCase() == 'NOK') {&#13;
+		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'nok';&#13;
+	} else {&#13;
+		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + dataSetRow["PriceDenomination"];&#13;
+	}&#13;
 }</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>

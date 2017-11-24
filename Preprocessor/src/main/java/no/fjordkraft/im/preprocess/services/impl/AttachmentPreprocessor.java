@@ -2,6 +2,7 @@ package no.fjordkraft.im.preprocess.services.impl;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.*;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
@@ -18,12 +19,15 @@ import org.springframework.oxm.Marshaller;
 import org.springframework.oxm.Unmarshaller;
 import org.springframework.stereotype.Service;
 
+import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 /**
@@ -231,6 +235,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     baseItemDetails.setEndDate(invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue());
                 }
             }
+            if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
+                baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(), baseItemDetails.getEndDate()));
+            }
             baseItemDetails.setLineItemGrossAmount(Float.valueOf(invoiceLineType.getLineExtensionAmount().getValue().toString()) + taxAmount);
             baseItemDetailsList.add(baseItemDetails);
         }
@@ -256,9 +263,20 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     }
                 }
             }
+            if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
+                baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(),baseItemDetails.getEndDate()));
+            }
         }
         nettleie.setBaseItemDetails(invoice.getInvoiceDetails().getBaseItemDetails());
         nettleie.setInvoiceSummary(invoice.getInvoiceSummary());
         return nettleie;
+    }
+
+    private long getDays(XMLGregorianCalendar startDate, XMLGregorianCalendar endDate){
+
+        LocalDate localStartDate = LocalDate.of(startDate.getYear(),startDate.getMonth(),startDate.getDay());
+        LocalDate localEndDate = LocalDate.of(endDate.getYear(),endDate.getMonth(),endDate.getDay());
+        long days = ChronoUnit.DAYS.between(localStartDate,localEndDate);
+        return days;
     }
 }

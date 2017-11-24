@@ -56,3 +56,11 @@ function trimDI(value) {
 	value = value.replace("DI;", "");
 	return value;
 }
+
+function truncateDecimal(value){
+	if(value.indexOf(".") != -1) {
+		value = value.substr(0,value.indexOf("."));
+	} 
+	return value;
+}
+	

@@ -58,7 +58,8 @@ import java.util.List;
     "startDate",
     "endDate",
     "unitPriceGross",
-    "ref"
+    "ref",
+    "noOfDays"
 })
 @XmlRootElement(name = "BaseItemDetails")
 public class BaseItemDetails {
@@ -95,6 +96,10 @@ public class BaseItemDetails {
 
     @XmlElement(name = "Ref")
     protected List<Ref> ref;
+
+    @XmlElement(name = "NoOfDays")
+    protected long noOfDays;
+
     /**
      * Gets the value of the level property.
      * 
@@ -349,5 +354,13 @@ public class BaseItemDetails {
 
     public void setRef(List<Ref> ref) {
         this.ref = ref;
+    }
+
+    public long getNoOfDays() {
+        return noOfDays;
+    }
+
+    public void setNoOfDays(long noOfDays) {
+        this.noOfDays = noOfDays;
     }
 }
