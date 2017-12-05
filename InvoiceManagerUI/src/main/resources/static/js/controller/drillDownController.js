@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalService) =>{
+const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalService,$state) =>{
     let dummyData = {"firstName": "Name ","lastName":"Last Name ","birthDate":moment().format('LLL'),"balance": 22.5};
     $scope.rowCollection = [];
     $scope.searchResults = [];
@@ -133,6 +133,9 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
     }
     $scope.isInvoicePDF = function (file){
         return file.type=='INVOICE_PDF';
+    }
+    $scope.showAuditLog = (invoiceNumber) => {
+        $state.go('audit_log',{invoiceNo:invoiceNumber})
     }
     $scope.init = function(){
         $scope.pageSize = 10;

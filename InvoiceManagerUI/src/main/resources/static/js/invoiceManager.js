@@ -143,7 +143,8 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
         templateUrl: 'templates/template-attributes/templateAttributes.html'
       }).state('audit_log',{
         url: '/audit_log',
-        templateUrl: 'templates/audit-log/auditLog.html'
+        templateUrl: 'templates/audit-log/auditLog.html',
+        params: {invoiceNo:null}
       }).state('transaction_group',{
             url: '/transaction_group',
             templateUrl: 'templates/custom-transaction-group/customTransactionGroup.html'

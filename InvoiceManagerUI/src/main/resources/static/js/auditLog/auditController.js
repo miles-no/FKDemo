@@ -1,6 +1,6 @@
 'use strict';
 
-const auditLogController = ($scope,$http,moment) => {
+const auditLogController = ($scope,$http,moment,$state,$stateParams) => {
 
   $scope.datepickerConfig ={
     "dateFormat" :'YYYY-MM-DD',
@@ -8,6 +8,12 @@ const auditLogController = ($scope,$http,moment) => {
     "maxDate" : moment().add(1,'days')
   }
 
+  $scope.$watch(()=>{
+    return $state.params.invoiceId
+  },(newParams, oldParams)=>{
+    $scope.invoiceNo = $state.params.invoiceId
+    $scope.getLogs()
+  })
   $scope.getLogs = (pageNumber) => {
     let queryParams = {
       "page": pageNumber ? pageNumber-1 : 0,
