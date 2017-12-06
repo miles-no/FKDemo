@@ -54,11 +54,14 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
 
     private boolean readAdvtPdfFileSystem;
 
+    private boolean mergeRotatePDF;
+
     @PostConstruct
     public void initIt() throws Exception {
 
         basePathCampaign =  configService.getString(IMConstants.BASE_PATH_CAMPAIGN);
         readAdvtPdfFileSystem = configService.getBoolean(IMConstants.READ_ADVT_PDF_FILESYSTEM);
+        mergeRotatePDF = configService.getBoolean(IMConstants.MERGE_ROTATE_ADVT_PDF);
     }
 
     @Override
@@ -137,8 +140,10 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         if(f.exists()) {
             logger.debug(" reading campaign from FS file exists");
             byte[] pdf = IOUtils.toByteArray(new FileInputStream(f));
-            pdf = PDFUtil.merge(pdf);
-            pdf = PDFUtil.rotator(pdf);
+            if(mergeRotatePDF) {
+                pdf = PDFUtil.merge(pdf);
+                pdf = PDFUtil.rotator(pdf);
+            }
             return pdf;
         }
         return null;
