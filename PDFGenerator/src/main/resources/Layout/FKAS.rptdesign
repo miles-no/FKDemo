@@ -4454,7 +4454,11 @@
                                         <structure>
                                             <property name="name">DueDate</property>
                                             <text-property name="displayName">Betalingsfrist</text-property>
-                                            <expression name="expression" type="javascript">"Betalingsfrist: " + getFormattedFullDate(dataSetRow["DueDate"])</expression>
+                                            <expression name="expression" type="javascript">if("NO" == dataSetRow["DirectDebit"]){&#13;
+	"Betalingsfrist: " + getFormattedFullDate(dataSetRow["DueDate"]);&#13;
+} else {&#13;
+	"Trekkdato: " + getFormattedFullDate(dataSetRow["DueDate"]);&#13;
+}</expression>
                                             <property name="dataType">string</property>
                                             <property name="allowExport">true</property>
                                         </structure>
@@ -11507,12 +11511,7 @@ du bruker.</text-property>
                                             <property name="fontSize">7pt</property>
                                             <property name="paddingTop">3pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Nettleie er et beløp som betales til&#13;
-din lokale netteier. Det er de som eier&#13;
-ledningsnettet der du bor. Nettleien&#13;
-går blant annet til å dekke drift og&#13;
-vedlikehold av ledningsnettet i ditt&#13;
-område.</text-property>
+                                            <text-property name="text">Nettleien betaler vi videre til de som eier ledningsnettet der du bor – altså din netteier. Nettleien går blant annet til å dekke drift og vedlikehold av ledningsnettet i ditt område, samt offentlige avgifter</text-property>
                                         </label>
                                         <label id="835">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
