@@ -110,6 +110,9 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                 for (int page = 0; page < number_of_pages; ) {
                     copy.addPage(copy.getImportedPage(readInputPDF, ++page));
                 }
+                if ( null != readInputPDF && number_of_pages % 2 != 0){
+                    copy.addPage(readInputPDF.getPageSize(1), readInputPDF.getPageRotation(1));
+                }
                 logger.debug(" Current page number is " + copy.getCurrentPageNumber());
             } else {
                 logger.warn(" Attach_PDF not found ");
