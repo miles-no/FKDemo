@@ -12,13 +12,37 @@
                 <include>*.jar</include>
             </includes>
         </fileSet>
-        <fileSet>
+        <!--<fileSet>
             <directory>src/main/resources/Layout/</directory>
             <outputDirectory>/Layout</outputDirectory>
             <includes>
                 <include>*</include>
             </includes>
+        </fileSet>-->
+        <fileSet>
+            <directory>src/main/resources/templateResources/</directory>
+            <outputDirectory>/Layout</outputDirectory>
+            <includes>
+                <include>*.js</include>
+                <include>*.rptlibrary</include>
+            </includes>
         </fileSet>
+
+        <fileSet>
+            <directory>src/main/resources/templateResources/FKAS</directory>
+            <outputDirectory>/Layout</outputDirectory>
+            <includes>
+                <include>*.png</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/resources/templateResources/TKAS</directory>
+            <outputDirectory>/Layout</outputDirectory>
+            <includes>
+                <include>*.png</include>
+            </includes>
+        </fileSet>
+
         <fileSet>
             <directory>src/main/resources/sampleFile/</directory>
             <outputDirectory>/sampleFile</outputDirectory>
