@@ -1,6 +1,7 @@
 package no.fjordkraft.im.if320.models;
 
 import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,9 @@ public class TransactionGroup {
     protected int totalTransactions;
 
     public List<Transaction> getTransaction() {
+        if(null == transaction) {
+            transaction = new ArrayList<>();
+        }
         return transaction;
     }
 

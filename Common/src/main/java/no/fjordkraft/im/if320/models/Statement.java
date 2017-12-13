@@ -248,7 +248,7 @@ public class Statement {
     @XmlElement(name = "PieChart", required = true)
     protected PieChart pieChart;
     @XmlElement(name = "LineItems", required = true)
-    protected String lineItems;
+    protected LineItems lineItems;
     @XmlElement(name = "InstalmentAccounts", required = true)
     protected String instalmentAccounts;
     @XmlElement(name = "Attachments", required = true)
@@ -1068,7 +1068,7 @@ public class Statement {
      *     {@link String }
      *
      */
-    public String getLineItems() {
+    public LineItems getLineItems() {
         return lineItems;
     }
 
@@ -1080,7 +1080,7 @@ public class Statement {
      *     {@link String }
      *
      */
-    public void setLineItems(String value) {
+    public void setLineItems(LineItems value) {
         this.lineItems = value;
     }
 
