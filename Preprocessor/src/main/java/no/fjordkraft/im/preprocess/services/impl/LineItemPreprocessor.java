@@ -33,8 +33,8 @@ public class LineItemPreprocessor extends BasePreprocessor {
                 }
                 for(LineItem lineItem : lineItemList) {
                     Transaction transaction = new Transaction();
-                    transaction.setAmount(lineItem.getAmount());
-                    transaction.setAmountWithVat(lineItem.getAmountWithVat());
+                    transaction.setAmount(lineItem.getAmount()*(-1));
+                    transaction.setAmountWithVat(lineItem.getAmountWithVat()*(-1));
                     transaction.setVatAmount(lineItem.getVatAmount());
                     if(lineItem.getLineItemCategory().indexOf(";") != -1) {
                         transaction.setTransactionCategory(lineItem.getLineItemCategory().substring(lineItem.getLineItemCategory().indexOf(";")+1));
