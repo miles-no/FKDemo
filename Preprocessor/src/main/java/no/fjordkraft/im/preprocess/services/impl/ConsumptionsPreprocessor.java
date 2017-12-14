@@ -54,7 +54,6 @@ public class ConsumptionsPreprocessor extends BasePreprocessor {
                                     consumption.setThisYearConsumption(null != thisYearConsumption ? Float.valueOf(thisYearConsumption.toString()) : 0.0f);
                                     consumptions.add(consumption);
                                 }
-
                             } catch (Exception e) {
                                 logger.error("Exception in consumption preprocessor",e);
                                 throw new PreprocessorException(e);
