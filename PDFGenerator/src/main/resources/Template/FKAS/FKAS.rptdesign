@@ -4702,16 +4702,15 @@ if(null == dataSetRow["StartDate"]) {&#13;
 {&#13;
    if(parseFloat(dataSetRow["CurrentClaim"]) &lt; 0 )&#13;
    {&#13;
-   "Tilgode";&#13;
+   "Tilgode"&#13;
    }&#13;
 else&#13;
 	{&#13;
-	"Totalt å betale";&#13;
+	"Totalt å betale"&#13;
 	}&#13;
 }&#13;
-else {&#13;
-	"Forts. neste side.";&#13;
-	}</expression>
+else&#13;
+	"Forts. neste side."</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
@@ -5067,6 +5066,14 @@ else &#13;
                                                     <value type="javascript">"YES"</value>
                                                 </simple-property-list>
                                             </structure>
+                                            <structure>
+                                                <property name="operator">lt</property>
+                                                <property name="color">#808080</property>
+                                                <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">0</value>
+                                                </simple-property-list>
+                                            </structure>
                                         </list-property>
                                         <text-property name="text">KID-nummer</text-property>
                                     </label>
@@ -5087,6 +5094,14 @@ else &#13;
                                                 <expression name="testExpr" type="javascript">row["DirectDebit"]</expression>
                                                 <simple-property-list name="value1">
                                                     <value type="javascript">"YES"</value>
+                                                </simple-property-list>
+                                            </structure>
+                                            <structure>
+                                                <property name="operator">lt</property>
+                                                <property name="color">#808080</property>
+                                                <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">0</value>
                                                 </simple-property-list>
                                             </structure>
                                         </list-property>
@@ -5270,6 +5285,14 @@ false;&#13;
                                                     <value type="javascript">"YES"</value>
                                                 </simple-property-list>
                                             </structure>
+                                            <structure>
+                                                <property name="operator">lt</property>
+                                                <property name="color">#808080</property>
+                                                <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">0</value>
+                                                </simple-property-list>
+                                            </structure>
                                         </list-property>
                                         <property name="resultSetColumn">StatementOcrNumber</property>
                                     </data>
@@ -5290,6 +5313,14 @@ false;&#13;
                                                 <expression name="testExpr" type="javascript">row["DirectDebit"]</expression>
                                                 <simple-property-list name="value1">
                                                     <value type="javascript">"YES"</value>
+                                                </simple-property-list>
+                                            </structure>
+                                            <structure>
+                                                <property name="operator">lt</property>
+                                                <property name="color">#808080</property>
+                                                <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">0</value>
                                                 </simple-property-list>
                                             </structure>
                                         </list-property>
