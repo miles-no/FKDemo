@@ -4609,6 +4609,15 @@
             <property name="pageBreakAfter">always</property>
             <property name="height">7.510416666666667in</property>
             <property name="width">7.177083333333333in</property>
+            <property name="dataSet">TransactionInfo</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">CurrentClaim</property>
+                    <text-property name="displayName">CurrentClaim</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <column id="149">
                 <property name="width">2.4270833333333335in</property>
             </column>
@@ -4690,9 +4699,19 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                 <property name="name">TotalTransactions</property>
                                 <text-property name="displayName">Total Claim</text-property>
                                 <expression name="expression" type="javascript">if(dataSetRow["TotalTransactions"] &lt;= 10 )&#13;
-	"Totalt å betale"&#13;
+{&#13;
+   if(parseFloat(dataSetRow["CurrentClaim"]) &lt; 0 )&#13;
+   {&#13;
+   "Tilgode";&#13;
+   }&#13;
 else&#13;
-	"Forts. neste side."</expression>
+	{&#13;
+	"Totalt å betale";&#13;
+	}&#13;
+}&#13;
+else {&#13;
+	"Forts. neste side.";&#13;
+	}</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
@@ -4852,6 +4871,26 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                             </row>
                         </footer>
                     </table>
+                    <label id="1408"/>
+                    <text id="1409">
+                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <property name="fontSize">8pt</property>
+                        <property name="fontStyle">italic</property>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">if(parseFloat(row["CurrentClaim"]) > 0 )&#13;
+{&#13;
+true;&#13;
+}&#13;
+else &#13;
+{false;}</expression>
+                            </structure>
+                        </list-property>
+                        <property name="contentType">auto</property>
+                        <text-property name="content"><![CDATA[Tilgodebeløp over kr. 200,- vil bli utbetalt til registrert kontonummer dersom alle tidligere fakturaer er betalt.
+]]></text-property>
+                    </text>
                 </cell>
             </row>
             <row id="692">
@@ -5000,6 +5039,15 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                         <header>
                             <row id="166">
                                 <property name="backgroundColor">#DADADA</property>
+                                <list-property name="highlightRules">
+                                    <structure>
+                                        <property name="operator">lt</property>
+                                        <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
+                                        <simple-property-list name="value1">
+                                            <value type="javascript">0</value>
+                                        </simple-property-list>
+                                    </structure>
+                                </list-property>
                                 <cell id="167">
                                     <property name="borderRightColor">#DADADA</property>
                                     <property name="borderRightStyle">solid</property>
@@ -5054,6 +5102,16 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
                                         <property name="textAlign">center</property>
+                                        <list-property name="highlightRules">
+                                            <structure>
+                                                <property name="operator">lt</property>
+                                                <property name="color">#808080</property>
+                                                <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">0</value>
+                                                </simple-property-list>
+                                            </structure>
+                                        </list-property>
                                         <list-property name="visibility">
                                             <structure>
                                                 <property name="format">all</property>
@@ -5070,6 +5128,16 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
+                                        <list-property name="highlightRules">
+                                            <structure>
+                                                <property name="operator">lt</property>
+                                                <property name="color">#808080</property>
+                                                <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">0</value>
+                                                </simple-property-list>
+                                            </structure>
+                                        </list-property>
                                         <list-property name="visibility">
                                             <structure>
                                                 <property name="format">all</property>
@@ -5090,14 +5158,27 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                         <property name="fontStyle">italic</property>
                                         <property name="paddingRight">10pt</property>
                                         <property name="textAlign">right</property>
+                                        <list-property name="highlightRules">
+                                            <structure>
+                                                <property name="operator">lt</property>
+                                                <property name="color">#808080</property>
+                                                <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">0</value>
+                                                </simple-property-list>
+                                            </structure>
+                                        </list-property>
                                         <list-property name="visibility">
                                             <structure>
                                                 <property name="format">all</property>
-                                                <expression name="valueExpr" type="javascript">if("NO" == row["DirectDebit"]) {&#13;
+                                                <expression name="valueExpr" type="javascript">if(parseFloat(row["CurrentClaim"]) > 0 )&#13;
+{&#13;
+  if("NO" == row["DirectDebit"]) {&#13;
 	true;&#13;
 } else {&#13;
 	false;&#13;
-}</expression>
+} }else&#13;
+   true;</expression>
                                             </structure>
                                         </list-property>
                                         <text-property name="text">Beløp</text-property>
@@ -5108,17 +5189,63 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                         <property name="fontStyle">italic</property>
                                         <property name="paddingRight">10pt</property>
                                         <property name="textAlign">right</property>
+                                        <list-property name="highlightRules">
+                                            <structure>
+                                                <property name="operator">lt</property>
+                                                <property name="color">#808080</property>
+                                                <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">0</value>
+                                                </simple-property-list>
+                                            </structure>
+                                        </list-property>
                                         <list-property name="visibility">
                                             <structure>
                                                 <property name="format">all</property>
-                                                <expression name="valueExpr" type="javascript">if("NO" == row["DirectDebit"]) {&#13;
+                                                <expression name="valueExpr" type="javascript">if(parseFloat(row["CurrentClaim"]) > 0 )&#13;
+{&#13;
+if("NO" == row["DirectDebit"]) {&#13;
 	false;&#13;
 } else {&#13;
 	true;&#13;
-}</expression>
+}&#13;
+}&#13;
+else&#13;
+{true;}</expression>
                                             </structure>
                                         </list-property>
                                         <text-property name="text">Å betale</text-property>
+                                    </label>
+                                    <label id="1407">
+                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontStyle">italic</property>
+                                        <property name="paddingRight">10pt</property>
+                                        <property name="textAlign">right</property>
+                                        <list-property name="highlightRules">
+                                            <structure>
+                                                <property name="operator">lt</property>
+                                                <property name="color">#808080</property>
+                                                <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">0</value>
+                                                </simple-property-list>
+                                            </structure>
+                                        </list-property>
+                                        <list-property name="visibility">
+                                            <structure>
+                                                <property name="format">all</property>
+                                                <expression name="valueExpr" type="javascript">if(parseFloat(row["CurrentClaim"]) > 0 )&#13;
+{&#13;
+true;&#13;
+}&#13;
+else &#13;
+{&#13;
+false;&#13;
+}</expression>
+                                            </structure>
+                                        </list-property>
+                                        <text-property name="text">Tilgode</text-property>
                                     </label>
                                 </cell>
                             </row>
@@ -5187,6 +5314,14 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                                     <value type="javascript">"YES"</value>
                                                 </simple-property-list>
                                             </structure>
+                                            <structure>
+                                                <property name="operator">lt</property>
+                                                <property name="color">#808080</property>
+                                                <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">0</value>
+                                                </simple-property-list>
+                                            </structure>
                                         </list-property>
                                         <property name="resultSetColumn">DueDate</property>
                                     </data>
@@ -5198,6 +5333,16 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                         <property name="paddingTop">5pt</property>
                                         <property name="paddingRight">10pt</property>
                                         <property name="textAlign">right</property>
+                                        <list-property name="highlightRules">
+                                            <structure>
+                                                <property name="operator">lt</property>
+                                                <property name="color">#8A8883</property>
+                                                <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
+                                                <simple-property-list name="value1">
+                                                    <value type="javascript">0</value>
+                                                </simple-property-list>
+                                            </structure>
+                                        </list-property>
                                         <property name="resultSetColumn">CurrentClaim</property>
                                     </data>
                                 </cell>
@@ -11475,7 +11620,7 @@ strømregningen, se</text-property>
                                             <list-property name="action">
                                                 <structure>
                                                     <property name="linkType">hyperlink</property>
-                                                    <expression name="uri" type="constant">https://www.fjordkraft.no/fakturaforklaring</expression>
+                                                    <expression name="uri" type="constant">https://www.fjordkraft.no/faktura</expression>
                                                     <property name="targetWindow">_blank</property>
                                                 </structure>
                                             </list-property>
