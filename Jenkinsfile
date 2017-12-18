@@ -49,7 +49,6 @@ stage('Deploy to Test') {
     }
 }
 
-
 stage('Promote to production?') {
     timeout(time:1, unit:'DAYS') {
         milestone()
