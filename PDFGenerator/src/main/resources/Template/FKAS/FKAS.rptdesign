@@ -11543,7 +11543,7 @@ else {&#13;
                                     <property name="width">1.78125in</property>
                                 </column>
                                 <row id="811">
-                                    <property name="height">9.51in</property>
+                                    <property name="height">8.8in</property>
                                     <cell id="812">
                                         <property name="backgroundColor">#E1E1E1</property>
                                         <property name="paddingTop">10pt</property>
@@ -11608,6 +11608,7 @@ måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <property name="fontSize">7pt</property>
                                             <property name="paddingTop">1pt</property>
                                             <property name="paddingBottom">1pt</property>
+                                            <property name="lineHeight">8pt</property>
                                             <text-property name="text">Denne fakturaen oppsummerer kostnadene dine for både strøm og nettleie. Om du ønsker flere detaljer eller vil se originalfakturaen fra netteieren din finner du dette på </text-property>
                                         </label>
                                         <label id="1405">
@@ -11625,6 +11626,7 @@ måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                         <label id="820">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
+                                            <property name="marginTop">0.5pt</property>
                                             <property name="paddingTop">1pt</property>
                                             <property name="lineHeight">8pt</property>
                                             <text-property name="text">Her får du også oversikt over ditt kundeforhold, strømforbruk og fakturaer.</text-property>
@@ -11647,7 +11649,8 @@ strømregningen, se</text-property>
                                         <label id="1319">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
-                                            <text-property name="text">Fjordkraft.no/faktura</text-property>
+                                            <property name="marginTop">1pt</property>
+                                            <text-property name="text">fjordkraft.no/faktura</text-property>
                                             <list-property name="action">
                                                 <structure>
                                                     <property name="linkType">hyperlink</property>
