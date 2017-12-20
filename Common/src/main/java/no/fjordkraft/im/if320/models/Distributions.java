@@ -74,4 +74,7 @@ public class Distributions {
         return this.distribution;
     }
 
+    public void setDistribution(List<Distribution> distribution) {
+        this.distribution = distribution;
+    }
 }

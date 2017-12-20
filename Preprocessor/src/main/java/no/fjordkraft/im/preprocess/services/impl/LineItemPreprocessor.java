@@ -16,7 +16,7 @@ import java.util.List;
  * Created by bhavi on 12/12/2017.
  */
 @Service
-@PreprocessorInfo(order=12)
+@PreprocessorInfo(order=13)
 public class LineItemPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(LineItemPreprocessor.class);

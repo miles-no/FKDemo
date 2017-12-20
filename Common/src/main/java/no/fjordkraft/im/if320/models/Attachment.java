@@ -33,7 +33,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "faktura","addedToList","displayStromData","attachmentNumber","startDate","endDate"
+    "faktura","addedToList","displayStromData","attachmentNumber","startDate","endDate","isMultipleInvoice"
 })
 @XmlRootElement(name = "Attachment")
 public class Attachment {
@@ -49,6 +49,9 @@ public class Attachment {
 
     @XmlElement(name = "AttachmentNumber")
     protected int attachmentNumber;
+
+    @XmlElement(name = "IsMultipleInvoice",required = false)
+    protected boolean isMultipleInvoice = false;
 
     @XmlElement(name = "StartDate")
     @XmlSchemaType(name = "date")
@@ -128,5 +131,13 @@ public class Attachment {
 
     public void setEndDate(XMLGregorianCalendar endDate) {
         this.endDate = endDate;
+    }
+
+    public boolean isMultipleInvoice() {
+        return isMultipleInvoice;
+    }
+
+    public void setMultipleInvoice(boolean multipleInvoice) {
+        isMultipleInvoice = multipleInvoice;
     }
 }

@@ -15,16 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.xml.datatype.XMLGregorianCalendar;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by miles on 5/19/2017.
  */
 @Service
-@PreprocessorInfo(order=6)
+@PreprocessorInfo(order=7)
 public class TransactionGroupPreprocessor extends BasePreprocessor {
 
     @Autowired
@@ -58,7 +55,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                             for (Attachment attachment : attachments) {
                                 if (transaction.getReference().equals(attachment.getFAKTURA().getFAKTURANR())) {
 
-                                    List<InvoiceLine120> invoiceLine120List = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().getInvoiceLine120();
+                                    List<InvoiceLine120> invoiceLine120List = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceLine120();
                                     XMLGregorianCalendar startDate = null;
                                     XMLGregorianCalendar endDate = null;
                                     if(null != invoiceLine120List) {
@@ -80,7 +77,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                     transaction.setEndDate(endDate);
                                     attachment.getFAKTURA().setFreeText(transaction.getFreeText());
                                     attachment.getFAKTURA().setGrid(getGridConfigInfo(attachment.getFAKTURA().getVEDLEGGEMUXML()
-                                                    .getInvoice().getInvoiceOrder().getInvoiceOrderInfo110().getLDC1(),
+                                            .getInvoice().getInvoiceFinalOrder().getInvoiceOrderInfo110().getLDC1(),
                                             request.getEntity().getId()));
                                     attachment.setStartDate(startDate);
                                     attachment.setEndDate(endDate);
@@ -190,13 +187,27 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
         Iterator mapIterator = null;
         List<Transaction> transactionList = null;
         //int i = 1;
+        Map<String,List<Transaction>> groupTransactions = new HashMap<>();
 
         for(Transaction individualTransaction:processedTransaction) {
-            multiValueMap.put(individualTransaction.getFreeText(), individualTransaction);
+            //multiValueMap.put(individualTransaction.getFreeText(), individualTransaction);
+            if(groupTransactions.containsKey(individualTransaction.getFreeText().trim())){
+                List<Transaction> tlist =  groupTransactions.get(individualTransaction.getFreeText());
+                if(IMConstants.KRAFT.equals(individualTransaction.getTransactionType())){
+                    tlist.add(0,individualTransaction);
+                } else {
+                    tlist.add(individualTransaction);
+                }
+                groupTransactions.put(individualTransaction.getFreeText(),tlist);
+            } else {
+                List<Transaction> tlist = new ArrayList<>();
+                tlist.add(individualTransaction);
+                groupTransactions.put(individualTransaction.getFreeText().trim(),tlist);
+            }
         }
 
         int k = 1;
-        mapIterator = multiValueMap.entrySet().iterator();
+        mapIterator = groupTransactions.entrySet().iterator();
         while(mapIterator.hasNext()) {
             Map.Entry entry = (Map.Entry) mapIterator.next();
             transactionList = (List<Transaction>) entry.getValue();

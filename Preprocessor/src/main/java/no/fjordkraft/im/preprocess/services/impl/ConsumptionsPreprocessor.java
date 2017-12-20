@@ -17,7 +17,7 @@ import java.util.List;
  * Created by miles on 5/18/2017.
  */
 @Service
-@PreprocessorInfo(order=4)
+@PreprocessorInfo(order=5)
 public class ConsumptionsPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(ConsumptionsPreprocessor.class);
@@ -32,7 +32,7 @@ public class ConsumptionsPreprocessor extends BasePreprocessor {
                 if (null != singleAttachmentData && null != singleAttachmentData.getFAKTURA() && null != singleAttachmentData.getFAKTURA().getVEDLEGGEMUXML()) {
 
                     ConsumptionPillars132 consumptionPillars132 = singleAttachmentData.getFAKTURA().getVEDLEGGEMUXML().getInvoice()
-                            .getInvoiceOrder().getConsumptionPillars132();
+                            .getInvoiceFinalOrder().getConsumptionPillars132();
                     if(null != consumptionPillars132) {
                         Consumptions consumptionData = new Consumptions();
                         List<Consumption> consumptions = new ArrayList<Consumption>(12);
@@ -61,7 +61,7 @@ public class ConsumptionsPreprocessor extends BasePreprocessor {
                         }
                         consumptionData.setConsumptionList(consumptions);
                         singleAttachmentData.getFAKTURA().getVEDLEGGEMUXML().getInvoice()
-                                .getInvoiceOrder().setConsumptions(consumptionData);
+                                .getInvoiceFinalOrder().setConsumptions(consumptionData);
 
                     }
                 }

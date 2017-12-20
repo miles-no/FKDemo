@@ -16,7 +16,7 @@ import java.util.List;
  * Created by miles on 5/23/2017.
  */
 @Service
-@PreprocessorInfo(order=8)
+@PreprocessorInfo(order=9)
 public class PieChartPreprocessor extends BasePreprocessor {
 
     @Override

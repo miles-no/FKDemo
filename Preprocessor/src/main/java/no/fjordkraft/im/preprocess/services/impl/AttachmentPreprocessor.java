@@ -34,7 +34,7 @@ import java.util.*;
  * Created by miles on 9/8/2017.
  */
 @Service
-@PreprocessorInfo(order = 11)
+@PreprocessorInfo(order = 12)
 public class AttachmentPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(AttachmentPreprocessor.class);
@@ -53,8 +53,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             if (IMConstants.EMUXML.equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
                 logger.debug("Attachment with meterid " + attachment.getFAKTURA().getMAALEPUNKT() + " added to map ");
                 meterIdMapEMUXML.put(attachment.getFAKTURA().getMAALEPUNKT(), attachment);
-                if (null != attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().getReadingInfo111()) {
-                    XMLGregorianCalendar stromStartDate = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().getReadingInfo111().getStartDate();
+                if (null != attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getReadingInfo111()) {
+                    XMLGregorianCalendar stromStartDate = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getReadingInfo111().getStartDate();
                     if (null != stromStartDate) {
                         meterIdStartMonMapEMUXML.put(attachment.getFAKTURA().getMAALEPUNKT() + "-" + stromStartDate.getMonth(), attachment);
                         logger.debug(" Meterid - month added to map " + attachment.getFAKTURA().getMAALEPUNKT() + "-" + stromStartDate.getMonth() + " invoice number " + invoicenumber);
@@ -101,7 +101,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         logger.debug("createE2BEntry " + " invoice number " + invoicenumber);
                         nettleie = createE2BEntry(gridAttachment);
                     }
-                    List<Nettleie> nettleieList = stromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().getNettleieList();
+                    List<Nettleie> nettleieList = stromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleieList();
                     if (isMeterMonthStromAttachmentFound && nettleieList.size() == 0) {
                         nettleieList.add(nettleie);
                     } else if (isMeterMonthStromAttachmentFound && nettleieList.size() > 0) {
@@ -136,16 +136,16 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
             int index = 1;
             for (Attachment attachment : meterIdMapEMUXML.values()) {
-                List<Nettleie> nettleieList = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().getNettleieList();
+                List<Nettleie> nettleieList = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleieList();
                 logger.debug(" nettleieList "+ nettleieList.size());
                 if (null != nettleieList && nettleieList.size() >= 1) {
-                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().setNettleie(nettleieList.get(0));
-                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().setNettleieList(null);
+                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(nettleieList.get(0));
+                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleieList(null);
                     attachment.setDisplayStromData(true);
                     attachmentList.add(attachment);
                     for (int i = 1; i < nettleieList.size(); i++) {
                         Attachment stromAttachment = deepClone(attachment);
-                        stromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().setNettleie(nettleieList.get(i));
+                        stromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(nettleieList.get(i));
                         stromAttachment.setDisplayStromData(false);
                         attachmentList.add(stromAttachment);
                     }
@@ -174,7 +174,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
             StreamSource source = new StreamSource(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
             Attachment attachment = (Attachment) unMarshaller.unmarshal(source);
-            attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().setNettleie(null);
+            attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(null);
             logger.debug("cloning stromAttachment " + stromAttachment.getFAKTURA().getMAALEPUNKT());
             attachment.setDisplayStromData(false);
             return attachment;
@@ -267,10 +267,14 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(),baseItemDetails.getEndDate()));
             }
         }
+
+
         nettleie.setBaseItemDetails(invoice.getInvoiceDetails().getBaseItemDetails());
         nettleie.setInvoiceSummary(invoice.getInvoiceSummary());
         return nettleie;
     }
+
+
 
     private long getDays(XMLGregorianCalendar startDate, XMLGregorianCalendar endDate){
 

@@ -10,6 +10,7 @@ package no.fjordkraft.im.if320.models;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.List;
 
 
 /**
@@ -63,7 +64,8 @@ public class Invoice {
     @XmlElement(name = "Pass-ThroughInvoiceInfo-109", required = true)
     protected PassThroughInvoiceInfo109 passThroughInvoiceInfo109;
     @XmlElement(name = "InvoiceOrder", required = true)
-    protected InvoiceOrder invoiceOrder;
+    protected List<InvoiceOrder> invoiceOrder;
+
     @XmlElement(name = "VatSpecInvoice-142", required = true)
     protected VatSpecInvoice142 vatSpecInvoice142;
     @XmlElement(name = "InvoiceEndRecord-199", required = true)
@@ -189,7 +191,7 @@ public class Invoice {
      *     {@link no.fjordkraft.im.if320.models.InvoiceOrder }
      *     
      */
-    public InvoiceOrder getInvoiceOrder() {
+    public List<InvoiceOrder> getInvoiceOrder() {
         return invoiceOrder;
     }
 
@@ -201,7 +203,7 @@ public class Invoice {
      *     {@link no.fjordkraft.im.if320.models.InvoiceOrder }
      *     
      */
-    public void setInvoiceOrder(InvoiceOrder value) {
+    public void setInvoiceOrder(List<InvoiceOrder> value) {
         this.invoiceOrder = value;
     }
 
@@ -421,4 +423,8 @@ public class Invoice {
         this.messageVersion = value;
     }
 
+  public InvoiceOrder getInvoiceFinalOrder()
+  {
+      return this.invoiceOrder.get(0);
+  }
 }
