@@ -67,10 +67,10 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                                 startDate = invoiceLine120.getStartDate();
                                                 endDate = invoiceLine120.getEndDate();
                                             } else {
-                                                if (startDate.toGregorianCalendar().compareTo(invoiceLine120.getStartDate().toGregorianCalendar()) > 0) {
+                                                if (null != invoiceLine120.getStartDate() && startDate.toGregorianCalendar().compareTo(invoiceLine120.getStartDate().toGregorianCalendar()) > 0) {
                                                     startDate = invoiceLine120.getStartDate();
                                                 }
-                                                if (endDate.toGregorianCalendar().compareTo(invoiceLine120.getEndDate().toGregorianCalendar()) < 0) {
+                                                if (null != endDate && null!=invoiceLine120.getEndDate() &&  endDate.toGregorianCalendar().compareTo(invoiceLine120.getEndDate().toGregorianCalendar()) < 0) {
                                                     endDate = invoiceLine120.getEndDate();
                                                 }
                                             }
@@ -80,7 +80,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                     transaction.setEndDate(endDate);
                                     attachment.getFAKTURA().setFreeText(transaction.getFreeText());
                                     attachment.getFAKTURA().setGrid(getGridConfigInfo(attachment.getFAKTURA().getVEDLEGGEMUXML()
-                                            .getInvoice().getInvoiceOrder().getInvoiceOrderInfo110().getLDC1(),
+                                                    .getInvoice().getInvoiceOrder().getInvoiceOrderInfo110().getLDC1(),
                                             request.getEntity().getId()));
                                     attachment.setStartDate(startDate);
                                     attachment.setEndDate(endDate);
@@ -99,17 +99,20 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                             List<InvoiceLineType> invoiceLineTypeList = attachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines();
                                             if(null != invoiceLineTypeList) {
                                                 for (InvoiceLineType invoiceLineType : invoiceLineTypeList) {
-                                                    if (null == startDate) {
-                                                        startDate = invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue();
-                                                        endDate = invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue();
-                                                    } else {
-                                                        XMLGregorianCalendar startDate2 = invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue();
-                                                        XMLGregorianCalendar endDate2 = invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue();
-                                                        if (startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
-                                                            startDate = startDate2;
-                                                        }
-                                                        if (endDate.toGregorianCalendar().compareTo(endDate2.toGregorianCalendar()) < 0) {
-                                                            endDate = endDate2;
+                                                    if(null!=invoiceLineType.getInvoicePeriods() && invoiceLineType.getInvoicePeriods().size() > 0)
+                                                    {
+                                                        if (null == startDate) {
+                                                            startDate = invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue();
+                                                            endDate = invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue();
+                                                        } else {
+                                                            XMLGregorianCalendar startDate2 = invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue();
+                                                            XMLGregorianCalendar endDate2 = invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue();
+                                                            if (null != startDate2 && startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
+                                                                startDate = startDate2;
+                                                            }
+                                                            if (null != endDate2 && null != endDate && endDate.toGregorianCalendar().compareTo(endDate2.toGregorianCalendar()) < 0) {
+                                                                endDate = endDate2;
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -133,10 +136,10 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                                 } else {
                                                     XMLGregorianCalendar startDate2 = baseItemDetails.getStartDate();
                                                     XMLGregorianCalendar endDate2 = baseItemDetails.getEndDate();
-                                                    if (startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
+                                                    if (null!=startDate2 && startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
                                                         startDate = startDate2;
                                                     }
-                                                    if (endDate.toGregorianCalendar().compareTo(endDate2.toGregorianCalendar()) < 0) {
+                                                    if (null != endDate2 && endDate.toGregorianCalendar().compareTo(endDate2.toGregorianCalendar()) < 0) {
                                                         endDate = endDate2;
                                                     }
                                                 }
