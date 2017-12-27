@@ -49,6 +49,11 @@ const landingPageController = ($scope,$http,$interval,_,moment,$rootScope) => {
             "valueFrom" :moment().hour(0).minute(0).second(0).startOf('month'),
             "valueTo" :dayEnd
         },
+        {
+            "name":"Last Month",
+            "valueFrom" :moment().hour(0).minute(0).second(0).startOf('month').subtract(1,'month'),
+            "valueTo" :moment().hour(0).minute(0).second(0).endOf('month').subtract(1,'month')
+        }
     ]
     let prepareChartDataForObject = function(chartObject,chartData){
 
@@ -59,7 +64,7 @@ const landingPageController = ($scope,$http,$interval,_,moment,$rootScope) => {
     }
     let getOverviewDetails = function(item){
         $http.get(`/invoicemanager/api/dashboard/all`,{params : {fromTime: item.valueFrom.format('YYYY-MM-DD HH:mm:ss'),toTime: item.valueTo.format('YYYY-MM-DD HH:mm:ss')}}).then(
-            
+
         function success(result){
             $scope.overviewCount = result.data.TOTAL[0].value;
             $scope.locationOverview ={
