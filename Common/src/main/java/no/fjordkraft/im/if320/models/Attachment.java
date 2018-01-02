@@ -33,7 +33,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "faktura","addedToList","displayStromData","attachmentNumber","startDate","endDate","isMultipleInvoice"
+    "faktura","addedToList","displayStromData","attachmentNumber","startDate","endDate","isOnlyGrid"
 })
 @XmlRootElement(name = "Attachment")
 public class Attachment {
@@ -50,8 +50,8 @@ public class Attachment {
     @XmlElement(name = "AttachmentNumber")
     protected int attachmentNumber;
 
-    @XmlElement(name = "IsMultipleInvoice",required = false)
-    protected boolean isMultipleInvoice = false;
+    @XmlElement(name = "isOnlyGrid",required = false)
+    protected boolean isOnlyGrid = false;
 
     @XmlElement(name = "StartDate")
     @XmlSchemaType(name = "date")
@@ -133,11 +133,11 @@ public class Attachment {
         this.endDate = endDate;
     }
 
-    public boolean isMultipleInvoice() {
-        return isMultipleInvoice;
+    public boolean isOnlyGrid() {
+        return isOnlyGrid;
     }
 
-    public void setMultipleInvoice(boolean multipleInvoice) {
-        isMultipleInvoice = multipleInvoice;
+    public void setOnlyGrid(boolean onlyGrid) {
+        isOnlyGrid = onlyGrid;
     }
 }

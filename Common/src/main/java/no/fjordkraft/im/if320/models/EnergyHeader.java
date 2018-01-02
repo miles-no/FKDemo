@@ -43,7 +43,8 @@ import javax.xml.bind.annotation.*;
     "description",
     "meterId",
     "objectId",
-    "annualConsumption"
+    "annualConsumption",
+    "meterLocation"
 })
 @XmlRootElement(name = "EnergyHeader")
 public class EnergyHeader {
@@ -62,6 +63,8 @@ public class EnergyHeader {
     protected String annualConsumption;
     @XmlAttribute(name = "MessageVersion")
     protected Float messageVersion;
+    @XmlElement(name = "MeterLocation")
+    protected String meterLocation;
 
     /**
      * Gets the value of the ldc1 property.
@@ -215,4 +218,11 @@ public class EnergyHeader {
         this.messageVersion = value;
     }
 
+    public String getMeterLocation() {
+        return meterLocation;
+    }
+
+    public void setMeterLocation(String meterLocation) {
+        this.meterLocation = meterLocation;
+    }
 }

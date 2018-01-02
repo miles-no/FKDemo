@@ -67,16 +67,16 @@ public class AttachmentPreprocessor extends BasePreprocessor {
     private void mapNettToStrom(Multimap<Long, Attachment> meterIdMapEMUXML, Map<String, Attachment> meterIdStartMonMapEMUXML, Attachments attachments, String invoicenumber) {
         for (int i = 0; i < attachments.getAttachment().size(); i++) {
             Attachment gridAttachment = attachments.getAttachment().get(i);
-            if ((IMConstants.PDFEHF.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()) || IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()))
-                    && meterIdMapEMUXML.containsKey(gridAttachment.getFAKTURA().getMAALEPUNKT())) {
-                XMLGregorianCalendar gridStartDate = null;
-                if (IMConstants.PDFEHF.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
-                    if (null != gridAttachment.getFAKTURA().getVedleggehfObj()) {
-                        gridStartDate = gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0).getInvoicePeriods().get(0).getStartDate().getValue();
+            if ((IMConstants.PDFEHF.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()) || IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()))){
+                     if(meterIdMapEMUXML.containsKey(gridAttachment.getFAKTURA().getMAALEPUNKT())) {
+                    XMLGregorianCalendar gridStartDate = null;
+                    if (IMConstants.PDFEHF.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
+                        if (null != gridAttachment.getFAKTURA().getVedleggehfObj()) {
+                            gridStartDate = gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0).getInvoicePeriods().get(0).getStartDate().getValue();
+                        }
+                    } else if (IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
+                        gridStartDate = gridAttachment.getFAKTURA().getVedlegge2BObj().getInvoice().getInvoiceDetails().getBaseItemDetails().get(0).getStartDate();
                     }
-                } else if (IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
-                    gridStartDate = gridAttachment.getFAKTURA().getVedlegge2BObj().getInvoice().getInvoiceDetails().getBaseItemDetails().get(0).getStartDate();
-                }
 
                 logger.debug(" MeterId and month " + gridAttachment.getFAKTURA().getMAALEPUNKT() + "-" + gridStartDate.getMonth() + " invoice number " + invoicenumber);
                 Attachment stromAttachment = meterIdStartMonMapEMUXML.get(gridAttachment.getFAKTURA().getMAALEPUNKT() + "-" + gridStartDate.getMonth());
@@ -114,6 +114,45 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     }
                 }
             }
+                else  {
+                         Attachment dummyStromAttachment = deepClone(gridAttachment);
+                         dummyStromAttachment.getFAKTURA().setMAALEPUNKT(0);
+                         dummyStromAttachment.getFAKTURA().setFreeText("TEst");
+
+                         //meterIdVsOnlyGrid.put(dummyStromAttachment.getFAKTURA().getMAALEPUNKT(),dummyStromAttachment);
+                         if(IMConstants.PDFEHF.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()))
+                         {
+
+                                Nettleie nettleie = createEHFEntry(gridAttachment);
+                             dummyStromAttachment.getFAKTURA().setFreeText(nettleie.getFreeText());
+                             dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getProductParameters118().setDescription(nettleie.getDescription());
+                             dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().setObjectId(nettleie.getObjectId());
+                             dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().setMeterId(nettleie.getMeterId());
+                             dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getYearlyConsumption123().setAnnualConsumption(nettleie.getAnnualConsumption());
+
+                             dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(nettleie);
+                             dummyStromAttachment.setDisplayStromData(false);
+                             dummyStromAttachment.setOnlyGrid(true);
+                             meterIdMapEMUXML.put(dummyStromAttachment.getFAKTURA().getMAALEPUNKT(),dummyStromAttachment);
+                             logger.debug("No Strom attachment found then create a strom attachement and add nettleie to it ");
+                         }
+                         if(IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()))
+                         {
+                             Nettleie nettleie = createE2BEntry(gridAttachment);
+                             dummyStromAttachment.getFAKTURA().setFreeText(nettleie.getFreeText());
+                             dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getProductParameters118().setDescription(nettleie.getDescription());
+                             dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().setObjectId(nettleie.getObjectId());
+                             dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().setMeterId(nettleie.getMeterId());
+                             dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getYearlyConsumption123().setAnnualConsumption(nettleie.getAnnualConsumption());
+
+                             dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(nettleie);
+                             dummyStromAttachment.setDisplayStromData(false);
+                             dummyStromAttachment.setOnlyGrid(true);
+                             meterIdMapEMUXML.put(dummyStromAttachment.getFAKTURA().getMAALEPUNKT(),dummyStromAttachment);
+                             logger.debug("No Strom attachment found then create a strom attachement and add nettleie to it ");
+                     }
+                }
+            }
         }
     }
 
@@ -126,6 +165,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             List<Attachment> attachmentList = new ArrayList<>();
             Multimap<Long, Attachment> meterIdMapEMUXML = ArrayListMultimap.create();
             Map<String, Attachment> meterIdStartMonMapEMUXML = new HashMap<>();
+            Multimap<Long, Attachment> meterIdVsOnlyGrid =ArrayListMultimap.create();
 
             generateAttachmentMap(meterIdMapEMUXML, meterIdStartMonMapEMUXML, attachments, invoicenumber);
 
@@ -174,7 +214,25 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
             StreamSource source = new StreamSource(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
             Attachment attachment = (Attachment) unMarshaller.unmarshal(source);
-            attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(null);
+            if( attachment.getFAKTURA().getVEDLEGGEMUXML()!=null)
+            {
+                attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(null);
+
+            }
+            else
+            {
+                attachment.getFAKTURA().setVEDLEGGEMUXML(new VEDLEGGEMUXML());
+                attachment.getFAKTURA().getVEDLEGGEMUXML().setInvoice(new no.fjordkraft.im.if320.models.Invoice());
+                List<InvoiceOrder> listofinvoiceOrder = new ArrayList();
+                InvoiceOrder order = new InvoiceOrder();
+                listofinvoiceOrder.add(order);
+                attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().setInvoiceOrder(listofinvoiceOrder);
+                attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setProductParameters118(new ProductParameters118());
+                attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setSupplyPointInfo117(new SupplyPointInfo117());
+                attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setReadingInfo111(new ReadingInfo111());
+                attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setYearlyConsumption123(new YearlyConsumption123());
+            }
+           // attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(null);
             logger.debug("cloning stromAttachment " + stromAttachment.getFAKTURA().getMAALEPUNKT());
             attachment.setDisplayStromData(false);
             return attachment;
@@ -194,7 +252,12 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         List<BaseItemDetails> baseItemDetailsList = new ArrayList<>();
         Invoice invoice = pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice();
 
-        nettleie.setReferenceNumber(invoice.getID().getValue().toString());
+         nettleie.setReferenceNumber(invoice.getID().getValue().toString());
+         nettleie.setFreeText(invoice.getAccountingSupplierParty().getParty().getPostalAddress().getStreetName().getValue());
+         nettleie.setDescription(null);
+         nettleie.setObjectId((Long.valueOf(invoice.getDeliveries().get(0).getDeliveryLocation().getID().getValue().toString())));
+         nettleie.setMeterId(invoice.getAccountingSupplierParty().getParty().getPartyLegalEntities().get(0).getCompanyID().getValue());
+         nettleie.setAnnualConsumption(0);
 
         invoiceSummary.getInvoiceTotals().setGrossAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice()
                 .getLegalMonetaryTotal().getTaxInclusiveAmount().getValue().toString()));
@@ -250,8 +313,13 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         logger.debug("createEHFEntry " + pdfAttachment.getFAKTURA().getMAALEPUNKT());
         Nettleie nettleie = new Nettleie();
         no.fjordkraft.im.if320.models.Invoice invoice = pdfAttachment.getFAKTURA().getVedlegge2BObj().getInvoice();
-
         nettleie.setReferenceNumber(String.valueOf(invoice.getInvoiceHeader().getInvoiceNumber()));
+        nettleie.setFreeText(invoice.getInvoiceHeader().getEnergyHeader().getMeterLocation());
+        nettleie.setDescription(null);
+        nettleie.setObjectId(invoice.getInvoiceHeader().getEnergyHeader().getObjectId());
+        nettleie.setMeterId(invoice.getInvoiceHeader().getEnergyHeader().getMeterId());
+        nettleie.setAnnualConsumption(0);
+
         List<BaseItemDetails> baseItemDetailsList = invoice.getInvoiceDetails().getBaseItemDetails();
         for (BaseItemDetails baseItemDetails : baseItemDetailsList) {
             List<Ref> refList = baseItemDetails.getRef();

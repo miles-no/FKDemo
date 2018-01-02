@@ -140,7 +140,6 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                      trans.setFreeText(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo().trim());
                      trans.setAmountWithVat(kraftDistAmount);
                      attachment.getFAKTURA().setFAKTURANR(trans.getReference());
-                     attachment.setMultipleInvoice(true);
                      request.getStatement().getAttachments().getAttachment().add(attachment);
                      request.getStatement().getTransactions().getTransaction().add(trans);
                 }

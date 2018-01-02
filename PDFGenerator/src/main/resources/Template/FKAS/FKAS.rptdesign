@@ -6465,11 +6465,11 @@ else&#13;
         <Thickness>1</Thickness>
         <Color>
           <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
+          <Red>255</Red>
+          <Green>255</Green>
+          <Blue>255</Blue>
         </Color>
-        <Visible>false</Visible>
+        <Visible>true</Visible>
       </Outline>
       <Visible>true</Visible>
       <Cursor>
@@ -6481,11 +6481,11 @@ else&#13;
           <Thickness>0</Thickness>
           <Color>
             <Transparency>255</Transparency>
-            <Red>0</Red>
-            <Green>0</Green>
-            <Blue>0</Blue>
+            <Red>255</Red>
+            <Green>255</Green>
+            <Blue>255</Blue>
           </Color>
-          <Visible>false</Visible>
+          <Visible>true</Visible>
         </Outline>
         <Insets>
           <Top>0.0</Top>
@@ -6509,11 +6509,11 @@ else&#13;
         <Thickness>1</Thickness>
         <Color>
           <Transparency>255</Transparency>
-          <Red>0</Red>
-          <Green>0</Green>
-          <Blue>0</Blue>
+          <Red>255</Red>
+          <Green>255</Green>
+          <Blue>255</Blue>
         </Color>
-        <Visible>false</Visible>
+        <Visible>true</Visible>
       </Separator>
       <Position>Above</Position>
       <ItemType>Categories</ItemType>
@@ -6549,11 +6549,12 @@ else&#13;
           <Bottom>0.0</Bottom>
           <Right>3.0</Right>
         </Insets>
-        <Visible>true</Visible>
+        <Visible>false</Visible>
       </Title>
       <TitlePosition>Above</TitlePosition>
       <MaxPercent>1.0</MaxPercent>
       <TitlePercent>0.01</TitlePercent>
+      <Ellipsis>10</Ellipsis>
     </Children>
     <Bounds>
       <Left>0.0</Left>
@@ -11543,7 +11544,7 @@ else {&#13;
                                     <property name="width">1.78125in</property>
                                 </column>
                                 <row id="811">
-                                    <property name="height">8.8in</property>
+                                    <property name="height">9.51in</property>
                                     <cell id="812">
                                         <property name="backgroundColor">#E1E1E1</property>
                                         <property name="paddingTop">10pt</property>
