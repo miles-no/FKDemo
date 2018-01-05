@@ -17,7 +17,8 @@ import java.util.List;
         "description",
         "objectId",
         "meterId",
-        "annualConsumption"
+        "annualConsumption",
+        "gridName"
      //   "invoice",
      //   "ehfInvoice"
 })
@@ -45,7 +46,8 @@ public class Nettleie {
     protected String meterId;
     @XmlElement(name="annualConsumption")
     protected long annualConsumption;
-
+    @XmlElement(name = "gridName")
+    protected String gridName;
 
     public List<BaseItemDetails> getBaseItemDetails() {
         return baseItemDetails;
@@ -125,5 +127,13 @@ public class Nettleie {
 
     public void setAnnualConsumption(long annualConsumption) {
         this.annualConsumption = annualConsumption;
+    }
+
+    public String getGridName() {
+        return gridName;
+    }
+
+    public void setGridName(String gridName) {
+        this.gridName = gridName;
     }
 }

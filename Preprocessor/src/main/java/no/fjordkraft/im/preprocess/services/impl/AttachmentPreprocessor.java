@@ -250,6 +250,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         BaseItemDetails baseItemDetails;
         Float taxAmount = 0.0f;
         List<BaseItemDetails> baseItemDetailsList = new ArrayList<>();
+        if(pdfAttachment.getFAKTURA().getVedleggehfObj()!=null)
+        {
         Invoice invoice = pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice();
 
          nettleie.setReferenceNumber(invoice.getID().getValue().toString());
@@ -258,7 +260,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
          nettleie.setObjectId((Long.valueOf(invoice.getDeliveries().get(0).getDeliveryLocation().getID().getValue().toString())));
          nettleie.setMeterId(invoice.getAccountingSupplierParty().getParty().getPartyLegalEntities().get(0).getCompanyID().getValue());
          nettleie.setAnnualConsumption(0);
-
+         nettleie.setGridName(pdfAttachment.getFAKTURA().getAKTORNAVN());
         invoiceSummary.getInvoiceTotals().setGrossAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice()
                 .getLegalMonetaryTotal().getTaxInclusiveAmount().getValue().toString()));
 
@@ -306,6 +308,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         }
 
         nettleie.setBaseItemDetails(baseItemDetailsList);
+        }
         return nettleie;
     }
 
@@ -319,7 +322,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         nettleie.setObjectId(invoice.getInvoiceHeader().getEnergyHeader().getObjectId());
         nettleie.setMeterId(invoice.getInvoiceHeader().getEnergyHeader().getMeterId());
         nettleie.setAnnualConsumption(0);
-
+        nettleie.setGridName(invoice.getInvoiceHeader().getEnergyHeader().getLdc1());
         List<BaseItemDetails> baseItemDetailsList = invoice.getInvoiceDetails().getBaseItemDetails();
         for (BaseItemDetails baseItemDetails : baseItemDetailsList) {
             List<Ref> refList = baseItemDetails.getRef();
