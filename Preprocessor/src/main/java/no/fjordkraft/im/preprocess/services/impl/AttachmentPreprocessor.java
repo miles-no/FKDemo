@@ -165,7 +165,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             List<Attachment> attachmentList = new ArrayList<>();
             Multimap<Long, Attachment> meterIdMapEMUXML = ArrayListMultimap.create();
             Map<String, Attachment> meterIdStartMonMapEMUXML = new HashMap<>();
-            Multimap<Long, Attachment> meterIdVsOnlyGrid =ArrayListMultimap.create();
+          //  Multimap<Long, Attachment> meterIdVsOnlyGrid =ArrayListMultimap.create();
 
             generateAttachmentMap(meterIdMapEMUXML, meterIdStartMonMapEMUXML, attachments, invoicenumber);
 
