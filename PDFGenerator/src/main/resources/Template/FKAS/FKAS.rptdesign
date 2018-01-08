@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">E:\FuelKraft\filesfromtest\before change\20171026_FKAS_1508998882676_statement\700119090457\processed_statement.xml</property>
+            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement (11).xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -1123,6 +1123,11 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">DisplayStromData</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">isOnlyGrid</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">isOnlyGrid</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -1200,6 +1205,11 @@
                     <structure>
                         <property name="position">15</property>
                         <property name="name">DisplayStromData</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">isOnlyGrid</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -1311,8 +1321,15 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">isOnlyGrid</property>
+                    <property name="nativeName">isOnlyGrid</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{Address1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/CustomerInfo-103/Address1},{Description;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Description},{MeterId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/MeterId},{ObjectId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/ObjectId},{AnnualConsumption;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/YearlyConsumption-123/AnnualConsumption},{InvoiceNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/MainInvoiceInfo-101/InvoiceNo},{FREE_TEXT;STRING;/FAKTURA/FREE_TEXT},{Name;STRING;/FAKTURA/GRID/Name},{Email;STRING;/FAKTURA/GRID/Email},{Telephone;STRING;/FAKTURA/GRID/Telephone},{StatementDate;STRING;../../StatementDate},{ReferenceNumber;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/ReferenceNumber},{InvoiceType;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/InvoiceType},{AttachmentNumber;STRING;/AttachmentNumber},{DisplayStromData;STRING;/DisplayStromData}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{Address1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/CustomerInfo-103/Address1},{Description;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Description},{MeterId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/MeterId},{ObjectId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/ObjectId},{AnnualConsumption;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/YearlyConsumption-123/AnnualConsumption},{InvoiceNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/MainInvoiceInfo-101/InvoiceNo},{FREE_TEXT;STRING;/FAKTURA/FREE_TEXT},{Name;STRING;/FAKTURA/GRID/Name},{Email;STRING;/FAKTURA/GRID/Email},{Telephone;STRING;/FAKTURA/GRID/Telephone},{StatementDate;STRING;../../StatementDate},{ReferenceNumber;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/ReferenceNumber},{InvoiceType;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/InvoiceType},{AttachmentNumber;STRING;/AttachmentNumber},{DisplayStromData;STRING;/DisplayStromData},{isOnlyGrid;STRING;/isOnlyGrid}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -2042,66 +2059,71 @@
                     </structure>
                     <structure>
                         <property name="position">16</property>
-                        <property name="name">StartDate</property>
+                        <property name="name">AttachmentHeaderInfo::isOnlyGrid</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">17</property>
-                        <property name="name">EndDate</property>
+                        <property name="name">StartDate</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">18</property>
-                        <property name="name">Text</property>
+                        <property name="name">EndDate</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">19</property>
-                        <property name="name">Basis</property>
+                        <property name="name">Text</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">20</property>
-                        <property name="name">GrossPrice</property>
+                        <property name="name">Basis</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">21</property>
-                        <property name="name">TotalGross</property>
+                        <property name="name">GrossPrice</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">22</property>
-                        <property name="name">StromInfo::InvoiceNo</property>
+                        <property name="name">TotalGross</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">23</property>
-                        <property name="name">ProdDenomination</property>
+                        <property name="name">StromInfo::InvoiceNo</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">24</property>
-                        <property name="name">PriceDenomination</property>
+                        <property name="name">ProdDenomination</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">25</property>
-                        <property name="name">VatTotal</property>
+                        <property name="name">PriceDenomination</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">26</property>
-                        <property name="name">GrossTotal</property>
+                        <property name="name">VatTotal</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">27</property>
-                        <property name="name">NoOfDays</property>
+                        <property name="name">GrossTotal</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">28</property>
+                        <property name="name">NoOfDays</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">29</property>
                         <property name="name">StromInfo::AttachmentNumber</property>
                         <property name="dataType">string</property>
                     </structure>
@@ -7637,6 +7659,11 @@ year = year + "";</expression>
                     <expression name="expression" type="javascript">dataSetRow["DisplayStromData"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">isOnlyGrid</property>
+                    <expression name="expression" type="javascript">dataSetRow["isOnlyGrid"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <detail>
                 <grid id="782">
@@ -7736,7 +7763,7 @@ year = year + "";</expression>
                                                     <grid id="524">
                                                         <property name="width">2.4791666666666665in</property>
                                                         <column id="525">
-                                                            <property name="width">0.5in</property>
+                                                            <property name="width">0.8in</property>
                                                         </column>
                                                         <column id="526">
                                                             <property name="width">1.5833333333333333in</property>
@@ -7746,13 +7773,70 @@ year = year + "";</expression>
                                                                 <label id="530">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                                                     <property name="fontWeight">normal</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">if("true" == row["isOnlyGrid"])&#13;
+{&#13;
+true;&#13;
+}&#13;
+else&#13;
+{&#13;
+false;}</expression>
+                                                                        </structure>
+                                                                    </list-property>
                                                                     <text-property name="text">Strømavtale:</text-property>
+                                                                </label>
+                                                                <label id="1413">
+                                                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                                    <property name="fontWeight">normal</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">if("true" == row["isOnlyGrid"])&#13;
+{&#13;
+false;&#13;
+}&#13;
+else&#13;
+{&#13;
+true;}</expression>
+                                                                        </structure>
+                                                                    </list-property>
+                                                                    <text-property name="text">Målepunkt-ID:</text-property>
                                                                 </label>
                                                             </cell>
                                                             <cell id="529">
                                                                 <data id="394">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">if("true" == row["isOnlyGrid"])&#13;
+{&#13;
+true;&#13;
+}&#13;
+else&#13;
+{&#13;
+false;}</expression>
+                                                                        </structure>
+                                                                    </list-property>
                                                                     <property name="resultSetColumn">Description</property>
+                                                                </data>
+                                                                <data id="1414">
+                                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">if("true" == row["isOnlyGrid"])&#13;
+{&#13;
+false;&#13;
+}&#13;
+else&#13;
+{&#13;
+true;}</expression>
+                                                                        </structure>
+                                                                    </list-property>
+                                                                    <property name="resultSetColumn">ObjectId</property>
                                                                 </data>
                                                             </cell>
                                                         </row>
@@ -7770,12 +7854,36 @@ year = year + "";</expression>
                                                                 <label id="544">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                                                     <property name="fontWeight">normal</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">if("true" == row["isOnlyGrid"])&#13;
+{&#13;
+true;&#13;
+}&#13;
+else&#13;
+{&#13;
+false;}</expression>
+                                                                        </structure>
+                                                                    </list-property>
                                                                     <text-property name="text">Målepunkt-ID:</text-property>
                                                                 </label>
                                                             </cell>
                                                             <cell id="543">
                                                                 <data id="396">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">if("true" == row["isOnlyGrid"])&#13;
+{&#13;
+true;&#13;
+}&#13;
+else&#13;
+{&#13;
+false;}</expression>
+                                                                        </structure>
+                                                                    </list-property>
                                                                     <property name="resultSetColumn">ObjectId</property>
                                                                 </data>
                                                             </cell>
@@ -7819,6 +7927,15 @@ year = year + "";</expression>
                                                         </column>
                                                         <row id="555">
                                                             <property name="height">0.3333333333333333in</property>
+                                                            <list-property name="visibility">
+                                                                <structure>
+                                                                    <property name="format">all</property>
+                                                                    <expression name="valueExpr" type="javascript">if("true" == row["isOnlyGrid"])&#13;
+{true;}&#13;
+else&#13;
+{false;}</expression>
+                                                                </structure>
+                                                            </list-property>
                                                             <cell id="556">
                                                                 <label id="558">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -9490,6 +9607,15 @@ else {&#13;
                                             </column>
                                             <row id="463">
                                                 <property name="height">2.125in</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">if("true" == row["isOnlyGrid"])&#13;
+{true;}&#13;
+else&#13;
+{false;}</expression>
+                                                    </structure>
+                                                </list-property>
                                                 <cell id="464">
                                                     <property name="paddingTop">20pt</property>
                                                     <grid id="478">
@@ -11544,7 +11670,7 @@ else {&#13;
                                     <property name="width">1.78125in</property>
                                 </column>
                                 <row id="811">
-                                    <property name="height">9.51in</property>
+                                    <property name="height">9.61in</property>
                                     <cell id="812">
                                         <property name="backgroundColor">#E1E1E1</property>
                                         <property name="paddingTop">10pt</property>
