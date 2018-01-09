@@ -5,6 +5,8 @@ import no.fjordkraft.im.model.CustomerDetailsView;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.services.CustomerDetailsViewService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ import java.lang.reflect.InvocationTargetException;
 @PreprocessorInfo(order = 14)
 public class SetGiroPreprocessor extends BasePreprocessor {
 
-
+    private static final Logger logger = LoggerFactory.getLogger(SetGiroPreprocessor.class);
     @Autowired
     CustomerDetailsViewService customerDetailsViewService;
 
@@ -31,10 +33,12 @@ public class SetGiroPreprocessor extends BasePreprocessor {
         CustomerDetailsView customerDetailsView =customerDetailsViewService.findByAccountNumber(Long.toString(accountNumber));
         if(customerDetailsView!=null && customerDetailsView.getGiroEnabled())
         {
+            logger.debug("GIRO is enabled for account number " + Long.toString(accountNumber));
             request.getStatement().setGIROEnabled(true);
         }
         else
         {
+            logger.debug("GIRO is disabled for account number " + Long.toString(accountNumber));
             request.getStatement().setGIROEnabled(false);
         }
     }
