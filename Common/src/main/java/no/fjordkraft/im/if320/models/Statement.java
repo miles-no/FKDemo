@@ -152,7 +152,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "version",
     "statementType",
     "creditedInvoice",
-    "toAddress"
+    "toAddress",
+    "isGIROEnabled"
 })
 @XmlRootElement(name = "Statement")
 public class Statement {
@@ -283,6 +284,8 @@ public class Statement {
     protected String creditedInvoice;
     @XmlElement(name = "ToAddress", required = true)
     protected ToAddress toAddress ;
+    @XmlElement(name="IsGiro")
+    protected boolean isGIROEnabled;
 
     /**
      * Gets the value of the customerReference property.
@@ -1506,5 +1509,13 @@ public class Statement {
 
     public void setToAddress(ToAddress toAddress) {
         this.toAddress = toAddress;
+    }
+
+    public boolean isGIROEnabled() {
+        return isGIROEnabled;
+    }
+
+    public void setGIROEnabled(boolean GIROEnabled) {
+        isGIROEnabled = GIROEnabled;
     }
 }

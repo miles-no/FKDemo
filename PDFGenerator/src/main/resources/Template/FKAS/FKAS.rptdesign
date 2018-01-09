@@ -750,6 +750,11 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">TotalTransactions</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">IsGiro</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">IsGiro</text-property>
+                </structure>
             </list-property>
             <list-property name="filter">
                 <structure>
@@ -808,6 +813,11 @@
                         <property name="name">TotalTransactions</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">IsGiro</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <property name="dataSource">Data Source</property>
@@ -817,66 +827,63 @@
                     <property name="name">TransactionCategory</property>
                     <property name="nativeName">TransactionCategory</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">AmountWithVat</property>
                     <property name="nativeName">AmountWithVat</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">FreeText</property>
                     <property name="nativeName">FreeText</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">CurrentClaim</property>
                     <property name="nativeName">CurrentClaim</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">TotalVatAmount</property>
                     <property name="nativeName">TotalVatAmount</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
                     <property name="name">StartDate</property>
                     <property name="nativeName">StartDate</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">EndDate</property>
                     <property name="nativeName">EndDate</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
                     <property name="name">TransactionSequence</property>
                     <property name="nativeName">TransactionSequence</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">9</property>
                     <property name="name">TotalTransactions</property>
                     <property name="nativeName">TotalTransactions</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">IsGiro</property>
+                    <property name="nativeName">IsGiro</property>
+                    <property name="dataType">string</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/TransactionGroup/Transaction]#:#{TransactionCategory;STRING;/TransactionCategory},{AmountWithVat;STRING;/AmountWithVat},{FreeText;STRING;/FreeText},{CurrentClaim;STRING;../../CurrentClaim},{TotalVatAmount;STRING;../../TotalVatAmount},{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{TransactionSequence;STRING;/TransactionSequence},{TotalTransactions;STRING;../TotalTransactions}]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/TransactionGroup/Transaction]#:#{TransactionCategory;STRING;/TransactionCategory},{AmountWithVat;STRING;/AmountWithVat},{FreeText;STRING;/FreeText},{CurrentClaim;STRING;../../CurrentClaim},{TotalVatAmount;STRING;../../TotalVatAmount},{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{TransactionSequence;STRING;/TransactionSequence},{TotalTransactions;STRING;../TotalTransactions},{IsGiro;STRING;../../IsGiro}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -3970,6 +3977,294 @@
                 </ex-property>
             </list-property>
         </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.datatools.enablement.oda.xml.dataSet" name="BillingInfo" id="1144">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TotalOpenClaim</property>
+                    <text-property name="heading">TotalOpenClaim</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">UtilityAccountNo</property>
+                    <text-property name="heading">UtilityAccountNo</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TotalOpenClaim</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">UtilityAccountNo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TotalOpenClaim</property>
+                    <property name="nativeName">TotalOpenClaim</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">UtilityAccountNo</property>
+                    <property name="nativeName">UtilityAccountNo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{TotalOpenClaim;STRING;/TotalOpenClaim},{UtilityAccountNo;STRING;/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/UtilityAccountNo}]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TotalOpenClaim</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TotalOpenClaim</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>UtilityAccountNo</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>UtilityAccountNo</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>MAX_ROW</name>
+                    <value>-1</value>
+                </ex-property>
+                <ex-property>
+                    <name>XML_FILE</name>
+                </ex-property>
+            </list-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.datatools.enablement.oda.xml.dataSet" name="GiroToAddressInfo" id="1151">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Description</property>
+                    <text-property name="heading">Description</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PostCode</property>
+                    <text-property name="heading">PostCode</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">City</property>
+                    <text-property name="heading">City</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NationalId</property>
+                    <text-property name="heading">NationalId</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Region</property>
+                    <text-property name="heading">Region</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Description</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">PostCode</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">City</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">NationalId</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">Region</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Description</property>
+                    <property name="nativeName">Description</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">PostCode</property>
+                    <property name="nativeName">PostCode</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">City</property>
+                    <property name="nativeName">City</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">NationalId</property>
+                    <property name="nativeName">NationalId</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">Region</property>
+                    <property name="nativeName">Region</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/ToAddress]#:#{Description;STRING;/Description},{PostCode;STRING;/PostCode},{City;STRING;/City},{NationalId;STRING;/NationalId},{Region;STRING;/Region}]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Description</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Description</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PostCode</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PostCode</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>City</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>City</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>NationalId</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>NationalId</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Region</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>-1</design:precision>
+            <design:scale>-1</design:scale>
+            <design:nullability>Unknown</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Region</design:label>
+            <design:formattingHints/>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>MAX_ROW</name>
+                    <value>-1</value>
+                </ex-property>
+                <ex-property>
+                    <name>XML_FILE</name>
+                </ex-property>
+            </list-property>
+        </oda-data-set>
     </data-sets>
     <styles>
         <style name="chart" id="872">
@@ -4109,6 +4404,24 @@
                     <property name="borderTopWidth">1px</property>
                     <property name="pageBreakAfter">always</property>
                     <property name="width">7.104166666666667in</property>
+                    <property name="dataSet">TransactionInfo</property>
+                    <list-property name="visibility">
+                        <structure>
+                            <property name="format">all</property>
+                            <expression name="valueExpr" type="javascript">if(row["IsGiro"] == "true")&#13;
+{true;}&#13;
+else &#13;
+{false; }</expression>
+                        </structure>
+                    </list-property>
+                    <list-property name="boundDataColumns">
+                        <structure>
+                            <property name="name">IsGiro</property>
+                            <text-property name="displayName">IsGiro</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["IsGiro"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                    </list-property>
                     <method name="onRender"><![CDATA[if(pageNumber > 1){
     this.getStyle().display ="none"
 } ]]></method>
@@ -4627,11 +4940,20 @@
                 </cell>
             </row>
         </grid>
-        <grid id="148">
+        <grid id="1415">
             <property name="pageBreakAfter">always</property>
             <property name="height">7.510416666666667in</property>
             <property name="width">7.177083333333333in</property>
             <property name="dataSet">TransactionInfo</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">if(row["IsGiro"] == "true")&#13;
+{true;}&#13;
+else &#13;
+{false; }</expression>
+                </structure>
+            </list-property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">CurrentClaim</property>
@@ -4639,25 +4961,31 @@
                     <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">IsGiro</property>
+                    <text-property name="displayName">IsGiro</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["IsGiro"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
-            <column id="149">
+            <column id="1416">
                 <property name="width">2.4270833333333335in</property>
             </column>
-            <column id="150">
+            <column id="1417">
                 <property name="width">2in</property>
             </column>
-            <column id="151">
+            <column id="1418">
                 <property name="width">2.53125in</property>
             </column>
-            <row id="152">
+            <row id="1419">
                 <property name="height">2.625in</property>
-                <cell id="153">
+                <cell id="1420">
                     <property name="colSpan">3</property>
                     <property name="rowSpan">1</property>
                     <property name="paddingTop">10pt</property>
                     <property name="paddingLeft">4pt</property>
                     <property name="paddingRight">0pt</property>
-                    <table id="244">
+                    <table id="1421">
                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                         <property name="width">7.104166666666667in</property>
                         <property name="dataSet">TransactionInfo</property>
@@ -4737,28 +5065,28 @@ else&#13;
                                 <property name="allowExport">true</property>
                             </structure>
                         </list-property>
-                        <column id="260">
+                        <column id="1447">
                             <property name="verticalAlign">bottom</property>
                             <property name="width">2in</property>
                         </column>
-                        <column id="261">
+                        <column id="1448">
                             <property name="width">1.78125in</property>
                         </column>
-                        <column id="262">
+                        <column id="1449">
                             <property name="width">1.3in</property>
                         </column>
-                        <column id="263">
+                        <column id="1450">
                             <property name="width">1.5833333333333333in</property>
                         </column>
                         <header>
-                            <row id="245">
+                            <row id="1422">
                                 <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                 <property name="fontStyle">normal</property>
                                 <property name="borderBottomColor">#B3B3B3</property>
                                 <property name="borderBottomStyle">solid</property>
                                 <property name="borderBottomWidth">0.5pt</property>
-                                <cell id="246">
-                                    <label id="264">
+                                <cell id="1423">
+                                    <label id="1424">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
@@ -4766,8 +5094,8 @@ else&#13;
                                         <text-property name="text">Betalingsoversikt</text-property>
                                     </label>
                                 </cell>
-                                <cell id="247">
-                                    <label id="266">
+                                <cell id="1425">
+                                    <label id="1426">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
@@ -4775,8 +5103,8 @@ else&#13;
                                         <text-property name="text">Leveringsadresse</text-property>
                                     </label>
                                 </cell>
-                                <cell id="248">
-                                    <label id="270">
+                                <cell id="1427">
+                                    <label id="1428">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
@@ -4784,8 +5112,8 @@ else&#13;
                                         <text-property name="text">Periode</text-property>
                                     </label>
                                 </cell>
-                                <cell id="249">
-                                    <label id="268">
+                                <cell id="1429">
+                                    <label id="1430">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
@@ -4796,21 +5124,21 @@ else&#13;
                             </row>
                         </header>
                         <detail>
-                            <row id="250">
-                                <cell id="251">
-                                    <data id="265">
+                            <row id="1431">
+                                <cell id="1432">
+                                    <data id="1433">
                                         <property name="fontSize">9pt</property>
                                         <property name="resultSetColumn">TransactionCategory</property>
                                     </data>
                                 </cell>
-                                <cell id="252">
-                                    <data id="267">
+                                <cell id="1434">
+                                    <data id="1435">
                                         <property name="fontSize">9pt</property>
                                         <property name="resultSetColumn">FreeText</property>
                                     </data>
                                 </cell>
-                                <cell id="253">
-                                    <data id="477">
+                                <cell id="1436">
+                                    <data id="1437">
                                         <property name="fontSize">9pt</property>
                                         <property name="textAlign">left</property>
                                         <list-property name="visibility">
@@ -4822,8 +5150,8 @@ else&#13;
                                         <property name="resultSetColumn">StartDate</property>
                                     </data>
                                 </cell>
-                                <cell id="254">
-                                    <data id="269">
+                                <cell id="1438">
+                                    <data id="1439">
                                         <property name="fontSize">9pt</property>
                                         <property name="textAlign">right</property>
                                         <property name="resultSetColumn">AmountWithVat</property>
@@ -4832,25 +5160,25 @@ else&#13;
                             </row>
                         </detail>
                         <footer>
-                            <row id="496">
+                            <row id="1440">
                                 <property name="borderBottomColor">#B3B3B3</property>
                                 <property name="borderBottomStyle">solid</property>
                                 <property name="borderBottomWidth">0.5pt</property>
                                 <property name="borderTopColor">#B3B3B3</property>
                                 <property name="borderTopStyle">solid</property>
                                 <property name="borderTopWidth">0.5pt</property>
-                                <cell id="497">
-                                    <data id="689">
+                                <cell id="1441">
+                                    <data id="1442">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontWeight">normal</property>
                                         <property name="resultSetColumn">TotalTransactions</property>
                                     </data>
                                 </cell>
-                                <cell id="498">
+                                <cell id="1443">
                                     <property name="colSpan">2</property>
                                     <property name="rowSpan">1</property>
-                                    <data id="502">
+                                    <data id="1444">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
                                         <property name="fontSize">7pt</property>
                                         <property name="fontStyle">italic</property>
@@ -4870,8 +5198,8 @@ else&#13;
                                         <property name="resultSetColumn">TotalVatAmount</property>
                                     </data>
                                 </cell>
-                                <cell id="500">
-                                    <data id="503">
+                                <cell id="1445">
+                                    <data id="1446">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="textAlign">right</property>
@@ -4892,8 +5220,8 @@ formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                             </row>
                         </footer>
                     </table>
-                    <label id="1408"/>
-                    <text id="1409">
+                    <label id="1451"/>
+                    <text id="1452">
                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                         <property name="fontSize">8pt</property>
                         <property name="fontStyle">italic</property>
@@ -4914,12 +5242,12 @@ else &#13;
                     </text>
                 </cell>
             </row>
-            <row id="692">
+            <row id="1453">
                 <property name="height">0.40625in</property>
-                <cell id="693">
+                <cell id="1454">
                     <property name="colSpan">3</property>
                     <property name="rowSpan">1</property>
-                    <grid id="696">
+                    <grid id="1455">
                         <property name="height">0.34375in</property>
                         <property name="dataSet">MainInfo</property>
                         <list-property name="visibility">
@@ -4940,23 +5268,23 @@ else &#13;
                                 <property name="dataType">string</property>
                             </structure>
                         </list-property>
-                        <column id="697">
+                        <column id="1456">
                             <property name="width">1.3in</property>
                         </column>
-                        <column id="698"/>
-                        <row id="699">
+                        <column id="1457"/>
+                        <row id="1458">
                             <property name="height">0.34375in</property>
-                            <cell id="700">
-                                <image id="1367">
+                            <cell id="1459">
+                                <image id="1460">
                                     <property name="height">0.1875in</property>
                                     <property name="width">1.1041666666666667in</property>
                                     <property name="source">embed</property>
                                     <property name="imageName">AvtaleGiro.jpg</property>
                                 </image>
                             </cell>
-                            <cell id="701">
+                            <cell id="1461">
                                 <property name="paddingTop">1pt</property>
-                                <text id="704">
+                                <text id="1462">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                     <property name="fontSize">10pt</property>
                                     <property name="paddingTop">4pt</property>
@@ -4968,12 +5296,12 @@ else &#13;
                     </grid>
                 </cell>
             </row>
-            <row id="156">
+            <row id="1463">
                 <property name="height">2.3229166666666665in</property>
-                <cell id="157">
+                <cell id="1464">
                     <property name="colSpan">3</property>
                     <property name="rowSpan">1</property>
-                    <grid id="705">
+                    <grid id="1465">
                         <property name="dataSet">PaymentInfo</property>
                         <list-property name="visibility">
                             <structure>
@@ -4993,10 +5321,10 @@ else &#13;
                                 <property name="dataType">string</property>
                             </structure>
                         </list-property>
-                        <column id="706"/>
-                        <row id="707">
-                            <cell id="708">
-                                <label id="192">
+                        <column id="1466"/>
+                        <row id="1467">
+                            <cell id="1468">
+                                <label id="1469">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                     <property name="fontSize">9pt</property>
                                     <property name="paddingBottom">5pt</property>
@@ -5005,7 +5333,7 @@ else &#13;
                             </cell>
                         </row>
                     </grid>
-                    <table id="165">
+                    <table id="1470">
                         <property name="borderBottomColor">#DADADA</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">4px</property>
@@ -5053,12 +5381,12 @@ else &#13;
                                 <property name="dataType">string</property>
                             </structure>
                         </list-property>
-                        <column id="181"/>
-                        <column id="182"/>
-                        <column id="183"/>
-                        <column id="184"/>
+                        <column id="1492"/>
+                        <column id="1493"/>
+                        <column id="1494"/>
+                        <column id="1495"/>
                         <header>
-                            <row id="166">
+                            <row id="1471">
                                 <property name="backgroundColor">#DADADA</property>
                                 <list-property name="highlightRules">
                                     <structure>
@@ -5069,11 +5397,11 @@ else &#13;
                                         </simple-property-list>
                                     </structure>
                                 </list-property>
-                                <cell id="167">
+                                <cell id="1472">
                                     <property name="borderRightColor">#DADADA</property>
                                     <property name="borderRightStyle">solid</property>
                                     <property name="borderRightWidth">1px</property>
-                                    <label id="185">
+                                    <label id="1473">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
@@ -5100,11 +5428,11 @@ else &#13;
                                         <text-property name="text">KID-nummer</text-property>
                                     </label>
                                 </cell>
-                                <cell id="168">
+                                <cell id="1474">
                                     <property name="borderRightColor">#DADADA</property>
                                     <property name="borderRightStyle">solid</property>
                                     <property name="borderRightWidth">1px</property>
-                                    <label id="193">
+                                    <label id="1475">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
@@ -5130,11 +5458,11 @@ else &#13;
                                         <text-property name="text">Kontonummer</text-property>
                                     </label>
                                 </cell>
-                                <cell id="169">
+                                <cell id="1476">
                                     <property name="borderRightColor">#DADADA</property>
                                     <property name="borderRightStyle">solid</property>
                                     <property name="borderRightWidth">1px</property>
-                                    <label id="187">
+                                    <label id="1477">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
@@ -5161,7 +5489,7 @@ else &#13;
                                         </list-property>
                                         <text-property name="text">Trekkdato</text-property>
                                     </label>
-                                    <label id="1402">
+                                    <label id="1478">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
@@ -5188,8 +5516,8 @@ else &#13;
                                         <text-property name="text">Betalingsfrist</text-property>
                                     </label>
                                 </cell>
-                                <cell id="170">
-                                    <label id="189">
+                                <cell id="1479">
+                                    <label id="1480">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
@@ -5220,7 +5548,7 @@ else &#13;
                                         </list-property>
                                         <text-property name="text">Beløp</text-property>
                                     </label>
-                                    <label id="1403">
+                                    <label id="1481">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
@@ -5253,7 +5581,7 @@ else&#13;
                                         </list-property>
                                         <text-property name="text">Å betale</text-property>
                                     </label>
-                                    <label id="1407">
+                                    <label id="1482">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
@@ -5288,12 +5616,12 @@ false;&#13;
                             </row>
                         </header>
                         <detail>
-                            <row id="171">
-                                <cell id="172">
+                            <row id="1483">
+                                <cell id="1484">
                                     <property name="borderRightColor">#DADADA</property>
                                     <property name="borderRightStyle">solid</property>
                                     <property name="borderRightWidth">1px</property>
-                                    <data id="186">
+                                    <data id="1485">
                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="paddingTop">5pt</property>
@@ -5319,13 +5647,13 @@ false;&#13;
                                         <property name="resultSetColumn">StatementOcrNumber</property>
                                     </data>
                                 </cell>
-                                <cell id="173">
+                                <cell id="1486">
                                     <property name="borderRightColor">#DADADA</property>
                                     <property name="borderRightStyle">solid</property>
                                     <property name="borderRightWidth">1px</property>
                                     <property name="paddingTop">5pt</property>
                                     <property name="textAlign">center</property>
-                                    <data id="655">
+                                    <data id="1487">
                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                         <property name="fontSize">9pt</property>
                                         <list-property name="highlightRules">
@@ -5349,11 +5677,11 @@ false;&#13;
                                         <property name="resultSetColumn">Kontonummer</property>
                                     </data>
                                 </cell>
-                                <cell id="174">
+                                <cell id="1488">
                                     <property name="borderRightColor">#DADADA</property>
                                     <property name="borderRightStyle">solid</property>
                                     <property name="borderRightWidth">1px</property>
-                                    <data id="188">
+                                    <data id="1489">
                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="paddingTop">5pt</property>
@@ -5379,8 +5707,8 @@ false;&#13;
                                         <property name="resultSetColumn">DueDate</property>
                                     </data>
                                 </cell>
-                                <cell id="175">
-                                    <data id="190">
+                                <cell id="1490">
+                                    <data id="1491">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="paddingTop">5pt</property>
@@ -5404,15 +5732,15 @@ false;&#13;
                     </table>
                 </cell>
             </row>
-            <row id="160">
+            <row id="1496">
                 <property name="height">2.15625in</property>
-                <cell id="161">
+                <cell id="1497">
                     <property name="colSpan">2</property>
                     <property name="rowSpan">1</property>
                     <property name="paddingTop">1pt</property>
                     <property name="paddingLeft">0pt</property>
                     <property name="paddingRight">0pt</property>
-                    <image id="667">
+                    <image id="1498">
                         <property name="height">5cm</property>
                         <property name="width">11cm</property>
                         <expression name="altText" type="javascript">""</expression>
@@ -5432,8 +5760,8 @@ false;&#13;
                         <expression name="valueExpr">org.apache.commons.codec.binary.Base64.decodeBase64(params["campaignImage"])</expression>
                     </image>
                 </cell>
-                <cell id="163">
-                    <extended-item extensionName="Chart" id="383">
+                <cell id="1499">
+                    <extended-item extensionName="Chart" id="1500">
                         <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.6.1</Version>
   <Type>Pie Chart</Type>
@@ -6338,7 +6666,7 @@ else&#13;
                             </structure>
                         </list-property>
                     </extended-item>
-                    <extended-item extensionName="Chart" id="1395">
+                    <extended-item extensionName="Chart" id="1501">
                         <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.6.1</Version>
   <Type>Pie Chart</Type>
@@ -7244,6 +7572,1129 @@ else&#13;
                             </structure>
                         </list-property>
                     </extended-item>
+                </cell>
+            </row>
+        </grid>
+        <grid id="1410">
+            <property name="pageBreakAfter">always</property>
+            <property name="height">8.760416666666666in</property>
+            <property name="width">7.177083333333333in</property>
+            <property name="dataSet">TransactionInfo</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">if(row["IsGiro"] == "true")&#13;
+{false;}&#13;
+else &#13;
+{true; }</expression>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">CurrentClaim</property>
+                    <text-property name="displayName">CurrentClaim</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">IsGiro</property>
+                    <text-property name="displayName">IsGiro</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["IsGiro"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="1411">
+                <property name="width">2.4270833333333335in</property>
+            </column>
+            <column id="1412">
+                <property name="width">2in</property>
+            </column>
+            <column id="1502">
+                <property name="width">2.6041666666666665in</property>
+            </column>
+            <row id="1503">
+                <property name="height">3.1in</property>
+                <cell id="1504">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <property name="paddingTop">10pt</property>
+                    <property name="paddingLeft">4pt</property>
+                    <property name="paddingRight">0pt</property>
+                    <table id="1505">
+                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <property name="width">7.104166666666667in</property>
+                        <property name="dataSet">TransactionInfo</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">TransactionCategory</property>
+                                <text-property name="displayName">TransactionCategory</text-property>
+                                <expression name="expression" type="javascript">vars["transactionRowCount"]++&#13;
+&#13;
+dataSetRow["TransactionCategory"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">FreeText</property>
+                                <text-property name="displayName">FreeText</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["FreeText"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">AmountWithVat</property>
+                                <text-property name="displayName">AmountWithVat</text-property>
+                                <expression name="expression" type="javascript">formatMoney(dataSetRow["AmountWithVat"], 2, '', '.', ',')</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">CurrentClaim</property>
+                                <text-property name="displayName">CurrentClaim</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">TotalVatAmount</property>
+                                <text-property name="displayName">TotalVatAmount</text-property>
+                                <expression name="expression" type="javascript">"(Herav MVA " + dataSetRow["TotalVatAmount"] + ")"</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">StartDate</property>
+                                <text-property name="displayName">StartDate</text-property>
+                                <expression name="expression" type="javascript">var output;&#13;
+&#13;
+if(null == dataSetRow["StartDate"]) {&#13;
+	output = "";&#13;
+} else {&#13;
+	output = getFormattedDate(dataSetRow["StartDate"]) +"-"+ getFormattedDate(dataSetRow["EndDate"]);&#13;
+}</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">TransactionSequence</property>
+                                <text-property name="displayName">TransactionSequence</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["TransactionSequence"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">TotalTransactions</property>
+                                <text-property name="displayName">Total Claim</text-property>
+                                <expression name="expression" type="javascript">if(dataSetRow["TotalTransactions"] &lt;= 10 )&#13;
+	"Totalt å betale"&#13;
+else&#13;
+	"Forts. neste side."</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="1531">
+                            <property name="verticalAlign">bottom</property>
+                            <property name="width">2in</property>
+                        </column>
+                        <column id="1532">
+                            <property name="width">1.78125in</property>
+                        </column>
+                        <column id="1533">
+                            <property name="width">1.3in</property>
+                        </column>
+                        <column id="1534">
+                            <property name="width">1.5833333333333333in</property>
+                        </column>
+                        <header>
+                            <row id="1506">
+                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                <property name="fontStyle">normal</property>
+                                <property name="borderBottomColor">#B3B3B3</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">0.5pt</property>
+                                <cell id="1507">
+                                    <label id="1508">
+                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontStyle">italic</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">Betalingsoversikt</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1509">
+                                    <label id="1510">
+                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontStyle">italic</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">Leveringsadresse</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1511">
+                                    <label id="1512">
+                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontStyle">italic</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">Periode</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1513">
+                                    <label id="1514">
+                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontStyle">italic</property>
+                                        <property name="textAlign">right</property>
+                                        <text-property name="text">Beløp</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="1515">
+                                <cell id="1516">
+                                    <data id="1517">
+                                        <property name="fontSize">9pt</property>
+                                        <property name="resultSetColumn">TransactionCategory</property>
+                                    </data>
+                                </cell>
+                                <cell id="1518">
+                                    <data id="1519">
+                                        <property name="fontSize">9pt</property>
+                                        <property name="resultSetColumn">FreeText</property>
+                                    </data>
+                                </cell>
+                                <cell id="1520">
+                                    <data id="1521">
+                                        <property name="fontSize">9pt</property>
+                                        <property name="textAlign">left</property>
+                                        <list-property name="visibility">
+                                            <structure>
+                                                <property name="format">pdf</property>
+                                                <expression name="valueExpr" type="javascript">null == row["StartDate"]</expression>
+                                            </structure>
+                                        </list-property>
+                                        <property name="resultSetColumn">StartDate</property>
+                                    </data>
+                                </cell>
+                                <cell id="1522">
+                                    <data id="1523">
+                                        <property name="fontSize">9pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">AmountWithVat</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="1524">
+                                <property name="borderBottomColor">#B3B3B3</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">0.5pt</property>
+                                <property name="borderTopColor">#B3B3B3</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">0.5pt</property>
+                                <cell id="1525">
+                                    <data id="1526">
+                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">normal</property>
+                                        <property name="resultSetColumn">TotalTransactions</property>
+                                    </data>
+                                </cell>
+                                <cell id="1527">
+                                    <property name="colSpan">2</property>
+                                    <property name="rowSpan">1</property>
+                                    <data id="1528">
+                                        <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                                        <property name="fontSize">7pt</property>
+                                        <property name="fontStyle">italic</property>
+                                        <property name="paddingTop">2pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="dataSet">TransactionInfo</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">TotalVatAmount</property>
+                                                <text-property name="displayName">TotalVatAmount</text-property>
+                                                <expression name="expression" type="javascript">if(dataSetRow["TotalTransactions"] &lt;= 10)&#13;
+"(Herav MVA " + formatMoney(dataSetRow["TotalVatAmount"], 2, '', '.', ',') + ")"</expression>
+                                                <property name="dataType">string</property>
+                                                <property name="allowExport">true</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="resultSetColumn">TotalVatAmount</property>
+                                    </data>
+                                </cell>
+                                <cell id="1529">
+                                    <data id="1530">
+                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontSize">9pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="dataSet">TransactionInfo</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">CurrentClaim</property>
+                                                <text-property name="displayName">CurrentClaim</text-property>
+                                                <expression name="expression" type="javascript">if(dataSetRow["TotalTransactions"] &lt;= 10)&#13;
+formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
+                                                <property name="dataType">string</property>
+                                                <property name="allowExport">true</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="resultSetColumn">CurrentClaim</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+            <row id="1535">
+                <property name="height">0.344in</property>
+                <cell id="1536">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <grid id="888">
+                        <property name="borderBottomColor">#000000</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">1px</property>
+                        <property name="pageBreakAfter">auto</property>
+                        <property name="height">0.28125in</property>
+                        <property name="width">7.114583333333333in</property>
+                        <method name="onRender"><![CDATA[if(pageNumber > 1){
+    this.getStyle().display ="none"
+} ]]></method>
+                        <column id="889">
+                            <property name="width">0.7083333333333334in</property>
+                        </column>
+                        <column id="890">
+                            <property name="width">6.40625in</property>
+                        </column>
+                        <row id="891">
+                            <property name="height">0.27in</property>
+                            <cell id="892">
+                                <label id="893">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
+                                    <property name="fontSize">7.2pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="paddingTop">5pt</property>
+                                    <text-property name="text">Fjordkraft AS</text-property>
+                                </label>
+                            </cell>
+                            <cell id="894">
+                                <label id="895">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontSize">7.2pt</property>
+                                    <property name="color">#808080</property>
+                                    <property name="paddingTop">5pt</property>
+                                    <text-property name="text">Postboks 3507, Fyllingsdalen. 5845 Bergen | Foretaksregisteret NO 976944682 MVA | IBAN nr. NO0215031934610 | SWIFT: DNBANOKKXXX</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="1537">
+                <cell id="1538">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <grid id="896">
+                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <property name="borderBottomStyle">dotted</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="paddingLeft">0pt</property>
+                        <property name="height">1.2083333333333333in</property>
+                        <column id="897"/>
+                        <column id="898"/>
+                        <column id="899"/>
+                        <column id="900"/>
+                        <row id="901">
+                            <property name="height">0.8in</property>
+                            <cell id="902">
+                                <property name="paddingLeft">1pt</property>
+                                <label id="911">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontSize">12pt</property>
+                                    <property name="fontWeight">normal</property>
+                                    <text-property name="text">Kvittering</text-property>
+                                </label>
+                                <label id="912">
+                                    <property name="fontSize">8pt</property>
+                                    <property name="paddingTop">5pt</property>
+                                    <text-property name="text">Innbetalt til</text-property>
+                                </label>
+                                <data id="1145">
+                                    <property name="fontSize">9pt</property>
+                                    <property name="paddingTop">5pt</property>
+                                    <property name="dataSet">BillingInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">UtilityAccountNo</property>
+                                            <text-property name="displayName">UtilityAccountNo</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["UtilityAccountNo"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">UtilityAccountNo</property>
+                                </data>
+                            </cell>
+                            <cell id="903">
+                                <property name="paddingTop">30pt</property>
+                                <property name="paddingBottom">1pt</property>
+                                <label id="913">
+                                    <property name="fontSize">8pt</property>
+                                    <text-property name="text">Beløp</text-property>
+                                </label>
+                                <data id="1146">
+                                    <property name="fontSize">9pt</property>
+                                    <property name="dataSet">BillingInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">TotalOpenClaim</property>
+                                            <text-property name="displayName">TotalOpenClaim</text-property>
+                                            <expression name="expression" type="javascript">formatMoney(dataSetRow["TotalOpenClaim"], 2, '', '.', ',')</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">TotalOpenClaim</property>
+                                </data>
+                            </cell>
+                            <cell id="904">
+                                <property name="paddingTop">30pt</property>
+                                <property name="paddingBottom">1pt</property>
+                                <label id="914">
+                                    <property name="fontSize">8pt</property>
+                                    <text-property name="text">Betalerens kontonummer</text-property>
+                                </label>
+                            </cell>
+                            <cell id="905">
+                                <property name="paddingTop">30pt</property>
+                                <property name="paddingBottom">1pt</property>
+                                <label id="915">
+                                    <property name="fontSize">8pt</property>
+                                    <text-property name="text">Blankettnummer</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                        <row id="906">
+                            <property name="height">0.2in</property>
+                            <cell id="907">
+                                <label id="916">
+                                    <property name="fontSize">8pt</property>
+                                    <text-property name="text">RIV HER!</text-property>
+                                </label>
+                            </cell>
+                            <cell id="908"/>
+                            <cell id="909"/>
+                            <cell id="910"/>
+                        </row>
+                    </grid>
+                    <grid id="917">
+                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <column id="918"/>
+                        <column id="919"/>
+                        <row id="920">
+                            <cell id="921">
+                                <grid id="1396">
+                                    <property name="width">3.75in</property>
+                                    <column id="1397">
+                                        <property name="width">2.5in</property>
+                                    </column>
+                                    <row id="1398">
+                                        <cell id="1399">
+                                            <label id="1539">
+                                                <property name="fontSize">8pt</property>
+                                                <property name="paddingTop">10pt</property>
+                                                <text-property name="text">Betalingsinformasjon</text-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                    <row id="1540">
+                                        <cell id="1541">
+                                            <data id="1542">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                                                <property name="fontSize">8pt</property>
+                                                <property name="paddingTop">10pt</property>
+                                                <property name="paddingLeft">15pt</property>
+                                                <property name="textAlign">left</property>
+                                                <property name="lineHeight">10pt</property>
+                                                <property name="dataSet">MainInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">NationalId</property>
+                                                        <text-property name="displayName">Kundenummer</text-property>
+                                                        <expression name="expression" type="javascript">"Kundenummer: " + dataSetRow["NationalId"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">NationalId</property>
+                                            </data>
+                                            <data id="1543">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                                                <property name="fontSize">8pt</property>
+                                                <property name="paddingTop">1pt</property>
+                                                <property name="paddingLeft">15pt</property>
+                                                <property name="textAlign">left</property>
+                                                <property name="lineHeight">10pt</property>
+                                                <property name="dataSet">MainInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">SequenceNumber</property>
+                                                        <text-property name="displayName">Fakturanummer</text-property>
+                                                        <expression name="expression" type="javascript">"Fakturanummer: " + dataSetRow["AccountNumber"] + dataSetRow["SequenceNumber"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">SequenceNumber</property>
+                                            </data>
+                                            <data id="1544">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                                                <property name="fontSize">8pt</property>
+                                                <property name="paddingTop">1pt</property>
+                                                <property name="paddingLeft">15pt</property>
+                                                <property name="textAlign">left</property>
+                                                <property name="lineHeight">10pt</property>
+                                                <property name="dataSet">MainInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">AccountNumber</property>
+                                                        <text-property name="displayName">eFakturareferanse</text-property>
+                                                        <expression name="expression" type="javascript">"Ref.e-faktura/avt.giro: " + dataSetRow["AccountNumber"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">AccountNumber</property>
+                                            </data>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                            <cell id="922">
+                                <grid id="1545">
+                                    <property name="height">0.6354166666666666in</property>
+                                    <property name="width">3.4895833333333335in</property>
+                                    <column id="1546">
+                                        <property name="width">1.4in</property>
+                                    </column>
+                                    <column id="1547">
+                                        <property name="width">0.3in</property>
+                                    </column>
+                                    <column id="945">
+                                        <property name="width">0.1in</property>
+                                    </column>
+                                    <column id="1548">
+                                        <property name="width">0.5in</property>
+                                    </column>
+                                    <column id="1549">
+                                        <property name="suppressDuplicates">true</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="width">0.01in</property>
+                                    </column>
+                                    <row id="1550">
+                                        <property name="height">0.6354166666666666in</property>
+                                        <cell id="1551">
+                                            <property name="paddingTop">10pt</property>
+                                            <label id="954">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                <property name="fontSize">12pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <text-property name="text">GIRO</text-property>
+                                            </label>
+                                            <label id="1143">
+                                                <property name="fontSize">8pt</property>
+                                                <property name="paddingTop">10pt</property>
+                                                <text-property name="text">Underskrift ved girering</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="1552">
+                                            <property name="paddingTop">10pt</property>
+                                            <label id="955">
+                                                <property name="fontSize">8pt</property>
+                                                <property name="textAlign">left</property>
+                                                <text-property name="text">Betalings-frist</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="1553">
+                                            <property name="paddingTop">10pt</property>
+                                            <property name="textAlign">right</property>
+                                            <grid id="964">
+                                                <column id="965">
+                                                    <property name="width">0.1in</property>
+                                                </column>
+                                                <row id="966">
+                                                    <property name="borderLeftColor">#000000</property>
+                                                    <property name="borderLeftStyle">solid</property>
+                                                    <property name="borderLeftWidth">1px</property>
+                                                    <property name="borderTopColor">#000000</property>
+                                                    <property name="borderTopStyle">solid</property>
+                                                    <property name="borderTopWidth">1px</property>
+                                                    <property name="height">0.1in</property>
+                                                    <cell id="967"/>
+                                                </row>
+                                                <row id="968">
+                                                    <cell id="1554">
+                                                        <label id="1555"/>
+                                                    </cell>
+                                                </row>
+                                                <row id="1556">
+                                                    <property name="borderBottomStyle">solid</property>
+                                                    <property name="borderBottomWidth">1px</property>
+                                                    <property name="borderLeftStyle">solid</property>
+                                                    <property name="borderLeftWidth">1px</property>
+                                                    <property name="height">0.1in</property>
+                                                    <cell id="1557"/>
+                                                </row>
+                                            </grid>
+                                        </cell>
+                                        <cell id="952">
+                                            <property name="paddingTop">10pt</property>
+                                            <data id="1558">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                                                <property name="fontSize">10pt</property>
+                                                <property name="paddingTop">5pt</property>
+                                                <property name="textAlign">right</property>
+                                                <property name="lineHeight">10pt</property>
+                                                <property name="dataSet">MainInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">DueDate</property>
+                                                        <text-property name="displayName">Betalingsfrist</text-property>
+                                                        <expression name="expression" type="javascript">getFormattedFullDate(dataSetRow["DueDate"])</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">DueDate</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="953">
+                                            <property name="paddingTop">10pt</property>
+                                            <grid id="956">
+                                                <column id="957">
+                                                    <property name="width">0.1in</property>
+                                                </column>
+                                                <row id="1559">
+                                                    <property name="borderRightColor">#000000</property>
+                                                    <property name="borderRightStyle">solid</property>
+                                                    <property name="borderRightWidth">1px</property>
+                                                    <property name="borderTopColor">#000000</property>
+                                                    <property name="borderTopStyle">solid</property>
+                                                    <property name="borderTopWidth">1px</property>
+                                                    <property name="height">0.1in</property>
+                                                    <cell id="1560"/>
+                                                </row>
+                                                <row id="960">
+                                                    <cell id="961">
+                                                        <label id="1561"/>
+                                                    </cell>
+                                                </row>
+                                                <row id="962">
+                                                    <property name="borderBottomColor">#000000</property>
+                                                    <property name="borderBottomStyle">solid</property>
+                                                    <property name="borderBottomWidth">1px</property>
+                                                    <property name="borderRightColor">#000000</property>
+                                                    <property name="borderRightStyle">solid</property>
+                                                    <property name="borderRightWidth">1px</property>
+                                                    <property name="height">0.1in</property>
+                                                    <cell id="963"/>
+                                                </row>
+                                            </grid>
+                                        </cell>
+                                    </row>
+                                </grid>
+                                <grid id="1562">
+                                    <column id="1563">
+                                        <property name="width">0.1in</property>
+                                    </column>
+                                    <column id="1564"/>
+                                    <column id="1565">
+                                        <property name="width">0.1in</property>
+                                    </column>
+                                    <row id="1566">
+                                        <property name="height">0.1in</property>
+                                        <cell id="1567">
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">1px</property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">1px</property>
+                                        </cell>
+                                        <cell id="1568"/>
+                                        <cell id="982">
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">1px</property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">1px</property>
+                                        </cell>
+                                    </row>
+                                    <row id="983">
+                                        <property name="height">0.3in</property>
+                                        <cell id="984"/>
+                                        <cell id="985">
+                                            <property name="borderBottomStyle">dotted</property>
+                                            <property name="borderBottomWidth">thin</property>
+                                            <property name="paddingTop">30pt</property>
+                                            <property name="paddingBottom">5pt</property>
+                                        </cell>
+                                        <cell id="986"/>
+                                    </row>
+                                    <row id="987">
+                                        <property name="height">0.1in</property>
+                                        <cell id="988">
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">1px</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">1px</property>
+                                        </cell>
+                                        <cell id="989"/>
+                                        <cell id="990">
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">1px</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">1px</property>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                        </row>
+                        <row id="923">
+                            <cell id="924">
+                                <label id="991">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontSize">7pt</property>
+                                    <property name="fontWeight">normal</property>
+                                    <property name="paddingLeft">10pt</property>
+                                    <text-property name="text">Betalt av</text-property>
+                                </label>
+                            </cell>
+                            <cell id="925">
+                                <label id="992">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontSize">7pt</property>
+                                    <property name="fontWeight">normal</property>
+                                    <property name="paddingLeft">10pt</property>
+                                    <text-property name="text">Betalt til</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                        <row id="926">
+                            <cell id="927">
+                                <grid id="993">
+                                    <column id="994">
+                                        <property name="width">0.1in</property>
+                                    </column>
+                                    <column id="995"/>
+                                    <column id="996">
+                                        <property name="width">0.1in</property>
+                                    </column>
+                                    <column id="997">
+                                        <property name="width">0.3in</property>
+                                    </column>
+                                    <row id="998">
+                                        <property name="height">0.1in</property>
+                                        <cell id="999">
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">1px</property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">1px</property>
+                                        </cell>
+                                        <cell id="1000"/>
+                                        <cell id="1001">
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">2px</property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">2px</property>
+                                        </cell>
+                                        <cell id="1002"/>
+                                    </row>
+                                    <row id="1003">
+                                        <cell id="1569"/>
+                                        <cell id="1570">
+                                            <data id="1571">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontSize">10pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <property name="color">#000000</property>
+                                                <property name="paddingTop">1pt</property>
+                                                <property name="textAlign">left</property>
+                                                <property name="dataSet">MainInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Name</property>
+                                                        <text-property name="displayName">Name</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Name</property>
+                                            </data>
+                                            <data id="1572">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontSize">10pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <property name="color">#000000</property>
+                                                <property name="paddingTop">1pt</property>
+                                                <property name="textAlign">left</property>
+                                                <property name="dataSet">MainInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Address</property>
+                                                        <text-property name="displayName">Address</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Address</property>
+                                            </data>
+                                            <data id="1573">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontSize">10pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <property name="color">#000000</property>
+                                                <property name="paddingTop">1pt</property>
+                                                <property name="textAlign">left</property>
+                                                <property name="dataSet">MainInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">City</property>
+                                                        <text-property name="displayName">City</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["PostCode"] + " " + dataSetRow["City"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">City</property>
+                                            </data>
+                                            <label id="1036"/>
+                                        </cell>
+                                        <cell id="1574"/>
+                                        <cell id="1575"/>
+                                    </row>
+                                    <row id="1576">
+                                        <property name="height">0.1in</property>
+                                        <cell id="1577">
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">1px</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">1px</property>
+                                        </cell>
+                                        <cell id="1578"/>
+                                        <cell id="1011">
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">1px</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">1px</property>
+                                        </cell>
+                                        <cell id="1579"/>
+                                    </row>
+                                </grid>
+                            </cell>
+                            <cell id="1580">
+                                <grid id="1581">
+                                    <column id="1582">
+                                        <property name="width">0.1in</property>
+                                    </column>
+                                    <column id="1019"/>
+                                    <column id="1020">
+                                        <property name="width">0.1in</property>
+                                    </column>
+                                    <row id="1021">
+                                        <property name="height">0.1in</property>
+                                        <cell id="1022">
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">1px</property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">1px</property>
+                                        </cell>
+                                        <cell id="1023"/>
+                                        <cell id="1024">
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">1px</property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">1px</property>
+                                        </cell>
+                                    </row>
+                                    <row id="1025">
+                                        <cell id="1026"/>
+                                        <cell id="1027">
+                                            <data id="1152">
+                                                <property name="dataSet">GiroToAddressInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Description</property>
+                                                        <text-property name="displayName">Description</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Description"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Description</property>
+                                            </data>
+                                            <data id="1153">
+                                                <property name="dataSet">GiroToAddressInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">City</property>
+                                                        <text-property name="displayName">City</text-property>
+                                                        <expression name="expression" type="javascript">"Postboks " + dataSetRow["PostCode"] + " " + dataSetRow["City"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">City</property>
+                                            </data>
+                                            <data id="1154">
+                                                <property name="dataSet">GiroToAddressInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Region</property>
+                                                        <text-property name="displayName">Region</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["NationalId"] + " " + dataSetRow["Region"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Region</property>
+                                            </data>
+                                            <label id="1097"/>
+                                        </cell>
+                                        <cell id="1028"/>
+                                    </row>
+                                    <row id="1029">
+                                        <property name="height">0.1in</property>
+                                        <cell id="1030">
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">1px</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">1px</property>
+                                        </cell>
+                                        <cell id="1031"/>
+                                        <cell id="1032">
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">2px</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">2px</property>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                        </row>
+                    </grid>
+                    <grid id="1038">
+                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <property name="height">0.4479166666666667in</property>
+                        <property name="width">7.104166666666667in</property>
+                        <column id="1039">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="1040">
+                            <property name="width">2.783in</property>
+                        </column>
+                        <column id="1136">
+                            <property name="width">2.131in</property>
+                        </column>
+                        <column id="1041">
+                            <property name="width">0.7083333333333334in</property>
+                        </column>
+                        <column id="1042">
+                            <property name="width">0.2in</property>
+                        </column>
+                        <row id="1583">
+                            <property name="height">0.32in</property>
+                            <cell id="1584">
+                                <label id="1585">
+                                    <property name="textAlign">right</property>
+                                    <text-property name="text">Belast&#13;
+konto</text-property>
+                                </label>
+                            </cell>
+                            <cell id="1586">
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">1px</property>
+                            </cell>
+                            <cell id="1134"/>
+                            <cell id="1587">
+                                <label id="1588">
+                                    <property name="textAlign">left</property>
+                                    <text-property name="text">Kvittering&#13;
+tilbake</text-property>
+                                </label>
+                            </cell>
+                            <cell id="1589">
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">2px</property>
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">2px</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">2px</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">2px</property>
+                                <property name="paddingBottom">5pt</property>
+                            </cell>
+                        </row>
+                        <row id="1090">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">1px</property>
+                            <property name="height">0.07291666666666667in</property>
+                            <cell id="1091"/>
+                            <cell id="1092">
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">1px</property>
+                            </cell>
+                            <cell id="1135"/>
+                            <cell id="1093"/>
+                            <cell id="1094">
+                                <property name="paddingBottom">5pt</property>
+                            </cell>
+                        </row>
+                    </grid>
+                    <grid id="1590">
+                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <property name="height">0.7916666666666666in</property>
+                        <property name="width">7.125in</property>
+                        <column id="1591">
+                            <property name="width">2.09375in</property>
+                        </column>
+                        <column id="1592">
+                            <property name="width">5.03125in</property>
+                        </column>
+                        <row id="1593">
+                            <property name="height">0.2in</property>
+                            <cell id="1594">
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">2px</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">2px</property>
+                                <label id="1060">
+                                    <property name="fontSize">8pt</property>
+                                    <text-property name="text">Kundeidentifikasjon (KID)</text-property>
+                                </label>
+                            </cell>
+                            <cell id="1056">
+                                <grid id="1062">
+                                    <column id="1063"/>
+                                    <column id="1064">
+                                        <property name="width">0.4in</property>
+                                    </column>
+                                    <column id="1065"/>
+                                    <column id="1066"/>
+                                    <row id="1067">
+                                        <cell id="1068">
+                                            <label id="1072">
+                                                <text-property name="text">Kroner</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="1069">
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">1px</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">1px</property>
+                                            <label id="1073">
+                                                <text-property name="text">Øre</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="1070">
+                                            <label id="1074">
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">Til konto</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="1071">
+                                            <label id="1075">
+                                                <property name="paddingRight">10pt</property>
+                                                <property name="textAlign">right</property>
+                                                <text-property name="text">Blankettnummer</text-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                        </row>
+                        <row id="1595">
+                            <property name="height">0.295in</property>
+                            <cell id="1058">
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">2px</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">2px</property>
+                                <data id="1087">
+                                    <property name="textAlign">right</property>
+                                    <property name="dataSet">MainInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">AccountNumber</property>
+                                            <text-property name="displayName">AccountNumber</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["AccountNumber"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">AccountNumber</property>
+                                </data>
+                            </cell>
+                            <cell id="1059">
+                                <grid id="1076">
+                                    <property name="width">5.322916666666667in</property>
+                                    <column id="1077">
+                                        <property name="width">1.481in</property>
+                                    </column>
+                                    <column id="1078">
+                                        <property name="fontSize">10pt</property>
+                                        <property name="width">1.3333333333333333in</property>
+                                    </column>
+                                    <column id="1079"/>
+                                    <row id="1080">
+                                        <cell id="1081">
+                                            <data id="1148">
+                                                <property name="fontSize">9pt</property>
+                                                <property name="textAlign">right</property>
+                                                <property name="dataSet">BillingInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">TotalOpenClaim</property>
+                                                        <text-property name="displayName">TotalOpenClaim</text-property>
+                                                        <expression name="expression" type="javascript">formatMoney(dataSetRow["TotalOpenClaim"], 2, '', '.', ',')</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">TotalOpenClaim</property>
+                                            </data>
+                                        </cell>
+                                        <cell id="1082">
+                                            <property name="fontSize">9pt</property>
+                                            <label id="1085">
+                                                <property name="paddingTop">10pt</property>
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">&lt;         ></text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="1083">
+                                            <data id="1150">
+                                                <property name="fontSize">9pt</property>
+                                                <property name="dataSet">BillingInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">UtilityAccountNo</property>
+                                                        <text-property name="displayName">UtilityAccountNo</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["UtilityAccountNo"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">UtilityAccountNo</property>
+                                            </data>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                        </row>
+                    </grid>
                 </cell>
             </row>
         </grid>
