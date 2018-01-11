@@ -7,6 +7,8 @@ package no.fjordkraft.im.if320.models;
 //Generated on: 2017.05.12 at 05:23:10 PM IST 
 //
 
+import oasis.names.specification.ubl.schema.xsd.creditnote_2.CreditNote;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -39,8 +41,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "VEDLEGG_EHF")
 public class VEDLEGGEHF {
 
- @XmlElement(name = "Invoice", namespace = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" ,required = true)
+ @XmlElement(name = "Invoice", namespace = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" )
  protected oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice invoice;
+
+ @XmlElement(name="CreditNote" , namespace="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2")
+ protected CreditNote creditNote;
+
+ @XmlElement(name="type")
+ protected String type;
 
 public oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice getInvoice() {
 	return invoice;
@@ -50,6 +58,19 @@ public void setInvoice(oasis.names.specification.ubl.schema.xsd.invoice_2.Invoic
 	this.invoice = invoice;
 }
 
- 
+    public CreditNote getCreditNote() {
+        return creditNote;
+    }
 
+    public void setCreditNote(CreditNote creditNote) {
+        this.creditNote = creditNote;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

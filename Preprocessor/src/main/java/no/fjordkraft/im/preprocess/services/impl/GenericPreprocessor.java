@@ -6,6 +6,7 @@ import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.util.IMConstants;
+import oasis.names.specification.ubl.schema.xsd.creditnote_2.CreditNote;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,24 +85,31 @@ public class GenericPreprocessor extends BasePreprocessor {
                 String data = attachment.getFAKTURA().getVedleggehf();
                 byte[] decoded = null;
                 if(null != data) {
+                    decoded = Base64.decodeBase64(data);
+                    StreamSource source = new StreamSource(new InputStreamReader(new ByteArrayInputStream(decoded), StandardCharsets.ISO_8859_1));
                     try {
-                        decoded = Base64.decodeBase64(data);
-                        //logger.debug("decoded ehf is " +new String(decoded));
-                        StreamSource source = new StreamSource(new InputStreamReader(new ByteArrayInputStream(decoded), StandardCharsets.ISO_8859_1));
-                        oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice invoice = (oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice) unMarshaller.unmarshal(source);
+
                         VEDLEGGEHF ehf = new VEDLEGGEHF();
-                        ehf.setInvoice(invoice);
-                        attachment.getFAKTURA().setVedleggehfObj(ehf);
+                        if("creditnote".equalsIgnoreCase(attachment.getFAKTURA().getFAKTURATYPE().toLowerCase()))
+                        {
+                           oasis.names.specification.ubl.schema.xsd.creditnote_2.CreditNote creditNote = (CreditNote) unMarshaller.unmarshal(source);
+                           ehf.setCreditNote(creditNote);
+                           ehf.setType("creditnote");
+                           attachment.getFAKTURA().setVedleggehfObj(ehf);
+                        }
+                        else
+                        {
+                            oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice invoice = (oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice) unMarshaller.unmarshal(source);
+                            ehf.setInvoice(invoice);
+                            ehf.setType("invoice");
+                            attachment.getFAKTURA().setVedleggehfObj(ehf);
+                        }
                         attachment.getFAKTURA().setVedleggehf(null);
                     } catch(Exception e) {
-                        //if ehf is credit note continue to next
-                        String ehf = new String(decoded);
-                        if(ehf.endsWith("</CreditNote>")){
-                            continue;
-                        } else {
-                            throw e;
+
+                            e.printStackTrace();
+                            //throw e;
                         }
-                    }
                 }
             } else if("PDFE2B".equals(attachment.getFAKTURA().getVEDLEGGFORMAT())){
                 String data = attachment.getFAKTURA().getVedlegge2B();

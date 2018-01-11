@@ -8,8 +8,10 @@ import no.fjordkraft.im.if320.models.*;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.util.IMConstants;
+import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.CreditNoteLineType;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.InvoiceLineType;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.TaxCategoryType;
+import oasis.names.specification.ubl.schema.xsd.creditnote_2.CreditNote;
 import oasis.names.specification.ubl.schema.xsd.invoice_2.Invoice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,7 +74,15 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     XMLGregorianCalendar gridStartDate = null;
                     if (IMConstants.PDFEHF.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
                         if (null != gridAttachment.getFAKTURA().getVedleggehfObj()) {
-                            gridStartDate = gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0).getInvoicePeriods().get(0).getStartDate().getValue();
+                            if("creditnote".equalsIgnoreCase(gridAttachment.getFAKTURA().getFAKTURATYPE().toLowerCase()))
+                            {
+
+                                  gridStartDate = gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines().get(0).getInvoicePeriods().get(0).getStartDate().getValue();
+                            }
+                            else
+                            {
+                                gridStartDate = gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0).getInvoicePeriods().get(0).getStartDate().getValue();
+                            }
                         }
                     } else if (IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
                         gridStartDate = gridAttachment.getFAKTURA().getVedlegge2BObj().getInvoice().getInvoiceDetails().getBaseItemDetails().get(0).getStartDate();
@@ -252,68 +262,128 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         List<BaseItemDetails> baseItemDetailsList = new ArrayList<>();
         if(pdfAttachment.getFAKTURA().getVedleggehfObj()!=null)
         {
-        Invoice invoice = pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice();
+            if("creditnote".equalsIgnoreCase(pdfAttachment.getFAKTURA().getFAKTURATYPE().toLowerCase()))
+            {
+                CreditNote creditNote = pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote();
+                nettleie.setReferenceNumber(creditNote.getID().getValue().toString());
+                nettleie.setFreeText(creditNote.getAccountingSupplierParty().getParty().getPostalAddress().getStreetName().getValue());
+                nettleie.setDescription(null);
+                nettleie.setObjectId((Long.valueOf(creditNote.getDeliveries().get(0).getDeliveryLocation().getID().getValue().toString())));
+                nettleie.setMeterId(creditNote.getAccountingSupplierParty().getParty().getPartyLegalEntities().get(0).getCompanyID().getValue());
+                nettleie.setAnnualConsumption(0);
+                nettleie.setGridName(pdfAttachment.getFAKTURA().getAKTORNAVN());
+                invoiceSummary.getInvoiceTotals().setGrossAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote()
+                        .getLegalMonetaryTotal().getTaxInclusiveAmount().getValue().toString()));
 
-         nettleie.setReferenceNumber(invoice.getID().getValue().toString());
-         nettleie.setFreeText(invoice.getAccountingSupplierParty().getParty().getPostalAddress().getStreetName().getValue());
-         nettleie.setDescription(null);
-         nettleie.setObjectId((Long.valueOf(invoice.getDeliveries().get(0).getDeliveryLocation().getID().getValue().toString())));
-         nettleie.setMeterId(invoice.getAccountingSupplierParty().getParty().getPartyLegalEntities().get(0).getCompanyID().getValue());
-         nettleie.setAnnualConsumption(0);
-         nettleie.setGridName(pdfAttachment.getFAKTURA().getAKTORNAVN());
-        invoiceSummary.getInvoiceTotals().setGrossAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice()
-                .getLegalMonetaryTotal().getTaxInclusiveAmount().getValue().toString()));
+                invoiceSummary.getInvoiceTotals().setVatTotalsAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj()
+                        .getCreditNote().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount().getValue().toString()));
+                nettleie.setInvoiceSummary(invoiceSummary);
 
-        invoiceSummary.getInvoiceTotals().setVatTotalsAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj()
-                .getInvoice().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount().getValue().toString()));
+                List<CreditNoteLineType> creditNoteLineTypeList = creditNote.getCreditNoteLines();
+                for(CreditNoteLineType creditNoteLineType : creditNoteLineTypeList)
+                {
+                    baseItemDetails = new BaseItemDetails();
+                    baseItemDetails.setDescription(creditNoteLineType.getItem().getName().getValue().toString());
+                    baseItemDetails.setQuantityInvoiced(Float.valueOf(creditNoteLineType.getCreditedQuantity().getValue().toString()));
+                    baseItemDetails.setUnitOfMeasure(creditNoteLineType.getCreditedQuantity().getUnitCode());
+                    baseItemDetails.setUnitPrice(Float.valueOf(creditNoteLineType.getPrice().getPriceAmount().getValue().toString()));
+                    baseItemDetails.setPriceDenomination(creditNoteLineType.getPrice().getPriceAmount().getCurrencyID());
+                    List<TaxCategoryType> categoryTypeList = creditNoteLineType.getItem().getClassifiedTaxCategories();
+                    BigDecimal vat = null;
+                    for(TaxCategoryType taxCategoryType: categoryTypeList) {
+                        logger.debug("taxScheme " + taxCategoryType.getTaxScheme().getID().getValue()+ " vat "+ taxCategoryType.getPercent().getValue());
+                        if("VAT".equals(taxCategoryType.getTaxScheme().getID().getValue())) {
+                            vat = taxCategoryType.getPercent().getValue();
+                            break;
+                        }
+                    }
+                    if(null != vat) {
+                        baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice() + ((vat.floatValue()/100)*baseItemDetails.getUnitPrice()));
+                    } else {
+                        baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
+                    }
 
-        nettleie.setInvoiceSummary(invoiceSummary);
+                    if (null != creditNoteLineType.getTaxTotals() && creditNoteLineType.getTaxTotals().size() > 0 && null != creditNoteLineType.getTaxTotals().get(0)) {
+                        taxAmount = creditNoteLineType.getTaxTotals().get(0).getTaxAmount().getValue().floatValue();
+                        if (null != creditNoteLineType.getInvoicePeriods()
+                                && IMConstants.ZERO != creditNoteLineType.getInvoicePeriods().size()) {
+                            baseItemDetails.setStartDate(creditNoteLineType.getInvoicePeriods().get(0).getStartDate().getValue());
+                            baseItemDetails.setEndDate(creditNoteLineType.getInvoicePeriods().get(0).getEndDate().getValue());
+                        }
+                    }
+                    if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
+                        baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(), baseItemDetails.getEndDate()));
+                    }
+                    baseItemDetails.setLineItemGrossAmount(Float.valueOf(creditNoteLineType.getLineExtensionAmount().getValue().toString()) + taxAmount);
+                    baseItemDetailsList.add(baseItemDetails);
+                    nettleie.setBaseItemDetails(baseItemDetailsList);
+                    }
+                    nettleie.setCreditNote(true);
+                 }
 
-        List<InvoiceLineType> invoiceLineTypeList = invoice.getInvoiceLines();
-        for (InvoiceLineType invoiceLineType : invoiceLineTypeList) {
-            baseItemDetails = new BaseItemDetails();
-            baseItemDetails.setDescription(invoiceLineType.getItem().getName().getValue().toString());
-            baseItemDetails.setQuantityInvoiced(Float.valueOf(invoiceLineType.getInvoicedQuantity().getValue().toString()));
-            baseItemDetails.setUnitOfMeasure(invoiceLineType.getInvoicedQuantity().getUnitCode());
-            baseItemDetails.setUnitPrice(Float.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString()));
-            baseItemDetails.setPriceDenomination(invoiceLineType.getPrice().getPriceAmount().getCurrencyID());
-            List<TaxCategoryType> categoryTypeList = invoiceLineType.getItem().getClassifiedTaxCategories();
-            BigDecimal vat = null;
-            for(TaxCategoryType taxCategoryType: categoryTypeList) {
-                logger.debug("taxScheme " + taxCategoryType.getTaxScheme().getID().getValue()+ " vat "+ taxCategoryType.getPercent().getValue());
-                if("VAT".equals(taxCategoryType.getTaxScheme().getID().getValue())) {
-                    vat = taxCategoryType.getPercent().getValue();
-                    break;
-                }
-            }
-            if(null != vat) {
-                baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice() + ((vat.floatValue()/100)*baseItemDetails.getUnitPrice()));
             } else {
-                baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
-            }
+                 Invoice invoice = pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice();
+                 if(invoice!=null) {
+                     nettleie.setReferenceNumber(invoice.getID().getValue().toString());
+                     nettleie.setFreeText(invoice.getAccountingSupplierParty().getParty().getPostalAddress().getStreetName().getValue());
+                     nettleie.setDescription(null);
+                     nettleie.setObjectId((Long.valueOf(invoice.getDeliveries().get(0).getDeliveryLocation().getID().getValue().toString())));
+                     nettleie.setMeterId(invoice.getAccountingSupplierParty().getParty().getPartyLegalEntities().get(0).getCompanyID().getValue());
+                     nettleie.setAnnualConsumption(0);
+                     nettleie.setGridName(pdfAttachment.getFAKTURA().getAKTORNAVN());
+                     invoiceSummary.getInvoiceTotals().setGrossAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice()
+                            .getLegalMonetaryTotal().getTaxInclusiveAmount().getValue().toString()));
 
-            if (null != invoiceLineType.getTaxTotals() && invoiceLineType.getTaxTotals().size() > 0 && null != invoiceLineType.getTaxTotals().get(0)) {
-                taxAmount = invoiceLineType.getTaxTotals().get(0).getTaxAmount().getValue().floatValue();
-                if (null != invoiceLineType.getInvoicePeriods()
-                        && IMConstants.ZERO != invoiceLineType.getInvoicePeriods().size()) {
-                    baseItemDetails.setStartDate(invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue());
-                    baseItemDetails.setEndDate(invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue());
-                }
-            }
-            if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
-                baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(), baseItemDetails.getEndDate()));
-            }
-            baseItemDetails.setLineItemGrossAmount(Float.valueOf(invoiceLineType.getLineExtensionAmount().getValue().toString()) + taxAmount);
-            baseItemDetailsList.add(baseItemDetails);
-        }
+                     invoiceSummary.getInvoiceTotals().setVatTotalsAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj()
+                            .getInvoice().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount().getValue().toString()));
 
-        nettleie.setBaseItemDetails(baseItemDetailsList);
-        }
+                     nettleie.setInvoiceSummary(invoiceSummary);
+
+                     List<InvoiceLineType> invoiceLineTypeList = invoice.getInvoiceLines();
+                     for (InvoiceLineType invoiceLineType : invoiceLineTypeList) {
+                            baseItemDetails = new BaseItemDetails();
+                            baseItemDetails.setDescription(invoiceLineType.getItem().getName().getValue().toString());
+                            baseItemDetails.setQuantityInvoiced(Float.valueOf(invoiceLineType.getInvoicedQuantity().getValue().toString()));
+                            baseItemDetails.setUnitOfMeasure(invoiceLineType.getInvoicedQuantity().getUnitCode());
+                            baseItemDetails.setUnitPrice(Float.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString()));
+                            baseItemDetails.setPriceDenomination(invoiceLineType.getPrice().getPriceAmount().getCurrencyID());
+                            List<TaxCategoryType> categoryTypeList = invoiceLineType.getItem().getClassifiedTaxCategories();
+                            BigDecimal vat = null;
+                                for(TaxCategoryType taxCategoryType: categoryTypeList) {
+                                    logger.debug("taxScheme " + taxCategoryType.getTaxScheme().getID().getValue()+ " vat "+ taxCategoryType.getPercent().getValue());
+                                    if("VAT".equals(taxCategoryType.getTaxScheme().getID().getValue())) {
+                                        vat = taxCategoryType.getPercent().getValue();
+                                        break;
+                                    }
+                                }
+                                if(null != vat) {
+                                    baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice() + ((vat.floatValue()/100)*baseItemDetails.getUnitPrice()));
+                                    } else {
+                                    baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
+                                }
+
+                                if (null != invoiceLineType.getTaxTotals() && invoiceLineType.getTaxTotals().size() > 0 && null != invoiceLineType.getTaxTotals().get(0)) {
+                                    taxAmount = invoiceLineType.getTaxTotals().get(0).getTaxAmount().getValue().floatValue();
+                                    if (null != invoiceLineType.getInvoicePeriods()
+                                            && IMConstants.ZERO != invoiceLineType.getInvoicePeriods().size()) {
+                                        baseItemDetails.setStartDate(invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue());
+                                        baseItemDetails.setEndDate(invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue());
+                                    }
+                                }
+                                if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
+                                    baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(), baseItemDetails.getEndDate()));
+                                }
+                            baseItemDetails.setLineItemGrossAmount(Float.valueOf(invoiceLineType.getLineExtensionAmount().getValue().toString()) + taxAmount);
+                            baseItemDetailsList.add(baseItemDetails);
+                        }
+                     nettleie.setBaseItemDetails(baseItemDetailsList);
+                 }
+            }
         return nettleie;
     }
 
     private Nettleie createE2BEntry(Attachment pdfAttachment) {
-        logger.debug("createEHFEntry " + pdfAttachment.getFAKTURA().getMAALEPUNKT());
+        logger.debug("createE2BEntry " + pdfAttachment.getFAKTURA().getMAALEPUNKT());
         Nettleie nettleie = new Nettleie();
         no.fjordkraft.im.if320.models.Invoice invoice = pdfAttachment.getFAKTURA().getVedlegge2BObj().getInvoice();
         nettleie.setReferenceNumber(String.valueOf(invoice.getInvoiceHeader().getInvoiceNumber()));

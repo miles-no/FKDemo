@@ -24,12 +24,12 @@ import java.lang.reflect.InvocationTargetException;
 public class SetGiroPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(SetGiroPreprocessor.class);
-    @Autowired
-    CustomerDetailsViewService customerDetailsViewService;
+   // @Autowired
+    //CustomerDetailsViewService customerDetailsViewService;
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, InstantiationException {
-         long accountNumber = request.getStatement().getAccountNumber();
+         /*long accountNumber = request.getStatement().getAccountNumber();
         CustomerDetailsView customerDetailsView =customerDetailsViewService.findByAccountNumber(Long.toString(accountNumber));
         if(customerDetailsView!=null && customerDetailsView.getGiroEnabled())
         {
@@ -40,6 +40,6 @@ public class SetGiroPreprocessor extends BasePreprocessor {
         {
             logger.debug("GIRO is disabled for account number " + Long.toString(accountNumber));
             request.getStatement().setGIROEnabled(false);
-        }
+        }*/
     }
 }
