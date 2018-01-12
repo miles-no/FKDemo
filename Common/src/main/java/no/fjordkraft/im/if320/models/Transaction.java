@@ -65,7 +65,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "distributions",
     "collectionFeeForStatements",
     "startDate",
-    "endDate"
+    "endDate",
+    "maalepunktID"
 })
 @XmlRootElement(name = "Transaction")
 public class Transaction {
@@ -108,6 +109,10 @@ public class Transaction {
     @XmlElement(name = "EndDate", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar endDate;
+
+    @XmlElement(name = "MAALEPUNKT")
+    @XmlSchemaType(name="")
+    protected long maalepunktID;
 
     /**
      * Gets the value of the transactionId property.
@@ -435,5 +440,13 @@ public class Transaction {
 
     public void setTransactionSequence(int transactionSequence) {
         this.transactionSequence = transactionSequence;
+    }
+
+    public long getMaalepunktID() {
+        return maalepunktID;
+    }
+
+    public void setMaalepunktID(long maalepunktID) {
+        this.maalepunktID = maalepunktID;
     }
 }

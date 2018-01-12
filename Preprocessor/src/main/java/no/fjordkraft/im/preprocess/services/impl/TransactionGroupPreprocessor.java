@@ -76,10 +76,11 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                     }
                                     transaction.setStartDate(startDate);
                                     transaction.setEndDate(endDate);
+                                    transaction.setMaalepunktID(attachment.getFAKTURA().getMAALEPUNKT());
                                     attachment.getFAKTURA().setFreeText(transaction.getFreeText());
-                                    attachment.getFAKTURA().setGrid(getGridConfigInfo(attachment.getFAKTURA().getVEDLEGGEMUXML()
+                                /*    attachment.getFAKTURA().setGrid(getGridConfigInfo(attachment.getFAKTURA().getVEDLEGGEMUXML()
                                             .getInvoice().getInvoiceFinalOrder().getInvoiceOrderInfo110().getLDC1(),
-                                            request.getEntity().getId()));
+                                            request.getEntity().getId()));*/
                                     attachment.setStartDate(startDate);
                                     attachment.setEndDate(endDate);
                                 }
@@ -94,62 +95,70 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                                                 XMLGregorianCalendar startDate = null;
                                                                 XMLGregorianCalendar endDate = null;
                                                                  if( "creditnote".equalsIgnoreCase(attachment.getFAKTURA().getFAKTURATYPE().toLowerCase()))
+                                                                 {
+                                                                     List<CreditNoteLineType> creditNoteLineTypeList = attachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines();
+                                                                     if(null != creditNoteLineTypeList)
                                                                      {
-
-                                                                         List<CreditNoteLineType> creditNoteLineTypeList = attachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines();
-                                                                             if(null != creditNoteLineTypeList) {
-                                                                                     for (CreditNoteLineType creditNotelineType : creditNoteLineTypeList) {
-                                                                                         if(null!=creditNotelineType.getInvoicePeriods() && creditNotelineType.getInvoicePeriods().size() > 0)
-                                                                                             {
-                                                                                                     if (null == startDate) {
-                                                                                                         startDate = creditNotelineType.getInvoicePeriods().get(0).getStartDate().getValue();
-                                                                                                         endDate = creditNotelineType.getInvoicePeriods().get(0).getEndDate().getValue();
-                                                                                                         }  else {
-                                                                                                         XMLGregorianCalendar startDate2 = creditNotelineType.getInvoicePeriods().get(0).getStartDate().getValue();
-                                                                                                         XMLGregorianCalendar endDate2 = creditNotelineType.getInvoicePeriods().get(0).getEndDate().getValue();
-                                                                                                             if (null != startDate2 && startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
-                                                                                                                 startDate = startDate2;
-                                                                                                             }
-                                                                                                             if (null != endDate2 && null != endDate && endDate.toGregorianCalendar().compareTo(endDate2.toGregorianCalendar()) < 0) {
-                                                                                                                 endDate = endDate2;
-                                                                                                             }
-                                                                                                     }
-
-                                                                                         }
+                                                                        for (CreditNoteLineType creditNotelineType : creditNoteLineTypeList)
+                                                                        {
+                                                                            if(null!=creditNotelineType.getInvoicePeriods() && creditNotelineType.getInvoicePeriods().size() > 0)
+                                                                            {
+                                                                                if (null == startDate)
+                                                                                 {
+                                                                                    startDate = creditNotelineType.getInvoicePeriods().get(0).getStartDate().getValue();
+                                                                                    endDate = creditNotelineType.getInvoicePeriods().get(0).getEndDate().getValue();
                                                                                  }
-                                                                                 } else {
-                                                                                     if(attachment.getFAKTURA().getVedleggehfObj().getInvoice()!=null)
-                                                                                         {
-                                                                                         List<InvoiceLineType> invoiceLineTypeList = attachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines();
-                                                                                                if(null != invoiceLineTypeList) {
-                                                                                                             for (InvoiceLineType invoiceLineType : invoiceLineTypeList) {
-                                                                                                             if(null!=invoiceLineType.getInvoicePeriods() && invoiceLineType.getInvoicePeriods().size() > 0)
-                                                                                                                     {
-                                                                                                                                 if (null == startDate) {
-                                                                                                                                       startDate = invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue();
-                                                                                                                                      endDate = invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue();
-                                                                                                                                         } else {
-                                                                                                                                     XMLGregorianCalendar startDate2 = invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue();
-                                                                                                                                       XMLGregorianCalendar endDate2 = invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue();
-                                                                                                                                          if (null != startDate2 && startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
-                                                                                                                                            startDate = startDate2;
-                                                                                                                                        }
-                                                                                                                                        if (null != endDate2 && null != endDate && endDate.toGregorianCalendar().compareTo(endDate2.toGregorianCalendar()) < 0) {
-                                                                                                                                            endDate = endDate2;
-                                                                                                                                        }
-                                                                                                                                }
-                                                                                                                    }
-                                                                                                        }
+                                                                                else
+                                                                                 {
+                                                                                    XMLGregorianCalendar startDate2 = creditNotelineType.getInvoicePeriods().get(0).getStartDate().getValue();
+                                                                                    XMLGregorianCalendar endDate2 = creditNotelineType.getInvoicePeriods().get(0).getEndDate().getValue();
+                                                                                    if (null != startDate2 && startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
+                                                                                        startDate = startDate2;
+                                                                                    }
+                                                                                    if (null != endDate2 && null != endDate && endDate.toGregorianCalendar().compareTo(endDate2.toGregorianCalendar()) < 0) {
+                                                                                        endDate = endDate2;
+                                                                                    }
+                                                                                 }
+
+                                                                            }
+                                                                        }
+                                                                     }
+                                                                 }
+                                                                 else
+                                                                 {
+                                                                        if(attachment.getFAKTURA().getVedleggehfObj().getInvoice()!=null)
+                                                                        {
+                                                                            List<InvoiceLineType> invoiceLineTypeList = attachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines();
+                                                                            if(null != invoiceLineTypeList) {
+                                                                                for (InvoiceLineType invoiceLineType : invoiceLineTypeList) {
+                                                                                    if(null!=invoiceLineType.getInvoicePeriods() && invoiceLineType.getInvoicePeriods().size() > 0)
+                                                                                    {
+                                                                                        if (null == startDate) {
+                                                                                            startDate = invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue();
+                                                                                            endDate = invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue();
+                                                                                        } else {
+                                                                                            XMLGregorianCalendar startDate2 = invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue();
+                                                                                            XMLGregorianCalendar endDate2 = invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue();
+                                                                                            if (null != startDate2 && startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
+                                                                                                startDate = startDate2;
                                                                                             }
-                                                                                         }
-                                                                                 }
-                                                                    transaction.setStartDate(startDate);
-                                                                    transaction.setEndDate(endDate);
-                                                                    attachment.setStartDate(startDate);
-                                                                    attachment.setEndDate(endDate);
-                                                                    break;
-                                                                }
-                                                        } else if(IMConstants.PDFE2B.equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
+                                                                                            if (null != endDate2 && null != endDate && endDate.toGregorianCalendar().compareTo(endDate2.toGregorianCalendar()) < 0) {
+                                                                                                endDate = endDate2;
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                transaction.setStartDate(startDate);
+                                                                transaction.setEndDate(endDate);
+                                                                transaction.setMaalepunktID(attachment.getFAKTURA().getMAALEPUNKT());
+                                                                attachment.setStartDate(startDate);
+                                                                attachment.setEndDate(endDate);
+                                                                break;
+                                                        }
+                                                    }else if(IMConstants.PDFE2B.equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
 
                                                         List<BaseItemDetails> baseItemDetailsList = attachment.getFAKTURA().getVedlegge2BObj().getInvoice().getInvoiceDetails().getBaseItemDetails();
                                                         XMLGregorianCalendar startDate = null;
@@ -173,25 +182,26 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                                         }
                                                         transaction.setStartDate(startDate);
                                                         transaction.setEndDate(endDate);
+                                                        transaction.setMaalepunktID(attachment.getFAKTURA().getMAALEPUNKT());
                                                         attachment.setStartDate(startDate);
                                                         attachment.setEndDate(endDate);
                                                         break;
                                                     }
                                                 }
                                         }
-
+                                        nettTransaction.add(createTransactionEntry(transaction, IMConstants.NETT));
+                                        i++;
                                 }
-                            nettTransaction.add(createTransactionEntry(transaction, IMConstants.NETT));
-                            i++;
                         }
                     }
                 }
-            }
+
             processedTransaction.addAll(kraftTransaction);
             processedTransaction.addAll(nettTransaction);
             transactionGroup.setTransaction(groupProcessedTransaction(processedTransaction));
             transactionGroup.setTotalTransactions(i);
             request.getStatement().setTransactionGroup(transactionGroup);
+
             request.getStatement().setTotalVatAmount(IMConstants.NEGATIVE * request.getStatement().getTotalVatAmount());
         } catch (Exception ex) {
             throw new PreprocessorException("Failed in Transaction Group Pre-Processor with message: ",ex );
@@ -209,6 +219,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
         resultTransaction.setStartDate(transaction.getStartDate());
         resultTransaction.setEndDate(transaction.getEndDate());
         resultTransaction.setReference(transaction.getReference());
+        resultTransaction.setMaalepunktID(transaction.getMaalepunktID());
         return resultTransaction;
     }
 
@@ -218,22 +229,22 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
         Iterator mapIterator = null;
         List<Transaction> transactionList = null;
         //int i = 1;
-        Map<String,List<Transaction>> groupTransactions = new HashMap<>();
+        Map<Long,List<Transaction>> groupTransactions = new HashMap<>();
 
         for(Transaction individualTransaction:processedTransaction) {
             //multiValueMap.put(individualTransaction.getFreeText(), individualTransaction);
-            if(groupTransactions.containsKey(individualTransaction.getFreeText().trim())){
-                List<Transaction> tlist =  groupTransactions.get(individualTransaction.getFreeText());
+            if(groupTransactions.containsKey(individualTransaction.getMaalepunktID())){
+                List<Transaction> tlist =  groupTransactions.get(individualTransaction.getMaalepunktID());
                 if(IMConstants.KRAFT.equals(individualTransaction.getTransactionType())){
                     tlist.add(0,individualTransaction);
                 } else {
                     tlist.add(individualTransaction);
                 }
-                groupTransactions.put(individualTransaction.getFreeText(),tlist);
+                groupTransactions.put(individualTransaction.getMaalepunktID(),tlist);
             } else {
                 List<Transaction> tlist = new ArrayList<>();
                 tlist.add(individualTransaction);
-                groupTransactions.put(individualTransaction.getFreeText().trim(),tlist);
+                groupTransactions.put(individualTransaction.getMaalepunktID(),tlist);
             }
         }
 

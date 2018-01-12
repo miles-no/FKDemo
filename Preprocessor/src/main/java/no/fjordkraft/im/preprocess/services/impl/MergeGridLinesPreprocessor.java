@@ -1,12 +1,17 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
 import no.fjordkraft.im.if320.models.*;
+import no.fjordkraft.im.model.GridConfig;
 import no.fjordkraft.im.model.GridGroup;
 import no.fjordkraft.im.model.GridLine;
 import no.fjordkraft.im.model.GroupGridLine;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
+import no.fjordkraft.im.services.AuditLogService;
+import no.fjordkraft.im.services.GridConfigService;
 import no.fjordkraft.im.services.GridGroupService;
+import no.fjordkraft.im.statusEnum.StatementStatusEnum;
+import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +35,12 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
      @Autowired
      GridGroupService gridGroupService;
 
+    @Autowired
+    GridConfigService gridConfigService;
+
+    @Autowired
+    AuditLogService auditLogService;
+
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, InstantiationException {
 
@@ -39,8 +50,16 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
            Attachment attachment = attachments.getAttachment().get(i);
            Nettleie nettleie = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie();
            String gridName = null;
-           if( attachment.getFAKTURA().getGrid()!=null )
+           if( attachment.getFAKTURA().getGrid()!=null && attachment.getFAKTURA().getGrid().getName()!=null)
                gridName = attachment.getFAKTURA().getGrid().getName().trim();
+
+             if(attachment.getFAKTURA().getVEDLEGGEMUXML()!=null  && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice()!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null &&
+                attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderInfo110()!=null &&
+                attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderInfo110().getLDC1()!=null)
+                    gridName = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderInfo110().getLDC1();
+             if((gridName ==null ||(gridName!=null && gridName.isEmpty()))&& nettleie.getGridName()!=null)
+                    gridName = nettleie.getGridName().trim();
+            attachment.getFAKTURA().setGrid(getGridConfigInfo(gridName,request.getEntity().getId()));
           if(nettleie!=null && nettleie.getGridName()!=null && gridName!=null && gridName.toUpperCase().contains(nettleie.getGridName().trim().toUpperCase()))
           {
               List<GridGroup> listOfGridGroups = gridGroupService.getGridGroupByGridConfigName(gridName);
@@ -85,4 +104,20 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
             }
         }
     }
+
+    private Grid getGridConfigInfo(String ldc1, Long id) {
+        Grid grid = new Grid();
+
+        GridConfig gridConfig = gridConfigService.getGridConfigByBrand(ldc1.toUpperCase());
+        if(null != gridConfig) {
+            grid.setName(gridConfig.getGridLabel());
+            grid.setEmail(gridConfig.getEmail());
+            grid.setTelephone(gridConfig.getPhone());
+        } else {
+            String errorMessage = "Grid not found: " + ldc1;
+            auditLogService.saveAuditLog(id, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);
+        }
+        return grid;
+    }
+
 }

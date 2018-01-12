@@ -4,6 +4,9 @@ import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.*;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
+import no.fjordkraft.im.services.AuditLogService;
+import no.fjordkraft.im.statusEnum.StatementStatusEnum;
+import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,9 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
     @Qualifier("marshaller")
     private Marshaller marshaller;
 
+    @Autowired
+    private AuditLogService auditLogService;
+
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request)
     {
@@ -53,22 +59,29 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                         emuxmlAttachment = attachment;
                         for(InvoiceOrder invoiceOrder :faktura.getVEDLEGGEMUXML().getInvoice().getInvoiceOrder())
                         {
-                            long malepunktID= invoiceOrder.getSupplyPointInfo117().getObjectId();
-                            malepunktVsOrder.put(Long.valueOf(malepunktID), invoiceOrder);
-                            ArrayList listOfInvoice = new ArrayList();
-                            if(Long.compare(malepunktID,faktura.getMAALEPUNKT())==0)
+                            if( invoiceOrder.getSupplyPointInfo117()!=null)
                             {
-                                listOfInvoice.add(invoiceOrder);
-                                attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().setInvoiceOrder(listOfInvoice);
-                                listOfTransactions =  getKraftTransactionGroup(request.getStatement().getTransactions().getTransaction(), attachment);
-                            }
-                            else
+                                long malepunktID= invoiceOrder.getSupplyPointInfo117().getObjectId();
+                                malepunktVsOrder.put(Long.valueOf(malepunktID), invoiceOrder);
+                                ArrayList listOfInvoice = new ArrayList();
+                                if(Long.compare(malepunktID,faktura.getMAALEPUNKT())==0)
+                                {
+                                    listOfInvoice.add(invoiceOrder);
+                                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().setInvoiceOrder(listOfInvoice);
+                                    listOfTransactions =  getKraftTransactionGroup(request.getStatement().getTransactions().getTransaction(), attachment);
+                                }
+                                else
+                                {
+                                    Attachment newAttachment = deepClone(emuxmlAttachment);
+                                    newAttachment.getFAKTURA().setMAALEPUNKT(malepunktID);
+                                    listOfInvoice.add(malepunktVsOrder.get(Long.valueOf(malepunktID)));
+                                    newAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().setInvoiceOrder(listOfInvoice);
+                                    listOfNewAttachments.add(newAttachment);
+                                }
+                            } else
                             {
-                                Attachment newAttachment = deepClone(emuxmlAttachment);
-                                newAttachment.getFAKTURA().setMAALEPUNKT(malepunktID);
-                                listOfInvoice.add(malepunktVsOrder.get(Long.valueOf(malepunktID)));
-                                newAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().setInvoiceOrder(listOfInvoice);
-                                listOfNewAttachments.add(newAttachment);
+                                String errorMessage = "Missing SupplyPointInfo117 in Invoice Order" ;
+                                auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);
                             }
                         }
 
