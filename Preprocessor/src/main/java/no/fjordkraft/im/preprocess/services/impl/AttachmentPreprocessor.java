@@ -267,7 +267,10 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             {
             CreditNote creditNote = pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote();
             nettleie.setReferenceNumber(creditNote.getID().getValue().toString());
-            nettleie.setFreeText(creditNote.getAccountingSupplierParty().getParty().getPostalAddress().getStreetName().getValue());
+                if(creditNote.getDeliveries().get(0)!=null && creditNote.getDeliveries().get(0).getDeliveryLocation()!=null &&
+                        creditNote.getDeliveries().get(0).getDeliveryLocation().getAddress()!=null
+                        && creditNote.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName()!=null)
+                         nettleie.setFreeText(creditNote.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName().getValue());
             nettleie.setDescription(null);
             nettleie.setObjectId((Long.valueOf(creditNote.getDeliveries().get(0).getDeliveryLocation().getID().getValue().toString())));
             nettleie.setMeterId(creditNote.getAccountingSupplierParty().getParty().getPartyLegalEntities().get(0).getCompanyID().getValue());
@@ -324,7 +327,11 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 Invoice invoice = pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice();
                 if(invoice!=null) {
                     nettleie.setReferenceNumber(invoice.getID().getValue().toString());
-                    nettleie.setFreeText(invoice.getAccountingSupplierParty().getParty().getPostalAddress().getStreetName().getValue());
+                    if(invoice.getDeliveries().get(0)!=null && invoice.getDeliveries().get(0).getDeliveryLocation()!=null &&
+                            invoice.getDeliveries().get(0).getDeliveryLocation().getAddress()!=null &&
+                            invoice.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName()!=null)
+
+                    nettleie.setFreeText(invoice.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName().getValue());
                     nettleie.setDescription(null);
                     nettleie.setObjectId((Long.valueOf(invoice.getDeliveries().get(0).getDeliveryLocation().getID().getValue().toString())));
                     nettleie.setMeterId(invoice.getAccountingSupplierParty().getParty().getPartyLegalEntities().get(0).getCompanyID().getValue());
