@@ -76,13 +76,16 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         if (null != gridAttachment.getFAKTURA().getVedleggehfObj()) {
                             if("creditnote".equalsIgnoreCase(gridAttachment.getFAKTURA().getFAKTURATYPE().toLowerCase()))
                             {
-
+                                    if(gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines()!=null && !gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines().isEmpty()
+                                            && gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines().get(0)!=null && gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines().get(0).getInvoicePeriods().get(0).getStartDate()!=null) {
                                   gridStartDate = gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines().get(0).getInvoicePeriods().get(0).getStartDate().getValue();
+                                    }
                             }
-                            else
-                            {
-                                gridStartDate = gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0).getInvoicePeriods().get(0).getStartDate().getValue();
+                            else if(gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines()!=null && !gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().isEmpty()
+                                        && gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0)!=null && gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0).getInvoicePeriods().get(0).getStartDate()!=null) {
+                                    gridStartDate = gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0).getInvoicePeriods().get(0).getStartDate().getValue();
                             }
+
                         }
                     } else if (IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
                         gridStartDate = gridAttachment.getFAKTURA().getVedlegge2BObj().getInvoice().getInvoiceDetails().getBaseItemDetails().get(0).getStartDate();
