@@ -132,8 +132,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                          //meterIdVsOnlyGrid.put(dummyStromAttachment.getFAKTURA().getMAALEPUNKT(),dummyStromAttachment);
                          if(IMConstants.PDFEHF.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()))
                          {
-
-                                Nettleie nettleie = createEHFEntry(gridAttachment);
+                             Nettleie nettleie = createEHFEntry(gridAttachment);
                              dummyStromAttachment.getFAKTURA().setFreeText(nettleie.getFreeText());
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getProductParameters118().setDescription(nettleie.getDescription());
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().setObjectId(nettleie.getObjectId());
