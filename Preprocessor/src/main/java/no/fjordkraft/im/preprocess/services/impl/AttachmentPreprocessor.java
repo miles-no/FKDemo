@@ -77,12 +77,15 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                             if("creditnote".equalsIgnoreCase(gridAttachment.getFAKTURA().getFAKTURATYPE().toLowerCase()))
                             {
                                     if(gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines()!=null && !gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines().isEmpty()
-                                            && gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines().get(0)!=null && gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines().get(0).getInvoicePeriods().get(0).getStartDate()!=null) {
+                                            && gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines().get(0)!=null && gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines().get(0).getInvoicePeriods()!=null && !gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines().get(0).getInvoicePeriods().isEmpty()
+                                            && gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines().get(0).getInvoicePeriods().get(0).getStartDate()!=null) {
                                   gridStartDate = gridAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines().get(0).getInvoicePeriods().get(0).getStartDate().getValue();
                                     }
                             }
                             else if(gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines()!=null && !gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().isEmpty()
-                                        && gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0)!=null && gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0).getInvoicePeriods().get(0).getStartDate()!=null) {
+                                        && gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0)!=null && gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0).getInvoicePeriods()!=null &&
+                                    !gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0).getInvoicePeriods().isEmpty() && gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0).getInvoicePeriods().get(0).getStartDate()!=null)
+                            {
                                     gridStartDate = gridAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getInvoiceLines().get(0).getInvoicePeriods().get(0).getStartDate().getValue();
                             }
 
@@ -91,8 +94,11 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         gridStartDate = gridAttachment.getFAKTURA().getVedlegge2BObj().getInvoice().getInvoiceDetails().getBaseItemDetails().get(0).getStartDate();
                     }
 
-                logger.debug(" MeterId and month " + gridAttachment.getFAKTURA().getMAALEPUNKT() + "-" + gridStartDate.getMonth() + " invoice number " + invoicenumber);
-                Attachment stromAttachment = meterIdStartMonMapEMUXML.get(gridAttachment.getFAKTURA().getMAALEPUNKT() + "-" + gridStartDate.getMonth());
+               // logger.debug(" MeterId and month " + gridAttachment.getFAKTURA().getMAALEPUNKT() + "-" + gridStartDate.getMonth() + " invoice number " + invoicenumber);
+                Attachment stromAttachment = null;
+                if(gridStartDate!=null)  {
+                             stromAttachment =  meterIdStartMonMapEMUXML.get(gridAttachment.getFAKTURA().getMAALEPUNKT() + "-" + gridStartDate.getMonth());
+                }
                 boolean isMeterMonthStromAttachmentFound = false;
                 if (null == stromAttachment) {
                     logger.debug(" Strom with same meterid and month not found" + " invoice number " + invoicenumber);
