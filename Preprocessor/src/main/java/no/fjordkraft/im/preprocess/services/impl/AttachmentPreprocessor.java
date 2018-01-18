@@ -322,12 +322,13 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
                 if (null != creditNoteLineType.getTaxTotals() && creditNoteLineType.getTaxTotals().size() > 0 && null != creditNoteLineType.getTaxTotals().get(0)) {
                     taxAmount = creditNoteLineType.getTaxTotals().get(0).getTaxAmount().getValue().floatValue();
+                }
                     if (null != creditNoteLineType.getInvoicePeriods()
                             && IMConstants.ZERO != creditNoteLineType.getInvoicePeriods().size()) {
                         baseItemDetails.setStartDate(creditNoteLineType.getInvoicePeriods().get(0).getStartDate().getValue());
                         baseItemDetails.setEndDate(creditNoteLineType.getInvoicePeriods().get(0).getEndDate().getValue());
                     }
-                }
+
                 if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
                     baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(), baseItemDetails.getEndDate()));
                 }
@@ -383,12 +384,12 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
                         if (null != invoiceLineType.getTaxTotals() && invoiceLineType.getTaxTotals().size() > 0 && null != invoiceLineType.getTaxTotals().get(0)) {
                             taxAmount = invoiceLineType.getTaxTotals().get(0).getTaxAmount().getValue().floatValue();
+                        }
                             if (null != invoiceLineType.getInvoicePeriods()
                                     && IMConstants.ZERO != invoiceLineType.getInvoicePeriods().size()) {
                                 baseItemDetails.setStartDate(invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue());
                                 baseItemDetails.setEndDate(invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue());
                             }
-                        }
                         if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
                             baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(), baseItemDetails.getEndDate()));
                         }
