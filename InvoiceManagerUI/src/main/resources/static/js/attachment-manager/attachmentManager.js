@@ -1,7 +1,5 @@
 const attachmentManagerController = ($scope,$http,ModalService) => {
 
-    $scope.file = null
-
     $scope.attachmentObj = {
         attachmentId: "",
         attachmentType: "",
@@ -9,10 +7,12 @@ const attachmentManagerController = ($scope,$http,ModalService) => {
         attachmentTypeName: "",
         brandName: ""
     }
+    $scope.pageSize = 10
     $scope.alerts = []
     $scope.attachmentdata = []
     $scope.attachmentCopy = []
     $scope.selectedBrands = []
+    $scope.allCounts = [10,25,50,100]
 
     $scope.getAttachments = () =>{
         $scope.getBrands()
@@ -30,13 +30,13 @@ const attachmentManagerController = ($scope,$http,ModalService) => {
     let showBrands = () => {
         $scope.attachmentdata = []
         if($scope.selectedBrands.length > 0){
-            angular.forEach($scope.attachmentdata,(item) => {
+            angular.forEach($scope.attachmentCopy,(item) => {
                 angular.forEach($scope.selectedBrands,(selectedItem) => {
-                if (selectedItem === item.brand){
+                if (selectedItem === item.brandName){
                 $scope.attachmentdata.push(item)
             }
         })
-        $scope.tableBrands = _.uniqBy($scope.tableBrands,(e) => {
+        $scope.attachmentdata = _.uniqBy($scope.attachmentdata,(e) => {
                 return e
             })
     })
@@ -44,6 +44,10 @@ const attachmentManagerController = ($scope,$http,ModalService) => {
     else{
         $scope.attachmentdata = $scope.attachmentCopy
     }
+    }
+
+    $scope.onCountSelect = (item, model) => {
+        $scope.pageSize = item
     }
 
     $scope.onBrandSelect = (item) => {
@@ -116,21 +120,33 @@ const attachmentManagerController = ($scope,$http,ModalService) => {
         $http({
             method : 'GET',
             url : '/invoicemanager/api/attachment/content/'+id,
+            responseType : 'arraybuffer'
         }).then((response,status,headers) => {
-            console.log(attachment)
-            if(attachment.attachmentType == 'image'){
+        if(attachment.attachmentType == 'image'){
+            if(attachment.fileExtension == 'jpg'){
                 var file = new Blob([response.data], {type: 'image/jpeg'});
+            } else if (attachment.fileExtension == 'png'){
+                var file = new Blob([response.data], {type: 'image/png'});
             } else {
-                var file = new Blob([response.data], {type: 'application/pdf'});
-            }
-            var downloadLink = angular.element('<a></a>');
-            downloadLink.attr('href',window.URL.createObjectURL(file));
-            if(attachment.attachmentType == 'image'){
-                downloadLink.attr('download', attachment.attachmentTypeName+'.jpg');
-            } else {
-                downloadLink.attr('download', attachment.attachmentTypeName+'.pdf');
-            }
-            downloadLink[0].click();
+                var file = new Blob([response.data], {type: 'image/'+`${attachment.fileExtension}`});
+        }
+    } else {
+        var file = new Blob([response.data], {type: 'application/pdf'});
+    }
+    var downloadLink = angular.element('<a></a>');
+    downloadLink.attr('href',window.URL.createObjectURL(file));
+    if(attachment.attachmentType == 'image'){
+        if(attachment.fileExtension == 'jpg'){
+            downloadLink.attr('download', attachment.attachmentTypeName+'.jpeg');
+        } else if (attachment.fileExtension == 'png'){
+            downloadLink.attr('download', attachment.attachmentTypeName+'.png');
+        } else {
+            downloadLink.attr('download', attachment.attachmentTypeName+attachment.fileExtension);
+        }
+    } else {
+        downloadLink.attr('download', attachment.attachmentTypeName);
+    }
+    downloadLink[0].click();
     })
     }
 
@@ -144,7 +160,7 @@ const attachmentManagerController = ($scope,$http,ModalService) => {
                         bodyContent :attachmentObj
                     },
                     type : type,
-                    header: type === 'Add' ? 'Add new Attachment' : 'Update '+ attachmentObj.name,
+                    header: type === 'Add' ? 'Add new Attachment' : 'Update Attachment',
                     conFirmBtnText : [
                         {name: 'cancel'},
                         {name: type }

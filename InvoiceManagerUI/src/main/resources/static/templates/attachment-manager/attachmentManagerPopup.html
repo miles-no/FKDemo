@@ -1,4 +1,4 @@
-<div class="modal fade {{options.classes.body}}  modal-wrapper" ng-class="{'modal-without-header': !options.header, 'modal-with-header': options.header}">
+<div class="attachment-manager-popup modal fade {{options.classes.body}}  modal-wrapper" ng-class="{'modal-without-header': !options.header, 'modal-with-header': options.header}">
     <div ng-if="!options.header" class="close-modal " ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</div>
     <div class="modal-dialog modal-content-container">
         <div class="modal-header" ng-if="options.header">
@@ -10,43 +10,45 @@
                 <form name="attachmentValidations" class="form-horizontal" novalidate>
                     <div class="form-group">
                         <label class="control-label col-sm-4">Attachment Config</label>
-                        <div class="col-sm-6">
-                            <ui-select ng-model="modalData.attachmentTypeName" theme="bootstrap" title="Select Attachment Config" on-select="onConfigSelect($item, $model)" ng-required="true" ng-disabled="options.type=='Update'">
+                        <div class="col-sm-6 change-dropdown-size">
+                            <ui-select name="config" ng-model="modalData.attachmentTypeName" theme="bootstrap" title="Select Attachment Config" on-select="onConfigSelect($item, $model)" ng-required="true" ng-disabled="options.type=='Update'">
                                 <ui-select-match placeholder="Choose Config">{{modalData.attachmentTypeName}}</ui-select-match>
                                 <ui-select-choices  repeat="configname.attachmentName as configname in configList" position='down'>
                                     <div ng-bind-html="configname.attachmentName | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
+                            <span ng-show="attachmentValidations.config.$error.required && attachmentValidations.config.$touched" class="error-msg">Field cannot be empty</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4">Brand</label>
-                        <div class="col-sm-6">
-                            <ui-select ng-model="modalData.brandName" theme="bootstrap" title="Choose Brands" on-select="onBrandSelect($item, $model)" ng-required="true" ng-disabled="options.type=='Update'">
+                        <div class="col-sm-6 change-dropdown-size">
+                            <ui-select  name="brand" ng-model="modalData.brandName" theme="bootstrap" title="Choose Brands" on-select="onBrandSelect($item, $model)" ng-required="true" ng-disabled="options.type=='Update'">
                                 <ui-select-match placeholder="Choose Brands">{{modalData.brandName}}</ui-select-match>
                                 <ui-select-choices  repeat="brands in brandList" position='down'>
                                     <div ng-bind-html="brands | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
+                            <span ng-show="attachmentValidations.brand.$error.required && attachmentValidations.brand.$touched" class="error-msg">Field cannot be empty</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4">Type</label>
-                        <div class="col-sm-6">
-                            <ui-select ng-model="modalData.attachmentType" theme="bootstrap" title="Select Type" on-select="onTypeSelect($item, $model)" ng-required="true" ng-disabled="options.type=='Update'">
+                        <div class="col-sm-6 change-dropdown-size">
+                            <ui-select name="type" ng-model="modalData.attachmentType" theme="bootstrap" title="Select Type" on-select="onTypeSelect($item, $model)" ng-required="true" ng-disabled="options.type=='Update'">
                                 <ui-select-match placeholder="Select Type">{{modalData.attachmentType}}</ui-select-match>
                                 <ui-select-choices  repeat="type in attachmentTypeList" position='down'>
                                     <div ng-bind-html="type | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
-                            <span ng-show="ruleValidations.select.$error.required && ruleValidations.select.$touched" class="error-msg">Field cannot be empty</span>
+                            <span ng-show="attachmentValidations.type.$error.required && attachmentValidations.type.$touched" class="error-msg">Field cannot be empty</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4">Upload File</label>
                         <div class="col-sm-6">
                             <div class="upload-btn-wrapper">
-                                <button class="btn btn-primary col-sm-5" >Upload new Template</button>
+                                <button class="btn btn-primary col-sm-7" >{{options.type=='Add'?'Upload Attachment':'Update Attachment'}}</button>
                                 <input type="file" accept="application/pdf, image/*" file-model="file" class="col-sm-4">
                             </div>
                         </div>
@@ -55,6 +57,7 @@
             </div>
         </div>
         <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
             <button type="button" class="btn btn-primary" ng-click="uploadAttachment()" ng-disabled="attachmentValidations.$invalid || checkType()" data-dismiss="modal" ng-if="options.type=='Add'">Add Attachment</button>
             <button type="button" class="btn btn-primary" ng-click="updateAttachment()" ng-disabled="attachmentValidations.$invalid || checkType()" data-dismiss="modal" ng-if="options.type=='Update'">Update Attachment</button>
             <!--<button  ng-repeat="btns in  options.conFirmBtnText" type="button" ng-click="dismissModal(btns.name)" class="btn btn-primary" data-dismiss="modal" ng-disabled="transactionValidations.$invalid && (btns.name == 'Update' || btns.name == 'Add')">{{btns.name}}</button>-->

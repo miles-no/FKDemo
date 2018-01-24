@@ -16,20 +16,18 @@ const attachmentManagerPopupController = ($scope,options,$http,close) => {
     let getAllConfig = () => {
         $http.get('/invoicemanager/api/attachment/config/all').then((response) => {
             $scope.configList = response.data
-            console.log(response.data)
         })
     }
 
     let getAllBrands = () => {
         $http.get('/invoicemanager/api/brand/config/brand').then((response) => {
             $scope.brandList = response.data
-            console.log(response.data)
         })
     }
 
     $scope.uploadAttachment = () => {
         var fd = new FormData()
-        fd.append('attachmentConfigId',$scope.modalData.attachmentTypeId)
+        fd.append('attachmentConfigId',$scope.modalData.attachmentConfigId)
         fd.append('name',$scope.modalData.brandName)
         fd.append('type',$scope.modalData.attachmentType)
         fd.append('file', $scope.file)
@@ -47,7 +45,7 @@ const attachmentManagerPopupController = ($scope,options,$http,close) => {
 
     $scope.updateAttachment = () => {
         var fd = new FormData()
-        fd.append('attachmentConfigId',$scope.modalData.attachmentTypeId)
+        fd.append('attachmentConfigId',$scope.modalData.attachmentConfigId)
         fd.append('name',$scope.modalData.brandName)
         fd.append('type',$scope.modalData.attachmentType)
         fd.append('file', $scope.file)
