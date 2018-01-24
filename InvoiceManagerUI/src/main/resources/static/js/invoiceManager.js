@@ -21,6 +21,8 @@ import {listCtrl} from './template-management/templateManagementController';
 import {listPopupController} from './template-management/templateManagementPopupController';
 import {customTransactionGroupController} from './custom-transaction-group/customTransactionGroupCtrl';
 import {customTransactionGroupPopupCtrl} from './custom-transaction-group/customTransactionGroupPopupCtrl';
+import {attachmentManagerController} from './attachment-manager/attachmentManager'
+import {attachmentManagerPopupController} from './attachment-manager/attachmentManagerPopup'
 // import {landingPageController} from './controller/landingPageController';
 // import {drillDownController} from './controller/drillDownController';
 // import {mainController} from './controller/mainController'
@@ -88,6 +90,8 @@ invoiceManager.controller('listCtrl',listCtrl);
 invoiceManager.controller('listPopupController',listPopupController);
 invoiceManager.controller('customTransactionGroupController',customTransactionGroupController);
 invoiceManager.controller('customTransactionGroupPopupCtrl',customTransactionGroupPopupCtrl);
+invoiceManager.controller('attachmentManagerController',attachmentManagerController);
+invoiceManager.controller('attachmentManagerPopupController',attachmentManagerPopupController);
 
 // invoiceManager.controller('mainController',mainController);
 // invoiceManager.controller('landingPageController',landingPageController);
@@ -148,7 +152,10 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
       }).state('transaction_group',{
             url: '/transaction_group',
             templateUrl: 'templates/custom-transaction-group/customTransactionGroup.html'
-        });
+        }).state('attachment_manager',{
+            url: '/attachment_manager',
+            templateUrl: 'templates/attachment-manager/attachmentManager.html'
+        })
     $urlRouterProvider.otherwise('/home');
 });
 

@@ -1,0 +1,64 @@
+<div class="attachment-manager" ng-controller="attachmentManagerController" ng-init="getAttachments()">
+    <div uib-alert ng-repeat="alert in alerts" class="alert-width" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}}</div>
+    <div class="col-sm-12 text-center header-style">Attachment Manager</div>
+    <div class="col-sm-4">
+        <div class="row form-group">
+            <label class="control-label col-sm-3 col-lg-2 text-match">Brand</label>
+            <div class="col-sm-8">
+                <ui-select multiple ng-model="selectedBrands" theme="bootstrap" title="Choose brand" on-remove="onBrandRemoval($item, $model)" on-select="onBrandSelect($item, $model)">
+                    <ui-select-match placeholder="Select Brand">{{$item}}</ui-select-match>
+                    <ui-select-choices repeat="eachBrand in dropDownData | filter : $select.search" position='down'>
+                        <div ng-bind-html="eachBrand | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-offset-5 col-sm-3 form-horizontal change-dropdown">
+        <div class="col-sm-offset-3 col-sm-9">
+            <label class="text-match col-sm-6">Records</label>
+            <div class="col-sm-6">
+                <ui-select name="count" ng-model="pageSize" theme="bootstrap" on-select="onCountSelect($item, $model)">
+                    <ui-select-match>{{pageSize}}</ui-select-match>
+                    <ui-select-choices  repeat="count in allCounts" position='down'>
+                        <div ng-bind-html="count | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <table st-table="displayedCollection" st-safe-src="attachmentdata" class="table table-align">
+            <thead>
+            <tr>
+                <th class="table-left" st-sort="agreementNumber">Attachment Name</th>
+                <th class="table-left">Type</th>
+                <th class="table-left" st-sort="brand"><span class="pointer">Brand</span></th>
+                <th class="table-left">Download Attachment</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="attachment in displayedCollection">
+                <td class="table-left"><span class="pointer" ng-click="updateAttachment(attachment)">{{attachment.attachmentTypeName}}</span></td>
+                <td class="table-left">{{attachment.attachmentType | uppercase}}</td>
+                <td>{{attachment.brandName}}</td>
+                <td>
+                    <i uib-tooltip="Click to download" tooltip-placement="bottom"  class="fa fa-download margin-download"  ng-click="downloadAttachment(attachment)" aria-hidden="true"></i>
+                </td>
+                <td ng-click="deleteAttachment(attachment)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="7" class="text-center">
+                    <div st-pagination="" st-items-by-page="pageSize" st-template = './templates/clientPagination/clientPagination.html'></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="text-right">
+            <button ng-click="addAttachment()" class="btn btn-primary">Add Attachment</button>
+        </div>
+    </div>
+</div>
