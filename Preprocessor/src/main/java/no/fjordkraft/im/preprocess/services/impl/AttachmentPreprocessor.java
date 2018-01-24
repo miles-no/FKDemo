@@ -285,10 +285,19 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             nettleie.setAnnualConsumption(0);
             nettleie.setGridName(pdfAttachment.getFAKTURA().getAKTORNAVN());
             invoiceSummary.getInvoiceTotals().setGrossAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote()
-                    .getLegalMonetaryTotal().getTaxInclusiveAmount().getValue().toString()));
+                    .getLegalMonetaryTotal().getTaxInclusiveAmount().getValue().toString())* IMConstants.NEGATIVE);
 
-            invoiceSummary.getInvoiceTotals().setVatTotalsAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj()
-                    .getCreditNote().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount().getValue().toString()));
+            if(pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals()!=null && !pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals().isEmpty() && pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals().get(0).getTaxSubtotals()!=null && !pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals().get(0).getTaxSubtotals().isEmpty()
+                    && pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount()!=null &&  pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount().getValue()!=null) {
+                invoiceSummary.getInvoiceTotals().setVatTotalsAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj()
+                        .getCreditNote().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount().getValue().toString())* IMConstants.NEGATIVE);
+            } else if(pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals()!=null && !pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals().isEmpty()
+                    && pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals()!=null &&
+                    pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals().get(0).getTaxAmount()!=null && pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals().get(0).getTaxAmount().getValue()!=null) {
+                invoiceSummary.getInvoiceTotals().setVatTotalsAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj()
+                        .getCreditNote().getTaxTotals().get(0).getTaxAmount().getValue().toString())* IMConstants.NEGATIVE);
+            }
+
             nettleie.setInvoiceSummary(invoiceSummary);
 
             List<CreditNoteLineType> creditNoteLineTypeList = creditNote.getCreditNoteLines();
@@ -296,9 +305,14 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             {
                 baseItemDetails = new BaseItemDetails();
                 baseItemDetails.setDescription(creditNoteLineType.getItem().getName().getValue().toString());
-                baseItemDetails.setQuantityInvoiced(Float.valueOf(creditNoteLineType.getCreditedQuantity().getValue().toString()));
                 baseItemDetails.setUnitOfMeasure(creditNoteLineType.getCreditedQuantity().getUnitCode());
-                baseItemDetails.setUnitPrice(Float.valueOf(creditNoteLineType.getPrice().getPriceAmount().getValue().toString()));
+                if("kwh".equalsIgnoreCase(baseItemDetails.getUnitOfMeasure().toLowerCase()))  {
+                    baseItemDetails.setQuantityInvoiced(Float.valueOf(creditNoteLineType.getCreditedQuantity().getValue().toString()) * IMConstants.NEGATIVE);
+                }else
+                {
+                    baseItemDetails.setQuantityInvoiced(Float.valueOf(creditNoteLineType.getCreditedQuantity().getValue().toString()));
+                }
+                baseItemDetails.setUnitPrice(Float.valueOf(creditNoteLineType.getPrice().getPriceAmount().getValue().toString())* IMConstants.NEGATIVE);
                 baseItemDetails.setPriceDenomination(creditNoteLineType.getPrice().getPriceAmount().getCurrencyID());
                 List<TaxCategoryType> categoryTypeList = creditNoteLineType.getItem().getClassifiedTaxCategories();
                 BigDecimal vat = null;
@@ -310,23 +324,24 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     }
                 }
                 if(null != vat) {
-                    baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice() + ((vat.floatValue()/100)*baseItemDetails.getUnitPrice()));
+                    baseItemDetails.setUnitPriceGross((baseItemDetails.getUnitPrice() + ((vat.floatValue()/100)*baseItemDetails.getUnitPrice()))* IMConstants.NEGATIVE);
                 } else {
-                    baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
+                    baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice() * IMConstants.NEGATIVE);
                 }
 
                 if (null != creditNoteLineType.getTaxTotals() && creditNoteLineType.getTaxTotals().size() > 0 && null != creditNoteLineType.getTaxTotals().get(0)) {
                     taxAmount = creditNoteLineType.getTaxTotals().get(0).getTaxAmount().getValue().floatValue();
+                }
                     if (null != creditNoteLineType.getInvoicePeriods()
                             && IMConstants.ZERO != creditNoteLineType.getInvoicePeriods().size()) {
                         baseItemDetails.setStartDate(creditNoteLineType.getInvoicePeriods().get(0).getStartDate().getValue());
                         baseItemDetails.setEndDate(creditNoteLineType.getInvoicePeriods().get(0).getEndDate().getValue());
                     }
-                }
+
                 if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
                     baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(), baseItemDetails.getEndDate()));
                 }
-                baseItemDetails.setLineItemGrossAmount(Float.valueOf(creditNoteLineType.getLineExtensionAmount().getValue().toString()) + taxAmount);
+                baseItemDetails.setLineItemGrossAmount((Float.valueOf(creditNoteLineType.getLineExtensionAmount().getValue().toString()) + taxAmount)* IMConstants.NEGATIVE);
                 baseItemDetailsList.add(baseItemDetails);
                 nettleie.setBaseItemDetails(baseItemDetailsList);
             }
@@ -348,8 +363,21 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     invoiceSummary.getInvoiceTotals().setGrossAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice()
                             .getLegalMonetaryTotal().getTaxInclusiveAmount().getValue().toString()));
 
-                    invoiceSummary.getInvoiceTotals().setVatTotalsAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj()
-                            .getInvoice().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount().getValue().toString()));
+                    if(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getTaxTotals()!=null && !pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getTaxTotals().isEmpty()
+                            && pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getTaxTotals().get(0).getTaxSubtotals()!=null
+                            && !pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getTaxTotals().get(0).getTaxSubtotals().isEmpty()
+                            && pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount()!=null
+                            &&  pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount().getValue()!=null) {
+                        invoiceSummary.getInvoiceTotals().setVatTotalsAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj()
+                                .getInvoice().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount().getValue().toString()));
+                    } else if(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getTaxTotals()!=null && !pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getTaxTotals().isEmpty()
+                            && pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getTaxTotals().get(0).getTaxAmount()!=null && pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getTaxTotals().get(0).getTaxAmount().getValue()!=null) {
+                        invoiceSummary.getInvoiceTotals().setVatTotalsAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj()
+                                .getInvoice().getTaxTotals().get(0).getTaxAmount().getValue().toString()));
+                    }
+
+                 /*   invoiceSummary.getInvoiceTotals().setVatTotalsAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj()
+                            .getInvoice().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount().getValue().toString()));*/
 
                     nettleie.setInvoiceSummary(invoiceSummary);
 
@@ -378,12 +406,12 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
                         if (null != invoiceLineType.getTaxTotals() && invoiceLineType.getTaxTotals().size() > 0 && null != invoiceLineType.getTaxTotals().get(0)) {
                             taxAmount = invoiceLineType.getTaxTotals().get(0).getTaxAmount().getValue().floatValue();
+                        }
                             if (null != invoiceLineType.getInvoicePeriods()
                                     && IMConstants.ZERO != invoiceLineType.getInvoicePeriods().size()) {
                                 baseItemDetails.setStartDate(invoiceLineType.getInvoicePeriods().get(0).getStartDate().getValue());
                                 baseItemDetails.setEndDate(invoiceLineType.getInvoicePeriods().get(0).getEndDate().getValue());
                             }
-                        }
                         if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
                             baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(), baseItemDetails.getEndDate()));
                         }
