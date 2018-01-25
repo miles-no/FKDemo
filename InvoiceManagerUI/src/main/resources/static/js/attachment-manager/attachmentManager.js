@@ -122,10 +122,10 @@ const attachmentManagerController = ($scope,$http,ModalService) => {
             url : '/invoicemanager/api/attachment/content/'+id,
             responseType : 'arraybuffer'
         }).then((response,status,headers) => {
-        if(attachment.attachmentType == 'image'){
-            if(attachment.fileExtension == 'jpg'){
+        if((attachment.attachmentType).toLowerCase() == 'image'){
+            if((attachment.fileExtension).toLowerCase() == 'jpg'){
                 var file = new Blob([response.data], {type: 'image/jpeg'});
-            } else if (attachment.fileExtension == 'png'){
+            } else if ((attachment.fileExtension).toLowerCase() == 'png'){
                 var file = new Blob([response.data], {type: 'image/png'});
             } else {
                 var file = new Blob([response.data], {type: 'image/'+`${attachment.fileExtension}`});
@@ -135,10 +135,10 @@ const attachmentManagerController = ($scope,$http,ModalService) => {
     }
     var downloadLink = angular.element('<a></a>');
     downloadLink.attr('href',window.URL.createObjectURL(file));
-    if(attachment.attachmentType == 'image'){
-        if(attachment.fileExtension == 'jpg'){
+    if((attachment.attachmentType).toLowerCase() == 'image'){
+        if((attachment.fileExtension).toLowerCase() == 'jpg'){
             downloadLink.attr('download', attachment.attachmentTypeName+'.jpeg');
-        } else if (attachment.fileExtension == 'png'){
+        } else if ((attachment.fileExtension).toLowerCase() == 'png'){
             downloadLink.attr('download', attachment.attachmentTypeName+'.png');
         } else {
             downloadLink.attr('download', attachment.attachmentTypeName+attachment.fileExtension);
