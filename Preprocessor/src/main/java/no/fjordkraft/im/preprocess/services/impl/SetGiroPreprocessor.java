@@ -55,7 +55,8 @@ public class SetGiroPreprocessor extends BasePreprocessor {
             int validTill = configService.getInteger(IMConstants.BLANKETNUMBER_VALIDITY_PERIOD_MONTHS);
             logger.debug("Validity period is "+ validTill + " months ");
             BlanketNumber blanketNumber = blanketNumberService.getLatestBlanketNumberByDate(new Date(),true);
-            if(getMonths(blanketNumber.getDateOfActivation(),new Date())<validTill)
+
+            if(blanketNumber!=null && getMonths(blanketNumber.getDateOfActivation(),new Date())<validTill)
             {
                   logger.debug("Blanket Number is valid as date of activation is " + blanketNumber.getDateOfActivation());
 
@@ -65,8 +66,10 @@ public class SetGiroPreprocessor extends BasePreprocessor {
             {
 
             }
-            request.getStatement().setBlanketNumber(blanketNumber.getBlanketNumber());
-
+            if(blanketNumber!=null)
+            {
+               request.getStatement().setBlanketNumber(blanketNumber.getBlanketNumber());
+            }
         }
         else
         {

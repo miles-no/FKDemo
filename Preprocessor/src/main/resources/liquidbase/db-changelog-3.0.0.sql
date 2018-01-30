@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset arpita:1
+--changeset arpita:1 context:prod
 
   CREATE TABLE IM_GRID_LINE(GRID_LINE_ID NUMBER, GRID_LINE_NME VARCHAR2(50),CONSTRAINT PK_IM_GRID_LINE PRIMARY KEY (GRID_LINE_ID));
 
@@ -34,3 +34,33 @@
       references IM_GRID_LINE (GRID_LINE_ID);
     ALTER TABLE IM_GROUP_GRID_LINE add constraint FK_IM_GRP_GRID_GRP_ID foreign key(GRID_GROUP_ID)
           references IM_GRID_GROUP (GROUP_ID);
+
+
+--changeset arpita:2
+
+      CREATE TABLE IM_ATTACHMENT_CONFIG
+       (ID NUMBER,ATTACHMENT_NAME VARCHAR2(20 BYTE));
+
+      create sequence IM_ATTACHMENT_CONFIG_SEQ
+      start with 1
+      increment by 1
+      nocache
+      nocycle;
+
+
+    CREATE TABLE IM_ATTACHMENT (ATTACHMENT_ID NUMBER, ATTACHMENT_TYPE VARCHAR2(20 BYTE),ATTACHMENT_CONTENT CLOB, BRAND VARCHAR2(20 BYTE), ATTACHMENT_CONFIG_ID NUMBER,	FILE_TYPE VARCHAR2(20 BYTE));
+    create sequence IM_ATTACHMENT_SEQ
+      start with 1
+      increment by 1
+      nocache
+      nocycle;
+
+
+    CREATE TABLE IM_BLANKET_NUMBER (BLANKET_NUMBER  VARCHAR2(30 BYTE), ID NUMBER, DATE_OF_ACTIVATION DATE,MODE_OF_GENERATION CHAR(1 BYTE),STATUS NUMBER(1,0));
+    CREATE SEQUENCE  IM_BLANKET_NUMBER_SEQ
+    start with 1
+    INCREMENT BY 1
+     NOCACHE
+     NOCYCLE ;
+
+Insert into IM_CONFIG (NAME,VALUE) values ('blanketnumber.validity.period.months','3');

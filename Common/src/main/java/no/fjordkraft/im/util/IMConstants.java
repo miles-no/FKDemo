@@ -85,4 +85,5 @@ public interface IMConstants {
     static final String READ_ADVT_PDF_FILESYSTEM="read.advt.pdf.filesystem";
     static final String CODE_UNIT_PRICE_GROSS="UnitPriceGross";
     static final String MERGE_ROTATE_ADVT_PDF="merge.rotate.advt.pdf";
+    static final String BLANKETNUMBER_VALIDITY_PERIOD_MONTHS="blanketnumber.validity.period.months";
 }
