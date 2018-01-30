@@ -76,6 +76,9 @@ public class Statement {
     @Transient
     private String brand;
 
+    @Column(name="CREDIT_LIMIT")
+    private float creditLimit;
+
     public Long getId() {
         return id;
     }
@@ -234,5 +237,13 @@ public class Statement {
 
     public void setLayoutID(Long layoutID) {
         this.layoutID = layoutID;
+    }
+
+    public float getCreditLimit() {
+        return creditLimit;
+    }
+
+    public void setCreditLimit(float creditLimit) {
+        this.creditLimit = creditLimit;
     }
 }

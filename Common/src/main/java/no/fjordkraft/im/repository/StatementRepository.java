@@ -44,4 +44,7 @@ public interface StatementRepository extends JpaRepository<Statement,Long> {
 
     @Query("select new no.fjordkraft.im.model.StatusCount(s.status, count(s)) from Statement s where s.systemBatchInput.id = :sbiId group by s.status")
     List<StatusCount> getStatementBySbiId(@Param("sbiId") Long sbiId);
+
+    @Query("select s from Statement s where s.accountNumber = :acctNo and s.status = :status")
+    List<Statement> getProcessedStatementByAccountNumber(@Param("acctNo") String accountNo,@Param("status") String status);
 }

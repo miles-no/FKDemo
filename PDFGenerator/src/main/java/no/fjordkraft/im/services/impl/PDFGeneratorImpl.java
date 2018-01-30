@@ -3,9 +3,11 @@ package no.fjordkraft.im.services.impl;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import no.fjordkraft.im.exceptions.PDFGeneratorException;
+import no.fjordkraft.im.model.Attachment;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.*;
+import no.fjordkraft.im.statusEnum.AttachmentTypeEnum;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.task.PDFGeneratorTask;
 import no.fjordkraft.im.util.IMConstants;
@@ -77,6 +79,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     @Autowired
     AuditLogServiceImpl auditLogService;
 
+    @Autowired
+    AttachmentConfigService attachmentConfigService;
+
     private String outputDirectoryPath;
     private String pdfGeneratedFolderName;
     private String xmlFolderName;
@@ -90,6 +95,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     private String customPdfFontPath;
     private String basePathCampaign;
     private boolean readCampaignFilesystem;
+    private int attachmentConfigId;
 
     public PDFGeneratorImpl(ConfigService configService) {
         this.configService = configService;
@@ -139,7 +145,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 logger.debug("generated pdf bytes of length " + generatedPdf.length);
             }
             //auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
-            invoiceGenerator.mergeInvoice(statement, generatedPdf);
+            invoiceGenerator.mergeInvoice(statement, generatedPdf,attachmentConfigId);
             //statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
            // auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             logger.debug("PDF generated for statement with statementId "+ statement.getId()+ "completed");
@@ -176,14 +182,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             String campaignImage = null;
             logger.debug("readCampaignFilesystem " + readCampaignFilesystem);
             if (readCampaignFilesystem) {
-                String path = basePathCampaign+brand+File.separator+brand.toLowerCase()+".jpg";
-                logger.debug(" reading campaign from FS for statement "+statement.getId() + " path is "+ path);
-                File f = new File(path);
-                if(f.exists()) {
-                    logger.debug(" reading campaign from FS file exists");
-                    byte[] image = IOUtils.toByteArray(new FileInputStream(f));
-                    campaignImage = Base64.encodeBase64String(image);
-                }
+                campaignImage = getDefaultCampaignImage(statement);
             } else {
                 campaignImage = segmentFileService.getImageContent(accountNo, brand);
             }
@@ -309,5 +308,53 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             result = cause;
         }
         return result;
+    }
+
+    private String getDefaultCampaignImage(Statement statement)
+    {
+        String campaignImage = null;
+        try {
+            String brand =  statement.getSystemBatchInput().getTransferFile().getBrand();
+          //  int attachmentConfigId =0;
+            float creditLimit = statement.getCreditLimit();
+            List<Statement>  listOfStatements = statementRepository.getProcessedStatementByAccountNumber(statement.getAccountNumber(),StatementStatusEnum.INVOICE_PROCESSED.getStatus());
+            if(listOfStatements==null ||(listOfStatements!=null && listOfStatements.isEmpty())) {
+                attachmentConfigId = AttachmentTypeEnum.FIRST_TIME_ATTACHMENT.getStatus();
+            }
+            else if(listOfStatements!=null && !listOfStatements.isEmpty() && !Float.valueOf(creditLimit).equals(Float.valueOf("0"))) {
+                attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();
+            }
+            else {
+                attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
+            }
+            List<Attachment> listOfAttachments = attachmentConfigService.getAttachmentByBrandAndAttachmentName(brand,attachmentConfigId);
+            if(listOfAttachments!=null && !listOfAttachments.isEmpty())
+            {
+                for(Attachment attachmentFile : listOfAttachments)
+                {
+                    if("image".equalsIgnoreCase(attachmentFile.getAttachmentType().toLowerCase()))
+                    {    if(readCampaignFilesystem)
+                        campaignImage =  attachmentFile.getFileContent();
+                        break;
+                    }
+                }
+            }
+
+            if(campaignImage==null)
+            {
+                String path = basePathCampaign+brand+File.separator+brand.toLowerCase()+".jpg";
+                logger.debug(" reading campaign from FS for statement "+statement.getId() + " path is "+ path);
+                File f = new File(path);
+                if(f.exists()) {
+                    logger.debug(" reading campaign from FS file exists");
+                    byte[] image = IOUtils.toByteArray(new FileInputStream(f));
+                    campaignImage = Base64.encodeBase64String(image);
+                }
+            }
+        }catch (Exception e) {
+            logger.error("Error while getting default Campaign Image ",e);
+            throw new PDFGeneratorException(e);
+        }
+        return campaignImage;
     }
 }

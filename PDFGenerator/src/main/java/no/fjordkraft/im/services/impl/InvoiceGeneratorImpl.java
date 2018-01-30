@@ -3,11 +3,13 @@ package no.fjordkraft.im.services.impl;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import javafx.scene.transform.Rotate;
+import no.fjordkraft.im.model.Attachment;
 import no.fjordkraft.im.model.InvoicePdf;
 import no.fjordkraft.im.model.SegmentFile;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.*;
+import no.fjordkraft.im.statusEnum.AttachmentTypeEnum;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import no.fjordkraft.im.util.PDFUtil;
@@ -23,6 +25,8 @@ import org.springframework.util.StopWatch;
 import javax.annotation.PostConstruct;
 import java.io.*;
 import java.nio.file.Files;
+import java.util.*;
+import java.util.List;
 
 /**
  * Created by miles on 6/6/2017.
@@ -50,6 +54,9 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     @Autowired
     AuditLogServiceImpl auditLogService;
 
+    @Autowired
+    AttachmentConfigService attachmentConfigService;
+
     private String basePathCampaign;
 
     private boolean readAdvtPdfFileSystem;
@@ -66,7 +73,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
 
     @Override
     @Transactional
-    public void mergeInvoice(Statement statement, byte[] generatedPdf) throws IOException, DocumentException {
+    public void mergeInvoice(Statement statement, byte[] generatedPdf,int attachmentConfigId) throws IOException, DocumentException {
         String accountNo = statement.getAccountNumber();
         String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
         StopWatch stopWatch = new StopWatch();
@@ -99,7 +106,10 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             byte[] pdfBytes = null;
             logger.debug("readAdvtPdfFileSystem " + readAdvtPdfFileSystem);
             if(readAdvtPdfFileSystem) {
-                pdfBytes = getSegmentFileFromFS(brand);
+                pdfBytes = getDefaultSegmentFile(brand,attachmentConfigId);
+                if(pdfBytes==null) {
+                    pdfBytes = getSegmentFileFromFS(brand);
+                }
             } else {
                 pdfBytes = getSegmentFile(accountNo, brand);
             }
@@ -152,6 +162,29 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         return null;
     }
 
+    private byte[] getDefaultSegmentFile(String brand,int attachmentConfigId)
+    {
+        String advPDF = null;
+        List<Attachment> listOfAttachments = attachmentConfigService.getAttachmentByBrandAndAttachmentName(brand, attachmentConfigId);
+        if(listOfAttachments!=null && !listOfAttachments.isEmpty())
+        {
+            for(Attachment attachmentFile : listOfAttachments)
+            {
+                if("pdf".equalsIgnoreCase(attachmentFile.getAttachmentType().toLowerCase()))
+                {    if(readAdvtPdfFileSystem)
+                    advPDF =  attachmentFile.getFileContent();
+                }
+            }
+            if(advPDF!=null)
+            {
+                File f = new File(basePathCampaign+brand+File.separator+brand.toLowerCase()+"_!.pdf");
+                byte[] pdfBytes =  org.apache.commons.codec.binary.Base64.decodeBase64(advPDF);
+                return pdfBytes;
+            }
+        }
+        return null;
+    }
+
 
     private byte[] getSegmentFile(String accountNo, String brand) throws IOException, DocumentException {
         SegmentFile segmentFile = segmentFileService.getSegmentFile(accountNo, brand);
@@ -197,5 +230,4 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         invoicePdf.setType(IMConstants.INVOICE_PDF);
         return invoicePdf;
     }
-
 }
