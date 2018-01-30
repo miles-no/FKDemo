@@ -31,7 +31,7 @@ const attachmentManagerPopupController = ($scope,options,$http,close) => {
         fd.append('name',$scope.modalData.brandName)
         fd.append('type',$scope.modalData.attachmentType)
         fd.append('file', $scope.file)
-        $http.post('/invoicemanager/api/attachment/attachment',fd,{
+        $http.post('/zuul/invoicemanager/api/attachment/attachment',fd,{
                 transformRequest: angular.identity,
                 headers: { 'Content-Type': undefined}
             }).then((response) => {
@@ -49,7 +49,7 @@ const attachmentManagerPopupController = ($scope,options,$http,close) => {
         fd.append('name',$scope.modalData.brandName)
         fd.append('type',$scope.modalData.attachmentType)
         fd.append('file', $scope.file)
-        $http.put('/invoicemanagerapi/attachment/content/'+$scope.modalData.attachmentId,fd,{
+        $http.put('/zuul/invoicemanager/api/attachment/content/'+$scope.modalData.attachmentId,fd,{
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined}
         }).then((response) => {
