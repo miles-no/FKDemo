@@ -19,7 +19,7 @@ gulp.task('sass', ['combileVendorCSS'],function(){
     console.log('In the css task',path.join(__dirname,'/dist/css'));
     return gulp.src(path.join(__dirname,'/scss/**/*.scss'))
         .pipe(sass().on('error',sass.logError))
-        .pipe(concat('app.css'))
+        .pipe(concat('app-v1.css'))
         .pipe(gulp.dest(path.join(__dirname,'/dist/css')));
 });
 
@@ -81,7 +81,7 @@ gulp.task('browserify',['combineAppJs'],function(){
         presets: ["es2015"]
     }));
     return sources.bundle()
-		.pipe(vinylSourceStream('app.min.js'))
+		.pipe(vinylSourceStream('app-v1.min.js'))
 		.pipe(vinylBuffer())
 		.pipe(gulp.dest(path.join(__dirname,'/dist/js')))
 })
