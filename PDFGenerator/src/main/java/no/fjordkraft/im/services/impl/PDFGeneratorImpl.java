@@ -327,15 +327,20 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             else {
                 attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
             }
+            logger.debug("Attachment Configuration ID " + attachmentConfigId + "For statement "+ statement.getId() );
             List<Attachment> listOfAttachments = attachmentConfigService.getAttachmentByBrandAndAttachmentName(brand,attachmentConfigId);
             if(listOfAttachments!=null && !listOfAttachments.isEmpty())
             {
+              logger.debug("list Of attachments found for brand " + brand+ " and attachment configuration ID " + attachmentConfigId + " = " + listOfAttachments.size() );
                 for(Attachment attachmentFile : listOfAttachments)
                 {
                     if("image".equalsIgnoreCase(attachmentFile.getAttachmentType().toLowerCase()))
                     {    if(readCampaignFilesystem)
-                        campaignImage =  attachmentFile.getFileContent();
-                        break;
+                         {
+                            campaignImage =  attachmentFile.getFileContent();
+                            logger.debug(" reading campaign from database for statement "+statement.getId());
+                            break;
+                         }
                     }
                 }
             }

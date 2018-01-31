@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
         manualAllowed = true,
         checkForWorkingDay = false,
         editAllowed = true,
-        status = JobStatus.disabled
+        status = JobStatus.enabled
 
 )
 @Description("Reads the blanket numbers from table and check the date if the active blanket number is expired then reactivate another blanket number which are in inactive state. The validity period is configured in configuration table.")

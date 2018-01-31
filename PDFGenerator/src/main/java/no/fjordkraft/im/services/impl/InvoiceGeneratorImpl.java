@@ -166,8 +166,10 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     {
         String advPDF = null;
         List<Attachment> listOfAttachments = attachmentConfigService.getAttachmentByBrandAndAttachmentName(brand, attachmentConfigId);
+
         if(listOfAttachments!=null && !listOfAttachments.isEmpty())
         {
+            logger.debug("No Of attachment configuration " + listOfAttachments.size());
             for(Attachment attachmentFile : listOfAttachments)
             {
                 if("pdf".equalsIgnoreCase(attachmentFile.getAttachmentType().toLowerCase()))
@@ -177,6 +179,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             }
             if(advPDF!=null)
             {
+                logger.debug("Found advertisement PDF from attachment table ");
                 File f = new File(basePathCampaign+brand+File.separator+brand.toLowerCase()+"_!.pdf");
                 byte[] pdfBytes =  org.apache.commons.codec.binary.Base64.decodeBase64(advPDF);
                 return pdfBytes;
