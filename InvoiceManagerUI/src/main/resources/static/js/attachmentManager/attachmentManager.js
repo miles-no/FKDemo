@@ -152,7 +152,7 @@ const attachmentManagerController = ($scope,$http,ModalService) => {
 
     let showModal  = (attachmentObj, type) => {
         ModalService.showModal({
-            templateUrl: 'templates/attachment-manager/attachmentManagerPopup.html',
+            templateUrl: 'templates/attachmentManager/attachmentManagerPopup.html',
             controller: 'attachmentManagerPopupController',
             inputs : {
                 options: {

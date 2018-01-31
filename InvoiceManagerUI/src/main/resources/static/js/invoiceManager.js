@@ -21,8 +21,8 @@ import {listCtrl} from './template-management/templateManagementController';
 import {listPopupController} from './template-management/templateManagementPopupController';
 import {customTransactionGroupController} from './custom-transaction-group/customTransactionGroupCtrl';
 import {customTransactionGroupPopupCtrl} from './custom-transaction-group/customTransactionGroupPopupCtrl';
-import {attachmentManagerController} from './attachment-manager/attachmentManager'
-import {attachmentManagerPopupController} from './attachment-manager/attachmentManagerPopup'
+import {attachmentManagerController} from './attachmentManager/attachmentManager'
+import {attachmentManagerPopupController} from './attachmentManager/attachmentManagerPopup'
 // import {landingPageController} from './controller/landingPageController';
 // import {drillDownController} from './controller/drillDownController';
 // import {mainController} from './controller/mainController'
@@ -152,9 +152,9 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
       }).state('transaction_group',{
             url: '/transaction_group',
             templateUrl: 'templates/custom-transaction-group/customTransactionGroup.html'
-        }).state('attachment_manager',{
-            url: '/attachment_manager',
-            templateUrl: 'templates/attachment-manager/attachmentManager.html'
+        }).state('attachmentManager',{
+            url: '/attachmentManager',
+            templateUrl: 'templates/attachmentManager/attachmentManager.html'
         })
     $urlRouterProvider.otherwise('/home');
 });
