@@ -112,7 +112,7 @@ invoiceManager.directive('permitMask',permitMask);
 
 //Configure Global Constants
 invoiceManager.constant('_',window._);
-//invoiceManager.constant('loginUrl','/app/logon/logon.html?redirect=/invoicemanager/index.html')
+invoiceManager.constant('loginUrl','/app/logon/logon.html?redirect=/invoicemanager/index.html')
 invoiceManager.constant('logoffConfig',myModule.logoffConfig)
 
 //Configure routes
