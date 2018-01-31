@@ -64,3 +64,5 @@
      NOCYCLE ;
 
 Insert into IM_CONFIG (NAME,VALUE) values ('blanketnumber.validity.period.months','3');
+
+alter table im_statement add credit_limit number;
