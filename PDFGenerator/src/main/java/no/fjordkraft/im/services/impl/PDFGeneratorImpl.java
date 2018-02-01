@@ -327,7 +327,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             else {
                 attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
             }
-            logger.debug("Attachment Configuration ID " + attachmentConfigId + "For statement "+ statement.getId() );
+            logger.debug("Attachment Configuration ID " + attachmentConfigId + " For statement "+ statement.getStatementId() );
             List<Attachment> listOfAttachments = attachmentConfigService.getAttachmentByBrandAndAttachmentName(brand,attachmentConfigId);
             if(listOfAttachments!=null && !listOfAttachments.isEmpty())
             {

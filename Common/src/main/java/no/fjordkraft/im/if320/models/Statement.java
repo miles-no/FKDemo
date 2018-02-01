@@ -154,7 +154,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "creditedInvoice",
     "toAddress",
     "isGIROEnabled",
-    "blanketNumber"
+    "blanketNumber",
+    "checkSum"
 })
 @XmlRootElement(name = "Statement")
 public class Statement {
@@ -289,7 +290,8 @@ public class Statement {
     protected boolean isGIROEnabled;
     @XmlElement(name="BlanketNumber")
     protected String blanketNumber;
-
+    @XmlElement(name="CheckSum")
+    protected String checkSum;
     /**
      * Gets the value of the customerReference property.
      * 
@@ -1528,5 +1530,13 @@ public class Statement {
 
     public void setBlanketNumber(String blanketNumber) {
         this.blanketNumber = blanketNumber;
+    }
+
+    public String getCheckSum() {
+        return checkSum;
+    }
+
+    public void setCheckSum(String checkSum) {
+        this.checkSum = checkSum;
     }
 }

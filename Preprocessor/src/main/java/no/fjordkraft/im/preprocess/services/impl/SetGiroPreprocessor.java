@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.StringTokenizer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -61,6 +62,7 @@ public class SetGiroPreprocessor extends BasePreprocessor {
                   logger.debug("Blanket Number is valid as date of activation is " + blanketNumber.getDateOfActivation());
 
                   request.getStatement().setBlanketNumber(blanketNumber.getBlanketNumber());
+
             }
             else
             {
@@ -70,6 +72,17 @@ public class SetGiroPreprocessor extends BasePreprocessor {
             {
                request.getStatement().setBlanketNumber(blanketNumber.getBlanketNumber());
             }
+           float openClaim =  request.getStatement().getTotalOpenClaim();
+            String claim= Float.toString(openClaim) ;
+            String totalclaim=claim.substring(0,claim.indexOf("."))+claim.substring(claim.indexOf(".")+1,claim.length());
+
+            logger.debug("Total Open Claim " + openClaim + "For account number " + request.getStatement().getAccountNumber());
+            String checksum = calculateCheckDigit(totalclaim);
+             if(checksum!=null)
+             {
+                 logger.debug("Check sum value is " + checksum);
+                 request.getStatement().setCheckSum(checksum);
+             }
         }
         else
         {
@@ -88,4 +101,37 @@ public class SetGiroPreprocessor extends BasePreprocessor {
         noOfMonths = (noOfYear*(12-sDate.get(Calendar.MONTH)))+noOfMonths;
         return noOfMonths;
     }
+
+    private  String calculateCheckDigit(String totalClaim) {
+        if (totalClaim == null)
+            return null;
+        String digit;
+		/* convert to array of int for simplicity */
+        totalClaim = totalClaim.replaceAll("-","");
+        int[] digits = new int[totalClaim.length()];
+        for (int i = 0; i < totalClaim.length(); i++) {
+            digits[i] = Character.getNumericValue(totalClaim.charAt(i));
+        }
+
+		/* double every other starting from right - jumping from 2 in 2 */
+        for (int i = digits.length - 1; i >= 0; i -= 2)	{
+            digits[i] += digits[i];
+
+			/* taking the sum of digits grater than 10 - simple trick by substract 9 */
+            if (digits[i] >= 10) {
+                digits[i] = digits[i] - 9;
+            }
+        }
+        int sum = 0;
+        for (int i = 0; i < digits.length; i++) {
+            sum += digits[i];
+        }
+		/* multiply by 9 step */
+        sum = sum * 9;
+
+		/* convert to string to be easier to take the last digit */
+        digit = sum + "";
+        return digit.substring(digit.length() - 1);
+    }
+
 }
