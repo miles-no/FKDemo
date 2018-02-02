@@ -319,12 +319,17 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             float creditLimit = statement.getCreditLimit();
             List<Statement>  listOfStatements = statementRepository.getProcessedStatementByAccountNumber(statement.getAccountNumber(),StatementStatusEnum.INVOICE_PROCESSED.getStatus());
             if(listOfStatements==null ||(listOfStatements!=null && listOfStatements.isEmpty())) {
-                attachmentConfigId = AttachmentTypeEnum.FIRST_TIME_ATTACHMENT.getStatus();
+                if( !Float.valueOf(creditLimit).equals(Float.valueOf("0")))
+                {
+                    attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();
+                }
+                else
+                {
+                   attachmentConfigId = AttachmentTypeEnum.FIRST_TIME_ATTACHMENT.getStatus();
+                }
             }
-            else if(listOfStatements!=null && !listOfStatements.isEmpty() && !Float.valueOf(creditLimit).equals(Float.valueOf("0"))) {
-                attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();
-            }
-            else {
+            else
+            {
                 attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
             }
             logger.debug("Attachment Configuration ID " + attachmentConfigId + " For statement "+ statement.getStatementId() );

@@ -76,6 +76,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     public void mergeInvoice(Statement statement, byte[] generatedPdf,int attachmentConfigId) throws IOException, DocumentException {
         String accountNo = statement.getAccountNumber();
         String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
+        statement.setAttachmentConfigId(attachmentConfigId);
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("PDF merging for statement with id "+ statement.getId());
 
