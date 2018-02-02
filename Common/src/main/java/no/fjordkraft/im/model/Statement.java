@@ -79,6 +79,9 @@ public class Statement {
     @Column(name="CREDIT_LIMIT")
     private float creditLimit;
 
+    @Column(name="ATTACHMENT_CONFIG_ID")
+    private int attachmentConfigId;
+
     public Long getId() {
         return id;
     }
@@ -245,5 +248,13 @@ public class Statement {
 
     public void setCreditLimit(float creditLimit) {
         this.creditLimit = creditLimit;
+    }
+
+    public int getAttachmentConfigId() {
+        return attachmentConfigId;
+    }
+
+    public void setAttachmentConfigId(int attachmentConfigId) {
+        this.attachmentConfigId = attachmentConfigId;
     }
 }
