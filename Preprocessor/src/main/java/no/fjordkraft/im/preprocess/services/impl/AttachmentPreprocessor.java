@@ -7,6 +7,8 @@ import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.*;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
+import no.fjordkraft.im.services.AuditLogService;
+import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.CreditNoteLineType;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.InvoiceLineType;
@@ -49,6 +51,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
     @Qualifier("marshaller")
     private Marshaller marshaller;
 
+    @Autowired
+    AuditLogService auditLogService;
+
     private void generateAttachmentMap(Multimap<Long, Attachment> meterIdMapEMUXML, Map<String, Attachment> meterIdStartMonMapEMUXML, Attachments attachments, String invoicenumber) {
         for (int i = 0; i < attachments.getAttachment().size(); i++) {
             Attachment attachment = attachments.getAttachment().get(i);
@@ -66,7 +71,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         }
     }
 
-    private void mapNettToStrom(Multimap<Long, Attachment> meterIdMapEMUXML, Map<String, Attachment> meterIdStartMonMapEMUXML, Attachments attachments, String invoicenumber) {
+    private void mapNettToStrom(Multimap<Long, Attachment> meterIdMapEMUXML, Map<String, Attachment> meterIdStartMonMapEMUXML, Attachments attachments, String invoicenumber,Long statementId) {
         for (int i = 0; i < attachments.getAttachment().size(); i++) {
             Attachment gridAttachment = attachments.getAttachment().get(i);
             if ((IMConstants.PDFEHF.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()) || IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()))){
@@ -135,10 +140,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             }
                 else  {
                          Attachment dummyStromAttachment = deepClone(gridAttachment);
-                         dummyStromAttachment.getFAKTURA().setMAALEPUNKT(0);
-                         dummyStromAttachment.getFAKTURA().setFreeText("TEst");
-
-                         //meterIdVsOnlyGrid.put(dummyStromAttachment.getFAKTURA().getMAALEPUNKT(),dummyStromAttachment);
+                         String errorMessage = "Only Grid for Invoice Number";
+                         auditLogService.saveAuditLog(statementId, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);
                          if(IMConstants.PDFEHF.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()))
                          {
                              Nettleie nettleie = createEHFEntry(gridAttachment);
@@ -153,6 +156,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                              dummyStromAttachment.setOnlyGrid(true);
                              meterIdMapEMUXML.put(dummyStromAttachment.getFAKTURA().getMAALEPUNKT(),dummyStromAttachment);
                              logger.debug("No Strom attachment found then create a strom attachement and add nettleie to it ");
+                             logger.debug("Only Grid Case");
                          }
                          if(IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()))
                          {
@@ -169,6 +173,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                              dummyStromAttachment.setOnlyGrid(true);
                              meterIdMapEMUXML.put(dummyStromAttachment.getFAKTURA().getMAALEPUNKT(),dummyStromAttachment);
                              logger.debug("No Strom attachment found then create a strom attachement and add nettleie to it ");
+                             logger.debug("Only Grid Case");
                      }
                 }
             }
@@ -191,7 +196,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             logger.debug("meterIdMapEMUXML size " + meterIdMapEMUXML.size() + " invoice number " + invoicenumber);
             logger.debug("meterIdStartMonMapEMUXML size " + meterIdStartMonMapEMUXML.size() + " invoice number " + invoicenumber);
 
-            mapNettToStrom(meterIdMapEMUXML, meterIdStartMonMapEMUXML, attachments, invoicenumber);
+            mapNettToStrom(meterIdMapEMUXML, meterIdStartMonMapEMUXML, attachments, invoicenumber,request.getEntity().getId());
 
             int index = 1;
             for (Attachment attachment : meterIdMapEMUXML.values()) {

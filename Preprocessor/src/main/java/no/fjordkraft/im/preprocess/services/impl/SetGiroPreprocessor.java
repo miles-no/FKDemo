@@ -5,9 +5,11 @@ import no.fjordkraft.im.model.BlanketNumber;
 import no.fjordkraft.im.model.CustomerDetailsView;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
+import no.fjordkraft.im.services.AuditLogService;
 import no.fjordkraft.im.services.BlanketNumberService;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.CustomerDetailsViewService;
+import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +44,9 @@ public class SetGiroPreprocessor extends BasePreprocessor {
     @Autowired
     ConfigService configService;
 
+    @Autowired
+    AuditLogService auditLogService;
+
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, InstantiationException {
          long accountNumber = request.getStatement().getAccountNumber();
@@ -49,6 +54,8 @@ public class SetGiroPreprocessor extends BasePreprocessor {
 
         if(customerDetailsView!=null && customerDetailsView.getGiroEnabled())
         {
+            String message = "Giro is enabled for account number "+ accountNumber;
+            auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.WARNING);
             logger.debug("GIRO is enabled for account number " + Long.toString(accountNumber));
             request.getStatement().setGIROEnabled(true);
 
@@ -86,6 +93,8 @@ public class SetGiroPreprocessor extends BasePreprocessor {
         }
         else
         {
+            String message = "Giro is disabled for account number "+ accountNumber;
+           // auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.WARNING);
             logger.debug("GIRO is disabled for account number " + Long.toString(accountNumber));
             request.getStatement().setGIROEnabled(false);
         }
