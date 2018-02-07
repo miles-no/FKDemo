@@ -55,7 +55,7 @@ public class SetGiroPreprocessor extends BasePreprocessor {
         if(customerDetailsView!=null && customerDetailsView.getGiroEnabled())
         {
             String message = "Giro is enabled for account number "+ accountNumber;
-            auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.WARNING);
+            auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.INFO);
             logger.debug("GIRO is enabled for account number " + Long.toString(accountNumber));
             request.getStatement().setGIROEnabled(true);
 

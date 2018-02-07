@@ -66,6 +66,7 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
               Map<String,List<String>> groupVsGridlines = new HashMap<>();
               for(GridGroup gridGroup :listOfGridGroups )
               {
+                    logger.debug("Found group of grids " + listOfGridGroups.size() + " for Grid Name " + gridName);
                     List<String> gridLineNames = new ArrayList<String>();
                     for(GroupGridLine groupGridLine: gridGroup.getGroupGridLines() )
                     {
@@ -83,6 +84,9 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
                     {
                         if(toMergeLineItems!=null && !toMergeLineItems.isEmpty() && toMergeLineItems.contains(itemDetail.getDescription().trim()))
                         {
+                            String message = "Merging grid lines into new grid name " + mergeGridName;
+                            auditLogService.saveAuditLog(request.getEntity().getId(),StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.INFO);
+                            logger.debug("Merging item details for " + itemDetail.getDescription() + " into grid name " + mergeGridName );
                             itemDetail.setDescription(mergeGridName);
                           if(mergedLineItems.isEmpty())
                               mergedLineItems.add(itemDetail);
@@ -114,7 +118,7 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
             grid.setEmail(gridConfig.getEmail());
             grid.setTelephone(gridConfig.getPhone());
         } else {
-            String errorMessage = "Grid not found: " + ldc1;
+            String errorMessage = "Grid config not found "+ldc1.toUpperCase();
             auditLogService.saveAuditLog(id, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);
         }
         return grid;

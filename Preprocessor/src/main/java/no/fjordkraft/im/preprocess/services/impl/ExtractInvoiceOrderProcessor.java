@@ -59,6 +59,8 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                         emuxmlAttachment = attachment;
                         for(InvoiceOrder invoiceOrder :faktura.getVEDLEGGEMUXML().getInvoice().getInvoiceOrder())
                         {
+                            String message = "Found Multiple invoice orders";
+                            auditLogService.saveAuditLog(request.getEntity().getId(),StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.INFO);
                             if( invoiceOrder.getSupplyPointInfo117()!=null)
                             {
                                 long malepunktID= invoiceOrder.getSupplyPointInfo117().getObjectId();
