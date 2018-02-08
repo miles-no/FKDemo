@@ -64,7 +64,7 @@
      NOCYCLE ;
 
 Insert into IM_CONFIG (NAME,VALUE) values ('blanketnumber.validity.period.months','3');
-Insert into IM_CONFIG (NAME,VALUE) values ('read.attachment.from.db',false);
+Insert into IM_CONFIG (NAME,VALUE) values ('read.attachment.from.db','false');
 
 alter table im_statement add credit_limit number;
 
