@@ -317,39 +317,41 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             String brand =  statement.getSystemBatchInput().getTransferFile().getBrand();
           //  int attachmentConfigId =0;
             float creditLimit = statement.getCreditLimit();
-            List<Statement>  listOfStatements = statementRepository.getProcessedStatementByAccountNumber(statement.getAccountNumber(),StatementStatusEnum.INVOICE_PROCESSED.getStatus());
-            if(listOfStatements==null ||(listOfStatements!=null && listOfStatements.isEmpty())) {
-                if( !Float.valueOf(creditLimit).equals(Float.valueOf("0")))
-                {
-                    attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();
+            if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))
+            {
+                List<Statement>  listOfStatements = statementRepository.getProcessedStatementByAccountNumber(statement.getAccountNumber(),StatementStatusEnum.INVOICE_PROCESSED.getStatus());
+                if(listOfStatements==null ||(listOfStatements!=null && listOfStatements.isEmpty())) {
+                    if( !Float.valueOf(creditLimit).equals(Float.valueOf("0")))
+                    {
+                        attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();
+                    }
+                    else
+                    {
+                       attachmentConfigId = AttachmentTypeEnum.FIRST_TIME_ATTACHMENT.getStatus();
+                    }
                 }
                 else
                 {
-                   attachmentConfigId = AttachmentTypeEnum.FIRST_TIME_ATTACHMENT.getStatus();
+                    attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
                 }
-            }
-            else
-            {
-                attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
-            }
-            logger.debug("Attachment Configuration ID " + attachmentConfigId + " For statement "+ statement.getStatementId() );
-            List<Attachment> listOfAttachments = attachmentConfigService.getAttachmentByBrandAndAttachmentName(brand,attachmentConfigId);
-            if(listOfAttachments!=null && !listOfAttachments.isEmpty())
-            {
-              logger.debug("list Of attachments found for brand " + brand+ " and attachment configuration ID " + attachmentConfigId + " = " + listOfAttachments.size() );
-                for(Attachment attachmentFile : listOfAttachments)
+                logger.debug("Attachment Configuration ID " + attachmentConfigId + " For statement "+ statement.getStatementId() );
+                List<Attachment> listOfAttachments = attachmentConfigService.getAttachmentByBrandAndAttachmentName(brand,attachmentConfigId);
+                if(listOfAttachments!=null && !listOfAttachments.isEmpty())
                 {
-                    if("image".equalsIgnoreCase(attachmentFile.getAttachmentType().toLowerCase()))
-                    {    if(readCampaignFilesystem)
-                         {
-                            campaignImage =  attachmentFile.getFileContent();
-                            logger.debug(" reading campaign from database for statement "+statement.getId());
-                            break;
-                         }
+                  logger.debug("list Of attachments found for brand " + brand+ " and attachment configuration ID " + attachmentConfigId + " = " + listOfAttachments.size() );
+                    for(Attachment attachmentFile : listOfAttachments)
+                    {
+                        if("image".equalsIgnoreCase(attachmentFile.getAttachmentType().toLowerCase()))
+                        {    if(readCampaignFilesystem)
+                             {
+                                campaignImage =  attachmentFile.getFileContent();
+                                logger.debug(" reading campaign from database for statement "+statement.getId());
+                                break;
+                             }
+                        }
                     }
                 }
             }
-
             if(campaignImage==null)
             {
                 String path = basePathCampaign+brand+File.separator+brand.toLowerCase()+".jpg";

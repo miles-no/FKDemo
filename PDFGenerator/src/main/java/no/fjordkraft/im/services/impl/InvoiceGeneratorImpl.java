@@ -106,8 +106,10 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
 
             byte[] pdfBytes = null;
             logger.debug("readAdvtPdfFileSystem " + readAdvtPdfFileSystem);
-            if(readAdvtPdfFileSystem) {
-                pdfBytes = getDefaultSegmentFile(brand,attachmentConfigId);
+            if(readAdvtPdfFileSystem ) {
+                if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))  {
+                     pdfBytes = getDefaultSegmentFile(brand,attachmentConfigId);
+                }
                 if(pdfBytes==null) {
                     pdfBytes = getSegmentFileFromFS(brand);
                 }

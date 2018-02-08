@@ -64,7 +64,12 @@
      NOCYCLE ;
 
 Insert into IM_CONFIG (NAME,VALUE) values ('blanketnumber.validity.period.months','3');
+Insert into IM_CONFIG (NAME,VALUE) values ('read.attachment.from.db',false);
 
 alter table im_statement add credit_limit number;
 
 alter table im_statement add ATTACHMENT_CONFIG_ID number;
+
+--changeset arpita:3
+--Insert into IM_TRANSACTION_CATEGORY (ID,TYPE,DESCRIPTION,CATEGORY) values (123,'Credit','Penger tilbake fra Fjordkraft Netthandel','FT;Penger tilbake fra Fjordkraft Netthandel');
+--Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (106,2,123);

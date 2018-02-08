@@ -86,4 +86,6 @@ public interface IMConstants {
     static final String CODE_UNIT_PRICE_GROSS="UnitPriceGross";
     static final String MERGE_ROTATE_ADVT_PDF="merge.rotate.advt.pdf";
     static final String BLANKETNUMBER_VALIDITY_PERIOD_MONTHS="blanketnumber.validity.period.months";
+    static final String INFO = "INFO";
+    static final String READ_ATTACHMENT_FROM_DB="read.attachment.from.db";
 }
