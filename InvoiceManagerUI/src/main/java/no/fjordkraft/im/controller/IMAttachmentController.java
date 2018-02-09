@@ -46,7 +46,7 @@ public class IMAttachmentController {
         attachmentService.deleteAttachment(id);
     }
 
-    @RequestMapping(value="content/{id}", method=RequestMethod.POST,consumes = {"multipart/form-data"},produces="application/json")
+    @RequestMapping(value="content/{id}", method=RequestMethod.PUT,consumes = {"multipart/form-data"},produces="application/json")
   void updateAttachment(@PathVariable("id") Long id,
                         @RequestParam(value = "file", required = false) MultipartFile file) throws Exception{
         logger.debug(" in update attachment method.");
