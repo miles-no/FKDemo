@@ -130,6 +130,16 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">LegalPartClass</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">Region</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">Region</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Country</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">Country</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -202,6 +212,16 @@
                     <structure>
                         <property name="position">14</property>
                         <property name="name">LegalPartClass</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">Region</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">Country</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -306,8 +326,22 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">Region</property>
+                    <property name="nativeName">Region</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">Country</property>
+                    <property name="nativeName">Country</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{Name;STRING;/Name},{Address;STRING;/Address},{PostCode;STRING;/PostCode},{City;STRING;/City},{AccountNumber;STRING;/AccountNumber},{SequenceNumber;STRING;/SequenceNumber},{NationalId;STRING;/NationalId},{StatementDate;STRING;/StatementDate},{DueDate;DATE;/DueDate},{StatementOcrNumber;STRING;/StatementOcrNumber},{DirectDebit;STRING;/DirectDebit},{Version;STRING;/Version},{TotalAttachment;STRING;/TotalAttachment},{LegalPartClass;STRING;/LegalPartClass}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{Name;STRING;/Name},{Address;STRING;/Address},{PostCode;STRING;/PostCode},{City;STRING;/City},{AccountNumber;STRING;/AccountNumber},{SequenceNumber;STRING;/SequenceNumber},{NationalId;STRING;/NationalId},{StatementDate;STRING;/StatementDate},{DueDate;DATE;/DueDate},{StatementOcrNumber;STRING;/StatementOcrNumber},{DirectDebit;STRING;/DirectDebit},{Version;STRING;/Version},{TotalAttachment;STRING;/TotalAttachment},{LegalPartClass;STRING;/LegalPartClass},{Region;STRING;/Region},{Country;STRING;/Country}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -4771,6 +4805,38 @@ else &#13;
                                                 </list-property>
                                                 <property name="resultSetColumn">City</property>
                                             </data>
+                                            <data id="1774">
+                                                <property name="fontFamily">"Arial"</property>
+                                                <property name="paddingTop">0pt</property>
+                                                <property name="paddingLeft">3.1pt</property>
+                                                <property name="paddingBottom">0pt</property>
+                                                <property name="paddingRight">0pt</property>
+                                                <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">if(row["Region"] == "NO")&#13;
+{true;}&#13;
+else &#13;
+{false; }</expression>
+                                                    </structure>
+                                                </list-property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Country</property>
+                                                        <text-property name="displayName">Country</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Country"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Region</property>
+                                                        <text-property name="displayName">Region</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Region"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Country</property>
+                                            </data>
                                             <grid id="1355">
                                                 <column id="1356"/>
                                                 <row id="1357">
@@ -7684,6 +7750,7 @@ else&#13;
             </row>
         </grid>
         <grid id="1410">
+            <property name="marginTop">32pt</property>
             <property name="pageBreakAfter">always</property>
             <property name="height">8.760416666666666in</property>
             <property name="width">8.6in</property>
@@ -7840,8 +7907,13 @@ else &#13;
                                         <structure>
                                             <property name="name">UtilityAccountNo</property>
                                             <text-property name="displayName">UtilityAccountNo</text-property>
-                                            <expression name="expression" type="javascript">dataSetRow["UtilityAccountNo"]</expression>
+                                            <expression name="expression" type="javascript">var accountnum= dataSetRow["UtilityAccountNo"]&#13;
+var res1 = accountnum.substring(0, 4);&#13;
+var res2 = accountnum.substring(4, 6);&#13;
+var res3 = accountnum.substring(6, 11);&#13;
+res1 + " " + res2 + " "+ res3;</expression>
                                             <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
                                         </structure>
                                     </list-property>
                                     <property name="resultSetColumn">UtilityAccountNo</property>
@@ -7990,7 +8062,7 @@ else &#13;
                                                 <property name="resultSetColumn">SequenceNumber</property>
                                             </data>
                                             <data id="1544">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                 <property name="fontSize">9pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="marginLeft">15mm</property>
@@ -8003,7 +8075,28 @@ else &#13;
                                                     <structure>
                                                         <property name="name">AccountNumber</property>
                                                         <text-property name="displayName">eFakturareferanse</text-property>
-                                                        <expression name="expression" type="javascript">"Ref.e-faktura/avt.giro: " + dataSetRow["AccountNumber"]</expression>
+                                                        <expression name="expression" type="javascript">"Ref.e-faktura: " + dataSetRow["AccountNumber"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">AccountNumber</property>
+                                            </data>
+                                            <data id="1776">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontSize">9pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <property name="marginLeft">15mm</property>
+                                                <property name="paddingTop">1pt</property>
+                                                <property name="paddingLeft">15pt</property>
+                                                <property name="textAlign">left</property>
+                                                <property name="lineHeight">10pt</property>
+                                                <property name="dataSet">MainInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">AccountNumber</property>
+                                                        <text-property name="displayName">eFakturareferanse</text-property>
+                                                        <expression name="expression" type="javascript">"Ref.avt.giro: " + dataSetRow["StatementOcrNumber"]</expression>
                                                         <property name="dataType">string</property>
                                                         <property name="allowExport">true</property>
                                                     </structure>
@@ -8184,7 +8277,9 @@ else &#13;
                                     <column id="1563">
                                         <property name="width">0.1in</property>
                                     </column>
-                                    <column id="1564"/>
+                                    <column id="1564">
+                                        <property name="width">3.2in</property>
+                                    </column>
                                     <column id="1565">
                                         <property name="width">0.1in</property>
                                     </column>
@@ -8210,8 +8305,10 @@ else &#13;
                                         <cell id="985">
                                             <property name="borderBottomStyle">dotted</property>
                                             <property name="borderBottomWidth">thin</property>
+                                            <property name="borderLeftStyle">none</property>
+                                            <property name="borderRightStyle">none</property>
                                             <property name="paddingTop">30pt</property>
-                                            <property name="paddingBottom">5pt</property>
+                                            <property name="paddingBottom">27pt</property>
                                         </cell>
                                         <cell id="986"/>
                                     </row>
@@ -8830,15 +8927,20 @@ konto</text-property>
                                                 <property name="fontSize">9pt</property>
                                                 <property name="paddingTop">2pt</property>
                                                 <property name="paddingLeft">1pt</property>
-                                                <property name="paddingRight">20pt</property>
+                                                <property name="paddingRight">14pt</property>
                                                 <property name="textAlign">center</property>
                                                 <property name="dataSet">BillingInfo</property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">UtilityAccountNo</property>
                                                         <text-property name="displayName">UtilityAccountNo</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["UtilityAccountNo"]</expression>
+                                                        <expression name="expression" type="javascript">var accountnum= dataSetRow["UtilityAccountNo"]&#13;
+var res1 = accountnum.substring(0, 4);&#13;
+var res2 = accountnum.substring(4, 6);&#13;
+var res3 = accountnum.substring(6, 11);&#13;
+res1 + " " + res2 + " "+ res3;</expression>
                                                         <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
                                                     </structure>
                                                 </list-property>
                                                 <property name="resultSetColumn">UtilityAccountNo</property>
@@ -13415,7 +13517,14 @@ strømregningen, se</text-property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
                                             <text-property name="text">Som kunde hos Fjordkraft får du&#13;
-strøm og nettleie på én regning.</text-property>
+strøm og nettleie på én regning  dersom Fjordkraft har avtale om dette med din lokale netteier. </text-property>
+                                        </label>
+                                        <label id="831">
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                            <property name="fontSize">7pt</property>
+                                            <property name="paddingTop">3pt</property>
+                                            <property name="lineHeight">8pt</property>
+                                            <text-property name="text">Nettleien betaler vi videre til de som eier ledningsnettet der du bor – altså din netteier. Nettleien går blant annet til å dekke drift og vedlikehold av ledningsnettet i ditt område, samt offentlige avgifter</text-property>
                                         </label>
                                         <label id="830">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
@@ -13427,13 +13536,6 @@ vi er din strømleverandør. Beløpet du&#13;
 betaler til oss styres først og fremst&#13;
 av strømpriser og av hvor mye strøm&#13;
 du bruker.</text-property>
-                                        </label>
-                                        <label id="831">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                            <property name="fontSize">7pt</property>
-                                            <property name="paddingTop">3pt</property>
-                                            <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Nettleien betaler vi videre til de som eier ledningsnettet der du bor – altså din netteier. Nettleien går blant annet til å dekke drift og vedlikehold av ledningsnettet i ditt område, samt offentlige avgifter</text-property>
                                         </label>
                                         <label id="835">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
