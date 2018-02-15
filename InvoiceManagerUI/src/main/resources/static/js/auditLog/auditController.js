@@ -2,18 +2,14 @@
 
 const auditLogController = ($scope,$http,moment,$state,$stateParams) => {
 
+  $scope.logType = ''
+  $scope.allLogTypes = ['INFO','ERROR','WARNING']
   $scope.datepickerConfig ={
     "dateFormat" :'YYYY-MM-DD',
     "minDate" : moment().subtract(20,'years'),
     "maxDate" : moment().add(1,'days')
   }
 
-  $scope.$watch(()=>{
-    return $state.params.invoiceId
-  },(newParams, oldParams)=>{
-    $scope.invoiceNo = $state.params.invoiceId
-    $scope.getLogs()
-  })
   $scope.getLogs = (pageNumber) => {
     let queryParams = {
       "page": pageNumber ? pageNumber-1 : 0,
@@ -22,6 +18,7 @@ const auditLogController = ($scope,$http,moment,$state,$stateParams) => {
       $scope.invoiceNo ? queryParams.invoiceNo = $scope.invoiceNo :'';
       $scope.customerID ? queryParams.customerID = $scope.customerID :'';
       $scope.accountNumber ? queryParams.accountNumber = $scope.accountNumber :'';
+      $scope.logType ? queryParams.logType = $scope.logType : '';
       if($scope.fromTime){
         queryParams.fromTime = moment($scope.fromTime).startOf('day').format('YYYY-MM-DD HH:mm:ss')
       }
@@ -42,8 +39,14 @@ const auditLogController = ($scope,$http,moment,$state,$stateParams) => {
     return (date ? moment(date) : moment()).format('YYYY-MM-DD HH:mm:ss');
   }
 
+  $scope.setLogType = (item) => {
+    $scope.logType = item
+    $scope.getLogs()
+  }
+
   $scope.init = () => {
     $scope.pageSize = 10;
+    $stateParams.invoiceNo ? $scope.invoiceNo = $stateParams.invoiceNo : $scope.invoiceNo = null
     $scope.getLogs()
   }
 }

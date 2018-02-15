@@ -51,6 +51,21 @@
         </div>
     </div>
     <div class="col-sm-12">
+        <div class="col-sm-4">
+            <div class="row form-group">
+                <label class="control-label col-sm-2">Log</label>
+                <div class="col-sm-6 change-audit-dropdown-size">
+                    <ui-select name="count" ng-model="logType" theme="bootstrap" on-select="setLogType($item)" placeholder="Select Log Type">
+                        <ui-select-match allow-clear="true" placeholder="Select Log Type">{{logType}}</ui-select-match>
+                        <ui-select-choices repeat="logtype in allLogTypes" position='down'>
+                            <div ng-bind-html="logtype | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
         <table st-table="displayedCollection" st-safe-src="auditLog" class="table">
             <thead>
             <tr>
