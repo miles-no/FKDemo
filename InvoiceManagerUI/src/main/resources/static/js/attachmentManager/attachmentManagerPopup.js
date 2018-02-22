@@ -35,9 +35,11 @@ const attachmentManagerPopupController = ($scope,options,$http,close) => {
                 transformRequest: angular.identity,
                 headers: { 'Content-Type': undefined}
             }).then((response) => {
-                if(response.status == 200){
+                if(response.data !== 'Attachment Already Exists'){
                     $scope.file = null
-                    $scope.dismissModal()
+                    $scope.dismissModal(true)
+                } else {
+                    $scope.dismissModal(false)
                 }
         })
 

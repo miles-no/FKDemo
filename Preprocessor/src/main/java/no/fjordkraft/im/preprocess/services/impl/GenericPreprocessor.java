@@ -117,10 +117,9 @@ public class GenericPreprocessor extends BasePreprocessor {
                     if(data.endsWith("&gt;")) {
                         data = data.replaceAll("&gt;","");
                     }
-                  //  data=  data.replaceAll("&","&amp;");
                     byte[] decoded = Base64.decodeBase64(data);
-                    decoded = new String(decoded).replace("&", "&amp;").getBytes();
-                   // logger.debug("New Decoded file ");
+                   decoded = new String(decoded,StandardCharsets.ISO_8859_1).replaceAll("&", "&amp;").getBytes();
+                   // logger.debug("New Decoded file " + new String(decoded));
 
                     StreamSource source = new StreamSource(new InputStreamReader(new ByteArrayInputStream(decoded),StandardCharsets.ISO_8859_1));
                     Invoice invoice = (Invoice)unMarshaller.unmarshal(source);

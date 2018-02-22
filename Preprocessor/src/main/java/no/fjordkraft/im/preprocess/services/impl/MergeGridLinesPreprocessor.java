@@ -62,7 +62,7 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
             attachment.getFAKTURA().setGrid(getGridConfigInfo(gridName,request.getEntity().getId()));
           if(nettleie!=null && nettleie.getGridName()!=null && gridName!=null && gridName.toUpperCase().contains(nettleie.getGridName().trim().toUpperCase()))
           {
-              List<GridGroup> listOfGridGroups = gridGroupService.getGridGroupByGridConfigName(gridName);
+              List<GridGroup> listOfGridGroups = gridGroupService.getGridGroupByGridConfigName(gridName.toUpperCase());
               Map<String,List<String>> groupVsGridlines = new HashMap<>();
               for(GridGroup gridGroup :listOfGridGroups )
               {
@@ -84,7 +84,7 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
                     {
                         if(toMergeLineItems!=null && !toMergeLineItems.isEmpty() && toMergeLineItems.contains(itemDetail.getDescription().trim()))
                         {
-                            String message = "Merging grid lines into new grid name " + mergeGridName;
+                            String message = "Merging grid line "+itemDetail.getDescription().trim()+" into new grid name " + mergeGridName;
                             auditLogService.saveAuditLog(request.getEntity().getId(),StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.INFO);
                             logger.debug("Merging item details for " + itemDetail.getDescription() + " into grid name " + mergeGridName );
                             itemDetail.setDescription(mergeGridName);

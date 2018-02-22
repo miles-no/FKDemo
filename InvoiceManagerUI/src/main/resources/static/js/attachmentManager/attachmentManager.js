@@ -175,8 +175,12 @@ const attachmentManagerController = ($scope,$http,ModalService) => {
         modal.element.modal();
         modal.close.then((response) => {
             if (type === 'Add') {
-            $scope.alerts.push({ type: 'success', msg: 'Attachment Added successfully' })
-            $scope.getAttachments()
+               if(response){
+                   $scope.alerts.push({ type: 'success', msg: 'Attachment Added successfully' })
+                   $scope.getAttachments()
+               } else {
+                   $scope.alerts.push({ type: 'danger', msg: 'Set Configuration Already Exists' })
+               }
         } else if (type === 'Update') {
             $scope.alerts.push({ type: 'success', msg: 'Attachment Updated successfully' })
             $scope.getAttachments()
