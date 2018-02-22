@@ -73,6 +73,7 @@ public class SetGiroPreprocessor extends BasePreprocessor {
                         auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message1,IMConstants.INFO);
                         request.getStatement().setBlanketNumber(blanketNumber.getBlanketNumber());
                         blanketNumber.setActive(false);
+                        blanketNumber.setLastUpdated(new Date());
                         blankettNumberSet.add(blanketNumber.getBlanketNumber());
                         blanketNumberService.updateBlankettNumber(blanketNumber);
                         break;

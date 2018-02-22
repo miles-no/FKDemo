@@ -36,6 +36,9 @@ public class BlanketNumber {
     @Column(name="STATUS")
     private Boolean isActive;
 
+    @Column(name="LAST_UPDATED")
+    private Date lastUpdated;
+
     public Long getId() {
         return id;
     }
@@ -74,5 +77,13 @@ public class BlanketNumber {
 
     public void setActive(Boolean active) {
         isActive = active;
+    }
+
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }
