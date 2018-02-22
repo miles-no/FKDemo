@@ -22,6 +22,9 @@ public interface BlanketNumberRepository extends JpaRepository<BlanketNumber,Lon
     @Query("select b from BlanketNumber b where b.dateOfActivation <=:date and b.isActive = :active ")
     BlanketNumber getLatestBlanketNumberByDate(@Param("date")Date today, @Param("active") Boolean isActive);
 
+    @Query("select b from BlanketNumber b where  b.isActive = :active and rownum <= 1")
+    BlanketNumber getLatestBlanketNumberByDate(@Param("active") Boolean isActive);
+
     @Query("select b from BlanketNumber b where b.isActive = :active or b.isActive is null")
     List<BlanketNumber> getInactiveBlanketNumber(@Param("active") Boolean isActive);
 

@@ -11,7 +11,7 @@ import javax.persistence.*;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name = "v_customer_details")
+@Table(name = "im_customer_details")
 public class CustomerDetailsView {
 
 

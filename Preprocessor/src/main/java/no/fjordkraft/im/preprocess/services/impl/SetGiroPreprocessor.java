@@ -18,10 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -47,6 +44,8 @@ public class SetGiroPreprocessor extends BasePreprocessor {
     @Autowired
     AuditLogService auditLogService;
 
+    Set<String> blankettNumberSet = new HashSet<>();
+
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, InstantiationException {
          long accountNumber = request.getStatement().getAccountNumber();
@@ -62,22 +61,31 @@ public class SetGiroPreprocessor extends BasePreprocessor {
             logger.debug("Get latest blanket number");
             int validTill = configService.getInteger(IMConstants.BLANKETNUMBER_VALIDITY_PERIOD_MONTHS);
             logger.debug("Validity period is "+ validTill + " months ");
-            BlanketNumber blanketNumber = blanketNumberService.getLatestBlanketNumberByDate(new Date(),true);
+            int retryCount = 1;
+            synchronized (this) {
+                do {
+                    BlanketNumber blanketNumber = blanketNumberService.getLatestBlanketNumberByDate(new Date(), true);
 
-            if(blanketNumber!=null && getMonths(blanketNumber.getDateOfActivation(),new Date())<validTill)
-            {
-                  logger.debug("Blanket Number is valid as date of activation is " + blanketNumber.getDateOfActivation());
+                    if (blanketNumber != null && getMonths(blanketNumber.getDateOfActivation(), new Date()) < validTill && !blankettNumberSet.contains(blanketNumber.getBlanketNumber())) {
 
-                  request.getStatement().setBlanketNumber(blanketNumber.getBlanketNumber());
+                        logger.debug("Blanket Number is valid as date of activation is " + blanketNumber.getDateOfActivation());
+                        String message1 = "Blankett Number used is  "+ blanketNumber.getBlanketNumber() + " for account number "+ request.getStatement().getAccountNumber();
+                        auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message1,IMConstants.INFO);
+                        request.getStatement().setBlanketNumber(blanketNumber.getBlanketNumber());
+                        blanketNumber.setActive(false);
+                        blankettNumberSet.add(blanketNumber.getBlanketNumber());
+                        blanketNumberService.updateBlankettNumber(blanketNumber);
+                        break;
+                    } else {
+                        logger.info("Blanket Number {} for statement id {} already used ",blanketNumber.getBlanketNumber(), request.getEntity().getId());
+                        retryCount++;
+                    }
+                    /*if (blanketNumber != null && blankettNumberSet.contains(blanketNumber)) {
 
-            }
-            else
-            {
+                        request.getStatement().setBlanketNumber(blanketNumber.getBlanketNumber());
+                    }*/
 
-            }
-            if(blanketNumber!=null)
-            {
-               request.getStatement().setBlanketNumber(blanketNumber.getBlanketNumber());
+                } while(retryCount<4);
             }
            float openClaim =  request.getStatement().getTotalOpenClaim();
             String claim= Float.toString(openClaim) ;

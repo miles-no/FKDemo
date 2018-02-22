@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -37,12 +39,18 @@ public class BlanketNumberServiceImpl implements BlanketNumberService {
 
     @Override
     public BlanketNumber getLatestBlanketNumberByDate(Date today,boolean isActive) {
-        return blanketNumberRepository.getLatestBlanketNumberByDate(today,isActive);  //To change body of implemented methods use File | Settings | File Templates.
+        return blanketNumberRepository.getLatestBlanketNumberByDate(isActive);  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void updateBlankettNumber(BlanketNumber blanketNumber) {
+        blanketNumberRepository.saveAndFlush(blanketNumber);
     }
 
     @Override
     public void extractBlanketNumber() {
-        Date today = new Date();
+       /* Date today = new Date();
        BlanketNumber blanketNumber = blanketNumberRepository.getLatestBlanketNumberByDate(today,true);
         logger.debug("active blanket number for today " + blanketNumber);
        int validTill = configService.getInteger(IMConstants.BLANKETNUMBER_VALIDITY_PERIOD_MONTHS);
@@ -90,6 +98,6 @@ public class BlanketNumberServiceImpl implements BlanketNumberService {
                 logger.info("Deactivated blanket number is " + blanketNumber.getBlanketNumber());
              }
             }
-        }
+        }*/
     }
 }

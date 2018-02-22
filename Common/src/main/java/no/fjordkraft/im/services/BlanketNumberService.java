@@ -17,4 +17,5 @@ public interface BlanketNumberService {
 
     BlanketNumber getLatestBlanketNumberByDate(Date today,boolean isActive);
     public void extractBlanketNumber();
+    public void updateBlankettNumber(BlanketNumber blanketNumber);
 }
