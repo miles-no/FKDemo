@@ -53,7 +53,7 @@ public class Nettleie {
     @XmlElement(name="isCreditNote")
     protected  boolean isCreditNote;
     @XmlElement(name="IsSumMatching")
-    protected  boolean isSumMatching;
+    protected  boolean isSumMatching = true;
 
     public List<BaseItemDetails> getBaseItemDetails() {
         return baseItemDetails;
