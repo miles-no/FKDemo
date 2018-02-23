@@ -19,7 +19,8 @@ import java.util.List;
         "meterId",
         "annualConsumption",
         "gridName",
-        "isCreditNote"
+        "isCreditNote",
+        "isSumMatching"
      //   "invoice",
      //   "ehfInvoice"
 })
@@ -51,7 +52,8 @@ public class Nettleie {
     protected String gridName;
     @XmlElement(name="isCreditNote")
     protected  boolean isCreditNote;
-
+    @XmlElement(name="IsSumMatching")
+    protected  boolean isSumMatching;
 
     public List<BaseItemDetails> getBaseItemDetails() {
         return baseItemDetails;
@@ -147,5 +149,13 @@ public class Nettleie {
 
     public void setCreditNote(boolean creditNote) {
         isCreditNote = creditNote;
+    }
+
+    public boolean isSumMatching() {
+        return isSumMatching;
+    }
+
+    public void setSumMatching(boolean sumMatching) {
+        isSumMatching = sumMatching;
     }
 }
