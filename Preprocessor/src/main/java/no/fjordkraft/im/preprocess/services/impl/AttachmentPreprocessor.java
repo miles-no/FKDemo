@@ -30,6 +30,7 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -216,6 +217,22 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 } else {
                     attachmentList.add(attachment);
                 }
+
+                boolean isSumMatching = true;
+                for(Nettleie nettleie:nettleieList){
+                    if(!nettleie.isSumMatching())
+                    {
+                        isSumMatching = false;
+                        break;
+                    }
+                }
+                if(!isSumMatching)
+                {
+                    String errorMessage = "Sum of the grid lines is not matching with Sum Nettleie.";
+                    auditLogService.saveAuditLog(new Long(request.getEntity().getInvoiceNumber()),StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.ERROR);
+                    logger.debug("Exception in attachment preprocessor due to sum of grid lines is not matching with sum of nettelie");
+                    throw  new PreprocessorException("Sum is not matching for invoice number " +request.getEntity().getInvoiceNumber()) ;
+                }
             }
 
             for(Attachment attachment: attachmentList) {
@@ -306,6 +323,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             nettleie.setInvoiceSummary(invoiceSummary);
 
             List<CreditNoteLineType> creditNoteLineTypeList = creditNote.getCreditNoteLines();
+            Float sumGrossAmount = 0.0f;
             for(CreditNoteLineType creditNoteLineType : creditNoteLineTypeList)
             {
                 baseItemDetails = new BaseItemDetails();
@@ -346,10 +364,32 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
                     baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(), baseItemDetails.getEndDate()));
                 }
-                baseItemDetails.setLineItemGrossAmount((Float.valueOf(creditNoteLineType.getLineExtensionAmount().getValue().toString()) + taxAmount)* IMConstants.NEGATIVE);
+
+                //IM-40 : if grid Owners do not explicitly state the vat amount, in this case vat-amount has to be calculated based on
+                // cbc:LineExtensionAmount currencyID="NOK">593.61</cbc:LineExtensionAmount and <cbc:Percent>25.00</cbc:Percent>
+                if(taxAmount.equals(new Float("0.0")) && creditNoteLineType.getItem().getClassifiedTaxCategories()!=null && creditNoteLineType.getItem().getClassifiedTaxCategories().size()>0 && creditNoteLineType.getItem().getClassifiedTaxCategories().get(0)!=null
+                        && creditNoteLineType.getItem().getClassifiedTaxCategories().get(0).getPercent()!=null && creditNoteLineType.getItem().getClassifiedTaxCategories().get(0).getPercent().getValue()!=null)
+                {
+                    baseItemDetails.setLineItemGrossAmount(Float.valueOf(creditNoteLineType.getLineExtensionAmount().getValue().toString()) +
+                            (Float.valueOf(creditNoteLineType.getItem().getClassifiedTaxCategories().get(0).getPercent().getValue().toString())/100)*new Float(creditNoteLineType.getLineExtensionAmount().getValue().toString())* IMConstants.NEGATIVE);
+                }
+                else
+                {
+                    baseItemDetails.setLineItemGrossAmount((Float.valueOf(creditNoteLineType.getLineExtensionAmount().getValue().toString()) + taxAmount)* IMConstants.NEGATIVE);
+                }
                 baseItemDetailsList.add(baseItemDetails);
+                sumGrossAmount +=baseItemDetails.getLineItemGrossAmount();
                 nettleie.setBaseItemDetails(baseItemDetailsList);
             }
+                DecimalFormat df = new DecimalFormat("#.##");
+                if(  df.format(sumGrossAmount).equals(df.format(nettleie.getInvoiceSummary().getInvoiceTotals().getGrossAmount())))
+                {
+                    nettleie.setSumMatching(true);
+                }
+                else
+                {
+                    nettleie.setSumMatching(false);
+                }
             nettleie.setCreditNote(true);
         }  else {
                 Invoice invoice = pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice();
@@ -387,6 +427,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     nettleie.setInvoiceSummary(invoiceSummary);
 
                     List<InvoiceLineType> invoiceLineTypeList = invoice.getInvoiceLines();
+                    Float sumGrossAmount = 0.0f;
                     for (InvoiceLineType invoiceLineType : invoiceLineTypeList) {
                         baseItemDetails = new BaseItemDetails();
                         baseItemDetails.setDescription(invoiceLineType.getItem().getName().getValue().toString());
@@ -420,8 +461,30 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
                             baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(), baseItemDetails.getEndDate()));
                         }
-                        baseItemDetails.setLineItemGrossAmount(Float.valueOf(invoiceLineType.getLineExtensionAmount().getValue().toString()) + taxAmount);
+                        //IM-40 : if grid Owners do not explicitly state the vat amount, in this case vat-amount has to be calculated based on
+                        // cbc:LineExtensionAmount currencyID="NOK">593.61</cbc:LineExtensionAmount and <cbc:Percent>25.00</cbc:Percent>
+                        if(taxAmount.equals(new Float("0.0")) && invoiceLineType.getItem().getClassifiedTaxCategories()!=null && invoiceLineType.getItem().getClassifiedTaxCategories().size()>0 && invoiceLineType.getItem().getClassifiedTaxCategories().get(0)!=null
+                                && invoiceLineType.getItem().getClassifiedTaxCategories().get(0).getPercent()!=null && invoiceLineType.getItem().getClassifiedTaxCategories().get(0).getPercent().getValue()!=null)
+                        {
+                            baseItemDetails.setLineItemGrossAmount(Float.valueOf(invoiceLineType.getLineExtensionAmount().getValue().toString()) +
+                                    (Float.valueOf(invoiceLineType.getItem().getClassifiedTaxCategories().get(0).getPercent().getValue().toString())/100)*new Float(invoiceLineType.getLineExtensionAmount().getValue().toString()));
+
+                        }
+                        else
+                        {
+                            baseItemDetails.setLineItemGrossAmount(Float.valueOf(invoiceLineType.getLineExtensionAmount().getValue().toString()) + taxAmount);
+                        }
                         baseItemDetailsList.add(baseItemDetails);
+                        sumGrossAmount +=baseItemDetails.getLineItemGrossAmount();
+                    }
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    if(  df.format(sumGrossAmount).equals(df.format(nettleie.getInvoiceSummary().getInvoiceTotals().getGrossAmount())))
+                    {
+                        nettleie.setSumMatching(true);
+                    }
+                    else
+                    {
+                        nettleie.setSumMatching(false);
                     }
                     nettleie.setBaseItemDetails(baseItemDetailsList);
                 }
