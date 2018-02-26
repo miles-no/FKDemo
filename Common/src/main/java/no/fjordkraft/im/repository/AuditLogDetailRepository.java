@@ -1,6 +1,8 @@
 package no.fjordkraft.im.repository;
 
 import no.fjordkraft.im.model.AuditLog;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,7 @@ import java.util.List;
 @Repository
 public class AuditLogDetailRepository {
 
+    private static final Logger logger = LoggerFactory.getLogger(AuditLogDetailRepository.class);
     @Autowired
     private EntityManager entityManager;
 
@@ -56,7 +59,7 @@ public class AuditLogDetailRepository {
         selectQuery.append(AND);
         selectQuery.append("(:toTime is null or a.dateTime <= :toTime) ");
         selectQuery.append("order by a.dateTime desc");
-
+         logger.debug("Query : " + selectQuery.toString());
         Query query = entityManager.createQuery(selectQuery.toString(), AuditLog.class)
                 .setFirstResult(page * size)
                 .setMaxResults(size)
@@ -112,6 +115,6 @@ public class AuditLogDetailRepository {
     }
 
     private String addConditionForQueryValue(String value, String name) {
-        return "(" + name + " in " + "(" + value + "))";
+        return "(" + name + " in " + "('" + value + "'))";
     }
 }
