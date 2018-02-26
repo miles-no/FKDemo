@@ -118,7 +118,7 @@ public class GenericPreprocessor extends BasePreprocessor {
                         data = data.replaceAll("&gt;","");
                     }
                     byte[] decoded = Base64.decodeBase64(data);
-                   decoded = new String(decoded,StandardCharsets.ISO_8859_1).replaceAll("&", "&amp;").getBytes();
+                   decoded = new String(decoded,StandardCharsets.ISO_8859_1).replaceAll("&", "&amp;").getBytes(StandardCharsets.ISO_8859_1);
                    // logger.debug("New Decoded file " + new String(decoded));
 
                     StreamSource source = new StreamSource(new InputStreamReader(new ByteArrayInputStream(decoded),StandardCharsets.ISO_8859_1));
