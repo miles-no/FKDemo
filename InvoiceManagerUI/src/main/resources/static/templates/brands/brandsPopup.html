@@ -44,6 +44,41 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-sm-4" for="postcode">postcode</label>
+                        <div class=" col-sm-6">
+                            <input name="postcode" type="text" ng-model="brand.postcode" class="form-control" id="postcode" limit-to="20" ng-minlength="1"  permit-mask="\d\.">
+                            <!--<span class="error-msg" ng-show="brandValidations.postcode.$invalid && brandValidations.Kontonummer.$touched">Field cannot be empty</span>-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="City">City</label>
+                        <div class=" col-sm-6">
+                            <input name="City" type="text" ng-model="brand.city" class="form-control" id="City" limit-to="50" ng-minlength="1" permit-mask="\w" ng-pattern="/^$|^[A-Za-z0-9]+/">
+                            <!--<span class="error-msg" ng-show="brandValidations.city.$invalid && brandValidations.city.$touched">Field cannot not be empty</span>-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="description">Description</label>
+                        <div class=" col-sm-6">
+                            <input name="description" type="text" ng-model="brand.description" class="form-control" id="description" limit-to="50" ng-minlength="1" permit-mask="\w" ng-pattern="/^$|^[A-Za-z0-9]+/">
+                            <!--<span class="error-msg" ng-show="brandValidations.description.$invalid && brandValidations.description.$touched">Field cannot not be empty</span>-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="nationalId">National Id</label>
+                        <div class=" col-sm-6">
+                            <input name="nationalId" type="text" ng-model="brand.nationalId" class="form-control" id="nationalId" limit-to="50" ng-minlength="1" permit-mask="\d\.">
+                            <!--<span class="error-msg" ng-show="brandValidations.nationalId.$invalid && brandValidations.nationalId.$touched">Field cannot not be empty</span>-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="region">Region</label>
+                        <div class=" col-sm-6">
+                            <input name="region" type="text" ng-model="brand.region" class="form-control" id="region" limit-to="50" ng-minlength="1" permit-mask="\w" ng-pattern="/^$|^[A-Za-z0-9]+/">
+                            <!--<span class="error-msg" ng-show="brandValidations.region.$invalid && brandValidations.region.$touched">Field cannot not be empty</span>-->
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-sm-4">Use Barcode</label>
                         <div class=" col-sm-6">
                             <i ng-class="{'icon-align fa fa-check-circle greenIcon eaTrue': brand.useEABarcode === '1' , 'icon-align fa fa-check-circle greenIcon eaFalse' : brand.useEABarcode === '0'}" ng-click="brand.useEABarcode = brand.useEABarcode == '0' ? '1' : '0'"></i>

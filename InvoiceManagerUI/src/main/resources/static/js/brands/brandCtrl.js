@@ -8,6 +8,11 @@ const ManageBrandsController = ($scope, $q, $http, ModalService) => {
     serviceLevel: '',
     prefixKID: '',
     kontonummer: '',
+    nationalId: '',
+    city: '',
+    description : '',
+    postcode : '',
+    region : '',
     useEABarcode: '0'
   }
 

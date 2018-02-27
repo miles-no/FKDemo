@@ -51,6 +51,11 @@
                     <th>Service Level No</th>
                     <th class="table-left">Prefix KID</th>
                     <th class="table-left" st-sort="kontonummer">Kontonummer</th>
+                    <th class="table-left" st-sort="postcode">PostCode</th>
+                    <th class="table-left" st-sort="city">City</th>
+                    <th class="table-left" st-sort="description">Description</th>
+                    <th class="table-left" st-sort="nationalId">National Id</th>
+                    <th class="table-left" st-sort="region">Region</th>
                     <th>Use Barcode</th>
                     <th></th>
                 </tr>
@@ -62,13 +67,18 @@
                     <td>{{brand.serviceLevel}}</td>
                     <td class="table-left">{{brand.prefixKID}}</td>
                     <td class="table-left">{{brand.kontonummer}}</td>
+                    <td class="table-left">{{brand.postcode}}</td>
+                    <td class="table-left">{{brand.city}}</td>
+                    <td class="table-left">{{brand.description}}</td>
+                    <td class="table-left">{{brand.nationalId}}</td>
+                    <td class="table-left">{{brand.region}}</td>
                     <td><i ng-class="{'fa fa-check-circle greenIcon eaTrue': brand.useEABarcode === '1' , 'fa fa-check-circle greenIcon eaFalse': brand.useEABarcode === '0'}"></i></td>
                     <td ng-click="deleteBrands(brand)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="7" class="text-center">
+                    <td colspan="12" class="text-center">
                         <div st-pagination="" st-items-by-page="pageSize" st-template = './templates/clientPagination/clientPagination.html'></div>
                     </td>
                 </tr>
