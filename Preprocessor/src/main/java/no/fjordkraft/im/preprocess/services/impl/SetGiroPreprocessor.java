@@ -88,7 +88,7 @@ public class SetGiroPreprocessor extends BasePreprocessor {
 
                 } while(retryCount<4);
             }
-           float openClaim =  request.getStatement().getTotalOpenClaim();
+           float openClaim =  request.getStatement().getCurrentClaim();
             String claim= Float.toString(openClaim) ;
             String totalclaim=claim.substring(0,claim.indexOf("."))+claim.substring(claim.indexOf(".")+1,claim.length());
 
