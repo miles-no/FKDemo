@@ -226,13 +226,13 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         break;
                     }
                 }
-                if(!isSumMatching)
+              /*  if(!isSumMatching)
                 {
                     String errorMessage = "Sum of the grid lines is not matching with Sum Nettleie.";
                     auditLogService.saveAuditLog(new Long(request.getEntity().getInvoiceNumber()),StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.ERROR);
                     logger.debug("Exception in attachment preprocessor due to sum of grid lines is not matching with sum of nettelie");
                     throw  new PreprocessorException("Sum is not matching for invoice number " +request.getEntity().getInvoiceNumber()) ;
-                }
+                }*/
             }
 
             for(Attachment attachment: attachmentList) {
