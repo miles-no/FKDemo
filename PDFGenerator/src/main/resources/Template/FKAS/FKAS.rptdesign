@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement (15).xml</property>
+            <property name="FILELIST">E:\FuelKraft\ProdFiles\testUijar\processed_statement.xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -4077,6 +4077,11 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">CheckSum</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">CurrentClaim</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">CurrentClaim</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -4099,6 +4104,11 @@
                     <structure>
                         <property name="position">4</property>
                         <property name="name">CheckSum</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">CurrentClaim</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -4133,8 +4143,15 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">CurrentClaim</property>
+                    <property name="nativeName">CurrentClaim</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{TotalOpenClaim;STRING;/TotalOpenClaim},{UtilityAccountNo;STRING;/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/UtilityAccountNo},{BlanketNumber;STRING;/BlanketNumber},{CheckSum;STRING;/CheckSum}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{TotalOpenClaim;STRING;/TotalOpenClaim},{UtilityAccountNo;STRING;/Attachments/Attachment/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/UtilityAccountNo},{BlanketNumber;STRING;/BlanketNumber},{CheckSum;STRING;/CheckSum},{CurrentClaim;STRING;/CurrentClaim}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -7750,9 +7767,9 @@ else&#13;
             </row>
         </grid>
         <grid id="1410">
-            <property name="marginTop">32pt</property>
+            <property name="marginTop">30pt</property>
             <property name="pageBreakAfter">always</property>
-            <property name="height">8.760416666666666in</property>
+            <property name="height">6.5in</property>
             <property name="width">8.6in</property>
             <property name="dataSet">TransactionInfo</property>
             <list-property name="visibility">
@@ -7780,24 +7797,33 @@ else &#13;
                 <structure>
                     <property name="name">BlanketNumber</property>
                     <text-property name="displayName">BlanketNumber</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["BlanketNumber"]</expression>
+                    <expression name="expression" type="javascript">if(dataSetRow["BlanketNumber"] == null)&#13;
+{&#13;
+"   &lt;" + "   " + ">";&#13;
+}&#13;
+else&#13;
+{&#13;
+"   &lt;" + dataSetRow["BlanketNumber"] + ">";&#13;
+}</expression>
                     <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
                 </structure>
                 <structure>
                     <property name="name">CheckSum</property>
                     <text-property name="displayName">CheckSum</text-property>
                     <expression name="expression" type="javascript">if(dataSetRow["CheckSum"] == null)&#13;
 {&#13;
-" &lt;  " + "  " + "  > "&#13;
+" &lt;   " + "  " + "   >"&#13;
 }&#13;
 else &#13;
 { &#13;
-" &lt;  " + dataSetRow["CheckSum"]  + "  > "&#13;
+" &lt;   " + dataSetRow["CheckSum"]  + "   >"&#13;
 }</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
+            <structure name="toc"/>
             <column id="1411">
                 <property name="width">2.4270833333333335in</property>
             </column>
@@ -7878,30 +7904,35 @@ else &#13;
                         <property name="height">1.2083333333333333in</property>
                         <column id="897"/>
                         <column id="898"/>
-                        <column id="899"/>
+                        <column id="899">
+                            <property name="width">2.2in</property>
+                        </column>
                         <column id="900"/>
                         <row id="901">
-                            <property name="height">0.8in</property>
+                            <property name="height">0.67in</property>
                             <cell id="902">
                                 <property name="paddingLeft">1pt</property>
                                 <label id="911">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                    <property name="fontSize">10pt</property>
+                                    <property name="fontSize">8.5pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="marginLeft">15mm</property>
-                                    <property name="paddingTop">4pt</property>
+                                    <property name="paddingTop">9.2pt</property>
                                     <text-property name="text">Kvittering</text-property>
                                 </label>
                                 <label id="912">
-                                    <property name="fontSize">8pt</property>
+                                    <property name="fontSize">7.5pt</property>
                                     <property name="marginLeft">15mm</property>
-                                    <property name="paddingTop">6pt</property>
+                                    <property name="paddingTop">8.2pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <text-property name="text">Innbetalt til</text-property>
                                 </label>
                                 <data id="1145">
-                                    <property name="fontSize">9pt</property>
+                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontSize">11pt</property>
                                     <property name="marginLeft">15mm</property>
-                                    <property name="paddingTop">5pt</property>
+                                    <property name="paddingTop">3pt</property>
+                                    <property name="paddingLeft">0pt</property>
                                     <property name="dataSet">BillingInfo</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
@@ -7911,7 +7942,7 @@ else &#13;
 var res1 = accountnum.substring(0, 4);&#13;
 var res2 = accountnum.substring(4, 6);&#13;
 var res3 = accountnum.substring(6, 11);&#13;
-res1 + " " + res2 + " "+ res3;</expression>
+res1 + "   " + res2 + "   "+ res3;</expression>
                                             <property name="dataType">string</property>
                                             <property name="allowExport">true</property>
                                         </structure>
@@ -7920,23 +7951,27 @@ res1 + " " + res2 + " "+ res3;</expression>
                                 </data>
                             </cell>
                             <cell id="903">
-                                <property name="paddingTop">18.5pt</property>
+                                <property name="paddingTop">19pt</property>
                                 <property name="paddingBottom">1pt</property>
                                 <label id="913">
-                                    <property name="fontSize">8pt</property>
+                                    <property name="fontSize">7.5pt</property>
+                                    <property name="paddingTop">7pt</property>
+                                    <property name="paddingBottom">1pt</property>
+                                    <property name="paddingRight">1pt</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">Beløp</text-property>
                                 </label>
                                 <data id="1146">
-                                    <property name="fontSize">9pt</property>
-                                    <property name="paddingTop">4.8pt</property>
+                                    <property name="fontSize">11pt</property>
+                                    <property name="paddingTop">3pt</property>
+                                    <property name="paddingLeft">24pt</property>
                                     <property name="textAlign">center</property>
                                     <property name="dataSet">BillingInfo</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
                                             <property name="name">TotalOpenClaim</property>
                                             <text-property name="displayName">TotalOpenClaim</text-property>
-                                            <expression name="expression" type="javascript">formatMoney(dataSetRow["TotalOpenClaim"], 2, '', '.', ',')</expression>
+                                            <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                             <property name="dataType">string</property>
                                             <property name="allowExport">true</property>
                                         </structure>
@@ -7945,10 +7980,12 @@ res1 + " " + res2 + " "+ res3;</expression>
                                 </data>
                             </cell>
                             <cell id="904">
-                                <property name="paddingTop">19pt</property>
+                                <property name="paddingTop">18.5pt</property>
                                 <property name="paddingBottom">1pt</property>
                                 <label id="914">
-                                    <property name="fontSize">8pt</property>
+                                    <property name="fontSize">7.5pt</property>
+                                    <property name="paddingTop">7.2pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">Betalerens kontonummer</text-property>
                                 </label>
@@ -7957,29 +7994,33 @@ res1 + " " + res2 + " "+ res3;</expression>
                                 <property name="paddingTop">19pt</property>
                                 <property name="paddingBottom">1pt</property>
                                 <label id="915">
-                                    <property name="fontSize">8pt</property>
-                                    <property name="paddingLeft">15pt</property>
+                                    <property name="fontSize">7.5pt</property>
+                                    <property name="paddingTop">7.2pt</property>
+                                    <property name="paddingLeft">16pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="textAlign">left</property>
                                     <text-property name="text">Blankettnummer</text-property>
                                 </label>
                                 <data id="1661">
-                                    <property name="paddingTop">4.8pt</property>
-                                    <property name="paddingLeft">15pt</property>
+                                    <property name="fontSize">11pt</property>
+                                    <property name="paddingTop">3pt</property>
+                                    <property name="paddingLeft">12pt</property>
                                     <property name="textAlign">left</property>
                                     <property name="resultSetColumn">BlanketNumber</property>
                                 </data>
                             </cell>
                         </row>
                         <row id="906">
-                            <property name="height">0.2in</property>
+                            <property name="height">0.22in</property>
                             <cell id="907">
-                                <property name="paddingBottom">0pt</property>
+                                <property name="paddingBottom">1pt</property>
                                 <label id="916">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                    <property name="fontSize">7pt</property>
-                                    <property name="marginLeft">15mm</property>
-                                    <property name="paddingTop">2pt</property>
-                                    <property name="paddingBottom">1pt</property>
+                                    <property name="fontSize">6pt</property>
+                                    <property name="marginLeft">12mm</property>
+                                    <property name="paddingTop">6.5pt</property>
+                                    <property name="paddingBottom">2pt</property>
+                                    <property name="paddingRight">1pt</property>
                                     <text-property name="text">RIV HER!</text-property>
                                 </label>
                             </cell>
@@ -7996,7 +8037,10 @@ res1 + " " + res2 + " "+ res3;</expression>
                     </grid>
                     <grid id="917">
                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                        <column id="918"/>
+                        <property name="width">8.520833333333334in</property>
+                        <column id="918">
+                            <property name="width">4.25in</property>
+                        </column>
                         <column id="919"/>
                         <row id="920">
                             <cell id="921">
@@ -8009,7 +8053,7 @@ res1 + " " + res2 + " "+ res3;</expression>
                                         <cell id="1399">
                                             <label id="1539">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                <property name="fontSize">6pt</property>
+                                                <property name="fontSize">7pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="marginLeft">15mm</property>
                                                 <property name="paddingTop">9pt</property>
@@ -8021,11 +8065,12 @@ res1 + " " + res2 + " "+ res3;</expression>
                                         <cell id="1541">
                                             <data id="1542">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                <property name="fontSize">9pt</property>
+                                                <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="marginLeft">15mm</property>
-                                                <property name="paddingTop">10pt</property>
-                                                <property name="paddingLeft">15pt</property>
+                                                <property name="paddingTop">0pt</property>
+                                                <property name="paddingLeft">1pt</property>
+                                                <property name="paddingBottom">1.2pt</property>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
@@ -8042,11 +8087,12 @@ res1 + " " + res2 + " "+ res3;</expression>
                                             </data>
                                             <data id="1543">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                <property name="fontSize">9pt</property>
+                                                <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="marginLeft">15mm</property>
                                                 <property name="paddingTop">1pt</property>
-                                                <property name="paddingLeft">15pt</property>
+                                                <property name="paddingLeft">1pt</property>
+                                                <property name="paddingBottom">1.2pt</property>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
@@ -8063,11 +8109,12 @@ res1 + " " + res2 + " "+ res3;</expression>
                                             </data>
                                             <data id="1544">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                <property name="fontSize">9pt</property>
+                                                <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="marginLeft">15mm</property>
                                                 <property name="paddingTop">1pt</property>
-                                                <property name="paddingLeft">15pt</property>
+                                                <property name="paddingLeft">1pt</property>
+                                                <property name="paddingBottom">1.2pt</property>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
@@ -8084,11 +8131,12 @@ res1 + " " + res2 + " "+ res3;</expression>
                                             </data>
                                             <data id="1776">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                <property name="fontSize">9pt</property>
+                                                <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="marginLeft">15mm</property>
                                                 <property name="paddingTop">1pt</property>
-                                                <property name="paddingLeft">15pt</property>
+                                                <property name="paddingLeft">1pt</property>
+                                                <property name="paddingBottom">1.2pt</property>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
@@ -8109,8 +8157,9 @@ res1 + " " + res2 + " "+ res3;</expression>
                             </cell>
                             <cell id="922">
                                 <grid id="1545">
+                                    <property name="marginRight">20mm</property>
                                     <property name="height">0.6354166666666666in</property>
-                                    <property name="width">3.63in</property>
+                                    <property name="width">3.45in</property>
                                     <column id="1546">
                                         <property name="width">1.4in</property>
                                     </column>
@@ -8121,7 +8170,7 @@ res1 + " " + res2 + " "+ res3;</expression>
                                         <property name="width">0.1in</property>
                                     </column>
                                     <column id="1548">
-                                        <property name="width">1in</property>
+                                        <property name="width">0.8in</property>
                                     </column>
                                     <column id="1549">
                                         <property name="suppressDuplicates">true</property>
@@ -8132,16 +8181,18 @@ res1 + " " + res2 + " "+ res3;</expression>
                                         <cell id="1551">
                                             <property name="paddingTop">9pt</property>
                                             <label id="954">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                <property name="fontSize">12pt</property>
-                                                <property name="fontWeight">normal</property>
+                                                <property name="fontFamily">"Arial"</property>
+                                                <property name="fontSize">11pt</property>
+                                                <property name="fontWeight">bold</property>
                                                 <text-property name="text">GIRO</text-property>
                                             </label>
                                             <label id="1143">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                <property name="fontSize">8pt</property>
-                                                <property name="paddingTop">10pt</property>
-                                                <property name="textAlign">center</property>
+                                                <property name="fontSize">7pt</property>
+                                                <property name="paddingTop">11pt</property>
+                                                <property name="paddingLeft">6pt</property>
+                                                <property name="paddingBottom">1pt</property>
+                                                <property name="textAlign">left</property>
                                                 <text-property name="text">Underskrift ved girering</text-property>
                                             </label>
                                         </cell>
@@ -8150,9 +8201,18 @@ res1 + " " + res2 + " "+ res3;</expression>
                                             <label id="955">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                                 <property name="fontSize">7pt</property>
-                                                <property name="paddingLeft">5pt</property>
+                                                <property name="paddingTop">2pt</property>
+                                                <property name="paddingLeft">12pt</property>
                                                 <property name="textAlign">left</property>
-                                                <text-property name="text">Betalings-frist</text-property>
+                                                <text-property name="text">Betalings-</text-property>
+                                            </label>
+                                            <label id="1802">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                <property name="fontSize">7pt</property>
+                                                <property name="paddingTop">2pt</property>
+                                                <property name="paddingLeft">12pt</property>
+                                                <property name="textAlign">left</property>
+                                                <text-property name="text">frist</text-property>
                                             </label>
                                         </cell>
                                         <cell id="1553">
@@ -8197,15 +8257,15 @@ res1 + " " + res2 + " "+ res3;</expression>
                                         <cell id="952">
                                             <property name="paddingTop">9pt</property>
                                             <property name="paddingLeft">0pt</property>
-                                            <property name="paddingRight">0pt</property>
+                                            <property name="paddingRight">0mm</property>
                                             <property name="textAlign">center</property>
                                             <data id="1558">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                <property name="fontSize">10pt</property>
+                                                <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="paddingTop">5pt</property>
-                                                <property name="paddingLeft">1pt</property>
-                                                <property name="paddingRight">0pt</property>
+                                                <property name="paddingLeft">9pt</property>
+                                                <property name="paddingRight">16pt</property>
                                                 <property name="textAlign">right</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="display">block</property>
@@ -8242,6 +8302,7 @@ res1 + " " + res2 + " "+ res3;</expression>
                                                     <property name="height">0.1in</property>
                                                     <cell id="1560">
                                                         <property name="paddingLeft">1pt</property>
+                                                        <property name="paddingBottom">0pt</property>
                                                         <property name="paddingRight">1pt</property>
                                                     </cell>
                                                 </row>
@@ -8273,15 +8334,22 @@ res1 + " " + res2 + " "+ res3;</expression>
                                     </row>
                                 </grid>
                                 <grid id="1562">
-                                    <property name="width">3.63in</property>
+                                    <property name="marginRight">15mm</property>
+                                    <property name="width">3.45in</property>
                                     <column id="1563">
-                                        <property name="width">0.1in</property>
+                                        <property name="width">0.01in</property>
+                                    </column>
+                                    <column id="1790">
+                                        <property name="width">0.03in</property>
                                     </column>
                                     <column id="1564">
-                                        <property name="width">3.2in</property>
+                                        <property name="width">3in</property>
+                                    </column>
+                                    <column id="1795">
+                                        <property name="width">0.01in</property>
                                     </column>
                                     <column id="1565">
-                                        <property name="width">0.1in</property>
+                                        <property name="width">0.01in</property>
                                     </column>
                                     <row id="1566">
                                         <property name="height">0.1in</property>
@@ -8290,8 +8358,17 @@ res1 + " " + res2 + " "+ res3;</expression>
                                             <property name="borderLeftWidth">1px</property>
                                             <property name="borderTopStyle">solid</property>
                                             <property name="borderTopWidth">1px</property>
+                                            <property name="paddingTop">1pt</property>
                                         </cell>
-                                        <cell id="1568"/>
+                                        <cell id="1786">
+                                            <property name="paddingTop">1pt</property>
+                                        </cell>
+                                        <cell id="1568">
+                                            <property name="paddingTop">1pt</property>
+                                        </cell>
+                                        <cell id="1791">
+                                            <property name="paddingTop">1pt</property>
+                                        </cell>
                                         <cell id="982">
                                             <property name="borderRightStyle">solid</property>
                                             <property name="borderRightWidth">1px</property>
@@ -8302,15 +8379,25 @@ res1 + " " + res2 + " "+ res3;</expression>
                                     <row id="983">
                                         <property name="height">0.3in</property>
                                         <cell id="984"/>
+                                        <cell id="1787"/>
                                         <cell id="985">
                                             <property name="borderBottomStyle">dotted</property>
                                             <property name="borderBottomWidth">thin</property>
                                             <property name="borderLeftStyle">none</property>
                                             <property name="borderRightStyle">none</property>
                                             <property name="paddingTop">30pt</property>
-                                            <property name="paddingBottom">27pt</property>
+                                            <property name="paddingBottom">30pt</property>
                                         </cell>
+                                        <cell id="1792"/>
                                         <cell id="986"/>
+                                    </row>
+                                    <row id="1781">
+                                        <property name="height">0.1in</property>
+                                        <cell id="1782"/>
+                                        <cell id="1788"/>
+                                        <cell id="1783"/>
+                                        <cell id="1793"/>
+                                        <cell id="1784"/>
                                     </row>
                                     <row id="987">
                                         <property name="height">0.1in</property>
@@ -8320,7 +8407,9 @@ res1 + " " + res2 + " "+ res3;</expression>
                                             <property name="borderLeftStyle">solid</property>
                                             <property name="borderLeftWidth">1px</property>
                                         </cell>
+                                        <cell id="1789"/>
                                         <cell id="989"/>
+                                        <cell id="1794"/>
                                         <cell id="990">
                                             <property name="borderBottomStyle">solid</property>
                                             <property name="borderBottomWidth">1px</property>
@@ -8335,17 +8424,17 @@ res1 + " " + res2 + " "+ res3;</expression>
                             <cell id="924">
                                 <label id="991">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                    <property name="fontSize">6pt</property>
+                                    <property name="fontSize">7pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="marginLeft">15mm</property>
-                                    <property name="paddingLeft">10pt</property>
+                                    <property name="paddingLeft">1pt</property>
                                     <text-property name="text">Betalt av</text-property>
                                 </label>
                             </cell>
                             <cell id="925">
                                 <label id="992">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                    <property name="fontSize">6pt</property>
+                                    <property name="fontSize">7pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="paddingLeft">10pt</property>
                                     <property name="width">3.63in</property>
@@ -8356,26 +8445,32 @@ res1 + " " + res2 + " "+ res3;</expression>
                         <row id="926">
                             <cell id="927">
                                 <grid id="993">
-                                    <property name="marginLeft">15mm</property>
+                                    <property name="marginLeft">13mm</property>
                                     <column id="994">
                                         <property name="width">0.1in</property>
                                     </column>
-                                    <column id="995"/>
+                                    <column id="995">
+                                        <property name="width">3in</property>
+                                    </column>
                                     <column id="996">
                                         <property name="width">0.1in</property>
                                     </column>
                                     <column id="997">
-                                        <property name="width">0.3in</property>
+                                        <property name="width">0.5in</property>
                                     </column>
                                     <row id="998">
+                                        <property name="fontSize">9pt</property>
                                         <property name="height">0.1in</property>
                                         <cell id="999">
                                             <property name="borderLeftStyle">solid</property>
                                             <property name="borderLeftWidth">1px</property>
                                             <property name="borderTopStyle">solid</property>
                                             <property name="borderTopWidth">1px</property>
+                                            <property name="paddingLeft">0pt</property>
                                         </cell>
-                                        <cell id="1000"/>
+                                        <cell id="1000">
+                                            <property name="paddingLeft">0pt</property>
+                                        </cell>
                                         <cell id="1001">
                                             <property name="borderRightStyle">solid</property>
                                             <property name="borderRightWidth">1px</property>
@@ -8385,18 +8480,21 @@ res1 + " " + res2 + " "+ res3;</expression>
                                         <cell id="1002"/>
                                     </row>
                                     <row id="1003">
-                                        <cell id="1569"/>
+                                        <cell id="1569">
+                                            <property name="paddingTop">0pt</property>
+                                        </cell>
                                         <cell id="1570">
                                             <property name="fontSize">9pt</property>
                                             <property name="paddingTop">0pt</property>
+                                            <property name="paddingLeft">1mm</property>
                                             <property name="paddingBottom">0pt</property>
                                             <data id="1571">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                <property name="fontSize">9pt</property>
+                                                <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
-                                                <property name="paddingTop">1pt</property>
-                                                <property name="paddingBottom">1.5pt</property>
+                                                <property name="paddingTop">0pt</property>
+                                                <property name="paddingBottom">2pt</property>
                                                 <property name="textAlign">left</property>
                                                 <property name="dataSet">MainInfo</property>
                                                 <list-property name="boundDataColumns">
@@ -8411,11 +8509,11 @@ res1 + " " + res2 + " "+ res3;</expression>
                                             </data>
                                             <data id="1572">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                <property name="fontSize">9pt</property>
+                                                <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
                                                 <property name="paddingTop">1pt</property>
-                                                <property name="paddingBottom">1.5pt</property>
+                                                <property name="paddingBottom">2pt</property>
                                                 <property name="textAlign">left</property>
                                                 <property name="dataSet">MainInfo</property>
                                                 <list-property name="boundDataColumns">
@@ -8430,11 +8528,11 @@ res1 + " " + res2 + " "+ res3;</expression>
                                             </data>
                                             <data id="1573">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                <property name="fontSize">9pt</property>
+                                                <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
                                                 <property name="paddingTop">1pt</property>
-                                                <property name="paddingBottom">1.5pt</property>
+                                                <property name="paddingBottom">2pt</property>
                                                 <property name="textAlign">left</property>
                                                 <property name="dataSet">MainInfo</property>
                                                 <list-property name="boundDataColumns">
@@ -8449,7 +8547,7 @@ res1 + " " + res2 + " "+ res3;</expression>
                                                 <property name="resultSetColumn">City</property>
                                             </data>
                                             <label id="1036">
-                                                <property name="fontSize">9pt</property>
+                                                <property name="fontSize">8pt</property>
                                                 <property name="marginBottom">2pt</property>
                                                 <property name="paddingTop">0pt</property>
                                                 <property name="paddingBottom">0pt</property>
@@ -8490,9 +8588,11 @@ res1 + " " + res2 + " "+ res3;</expression>
                                 </grid>
                             </cell>
                             <cell id="1580">
+                                <property name="fontSize">12pt</property>
                                 <property name="width">3.63in</property>
                                 <grid id="1581">
-                                    <property name="width">3.63in</property>
+                                    <property name="marginRight">0pt</property>
+                                    <property name="width">3.45in</property>
                                     <column id="1582">
                                         <property name="width">0.1in</property>
                                     </column>
@@ -8522,9 +8622,25 @@ res1 + " " + res2 + " "+ res3;</expression>
                                             <property name="fontSize">9pt</property>
                                             <property name="paddingTop">0pt</property>
                                             <property name="paddingBottom">0pt</property>
+                                            <data id="1152">
+                                                <property name="fontSize">9.5pt</property>
+                                                <property name="paddingLeft">2pt</property>
+                                                <property name="paddingBottom">2pt</property>
+                                                <property name="dataSet">GiroToAddressInfo</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Description</property>
+                                                        <text-property name="displayName">Description</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Description"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Description</property>
+                                            </data>
                                             <data id="1153">
-                                                <property name="fontSize">9pt</property>
-                                                <property name="paddingBottom">1.5pt</property>
+                                                <property name="fontSize">9.5pt</property>
+                                                <property name="paddingLeft">2pt</property>
+                                                <property name="paddingBottom">2pt</property>
                                                 <property name="dataSet">GiroToAddressInfo</property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
@@ -8537,23 +8653,10 @@ res1 + " " + res2 + " "+ res3;</expression>
                                                 </list-property>
                                                 <property name="resultSetColumn">City</property>
                                             </data>
-                                            <data id="1152">
-                                                <property name="fontSize">9pt</property>
-                                                <property name="paddingBottom">1.5pt</property>
-                                                <property name="dataSet">GiroToAddressInfo</property>
-                                                <list-property name="boundDataColumns">
-                                                    <structure>
-                                                        <property name="name">Description</property>
-                                                        <text-property name="displayName">Description</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["Description"]</expression>
-                                                        <property name="dataType">string</property>
-                                                    </structure>
-                                                </list-property>
-                                                <property name="resultSetColumn">Description</property>
-                                            </data>
                                             <data id="1154">
-                                                <property name="fontSize">9pt</property>
-                                                <property name="paddingBottom">1.5pt</property>
+                                                <property name="fontSize">9.5pt</property>
+                                                <property name="paddingLeft">2pt</property>
+                                                <property name="paddingBottom">2pt</property>
                                                 <property name="dataSet">GiroToAddressInfo</property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
@@ -8598,36 +8701,49 @@ res1 + " " + res2 + " "+ res3;</expression>
                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                         <property name="marginTop">3pt</property>
                         <property name="marginLeft">0pt</property>
+                        <property name="marginRight">12mm</property>
                         <property name="height">0.4479166666666667in</property>
                         <property name="width">8.7in</property>
                         <column id="1039">
-                            <property name="width">1.4in</property>
+                            <property name="width">1.5in</property>
                         </column>
                         <column id="1040">
-                            <property name="width">2.3in</property>
+                            <property name="width">2.52in</property>
                         </column>
                         <column id="1136">
-                            <property name="width">1.2in</property>
+                            <property name="width">1.5in</property>
                         </column>
                         <column id="1041">
-                            <property name="width">1.8in</property>
+                            <property name="width">1.64in</property>
                         </column>
                         <column id="1042">
-                            <property name="width">0.0001in</property>
+                            <property name="fontSize">7pt</property>
+                            <property name="width">0.08in</property>
+                        </column>
+                        <column id="1799">
+                            <property name="fontSize">7pt</property>
+                            <property name="width">0.3in</property>
                         </column>
                         <column id="1652">
                             <property name="width">0.5in</property>
                         </column>
                         <row id="1583">
-                            <property name="height">0.32in</property>
+                            <property name="height">0.25in</property>
                             <cell id="1584">
                                 <label id="1585">
                                     <property name="fontSize">7.7pt</property>
                                     <property name="marginLeft">15mm</property>
+                                    <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">9pt</property>
                                     <property name="textAlign">right</property>
-                                    <text-property name="text">Belast&#13;
-konto</text-property>
+                                    <text-property name="text">Belast</text-property>
+                                </label>
+                                <label id="1796">
+                                    <property name="fontSize">7.7pt</property>
+                                    <property name="marginLeft">15mm</property>
+                                    <property name="paddingRight">9pt</property>
+                                    <property name="textAlign">right</property>
+                                    <text-property name="text">konto</text-property>
                                 </label>
                             </cell>
                             <cell id="1586">
@@ -8638,25 +8754,27 @@ konto</text-property>
                                 <property name="borderTopStyle">solid</property>
                                 <property name="borderTopWidth">1px</property>
                                 <property name="paddingTop">2pt</property>
+                                <property name="paddingBottom">0pt</property>
                             </cell>
                             <cell id="1134"/>
                             <cell id="1587">
                                 <label id="1588">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                    <property name="fontSize">8pt</property>
+                                    <property name="fontSize">7pt</property>
                                     <property name="fontWeight">normal</property>
-                                    <property name="paddingBottom">0.6pt</property>
+                                    <property name="paddingBottom">0.4pt</property>
                                     <property name="paddingRight">9pt</property>
                                     <property name="textAlign">right</property>
                                     <text-property name="text">Kvittering  </text-property>
                                 </label>
                                 <label id="1653">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                    <property name="fontSize">8pt</property>
+                                    <property name="fontSize">7pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="paddingTop">1pt</property>
-                                    <property name="paddingLeft">0pt</property>
-                                    <property name="paddingRight">22pt</property>
+                                    <property name="paddingLeft">1pt</property>
+                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingRight">20pt</property>
                                     <property name="textAlign">right</property>
                                     <text-property name="text">tilbake</text-property>
                                 </label>
@@ -8670,9 +8788,14 @@ konto</text-property>
                                 <property name="borderRightWidth">1px</property>
                                 <property name="borderTopStyle">solid</property>
                                 <property name="borderTopWidth">1px</property>
-                                <property name="paddingLeft">0pt</property>
+                                <property name="paddingLeft">3pt</property>
                                 <property name="paddingBottom">5pt</property>
-                                <property name="paddingRight">0pt</property>
+                                <property name="paddingRight">12mm</property>
+                            </cell>
+                            <cell id="1797">
+                                <property name="paddingLeft">3pt</property>
+                                <property name="paddingBottom">5pt</property>
+                                <property name="paddingRight">12mm</property>
                             </cell>
                             <cell id="1650">
                                 <property name="paddingBottom">5pt</property>
@@ -8694,6 +8817,9 @@ konto</text-property>
                             <cell id="1094">
                                 <property name="paddingBottom">5pt</property>
                             </cell>
+                            <cell id="1798">
+                                <property name="paddingBottom">5pt</property>
+                            </cell>
                             <cell id="1651">
                                 <property name="paddingBottom">5pt</property>
                             </cell>
@@ -8704,17 +8830,17 @@ konto</text-property>
                         <property name="height">1in</property>
                         <property name="width">8.125in</property>
                         <column id="1604">
-                            <property name="width">0.15in</property>
+                            <property name="width">0.35in</property>
                         </column>
                         <column id="1591">
-                            <property name="width">2.2in</property>
+                            <property name="width">2.6in</property>
                         </column>
                         <column id="1592">
                             <property name="width">5.03125in</property>
                         </column>
                         <row id="1593">
                             <property name="verticalAlign">top</property>
-                            <property name="height">0.25in</property>
+                            <property name="height">0.3in</property>
                             <cell id="1602">
                                 <property name="borderRightStyle">solid</property>
                                 <property name="borderRightWidth">2px</property>
@@ -8746,16 +8872,16 @@ konto</text-property>
                                 <property name="paddingTop">0pt</property>
                                 <grid id="1062">
                                     <column id="1063">
-                                        <property name="width">1.2in</property>
+                                        <property name="width">1.03in</property>
                                     </column>
                                     <column id="1064">
-                                        <property name="width">0.4in</property>
+                                        <property name="width">0.36in</property>
                                     </column>
                                     <column id="1666">
-                                        <property name="width">0.9in</property>
+                                        <property name="width">0.65in</property>
                                     </column>
                                     <column id="1065">
-                                        <property name="width">1.4in</property>
+                                        <property name="width">1.45in</property>
                                     </column>
                                     <column id="1066"/>
                                     <row id="1067">
@@ -8779,7 +8905,7 @@ konto</text-property>
                                                 <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                                 <property name="fontSize">8pt</property>
                                                 <property name="paddingTop">2pt</property>
-                                                <property name="paddingLeft">1pt</property>
+                                                <property name="paddingLeft">5pt</property>
                                                 <property name="paddingBottom">1pt</property>
                                                 <property name="paddingRight">1pt</property>
                                                 <property name="display">block</property>
@@ -8797,8 +8923,8 @@ konto</text-property>
                                                 <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                                 <property name="fontSize">8pt</property>
                                                 <property name="paddingTop">2pt</property>
-                                                <property name="paddingLeft">13pt</property>
-                                                <property name="paddingRight">15pt</property>
+                                                <property name="paddingLeft">7pt</property>
+                                                <property name="paddingRight">13pt</property>
                                                 <property name="textAlign">left</property>
                                                 <text-property name="text">Til konto</text-property>
                                             </label>
@@ -8808,8 +8934,9 @@ konto</text-property>
                                             <label id="1075">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                                 <property name="fontSize">8pt</property>
+                                                <property name="marginLeft">1pt</property>
                                                 <property name="paddingTop">2pt</property>
-                                                <property name="paddingLeft">13pt</property>
+                                                <property name="paddingLeft">8pt</property>
                                                 <property name="paddingRight">15pt</property>
                                                 <property name="textAlign">left</property>
                                                 <text-property name="text">Blankettnummer</text-property>
@@ -8820,7 +8947,7 @@ konto</text-property>
                             </cell>
                         </row>
                         <row id="1595">
-                            <property name="height">0.35in</property>
+                            <property name="height">0.4in</property>
                             <cell id="1603">
                                 <property name="borderRightStyle">solid</property>
                                 <property name="borderRightWidth">2px</property>
@@ -8829,6 +8956,7 @@ konto</text-property>
                                 <label id="1606">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                     <property name="fontSize">9pt</property>
+                                    <property name="marginTop">1pt</property>
                                     <property name="paddingTop">4pt</property>
                                     <property name="paddingLeft">8pt</property>
                                     <property name="textAlign">left</property>
@@ -8841,16 +8969,21 @@ konto</text-property>
                                 <property name="borderRightStyle">solid</property>
                                 <property name="borderRightWidth">2px</property>
                                 <data id="1087">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontSize">11pt</property>
+                                    <property name="fontWeight">normal</property>
+                                    <property name="marginTop">1pt</property>
                                     <property name="paddingTop">2pt</property>
-                                    <property name="paddingRight">5pt</property>
+                                    <property name="paddingRight">9pt</property>
                                     <property name="textAlign">right</property>
                                     <property name="dataSet">MainInfo</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
                                             <property name="name">AccountNumber</property>
                                             <text-property name="displayName">AccountNumber</text-property>
-                                            <expression name="expression" type="javascript">dataSetRow["AccountNumber"]</expression>
+                                            <expression name="expression" type="javascript">dataSetRow["StatementOcrNumber"]</expression>
                                             <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
                                         </structure>
                                     </list-property>
                                     <property name="resultSetColumn">AccountNumber</property>
@@ -8860,31 +8993,40 @@ konto</text-property>
                                 <grid id="1076">
                                     <property name="width">5.322916666666667in</property>
                                     <column id="1077">
-                                        <property name="width">1.2in</property>
+                                        <property name="width">1in</property>
                                     </column>
                                     <column id="1656">
                                         <property name="width">0.4in</property>
                                     </column>
                                     <column id="1078">
                                         <property name="fontSize">10pt</property>
-                                        <property name="width">0.9in</property>
+                                        <property name="width">0.65in</property>
                                     </column>
-                                    <column id="1079"/>
+                                    <column id="1079">
+                                        <property name="width">1.4in</property>
+                                    </column>
                                     <column id="1663"/>
                                     <row id="1080">
                                         <cell id="1081">
+                                            <property name="paddingLeft">0pt</property>
+                                            <property name="paddingRight">0pt</property>
                                             <data id="1148">
-                                                <property name="fontSize">9pt</property>
+                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontSize">11pt</property>
+                                                <property name="marginTop">1pt</property>
+                                                <property name="marginLeft">0pt</property>
+                                                <property name="marginRight">0pt</property>
                                                 <property name="paddingTop">2pt</property>
-                                                <property name="paddingRight">3pt</property>
-                                                <property name="textAlign">right</property>
+                                                <property name="paddingLeft">17pt</property>
+                                                <property name="paddingRight">2pt</property>
+                                                <property name="textAlign">center</property>
                                                 <property name="dataSet">BillingInfo</property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">TotalOpenClaim</property>
                                                         <text-property name="displayName">TotalOpenClaim</text-property>
-                                                        <expression name="expression" type="javascript">var x= formatMoney(dataSetRow["TotalOpenClaim"], 2 , '', '.', ',');&#13;
-(x + "").split(",")[0];</expression>
+                                                        <expression name="expression" type="javascript">var x= formatMoney(dataSetRow["CurrentClaim"], 2 , '', '.', ',');&#13;
+ (x + "").split(",")[0].split('.').join('');</expression>
                                                         <property name="dataType">string</property>
                                                         <property name="allowExport">true</property>
                                                     </structure>
@@ -8894,16 +9036,19 @@ konto</text-property>
                                         </cell>
                                         <cell id="1655">
                                             <data id="1658">
-                                                <property name="fontSize">9pt</property>
+                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontSize">11pt</property>
+                                                <property name="marginTop">1pt</property>
                                                 <property name="marginRight">2pt</property>
                                                 <property name="paddingTop">2pt</property>
+                                                <property name="paddingRight">0pt</property>
                                                 <property name="textAlign">right</property>
                                                 <property name="dataSet">BillingInfo</property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">TotalOpenClaim</property>
                                                         <text-property name="displayName">TotalOpenClaim</text-property>
-                                                        <expression name="expression" type="javascript">var x= formatMoney(dataSetRow["TotalOpenClaim"], 2 , '', '.', ',');&#13;
+                                                        <expression name="expression" type="javascript">var x= formatMoney(dataSetRow["CurrentClaim"], 2 , '', '.', ',');&#13;
 (x + "").split(",")[1];</expression>
                                                         <property name="dataType">string</property>
                                                         <property name="allowExport">true</property>
@@ -8916,6 +9061,8 @@ konto</text-property>
                                             <property name="fontSize">9pt</property>
                                             <property name="paddingLeft">3pt</property>
                                             <data id="1772">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontSize">11pt</property>
                                                 <property name="paddingTop">2pt</property>
                                                 <property name="paddingLeft">4pt</property>
                                                 <property name="paddingRight">0pt</property>
@@ -8923,11 +9070,14 @@ konto</text-property>
                                             </data>
                                         </cell>
                                         <cell id="1083">
+                                            <property name="paddingLeft">0pt</property>
+                                            <property name="paddingRight">0pt</property>
                                             <data id="1150">
-                                                <property name="fontSize">9pt</property>
+                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontSize">11pt</property>
                                                 <property name="paddingTop">2pt</property>
-                                                <property name="paddingLeft">1pt</property>
-                                                <property name="paddingRight">14pt</property>
+                                                <property name="paddingLeft">0pt</property>
+                                                <property name="paddingRight">0pt</property>
                                                 <property name="textAlign">center</property>
                                                 <property name="dataSet">BillingInfo</property>
                                                 <list-property name="boundDataColumns">
@@ -8938,7 +9088,7 @@ konto</text-property>
 var res1 = accountnum.substring(0, 4);&#13;
 var res2 = accountnum.substring(4, 6);&#13;
 var res3 = accountnum.substring(6, 11);&#13;
-res1 + " " + res2 + " "+ res3;</expression>
+res1 + "   " + res2 + "   "+ res3 + " ";</expression>
                                                         <property name="dataType">string</property>
                                                         <property name="allowExport">true</property>
                                                     </structure>
@@ -8948,9 +9098,11 @@ res1 + " " + res2 + " "+ res3;</expression>
                                         </cell>
                                         <cell id="1662">
                                             <data id="1664">
+                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontSize">11pt</property>
                                                 <property name="paddingTop">2pt</property>
-                                                <property name="paddingLeft">13pt</property>
-                                                <property name="paddingRight">28pt</property>
+                                                <property name="paddingLeft">3.5pt</property>
+                                                <property name="paddingRight">30pt</property>
                                                 <property name="textAlign">left</property>
                                                 <property name="resultSetColumn">BlanketNumber</property>
                                             </data>
