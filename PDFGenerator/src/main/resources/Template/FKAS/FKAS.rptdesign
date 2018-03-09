@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">E:\FuelKraft\ProdFiles\testUijar\processed_statement.xml</property>
+            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement (21).xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -140,6 +140,11 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">Country</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">CareOfName</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">CareOfName</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -222,6 +227,11 @@
                     <structure>
                         <property name="position">16</property>
                         <property name="name">Country</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">CareOfName</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -340,8 +350,15 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">CareOfName</property>
+                    <property name="nativeName">CareOfName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{Name;STRING;/Name},{Address;STRING;/Address},{PostCode;STRING;/PostCode},{City;STRING;/City},{AccountNumber;STRING;/AccountNumber},{SequenceNumber;STRING;/SequenceNumber},{NationalId;STRING;/NationalId},{StatementDate;STRING;/StatementDate},{DueDate;DATE;/DueDate},{StatementOcrNumber;STRING;/StatementOcrNumber},{DirectDebit;STRING;/DirectDebit},{Version;STRING;/Version},{TotalAttachment;STRING;/TotalAttachment},{LegalPartClass;STRING;/LegalPartClass},{Region;STRING;/Region},{Country;STRING;/Country}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{Name;STRING;/Name},{Address;STRING;/Address},{PostCode;STRING;/PostCode},{City;STRING;/City},{AccountNumber;STRING;/AccountNumber},{SequenceNumber;STRING;/SequenceNumber},{NationalId;STRING;/NationalId},{StatementDate;STRING;/StatementDate},{DueDate;DATE;/DueDate},{StatementOcrNumber;STRING;/StatementOcrNumber},{DirectDebit;STRING;/DirectDebit},{Version;STRING;/Version},{TotalAttachment;STRING;/TotalAttachment},{LegalPartClass;STRING;/LegalPartClass},{Region;STRING;/Region},{Country;STRING;/Country},{CareOfName;STRING;/CareOfName}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -4685,17 +4702,17 @@ else &#13;
                                         </cell>
                                     </row>
                                 </grid>
-                                <grid id="1351">
+                                <grid id="1873">
                                     <property name="height">1.84375in</property>
-                                    <column id="1352"/>
-                                    <row id="1353">
+                                    <column id="1874"/>
+                                    <row id="1875">
                                         <property name="height">35mm</property>
-                                        <cell id="1354">
+                                        <cell id="1876">
                                             <property name="paddingTop">0pt</property>
                                             <property name="paddingLeft">0pt</property>
                                             <property name="paddingBottom">0pt</property>
                                             <property name="paddingRight">0pt</property>
-                                            <grid id="228">
+                                            <grid id="1877">
                                                 <property name="height">0.53125in</property>
                                                 <property name="dataSet">BarcodeInfo</property>
                                                 <list-property name="visibility">
@@ -4712,30 +4729,30 @@ else &#13;
                                                         <property name="dataType">string</property>
                                                     </structure>
                                                 </list-property>
-                                                <column id="229">
+                                                <column id="1878">
                                                     <property name="width">0.6in</property>
                                                 </column>
-                                                <column id="230"/>
-                                                <row id="231">
+                                                <column id="1879"/>
+                                                <row id="1880">
                                                     <property name="height">12mm</property>
-                                                    <cell id="232">
+                                                    <cell id="1881">
                                                         <property name="paddingTop">8pt</property>
                                                         <property name="paddingLeft">4pt</property>
                                                         <property name="paddingBottom">0pt</property>
                                                         <property name="paddingRight">0pt</property>
-                                                        <image id="1370">
+                                                        <image id="1882">
                                                             <property name="height">0.3229166666666667in</property>
                                                             <property name="width">0.53125in</property>
                                                             <property name="source">embed</property>
                                                             <property name="imageName">EA sort-hvit.gif</property>
                                                         </image>
                                                     </cell>
-                                                    <cell id="234">
+                                                    <cell id="1883">
                                                         <property name="paddingTop">0pt</property>
                                                         <property name="paddingLeft">0pt</property>
                                                         <property name="paddingBottom">0pt</property>
                                                         <property name="paddingRight">0pt</property>
-                                                        <extended-item extensionName="BarcodeItem" id="241">
+                                                        <extended-item extensionName="BarcodeItem" id="1884">
                                                             <property name="barcodeType" type="constant">CODE_128</property>
                                                             <property name="encoding" type="constant">ISO-8859-1</property>
                                                             <property name="content" type="javascript">row["Barcode"]</property>
@@ -4755,7 +4772,7 @@ else &#13;
                                                     </cell>
                                                 </row>
                                             </grid>
-                                            <data id="115">
+                                            <data id="1885">
                                                 <property name="fontFamily">"Arial"</property>
                                                 <property name="fontSize">10pt</property>
                                                 <property name="fontWeight">normal</property>
@@ -4771,13 +4788,21 @@ else &#13;
                                                     <structure>
                                                         <property name="name">Name</property>
                                                         <text-property name="displayName">Name</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
+                                                        <expression name="expression" type="javascript">if(dataSetRow["CareOfName"] == null)&#13;
+{&#13;
+dataSetRow["Name"];&#13;
+}&#13;
+else&#13;
+{&#13;
+dataSetRow["CareOfName"];&#13;
+}</expression>
                                                         <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
                                                     </structure>
                                                 </list-property>
                                                 <property name="resultSetColumn">Name</property>
                                             </data>
-                                            <data id="117">
+                                            <data id="1886">
                                                 <property name="fontFamily">"Arial"</property>
                                                 <property name="fontSize">10pt</property>
                                                 <property name="fontWeight">normal</property>
@@ -4799,7 +4824,7 @@ else &#13;
                                                 </list-property>
                                                 <property name="resultSetColumn">Address</property>
                                             </data>
-                                            <data id="118">
+                                            <data id="1887">
                                                 <property name="fontFamily">"Arial"</property>
                                                 <property name="fontSize">10pt</property>
                                                 <property name="fontWeight">normal</property>
@@ -4822,7 +4847,7 @@ else &#13;
                                                 </list-property>
                                                 <property name="resultSetColumn">City</property>
                                             </data>
-                                            <data id="1774">
+                                            <data id="1888">
                                                 <property name="fontFamily">"Arial"</property>
                                                 <property name="paddingTop">0pt</property>
                                                 <property name="paddingLeft">3.1pt</property>
@@ -4854,12 +4879,12 @@ else &#13;
                                                 </list-property>
                                                 <property name="resultSetColumn">Country</property>
                                             </data>
-                                            <grid id="1355">
-                                                <column id="1356"/>
-                                                <row id="1357">
-                                                    <cell id="1358">
+                                            <grid id="1889">
+                                                <column id="1890"/>
+                                                <row id="1891">
+                                                    <cell id="1892">
                                                         <property name="paddingTop">5pt</property>
-                                                        <image id="709">
+                                                        <image id="1893">
                                                             <property name="height">0.22916666666666666in</property>
                                                             <property name="width">0.5104166666666666in</property>
                                                             <property name="dataSet">MainInfo</property>
@@ -8428,6 +8453,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                     <property name="fontWeight">normal</property>
                                     <property name="marginLeft">15mm</property>
                                     <property name="paddingLeft">1pt</property>
+                                    <property name="paddingBottom">0pt</property>
                                     <text-property name="text">Betalt av</text-property>
                                 </label>
                             </cell>
@@ -8446,6 +8472,118 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                             <cell id="927">
                                 <grid id="993">
                                     <property name="marginLeft">13mm</property>
+                                    <property name="dataSet">MainInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">Name</property>
+                                            <text-property name="displayName">Name</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">Address</property>
+                                            <text-property name="displayName">Address</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Address"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">PostCode</property>
+                                            <text-property name="displayName">PostCode</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["PostCode"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">City</property>
+                                            <text-property name="displayName">City</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["City"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">AccountNumber</property>
+                                            <text-property name="displayName">AccountNumber</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["AccountNumber"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">SequenceNumber</property>
+                                            <text-property name="displayName">SequenceNumber</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["SequenceNumber"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">NationalId</property>
+                                            <text-property name="displayName">NationalId</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["NationalId"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">StatementDate</property>
+                                            <text-property name="displayName">StatementDate</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["StatementDate"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">DueDate</property>
+                                            <text-property name="displayName">DueDate</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["DueDate"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">StatementOcrNumber</property>
+                                            <text-property name="displayName">StatementOcrNumber</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["StatementOcrNumber"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">DirectDebit</property>
+                                            <text-property name="displayName">DirectDebit</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["DirectDebit"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">Version</property>
+                                            <text-property name="displayName">Version</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Version"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">TotalAttachment</property>
+                                            <text-property name="displayName">TotalAttachment</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["TotalAttachment"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">LegalPartClass</property>
+                                            <text-property name="displayName">LegalPartClass</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["LegalPartClass"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">Region</property>
+                                            <text-property name="displayName">Region</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Region"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">Country</property>
+                                            <text-property name="displayName">Country</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Country"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">CareOfName</property>
+                                            <text-property name="displayName">CareOfName</text-property>
+                                            <expression name="expression" type="javascript">if(dataSetRow["CareOfName"] == null)&#13;
+{&#13;
+" "&#13;
+}&#13;
+else {&#13;
+"c/o " + dataSetRow["CareOfName"];&#13;
+}</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
                                     <column id="994">
                                         <property name="width">0.1in</property>
                                     </column>
@@ -8470,6 +8608,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                         </cell>
                                         <cell id="1000">
                                             <property name="paddingLeft">0pt</property>
+                                            <property name="paddingBottom">0pt</property>
                                         </cell>
                                         <cell id="1001">
                                             <property name="borderRightStyle">solid</property>
@@ -8501,8 +8640,16 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                     <structure>
                                                         <property name="name">Name</property>
                                                         <text-property name="displayName">Name</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
+                                                        <expression name="expression" type="javascript">if(dataSetRow["CareOfName"] == null)&#13;
+{&#13;
+dataSetRow["Name"];&#13;
+}&#13;
+else&#13;
+{&#13;
+dataSetRow["CareOfName"];&#13;
+}</expression>
                                                         <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
                                                     </structure>
                                                 </list-property>
                                                 <property name="resultSetColumn">Name</property>
@@ -9444,7 +9591,7 @@ dataSetRow["InvoiceNo"]</expression>
                     <property name="name">StatementDate</property>
                     <text-property name="displayName">StatementDate</text-property>
                     <expression name="expression" type="javascript">var year = getYear(dataSetRow["StatementDate"]);&#13;
-year = "I år" + "";</expression>
+year = "Siste 13-24 mnd" + "";</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
@@ -9452,7 +9599,7 @@ year = "I år" + "";</expression>
                     <property name="name">YearInfo</property>
                     <text-property name="displayName">StatementDate</text-property>
                     <expression name="expression" type="javascript">var year = getYear(dataSetRow["StatementDate"]) - 1;&#13;
-year = "I fjor" + "";</expression>
+year = "Siste 12 mnd" + "";</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
@@ -12144,7 +12291,10 @@ else&#13;
             <Caption>
               <Value></Value>
               <Font>
+                <Name>Fjordkraft Neo Sans</Name>
+                <Size>4.0</Size>
                 <Alignment/>
+                <Rotation>90.0</Rotation>
               </Font>
             </Caption>
             <Background xsi:type="attribute:ColorDefinition">
@@ -12166,11 +12316,11 @@ else&#13;
             </Outline>
             <Insets>
               <Top>0.0</Top>
-              <Left>2.0</Left>
+              <Left>4.0</Left>
               <Bottom>0.0</Bottom>
-              <Right>3.0</Right>
+              <Right>0.0</Right>
             </Insets>
-            <Visible>false</Visible>
+            <Visible>true</Visible>
           </Label>
           <DataDefinition>
             <Definition>row[&quot;LastYearConsumption&quot;]</Definition>
@@ -12183,10 +12333,15 @@ else&#13;
           <DataPoint>
             <Components>
               <Type>Orthogonal_Value</Type>
+              <FormatSpecifier xsi:type="attribute:NumberFormatSpecifier">
+                <Prefix></Prefix>
+                <Suffix></Suffix>
+                <FractionDigits>0</FractionDigits>
+              </FormatSpecifier>
             </Components>
-            <Separator>, </Separator>
+            <Separator></Separator>
           </DataPoint>
-          <LabelPosition>Inside</LabelPosition>
+          <LabelPosition>Outside</LabelPosition>
           <Stacked>true</Stacked>
           <Triggers>
             <Condition>onmouseover</Condition>
@@ -12411,7 +12566,10 @@ else&#13;
             <Caption>
               <Value></Value>
               <Font>
+                <Name>Fjordkraft Neo Sans</Name>
+                <Size>4.0</Size>
                 <Alignment/>
+                <Rotation>90.0</Rotation>
               </Font>
             </Caption>
             <Background xsi:type="attribute:ColorDefinition">
@@ -12433,11 +12591,11 @@ else&#13;
             </Outline>
             <Insets>
               <Top>0.0</Top>
-              <Left>2.0</Left>
+              <Left>4.0</Left>
               <Bottom>0.0</Bottom>
-              <Right>3.0</Right>
+              <Right>0.0</Right>
             </Insets>
-            <Visible>false</Visible>
+            <Visible>true</Visible>
           </Label>
           <DataDefinition>
             <Definition>row[&quot;ThisYearConsumption&quot;]</Definition>
@@ -12451,10 +12609,15 @@ else&#13;
           <DataPoint>
             <Components>
               <Type>Orthogonal_Value</Type>
+              <FormatSpecifier xsi:type="attribute:NumberFormatSpecifier">
+                <Prefix></Prefix>
+                <Suffix></Suffix>
+                <FractionDigits>0</FractionDigits>
+              </FormatSpecifier>
             </Components>
-            <Separator>, </Separator>
+            <Separator></Separator>
           </DataPoint>
-          <LabelPosition>Inside</LabelPosition>
+          <LabelPosition>Outside</LabelPosition>
           <Stacked>true</Stacked>
           <Triggers>
             <Condition>onmouseover</Condition>
@@ -13036,10 +13199,10 @@ else&#13;
                                                     <grid id="855">
                                                         <property name="width">3.25in</property>
                                                         <column id="856">
-                                                            <property name="width">1.25in</property>
+                                                            <property name="width">0.76in</property>
                                                         </column>
                                                         <column id="857">
-                                                            <property name="width">0.23in</property>
+                                                            <property name="width">0.68in</property>
                                                         </column>
                                                         <column id="858">
                                                             <property name="width">0.05in</property>
@@ -13050,12 +13213,12 @@ else&#13;
                                                         <row id="860">
                                                             <cell id="861">
                                                                 <property name="paddingTop">2pt</property>
-                                                                <property name="paddingLeft">87pt</property>
+                                                                <property name="paddingLeft">50pt</property>
                                                                 <image id="865">
-                                                                    <property name="height">0.08333333333333333in</property>
-                                                                    <property name="width">0.10416666666666667in</property>
+                                                                    <property name="height">0.083in</property>
+                                                                    <property name="width">0.104in</property>
                                                                     <property name="source">embed</property>
-                                                                    <property name="imageName">Black_Legend.png</property>
+                                                                    <property name="imageName">Grey_Legend.png</property>
                                                                 </image>
                                                             </cell>
                                                             <cell id="862">
@@ -13070,10 +13233,10 @@ else&#13;
                                                                 <property name="paddingTop">2pt</property>
                                                                 <property name="paddingLeft">3pt</property>
                                                                 <image id="866">
-                                                                    <property name="height">0.08333333333333333in</property>
-                                                                    <property name="width">0.09375in</property>
+                                                                    <property name="height">0.083in</property>
+                                                                    <property name="width">0.094in</property>
                                                                     <property name="source">embed</property>
-                                                                    <property name="imageName">Grey_Legend.png</property>
+                                                                    <property name="imageName">Black_Legend.png</property>
                                                                 </image>
                                                             </cell>
                                                             <cell id="864">
@@ -13086,6 +13249,39 @@ else&#13;
                                                             </cell>
                                                         </row>
                                                     </grid>
+                                                </cell>
+                                            </row>
+                                        </grid>
+                                        <grid id="1819">
+                                            <property name="fontSize">8pt</property>
+                                            <property name="marginTop">2pt</property>
+                                            <property name="marginBottom">8pt</property>
+                                            <column id="1820">
+                                                <property name="width">2.688in</property>
+                                            </column>
+                                            <column id="1821"/>
+                                            <row id="1822">
+                                                <cell id="1823">
+                                                    <property name="paddingTop">0pt</property>
+                                                    <property name="paddingRight">0pt</property>
+                                                    <label id="1825">
+                                                        <property name="fontSize">8pt</property>
+                                                        <property name="marginTop">3pt</property>
+                                                        <property name="textAlign">right</property>
+                                                        <text-property name="text">Se flere detaljer om ditt forbruk på</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="1824">
+                                                    <property name="paddingTop">0pt</property>
+                                                    <property name="paddingLeft">1pt</property>
+                                                    <label id="1826">
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
+                                                        <property name="fontSize">8pt</property>
+                                                        <property name="fontWeight">bold</property>
+                                                        <property name="marginTop">3pt</property>
+                                                        <property name="textAlign">left</property>
+                                                        <text-property name="text">fjordkraft.no/minside</text-property>
+                                                    </label>
                                                 </cell>
                                             </row>
                                         </grid>
