@@ -70,7 +70,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                                 {
                                     listOfInvoice.add(invoiceOrder);
                                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().setInvoiceOrder(listOfInvoice);
-                                    listOfTransactions =  getKraftTransactionGroup(request.getStatement().getTransactions().getTransaction(), attachment);
+                                    listOfTransactions.addAll(getKraftTransactionGroup(request.getStatement().getTransactions().getTransaction(), attachment));
                                 }
                                 else
                                 {
