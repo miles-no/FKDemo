@@ -88,6 +88,19 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                         }
 
                     }
+                    //IM-53 ; If freeText is not available then get the information from supplypointinfo-117.streetno
+                    if(faktura.getVEDLEGGFORMAT().equalsIgnoreCase("EMUXML")){
+                          if(attachment.getFaktura().getFreeText()==null )
+                          {
+                            Transaction transaction =  getKraftTransaction(request.getStatement().getTransactions().getTransaction(),attachment) ;
+                             if(transaction!=null && (transaction.getFreeText()==null || (transaction.getFreeText()!=null && transaction.getFreeText().isEmpty()))&& attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117()!=null)
+                             {
+                                 String message = "Kraft Transaction "+transaction.getMaalepunktID()+" has no free text.Setting value " +attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo() ;
+                                 auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), message, IMConstants.INFO);
+                                 transaction.setFreeText(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo());
+                             }
+                          }
+                    }
                 }
 
 
@@ -99,6 +112,29 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
             throw new PreprocessorException(e);
         }
 
+    }
+
+    private Transaction getKraftTransaction(List<Transaction> transactions, Attachment attachment) {
+        List<Transaction> listOfNewTransactions = new ArrayList<Transaction>();
+        for(Transaction transaction: transactions)
+        {
+
+            if(transaction.getReference().equals(attachment.getFAKTURA().getFAKTURANR()))
+            {
+                int k = 0;
+                for(Distribution distribution : transaction.getDistributions().getDistribution())
+                {
+
+                    float invoiceGrossTotal =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
+                    float kraftDistAmt   =     distribution.getAmount();
+                    if(Float.compare(invoiceGrossTotal, StrictMath.abs(kraftDistAmt))==0)
+                    {
+                        return transaction;
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     private List<Transaction>  getKraftTransactionGroup(List<Transaction> transactions,Attachment attachment) {
