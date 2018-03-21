@@ -1620,9 +1620,13 @@
             <list-property name="filter">
                 <structure>
                     <property name="operator">ne</property>
-                    <expression name="expr" type="javascript">row["Text"]</expression>
+                    <expression name="expr" type="javascript">if(parseFloat(row["TotalGross"]) > 0) {&#13;
+	row["Text"];&#13;
+} else {&#13;
+	row["Text"] + '-';&#13;
+}</expression>
                     <simple-property-list name="value1">
-                        <value>"Fornybar energi"</value>
+                        <value>"Fornybar energi-"</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -3919,7 +3923,13 @@
                     <property name="operator">like</property>
                     <expression name="expr" type="javascript">row["TransactionCategory"]</expression>
                     <simple-property-list name="value1">
-                        <value>"DI;%"</value>
+                        <value>if(row["TransactionCategory"].indexOf("DI;") != -1 ){&#13;
+	"DI;%";&#13;
+} else {&#13;
+	if(row["TransactionCategory"].indexOf("FT;") != -1){&#13;
+		"FT;%";&#13;
+	}&#13;
+}</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -3960,30 +3970,35 @@
                     <property name="name">TransactionCategory</property>
                     <property name="nativeName">TransactionCategory</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">0</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">AmountWithVat</property>
                     <property name="nativeName">AmountWithVat</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">0</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">DIAmountWithVat</property>
                     <property name="nativeName">DIAmountWithVat</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">0</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">DIVatTotal</property>
                     <property name="nativeName">DIVatTotal</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">0</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">TotalAttachment</property>
                     <property name="nativeName">TotalAttachment</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">0</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Transactions/Transaction]#:#{TransactionCategory;STRING;/TransactionCategory},{AmountWithVat;STRING;/AmountWithVat},{DIAmountWithVat;STRING;../DIAmountWithVat},{DIVatTotal;STRING;../DIVatTotal},{TotalAttachment;STRING;../../TotalAttachment}]]></xml-property>
@@ -10366,7 +10381,15 @@ true;}</expression>
                                                 <structure>
                                                     <property name="name">StartDate</property>
                                                     <text-property name="displayName">StromInfo::StartDate</text-property>
-                                                    <expression name="expression" type="javascript">getFormattedDate(dataSetRow["StartDate"]) + " - " + getFormattedDate(dataSetRow["EndDate"])</expression>
+                                                    <expression name="expression" type="javascript">if(null == dataSetRow["StartDate"]) {&#13;
+	" ";&#13;
+	}&#13;
+	else if(null == dataSetRow["EndDate"]) {&#13;
+	getFormattedDate(dataSetRow["StartDate"]);&#13;
+	}&#13;
+ else {&#13;
+	getFormattedDate(dataSetRow["StartDate"]) + " - " + getFormattedDate(dataSetRow["EndDate"])&#13;
+}</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
@@ -10816,7 +10839,11 @@ else &#13;
                                                     <text-property name="displayName">NettInfo::StartDate</text-property>
                                                     <expression name="expression" type="javascript">if(null == dataSetRow["StartDate"]) {&#13;
 	" ";&#13;
-} else {&#13;
+	}&#13;
+	else if(null == dataSetRow["EndDate"]) {&#13;
+	getFormattedDate(dataSetRow["StartDate"]);&#13;
+	}&#13;
+ else {&#13;
 	getFormattedDate(dataSetRow["StartDate"]) + " - " + getFormattedDate(dataSetRow["EndDate"])&#13;
 }</expression>
                                                     <property name="dataType">string</property>
@@ -13333,7 +13360,11 @@ else&#13;
                                     <structure>
                                         <property name="name">TransactionCategory</property>
                                         <text-property name="displayName">TransactionCategory</text-property>
-                                        <expression name="expression" type="javascript">trimDI(dataSetRow["TransactionCategory"]);</expression>
+                                        <expression name="expression" type="javascript">if(dataSetRow["TransactionCategory"].indexOf("DI;") != -1) {&#13;
+	trimDI(dataSetRow["TransactionCategory"]);&#13;
+} else if(dataSetRow["TransactionCategory"].indexOf("FT;") != -1){&#13;
+	dataSetRow["TransactionCategory"].replace("FT;","");&#13;
+}</expression>
                                         <property name="dataType">string</property>
                                         <property name="allowExport">true</property>
                                     </structure>

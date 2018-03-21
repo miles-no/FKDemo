@@ -95,7 +95,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     private String customPdfFontPath;
     private String basePathCampaign;
     private boolean readCampaignFilesystem;
-    private int attachmentConfigId;
+    //private int attachmentConfigId;
 
     public PDFGeneratorImpl(ConfigService configService) {
         this.configService = configService;
@@ -145,7 +145,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 logger.debug("generated pdf bytes of length " + generatedPdf.length);
             }
             //auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
-            invoiceGenerator.mergeInvoice(statement, generatedPdf,attachmentConfigId);
+            invoiceGenerator.mergeInvoice(statement, generatedPdf);
             //statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
            // auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             logger.debug("PDF generated for statement with statementId "+ statement.getId()+ "completed");
@@ -315,7 +315,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         String campaignImage = null;
         try {
             String brand =  statement.getSystemBatchInput().getTransferFile().getBrand();
-          //  int attachmentConfigId =0;
+            int attachmentConfigId =0;
             float creditLimit = statement.getCreditLimit();
             if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))
             {
@@ -335,6 +335,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                     attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
                 }
                 logger.debug("Attachment Configuration ID " + attachmentConfigId + " For statement "+ statement.getStatementId() );
+                statement.setAttachmentConfigId(attachmentConfigId);
+                statementService.updateStatement(statement);
                 List<Attachment> listOfAttachments = attachmentConfigService.getAttachmentByBrandAndAttachmentName(brand,attachmentConfigId);
                 if(listOfAttachments!=null && !listOfAttachments.isEmpty())
                 {

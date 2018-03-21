@@ -10,7 +10,7 @@ import java.io.IOException;
  */
 public interface InvoiceGenerator {
 
-    void mergeInvoice(Statement statement, byte[] generatedPdf,int attachmentConfigId) throws IOException, DocumentException;
+    void mergeInvoice(Statement statement, byte[] generatedPdf) throws IOException, DocumentException;
 
     //void generateInvoice(Statement statement) throws IOException, DocumentException;
 }
