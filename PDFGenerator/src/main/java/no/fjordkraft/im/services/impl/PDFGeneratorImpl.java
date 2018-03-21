@@ -201,6 +201,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             } else {
                 String rptDesign = layoutDesignService.getRptDesignFile(statement.getLayoutID());
                 if(null != rptDesign) {
+
                     logger.debug(" layout is "+ statement.getLayoutID());
                 } else {
                     throw new PDFGeneratorException("Layout not found");
