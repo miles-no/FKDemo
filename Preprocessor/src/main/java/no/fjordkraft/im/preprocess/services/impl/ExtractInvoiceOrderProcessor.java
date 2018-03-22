@@ -154,7 +154,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                     listOfDistribution = new ArrayList<Distribution>();
                    float invoiceGrossTotal =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
                     float kraftDistAmt   =     distribution.getAmount();
-                     if(Float.compare(invoiceGrossTotal, StrictMath.abs(kraftDistAmt))==0)
+                     if(Float.compare(StrictMath.abs(invoiceGrossTotal), StrictMath.abs(kraftDistAmt))==0)
                      {
                               listOfDistribution.add(distribution);
                               transaction.setAmountWithVat(kraftDistAmt);
@@ -165,6 +165,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                      {
                             Transaction transactionNew = deepClone(newTransaction,k);
                             listOfDistribution.add(distribution);
+                            transactionNew.setAmountWithVat(kraftDistAmt);
                             transactionNew.getDistributions().setDistribution(listOfDistribution);
                             listOfNewTransactions.add(transactionNew);
                      }
