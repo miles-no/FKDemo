@@ -13,6 +13,7 @@ import no.fjordkraft.im.statusEnum.AttachmentTypeEnum;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import no.fjordkraft.im.util.PDFUtil;
+import no.fjordkraft.im.util.SetInvoiceASOnline;
 import org.apache.axis.encoding.Base64;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -75,16 +76,30 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     @Transactional
     public void mergeInvoice(Statement statement, byte[] generatedPdf) throws IOException, DocumentException {
         String accountNo = statement.getAccountNumber();
-        String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
-
-       int attachmentConfigId = statement.getAttachmentConfigId();
+        int attachmentConfigId = statement.getAttachmentConfigId();
+        logger.debug("Attachment Config ID in invoice generator " + attachmentConfigId);
+        String brand = null;//statement.getBrand();
+        if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+        {
+            brand = statement.getSystemBatchInput().getTransferFile().getBrand();
+        }
+        else
+        {
+            brand = statement.getBrand();
+        }
+        //  statement.setAttachmentConfigId(attachmentConfigId);
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("PDF merging for statement with id "+ statement.getId());
 
         try {
             logger.info("Start of PDF merging for invoice number: " + statement.getInvoiceNumber() + " statement id "+ statement.getId());
-            statement = statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSING);
-
+            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())   {
+                statement = statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSING);
+            }
+            else
+            {
+                statement.setStatus(StatementStatusEnum.INVOICE_PROCESSING.getStatus());
+            }
             logger.info("status updated invoice number: " + statement.getInvoiceNumber() + " statement id "+ statement.getId());
 
             Document pdfCombine = new Document();
@@ -109,7 +124,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             logger.debug("readAdvtPdfFileSystem " + readAdvtPdfFileSystem);
             if(readAdvtPdfFileSystem ) {
                 if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))  {
-                     pdfBytes = getDefaultSegmentFile(brand,attachmentConfigId);
+                    pdfBytes = getDefaultSegmentFile(brand,attachmentConfigId);
                 }
                 if(pdfBytes==null) {
                     pdfBytes = getSegmentFileFromFS(brand);
@@ -120,6 +135,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
 
             if(null != pdfBytes) {
                 readInputPDF = new PdfReader(pdfBytes);
+
                 number_of_pages = readInputPDF.getNumberOfPages();
                 for (int page = 0; page < number_of_pages; ) {
                     copy.addPage(copy.getImportedPage(readInputPDF, ++page));
@@ -134,10 +150,19 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                         "Attach_PDF not found", IMConstants.WARNING);
             }
             pdfCombine.close();
-            byte[] outputBytes =  byteArrayOutputStream.toByteArray();
-            InvoicePdf invoicePdf = saveInvoicePDFs(outputBytes, statement);
-            invoiceService.saveInvoicePdf(invoicePdf);
-            statement = statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
+            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            {
+                byte[] outputBytes =  byteArrayOutputStream.toByteArray();
+                InvoicePdf invoicePdf = saveInvoicePDFs(outputBytes, statement);
+                invoiceService.saveInvoicePdf(invoicePdf);
+                statement = statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
+            }
+            else
+            {
+                byte[] outputBytes =  byteArrayOutputStream.toByteArray();
+                statement.setGeneratedPDF(outputBytes);
+                statement.setStatus(StatementStatusEnum.INVOICE_PROCESSED.getStatus());
+            }
             logger.debug(" saved invoice pdf and update statement status to INVOICE_PROCESSED "+ statement.getId());
             stopWatch.stop();
             logger.debug(stopWatch.prettyPrint());

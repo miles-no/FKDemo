@@ -14,4 +14,5 @@ public @interface PreprocessorInfo {
     String brand() default "";
     String legalPartClass() default "";
     int order();
+   boolean skipOnline() default  false;
 }

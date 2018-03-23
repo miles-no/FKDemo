@@ -10,7 +10,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.kafka.annotation.EnableKafka;
 
-@ServletComponentScan({"no.fjordkraft.im"})
+@ServletComponentScan({"no.fjordkraft.im", "no.fjordkraft.im.controller"})
 @SpringBootApplication(scanBasePackages = {"no.fjordkraft.im", "no.fjordkraft.im.controller", "no.fjordkraft.security"},exclude = {MongoAutoConfiguration.class,})
 @EnableEurekaClient
 @EnableJpaRepositories(basePackages = {"no.fjordkraft.im", "no.fjordkraft.security.jpa.repository"})

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -111,6 +112,12 @@ public class PDFGeneratorImpl implements PDFGenerator {
         }
 
         return statementList;
+    }
+
+    @Override
+    public byte[] generateInvoiceForSingleStatement(String processFilePath,String brand,Long layoutId)     {
+        String newResp = processFilePath+ "|brand:"+brand + "|layout:"+layoutId;
+       return pdfGeneratorClient.processSingleStatement(processFilePath,brand,layoutId.toString());
     }
 
 

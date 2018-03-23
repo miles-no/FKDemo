@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.kafka.annotation.EnableKafka;
 
-@ServletComponentScan({"no.fjordkraft.im"})
-@EnableJpaRepositories(basePackages = {"no.fjordkraft.im"})
+@ServletComponentScan(basePackages = {"no.fjordkraft.im","no.fjordkraft.im.controller"})
+@EnableJpaRepositories(basePackages = {"no.fjordkraft.im","no.fjordkraft.im.controller"})
 @SpringBootApplication
 @EnableEurekaClient
 @EnableDiscoveryClient

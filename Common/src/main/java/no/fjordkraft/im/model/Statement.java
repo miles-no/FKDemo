@@ -82,6 +82,18 @@ public class Statement {
     @Column(name="ATTACHMENT_CONFIG_ID")
     private int attachmentConfigId;
 
+    @Transient
+    private boolean isOnline = false;
+
+    @Transient
+    private byte[] generatedPDF;
+
+    @Transient
+    private String fileName;
+
+    @Transient
+    private String seqNo;
+
     public Long getId() {
         return id;
     }
@@ -256,5 +268,37 @@ public class Statement {
 
     public void setAttachmentConfigId(int attachmentConfigId) {
         this.attachmentConfigId = attachmentConfigId;
+    }
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean online) {
+        isOnline = online;
+    }
+
+    public byte[] getGeneratedPDF() {
+        return generatedPDF;
+    }
+
+    public void setGeneratedPDF(byte[] generatedPDF) {
+        this.generatedPDF = generatedPDF;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getSeqNo() {
+        return seqNo;
+    }
+
+    public void setSeqNo(String seqNo) {
+        this.seqNo = seqNo;
     }
 }

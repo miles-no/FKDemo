@@ -6,6 +6,7 @@ import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.util.IMConstants;
+import no.fjordkraft.im.util.SetInvoiceASOnline;
 import oasis.names.specification.ubl.schema.xsd.creditnote_2.CreditNote;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
@@ -43,7 +44,9 @@ public class GenericPreprocessor extends BasePreprocessor {
         try {
             StopWatch stopWatch = new StopWatch();
             stopWatch.start("Unmarshall Attachments");
+            if(SetInvoiceASOnline.get() == null || !SetInvoiceASOnline.get()) {
             createDirectories(request);
+            }
             unmarshallAttachments(request.getStatement());
             decodeAndUnmarshalEHFAttachment(request.getStatement());
             stopWatch.stop();

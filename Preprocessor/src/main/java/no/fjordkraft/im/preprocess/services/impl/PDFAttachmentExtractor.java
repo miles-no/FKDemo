@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-@PreprocessorInfo(order=2)
+@PreprocessorInfo(order=2,skipOnline = true)
 public class PDFAttachmentExtractor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(PDFAttachmentExtractor.class);

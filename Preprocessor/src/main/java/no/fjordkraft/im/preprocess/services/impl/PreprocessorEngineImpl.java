@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by bhavi on 5/8/2017.
@@ -23,10 +25,12 @@ public class PreprocessorEngineImpl implements PreprocessorEngine {
 
     @Autowired
     private List<Preprocessor> preprocessorList;
+    private Map<Preprocessor , Boolean> preprocessorMap = new HashMap<Preprocessor,Boolean>();
 
     @PostConstruct
     public void init() {
        Collections.sort(preprocessorList);
+
     }
 
     @Override
@@ -36,8 +40,10 @@ public class PreprocessorEngineImpl implements PreprocessorEngine {
 
     @Override
     public void execute(PreprocessRequest request) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
+
           for(Preprocessor preprocessor:preprocessorList){
-              preprocessor.preprocess(request);
+              if(preprocessorMap==null || (preprocessorMap!=null && !preprocessorMap.containsKey(preprocessor)))
+                 preprocessor.preprocess(request);
           }
     }
 
@@ -49,5 +55,11 @@ public class PreprocessorEngineImpl implements PreprocessorEngine {
         this.preprocessorList = preprocessorList;
     }
 
+    public Map<Preprocessor, Boolean> getPreprocessorMap() {
+        return preprocessorMap;
+    }
 
+    public void setPreprocessorMap(Map<Preprocessor, Boolean> preprocessorMap) {
+        this.preprocessorMap = preprocessorMap;
+    }
 }

@@ -1,8 +1,11 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
+import no.fjordkraft.im.util.SetInvoiceASOnline;
 import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
+import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
+import no.fjordkraft.im.preprocess.services.Preprocessor;
 import no.fjordkraft.im.preprocess.services.PreprocessorEngine;
 import no.fjordkraft.im.preprocess.services.PreprocessorService;
 import no.fjordkraft.im.repository.StatementRepository;
@@ -31,8 +34,7 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by bhavi on 5/8/2017.
@@ -70,6 +72,9 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
 
     @Autowired
     PDFGenerator pdfGenerator;
+
+
+    private Statement statement;
 
     @Override
     public Statement unmarshallStatement(String path) throws IOException {
@@ -127,22 +132,56 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             statement.getSystemBatchInput().getTransferFile().getFilename();
             Statement if320statement = unmarshallStatement(new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1)));
             getUpdatedStatementEntity(if320statement, statement);
-            statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
+
             PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request = new PreprocessRequest();
             request.setStatement(if320statement);
             request.setEntity(statement);
 
+            //statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
+         /*   preprocessorEngine.execute(request);
+            statement.setLayoutID(request.getEntity().getLayoutID());
+            statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);*/
+            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            {
+                 statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
+            }
+            else
+            {
+                statement.setStatus(StatementStatusEnum.PRE_PROCESSING.getStatus());
+                    List<Preprocessor> preProcessorList = preprocessorEngine.getPreprocessorList();
+                Map<Preprocessor,Boolean> preProcessorMap= new HashMap<Preprocessor,Boolean>();
+               for(Preprocessor preprocessor :preProcessorList)
+               {
+                   PreprocessorInfo annotationObj1 = preprocessor.getClass().getAnnotation(PreprocessorInfo.class);
+                    if(annotationObj1.skipOnline()) {
+                     preProcessorMap.put(preprocessor,annotationObj1.skipOnline());
+                    }
+               }
+               preprocessorEngine.setPreprocessorMap(preProcessorMap);
+            }
             preprocessorEngine.execute(request);
-            statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
+            statement.setLayoutID(request.getEntity().getLayoutID());
+
+            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            {
+                statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
+            }
+            else
+            {
+                statement.setStatus(StatementStatusEnum.PRE_PROCESSED.getStatus());
+                setStatement(request.getStatement());
+            }
             //auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             stopwatch.stop();
             logger.debug("Preprocessing completed for statement with id "+ statement.getId());
             logger.debug(stopwatch.prettyPrint());
         } catch (PreprocessorException ex) {
+            SetInvoiceASOnline.unset();
             logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), ex);
             statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), ex.getMessage(), IMConstants.ERROR);
         } catch (Exception e) {
+            SetInvoiceASOnline.unset();
             logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);
         }
@@ -179,5 +218,14 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
 
     public void setUnMarshaller(Unmarshaller unMarshaller) {
         this.unMarshaller = unMarshaller;
+    }
+
+    public Statement getStatement() {
+        return statement;
+    }
+
+
+    public void setStatement(Statement statement) {
+        this.statement = statement;
     }
 }

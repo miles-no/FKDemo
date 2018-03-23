@@ -11,6 +11,7 @@ import no.fjordkraft.im.statusEnum.AttachmentTypeEnum;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.task.PDFGeneratorTask;
 import no.fjordkraft.im.util.IMConstants;
+import no.fjordkraft.im.util.SetInvoiceASOnline;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -129,6 +130,15 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         }
     }
 
+    public void processSingleStatement(Statement statement){
+        if(taskExecutor instanceof ThreadPoolTaskExecutor) {
+            ThreadPoolTaskExecutor executor = (ThreadPoolTaskExecutor)taskExecutor;
+            logger.debug("PDF generator thread queue count " + executor.getThreadPoolExecutor().getQueue().size() +" active threads "+ executor.getActiveCount() + "max pool size "+executor.getMaxPoolSize()+ " :: "+executor.getThreadPoolExecutor().getActiveCount());
+        }
+        PDFGeneratorTask pdfGeneratorTask = applicationContext.getBean(PDFGeneratorTask.class,statement);
+        taskExecutor.execute(pdfGeneratorTask);
+    }
+
     @Override
     @Transactional
     public void generateInvoicePDFSingleStatement(Statement statement) {
@@ -136,23 +146,52 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         String systemBatchInputFileName = "";
         String subFolderName = "";
         try {
-            systemBatchInputFileName = statement.getSystemBatchInput().getTransferFile().getFilename();
-            stopWatch.start("PDF generation for statement "+ statement.getId());
-            subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
-            byte[] generatedPdf = birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName);
-            statement = statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSED);
+            byte[] generatedPdf = null;
+            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            {
+                systemBatchInputFileName = statement.getSystemBatchInput().getTransferFile().getFilename();
+                stopWatch.start("PDF generation for statement "+ statement.getId());
+                subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
+
+                generatedPdf = birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName);
+            }
+            else
+            {
+                stopWatch.start("Online PDF generation for invoice number "+ statement.getInvoiceNumber());
+                systemBatchInputFileName = statement.getFileName();
+                generatedPdf =   birtEnginePDFGenerator(statement, systemBatchInputFileName, subFolderName);
+            }
+            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            {
+                statement = statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSED);
+            }
+            else
+            {
+                statement.setStatus(StatementStatusEnum.PDF_PROCESSED.getStatus());
+            }
             if(generatedPdf !=null && generatedPdf.length >0 ){
                 logger.debug("generated pdf bytes of length " + generatedPdf.length);
             }
             //auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             invoiceGenerator.mergeInvoice(statement, generatedPdf);
             //statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
-           // auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
+            // auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             logger.debug("PDF generated for statement with statementId "+ statement.getId()+ "completed");
-            logger.debug(stopWatch.prettyPrint());
-            String directoryPath = outputDirectoryPath+ File.separator + subFolderName + File.separator + statement.getInvoiceNumber();
+            String directoryPath = null;
+            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            {
+                directoryPath = outputDirectoryPath+ File.separator + subFolderName + File.separator + statement.getInvoiceNumber();
+            }
+            else
+            {
+                directoryPath =statement.getFileName().replace("\\"+IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME,"");
+            }
             logger.debug(" Directory to delete path "+ directoryPath);
             cleanUpFiles(directoryPath);
+
+            stopWatch.stop();
+            logger.debug(stopWatch.prettyPrint());
+
         } catch (PDFGeneratorException e) {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
@@ -161,7 +200,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
         }
-        stopWatch.stop();
+
 
     }
 
@@ -171,11 +210,19 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("Birt report generation");
         String accountNo = statement.getAccountNumber();
-        String brand = statement.getSystemBatchInput().getTransferFile().getBrand();
+        String brand = statement.getBrand();
         ByteArrayOutputStream baos = null;
         try {
-            String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + statement.getInvoiceNumber() + File.separator ;
-            String xmlFilePath =  basePath + File.separator + IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME;
+            String xmlFilePath = null;
+            if(SetInvoiceASOnline.get() ==null || !SetInvoiceASOnline.get())
+            {
+                String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + statement.getInvoiceNumber() + File.separator ;
+                xmlFilePath =  basePath + File.separator + IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME;
+            }
+            else
+            {
+                xmlFilePath = outPutDirectoryPath;
+            }
             String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
 
 
@@ -201,7 +248,6 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             } else {
                 String rptDesign = layoutDesignService.getRptDesignFile(statement.getLayoutID());
                 if(null != rptDesign) {
-
                     logger.debug(" layout is "+ statement.getLayoutID());
                 } else {
                     throw new PDFGeneratorException("Layout not found");
@@ -297,6 +343,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             }
         } catch (IOException e) {
             logger.error("Exception while deleting directory "+outputDirectoryPath, e);
+
         }
     }
 
@@ -315,7 +362,16 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     {
         String campaignImage = null;
         try {
-            String brand =  statement.getSystemBatchInput().getTransferFile().getBrand();
+
+            String brand =  null;
+            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            {
+                brand = statement.getSystemBatchInput().getTransferFile().getBrand();
+            }
+            else
+            {
+                brand = statement.getBrand();
+            }
             int attachmentConfigId =0;
             float creditLimit = statement.getCreditLimit();
             if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))
@@ -328,7 +384,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                     }
                     else
                     {
-                       attachmentConfigId = AttachmentTypeEnum.FIRST_TIME_ATTACHMENT.getStatus();
+                        attachmentConfigId = AttachmentTypeEnum.FIRST_TIME_ATTACHMENT.getStatus();
                     }
                 }
                 else
@@ -336,21 +392,24 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                     attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
                 }
                 logger.debug("Attachment Configuration ID " + attachmentConfigId + " For statement "+ statement.getStatementId() );
+
                 statement.setAttachmentConfigId(attachmentConfigId);
+                if(SetInvoiceASOnline.get() == null || !SetInvoiceASOnline.get()) {
                 statementService.updateStatement(statement);
+                }
                 List<Attachment> listOfAttachments = attachmentConfigService.getAttachmentByBrandAndAttachmentName(brand,attachmentConfigId);
                 if(listOfAttachments!=null && !listOfAttachments.isEmpty())
                 {
-                  logger.debug("list Of attachments found for brand " + brand+ " and attachment configuration ID " + attachmentConfigId + " = " + listOfAttachments.size() );
+                    logger.debug("list Of attachments found for brand " + brand+ " and attachment configuration ID " + attachmentConfigId + " = " + listOfAttachments.size() );
                     for(Attachment attachmentFile : listOfAttachments)
                     {
                         if("image".equalsIgnoreCase(attachmentFile.getAttachmentType().toLowerCase()))
                         {    if(readCampaignFilesystem)
-                             {
-                                campaignImage =  attachmentFile.getFileContent();
-                                logger.debug(" reading campaign from database for statement "+statement.getId());
-                                break;
-                             }
+                        {
+                            campaignImage =  attachmentFile.getFileContent();
+                            logger.debug(" reading campaign from database for statement "+statement.getId());
+                            break;
+                        }
                         }
                     }
                 }

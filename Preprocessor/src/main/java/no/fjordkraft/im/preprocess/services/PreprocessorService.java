@@ -22,4 +22,6 @@ public interface PreprocessorService {
     //public void updateStatementEntity(no.fjordkraft.im.model.Statement statementEntity);
 
     public void setUnMarshaller(Unmarshaller unMarshaller);
+
+    public Statement getStatement();
 }

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -20,6 +21,10 @@ public interface PDFGeneratorClient {
 
     @RequestMapping(method = RequestMethod.POST, value = "/pdf")
     void processStatement(List<Long> statementList);
+
+    @RequestMapping(method = RequestMethod.POST, value = "/pdf/Statement/generateFile")
+    byte[] processSingleStatement(@RequestParam("processFilePath")String processFilePath,@RequestParam("brand")String brand,@RequestParam("layoutID")String layoutID);
+
 
     @Configuration
     public class ClientConfiguration {
