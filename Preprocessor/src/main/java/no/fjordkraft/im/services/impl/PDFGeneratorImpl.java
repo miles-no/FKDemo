@@ -117,6 +117,7 @@ public class PDFGeneratorImpl implements PDFGenerator {
     @Override
     public byte[] generateInvoiceForSingleStatement(String processFilePath,String brand,Long layoutId)     {
         String newResp = processFilePath+ "|brand:"+brand + "|layout:"+layoutId;
+        logger.debug("Calling PDF generator client for Processed File " + processFilePath);
        return pdfGeneratorClient.processSingleStatement(processFilePath,brand,layoutId.toString());
     }
 

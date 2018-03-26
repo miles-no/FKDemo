@@ -40,7 +40,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class ProcessInvoiceController {
 
-    private static final Logger logger = LoggerFactory.getLogger(PreprocessController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProcessInvoiceController.class);
 
     @Autowired
     PreprocessorService preprocessorService;
@@ -91,25 +91,43 @@ public class ProcessInvoiceController {
                 marshaller.marshal(preprocessorService.getStatement(), streamResult);
                 if(null != streamResult.getOutputStream()) {
                     logger.debug("closing stream in Process Invoice Controller");
+                    logger.debug("Generated PROCESSED XML :" + baseFile+File.separator +IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME);
                     streamResult.getOutputStream().close();
                 }
 
                 SetInvoiceASOnline.set(Boolean.TRUE);
+                logger.debug("Calling PDF Generator to generate PDF for Online file " + file.getOriginalFilename());
                 byte[] generatedPDF = pdfGenerator.generateInvoiceForSingleStatement(baseFile+File.separator +IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME,statement.getBrand(),statement.getLayoutID());
-
-                HttpHeaders headers = new HttpHeaders();
-                headers.setContentType(MediaType.APPLICATION_PDF);
-                headers.setContentLength(generatedPDF.length);
-                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=sample.pdf");
-                SetInvoiceASOnline.unset();
-                stopWatch.stop();
-                logger.debug(stopWatch.prettyPrint());
-                return new ResponseEntity<byte[]>(generatedPDF, headers, HttpStatus.OK);
+                if(generatedPDF!=null )
+                {
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.setContentType(MediaType.APPLICATION_PDF);
+                    headers.setContentLength(generatedPDF.length);
+                    headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=sample.pdf");
+                    SetInvoiceASOnline.unset();
+                    stopWatch.stop();
+                    logger.debug(stopWatch.prettyPrint());
+                    return new ResponseEntity<byte[]>(generatedPDF, headers, HttpStatus.OK);
+                }
+                else
+                {
+                    statement.getCreditLimit();
+                    HttpHeaders headers = new HttpHeaders();
+                    String message = "Not able to process online PDF for file "+file.getOriginalFilename();
+                    SetInvoiceASOnline.unset();
+                    stopWatch.stop();
+                    logger.debug(stopWatch.prettyPrint());
+                    return new ResponseEntity<byte[]>(message.getBytes(), headers, HttpStatus.BAD_REQUEST);
+                }
             } catch (Exception e) {
+           SetInvoiceASOnline.unset();
+            String message = "Exception while processing online PDF " + e.getMessage();
+           logger.debug("exception while processing online file " + file.getOriginalFilename() ,e);
+           HttpHeaders headers = new HttpHeaders();
+           return new ResponseEntity<byte[]>(message.getBytes(), headers, HttpStatus.BAD_REQUEST);
 
-                logger.debug("exception while processing online file " + file.getOriginalFilename() ,e);
             }
-          return null;
+         // return null;
        }
 
     private Statement splitFileAndGetFirstStatement(XMLEventReader eventReader,SystemBatchInput systemBatchInput) throws Exception {

@@ -193,9 +193,17 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             logger.debug(stopWatch.prettyPrint());
 
         } catch (PDFGeneratorException e) {
+            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())   {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(), getCause(e).getMessage(), IMConstants.ERROR);
+            }
+            else
+            {
+                logger.error("Exception in PDF generation for statement" + statement.getId(), e);
+                statement.setStatus(StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus());
+                throw e;
+            }
         } catch (Exception e) {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);

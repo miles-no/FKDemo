@@ -176,14 +176,31 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             logger.debug("Preprocessing completed for statement with id "+ statement.getId());
             logger.debug(stopwatch.prettyPrint());
         } catch (PreprocessorException ex) {
+           if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())    {
             SetInvoiceASOnline.unset();
             logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), ex);
             statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), ex.getMessage(), IMConstants.ERROR);
+           }
+            else
+           {
+               //SetInvoiceASOnline.unset();
+               logger.error("Exception in preprocessor task for Online file " + statement.getFileName(), ex);
+               statement.setStatus( StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus());
+               throw ex;
+           }
         } catch (Exception e) {
-            SetInvoiceASOnline.unset();
+            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())   {
+
             logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);
+            }
+            else
+            {
+                logger.error("Exception in preprocessor task for statement for Online file " + statement.getFileName(),e);
+                statement.setStatus(StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus());
+
+            }
         }
 
     }

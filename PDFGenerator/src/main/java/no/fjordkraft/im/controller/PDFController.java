@@ -66,7 +66,7 @@ public class PDFController {
     }
 
     @RequestMapping(value = "/pdf/Statement/generateFile", method = RequestMethod.POST)
-    public  byte[] processSingleStatement(@RequestParam("processFilePath") String processFilePath,@RequestParam("brand")String brand,@RequestParam("layoutID")String layoutId ){
+    public  byte[] processSingleStatement(@RequestParam("processFilePath") String processFilePath,@RequestParam("brand")String brand,@RequestParam("layoutID")String layoutId ) throws Exception{
         try {
                 logger.debug("In PDF Controller for generating PDF for processed file " + processFilePath);
                 InputStream inputStream = new FileInputStream(processFilePath);
@@ -84,7 +84,7 @@ public class PDFController {
                 statement.setBrand(brand);
                 statement.setFileName(processFilePath);
                 SetInvoiceASOnline.set(true);
-                logger.debug("Generating PDF for invoice  " + statement.getInvoiceNumber());
+                logger.debug("Generating PDF for Online invoice  " + statement.getInvoiceNumber());
 
                 pdfGenerator.generateInvoicePDFSingleStatement(statement);
                 byte[] generatedPDF = statement.getGeneratedPDF();
@@ -92,12 +92,18 @@ public class PDFController {
                 SetInvoiceASOnline.unset();
                 return generatedPDF;
               }
-              catch (Exception e) {
+              catch (PDFGeneratorException e) {
 
                 SetInvoiceASOnline.unset();
                 logger.error("Error in PDFController while processing online file " + processFilePath + e);
-                throw new PDFGeneratorException(e);
+                throw e;
               }
+                catch (Exception e) {
+
+            SetInvoiceASOnline.unset();
+            logger.error("Error in PDFController while processing online file " + processFilePath + e);
+             throw e;
+        }
     }
 
     private Map<String,String> splitFileAndGetFirstStatement(XMLEventReader eventReader) throws XMLStreamException {
