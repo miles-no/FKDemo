@@ -337,6 +337,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 }
                 baseItemDetails.setUnitPrice(Float.valueOf(creditNoteLineType.getPrice().getPriceAmount().getValue().toString())* IMConstants.NEGATIVE);
                 baseItemDetails.setPriceDenomination(creditNoteLineType.getPrice().getPriceAmount().getCurrencyID());
+                baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
                 List<TaxCategoryType> categoryTypeList = creditNoteLineType.getItem().getClassifiedTaxCategories();
                 BigDecimal vat = null;
                 for(TaxCategoryType taxCategoryType: categoryTypeList) {
@@ -435,6 +436,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         baseItemDetails.setUnitOfMeasure(invoiceLineType.getInvoicedQuantity().getUnitCode());
                         baseItemDetails.setUnitPrice(Float.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString()));
                         baseItemDetails.setPriceDenomination(invoiceLineType.getPrice().getPriceAmount().getCurrencyID());
+                        baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
                         List<TaxCategoryType> categoryTypeList = invoiceLineType.getItem().getClassifiedTaxCategories();
                         BigDecimal vat = null;
                         for(TaxCategoryType taxCategoryType: categoryTypeList) {
@@ -509,6 +511,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         for (BaseItemDetails baseItemDetails : baseItemDetailsList) {
             List<Ref> refList = baseItemDetails.getRef();
             baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
+            baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
             if (null != refList) {
                 for (Ref ref : refList) {
                     if (IMConstants.CODE_UNIT_PRICE_GROSS.equals(ref.getCode())) {

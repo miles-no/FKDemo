@@ -59,7 +59,8 @@ import java.util.List;
     "endDate",
     "unitPriceGross",
     "ref",
-    "noOfDays"
+    "noOfDays",
+    "attachmentFormat"
 })
 @XmlRootElement(name = "BaseItemDetails")
 public class BaseItemDetails {
@@ -99,6 +100,9 @@ public class BaseItemDetails {
 
     @XmlElement(name = "NoOfDays")
     protected long noOfDays;
+
+    @XmlElement(name = "AttachmentFormat")
+    protected String attachmentFormat;
 
     /**
      * Gets the value of the level property.
@@ -362,5 +366,13 @@ public class BaseItemDetails {
 
     public void setNoOfDays(long noOfDays) {
         this.noOfDays = noOfDays;
+    }
+
+    public String getAttachmentFormat() {
+        return attachmentFormat;
+    }
+
+    public void setAttachmentFormat(String attachmentFormat) {
+        this.attachmentFormat = attachmentFormat;
     }
 }
