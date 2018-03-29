@@ -1,8 +1,11 @@
 package no.fjordkraft.im.ui.services;
 
+import no.fjordkraft.im.domain.RestAttachment;
 import no.fjordkraft.im.model.Attachment;
 import no.fjordkraft.im.model.AttachmentConfig;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -15,14 +18,15 @@ import java.util.List;
  */
 
 public interface UIAttachmentService {
-    Attachment saveAttachment(Attachment attachment);
-    List<Attachment> getAllAttachmentByBrand(String brandName);
+    RestAttachment saveAttachment(RestAttachment attachment,AttachmentConfig attachmentConfig);
+    List<RestAttachment> getAllAttachmentByBrand(String brandName);
     void deleteAttachment(Long id);
-    Attachment updateAttachment(Long id,Attachment attachment);
-    List<Attachment> getAllAttachments();
+    RestAttachment updateAttachment(Long id,Attachment attachment);
+    List<RestAttachment> getAllAttachments();
     AttachmentConfig getAttachmentConfigById(Long id);
     List<AttachmentConfig> getAllAttachmentConfig();
     Attachment getAttachmentContentById(Long id);
+    Attachment getAttachmentByFileType(String fileType,String brandName, Long attachmentConfigId);
 
 
 }

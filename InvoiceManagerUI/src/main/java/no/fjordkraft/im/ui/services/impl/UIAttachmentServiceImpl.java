@@ -1,5 +1,6 @@
 package no.fjordkraft.im.ui.services.impl;
 
+import no.fjordkraft.im.domain.RestAttachment;
 import no.fjordkraft.im.repository.AttachmentRepository;
 import no.fjordkraft.im.model.Attachment;
 import no.fjordkraft.im.model.AttachmentConfig;
@@ -8,6 +9,7 @@ import no.fjordkraft.im.ui.services.UIAttachmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,13 +29,61 @@ public class UIAttachmentServiceImpl implements UIAttachmentService {
     AttachmentConfigService attachmentConfigService;
 
     @Override
-    public Attachment saveAttachment(Attachment attachment) {
-        return attachmentRepository.save(attachment);  //To change body of implemented methods use File | Settings | File Templates.
+    public RestAttachment saveAttachment(RestAttachment restAttachment,AttachmentConfig attachmentConfig) {
+        Attachment attachment = new Attachment();
+        attachment.setAttachmentConfig(attachmentConfig);
+        attachment.setFileType(restAttachment.getFileExtension());
+        attachment.setAttachmentType(restAttachment.getAttachmentType());
+        attachment.setBrand(restAttachment.getBrandName());
+        attachment.setFileContent(restAttachment.getFileContent());
+        List<Attachment> attachmentList = attachmentRepository.getAttachmentByBrandAndAttachmentName(restAttachment.getBrandName(),attachmentConfig.getId());
+        boolean isAlreadyExists = false;
+        for(Attachment attachment1:attachmentList)
+        {
+            if(attachment1.getAttachmentConfig().getAttachmentName().equalsIgnoreCase(attachmentConfig.getAttachmentName()) && attachment1.getAttachmentType().equalsIgnoreCase(restAttachment.getAttachmentType())
+            && attachment1.getFileType().equalsIgnoreCase(restAttachment.getAttachmentType()))
+            {
+                 isAlreadyExists = true;
+            }
+        }
+        if(!isAlreadyExists)
+        {
+        Attachment savedAttachment = attachmentRepository.save(attachment);  //To change body of implemented methods use File | Settings | File Templates.
+        RestAttachment newAttachment = new RestAttachment();
+        newAttachment.setAttachmentId(savedAttachment.getAttachmentID());
+        newAttachment.setAttachmentType(savedAttachment.getAttachmentType());
+        newAttachment.setBrandName(savedAttachment.getBrand());
+        newAttachment.setAttachmentTypeId(savedAttachment.getAttachmentConfig().getId());
+        newAttachment.setAttachmentTypeName(savedAttachment.getAttachmentConfig().getAttachmentName());
+        newAttachment.setFileExtension(savedAttachment.getFileType());
+
+        return newAttachment;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     @Override
-    public List<Attachment> getAllAttachmentByBrand(String brandName) {
-        return attachmentRepository.getAttachmentByBrand(brandName);  //To change body of implemented methods use File | Settings | File Templates.
+    public List<RestAttachment> getAllAttachmentByBrand(String brandName) {
+        List<RestAttachment> listOfRestAttachments = new ArrayList<RestAttachment>();
+        List<Attachment> listOfAttachment = attachmentRepository.getAttachmentByBrand(brandName);  //To change body of implemented methods use File | Settings | File Templates.
+        if(listOfAttachment!=null && !listOfAttachment.isEmpty())
+        {
+            for(Attachment attachment:listOfAttachment)
+            {
+                RestAttachment attachmentToShow = new RestAttachment();
+                attachmentToShow.setAttachmentId(attachment.getAttachmentID());
+                attachmentToShow.setAttachmentType(attachment.getAttachmentType());
+                attachmentToShow.setBrandName(attachment.getBrand());
+                attachmentToShow.setAttachmentTypeId(attachment.getAttachmentConfig().getId());
+                attachmentToShow.setAttachmentTypeName(attachment.getAttachmentConfig().getAttachmentName());
+                attachmentToShow.setFileExtension(attachment.getFileType());
+                listOfRestAttachments.add(attachmentToShow);
+            }
+        }
+        return  listOfRestAttachments;
     }
 
     @Override
@@ -42,8 +92,8 @@ public class UIAttachmentServiceImpl implements UIAttachmentService {
     }
 
     @Override
-    public Attachment updateAttachment(Long id, Attachment attachment) {
-         //To change body of implemented methods use File | Settings | File Templates.
+    public RestAttachment updateAttachment(Long id, Attachment attachment) {
+        //To change body of implemented methods use File | Settings | File Templates.
         Attachment attachmentfound = attachmentRepository.findOne(attachment.getAttachmentID());
         if(null != attachmentfound) {
             attachmentfound.setAttachmentType(attachment.getAttachmentType());
@@ -53,12 +103,34 @@ public class UIAttachmentServiceImpl implements UIAttachmentService {
             attachmentRepository.saveAndFlush(attachmentfound);
 
         }
-        return attachmentfound;
+        RestAttachment attachmentToShow = new RestAttachment();
+        attachmentToShow.setAttachmentId(attachmentfound.getAttachmentID());
+        attachmentToShow.setAttachmentType(attachmentfound.getAttachmentType());
+        attachmentToShow.setBrandName(attachmentfound.getBrand());
+        attachmentToShow.setAttachmentTypeId(attachmentfound.getAttachmentConfig().getId());
+        attachmentToShow.setAttachmentTypeName(attachmentfound.getAttachmentConfig().getAttachmentName());
+        attachmentToShow.setFileExtension(attachmentfound.getFileType());
+        return attachmentToShow;
     }
 
     @Override
-    public List<Attachment> getAllAttachments() {
-        return attachmentRepository.findAll();  //To change body of implemented methods use File | Settings | File Templates.
+    public List<RestAttachment> getAllAttachments() {
+
+        List<RestAttachment> listOfRestAttachments = new ArrayList<RestAttachment>();
+        List<Attachment> attachmentList = attachmentRepository.findAll();  //To change body of implemented methods use File | Settings | File Templates.
+        if(attachmentList!=null && !attachmentList.isEmpty()) {
+            for(Attachment attachment:attachmentList) {
+                RestAttachment attachmentToShow = new RestAttachment();
+                attachmentToShow.setAttachmentId(attachment.getAttachmentID());
+                attachmentToShow.setAttachmentType(attachment.getAttachmentType());
+                attachmentToShow.setBrandName(attachment.getBrand());
+                attachmentToShow.setAttachmentTypeId(attachment.getAttachmentConfig().getId());
+                attachmentToShow.setAttachmentTypeName(attachment.getAttachmentConfig().getAttachmentName());
+                attachmentToShow.setFileExtension(attachment.getFileType());
+                listOfRestAttachments.add(attachmentToShow);
+            }
+        }
+        return listOfRestAttachments;
     }
 
     @Override
@@ -74,5 +146,22 @@ public class UIAttachmentServiceImpl implements UIAttachmentService {
     @Override
     public Attachment getAttachmentContentById(Long id) {
         return attachmentRepository.getContentById(id);  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Attachment getAttachmentByFileType(String fileType, String brandName, Long attachmentConfigId) {
+
+        List<Attachment> listOfAttachment =   attachmentRepository.getAttachmentByBrandAndAttachmentName(brandName,attachmentConfigId);  //To change body of implemented methods use File | Settings | File Templates.
+        if(listOfAttachment!=null && !listOfAttachment.isEmpty())
+        {
+            for(Attachment attachment: listOfAttachment)
+            {
+                if( fileType.equalsIgnoreCase(attachment.getFileType()))
+                {
+                    return  attachment;
+                }
+            }
+        }
+        return null;
     }
 }
