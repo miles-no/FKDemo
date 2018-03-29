@@ -5,6 +5,8 @@ import no.fjordkraft.im.ui.services.UIBrandService;
 import no.fjordkraft.im.util.IMConstants;
 import no.fjordkraft.security.jpa.domain.UserFunctionEnum;
 import no.fjordkraft.security.springmvc.annotation.Function;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,9 @@ public class IMBrandController {
     @Autowired
     UIBrandService brandService;
 
+    private static final Logger logger = LoggerFactory.getLogger(IMBrandController.class);
+
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     Map<String, Object> getBrandConfigs() {
@@ -36,6 +41,7 @@ public class IMBrandController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
     void saveBrandConfig(@RequestBody BrandConfig brandConfig) {
+        logger.debug("In save Brand Config Method.");
         brandService.saveBrandConfig(brandConfig);
     }
 
@@ -43,6 +49,7 @@ public class IMBrandController {
     @ResponseBody
     @Function(UserFunctionEnum.Afi_Rabatt)
     void updateBrandConfig(@RequestBody BrandConfig brandConfig) {
+        logger.debug("In Update Brand Config Method.");
         brandService.updateBrandConfig(brandConfig);
     }
 
@@ -50,6 +57,7 @@ public class IMBrandController {
     @ResponseBody
     @Function(UserFunctionEnum.Admin_Jobber)
     void deleteBrandConfig(@PathVariable(value="id") Long id) {
+        logger.debug("In Delete Brand Config Method.");
         brandService.deleteBrandConfig(id);
     }
 
@@ -57,6 +65,7 @@ public class IMBrandController {
     @RequestMapping(value = "{brandName}", method = RequestMethod.GET)
     @ResponseBody
     BrandConfig getConfigByBrand(@PathVariable("brandName") String brand) {
+        logger.debug("In get Configs by Brand Method.");
         BrandConfig brandConfig = new BrandConfig();
         brandConfig = brandService.getBrandConfigByName(brand);
         return brandConfig;
@@ -65,6 +74,7 @@ public class IMBrandController {
     @RequestMapping(value = "brand", method = RequestMethod.GET)
     @ResponseBody
     List<String> getAllBrands() {
+        logger.debug("In Get All Brands Method.");
         return brandService.getAllBrands();
     }
 }

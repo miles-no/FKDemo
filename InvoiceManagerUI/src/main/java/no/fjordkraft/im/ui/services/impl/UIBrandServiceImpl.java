@@ -38,11 +38,17 @@ public class UIBrandServiceImpl implements UIBrandService {
     public void updateBrandConfig(BrandConfig brandConfig) {
         BrandConfig config = new BrandConfig();
         config = brandConfigRepository.findOne(brandConfig.getId());
+        config.setBrand(brandConfig.getBrand());
         config.setUseEABarcode(brandConfig.getUseEABarcode());
         config.setAgreementNumber(brandConfig.getAgreementNumber());
         config.setServiceLevel(brandConfig.getServiceLevel());
         config.setPrefixKID(brandConfig.getPrefixKID());
         config.setKontonummer(brandConfig.getKontonummer());
+        config.setDescription(brandConfig.getDescription());
+        config.setPostcode(brandConfig.getPostcode());
+        config.setCity(brandConfig.getCity());
+        config.setNationalId(brandConfig.getNationalId());
+        config.setRegion(brandConfig.getRegion());
         brandConfigRepository.saveAndFlush(config);
     }
 
