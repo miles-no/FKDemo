@@ -16,6 +16,6 @@ import java.util.Date;
 public interface BlanketNumberService {
 
     BlanketNumber getLatestBlanketNumberByDate(Date today,boolean isActive);
-    public void extractBlanketNumber();
+    public void extractBlanketNumber(Integer validityPeriod);
     public void updateBlankettNumber(BlanketNumber blanketNumber);
 }

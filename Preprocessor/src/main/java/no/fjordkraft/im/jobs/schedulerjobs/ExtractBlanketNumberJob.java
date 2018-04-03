@@ -9,6 +9,8 @@ import com.carfey.ops.job.param.Type;
 import no.fjordkraft.im.jobs.domain.JobInfo;
 import no.fjordkraft.im.jobs.domain.JobStatus;
 import no.fjordkraft.im.services.BlanketNumberService;
+import no.fjordkraft.im.services.ConfigService;
+import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,7 +32,7 @@ import org.springframework.stereotype.Component;
         status = JobStatus.enabled
 
 )
-@Description("Reads the blanket numbers from table and check the date if the active blanket number is expired then reactivate another blanket number which are in inactive state. The validity period is configured in configuration table.")
+@Description("Reads the blanket numbers from table and check the date if the active blanket number is expired then reactivate another blanket number which are in inactive state. The validity period is configured in configuration table IM_CONFIG.")
 @Configuration(knownParameters = {
         @Parameter(name = "jobhash", required = true, type = Type.STRING)
 })
@@ -40,6 +42,9 @@ public class ExtractBlanketNumberJob implements InterruptableJob {
 
     @Autowired
     BlanketNumberService blanketNumberService;
+
+    @Autowired
+    ConfigService configService;
 
     private static final Logger logger = LoggerFactory.getLogger(InvoiceFeedWatcherJob.class);
 
@@ -51,7 +56,8 @@ public class ExtractBlanketNumberJob implements InterruptableJob {
     @Override
     public void execute(Context context) throws Exception {
        logger.debug("ExtractBlanketInvoiceNumber job invoked ");
-       blanketNumberService.extractBlanketNumber();
+        Integer validityPeriod = configService.getInteger(IMConstants.BLANKETNUMBER_VALIDITY_PERIOD_MONTHS);
+        blanketNumberService.extractBlanketNumber(validityPeriod);
 
     }
 }
