@@ -156,12 +156,18 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                     float kraftDistAmt   =     distribution.getAmount();
                      if(Float.compare(StrictMath.abs(invoiceGrossTotal), StrictMath.abs(kraftDistAmt))==0)
                      {
-                              listOfDistribution.add(distribution);
-                              transaction.setAmountWithVat(kraftDistAmt);
-                              transaction.getDistributions().setDistribution(listOfDistribution);
+                         listOfDistribution.add(distribution);
+                         if(transaction.getAmountWithVat()==(kraftDistAmt*IMConstants.NEGATIVE))
+                         {
+                             transaction.setAmountWithVat(transaction.getAmountWithVat());
+                         }
+                         else
+                         {
+                             transaction.setAmountWithVat(kraftDistAmt);
+                         }
+                         transaction.getDistributions().setDistribution(listOfDistribution);
                      }
                     else
-
                      {
                             Transaction transactionNew = deepClone(newTransaction,k);
                             listOfDistribution.add(distribution);
