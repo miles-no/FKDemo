@@ -14,6 +14,7 @@ public class RestAttachment {
     private String attachmentTypeName;
     private Long attachmentTypeId;
     private String fileExtension;
+
     private String fileContent;
 
     public Long getAttachmentId() {
