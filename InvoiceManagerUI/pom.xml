@@ -61,13 +61,13 @@
         <dependency>
             <groupId>no.fjordkraft.common</groupId>
             <artifactId>security-spring-webmvc-authorization</artifactId>
-            <version>2.0.45</version>
+            <version>2.0.75</version>
         </dependency>
 
         <dependency>
             <groupId>no.fjordkraft.common</groupId>
             <artifactId>security</artifactId>
-            <version>2.0.45</version>
+            <version>2.0.75</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.newrelic.agent.java/newrelic-api -->
         <dependency>
