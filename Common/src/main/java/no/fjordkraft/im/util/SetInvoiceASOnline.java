@@ -9,6 +9,8 @@ package no.fjordkraft.im.util;
  */
 public class SetInvoiceASOnline {
 
+
+
     public static final ThreadLocal threadLocal = new ThreadLocal();
 
     public static void set(Boolean skipOnline) {
