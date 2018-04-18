@@ -243,6 +243,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 if( attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null) {
                     sumNett = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getInvoiceSummary().getInvoiceTotals().getGrossAmount();
                 }
+                attachment.setSumOfOutGoingCurrentClaim(request.getStatement().getOutgoingBalance()+request.getStatement().getCurrentClaim());
                 attachment.setSumOfNettStrom(sumStrom+sumNett);
                 attachment.setAttachmentNumber(index++);
             }
