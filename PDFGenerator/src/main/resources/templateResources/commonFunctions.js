@@ -4,6 +4,10 @@ var months = [
     'October', 'November', 'December'
     ];
 
+var monthsNorwegian = [ 'januar', 'februar', 'mars', 'april', 'mai',
+    'juni','juli', 'august ','september',
+    'oktober', 'november', 'desember'];
+
 function getFormattedDate(date) {
 	var dateArray = date.split('-');
 	return dateArray[2] + "." + dateArray[1] + "." + dateArray[0].substr(2,2);
@@ -23,7 +27,7 @@ decimalPlaces = !isNaN(decimalPlaces = Math.abs(decimalPlaces)) ? decimalPlaces 
 symbol = symbol !== undefined ? symbol : "$";
 thousand = thousand || ",";
 decimal = decimal || ".";
-var number = value, 
+var number = value,
    negative = number < 0 ? "-" : "",
    i = parseInt(number = Math.abs(+number || 0).toFixed(decimalPlaces), 10) + "",
    j = (j = i.length) > 3 ? j % 3 : 0;
@@ -47,6 +51,11 @@ function monthNumToName(date) {
     return months[d-1];
 }
 
+function monthNumToNorwegianName(date) {
+    var d = parseInt(date.substr(5,2));
+    return monthsNorwegian[d-1];
+}
+
 function getYear(date) {
     var year = parseInt(date.substr(0,4));
     return year;
@@ -60,7 +69,6 @@ function trimDI(value) {
 function truncateDecimal(value){
 	if(value.indexOf(".") != -1) {
 		value = value.substr(0,value.indexOf("."));
-	} 
+	}
 	return value;
 }
-	
