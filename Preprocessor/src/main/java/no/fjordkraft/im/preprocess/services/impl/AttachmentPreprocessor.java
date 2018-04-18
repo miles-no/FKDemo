@@ -207,6 +207,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(nettleieList.get(0));
                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleieList(null);
                     attachment.setDisplayStromData(true);
+
                     attachmentList.add(attachment);
                     for (int i = 1; i < nettleieList.size(); i++) {
                         Attachment stromAttachment = deepClone(attachment);
@@ -236,6 +237,13 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             }
 
             for(Attachment attachment: attachmentList) {
+                float sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
+
+                float sumNett = 0.0f;
+                if( attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null) {
+                    sumNett = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getInvoiceSummary().getInvoiceTotals().getGrossAmount();
+                }
+                attachment.setSumOfNettStrom(sumStrom+sumNett);
                 attachment.setAttachmentNumber(index++);
             }
             attachments.setAttachment(attachmentList);
