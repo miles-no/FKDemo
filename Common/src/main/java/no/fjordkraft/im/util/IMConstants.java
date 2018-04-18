@@ -88,5 +88,7 @@ public interface IMConstants {
     static final String BLANKETNUMBER_VALIDITY_PERIOD_MONTHS="blanketnumber.validity.period.months";
     static final String INFO = "INFO";
     static final String READ_ATTACHMENT_FROM_DB="read.attachment.from.db";
+    static final String INVOICE_TYPE_OPPHØR="O";
+    static final String TRANSACTION_CATEGORY_OPPHØR_SUFFIX="OPPHØR";
 
 }
