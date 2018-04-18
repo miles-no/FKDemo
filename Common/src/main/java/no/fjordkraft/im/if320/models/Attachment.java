@@ -33,7 +33,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "faktura","addedToList","displayStromData","attachmentNumber","startDate","endDate","isOnlyGrid"
+    "faktura","addedToList","displayStromData","attachmentNumber","startDate","endDate","isOnlyGrid","sumOfNettStrom"
 })
 @XmlRootElement(name = "Attachment")
 public class Attachment {
@@ -59,6 +59,9 @@ public class Attachment {
     @XmlElement(name = "EndDate")
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar endDate;
+    @XmlElement(name = "SumOfNettStrom")
+    @XmlSchemaType(name = "float")
+    protected Float sumOfNettStrom;
 
 
     /**
@@ -139,5 +142,13 @@ public class Attachment {
 
     public void setOnlyGrid(boolean onlyGrid) {
         isOnlyGrid = onlyGrid;
+    }
+
+    public Float getSumOfNettStrom() {
+        return sumOfNettStrom;
+    }
+
+    public void setSumOfNettStrom(Float sumOfNettStrom) {
+        this.sumOfNettStrom = sumOfNettStrom;
     }
 }
