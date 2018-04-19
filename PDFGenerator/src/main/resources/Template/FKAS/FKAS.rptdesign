@@ -10101,7 +10101,7 @@ else&#13;
 true;}</expression>
                                                             </structure>
                                                         </list-property>
-                                                        <text-property name="text">Opphør strøm</text-property>
+                                                        <text-property name="text">OPPHØR strøm</text-property>
                                                     </label>
                                                     <label id="1010">
                                                         <property name="backgroundAttachment">scroll</property>

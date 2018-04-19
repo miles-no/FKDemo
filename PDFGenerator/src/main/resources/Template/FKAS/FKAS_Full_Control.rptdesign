@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement (29).xml</property>
+            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement (32).xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -836,6 +836,16 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">DIAmountWithVat</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">SumOfNettStrom</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">SumOfNettStrom</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SumOfOutGoingCurrentClaim</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">SumOfOutGoingCurrentClaim</text-property>
+                </structure>
             </list-property>
             <list-property name="filter">
                 <structure>
@@ -929,6 +939,16 @@
                         <property name="name">DIAmountWithVat</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">SumOfNettStrom</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">SumOfOutGoingCurrentClaim</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <property name="dataSource">Data Source</property>
@@ -938,99 +958,129 @@
                     <property name="name">TransactionCategory</property>
                     <property name="nativeName">TransactionCategory</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">AmountWithVat</property>
                     <property name="nativeName">AmountWithVat</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">FreeText</property>
                     <property name="nativeName">FreeText</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">CurrentClaim</property>
                     <property name="nativeName">CurrentClaim</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">TotalVatAmount</property>
                     <property name="nativeName">TotalVatAmount</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
                     <property name="name">StartDate</property>
                     <property name="nativeName">StartDate</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">EndDate</property>
                     <property name="nativeName">EndDate</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
                     <property name="name">TransactionSequence</property>
                     <property name="nativeName">TransactionSequence</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">9</property>
                     <property name="name">TotalTransactions</property>
                     <property name="nativeName">TotalTransactions</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">10</property>
                     <property name="name">IsGiro</property>
                     <property name="nativeName">IsGiro</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">11</property>
                     <property name="name">BlanketNumber</property>
                     <property name="nativeName">BlanketNumber</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">12</property>
                     <property name="name">CheckSum</property>
                     <property name="nativeName">CheckSum</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">13</property>
                     <property name="name">StatementDate</property>
                     <property name="nativeName">StatementDate</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">14</property>
                     <property name="name">IngoingBalance</property>
                     <property name="nativeName">IngoingBalance</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">15</property>
                     <property name="name">OutgoingBalance</property>
                     <property name="nativeName">OutgoingBalance</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">16</property>
                     <property name="name">DIAmountWithVat</property>
                     <property name="nativeName">DIAmountWithVat</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">SumOfNettStrom</property>
+                    <property name="nativeName">SumOfNettStrom</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">SumOfOutGoingCurrentClaim</property>
+                    <property name="nativeName">SumOfOutGoingCurrentClaim</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/TransactionGroup/Transaction]#:#{TransactionCategory;STRING;/TransactionCategory},{AmountWithVat;STRING;/AmountWithVat},{FreeText;STRING;/FreeText},{CurrentClaim;STRING;../../CurrentClaim},{TotalVatAmount;STRING;../../TotalVatAmount},{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{TransactionSequence;STRING;/TransactionSequence},{TotalTransactions;STRING;../TotalTransactions},{IsGiro;STRING;../../IsGiro},{BlanketNumber;STRING;../../BlanketNumber},{CheckSum;STRING;../../CheckSum},{StatementDate;STRING;../../StatementDate},{IngoingBalance;STRING;../../IngoingBalance},{OutgoingBalance;STRING;../../OutgoingBalance},{DIAmountWithVat;STRING;../../Transactions/DIAmountWithVat}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/TransactionGroup/Transaction]#:#{TransactionCategory;STRING;/TransactionCategory},{AmountWithVat;STRING;/AmountWithVat},{FreeText;STRING;/FreeText},{CurrentClaim;STRING;../../CurrentClaim},{TotalVatAmount;STRING;../../TotalVatAmount},{StartDate;STRING;/StartDate},{EndDate;STRING;/EndDate},{TransactionSequence;STRING;/TransactionSequence},{TotalTransactions;STRING;../TotalTransactions},{IsGiro;STRING;../../IsGiro},{BlanketNumber;STRING;../../BlanketNumber},{CheckSum;STRING;../../CheckSum},{StatementDate;STRING;../../StatementDate},{IngoingBalance;STRING;../../IngoingBalance},{OutgoingBalance;STRING;../../OutgoingBalance},{DIAmountWithVat;STRING;../../Transactions/DIAmountWithVat},{SumOfNettStrom;STRING;../../Attachments/Attachment/SumOfNettStrom},{SumOfOutGoingCurrentClaim;STRING;../../Attachments/Attachment/SumOfOutGoingCurrentClaim}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -5312,7 +5362,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                             <structure>
                                 <property name="name">TotalTransactions</property>
                                 <text-property name="displayName">Total Claim</text-property>
-                                <expression name="expression" type="javascript">"Ditt månedsbeløp å betale i " + BirtStr.toLower(monthNumToName(dataSetRow["StatementDate"]))</expression>
+                                <expression name="expression" type="javascript">"Ditt månedsbeløp å betale i " + BirtStr.toLower(monthNumToNorwegianName(dataSetRow["StatementDate"]))</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
@@ -8040,7 +8090,7 @@ else&#13;
 true;}</expression>
                                                             </structure>
                                                         </list-property>
-                                                        <text-property name="text">Opphør strøm</text-property>
+                                                        <text-property name="text">OPPHØR strøm</text-property>
                                                     </label>
                                                     <label id="1010">
                                                         <property name="backgroundAttachment">scroll</property>
@@ -9575,6 +9625,16 @@ else {&#13;
                                         </table>
                                         <grid id="2273">
                                             <property name="marginTop">20pt</property>
+                                            <property name="dataSet">TransactionInfo</property>
+                                            <list-property name="boundDataColumns">
+                                                <structure>
+                                                    <property name="name">SumOfNettStrom</property>
+                                                    <text-property name="displayName">SumOfNettStrom</text-property>
+                                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfNettStrom"], 2, '', '.', ',');</expression>
+                                                    <property name="dataType">string</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                            </list-property>
                                             <column id="2274"/>
                                             <column id="2275"/>
                                             <row id="2276">
@@ -9594,12 +9654,13 @@ else {&#13;
                                                     </label>
                                                 </cell>
                                                 <cell id="2278">
-                                                    <label id="2282">
+                                                    <data id="2594">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                                         <property name="fontSize">8pt</property>
+                                                        <property name="fontWeight">normal</property>
                                                         <property name="textAlign">right</property>
-                                                        <text-property name="text">1123,18</text-property>
-                                                    </label>
+                                                        <property name="resultSetColumn">SumOfNettStrom</property>
+                                                    </data>
                                                 </cell>
                                             </row>
                                         </grid>
@@ -11695,280 +11756,310 @@ else&#13;
                                     </cell>
                                 </row>
                             </grid>
-                            <grid id="2055">
-                                <property name="marginTop">53pt</property>
-                                <property name="height">1.3541666666666667in</property>
-                                <property name="dataSet">TransactionInfo</property>
-                                <list-property name="boundDataColumns">
-                                    <structure>
-                                        <property name="name">TransactionCategory</property>
-                                        <text-property name="displayName">TransactionCategory</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["TransactionCategory"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">AmountWithVat</property>
-                                        <text-property name="displayName">AmountWithVat</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["AmountWithVat"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">FreeText</property>
-                                        <text-property name="displayName">FreeText</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["FreeText"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">CurrentClaim</property>
-                                        <text-property name="displayName">CurrentClaim</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">TotalVatAmount</property>
-                                        <text-property name="displayName">TotalVatAmount</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["TotalVatAmount"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">StartDate</property>
-                                        <text-property name="displayName">StartDate</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["StartDate"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">EndDate</property>
-                                        <text-property name="displayName">EndDate</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["EndDate"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">TransactionSequence</property>
-                                        <text-property name="displayName">TransactionSequence</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["TransactionSequence"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">TotalTransactions</property>
-                                        <text-property name="displayName">TotalTransactions</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["TotalTransactions"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">IsGiro</property>
-                                        <text-property name="displayName">IsGiro</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["IsGiro"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">BlanketNumber</property>
-                                        <text-property name="displayName">BlanketNumber</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["BlanketNumber"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">CheckSum</property>
-                                        <text-property name="displayName">CheckSum</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["CheckSum"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">StatementDate</property>
-                                        <text-property name="displayName">StatementDate</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["StatementDate"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">IngoingBalance</property>
-                                        <text-property name="displayName">IngoingBalance</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["IngoingBalance"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">OutgoingBalance</property>
-                                        <text-property name="displayName">OutgoingBalance</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["OutgoingBalance"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">DIAmountWithVat</property>
-                                        <text-property name="displayName">DIAmountWithVat</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["DIAmountWithVat"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                </list-property>
-                                <column id="2056"/>
-                                <column id="2057">
-                                    <property name="width">2in</property>
+                            <grid id="2595">
+                                <column id="2596">
+                                    <property name="width">5.1in</property>
                                 </column>
-                                <row id="2058">
-                                    <cell id="2059">
-                                        <label id="2076">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                            <property name="fontSize">8pt</property>
-                                            <property name="fontWeight">normal</property>
-                                            <property name="fontStyle">italic</property>
-                                            <text-property name="text">Saldooversikt:</text-property>
-                                        </label>
-                                    </cell>
-                                    <cell id="2060">
-                                        <property name="paddingRight">3pt</property>
-                                    </cell>
-                                </row>
-                                <row id="2061">
-                                    <cell id="2062">
-                                        <label id="2077">
+                                <row id="2597">
+                                    <cell id="2598">
+                                        <grid id="2055">
+                                            <property name="marginTop">5pt</property>
+                                            <property name="marginLeft">0pt</property>
+                                            <property name="height">1.3541666666666667in</property>
+                                            <property name="dataSet">TransactionInfo</property>
+                                            <list-property name="boundDataColumns">
+                                                <structure>
+                                                    <property name="name">TransactionCategory</property>
+                                                    <text-property name="displayName">TransactionCategory</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["TransactionCategory"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">AmountWithVat</property>
+                                                    <text-property name="displayName">AmountWithVat</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["AmountWithVat"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">FreeText</property>
+                                                    <text-property name="displayName">FreeText</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["FreeText"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">CurrentClaim</property>
+                                                    <text-property name="displayName">CurrentClaim</text-property>
+                                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',');</expression>
+                                                    <property name="dataType">string</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">TotalVatAmount</property>
+                                                    <text-property name="displayName">TotalVatAmount</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["TotalVatAmount"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">StartDate</property>
+                                                    <text-property name="displayName">StartDate</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["StartDate"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">EndDate</property>
+                                                    <text-property name="displayName">EndDate</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["EndDate"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">TransactionSequence</property>
+                                                    <text-property name="displayName">TransactionSequence</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["TransactionSequence"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">TotalTransactions</property>
+                                                    <text-property name="displayName">TotalTransactions</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["TotalTransactions"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">IsGiro</property>
+                                                    <text-property name="displayName">IsGiro</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["IsGiro"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">BlanketNumber</property>
+                                                    <text-property name="displayName">BlanketNumber</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["BlanketNumber"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">CheckSum</property>
+                                                    <text-property name="displayName">CheckSum</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["CheckSum"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">StatementDate</property>
+                                                    <text-property name="displayName">StatementDate</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["StatementDate"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">IngoingBalance</property>
+                                                    <text-property name="displayName">IngoingBalance</text-property>
+                                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["IngoingBalance"], 2, '', '.', ',');</expression>
+                                                    <property name="dataType">string</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">OutgoingBalance</property>
+                                                    <text-property name="displayName">OutgoingBalance</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["OutgoingBalance"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">DIAmountWithVat</property>
+                                                    <text-property name="displayName">DIAmountWithVat</text-property>
+                                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["DIAmountWithVat"], 2, '', '.', ',');</expression>
+                                                    <property name="dataType">string</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">SumOfNettStrom</property>
+                                                    <text-property name="displayName">SumOfNettStrom</text-property>
+                                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfNettStrom"], 2, '', '.', ',');</expression>
+                                                    <property name="dataType">string</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">SumOfOutGoingCurrentClaim</property>
+                                                    <text-property name="displayName">SumOfOutGoingCurrentClaim</text-property>
+                                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfOutGoingCurrentClaim"], 2, '', '.', ',');</expression>
+                                                    <property name="dataType">string</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                            </list-property>
+                                            <column id="2056"/>
+                                            <column id="2057">
+                                                <property name="width">2in</property>
+                                            </column>
+                                            <row id="2058">
+                                                <cell id="2059">
+                                                    <label id="2076">
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                        <property name="fontSize">8pt</property>
+                                                        <property name="fontWeight">normal</property>
+                                                        <property name="fontStyle">italic</property>
+                                                        <text-property name="text">Saldooversikt:</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="2060">
+                                                    <property name="paddingRight">3pt</property>
+                                                </cell>
+                                            </row>
+                                            <row id="2061">
+                                                <cell id="2062">
+                                                    <label id="2077">
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                        <property name="fontSize">7pt</property>
+                                                        <property name="fontStyle">italic</property>
+                                                        <property name="marginTop">1pt</property>
+                                                        <property name="marginBottom">1pt</property>
+                                                        <text-property name="text">Saldo fra forrige måned</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="2063">
+                                                    <property name="textAlign">right</property>
+                                                    <data id="2082">
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                        <property name="fontSize">7pt</property>
+                                                        <property name="fontStyle">italic</property>
+                                                        <property name="marginTop">1pt</property>
+                                                        <property name="marginBottom">1pt</property>
+                                                        <property name="paddingRight">3pt</property>
+                                                        <property name="resultSetColumn">IngoingBalance</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                            <row id="2064">
+                                                <cell id="2065">
+                                                    <label id="2078">
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                        <property name="fontSize">7pt</property>
+                                                        <property name="fontStyle">italic</property>
+                                                        <property name="marginTop">1pt</property>
+                                                        <property name="marginBottom">1pt</property>
+                                                        <text-property name="text">Månedsbeløp å betale i mars</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="2066">
+                                                    <property name="paddingRight">3pt</property>
+                                                    <data id="2083">
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                        <property name="fontSize">7pt</property>
+                                                        <property name="fontStyle">italic</property>
+                                                        <property name="marginTop">1pt</property>
+                                                        <property name="marginBottom">1pt</property>
+                                                        <property name="paddingRight">3pt</property>
+                                                        <property name="textAlign">right</property>
+                                                        <property name="resultSetColumn">CurrentClaim</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                            <row id="2067">
+                                                <cell id="2068">
+                                                    <label id="2080">
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                        <property name="fontSize">7pt</property>
+                                                        <property name="fontStyle">italic</property>
+                                                        <property name="marginTop">1pt</property>
+                                                        <property name="marginBottom">1pt</property>
+                                                        <text-property name="text">Sum strøm og nettleie denne faktura (se detaljer over)</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="2069">
+                                                    <property name="paddingRight">3pt</property>
+                                                    <data id="2593">
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                        <property name="fontSize">7pt</property>
+                                                        <property name="fontStyle">italic</property>
+                                                        <property name="paddingRight">3pt</property>
+                                                        <property name="textAlign">right</property>
+                                                        <property name="resultSetColumn">SumOfNettStrom</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                            <row id="2070">
+                                                <cell id="2071">
+                                                    <property name="paddingTop">0pt</property>
+                                                    <label id="2079">
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                        <property name="fontSize">7pt</property>
+                                                        <property name="fontStyle">italic</property>
+                                                        <property name="marginTop">1pt</property>
+                                                        <property name="marginBottom">1pt</property>
+                                                        <property name="paddingTop">1pt</property>
+                                                        <text-property name="text">Diverse</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="2072">
+                                                    <property name="paddingTop">0pt</property>
+                                                    <property name="paddingRight">5pt</property>
+                                                    <data id="2267">
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                        <property name="fontSize">7pt</property>
+                                                        <property name="fontStyle">italic</property>
+                                                        <property name="paddingTop">1pt</property>
+                                                        <property name="paddingRight">3pt</property>
+                                                        <property name="textAlign">right</property>
+                                                        <property name="resultSetColumn">DIAmountWithVat</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                            <row id="2073">
+                                                <property name="borderBottomColor">#808080</property>
+                                                <property name="borderBottomStyle">solid</property>
+                                                <property name="borderBottomWidth">thin</property>
+                                                <property name="borderTopColor">#808080</property>
+                                                <property name="borderTopStyle">solid</property>
+                                                <property name="borderTopWidth">thin</property>
+                                                <cell id="2074">
+                                                    <label id="2081">
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                        <property name="fontSize">7pt</property>
+                                                        <property name="fontStyle">italic</property>
+                                                        <property name="marginTop">1pt</property>
+                                                        <property name="marginBottom">1pt</property>
+                                                        <property name="paddingLeft">0pt</property>
+                                                        <property name="paddingRight">0pt</property>
+                                                        <text-property name="text">Ny saldo etter denne faktura er betalt</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="2075">
+                                                    <property name="paddingRight">4pt</property>
+                                                    <data id="2599">
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                        <property name="fontSize">7pt</property>
+                                                        <property name="fontStyle">italic</property>
+                                                        <property name="paddingRight">3pt</property>
+                                                        <property name="textAlign">right</property>
+                                                        <property name="resultSetColumn">SumOfOutGoingCurrentClaim</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                        </grid>
+                                        <label id="2090">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="fontStyle">italic</property>
-                                            <property name="marginTop">1pt</property>
-                                            <property name="marginBottom">1pt</property>
-                                            <text-property name="text">Saldo fra forrige måned</text-property>
-                                        </label>
-                                    </cell>
-                                    <cell id="2063">
-                                        <property name="textAlign">right</property>
-                                        <data id="2082">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                            <property name="fontSize">7pt</property>
-                                            <property name="fontStyle">italic</property>
-                                            <property name="marginTop">1pt</property>
-                                            <property name="marginBottom">1pt</property>
-                                            <property name="paddingRight">3pt</property>
-                                            <property name="resultSetColumn">IngoingBalance</property>
-                                        </data>
-                                    </cell>
-                                </row>
-                                <row id="2064">
-                                    <cell id="2065">
-                                        <label id="2078">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                            <property name="fontSize">7pt</property>
-                                            <property name="fontStyle">italic</property>
-                                            <property name="marginTop">1pt</property>
-                                            <property name="marginBottom">1pt</property>
-                                            <text-property name="text">Månedsbeløp å betale i mars</text-property>
-                                        </label>
-                                    </cell>
-                                    <cell id="2066">
-                                        <property name="paddingRight">3pt</property>
-                                        <data id="2083">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                            <property name="fontSize">7pt</property>
-                                            <property name="fontStyle">italic</property>
-                                            <property name="marginTop">1pt</property>
-                                            <property name="marginBottom">1pt</property>
-                                            <property name="paddingRight">3pt</property>
-                                            <property name="textAlign">right</property>
-                                            <property name="resultSetColumn">CurrentClaim</property>
-                                        </data>
-                                    </cell>
-                                </row>
-                                <row id="2067">
-                                    <cell id="2068">
-                                        <label id="2080">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                            <property name="fontSize">7pt</property>
-                                            <property name="fontStyle">italic</property>
-                                            <property name="marginTop">1pt</property>
-                                            <property name="marginBottom">1pt</property>
-                                            <text-property name="text">Sum strøm og nettleie denne faktura (se detaljer over)</text-property>
-                                        </label>
-                                    </cell>
-                                    <cell id="2069">
-                                        <property name="paddingRight">3pt</property>
-                                        <label id="2283">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                            <property name="fontSize">7pt</property>
-                                            <property name="paddingRight">3pt</property>
-                                            <property name="textAlign">right</property>
-                                            <text-property name="text">1123,18</text-property>
-                                        </label>
-                                    </cell>
-                                </row>
-                                <row id="2070">
-                                    <cell id="2071">
-                                        <property name="paddingTop">0pt</property>
-                                        <label id="2079">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                            <property name="fontSize">7pt</property>
-                                            <property name="fontStyle">italic</property>
-                                            <property name="marginTop">1pt</property>
-                                            <property name="marginBottom">1pt</property>
-                                            <property name="paddingTop">0pt</property>
-                                            <text-property name="text">Diverse</text-property>
-                                        </label>
-                                    </cell>
-                                    <cell id="2072">
-                                        <property name="paddingTop">0pt</property>
-                                        <property name="paddingRight">5pt</property>
-                                        <data id="2267">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                            <property name="fontSize">7pt</property>
-                                            <property name="fontStyle">italic</property>
-                                            <property name="paddingTop">1pt</property>
-                                            <property name="paddingRight">3pt</property>
-                                            <property name="textAlign">right</property>
-                                            <property name="resultSetColumn">DIAmountWithVat</property>
-                                        </data>
-                                    </cell>
-                                </row>
-                                <row id="2073">
-                                    <property name="borderBottomColor">#808080</property>
-                                    <property name="borderBottomStyle">solid</property>
-                                    <property name="borderBottomWidth">thin</property>
-                                    <property name="borderTopColor">#808080</property>
-                                    <property name="borderTopStyle">solid</property>
-                                    <property name="borderTopWidth">thin</property>
-                                    <cell id="2074">
-                                        <label id="2081">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                            <property name="fontSize">7pt</property>
-                                            <property name="fontStyle">italic</property>
-                                            <property name="marginTop">1pt</property>
-                                            <property name="marginBottom">1pt</property>
+                                            <property name="marginTop">2pt</property>
+                                            <property name="paddingTop">5pt</property>
                                             <property name="paddingLeft">0pt</property>
                                             <property name="paddingRight">0pt</property>
-                                            <text-property name="text">Ny saldo etter denne faktura er betalt</text-property>
+                                            <text-property name="text">Saldo viser at du har betalt inn mer enn dine faktiske kostnader har vært.Saldoen vil naturlig variere fra måned til </text-property>
                                         </label>
-                                    </cell>
-                                    <cell id="2075">
-                                        <property name="paddingRight">3pt</property>
-                                        <label id="2284">
+                                        <label id="2268">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
-                                            <property name="marginTop">1pt</property>
-                                            <property name="marginBottom">1pt</property>
-                                            <property name="textAlign">right</property>
-                                            <text-property name="text">1827,64</text-property>
+                                            <property name="fontStyle">italic</property>
+                                            <property name="marginTop">2pt</property>
+                                            <property name="paddingTop">1pt</property>
+                                            <text-property name="text">måned, siden du bruker mer strøm om vinteren enn om sommeren. Dette vil jevne seg ut gjennom året  og det er</text-property>
+                                        </label>
+                                        <label id="2269">
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                            <property name="fontSize">7pt</property>
+                                            <property name="fontStyle">italic</property>
+                                            <property name="marginTop">2pt</property>
+                                            <property name="paddingTop">1pt</property>
+                                            <text-property name="text">derfor viktig at du betaler det  månedsbeløpet som er oppgitt på  forsiden av fakturaen.</text-property>
                                         </label>
                                     </cell>
                                 </row>
                             </grid>
-                            <label id="2090">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                <property name="fontSize">7pt</property>
-                                <property name="fontStyle">italic</property>
-                                <property name="marginTop">2pt</property>
-                                <property name="paddingTop">5pt</property>
-                                <text-property name="text">Saldo viser at du har betalt inn mer enn dine faktiske kostnader har vært.Saldoen vil naturlig variere fra måned til  måned, </text-property>
-                            </label>
-                            <label id="2268">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                <property name="fontSize">7pt</property>
-                                <property name="fontStyle">italic</property>
-                                <property name="marginTop">2pt</property>
-                                <property name="paddingTop">1pt</property>
-                                <text-property name="text">siden du bruker mer strøm om vinteren enn om sommeren. Dette vil jevne seg ut gjennom året  og det er derfor  viktig at </text-property>
-                            </label>
-                            <label id="2269">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                <property name="fontSize">7pt</property>
-                                <property name="fontStyle">italic</property>
-                                <property name="marginTop">2pt</property>
-                                <property name="paddingTop">1pt</property>
-                                <text-property name="text">du betaler det  månedsbeløpet som er oppgitt på  forsiden av fakturaen.</text-property>
-                            </label>
                         </cell>
                         <cell id="787">
                             <property name="colSpan">1</property>
