@@ -88,9 +88,22 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                         }
 
                     }
-                    //IM-53 ; If freeText is not available then get the information from supplypointinfo-117.streetno
+
+                    //IM-68 : On page 2, Leveringsadresse should be mapped from streetno. So supplypointinfo-117.streetNo is not present then check for transaction.freeText.
                     if(faktura.getVEDLEGGFORMAT().equalsIgnoreCase("EMUXML")){
-                          if(attachment.getFaktura().getFreeText()==null )
+                        String streetNo = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo();
+                        attachment.setLeveringsAdresse(streetNo);
+                        if(attachment.getLeveringsAdresse()==null)
+                        {
+                            Transaction kraftTransaction = getKraftTransaction(request.getStatement().getTransactions().getTransaction(),attachment);
+                            if(kraftTransaction.getFreeText()!=null) {
+                                attachment.setLeveringsAdresse(kraftTransaction.getFreeText());
+                            }
+                        }
+
+
+                         /* //IM-53 ; If freeText is not available then get the information from supplypointinfo-117.streetno
+                         if(attachment.getFaktura().getFreeText()==null )
                           {
                             Transaction transaction =  getKraftTransaction(request.getStatement().getTransactions().getTransaction(),attachment) ;
                              if(transaction!=null && (transaction.getFreeText()==null || (transaction.getFreeText()!=null && transaction.getFreeText().isEmpty()))&& attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117()!=null)
@@ -99,7 +112,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                                  auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), message, IMConstants.INFO);
                                  transaction.setFreeText(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo());
                              }
-                          }
+                          }*/
                     }
                 }
 
