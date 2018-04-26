@@ -216,6 +216,8 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
         resultTransaction.setTransactionCategory(transaction.getTransactionCategory().substring(3));
         resultTransaction.setFreeText(transaction.getFreeText());
         resultTransaction.setAmountWithVat(transaction.getAmountWithVat()* IMConstants.NEGATIVE);
+        resultTransaction.setAmount(transaction.getAmount());
+        resultTransaction.setVatAmount(transaction.getVatAmount());
         resultTransaction.setStartDate(transaction.getStartDate());
         resultTransaction.setEndDate(transaction.getEndDate());
         resultTransaction.setReference(transaction.getReference());
