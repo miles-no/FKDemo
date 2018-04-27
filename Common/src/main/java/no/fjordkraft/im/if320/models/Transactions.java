@@ -36,7 +36,8 @@ import java.util.List;
 @XmlType(name = "", propOrder = {
     "transaction",
     "diAmountWithVat",
-    "diVatTotal"
+    "diVatTotal",
+    "ibAmountWithVat"
 })
 @XmlRootElement(name = "Transactions")
 public class Transactions {
@@ -49,6 +50,8 @@ public class Transactions {
     protected float diAmountWithVat;
     @XmlElement(name = "DIVatTotal")
     protected float diVatTotal;
+    @XmlElement(name = "IBAmountWithVat")
+    protected float ibAmountWithVat;
 
     /**
      * Gets the value of the content property.
@@ -94,5 +97,13 @@ public class Transactions {
 
     public void setDiVatTotal(float diVatTotal) {
         this.diVatTotal = diVatTotal;
+    }
+
+    public float getIbAmountWithVat() {
+        return ibAmountWithVat;
+    }
+
+    public void setIbAmountWithVat(float ibAmountWithVat) {
+        this.ibAmountWithVat = ibAmountWithVat;
     }
 }

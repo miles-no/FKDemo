@@ -43,6 +43,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
             List<Transaction> nettTransaction = new ArrayList<Transaction>();
             List<Distribution> distributions;
             Distribution distribuion = null;
+            Float ingoingAmoutWithVatTotal = 0.0f;
             int invoiceLineSize;
             int i = 0;
 
@@ -191,8 +192,12 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                         }
                                         nettTransaction.add(createTransactionEntry(transaction, IMConstants.NETT));
                                         i++;
-                                }
+                                } else if(transaction.getTransactionCategory().contains(IMConstants.INGOING_TRANSACTION_PREFIX)) {
+                                         ingoingAmoutWithVatTotal +=transaction.getAmountWithVat();
                         }
+                        } if(transaction.getTransactionCategory().contains(IMConstants.INGOING_TRANSACTION_PREFIX)) {
+                        ingoingAmoutWithVatTotal +=transaction.getAmountWithVat();
+                    }
                     }
                 }
 
@@ -201,6 +206,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
             transactionGroup.setTransaction(groupProcessedTransaction(processedTransaction));
             transactionGroup.setTotalTransactions(i);
             request.getStatement().setTransactionGroup(transactionGroup);
+            request.getStatement().getTransactions().setIbAmountWithVat(ingoingAmoutWithVatTotal);
 
             request.getStatement().setTotalVatAmount(IMConstants.NEGATIVE * request.getStatement().getTotalVatAmount());
         } catch (Exception ex) {
@@ -216,8 +222,8 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
         resultTransaction.setTransactionCategory(transaction.getTransactionCategory().substring(3));
         resultTransaction.setFreeText(transaction.getFreeText());
         resultTransaction.setAmountWithVat(transaction.getAmountWithVat()* IMConstants.NEGATIVE);
-        resultTransaction.setAmount(transaction.getAmount());
-        resultTransaction.setVatAmount(transaction.getVatAmount());
+        resultTransaction.setAmount(transaction.getAmount()* IMConstants.NEGATIVE);
+        resultTransaction.setVatAmount(transaction.getVatAmount()* IMConstants.NEGATIVE);
         resultTransaction.setStartDate(transaction.getStartDate());
         resultTransaction.setEndDate(transaction.getEndDate());
         resultTransaction.setReference(transaction.getReference());

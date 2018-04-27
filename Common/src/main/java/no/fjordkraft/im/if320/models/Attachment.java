@@ -33,7 +33,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "faktura","addedToList","displayStromData","attachmentNumber","startDate","endDate","isOnlyGrid","sumOfNettStrom","sumOfOutGoingCurrentClaim","leveringsAdresse"
+    "faktura","addedToList","displayStromData","attachmentNumber","startDate","endDate","isOnlyGrid","sumOfNettStrom","sumOfOutGoingCurrentClaim","leveringsAdresse","sumOfIngoingIBtrans"
 })
 @XmlRootElement(name = "Attachment")
 public class Attachment {
@@ -68,7 +68,9 @@ public class Attachment {
     @XmlElement(name="LeveringsAdresse")
     @XmlSchemaType(name = "string")
     protected  String leveringsAdresse;
-
+    @XmlElement(name = "SumOfInGoingIBTrans")
+    @XmlSchemaType(name = "float")
+    protected Float sumOfIngoingIBtrans;
     /**
      * Gets the value of the faktura property.
      * 
@@ -171,5 +173,13 @@ public class Attachment {
 
     public void setLeveringsAdresse(String leveringsAdresse) {
         this.leveringsAdresse = leveringsAdresse;
+    }
+
+    public Float getSumOfIngoingIBtrans() {
+        return sumOfIngoingIBtrans;
+    }
+
+    public void setSumOfIngoingIBtrans(Float sumOfIngoingIBtrans) {
+        this.sumOfIngoingIBtrans = sumOfIngoingIBtrans;
     }
 }

@@ -249,6 +249,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 }
                 attachment.setSumOfOutGoingCurrentClaim(request.getStatement().getOutgoingBalance()+request.getStatement().getCurrentClaim());
                 attachment.setSumOfNettStrom(sumStrom+sumNett);
+                attachment.setSumOfIngoingIBtrans(request.getStatement().getIngoingBalance()+request.getStatement().getTransactions().getIbAmountWithVat());
                 attachment.setAttachmentNumber(index++);
             }
             attachments.setAttachment(attachmentList);
