@@ -73,6 +73,7 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
                 transactionGroup.setTotalTransactions(totalTransactions);
                 request.getStatement().setTransactionGroup(transactionGroup);
                 request.getStatement().getTransactions().setDiAmountWithVat(IMConstants.NEGATIVE * amountWithVatTotal);
+                request.getStatement().getTransactions().setOrigDIAmountWithVat(amountWithVatTotal);
                 request.getStatement().getTransactions().setDiVatTotal(IMConstants.NEGATIVE * vatTotalAmount);
             } else {
                 logger.info("Transaction groups not defined for brand "+ brand);

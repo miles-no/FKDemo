@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "", propOrder = {
     "grossAmount",
     "vatTotalsAmount",
-    "netAmount"
+    "netAmount" ,
+    "origGrossAmount"
 })
 @XmlRootElement(name = "InvoiceTotals")
 public class InvoiceTotals {
@@ -47,6 +48,8 @@ public class InvoiceTotals {
     protected float vatTotalsAmount;
     @XmlElement(name = "NetAmount")
     protected float netAmount;
+    @XmlElement(name = "OrigGrossAmount")
+    protected float origGrossAmount;
 
     /**
      * Gets the value of the grossAmount property.
@@ -96,4 +99,11 @@ public class InvoiceTotals {
         this.netAmount = value;
     }
 
+    public float getOrigGrossAmount() {
+        return origGrossAmount;
+    }
+
+    public void setOrigGrossAmount(float origGrossAmount) {
+        this.origGrossAmount = origGrossAmount;
+    }
 }

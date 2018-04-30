@@ -37,7 +37,8 @@ import java.util.List;
     "transaction",
     "diAmountWithVat",
     "diVatTotal",
-    "ibAmountWithVat"
+    "ibAmountWithVat",
+    "origDIAmountWithVat"
 })
 @XmlRootElement(name = "Transactions")
 public class Transactions {
@@ -52,7 +53,8 @@ public class Transactions {
     protected float diVatTotal;
     @XmlElement(name = "IBAmountWithVat")
     protected float ibAmountWithVat;
-
+    @XmlElement(name = "OrigDIAmountWithVat")
+    protected float origDIAmountWithVat;
     /**
      * Gets the value of the content property.
      * 
@@ -105,5 +107,13 @@ public class Transactions {
 
     public void setIbAmountWithVat(float ibAmountWithVat) {
         this.ibAmountWithVat = ibAmountWithVat;
+    }
+
+    public float getOrigDIAmountWithVat() {
+        return origDIAmountWithVat;
+    }
+
+    public void setOrigDIAmountWithVat(float origDIAmountWithVat) {
+        this.origDIAmountWithVat = origDIAmountWithVat;
     }
 }

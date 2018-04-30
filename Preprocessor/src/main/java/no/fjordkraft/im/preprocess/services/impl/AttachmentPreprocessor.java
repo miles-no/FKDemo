@@ -245,7 +245,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
                 float sumNett = 0.0f;
                 if( attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null) {
-                    sumNett = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getInvoiceSummary().getInvoiceTotals().getGrossAmount();
+                    sumNett = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getInvoiceSummary().getInvoiceTotals().getOrigGrossAmount();
                 }
                 attachment.setSumOfOutGoingCurrentClaim(request.getStatement().getOutgoingBalance()+request.getStatement().getCurrentClaim());
                 attachment.setSumOfNettStrom(sumStrom+sumNett);
@@ -322,6 +322,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             nettleie.setGridName(pdfAttachment.getFAKTURA().getAKTORNAVN());
             invoiceSummary.getInvoiceTotals().setGrossAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote()
                     .getLegalMonetaryTotal().getTaxInclusiveAmount().getValue().toString())* IMConstants.NEGATIVE);
+
+            invoiceSummary.getInvoiceTotals().setOrigGrossAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote()
+                        .getLegalMonetaryTotal().getTaxInclusiveAmount().getValue().toString()));
 
             if(pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals()!=null && !pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals().isEmpty() && pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals().get(0).getTaxSubtotals()!=null && !pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals().get(0).getTaxSubtotals().isEmpty()
                     && pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount()!=null &&  pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote().getTaxTotals().get(0).getTaxSubtotals().get(0).getTaxAmount().getValue()!=null) {
@@ -421,6 +424,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     nettleie.setAnnualConsumption(0);
                     nettleie.setGridName(pdfAttachment.getFAKTURA().getAKTORNAVN());
                     invoiceSummary.getInvoiceTotals().setGrossAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice()
+                            .getLegalMonetaryTotal().getTaxInclusiveAmount().getValue().toString()));
+
+                    invoiceSummary.getInvoiceTotals().setOrigGrossAmount(Float.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice()
                             .getLegalMonetaryTotal().getTaxInclusiveAmount().getValue().toString()));
 
                     if(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getTaxTotals()!=null && !pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice().getTaxTotals().isEmpty()
@@ -540,6 +546,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
 
         nettleie.setBaseItemDetails(invoice.getInvoiceDetails().getBaseItemDetails());
+        invoice.getInvoiceSummary().getInvoiceTotals().setOrigGrossAmount(invoice.getInvoiceSummary().getInvoiceTotals().getGrossAmount());
         nettleie.setInvoiceSummary(invoice.getInvoiceSummary());
         return nettleie;
     }
