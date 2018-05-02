@@ -80,6 +80,7 @@ alter table im_statement add ATTACHMENT_CONFIG_ID number;
 --changeset arpita:5  context:prod
 --Insert into IM_TRANSACTION_CATEGORY (ID,TYPE,DESCRIPTION,CATEGORY) values (124,'Debit','Hjemmelading','DI;Hjemmelading');
 --Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (107,1,124);
+
 --Insert into IM_TRANSACTION_CATEGORY (ID,TYPE,DESCRIPTION,CATEGORY) values (125,'Debit','Papirfaktura','DI;Papirfaktura');
 --Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (108,1,125);
 
