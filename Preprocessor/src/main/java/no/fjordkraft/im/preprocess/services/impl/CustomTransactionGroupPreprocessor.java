@@ -88,7 +88,7 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
         Transaction existingElement;
         Transaction resultTransaction = new Transaction();
         float newAmount;
-        //IM-69 : If the transaction category starts with "FT;" and free text is not empty then freetext should be displayed else transaction category should be displayed.
+        /*//IM-69 : If the transaction category starts with "FT;" and free text is not empty then freetext should be displayed else transaction category should be displayed.
         if(transaction.getTransactionCategory().startsWith(IMConstants.FT_TRANSACTION_PREFIX) ) {
             if(transaction.getFreeText()!=null && !transaction.getFreeText().isEmpty())    {
                 transaction.setTransactionCategory(transaction.getFreeText());
@@ -97,7 +97,8 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
         } else
         {
              resultTransaction.setTransactionCategory(groupName);
-        }
+        }*/
+        resultTransaction.setTransactionCategory(groupName);
         if(diverseRabatter.isEmpty()) {
             resultTransaction.setAmountWithVat(transaction.getAmountWithVat());
         } else {
