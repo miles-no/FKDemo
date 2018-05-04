@@ -91,5 +91,6 @@ public interface IMConstants {
     static final String INVOICE_TYPE_OPPHØR="O";
     static final String TRANSACTION_CATEGORY_OPPHØR_SUFFIX="OPPHØR";
     static final String INGOING_TRANSACTION_PREFIX="IB;";
+    static final String FT_TRANSACTION_PREFIX="FT;";
 
 }
