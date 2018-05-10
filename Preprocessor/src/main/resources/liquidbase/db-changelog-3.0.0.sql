@@ -235,7 +235,7 @@ Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (192,3,95);
 Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (193,3,65);
 --Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (194,3,4);
 
---changeset arpita:8  context:prod
+--changeset arpita:8 context:prod
 --Insert into IM_TRANSACTION_CATEGORY (ID,TYPE,DESCRIPTION,CATEGORY) values (177,'Debit','Hjemmelading','FT;Hjemmelading');
 --Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (195,1,177);
 
