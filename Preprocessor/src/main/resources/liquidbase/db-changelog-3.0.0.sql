@@ -244,7 +244,6 @@ Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (194,3,4);
 Insert into IM_BRAND_CONFIG (ID,BRAND,USE_EA_BARCODE,AGREEMENT_NUMBER,SERVICELEVEL,PREFIX_KID,KONTONUMMER,DESCRIPTION,POSTCODE,CITY,NATIONALID,REGION) values (4,'TKAS','1','0701','1','111','15032873747','Sluppenvegen17B7030Trondheim',null,'Trondheim','7037','Norway');
 Insert into IM_TRANSACTION_GROUP (ID,NAME,BRAND,TYPE,DESCRIPTION) values (4,'Diverse','TKAS',null,null);
 Insert into IM_TRANSACTION_GROUP (ID,NAME,BRAND,TYPE,DESCRIPTION) values (5,'Rabatter','TKAS',null,null);
-
 -- Diverse group for TKAS
 Insert into IM_TRANSACTION_CATEGORY (ID,TYPE,DESCRIPTION,CATEGORY) values (178,'Debit','Penger tilbake fra Trondheim Kraft Netthandel','FT;Penger tilbake fra Trondheim Kraft Netthandel');
 Insert into IM_TRANSACTION_CATEGORY (ID,TYPE,DESCRIPTION,CATEGORY) values (179,'Debit','Vervepremie fra Trondheim Kraft','FT;Vervepremie fra Trondheim Kraft');
