@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement (29).xml</property>
+            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement.xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -4683,7 +4683,7 @@ else &#13;
                 <property name="width">7.21875in</property>
             </column>
             <row id="771">
-                <property name="backgroundImage">TK-forside-topp-18cm_rgb-ny.png</property>
+                <property name="backgroundImage">forside-topp-18cm_rgb-u-tekst.png</property>
                 <property name="backgroundPositionX">center</property>
                 <property name="backgroundPositionY">bottom</property>
                 <property name="backgroundRepeat">no-repeat</property>
@@ -5002,7 +5002,7 @@ else &#13;
                                     <property name="color">#00A2B9</property>
                                     <property name="paddingTop">3pt</property>
                                     <property name="textAlign">right</property>
-                                    <text-property name="text">Chat med oss p� trondheimkraft.no</text-property>
+                                    <text-property name="text">Chat med oss på trondheimkraft.no</text-property>
                                 </label>
                                 <label id="719">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
@@ -5274,7 +5274,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
    }&#13;
 else&#13;
 	{&#13;
-	"Totalt � betale"&#13;
+	"Totalt å betale"&#13;
 	}&#13;
 }&#13;
 else&#13;
@@ -5293,7 +5293,7 @@ else&#13;
    }&#13;
 else&#13;
 	{&#13;
-	"Totalt � betale"&#13;
+	"Totalt å betale"&#13;
 	}&#13;
 }&#13;
 else&#13;
@@ -5312,7 +5312,7 @@ else&#13;
    }&#13;
 else&#13;
 	{&#13;
-	"Totalt � betale"&#13;
+	"Totalt å betale"&#13;
 	}&#13;
 }&#13;
 else&#13;
@@ -5380,7 +5380,7 @@ else&#13;
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">italic</property>
                                         <property name="textAlign">right</property>
-                                        <text-property name="text">Bel�p</text-property>
+                                        <text-property name="text">Beløp</text-property>
                                     </label>
                                 </cell>
                             </row>
@@ -5486,7 +5486,7 @@ else&#13;
                                                     <property name="fontSize">7pt</property>
                                                     <property name="fontStyle">italic</property>
                                                     <property name="textAlign">right</property>
-                                                    <property name="dataSet">ExtraTransactionInfo</property>
+                                                    <property name="dataSet">TransactionInfo</property>
                                                     <list-property name="boundDataColumns">
                                                         <structure>
                                                             <property name="name">TransactionSequence</property>
@@ -5545,9 +5545,16 @@ else&#13;
                                                         <structure>
                                                             <property name="name">TotalVatAmount</property>
                                                             <text-property name="displayName">TotalVatAmount</text-property>
-                                                            <expression name="expression" type="javascript">"(Herav MVA " + formatMoney(dataSetRow["TotalVatAmount"], 2, '', '.', ',') + ")"</expression>
+                                                            <expression name="expression" type="javascript">if(dataSetRow["TotalTransactions"] &lt;= 10)&#13;
+"(Herav MVA " + formatMoney(dataSetRow["TotalVatAmount"], 2, '', '.', ',') + ")"</expression>
                                                             <property name="dataType">string</property>
                                                             <property name="allowExport">true</property>
+                                                        </structure>
+                                                        <structure>
+                                                            <property name="name">TotalVatAmount_1</property>
+                                                            <text-property name="displayName">TotalVatAmount</text-property>
+                                                            <expression name="expression" type="javascript">dataSetRow["TotalVatAmount"]</expression>
+                                                            <property name="dataType">string</property>
                                                         </structure>
                                                     </list-property>
                                                     <property name="resultSetColumn">TotalVatAmount</property>
@@ -5611,7 +5618,7 @@ else &#13;
                             </structure>
                         </list-property>
                         <property name="contentType">auto</property>
-                        <text-property name="content"><![CDATA[Tilgodebel�p over kr. 200,- vil bli utbetalt til registrert kontonummer dersom alle tidligere fakturaer er betalt.
+                        <text-property name="content"><![CDATA[Tilgodebeløp over kr. 200,- vil bli utbetalt til registrert kontonummer dersom alle tidligere fakturaer er betalt.
 ]]></text-property>
                     </text>
                 </cell>
@@ -5702,7 +5709,7 @@ else &#13;
                                     <property name="fontSize">10pt</property>
                                     <property name="paddingTop">4pt</property>
                                     <property name="contentType">html</property>
-                                    <text-property name="content"><![CDATA[<FONT font-family="Fjordkraft Neo Sans">Du har inng�tt avtale om AvtaleGiro med oss, og <U>faktura blir trukket automatisk ved forfall</U>.</FONT>]]></text-property>
+                                    <text-property name="content"><![CDATA[<FONT font-family="Fjordkraft Neo Sans">Du har inngått avtale om AvtaleGiro med oss, og <U>faktura blir trukket automatisk ved forfall</U>.</FONT>]]></text-property>
                                 </text>
                             </cell>
                         </row>
@@ -5770,7 +5777,7 @@ else &#13;
                             <structure>
                                 <property name="name">DueDate</property>
                                 <text-property name="displayName">DueDate</text-property>
-                                <expression name="expression" type="javascript">getFormattedFullDate(dataSetRow["DueDate"])</expression>
+                                <expression name="expression" type="javascript">getFormattedFullDate(dataSetRow["DueDate"]);</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
@@ -5959,7 +5966,7 @@ else &#13;
    true;</expression>
                                             </structure>
                                         </list-property>
-                                        <text-property name="text">Bel�p</text-property>
+                                        <text-property name="text">Beløp</text-property>
                                     </label>
                                     <label id="1481">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -5996,7 +6003,7 @@ else&#13;
 }</expression>
                                             </structure>
                                         </list-property>
-                                        <text-property name="text">� betale</text-property>
+                                        <text-property name="text">Å betale</text-property>
                                     </label>
                                     <label id="1482">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -6095,12 +6102,15 @@ else &#13;
                                     </data>
                                 </cell>
                                 <cell id="1488">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontSize">9pt</property>
                                     <property name="borderRightColor">#DADADA</property>
                                     <property name="borderRightStyle">solid</property>
                                     <property name="borderRightWidth">1px</property>
                                     <data id="1489">
                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                         <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">normal</property>
                                         <property name="paddingTop">5pt</property>
                                         <property name="textAlign">center</property>
                                         <list-property name="highlightRules">
@@ -6126,7 +6136,7 @@ else &#13;
                                 </cell>
                                 <cell id="1490">
                                     <data id="1491">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="paddingTop">5pt</property>
                                         <property name="paddingRight">10pt</property>
@@ -6218,7 +6228,7 @@ else &#13;
       </Cursor>
       <Label>
         <Caption>
-          <Value>Fordeling str�m og nettleie denne perioden</Value>
+          <Value>Fordeling strøm og nettleie denne perioden</Value>
           <Font>
             <Name>Fjordkraft Neo Sans</Name>
             <Size>8.0</Size>
@@ -7123,7 +7133,7 @@ else&#13;
       </Cursor>
       <Label>
         <Caption>
-          <Value>Fordeling str�m og nettleie denne perioden</Value>
+          <Value>Fordeling strøm og nettleie denne perioden</Value>
           <Font>
             <Name>Fjordkraft Neo Sans</Name>
             <Size>8.0</Size>
@@ -8185,7 +8195,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                     <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">1pt</property>
                                     <property name="textAlign">center</property>
-                                    <text-property name="text">Bel�p</text-property>
+                                    <text-property name="text">Beløp</text-property>
                                 </label>
                                 <data id="1146">
                                     <property name="fontSize">11pt</property>
@@ -9257,7 +9267,7 @@ dataSetRow["CareOfName"];&#13;
                                                 <property name="paddingBottom">1pt</property>
                                                 <property name="paddingRight">1pt</property>
                                                 <property name="display">block</property>
-                                                <text-property name="text">�re</text-property>
+                                                <text-property name="text">Øre</text-property>
                                             </label>
                                         </cell>
                                         <cell id="1665">
@@ -9586,7 +9596,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                         <label id="647">
                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                             <property name="textAlign">right</property>
-                            <text-property name="text">Bel�p</text-property>
+                            <text-property name="text">Beløp</text-property>
                         </label>
                     </cell>
                 </row>
@@ -9645,7 +9655,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                     <label id="648">
                                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                         <property name="paddingLeft">0pt</property>
-                                        <text-property name="text">Totalt � betale</text-property>
+                                        <text-property name="text">Totalt å betale</text-property>
                                     </label>
                                 </cell>
                                 <cell id="2007">
@@ -9790,7 +9800,7 @@ dataSetRow["FREE_TEXT"]</expression>
                 </structure>
                 <structure>
                     <property name="name">Description</property>
-                    <text-property name="displayName">Str�mavtale</text-property>
+                    <text-property name="displayName">Strømavtale</text-property>
                     <expression name="expression" type="javascript">dataSetRow["Description"]</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
@@ -9806,21 +9816,21 @@ dataSetRow["InvoiceNo"]</expression>
                 </structure>
                 <structure>
                     <property name="name">ObjectId</property>
-                    <text-property name="displayName">M�lepunkt-ID</text-property>
+                    <text-property name="displayName">Målepunkt-ID</text-property>
                     <expression name="expression" type="javascript">dataSetRow["ObjectId"]</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
                 <structure>
                     <property name="name">MeterId</property>
-                    <text-property name="displayName">M�lernummer</text-property>
+                    <text-property name="displayName">Målernummer</text-property>
                     <expression name="expression" type="javascript">dataSetRow["MeterId"]</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
                 <structure>
                     <property name="name">AnnualConsumption</property>
-                    <text-property name="displayName">Antatt �rsforbruk</text-property>
+                    <text-property name="displayName">Antatt årsforbruk</text-property>
                     <expression name="expression" type="javascript">if(null != dataSetRow["AnnualConsumption"])&#13;
 {&#13;
 	dataSetRow["AnnualConsumption"] + " kWh"&#13;
@@ -9964,7 +9974,7 @@ year = "Siste 12 mnd" + "";</expression>
                                 <property name="borderRightStyle">none</property>
                                 <property name="borderTopStyle">none</property>
                                 <property name="pageBreakAfter">auto</property>
-                                <property name="height">6.354166666666667in</property>
+                                <property name="height">6.34375in</property>
                                 <property name="width">5.15625in</property>
                                 <column id="400">
                                     <property name="paddingRight">10pt</property>
@@ -10057,7 +10067,7 @@ else&#13;
 false;}</expression>
                                                                         </structure>
                                                                     </list-property>
-                                                                    <text-property name="text">Str�mavtale:</text-property>
+                                                                    <text-property name="text">Strømavtale:</text-property>
                                                                 </label>
                                                                 <label id="1413">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -10074,7 +10084,7 @@ else&#13;
 true;}</expression>
                                                                         </structure>
                                                                     </list-property>
-                                                                    <text-property name="text">M�lepunkt-ID:</text-property>
+                                                                    <text-property name="text">Målepunkt-ID:</text-property>
                                                                 </label>
                                                             </cell>
                                                             <cell id="529">
@@ -10096,6 +10106,7 @@ false;}</expression>
                                                                 </data>
                                                                 <data id="1414">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                                    <property name="paddingTop">2pt</property>
                                                                     <list-property name="visibility">
                                                                         <structure>
                                                                             <property name="format">all</property>
@@ -10138,10 +10149,11 @@ else&#13;
 false;}</expression>
                                                                         </structure>
                                                                     </list-property>
-                                                                    <text-property name="text">M�lepunkt-ID:</text-property>
+                                                                    <text-property name="text">Målepunkt-ID:</text-property>
                                                                 </label>
                                                             </cell>
                                                             <cell id="543">
+                                                                <property name="paddingTop">2pt</property>
                                                                 <data id="396">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                                     <list-property name="visibility">
@@ -10177,7 +10189,7 @@ false;}</expression>
                                                                 <label id="551">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                                                     <property name="fontWeight">normal</property>
-                                                                    <text-property name="text">M�lernummer:</text-property>
+                                                                    <text-property name="text">Målernummer:</text-property>
                                                                 </label>
                                                             </cell>
                                                             <cell id="550">
@@ -10212,7 +10224,7 @@ else&#13;
                                                                 <label id="558">
                                                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                                                     <property name="fontWeight">normal</property>
-                                                                    <text-property name="text">Forventet �rsforbruk: </text-property>
+                                                                    <text-property name="text">Forventet årsforbruk: </text-property>
                                                                 </label>
                                                             </cell>
                                                             <cell id="557">
@@ -10324,7 +10336,7 @@ else&#13;
 true;}</expression>
                                                             </structure>
                                                         </list-property>
-                                                        <text-property name="text">Opph�r str�m</text-property>
+                                                        <text-property name="text">Opphør strøm</text-property>
                                                     </label>
                                                     <label id="1010">
                                                         <property name="backgroundAttachment">scroll</property>
@@ -10385,7 +10397,7 @@ true;}</expression>
 }</expression>
                                                             </structure>
                                                         </list-property>
-                                                        <text-property name="text">Str�m</text-property>
+                                                        <text-property name="text">Strøm</text-property>
                                                     </label>
                                                 </cell>
                                                 <cell id="1009">
@@ -10636,7 +10648,7 @@ truncateDecimal(dataSetRow["Basis"]) + " " + dataSetRow["ProdDenomination"] &#13
                                                     <expression name="expression" type="javascript">if(parseFloat(dataSetRow["GrossPrice"]) == 0 &amp;&amp; parseFloat(dataSetRow["TotalGross"]) != 0) {&#13;
 	'';&#13;
 }&#13;
-else if(dataSetRow["StromInfo::PriceDenomination"] == "�re/kWh")&#13;
+else if(dataSetRow["StromInfo::PriceDenomination"] == "øre/kWh")&#13;
 {&#13;
 	formatMoney(dataSetRow["GrossPrice"] * 100, 2, '', '.', ',') + " " + dataSetRow["StromInfo::PriceDenomination"] ;&#13;
 }&#13;
@@ -10792,7 +10804,7 @@ else &#13;
                                                         <label id="456">
                                                             <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
                                                             <property name="fontWeight">bold</property>
-                                                            <text-property name="text">Sum str�m</text-property>
+                                                            <text-property name="text">Sum strøm</text-property>
                                                         </label>
                                                     </cell>
                                                     <cell id="434"/>
@@ -11037,8 +11049,14 @@ else &#13;
                                         <property name="paddingLeft">5pt</property>
                                         <property name="paddingBottom">34pt</property>
                                         <property name="paddingRight">5pt</property>
-                                        <table id="928">
-                                            <property name="width">5.01in</property>
+                                        <table id="3880">
+                                            <property name="fontSize">7pt</property>
+                                            <property name="borderBottomStyle">none</property>
+                                            <property name="borderLeftStyle">none</property>
+                                            <property name="borderRightStyle">none</property>
+                                            <property name="borderTopStyle">none</property>
+                                            <property name="marginBottom">10pt</property>
+                                            <property name="width">5.010416666666667in</property>
                                             <property name="dataSet">AttachmentNettJoinDataSet</property>
                                             <list-property name="visibility">
                                                 <structure>
@@ -11052,9 +11070,141 @@ else &#13;
                                             </list-property>
                                             <list-property name="boundDataColumns">
                                                 <structure>
+                                                    <property name="name">Address1</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::Address1</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["Address1"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">AttachmentHeaderInfo::Description</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::Description</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["AttachmentHeaderInfo::Description"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">MeterId</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::MeterId</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["MeterId"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">ObjectId</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::ObjectId</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["ObjectId"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">AnnualConsumption</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::AnnualConsumption</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["AnnualConsumption"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">AttachmentHeaderInfo::InvoiceNo</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::InvoiceNo</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["AttachmentHeaderInfo::InvoiceNo"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">FREE_TEXT</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::FREE_TEXT</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["FREE_TEXT"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">Name</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::Name</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">Email</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::Email</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["Email"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">Telephone</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::Telephone</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["Telephone"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">StatementDate</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::StatementDate</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["StatementDate"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">AttachmentHeaderInfo::ReferenceNumber</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::ReferenceNumber</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["AttachmentHeaderInfo::ReferenceNumber"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">InvoiceType</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::InvoiceType</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["InvoiceType"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">AttachmentHeaderInfo::AttachmentNumber</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::AttachmentNumber</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["AttachmentHeaderInfo::AttachmentNumber"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">AttachmentHeaderInfo::DisplayStromData</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::DisplayStromData</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["AttachmentHeaderInfo::DisplayStromData"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">AttachmentHeaderInfo::isOnlyGrid</property>
+                                                    <text-property name="displayName">AttachmentHeaderInfo::isOnlyGrid</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["AttachmentHeaderInfo::isOnlyGrid"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">NettInfo::ReferenceNumber</property>
+                                                    <text-property name="displayName">NettInfo::ReferenceNumber</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["NettInfo::ReferenceNumber"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
                                                     <property name="name">NettInfo::Description</property>
                                                     <text-property name="displayName">NettInfo::Description</text-property>
                                                     <expression name="expression" type="javascript">dataSetRow["NettInfo::Description"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">UnitPrice</property>
+                                                    <text-property name="displayName">NettInfo::UnitPrice</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["UnitPrice"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">PriceDenomination</property>
+                                                    <text-property name="displayName">NettInfo::PriceDenomination</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["PriceDenomination"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">LineItemGrossAmount</property>
+                                                    <text-property name="displayName">NettInfo::LineItemGrossAmount</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["LineItemGrossAmount"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">QuantityInvoiced</property>
+                                                    <text-property name="displayName">NettInfo::QuantityInvoiced</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["QuantityInvoiced"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">UnitOfMeasure</property>
+                                                    <text-property name="displayName">NettInfo::UnitOfMeasure</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["UnitOfMeasure"]</expression>
                                                     <property name="dataType">string</property>
                                                 </structure>
                                                 <structure>
@@ -11073,37 +11223,92 @@ else &#13;
                                                     <property name="allowExport">true</property>
                                                 </structure>
                                                 <structure>
-                                                    <property name="name">QuantityInvoiced</property>
-                                                    <text-property name="displayName">NettInfo::QuantityInvoiced</text-property>
-                                                    <expression name="expression" type="javascript">if(dataSetRow["PriceDenomination"] !=null &amp;&amp; ('kr/mnd' == dataSetRow["PriceDenomination"] || 'kr/�r' == dataSetRow["PriceDenomination"])) {&#13;
-	dataSetRow["NettInfo::NoOfDays"] + " "+ 'dager'; &#13;
+                                                    <property name="name">EndDate</property>
+                                                    <text-property name="displayName">NettInfo::EndDate</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["EndDate"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">GrossAmount</property>
+                                                    <text-property name="displayName">NettInfo::GrossAmount</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["GrossAmount"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">VatTotalsAmount</property>
+                                                    <text-property name="displayName">NettInfo::VatTotalsAmount</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["VatTotalsAmount"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">NettInfo::InvoiceNo</property>
+                                                    <text-property name="displayName">NettInfo::InvoiceNo</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["NettInfo::InvoiceNo"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">NettInfo::AttachmentNumber</property>
+                                                    <text-property name="displayName">NettInfo::AttachmentNumber</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["NettInfo::AttachmentNumber"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">NettInfo::UnitPriceGross</property>
+                                                    <text-property name="displayName">NettInfo::UnitPriceGross</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["NettInfo::UnitPriceGross"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">NettInfo::NoOfDays</property>
+                                                    <text-property name="displayName">NettInfo::NoOfDays</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["NettInfo::NoOfDays"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">NettInfo::AttachmentFormat</property>
+                                                    <text-property name="displayName">NettInfo::AttachmentFormat</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["NettInfo::AttachmentFormat"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">Column Binding</property>
+                                                    <text-property name="displayName">NetInfo:Description</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["NettInfo::Description"]</expression>
+                                                    <property name="dataType">string</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">Column Binding_1</property>
+                                                    <text-property name="displayName">NetInfo:quantityInvoiced</text-property>
+                                                    <expression name="expression" type="javascript">if(dataSetRow["PriceDenomination"] !=null &amp;&amp; ('kr/mnd' == dataSetRow["PriceDenomination"] || 'kr/år' == dataSetRow["PriceDenomination"])) {&#13;
+dataSetRow["NettInfo::NoOfDays"] + " "+ 'dager'; &#13;
 }&#13;
 else if(dataSetRow["UnitOfMeasure"] == null) {&#13;
-	truncateDecimal(dataSetRow["QuantityInvoiced"]) &#13;
-} else if(dataSetRow["UnitOfMeasure"]  == 'ANN' || dataSetRow["UnitOfMeasure"] == 'MON') {&#13;
-	dataSetRow["NettInfo::NoOfDays"] + " " +'dager'; 	&#13;
+truncateDecimal(dataSetRow["QuantityInvoiced"]) &#13;
+} else if(dataSetRow["UnitOfMeasure"]  == 'ANN' || dataSetRow["UnitOfMeasure"] == 'MON' || dataSetRow["UnitOfMeasure"] == 'EA') {&#13;
+dataSetRow["NettInfo::NoOfDays"] + " " +'dager'; &#13;
 } &#13;
-else if(dataSetRow["NettInfo::AttachmentFormat"] == 'PDFEHF' || dataSetRow["NettInfo::AttachmentFormat"] == 'EHF'){&#13;
-	dataSetRow["NettInfo::NoOfDays"] + " " +'dager';&#13;
+else if(dataSetRow["UnitOfMeasure"]  == 'DAY' &amp;&amp; (dataSetRow["NettInfo::AttachmentFormat"] == 'PDFEHF' || dataSetRow["NettInfo::AttachmentFormat"] == 'EHF')){&#13;
+dataSetRow["NettInfo::NoOfDays"] + " " +'dager';&#13;
 }&#13;
 else {&#13;
-	if('KWH' == dataSetRow["UnitOfMeasure"]) {&#13;
-		truncateDecimal(dataSetRow["QuantityInvoiced"]) + " " + 'kWh';&#13;
-	} else {&#13;
-		truncateDecimal(dataSetRow["QuantityInvoiced"]) + " " + dataSetRow["UnitOfMeasure"];&#13;
-	}&#13;
+if('KWH' == dataSetRow["UnitOfMeasure"]) {&#13;
+truncateDecimal(dataSetRow["QuantityInvoiced"]) + " " + 'kWh';&#13;
+} else {&#13;
+truncateDecimal(dataSetRow["QuantityInvoiced"]) + " " + dataSetRow["UnitOfMeasure"];&#13;
+}&#13;
 }</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
                                                 <structure>
-                                                    <property name="name">UnitPrice</property>
-                                                    <text-property name="displayName">NettInfo::UnitPriceGross</text-property>
+                                                    <property name="name">Column Binding_2</property>
+                                                    <text-property name="displayName">NetInfo:UnitPrice</text-property>
                                                     <expression name="expression" type="javascript">if(null != dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"].toUpperCase() == 'KWH' ) {&#13;
 	if(dataSetRow["NettInfo::UnitPriceGross"] !=null &amp;&amp;  parseFloat(dataSetRow["NettInfo::UnitPriceGross"]) &lt;1) {		&#13;
-		formatMoney(parseFloat(dataSetRow["NettInfo::UnitPriceGross"])*100, 2, '', '.', ',') + " " + '�re/kWh';&#13;
+		formatMoney(parseFloat(dataSetRow["NettInfo::UnitPriceGross"])*100, 2, '', '.', ',') + " " + 'øre/kWh';&#13;
 	}else {&#13;
-		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + '�re/kWh';&#13;
+		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'øre/kWh';&#13;
 		}&#13;
 &#13;
 } else {&#13;
@@ -11117,698 +11322,168 @@ else {&#13;
                                                     <property name="allowExport">true</property>
                                                 </structure>
                                                 <structure>
-                                                    <property name="name">LineItemGrossAmount</property>
-                                                    <text-property name="displayName">NettInfo::LineItemGrossAmount</text-property>
+                                                    <property name="name">Column Binding_3</property>
+                                                    <text-property name="displayName">NetInfo:LineItemGrossAmount</text-property>
                                                     <expression name="expression" type="javascript">formatMoney(dataSetRow["LineItemGrossAmount"], 2, '', '.', ',')</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
                                                 <structure>
-                                                    <property name="name">GrossAmount</property>
-                                                    <text-property name="displayName">NettInfo::GrossAmount</text-property>
+                                                    <property name="name">Column Binding_4</property>
+                                                    <text-property name="displayName">VatTotalsAmount</text-property>
+                                                    <expression name="expression" type="javascript">"(Herav MVA " + formatMoney(dataSetRow["VatTotalsAmount"], 2, '', '.', ',') + ")"</expression>
+                                                    <property name="dataType">string</property>
+                                                    <property name="allowExport">true</property>
+                                                </structure>
+                                                <structure>
+                                                    <property name="name">Column Binding_5</property>
+                                                    <text-property name="displayName">GrossAmount</text-property>
                                                     <expression name="expression" type="javascript">formatMoney(dataSetRow["GrossAmount"], 2, '', '.', ',')</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
                                                 <structure>
-                                                    <property name="name">VatTotalsAmount</property>
-                                                    <text-property name="displayName">NettInfo::VatTotalsAmount</text-property>
-                                                    <expression name="expression" type="javascript">"(Herav MVA " + formatMoney(dataSetRow["VatTotalsAmount"], 2, '', '.', ',') + ")"</expression>
+                                                    <property name="name">StartDate_1</property>
+                                                    <text-property name="displayName">NettInfo::StartDate</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["StartDate"]</expression>
                                                     <property name="dataType">string</property>
-                                                    <property name="allowExport">true</property>
                                                 </structure>
                                             </list-property>
-                                            <column id="947">
+                                            <column id="3911">
                                                 <property name="width">1.365in</property>
                                             </column>
-                                            <column id="948">
+                                            <column id="3912">
                                                 <property name="width">0.95in</property>
                                             </column>
-                                            <column id="949">
+                                            <column id="3913">
                                                 <property name="width">0.85in</property>
                                             </column>
-                                            <column id="950">
+                                            <column id="3914">
                                                 <property name="width">0.9in</property>
                                             </column>
-                                            <column id="951">
-                                                <property name="width">0.844in</property>
+                                            <column id="3915">
+                                                <property name="width">0.84375in</property>
                                             </column>
                                             <header>
-                                                <row id="929">
+                                                <row id="3881">
                                                     <property name="borderBottomColor">#B3B3B3</property>
                                                     <property name="borderBottomStyle">solid</property>
-                                                    <property name="borderBottomWidth">0.5pt</property>
-                                                    <cell id="930">
-                                                        <label id="969">
-                                                            <property name="backgroundAttachment">scroll</property>
-                                                            <property name="backgroundPositionX">0%</property>
-                                                            <property name="backgroundPositionY">0%</property>
-                                                            <property name="backgroundRepeat">repeat</property>
+                                                    <property name="borderBottomWidth">thin</property>
+                                                    <cell id="3882">
+                                                        <label id="3883">
                                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                            <property name="fontSize">7pt</property>
                                                             <property name="fontWeight">normal</property>
-                                                            <property name="fontStyle">normal</property>
-                                                            <property name="fontVariant">normal</property>
-                                                            <property name="color">black</property>
-                                                            <property name="textLineThrough">none</property>
-                                                            <property name="textOverline">none</property>
-                                                            <property name="textUnderline">none</property>
-                                                            <property name="borderBottomColor">black</property>
-                                                            <property name="borderBottomStyle">none</property>
-                                                            <property name="borderBottomWidth">medium</property>
-                                                            <property name="borderLeftColor">black</property>
-                                                            <property name="borderLeftStyle">none</property>
-                                                            <property name="borderLeftWidth">medium</property>
-                                                            <property name="borderRightColor">black</property>
-                                                            <property name="borderRightStyle">none</property>
-                                                            <property name="borderRightWidth">medium</property>
-                                                            <property name="borderTopColor">black</property>
-                                                            <property name="borderTopStyle">none</property>
-                                                            <property name="borderTopWidth">medium</property>
-                                                            <property name="marginTop">0pt</property>
-                                                            <property name="marginLeft">0pt</property>
-                                                            <property name="marginBottom">0pt</property>
-                                                            <property name="marginRight">0pt</property>
-                                                            <property name="paddingTop">1pt</property>
-                                                            <property name="paddingLeft">1pt</property>
-                                                            <property name="paddingBottom">1pt</property>
-                                                            <property name="paddingRight">1pt</property>
                                                             <property name="textAlign">left</property>
-                                                            <property name="letterSpacing">normal</property>
-                                                            <property name="lineHeight">normal</property>
-                                                            <property name="orphans">2</property>
-                                                            <property name="textTransform">none</property>
-                                                            <property name="whiteSpace">normal</property>
-                                                            <property name="widows">2</property>
-                                                            <property name="wordSpacing">normal</property>
-                                                            <property name="display">block</property>
-                                                            <property name="pageBreakAfter">auto</property>
-                                                            <property name="pageBreakBefore">auto</property>
-                                                            <property name="pageBreakInside">avoid</property>
-                                                            <property name="showIfBlank">false</property>
-                                                            <property name="canShrink">false</property>
-                                                            <property name="overflow">hidden</property>
                                                             <text-property name="text">Produkt</text-property>
                                                         </label>
                                                     </cell>
-                                                    <cell id="931">
-                                                        <label id="970">
-                                                            <property name="backgroundAttachment">scroll</property>
-                                                            <property name="backgroundPositionX">0%</property>
-                                                            <property name="backgroundPositionY">0%</property>
-                                                            <property name="backgroundRepeat">repeat</property>
+                                                    <cell id="3884">
+                                                        <label id="3885">
                                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                            <property name="fontSize">7pt</property>
                                                             <property name="fontWeight">normal</property>
-                                                            <property name="fontStyle">normal</property>
-                                                            <property name="fontVariant">normal</property>
-                                                            <property name="color">black</property>
-                                                            <property name="textLineThrough">none</property>
-                                                            <property name="textOverline">none</property>
-                                                            <property name="textUnderline">none</property>
-                                                            <property name="borderBottomColor">black</property>
-                                                            <property name="borderBottomStyle">none</property>
-                                                            <property name="borderBottomWidth">medium</property>
-                                                            <property name="borderLeftColor">black</property>
-                                                            <property name="borderLeftStyle">none</property>
-                                                            <property name="borderLeftWidth">medium</property>
-                                                            <property name="borderRightColor">black</property>
-                                                            <property name="borderRightStyle">none</property>
-                                                            <property name="borderRightWidth">medium</property>
-                                                            <property name="borderTopColor">black</property>
-                                                            <property name="borderTopStyle">none</property>
-                                                            <property name="borderTopWidth">medium</property>
-                                                            <property name="marginTop">0pt</property>
-                                                            <property name="marginLeft">0pt</property>
-                                                            <property name="marginBottom">0pt</property>
-                                                            <property name="marginRight">0pt</property>
-                                                            <property name="paddingTop">1pt</property>
-                                                            <property name="paddingLeft">1pt</property>
-                                                            <property name="paddingBottom">1pt</property>
-                                                            <property name="paddingRight">1pt</property>
                                                             <property name="textAlign">left</property>
-                                                            <property name="letterSpacing">normal</property>
-                                                            <property name="lineHeight">normal</property>
-                                                            <property name="orphans">2</property>
-                                                            <property name="textTransform">none</property>
-                                                            <property name="whiteSpace">normal</property>
-                                                            <property name="widows">2</property>
-                                                            <property name="wordSpacing">normal</property>
-                                                            <property name="display">block</property>
-                                                            <property name="pageBreakAfter">auto</property>
-                                                            <property name="pageBreakBefore">auto</property>
-                                                            <property name="pageBreakInside">avoid</property>
-                                                            <property name="showIfBlank">false</property>
-                                                            <property name="canShrink">false</property>
-                                                            <property name="overflow">hidden</property>
                                                             <text-property name="text">Periode</text-property>
                                                         </label>
                                                     </cell>
-                                                    <cell id="932">
-                                                        <label id="971">
-                                                            <property name="backgroundAttachment">scroll</property>
-                                                            <property name="backgroundPositionX">0%</property>
-                                                            <property name="backgroundPositionY">0%</property>
-                                                            <property name="backgroundRepeat">repeat</property>
+                                                    <cell id="3886">
+                                                        <label id="3887">
                                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                            <property name="fontSize">7pt</property>
                                                             <property name="fontWeight">normal</property>
-                                                            <property name="fontStyle">normal</property>
-                                                            <property name="fontVariant">normal</property>
-                                                            <property name="color">black</property>
-                                                            <property name="textLineThrough">none</property>
-                                                            <property name="textOverline">none</property>
-                                                            <property name="textUnderline">none</property>
-                                                            <property name="borderBottomColor">black</property>
-                                                            <property name="borderBottomStyle">none</property>
-                                                            <property name="borderBottomWidth">medium</property>
-                                                            <property name="borderLeftColor">black</property>
-                                                            <property name="borderLeftStyle">none</property>
-                                                            <property name="borderLeftWidth">medium</property>
-                                                            <property name="borderRightColor">black</property>
-                                                            <property name="borderRightStyle">none</property>
-                                                            <property name="borderRightWidth">medium</property>
-                                                            <property name="borderTopColor">black</property>
-                                                            <property name="borderTopStyle">none</property>
-                                                            <property name="borderTopWidth">medium</property>
-                                                            <property name="marginTop">0pt</property>
-                                                            <property name="marginLeft">0pt</property>
-                                                            <property name="marginBottom">0pt</property>
-                                                            <property name="marginRight">0pt</property>
-                                                            <property name="paddingTop">1pt</property>
-                                                            <property name="paddingLeft">1pt</property>
-                                                            <property name="paddingBottom">1pt</property>
-                                                            <property name="paddingRight">1pt</property>
                                                             <property name="textAlign">right</property>
-                                                            <property name="letterSpacing">normal</property>
-                                                            <property name="lineHeight">normal</property>
-                                                            <property name="orphans">2</property>
-                                                            <property name="textTransform">none</property>
-                                                            <property name="whiteSpace">normal</property>
-                                                            <property name="widows">2</property>
-                                                            <property name="wordSpacing">normal</property>
-                                                            <property name="display">block</property>
-                                                            <property name="pageBreakAfter">auto</property>
-                                                            <property name="pageBreakBefore">auto</property>
-                                                            <property name="pageBreakInside">avoid</property>
-                                                            <property name="showIfBlank">false</property>
-                                                            <property name="canShrink">false</property>
-                                                            <property name="overflow">hidden</property>
                                                             <text-property name="text">Forbruk</text-property>
                                                         </label>
                                                     </cell>
-                                                    <cell id="933">
-                                                        <label id="972">
-                                                            <property name="backgroundAttachment">scroll</property>
-                                                            <property name="backgroundPositionX">0%</property>
-                                                            <property name="backgroundPositionY">0%</property>
-                                                            <property name="backgroundRepeat">repeat</property>
+                                                    <cell id="3888">
+                                                        <label id="3889">
                                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                            <property name="fontSize">7pt</property>
                                                             <property name="fontWeight">normal</property>
-                                                            <property name="fontStyle">normal</property>
-                                                            <property name="fontVariant">normal</property>
-                                                            <property name="color">black</property>
-                                                            <property name="textLineThrough">none</property>
-                                                            <property name="textOverline">none</property>
-                                                            <property name="textUnderline">none</property>
-                                                            <property name="borderBottomColor">black</property>
-                                                            <property name="borderBottomStyle">none</property>
-                                                            <property name="borderBottomWidth">medium</property>
-                                                            <property name="borderLeftColor">black</property>
-                                                            <property name="borderLeftStyle">none</property>
-                                                            <property name="borderLeftWidth">medium</property>
-                                                            <property name="borderRightColor">black</property>
-                                                            <property name="borderRightStyle">none</property>
-                                                            <property name="borderRightWidth">medium</property>
-                                                            <property name="borderTopColor">black</property>
-                                                            <property name="borderTopStyle">none</property>
-                                                            <property name="borderTopWidth">medium</property>
-                                                            <property name="marginTop">0pt</property>
-                                                            <property name="marginLeft">0pt</property>
-                                                            <property name="marginBottom">0pt</property>
-                                                            <property name="marginRight">0pt</property>
-                                                            <property name="paddingTop">1pt</property>
-                                                            <property name="paddingLeft">1pt</property>
-                                                            <property name="paddingBottom">1pt</property>
-                                                            <property name="paddingRight">1pt</property>
                                                             <property name="textAlign">right</property>
-                                                            <property name="letterSpacing">normal</property>
-                                                            <property name="lineHeight">normal</property>
-                                                            <property name="orphans">2</property>
-                                                            <property name="textTransform">none</property>
-                                                            <property name="whiteSpace">normal</property>
-                                                            <property name="widows">2</property>
-                                                            <property name="wordSpacing">normal</property>
-                                                            <property name="display">block</property>
-                                                            <property name="pageBreakAfter">auto</property>
-                                                            <property name="pageBreakBefore">auto</property>
-                                                            <property name="pageBreakInside">avoid</property>
-                                                            <property name="showIfBlank">false</property>
-                                                            <property name="canShrink">false</property>
-                                                            <property name="overflow">hidden</property>
                                                             <text-property name="text">Pris</text-property>
                                                         </label>
                                                     </cell>
-                                                    <cell id="934">
-                                                        <label id="973">
-                                                            <property name="backgroundAttachment">scroll</property>
-                                                            <property name="backgroundPositionX">0%</property>
-                                                            <property name="backgroundPositionY">0%</property>
-                                                            <property name="backgroundRepeat">repeat</property>
+                                                    <cell id="3890">
+                                                        <label id="3891">
                                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                            <property name="fontSize">7pt</property>
                                                             <property name="fontWeight">normal</property>
-                                                            <property name="fontStyle">normal</property>
-                                                            <property name="fontVariant">normal</property>
-                                                            <property name="color">black</property>
-                                                            <property name="textLineThrough">none</property>
-                                                            <property name="textOverline">none</property>
-                                                            <property name="textUnderline">none</property>
-                                                            <property name="borderBottomColor">black</property>
-                                                            <property name="borderBottomStyle">none</property>
-                                                            <property name="borderBottomWidth">medium</property>
-                                                            <property name="borderLeftColor">black</property>
-                                                            <property name="borderLeftStyle">none</property>
-                                                            <property name="borderLeftWidth">medium</property>
-                                                            <property name="borderRightColor">black</property>
-                                                            <property name="borderRightStyle">none</property>
-                                                            <property name="borderRightWidth">medium</property>
-                                                            <property name="borderTopColor">black</property>
-                                                            <property name="borderTopStyle">none</property>
-                                                            <property name="borderTopWidth">medium</property>
-                                                            <property name="marginTop">0pt</property>
-                                                            <property name="marginLeft">0pt</property>
-                                                            <property name="marginBottom">0pt</property>
-                                                            <property name="marginRight">0pt</property>
-                                                            <property name="paddingTop">1pt</property>
-                                                            <property name="paddingLeft">1pt</property>
-                                                            <property name="paddingBottom">1pt</property>
-                                                            <property name="paddingRight">1pt</property>
                                                             <property name="textAlign">right</property>
-                                                            <property name="letterSpacing">normal</property>
-                                                            <property name="lineHeight">normal</property>
-                                                            <property name="orphans">2</property>
-                                                            <property name="textTransform">none</property>
-                                                            <property name="whiteSpace">normal</property>
-                                                            <property name="widows">2</property>
-                                                            <property name="wordSpacing">normal</property>
-                                                            <property name="display">block</property>
-                                                            <property name="pageBreakAfter">auto</property>
-                                                            <property name="pageBreakBefore">auto</property>
-                                                            <property name="pageBreakInside">avoid</property>
-                                                            <property name="showIfBlank">false</property>
-                                                            <property name="canShrink">false</property>
-                                                            <property name="overflow">hidden</property>
                                                             <text-property name="text">Sum</text-property>
                                                         </label>
                                                     </cell>
                                                 </row>
                                             </header>
                                             <detail>
-                                                <row id="935">
-                                                    <cell id="936">
-                                                        <data id="1049">
-                                                            <property name="backgroundAttachment">scroll</property>
-                                                            <property name="backgroundPositionX">0%</property>
-                                                            <property name="backgroundPositionY">0%</property>
-                                                            <property name="backgroundRepeat">repeat</property>
-                                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                            <property name="fontSize">7pt</property>
-                                                            <property name="fontWeight">normal</property>
-                                                            <property name="fontStyle">normal</property>
-                                                            <property name="fontVariant">normal</property>
-                                                            <property name="color">black</property>
-                                                            <property name="textLineThrough">none</property>
-                                                            <property name="textOverline">none</property>
-                                                            <property name="textUnderline">none</property>
-                                                            <property name="borderBottomColor">black</property>
-                                                            <property name="borderBottomStyle">none</property>
-                                                            <property name="borderBottomWidth">medium</property>
-                                                            <property name="borderLeftColor">black</property>
-                                                            <property name="borderLeftStyle">none</property>
-                                                            <property name="borderLeftWidth">medium</property>
-                                                            <property name="borderRightColor">black</property>
-                                                            <property name="borderRightStyle">none</property>
-                                                            <property name="borderRightWidth">medium</property>
-                                                            <property name="borderTopColor">black</property>
-                                                            <property name="borderTopStyle">none</property>
-                                                            <property name="borderTopWidth">medium</property>
-                                                            <property name="marginTop">0pt</property>
-                                                            <property name="marginLeft">0pt</property>
-                                                            <property name="marginBottom">0pt</property>
-                                                            <property name="marginRight">0pt</property>
-                                                            <property name="paddingTop">1pt</property>
-                                                            <property name="paddingLeft">1pt</property>
-                                                            <property name="paddingBottom">1pt</property>
-                                                            <property name="paddingRight">1pt</property>
+                                                <row id="3892">
+                                                    <property name="lineHeight">10pt</property>
+                                                    <cell id="3893">
+                                                        <data id="3894">
                                                             <property name="textAlign">left</property>
-                                                            <property name="letterSpacing">normal</property>
                                                             <property name="lineHeight">8pt</property>
-                                                            <property name="orphans">2</property>
-                                                            <property name="textTransform">none</property>
-                                                            <property name="whiteSpace">normal</property>
-                                                            <property name="widows">2</property>
-                                                            <property name="wordSpacing">normal</property>
-                                                            <property name="display">block</property>
-                                                            <property name="pageBreakAfter">auto</property>
-                                                            <property name="pageBreakBefore">auto</property>
-                                                            <property name="pageBreakInside">avoid</property>
-                                                            <property name="showIfBlank">false</property>
-                                                            <property name="canShrink">false</property>
-                                                            <property name="overflow">hidden</property>
-                                                            <property name="resultSetColumn">NettInfo::Description</property>
+                                                            <property name="resultSetColumn">Column Binding</property>
                                                         </data>
                                                     </cell>
-                                                    <cell id="937">
-                                                        <data id="1050">
-                                                            <property name="backgroundAttachment">scroll</property>
-                                                            <property name="backgroundPositionX">0%</property>
-                                                            <property name="backgroundPositionY">0%</property>
-                                                            <property name="backgroundRepeat">repeat</property>
-                                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                            <property name="fontSize">7pt</property>
-                                                            <property name="fontWeight">normal</property>
-                                                            <property name="fontStyle">normal</property>
-                                                            <property name="fontVariant">normal</property>
-                                                            <property name="color">black</property>
-                                                            <property name="textLineThrough">none</property>
-                                                            <property name="textOverline">none</property>
-                                                            <property name="textUnderline">none</property>
-                                                            <property name="borderBottomColor">black</property>
-                                                            <property name="borderBottomStyle">none</property>
-                                                            <property name="borderBottomWidth">medium</property>
-                                                            <property name="borderLeftColor">black</property>
-                                                            <property name="borderLeftStyle">none</property>
-                                                            <property name="borderLeftWidth">medium</property>
-                                                            <property name="borderRightColor">black</property>
-                                                            <property name="borderRightStyle">none</property>
-                                                            <property name="borderRightWidth">medium</property>
-                                                            <property name="borderTopColor">black</property>
-                                                            <property name="borderTopStyle">none</property>
-                                                            <property name="borderTopWidth">medium</property>
-                                                            <property name="marginTop">0pt</property>
-                                                            <property name="marginLeft">0pt</property>
-                                                            <property name="marginBottom">0pt</property>
-                                                            <property name="marginRight">0pt</property>
-                                                            <property name="paddingTop">1pt</property>
-                                                            <property name="paddingLeft">1pt</property>
-                                                            <property name="paddingBottom">1pt</property>
-                                                            <property name="paddingRight">1pt</property>
+                                                    <cell id="3895">
+                                                        <data id="3896">
                                                             <property name="textAlign">left</property>
-                                                            <property name="letterSpacing">normal</property>
                                                             <property name="lineHeight">8pt</property>
-                                                            <property name="orphans">2</property>
-                                                            <property name="textTransform">none</property>
-                                                            <property name="whiteSpace">normal</property>
-                                                            <property name="widows">2</property>
-                                                            <property name="wordSpacing">normal</property>
-                                                            <property name="display">block</property>
-                                                            <property name="pageBreakAfter">auto</property>
-                                                            <property name="pageBreakBefore">auto</property>
-                                                            <property name="pageBreakInside">avoid</property>
-                                                            <property name="showIfBlank">false</property>
-                                                            <property name="canShrink">false</property>
-                                                            <property name="overflow">hidden</property>
                                                             <property name="resultSetColumn">StartDate</property>
                                                         </data>
                                                     </cell>
-                                                    <cell id="938">
-                                                        <data id="1051">
-                                                            <property name="backgroundAttachment">scroll</property>
-                                                            <property name="backgroundPositionX">0%</property>
-                                                            <property name="backgroundPositionY">0%</property>
-                                                            <property name="backgroundRepeat">repeat</property>
-                                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                            <property name="fontSize">7pt</property>
-                                                            <property name="fontWeight">normal</property>
-                                                            <property name="fontStyle">normal</property>
-                                                            <property name="fontVariant">normal</property>
-                                                            <property name="color">black</property>
-                                                            <property name="textLineThrough">none</property>
-                                                            <property name="textOverline">none</property>
-                                                            <property name="textUnderline">none</property>
-                                                            <property name="borderBottomColor">black</property>
-                                                            <property name="borderBottomStyle">none</property>
-                                                            <property name="borderBottomWidth">medium</property>
-                                                            <property name="borderLeftColor">black</property>
-                                                            <property name="borderLeftStyle">none</property>
-                                                            <property name="borderLeftWidth">medium</property>
-                                                            <property name="borderRightColor">black</property>
-                                                            <property name="borderRightStyle">none</property>
-                                                            <property name="borderRightWidth">medium</property>
-                                                            <property name="borderTopColor">black</property>
-                                                            <property name="borderTopStyle">none</property>
-                                                            <property name="borderTopWidth">medium</property>
-                                                            <property name="marginTop">0pt</property>
-                                                            <property name="marginLeft">0pt</property>
-                                                            <property name="marginBottom">0pt</property>
-                                                            <property name="marginRight">0pt</property>
-                                                            <property name="paddingTop">1pt</property>
-                                                            <property name="paddingLeft">1pt</property>
-                                                            <property name="paddingBottom">1pt</property>
-                                                            <property name="paddingRight">1pt</property>
+                                                    <cell id="3897">
+                                                        <data id="3898">
+                                                            <property name="color">#000000</property>
                                                             <property name="textAlign">right</property>
-                                                            <property name="letterSpacing">normal</property>
                                                             <property name="lineHeight">8pt</property>
-                                                            <property name="orphans">2</property>
-                                                            <property name="textTransform">none</property>
-                                                            <property name="whiteSpace">normal</property>
-                                                            <property name="widows">2</property>
-                                                            <property name="wordSpacing">normal</property>
-                                                            <property name="display">block</property>
-                                                            <property name="pageBreakAfter">auto</property>
-                                                            <property name="pageBreakBefore">auto</property>
-                                                            <property name="pageBreakInside">avoid</property>
-                                                            <property name="showIfBlank">false</property>
-                                                            <property name="canShrink">false</property>
-                                                            <property name="overflow">hidden</property>
-                                                            <property name="resultSetColumn">QuantityInvoiced</property>
+                                                            <property name="resultSetColumn">Column Binding_1</property>
                                                         </data>
                                                     </cell>
-                                                    <cell id="939">
-                                                        <data id="1052">
-                                                            <property name="backgroundAttachment">scroll</property>
-                                                            <property name="backgroundPositionX">0%</property>
-                                                            <property name="backgroundPositionY">0%</property>
-                                                            <property name="backgroundRepeat">repeat</property>
-                                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                            <property name="fontSize">7pt</property>
-                                                            <property name="fontWeight">normal</property>
-                                                            <property name="fontStyle">normal</property>
-                                                            <property name="fontVariant">normal</property>
-                                                            <property name="color">black</property>
-                                                            <property name="textLineThrough">none</property>
-                                                            <property name="textOverline">none</property>
-                                                            <property name="textUnderline">none</property>
-                                                            <property name="borderBottomColor">black</property>
-                                                            <property name="borderBottomStyle">none</property>
-                                                            <property name="borderBottomWidth">medium</property>
-                                                            <property name="borderLeftColor">black</property>
-                                                            <property name="borderLeftStyle">none</property>
-                                                            <property name="borderLeftWidth">medium</property>
-                                                            <property name="borderRightColor">black</property>
-                                                            <property name="borderRightStyle">none</property>
-                                                            <property name="borderRightWidth">medium</property>
-                                                            <property name="borderTopColor">black</property>
-                                                            <property name="borderTopStyle">none</property>
-                                                            <property name="borderTopWidth">medium</property>
-                                                            <property name="marginTop">0pt</property>
-                                                            <property name="marginLeft">0pt</property>
-                                                            <property name="marginBottom">0pt</property>
-                                                            <property name="marginRight">0pt</property>
-                                                            <property name="paddingTop">1pt</property>
-                                                            <property name="paddingLeft">1pt</property>
-                                                            <property name="paddingBottom">1pt</property>
-                                                            <property name="paddingRight">1pt</property>
+                                                    <cell id="3899">
+                                                        <data id="3900">
                                                             <property name="textAlign">right</property>
-                                                            <property name="letterSpacing">normal</property>
                                                             <property name="lineHeight">8pt</property>
-                                                            <property name="orphans">2</property>
-                                                            <property name="textTransform">none</property>
-                                                            <property name="whiteSpace">normal</property>
-                                                            <property name="widows">2</property>
-                                                            <property name="wordSpacing">normal</property>
-                                                            <property name="display">block</property>
-                                                            <property name="pageBreakAfter">auto</property>
-                                                            <property name="pageBreakBefore">auto</property>
-                                                            <property name="pageBreakInside">avoid</property>
-                                                            <property name="showIfBlank">false</property>
-                                                            <property name="canShrink">false</property>
-                                                            <property name="overflow">hidden</property>
-                                                            <property name="resultSetColumn">UnitPrice</property>
+                                                            <property name="resultSetColumn">Column Binding_2</property>
                                                         </data>
                                                     </cell>
-                                                    <cell id="940">
-                                                        <data id="1053">
-                                                            <property name="backgroundAttachment">scroll</property>
-                                                            <property name="backgroundPositionX">0%</property>
-                                                            <property name="backgroundPositionY">0%</property>
-                                                            <property name="backgroundRepeat">repeat</property>
-                                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                            <property name="fontSize">7pt</property>
-                                                            <property name="fontWeight">normal</property>
-                                                            <property name="fontStyle">normal</property>
-                                                            <property name="fontVariant">normal</property>
-                                                            <property name="color">black</property>
-                                                            <property name="textLineThrough">none</property>
-                                                            <property name="textOverline">none</property>
-                                                            <property name="textUnderline">none</property>
-                                                            <property name="borderBottomColor">black</property>
-                                                            <property name="borderBottomStyle">none</property>
-                                                            <property name="borderBottomWidth">medium</property>
-                                                            <property name="borderLeftColor">black</property>
-                                                            <property name="borderLeftStyle">none</property>
-                                                            <property name="borderLeftWidth">medium</property>
-                                                            <property name="borderRightColor">black</property>
-                                                            <property name="borderRightStyle">none</property>
-                                                            <property name="borderRightWidth">medium</property>
-                                                            <property name="borderTopColor">black</property>
-                                                            <property name="borderTopStyle">none</property>
-                                                            <property name="borderTopWidth">medium</property>
-                                                            <property name="marginTop">0pt</property>
-                                                            <property name="marginLeft">0pt</property>
-                                                            <property name="marginBottom">0pt</property>
-                                                            <property name="marginRight">0pt</property>
-                                                            <property name="paddingTop">1pt</property>
-                                                            <property name="paddingLeft">1pt</property>
-                                                            <property name="paddingBottom">1pt</property>
-                                                            <property name="paddingRight">1pt</property>
+                                                    <cell id="3901">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                        <data id="3902">
                                                             <property name="textAlign">right</property>
-                                                            <property name="letterSpacing">normal</property>
                                                             <property name="lineHeight">8pt</property>
-                                                            <property name="orphans">2</property>
-                                                            <property name="textTransform">none</property>
-                                                            <property name="whiteSpace">normal</property>
-                                                            <property name="widows">2</property>
-                                                            <property name="wordSpacing">normal</property>
-                                                            <property name="display">block</property>
-                                                            <property name="pageBreakAfter">auto</property>
-                                                            <property name="pageBreakBefore">auto</property>
-                                                            <property name="pageBreakInside">avoid</property>
-                                                            <property name="showIfBlank">false</property>
-                                                            <property name="canShrink">false</property>
-                                                            <property name="overflow">hidden</property>
-                                                            <property name="resultSetColumn">LineItemGrossAmount</property>
+                                                            <property name="resultSetColumn">Column Binding_3</property>
                                                         </data>
                                                     </cell>
                                                 </row>
                                             </detail>
                                             <footer>
-                                                <row id="941">
+                                                <row id="3903">
                                                     <property name="borderTopColor">#B3B3B3</property>
                                                     <property name="borderTopStyle">solid</property>
-                                                    <property name="borderTopWidth">0.5pt</property>
-                                                    <cell id="942">
-                                                        <label id="959">
-                                                            <property name="backgroundAttachment">scroll</property>
-                                                            <property name="backgroundPositionX">0%</property>
-                                                            <property name="backgroundPositionY">0%</property>
-                                                            <property name="backgroundRepeat">repeat</property>
+                                                    <property name="borderTopWidth">thin</property>
+                                                    <cell id="3904">
+                                                        <label id="3905">
                                                             <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
-                                                            <property name="fontSize">7pt</property>
                                                             <property name="fontWeight">bold</property>
-                                                            <property name="fontStyle">normal</property>
-                                                            <property name="fontVariant">normal</property>
-                                                            <property name="color">black</property>
-                                                            <property name="textLineThrough">none</property>
-                                                            <property name="textOverline">none</property>
-                                                            <property name="textUnderline">none</property>
-                                                            <property name="borderBottomColor">black</property>
-                                                            <property name="borderBottomStyle">none</property>
-                                                            <property name="borderBottomWidth">medium</property>
-                                                            <property name="borderLeftColor">black</property>
-                                                            <property name="borderLeftStyle">none</property>
-                                                            <property name="borderLeftWidth">medium</property>
-                                                            <property name="borderRightColor">black</property>
-                                                            <property name="borderRightStyle">none</property>
-                                                            <property name="borderRightWidth">medium</property>
-                                                            <property name="borderTopColor">black</property>
-                                                            <property name="borderTopStyle">none</property>
-                                                            <property name="borderTopWidth">medium</property>
-                                                            <property name="marginTop">0pt</property>
-                                                            <property name="marginLeft">0pt</property>
-                                                            <property name="marginBottom">0pt</property>
-                                                            <property name="marginRight">0pt</property>
-                                                            <property name="paddingTop">1pt</property>
-                                                            <property name="paddingLeft">1pt</property>
-                                                            <property name="paddingBottom">1pt</property>
-                                                            <property name="paddingRight">1pt</property>
-                                                            <property name="letterSpacing">normal</property>
-                                                            <property name="lineHeight">normal</property>
-                                                            <property name="orphans">2</property>
-                                                            <property name="textTransform">none</property>
-                                                            <property name="whiteSpace">normal</property>
-                                                            <property name="widows">2</property>
-                                                            <property name="wordSpacing">normal</property>
-                                                            <property name="display">block</property>
-                                                            <property name="pageBreakAfter">auto</property>
-                                                            <property name="pageBreakBefore">auto</property>
-                                                            <property name="pageBreakInside">avoid</property>
-                                                            <property name="showIfBlank">false</property>
-                                                            <property name="canShrink">false</property>
-                                                            <property name="overflow">hidden</property>
                                                             <text-property name="text">Sum nettleie</text-property>
                                                         </label>
                                                     </cell>
-                                                    <cell id="943"/>
-                                                    <cell id="944">
+                                                    <cell id="3906"/>
+                                                    <cell id="3907">
                                                         <property name="colSpan">2</property>
                                                         <property name="rowSpan">1</property>
-                                                        <data id="1055">
-                                                            <property name="backgroundAttachment">scroll</property>
-                                                            <property name="backgroundPositionX">0%</property>
-                                                            <property name="backgroundPositionY">0%</property>
-                                                            <property name="backgroundRepeat">repeat</property>
-                                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                            <property name="fontSize">7pt</property>
-                                                            <property name="fontWeight">normal</property>
+                                                        <property name="textAlign">right</property>
+                                                        <data id="3908">
                                                             <property name="fontStyle">italic</property>
-                                                            <property name="fontVariant">normal</property>
-                                                            <property name="color">black</property>
-                                                            <property name="textLineThrough">none</property>
-                                                            <property name="textOverline">none</property>
-                                                            <property name="textUnderline">none</property>
-                                                            <property name="borderBottomColor">black</property>
-                                                            <property name="borderBottomStyle">none</property>
-                                                            <property name="borderBottomWidth">medium</property>
-                                                            <property name="borderLeftColor">black</property>
-                                                            <property name="borderLeftStyle">none</property>
-                                                            <property name="borderLeftWidth">medium</property>
-                                                            <property name="borderRightColor">black</property>
-                                                            <property name="borderRightStyle">none</property>
-                                                            <property name="borderRightWidth">medium</property>
-                                                            <property name="borderTopColor">black</property>
-                                                            <property name="borderTopStyle">none</property>
-                                                            <property name="borderTopWidth">medium</property>
-                                                            <property name="marginTop">0pt</property>
-                                                            <property name="marginLeft">0pt</property>
-                                                            <property name="marginBottom">0pt</property>
-                                                            <property name="marginRight">0pt</property>
-                                                            <property name="paddingTop">1pt</property>
-                                                            <property name="paddingLeft">1pt</property>
-                                                            <property name="paddingBottom">1pt</property>
-                                                            <property name="paddingRight">1pt</property>
-                                                            <property name="textAlign">right</property>
-                                                            <property name="letterSpacing">normal</property>
-                                                            <property name="lineHeight">normal</property>
-                                                            <property name="orphans">2</property>
-                                                            <property name="textTransform">none</property>
-                                                            <property name="whiteSpace">normal</property>
-                                                            <property name="widows">2</property>
-                                                            <property name="wordSpacing">normal</property>
-                                                            <property name="display">block</property>
-                                                            <property name="pageBreakAfter">auto</property>
-                                                            <property name="pageBreakBefore">auto</property>
-                                                            <property name="pageBreakInside">avoid</property>
-                                                            <property name="showIfBlank">false</property>
-                                                            <property name="canShrink">false</property>
-                                                            <property name="overflow">hidden</property>
-                                                            <property name="resultSetColumn">VatTotalsAmount</property>
+                                                            <property name="resultSetColumn">Column Binding_4</property>
                                                         </data>
                                                     </cell>
-                                                    <cell id="946">
-                                                        <data id="1054">
+                                                    <cell id="3909">
+                                                        <property name="borderBottomStyle">none</property>
+                                                        <property name="borderLeftStyle">none</property>
+                                                        <property name="borderRightStyle">none</property>
+                                                        <property name="borderTopStyle">none</property>
+                                                        <data id="3910">
                                                             <property name="backgroundAttachment">scroll</property>
                                                             <property name="backgroundPositionX">0%</property>
                                                             <property name="backgroundPositionY">0%</property>
@@ -11857,7 +11532,7 @@ else {&#13;
                                                             <property name="showIfBlank">false</property>
                                                             <property name="canShrink">false</property>
                                                             <property name="overflow">hidden</property>
-                                                            <property name="resultSetColumn">GrossAmount</property>
+                                                            <property name="resultSetColumn">Column Binding_5</property>
                                                         </data>
                                                     </cell>
                                                 </row>
@@ -11879,7 +11554,7 @@ else {&#13;
                                     <property name="pageBreakAfter">avoid</property>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
-                                    <property name="height">2.8854166666666665in</property>
+                                    <property name="height">2.875in</property>
                                     <cell id="979">
                                         <property name="paddingLeft">5pt</property>
                                         <property name="paddingBottom">1pt</property>
@@ -11936,10 +11611,10 @@ else&#13;
                                                         <row id="1904">
                                                             <cell id="1905">
                                                                 <label id="1906">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
+                                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                                     <property name="fontSize">7pt</property>
                                                                     <property name="fontWeight">normal</property>
-                                                                    <text-property name="text">M�lerstander</text-property>
+                                                                    <text-property name="text">Forbrukshistorikk for:</text-property>
                                                                 </label>
                                                             </cell>
                                                         </row>
@@ -11962,12 +11637,12 @@ else&#13;
                                                                 <label id="1913">
                                                                     <property name="fontSize">7pt</property>
                                                                     <property name="paddingTop">2.3pt</property>
-                                                                    <text-property name="text"> inn m�lerstand s� ofte</text-property>
+                                                                    <text-property name="text">inn målerstand så ofte</text-property>
                                                                 </label>
                                                                 <label id="1914">
                                                                     <property name="fontSize">7pt</property>
                                                                     <property name="paddingTop">2.3pt</property>
-                                                                    <text-property name="text">du �nsker til din netteier.&#13;</text-property>
+                                                                    <text-property name="text">du ønsker til din netteier.&#13;</text-property>
                                                                 </label>
                                                             </cell>
                                                         </row>
@@ -13543,7 +13218,7 @@ else&#13;
                                                         <property name="fontSize">8pt</property>
                                                         <property name="marginTop">3pt</property>
                                                         <property name="textAlign">right</property>
-                                                        <text-property name="text"></text-property>
+                                                        <text-property name="text">Se flere detaljer om ditt forbruk på </text-property>
                                                     </label>
                                                 </cell>
                                                 <cell id="1824">
@@ -13555,7 +13230,7 @@ else&#13;
                                                         <property name="fontWeight">bold</property>
                                                         <property name="marginTop">3pt</property>
                                                         <property name="textAlign">left</property>
-                                                        <text-property name="text"></text-property>
+                                                        <text-property name="text">trondheimkraft.no/minside</text-property>
                                                     </label>
                                                 </cell>
                                             </row>
@@ -14033,7 +13708,7 @@ else&#13;
                                             <property name="fontWeight">normal</property>
                                             <property name="paddingTop">5pt</property>
                                             <property name="paddingBottom">5pt</property>
-                                            <text-property name="text">Sp�rsm�l om str�mregningen?</text-property>
+                                            <text-property name="text">Spørsmål om strømregningen?</text-property>
                                         </label>
                                         <label id="815">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -14053,8 +13728,8 @@ else&#13;
                                             <property name="fontSize">7pt</property>
                                             <property name="paddingTop">5pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">For sp�rsm�l om nettleien eller&#13;
-m�leravlesninger, ta kontakt med din lokale netteier:</text-property>
+                                            <text-property name="text">For spørsmål om nettleien eller&#13;
+måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                         </label>
                                         <data id="691">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -14074,7 +13749,7 @@ m�leravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <property name="fontWeight">normal</property>
                                             <property name="paddingTop">10pt</property>
                                             <property name="paddingBottom">2pt</property>
-                                            <text-property name="text">Full oversikt p� Min side:</text-property>
+                                            <text-property name="text">Full oversikt på Min side:</text-property>
                                         </label>
                                         <label id="1404">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
@@ -14082,35 +13757,33 @@ m�leravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <property name="paddingTop">1pt</property>
                                             <property name="paddingBottom">1pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Full oversikt p� Min side:&#13;
-Du finner flere detaljer og&#13;
-spesifiserte nettleiekostnader p�&#13;
-trondheimkraft.no/minside&#13;
-Her finner ogs� du oversikt over ditt&#13;
-kundeforhold, fakturahistorikk, anlegg&#13;
-og forbruk</text-property>
+                                            <text-property name="text">Du finner flere detaljer og&#13;
+spesifiserte nettleiekostnader på</text-property>
                                         </label>
-                                        <label id="1405">
+                                        <label id="3916">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
+                                            <property name="paddingTop">1pt</property>
+                                            <property name="paddingBottom">1pt</property>
+                                            <property name="lineHeight">8pt</property>
                                             <text-property name="text">trondheimkraft.no/minside</text-property>
                                             <list-property name="action">
                                                 <structure>
                                                     <property name="linkType">hyperlink</property>
-                                                    <expression name="uri" type="constant">https://www.fjordkraft.no/minside</expression>
+                                                    <expression name="uri" type="constant">https://www.trondheimkraft.no/minside</expression>
                                                     <property name="targetWindow">_blank</property>
                                                 </structure>
                                             </list-property>
                                         </label>
-                                        <label id="820">
+                                        <label id="3917">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
-                                            <property name="marginTop">0.5pt</property>
                                             <property name="paddingTop">1pt</property>
+                                            <property name="paddingBottom">1pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">For mer informasjon om&#13;
-str�mregningen, se&#13;
-trondheimkraft.no/fakturaforklaring</text-property>
+                                            <text-property name="text">Her finner også du oversikt over ditt&#13;
+kundeforhold, fakturahistorikk, anlegg&#13;
+og forbruk</text-property>
                                         </label>
                                         <label id="824">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -14125,17 +13798,17 @@ trondheimkraft.no/fakturaforklaring</text-property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
                                             <text-property name="text">For mer informasjon om&#13;
-str�mregningen, se</text-property>
+strømregningen, se</text-property>
                                         </label>
                                         <label id="1319">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="marginTop">1pt</property>
-                                            <text-property name="text">trondheimkraft.no/faktura</text-property>
+                                            <text-property name="text">trondheimkraft.no/fakturaforklaring</text-property>
                                             <list-property name="action">
                                                 <structure>
                                                     <property name="linkType">hyperlink</property>
-                                                    <expression name="uri" type="constant">https://www.fjordkraft.no/faktura</expression>
+                                                    <expression name="uri" type="constant">https://www.trondheimkraft.no/fakturaforklaring</expression>
                                                     <property name="targetWindow">_blank</property>
                                                 </structure>
                                             </list-property>
@@ -14146,31 +13819,31 @@ str�mregningen, se</text-property>
                                             <property name="fontWeight">normal</property>
                                             <property name="paddingTop">7pt</property>
                                             <property name="paddingBottom">2pt</property>
-                                            <text-property name="text">Forskjell p� str�m og nettleie:</text-property>
+                                            <text-property name="text">Forskjell på strøm og nettleie:</text-property>
                                         </label>
                                         <label id="829">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Som kunde hos Trondheim Kraft  f�r du&#13;
-str�m og nettleie p� �n regning  dersom Trondheim Kraft har avtale om dette med din lokale netteier. </text-property>
+                                            <text-property name="text">Som kunde hos Trondheim Kraft  får du&#13;
+strøm og nettleie på én regning  dersom Trondheim Kraft har avtale om dette med din lokale netteier. </text-property>
                                         </label>
                                         <label id="831">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="paddingTop">3pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Nettleien betaler vi videre til de som eier ledningsnettet der du bor � alts� din netteier. Nettleien g�r blant annet til � dekke drift og vedlikehold av ledningsnettet i ditt omr�de, samt offentlige avgifter</text-property>
+                                            <text-property name="text">Nettleien betaler vi videre til de som eier ledningsnettet der du bor – altså din netteier. Nettleien går blant annet til å dekke drift og vedlikehold av ledningsnettet i ditt område, samt offentlige avgifter</text-property>
                                         </label>
                                         <label id="830">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="paddingTop">3pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Str�m kj�per du fra Trondheim Kraft, siden&#13;
-vi er din str�mleverand�r. Bel�pet du&#13;
-betaler til oss styres f�rst og fremst&#13;
-av str�mpriser og av hvor mye str�m&#13;
+                                            <text-property name="text">Strøm kjøper du fra Trondheim Kraft, siden&#13;
+vi er din strømleverandør. Beløpet du&#13;
+betaler til oss styres først og fremst&#13;
+av strømpriser og av hvor mye strøm&#13;
 du bruker.</text-property>
                                         </label>
                                         <label id="835">
@@ -14186,11 +13859,9 @@ du bruker.</text-property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
                                             <text-property name="text">I samsvar med Lov om&#13;
-elsertifikat inneholder p�slag&#13;
-kostnader til kj�p av elsertifikat.&#13;
-For mer informasjon, se&#13;
-www.nve.no/kraftmarked/&#13;
-elsertifikater</text-property>
+elsertifikat inneholder påslag&#13;
+kostnader til kjøp av elsertifikat.&#13;
+For mer informasjon, se              www.nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
                                         </label>
                                         <label id="844">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -14198,18 +13869,18 @@ elsertifikater</text-property>
                                             <property name="fontWeight">normal</property>
                                             <property name="paddingTop">7pt</property>
                                             <property name="paddingBottom">2pt</property>
-                                            <text-property name="text">Elklagenemda:</text-property>
+                                            <text-property name="text">Elklagenemnda:</text-property>
                                         </label>
                                         <label id="845">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
                                             <text-property name="text">Hvis det mot formodning skulle&#13;
-oppst� en konflikt som ikke kan l�ses&#13;
+oppstå en konflikt som ikke kan løses&#13;
 direkte mellom deg og oss, kan du&#13;
-klage til Elklagenemda. Elklagenemda er opprettet av norske energibedrifter&#13;
-og Forbrukerr�det for � l�se tvistesaker.&#13;
-Se www.elklagenemda.no.</text-property>
+klage til Elklagenemnda. Elklagenemnda er opprettet av norske energibedrifter&#13;
+og Forbrukerrådet for å løse tvistesaker.&#13;
+Se www.elklagenemnda.no.</text-property>
                                         </label>
                                         <label id="846">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -14219,11 +13890,19 @@ Se www.elklagenemda.no.</text-property>
                                             <property name="paddingBottom">2pt</property>
                                             <text-property name="text">Varedeklarasjon:</text-property>
                                         </label>
+                                        <label id="2016">
+                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                            <property name="fontSize">6.9pt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="paddingTop">0pt</property>
+                                            <property name="paddingBottom">1pt</property>
+                                            <text-property name="text">www.trondheimkraft.no/bedrift/fornybar-energi/</text-property>
+                                        </label>
                                         <label id="847">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Trondheim Kraft org.nr NO 880396072 MVA. For informasjon om elsertifikatkostnad se www.nve.no/no/Kraftmarked/Elsertifikater</text-property>
+                                            <text-property name="text">Trondheim Kraft org.nr NO 880396072 MVA. For informasjon om elsertifikatkostnad se www.nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
                                         </label>
                                         <label id="848">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
