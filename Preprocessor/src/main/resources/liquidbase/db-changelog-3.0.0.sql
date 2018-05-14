@@ -329,3 +329,4 @@ Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (262,5,41);
 --Adding new transaction category to TKAS Rabatter group
 Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (263,5,185);
 Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (264,5,186);
+
