@@ -12528,11 +12528,7 @@ måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">I samsvar med Lov om&#13;
-elsertifikat inneholder påslag&#13;
-kostnader til kjøp av elsertifikat.&#13;
-For mer informasjon, se&#13;
-www.nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
+                                            <text-property name="text">I samsvar med Lov om elsertifikater inneholder påslaget kostnader til kjøp av elsertifikater. For mer informasjon, se nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
                                         </label>
                                         <label id="846">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -12546,10 +12542,10 @@ www.nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">www.vkraft.no/varedeklarasjon.&#13;
+                                            <text-property name="text">vkraft.no/varedeklarasjon.&#13;
 Vesterålskraft org.nr NO 976944682&#13;
 MVA. For informasjon om elsertifikatkostnad&#13;
-se www.nve.no/energiforsyning-og-konsesjon/elsertifikater/&#13;
+se nve.no/energiforsyning-og-konsesjon/elsertifikater/&#13;
 Elsertifikater</text-property>
                                         </label>
                                         <label id="848">

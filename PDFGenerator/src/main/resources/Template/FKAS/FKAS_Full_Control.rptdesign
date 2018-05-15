@@ -9327,7 +9327,7 @@ truncateDecimal(dataSetRow["Basis"]) + " " + dataSetRow["ProdDenomination"] &#13
                                                     <expression name="expression" type="javascript">if(parseFloat(dataSetRow["GrossPrice"]) == 0 &amp;&amp; parseFloat(dataSetRow["TotalGross"]) != 0) {&#13;
 	'';&#13;
 }&#13;
-else if(dataSetRow["StromInfo::PriceDenomination"] == "øre/kWh")&#13;
+else if(BirtStr.toLower(dataSetRow["StromInfo::PriceDenomination"]) == "øre/kwh")&#13;
 {&#13;
 	formatMoney(dataSetRow["GrossPrice"] * 100, 2, '', '.', ',') + " " + dataSetRow["StromInfo::PriceDenomination"] ;&#13;
 }&#13;
@@ -12581,11 +12581,7 @@ du bruker.</text-property>
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">I samsvar med Lov om&#13;
-elsertifikat inneholder påslag&#13;
-kostnader til kjøp av elsertifikat.&#13;
-For mer informasjon, se&#13;
-www.nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
+                                            <text-property name="text">I samsvar med Lov om elsertifikater inneholder påslaget kostnader til kjøp av elsertifikater. For mer informasjon, se nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
                                         </label>
                                         <label id="844">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -12603,7 +12599,7 @@ www.nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
 oppstå en konflikt som ikke kan løses&#13;
 direkte mellom deg og oss, kan du&#13;
 klage til Elklagenemnda.Elklagenemnda er opprettet av norske energibedrifter&#13;
-og Forbrukerrådet for å løse tvistesaker.Se www.elklagenemnda.no.</text-property>
+og Forbrukerrådet for å løse tvistesaker.Se elklagenemnda.no.</text-property>
                                         </label>
                                         <label id="846">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -12617,10 +12613,10 @@ og Forbrukerrådet for å løse tvistesaker.Se www.elklagenemnda.no.</text-prope
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">www.fjordkraft.no/varedeklarasjon.&#13;
+                                            <text-property name="text">fjordkraft.no/varedeklarasjon.&#13;
 Fjordkraft org.nr NO 976944682&#13;
 MVA. For informasjon om elsertifikatkostnad&#13;
-se www.nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
+se nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
                                         </label>
                                         <label id="848">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>

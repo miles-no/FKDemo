@@ -4841,7 +4841,7 @@
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{AttachmentNumber;STRING;/AttachmentNumber},{SumOfNettStrom;STRING;/SumOfNettStrom},{SumOfOutGoingCurrentClaim;STRING;/SumOfOutGoingCurrentClaim},{IngoingBalance;STRING;../../IngoingBalance},{OutgoingBalance;STRING;../../OutgoingBalance},{CurrentClaim;STRING;../../CurrentClaim},{TotalOpenClaim;STRING;../../TotalOpenClaim},{TotalAttachment;STRING;../../TotalAttachment},{TransactionCategory;STRING;../../TransactionGroup/Transaction/TransactionCategory},{SumOfInGoingIBTrans;STRING;/SumOfInGoingIBTrans},{OrigDIAmountWithVat;STRING;../../Transactions/OrigDIAmountWithVat}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{AttachmentNumber;STRING;/AttachmentNumber},{SumOfNettStrom;STRING;/SumOfNettStrom},{SumOfOutGoingCurrentClaim;STRING;/SumOfOutGoingCurrentClaim},{IngoingBalance;STRING;../../IngoingBalance},{OutgoingBalance;STRING;../../OutgoingBalance},{CurrentClaim;STRING;../../CurrentClaim},{TotalOpenClaim;STRING;../../TotalOpenClaim},{TotalAttachment;STRING;../../TotalAttachment},{TransactionCategory;STRING;../../TransactionGroup/Transaction/TransactionCategory},{SumOfInGoingIBTrans;STRING;/SumOfInGoingIBTrans},{OrigDIAmountWithVat;STRING;../../Transactions/OrigDIAmountWithVat}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -6337,92 +6337,105 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                 <property name="paddingTop">8pt</property>
                                 <property name="paddingLeft">1pt</property>
                                 <property name="paddingRight">0pt</property>
-                                <label id="721">
+                                <label id="2605">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                     <property name="fontSize">9pt</property>
                                     <property name="fontWeight">normal</property>
-                                    <property name="paddingBottom">1pt</property>
+                                    <property name="paddingLeft">2pt</property>
+                                    <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
-                                    <text-property name="text">Om betalingstjenesten Jevn Betaling</text-property>
+                                    <text-property name="text">Om betalingstjenesten Full kontroll</text-property>
                                 </label>
-                                <label id="724">
+                                <label id="2606">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                     <property name="fontSize">8.4pt</property>
                                     <property name="paddingTop">3pt</property>
-                                    <property name="paddingLeft">0pt</property>
+                                    <property name="paddingLeft">2pt</property>
                                     <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text-property name="text">Du får lik strømregning hver måned gjennom hele året fordi du har betalingstjenesten </text-property>
                                 </label>
-                                <label id="2020">
+                                <label id="2607">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                     <property name="fontSize">8.4pt</property>
-                                    <property name="paddingLeft">0pt</property>
+                                    <property name="paddingLeft">2pt</property>
                                     <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
-                                    <text-property name="text">Jevn Betaling . Gjennomsnitt av forventet strøm- og nettleiekostnad beregnes for et år.</text-property>
+                                    <text-property name="text">Full Kontroll. Gjennomsnitt av forventet strøm- og nettleiekostnad beregnes for et år.</text-property>
                                 </label>
-                                <label id="2021">
+                                <label id="2608">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                     <property name="fontSize">8.4pt</property>
-                                    <property name="paddingLeft">0pt</property>
+                                    <property name="paddingLeft">2pt</property>
                                     <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
-                                    <text-property name="text">Deretter fordeler vi kostnaden gjennom året, slik at du betaler et likt beløp hver måned.</text-property>
+                                    <text-property name="text">Deretter fordeler vi kostnaden gjennom året, slik at du betaler et likt beløp hver måned</text-property>
                                 </label>
-                                <label id="2022">
+                                <label id="2609">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                     <property name="fontSize">8.4pt</property>
                                     <property name="paddingTop">1pt</property>
-                                    <property name="paddingLeft">0pt</property>
+                                    <property name="paddingLeft">2pt</property>
                                     <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text-property name="text">Dette kaller vi ”ditt månedsbeløp” . Ved store endringer i strømforbruket,  endrer vi </text-property>
                                 </label>
-                                <label id="2271">
+                                <label id="2610">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                     <property name="fontSize">8.4pt</property>
                                     <property name="paddingTop">1pt</property>
-                                    <property name="paddingBottom">4pt</property>
+                                    <property name="paddingLeft">2pt</property>
+                                    <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text-property name="text">beløpet og gir deg beskjed om dette via SMS.</text-property>
                                 </label>
-                                <label id="2272">
+                                <label id="2611">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                     <property name="fontSize">8.4pt</property>
-                                    <property name="marginTop">3pt</property>
+                                    <property name="marginTop">0pt</property>
                                     <property name="paddingTop">1pt</property>
-                                    <property name="paddingBottom">4pt</property>
+                                    <property name="paddingLeft">2pt</property>
+                                    <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text-property name="text">Detaljer om din saldo, finner du på neste side.</text-property>
                                 </label>
-                                <grid id="2273">
-                                    <property name="marginTop">3pt</property>
+                                <grid id="2612">
+                                    <property name="marginTop">0pt</property>
+                                    <property name="textAlign">left</property>
                                     <property name="width">4.291666666666667in</property>
-                                    <column id="2274">
-                                        <property name="width">0.63in</property>
+                                    <column id="2613">
+                                        <property name="width">0.62in</property>
                                     </column>
-                                    <column id="2275"/>
-                                    <row id="2276">
-                                        <cell id="2277">
+                                    <column id="2614"/>
+                                    <row id="2615">
+                                        <property name="textAlign">left</property>
+                                        <cell id="2616">
+                                            <property name="fontSize">8.5pt</property>
                                             <property name="paddingLeft">0pt</property>
                                             <property name="paddingRight">0pt</property>
-                                            <label id="2278">
+                                            <label id="2617">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                <property name="fontSize">8.4pt</property>
-                                                <property name="paddingLeft">1pt</property>
+                                                <property name="fontSize">8.5pt</property>
+                                                <property name="paddingLeft">2pt</property>
                                                 <property name="paddingRight">0pt</property>
-                                                <property name="textAlign">left</property>
-                                                <text-property name="text">Les mer på</text-property>
+                                                <property name="whiteSpace">nowrap</property>
+                                                <text-property name="text">Les mer på </text-property>
                                             </label>
                                         </cell>
-                                        <cell id="2279">
+                                        <cell id="2618">
+                                            <property name="fontSize">8.5pt</property>
                                             <property name="paddingLeft">0pt</property>
-                                            <label id="2280">
+                                            <property name="paddingRight">0pt</property>
+                                            <label id="2619">
                                                 <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                 <property name="fontSize">8.5pt</property>
                                                 <property name="fontStyle">italic</property>
+                                                <property name="textUnderline">none</property>
                                                 <property name="paddingLeft">0pt</property>
+                                                <property name="paddingRight">0pt</property>
+                                                <structure name="toc">
+                                                    <expression name="expressionValue" type="javascript">a</expression>
+                                                </structure>
                                                 <text-property name="text">ms.vkraft.no</text-property>
                                                 <list-property name="action">
                                                     <structure>
@@ -8652,7 +8665,7 @@ year = "Siste 12 mnd" + "";</expression>
                         <property name="width">1.8958333333333333in</property>
                     </column>
                     <row id="785">
-                        <property name="height">7.95in</property>
+                        <property name="height">7.91in</property>
                         <cell id="786">
                             <property name="backgroundRepeat">no-repeat</property>
                             <property name="borderBottomStyle">none</property>
@@ -10297,8 +10310,9 @@ truncateDecimal(dataSetRow["QuantityInvoiced"]) + " " + dataSetRow["UnitOfMeasur
                                                 <property name="borderTopWidth">thin</property>
                                                 <cell id="3769">
                                                     <label id="3770">
-                                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                        <property name="fontSize">8pt</property>
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
+                                                        <property name="fontSize">7pt</property>
+                                                        <property name="fontWeight">bold</property>
                                                         <property name="marginTop">1pt</property>
                                                         <property name="marginBottom">1pt</property>
                                                         <text-property name="text">Sum strøm og nettleie</text-property>
@@ -10306,9 +10320,9 @@ truncateDecimal(dataSetRow["QuantityInvoiced"]) + " " + dataSetRow["UnitOfMeasur
                                                 </cell>
                                                 <cell id="3771">
                                                     <data id="2594">
-                                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                        <property name="fontSize">8pt</property>
-                                                        <property name="fontWeight">normal</property>
+                                                        <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
+                                                        <property name="fontSize">7pt</property>
+                                                        <property name="fontWeight">bold</property>
                                                         <property name="textAlign">right</property>
                                                         <property name="resultSetColumn">SumOfNettStrom</property>
                                                     </data>
@@ -12601,11 +12615,7 @@ måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">I samsvar med Lov om&#13;
-elsertifikat inneholder påslag&#13;
-kostnader til kjøp av elsertifikat.&#13;
-For mer informasjon, se&#13;
-www.nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
+                                            <text-property name="text">I samsvar med Lov om elsertifikater inneholder påslaget kostnader til kjøp av elsertifikater. For mer informasjon, se nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
                                         </label>
                                         <label id="844">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -12624,7 +12634,7 @@ oppstå en konflikt som ikke kan løses&#13;
 direkte mellom deg og oss, kan du&#13;
 klage til Elklagenemnda. Elklagenemnda er opprettet av norske energibedrifter&#13;
 og Forbrukerrådet for å løse tvistesaker.&#13;
-Se www.elklagenemnda.no.</text-property>
+Se elklagenemnda.no.</text-property>
                                         </label>
                                         <label id="848">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -12663,12 +12673,13 @@ etter gjeldende satser.&#13;
                                 <property name="width">5.167in</property>
                                 <column id="3822"/>
                                 <row id="2646">
+                                    <property name="height">0.55in</property>
                                     <cell id="2647">
                                         <property name="paddingBottom">0pt</property>
                                     </cell>
                                 </row>
                             </grid>
-                            <grid id="3854">
+                            <grid id="3962">
                                 <property name="marginLeft">2pt</property>
                                 <property name="width">5.167in</property>
                                 <property name="dataSet">HeaderSaldoJoinDataSet</property>
@@ -12888,64 +12899,286 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                         <property name="allowExport">true</property>
                                     </structure>
                                 </list-property>
-                                <column id="3855"/>
-                                <row id="3856">
-                                    <cell id="3857">
+                                <column id="3963"/>
+                                <row id="3964">
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <cell id="3965">
+                                        <property name="backgroundColor">#DADADA</property>
                                         <property name="paddingBottom">0pt</property>
-                                        <grid id="2055">
-                                            <property name="borderBottomStyle">solid</property>
-                                            <property name="borderBottomWidth">thin</property>
-                                            <property name="borderLeftStyle">solid</property>
-                                            <property name="borderLeftWidth">thin</property>
-                                            <property name="borderRightStyle">solid</property>
-                                            <property name="borderRightWidth">thin</property>
+                                        <label id="3858">
+                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontSize">8pt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="fontStyle">italic</property>
+                                            <property name="marginTop">0pt</property>
+                                            <property name="marginLeft">2pt</property>
+                                            <property name="paddingTop">2pt</property>
+                                            <property name="paddingBottom">3pt</property>
+                                            <text-property name="text">Saldooversikt:</text-property>
+                                        </label>
+                                    </cell>
+                                </row>
+                            </grid>
+                            <grid id="3974">
+                                <property name="marginLeft">2pt</property>
+                                <property name="width">5.167in</property>
+                                <property name="dataSet">HeaderSaldoJoinDataSet</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">AttachmentHeaderInfo::AttachmentNumber</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::AttachmentNumber</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["AttachmentHeaderInfo::AttachmentNumber"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">AttachmentHeaderInfo::SumOfOutGoingCurrentClaim</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::SumOfOutGoingCurrentClaim</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["AttachmentHeaderInfo::SumOfOutGoingCurrentClaim"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">SaldoDataSet::AttachmentNumber</property>
+                                        <text-property name="displayName">SaldoDataSet::AttachmentNumber</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::AttachmentNumber"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">SumOfNettStrom</property>
+                                        <text-property name="displayName">SaldoDataSet::SumOfNettStrom</text-property>
+                                        <expression name="expression" type="javascript">vars["AttachmentNumber"] = dataSetRow["SaldoDataSet::AttachmentNumber"];&#13;
+formatMoney(BirtMath.multiply(dataSetRow["SumOfNettStrom"],-1), 2, '', '.', ',');</expression>
+                                        <property name="dataType">string</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">SaldoDataSet::SumOfOutGoingCurrentClaim</property>
+                                        <text-property name="displayName">SaldoDataSet::SumOfOutGoingCurrentClaim</text-property>
+                                        <expression name="expression" type="javascript">formatMoney(dataSetRow["SaldoDataSet::SumOfOutGoingCurrentClaim"], 2, '', '.', ',');</expression>
+                                        <property name="dataType">string</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">IngoingBalance</property>
+                                        <text-property name="displayName">SaldoDataSet::IngoingBalance</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["IngoingBalance"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">OutgoingBalance</property>
+                                        <text-property name="displayName">SaldoDataSet::OutgoingBalance</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["OutgoingBalance"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">CurrentClaim</property>
+                                        <text-property name="displayName">SaldoDataSet::CurrentClaim</text-property>
+                                        <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',');</expression>
+                                        <property name="dataType">string</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">TotalOpenClaim</property>
+                                        <text-property name="displayName">SaldoDataSet::TotalOpenClaim</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["TotalOpenClaim"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">TotalAttachment</property>
+                                        <text-property name="displayName">SaldoDataSet::TotalAttachment</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["TotalAttachment"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">TransactionCategory</property>
+                                        <text-property name="displayName">SaldoDataSet::TransactionCategory</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["TransactionCategory"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">SumOfInGoingIBTrans</property>
+                                        <text-property name="displayName">SaldoDataSet::SumOfInGoingIBTrans</text-property>
+                                        <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfInGoingIBTrans"], 2, '', '.', ',');</expression>
+                                        <property name="dataType">string</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">Address1</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::Address1</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["Address1"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">Description</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::Description</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["Description"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">MeterId</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::MeterId</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["MeterId"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">ObjectId</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::ObjectId</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["ObjectId"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">AnnualConsumption</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::AnnualConsumption</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["AnnualConsumption"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">InvoiceNo</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::InvoiceNo</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["InvoiceNo"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">FREE_TEXT</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::FREE_TEXT</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["FREE_TEXT"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">Name</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::Name</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">Email</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::Email</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["Email"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">Telephone</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::Telephone</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["Telephone"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">StatementDate</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::StatementDate</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["StatementDate"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">ReferenceNumber</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::ReferenceNumber</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["ReferenceNumber"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">InvoiceType</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::InvoiceType</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["InvoiceType"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">DisplayStromData</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::DisplayStromData</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["DisplayStromData"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">isOnlyGrid</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::isOnlyGrid</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["isOnlyGrid"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">StreetNo</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::StreetNo</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["StreetNo"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">Description_1</property>
+                                        <text-property name="displayName">AttachmentHeaderInfo::Description_1</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["Description_1"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">SumOfNettStrom_1</property>
+                                        <text-property name="displayName">SaldoDataSet::SumOfNettStrom</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["SumOfNettStrom"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">SaldoDataSet::SumOfOutGoingCurrentClaim_1</property>
+                                        <text-property name="displayName">SaldoDataSet::SumOfOutGoingCurrentClaim</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::SumOfOutGoingCurrentClaim"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">CurrentClaim_1</property>
+                                        <text-property name="displayName">SaldoDataSet::CurrentClaim</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">SumOfInGoingIBTrans_1</property>
+                                        <text-property name="displayName">SaldoDataSet::SumOfInGoingIBTrans</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["SumOfInGoingIBTrans"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">Column Binding</property>
+                                        <text-property name="displayName">OrigDIAmountWithVat</text-property>
+                                        <expression name="expression" type="javascript">if(null == dataSetRow["SaldoDataSet::TransactionCategory"] || dataSetRow["SaldoDataSet::TotalAttachment"] != vars["AttachmentIndex"]) {&#13;
+	'0.00';&#13;
+} else {&#13;
+formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#13;
+}</expression>
+                                        <property name="dataType">string</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                </list-property>
+                                <column id="3975"/>
+                                <row id="3976">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <cell id="3977">
+                                        <property name="paddingBottom">0pt</property>
+                                        <grid id="3979">
                                             <property name="borderTopStyle">none</property>
                                             <property name="marginTop">3pt</property>
                                             <property name="marginLeft">0pt</property>
                                             <property name="height">1.3541666666666667in</property>
-                                            <column id="2056"/>
-                                            <column id="2057">
+                                            <column id="3980"/>
+                                            <column id="3981">
                                                 <property name="width">2in</property>
                                             </column>
-                                            <row id="2058">
-                                                <property name="backgroundColor">#DADADA</property>
-                                                <property name="borderBottomStyle">none</property>
-                                                <property name="borderLeftStyle">solid</property>
-                                                <property name="borderLeftWidth">thin</property>
-                                                <property name="borderRightStyle">solid</property>
-                                                <property name="borderRightWidth">thin</property>
-                                                <property name="borderTopStyle">solid</property>
-                                                <property name="borderTopWidth">thin</property>
-                                                <cell id="2059">
-                                                    <property name="colSpan">2</property>
-                                                    <property name="rowSpan">1</property>
-                                                    <label id="3858">
-                                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                                        <property name="fontSize">8pt</property>
-                                                        <property name="fontWeight">normal</property>
-                                                        <property name="fontStyle">italic</property>
-                                                        <property name="marginTop">0pt</property>
-                                                        <property name="marginLeft">2pt</property>
-                                                        <property name="paddingTop">2pt</property>
-                                                        <text-property name="text">Saldooversikt:</text-property>
-                                                    </label>
-                                                </cell>
-                                            </row>
-                                            <row id="2061">
-                                                <cell id="2062">
-                                                    <label id="2077">
+                                            <row id="3982">
+                                                <cell id="3983">
+                                                    <label id="3984">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
                                                         <property name="marginTop">2pt</property>
-                                                        <property name="marginLeft">2pt</property>
+                                                        <property name="marginLeft">0pt</property>
                                                         <property name="marginBottom">1pt</property>
                                                         <text-property name="text">Saldo fra forrige måned</text-property>
                                                     </label>
                                                 </cell>
-                                                <cell id="2063">
+                                                <cell id="3985">
+                                                    <property name="paddingRight">3pt</property>
                                                     <property name="textAlign">right</property>
-                                                    <data id="3872">
+                                                    <data id="3986">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
@@ -12956,21 +13189,21 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                                     </data>
                                                 </cell>
                                             </row>
-                                            <row id="2064">
-                                                <cell id="2065">
-                                                    <label id="2078">
+                                            <row id="3987">
+                                                <cell id="3988">
+                                                    <label id="3989">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
                                                         <property name="marginTop">1pt</property>
-                                                        <property name="marginLeft">2pt</property>
+                                                        <property name="marginLeft">0pt</property>
                                                         <property name="marginBottom">1pt</property>
                                                         <text-property name="text">Månedsbeløp å betale i mars</text-property>
                                                     </label>
                                                 </cell>
-                                                <cell id="2066">
+                                                <cell id="3990">
                                                     <property name="paddingRight">3pt</property>
-                                                    <data id="3874">
+                                                    <data id="3991">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
@@ -12981,21 +13214,21 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                                     </data>
                                                 </cell>
                                             </row>
-                                            <row id="2067">
-                                                <cell id="2068">
-                                                    <label id="2080">
+                                            <row id="3992">
+                                                <cell id="3993">
+                                                    <label id="3994">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
                                                         <property name="marginTop">1pt</property>
-                                                        <property name="marginLeft">2pt</property>
+                                                        <property name="marginLeft">0pt</property>
                                                         <property name="marginBottom">1pt</property>
                                                         <text-property name="text">Sum strøm og nettleie denne faktura (se detaljer over)</text-property>
                                                     </label>
                                                 </cell>
-                                                <cell id="2069">
+                                                <cell id="3995">
                                                     <property name="paddingRight">3pt</property>
-                                                    <data id="3875">
+                                                    <data id="3996">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
@@ -13006,25 +13239,25 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                                     </data>
                                                 </cell>
                                             </row>
-                                            <row id="2070">
-                                                <cell id="2071">
+                                            <row id="3997">
+                                                <cell id="3998">
                                                     <property name="paddingTop">0pt</property>
-                                                    <label id="2079">
+                                                    <label id="3999">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
                                                         <property name="marginTop">1pt</property>
-                                                        <property name="marginLeft">2pt</property>
+                                                        <property name="marginLeft">0pt</property>
                                                         <property name="marginBottom">1pt</property>
                                                         <property name="paddingTop">1pt</property>
                                                         <property name="paddingBottom">2pt</property>
                                                         <text-property name="text">Diverse</text-property>
                                                     </label>
                                                 </cell>
-                                                <cell id="2072">
+                                                <cell id="4000">
                                                     <property name="paddingTop">0pt</property>
-                                                    <property name="paddingRight">5pt</property>
-                                                    <data id="3876">
+                                                    <property name="paddingRight">3pt</property>
+                                                    <data id="4001">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
@@ -13036,7 +13269,7 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                                     </data>
                                                 </cell>
                                             </row>
-                                            <row id="2073">
+                                            <row id="4002">
                                                 <property name="borderBottomColor">#B3B3B3</property>
                                                 <property name="borderBottomStyle">solid</property>
                                                 <property name="borderBottomWidth">thin</property>
@@ -13045,22 +13278,23 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                                 <property name="borderTopColor">#B3B3B3</property>
                                                 <property name="borderTopStyle">solid</property>
                                                 <property name="borderTopWidth">thin</property>
-                                                <cell id="2074">
-                                                    <label id="2081">
+                                                <cell id="4003">
+                                                    <property name="paddingLeft">0pt</property>
+                                                    <label id="4004">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
                                                         <property name="marginTop">1pt</property>
-                                                        <property name="marginLeft">2pt</property>
+                                                        <property name="marginLeft">1pt</property>
                                                         <property name="marginBottom">1pt</property>
                                                         <property name="paddingLeft">1pt</property>
                                                         <property name="paddingRight">0pt</property>
                                                         <text-property name="text">Ny saldo etter denne faktura er betalt</text-property>
                                                     </label>
                                                 </cell>
-                                                <cell id="2075">
-                                                    <property name="paddingRight">4pt</property>
-                                                    <data id="3877">
+                                                <cell id="4005">
+                                                    <property name="paddingRight">3pt</property>
+                                                    <data id="4006">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
@@ -13073,29 +13307,27 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                                 </cell>
                                             </row>
                                         </grid>
-                                        <grid id="3863">
-                                            <property name="borderBottomStyle">solid</property>
-                                            <property name="borderBottomWidth">thin</property>
-                                            <property name="borderLeftStyle">solid</property>
-                                            <property name="borderLeftWidth">thin</property>
-                                            <property name="borderRightStyle">solid</property>
-                                            <property name="borderRightWidth">thin</property>
-                                            <column id="3864"/>
-                                            <row id="3865">
-                                                <cell id="3866">
+                                        <grid id="4007">
+                                            <column id="4008">
+                                                <property name="width">5.5in</property>
+                                            </column>
+                                            <row id="4009">
+                                                <property name="fontSize">11pt</property>
+                                                <cell id="4010">
                                                     <property name="paddingLeft">0pt</property>
                                                     <property name="paddingBottom">0pt</property>
                                                     <property name="paddingRight">0pt</property>
-                                                    <label id="3867">
+                                                    <label id="4011">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                        <property name="fontSize">6.3pt</property>
+                                                        <property name="fontSize">6.74pt</property>
                                                         <property name="fontStyle">italic</property>
-                                                        <property name="marginTop">4pt</property>
-                                                        <property name="marginLeft">2pt</property>
+                                                        <property name="marginTop">2pt</property>
+                                                        <property name="marginLeft">1pt</property>
                                                         <property name="paddingTop">1pt</property>
-                                                        <property name="paddingLeft">1pt</property>
+                                                        <property name="paddingLeft">0pt</property>
                                                         <property name="paddingBottom">0pt</property>
-                                                        <property name="paddingRight">1pt</property>
+                                                        <property name="paddingRight">0pt</property>
+                                                        <property name="whiteSpace">nowrap</property>
                                                         <list-property name="visibility">
                                                             <structure>
                                                                 <property name="format">all</property>
@@ -13109,18 +13341,19 @@ true;&#13;
                                                             </structure>
                                                         </list-property>
                                                         <structure name="toc"/>
-                                                        <text-property name="text">Saldo viser at du har betalt inn mer enn dine faktiske kostnader har vært.Saldoen vil naturlig variere fra måned til</text-property>
+                                                        <text-property name="text">Saldo viser at du har betalt inn mer enn dine faktiske kostnader har vært.Saldoen vil naturlig variere fra måned til måned,</text-property>
                                                     </label>
-                                                    <label id="3868">
+                                                    <label id="4012">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                        <property name="fontSize">6.3pt</property>
+                                                        <property name="fontSize">6pt</property>
                                                         <property name="fontStyle">italic</property>
-                                                        <property name="marginTop">4pt</property>
+                                                        <property name="marginTop">2pt</property>
                                                         <property name="marginLeft">1pt</property>
                                                         <property name="paddingTop">1pt</property>
-                                                        <property name="paddingLeft">1pt</property>
+                                                        <property name="paddingLeft">0pt</property>
                                                         <property name="paddingBottom">0pt</property>
-                                                        <property name="paddingRight">1pt</property>
+                                                        <property name="paddingRight">0pt</property>
+                                                        <property name="whiteSpace">nowrap</property>
                                                         <list-property name="visibility">
                                                             <structure>
                                                                 <property name="format">all</property>
@@ -13142,28 +13375,32 @@ else&#13;
 'Saldo viser at du har betalt inn mindre enn dine faktiske kostnader har vært. Saldoen vil naturlig variere fra måned til';&#13;
 }</expression>
                                                         </structure>
-                                                        <text-property name="text">Saldo viser at du har betalt inn mindre enn dine faktiske kostnader har vært. Saldoen vil naturlig variere fra måned til</text-property>
+                                                        <text-property name="text">Saldo viser at du har betalt inn mindre enn dine faktiske kostnader har vært.Saaldoen vil naturlig variere fra måned til måned,</text-property>
                                                     </label>
-                                                    <label id="3878">
+                                                    <label id="4013">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                        <property name="fontSize">6.3pt</property>
+                                                        <property name="fontSize">6.9pt</property>
                                                         <property name="fontStyle">italic</property>
                                                         <property name="marginTop">2pt</property>
-                                                        <property name="marginLeft">2pt</property>
+                                                        <property name="marginLeft">1pt</property>
                                                         <property name="paddingTop">1pt</property>
-                                                        <property name="paddingLeft">2pt</property>
-                                                        <text-property name="text">måned, siden du bruker mer strøm om vinteren enn om sommeren. Dette vil jevne seg ut gjennom året  og det er</text-property>
+                                                        <property name="paddingRight">0pt</property>
+                                                        <property name="textAlign">left</property>
+                                                        <property name="whiteSpace">nowrap</property>
+                                                        <text-property name="text">siden du bruker mer strøm om vinteren enn om sommeren. Dette vil jevne seg ut gjennom året  og det er derfor viktig</text-property>
                                                     </label>
-                                                    <label id="3879">
+                                                    <label id="4014">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                        <property name="fontSize">6.3pt</property>
+                                                        <property name="fontSize">6.9pt</property>
                                                         <property name="fontStyle">italic</property>
                                                         <property name="marginTop">2pt</property>
-                                                        <property name="marginLeft">2pt</property>
+                                                        <property name="marginLeft">1pt</property>
                                                         <property name="paddingTop">1pt</property>
-                                                        <property name="paddingLeft">2pt</property>
-                                                        <property name="paddingBottom">5pt</property>
-                                                        <text-property name="text">derfor viktig at du betaler det månedsbeløpet som er oppgitt på  forsiden av fakturaen.</text-property>
+                                                        <property name="paddingBottom">3pt</property>
+                                                        <property name="paddingRight">0pt</property>
+                                                        <property name="textAlign">left</property>
+                                                        <property name="whiteSpace">nowrap</property>
+                                                        <text-property name="text">at du betaler det månedsbeløpet som er oppgitt på  forsiden av fakturaen.</text-property>
                                                     </label>
                                                 </cell>
                                             </row>

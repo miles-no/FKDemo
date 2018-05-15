@@ -10648,7 +10648,7 @@ truncateDecimal(dataSetRow["Basis"]) + " " + dataSetRow["ProdDenomination"] &#13
                                                     <expression name="expression" type="javascript">if(parseFloat(dataSetRow["GrossPrice"]) == 0 &amp;&amp; parseFloat(dataSetRow["TotalGross"]) != 0) {&#13;
 	'';&#13;
 }&#13;
-else if(dataSetRow["StromInfo::PriceDenomination"] == "øre/kWh")&#13;
+else if(BirtStr.toLower(dataSetRow["StromInfo::PriceDenomination"]) == "øre/kwh")&#13;
 {&#13;
 	formatMoney(dataSetRow["GrossPrice"] * 100, 2, '', '.', ',') + " " + dataSetRow["StromInfo::PriceDenomination"] ;&#13;
 }&#13;
@@ -13770,7 +13770,7 @@ spesifiserte nettleiekostnader på</text-property>
                                             <list-property name="action">
                                                 <structure>
                                                     <property name="linkType">hyperlink</property>
-                                                    <expression name="uri" type="constant">https://www.trondheimkraft.no/minside</expression>
+                                                    <expression name="uri" type="constant">https://trondheimkraft.no/minside</expression>
                                                     <property name="targetWindow">_blank</property>
                                                 </structure>
                                             </list-property>
@@ -13783,7 +13783,7 @@ spesifiserte nettleiekostnader på</text-property>
                                             <property name="lineHeight">8pt</property>
                                             <text-property name="text">Her finner også du oversikt over ditt&#13;
 kundeforhold, fakturahistorikk, anlegg&#13;
-og forbruk</text-property>
+og forbruk.</text-property>
                                         </label>
                                         <label id="824">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -13808,7 +13808,7 @@ strømregningen, se</text-property>
                                             <list-property name="action">
                                                 <structure>
                                                     <property name="linkType">hyperlink</property>
-                                                    <expression name="uri" type="constant">https://www.trondheimkraft.no/fakturaforklaring</expression>
+                                                    <expression name="uri" type="constant">https://trondheimkraft.no/fakturaforklaring</expression>
                                                     <property name="targetWindow">_blank</property>
                                                 </structure>
                                             </list-property>
@@ -13833,16 +13833,14 @@ strøm og nettleie på én regning  dersom Trondheim Kraft har avtale om dette m
                                             <property name="fontSize">7pt</property>
                                             <property name="paddingTop">3pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Nettleien betaler vi videre til de som eier ledningsnettet der du bor – altså din netteier. Nettleien går blant annet til å dekke drift og vedlikehold av ledningsnettet i ditt område, samt offentlige avgifter</text-property>
+                                            <text-property name="text">Nettleien betaler vi videre til de som eier ledningsnettet der du bor – altså din netteier. Nettleien går blant annet til å dekke drift og vedlikehold av ledningsnettet i ditt område, samt offentlige avgifter.</text-property>
                                         </label>
                                         <label id="830">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="paddingTop">3pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Strøm kjøper du fra Trondheim Kraft, siden&#13;
-vi er din strømleverandør. Beløpet du&#13;
-betaler til oss styres først og fremst&#13;
+                                            <text-property name="text">Strøm kjøper du fra Trondheim Kraft, siden vi er din strømleverandør. Beløpet du betaler til oss styres først og fremst&#13;
 av strømpriser og av hvor mye strøm&#13;
 du bruker.</text-property>
                                         </label>
@@ -13858,10 +13856,7 @@ du bruker.</text-property>
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">I samsvar med Lov om&#13;
-elsertifikat inneholder påslag&#13;
-kostnader til kjøp av elsertifikat.&#13;
-For mer informasjon, se              www.nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
+                                            <text-property name="text">I samsvar med Lov om elsertifikater inneholder påslaget kostnader til kjøp av elsertifikater. For mer informasjon, se nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
                                         </label>
                                         <label id="844">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -13880,7 +13875,7 @@ oppstå en konflikt som ikke kan løses&#13;
 direkte mellom deg og oss, kan du&#13;
 klage til Elklagenemnda. Elklagenemnda er opprettet av norske energibedrifter&#13;
 og Forbrukerrådet for å løse tvistesaker.&#13;
-Se www.elklagenemnda.no.</text-property>
+Se elklagenemnda.no.</text-property>
                                         </label>
                                         <label id="846">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -13896,13 +13891,14 @@ Se www.elklagenemnda.no.</text-property>
                                             <property name="fontWeight">normal</property>
                                             <property name="paddingTop">0pt</property>
                                             <property name="paddingBottom">1pt</property>
-                                            <text-property name="text">www.trondheimkraft.no/bedrift/fornybar-energi/</text-property>
+                                            <text-property name="text">trondheimkraft.no/bedrift/fornybar-energi/</text-property>
                                         </label>
                                         <label id="847">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Trondheim Kraft org.nr NO 880396072 MVA. For informasjon om elsertifikatkostnad se www.nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
+                                            <text-property name="text">Trondheim Kraft org.nr NO 880396072 MVA. For informasjon om elsertifikatkostnad se &#13;
+nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
                                         </label>
                                         <label id="848">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>

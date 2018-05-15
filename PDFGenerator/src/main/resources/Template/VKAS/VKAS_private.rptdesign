@@ -13787,11 +13787,7 @@ måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">I samsvar med Lov om&#13;
-elsertifikat inneholder påslag&#13;
-kostnader til kjøp av elsertifikat.&#13;
-For mer informasjon, se&#13;
-www.nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
+                                            <text-property name="text">I samsvar med Lov om elsertifikater inneholder påslaget kostnader til kjøp av elsertifikater. For mer informasjon, se nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
                                         </label>
                                         <label id="844">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -13810,7 +13806,7 @@ oppstå en konflikt som ikke kan løses&#13;
 direkte mellom deg og oss, kan du&#13;
 klage til Elklagenemnda. Elklagenemnda er opprettet av norske energibedrifter&#13;
 og Forbrukerrådet for å løse tvistesaker.&#13;
-Se.www.elklagenemnda.no</text-property>
+Se elklagenemnda.no</text-property>
                                         </label>
                                         <label id="848">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
