@@ -12528,7 +12528,7 @@ måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">I samsvar med Lov om elsertifikater inneholder påslaget kostnader til kjøp av elsertifikater. For mer informasjon, se nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
+                                            <text-property name="text">I samsvar med Lov om elsertifikater inneholder påslaget kostnader til kjøp av elsertifikater.Avgiften skal bidra til utbygging av fornybar energi i Norge. For mer informasjon, se nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
                                         </label>
                                         <label id="846">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
