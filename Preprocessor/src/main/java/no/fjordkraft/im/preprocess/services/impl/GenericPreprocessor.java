@@ -63,8 +63,8 @@ public class GenericPreprocessor extends BasePreprocessor {
     public Statement unmarshallAttachments(Statement statement) throws IOException {
         if(null != statement.getAttachments() && null != statement.getAttachments().getAttachmentList()) {
             for (String data : statement.getAttachments().getAttachmentList()) {
-                data = data.replaceAll("&lt;!\\[CDATA\\[", "");
-                data = data.replaceAll("\\]\\]&gt;", "");
+                data = data.replaceAll("&lt;", "<");
+                data = data.replaceAll("&gt;", ">");
                 if(!data.contains("VEDLEGG_EHF")) {
                     data = data.replaceAll("&", "&amp;");
                 }
