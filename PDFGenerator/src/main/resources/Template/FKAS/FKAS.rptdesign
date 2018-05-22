@@ -4724,7 +4724,7 @@ else &#13;
                 <property name="width">7.21875in</property>
             </column>
             <row id="771">
-                <property name="backgroundImage">forside-topp-18cm_cmyk.png</property>
+                <property name="backgroundImage">forside-topp-18cm_rgb u-tekst.png</property>
                 <property name="backgroundPositionX">center</property>
                 <property name="backgroundPositionY">bottom</property>
                 <property name="backgroundRepeat">no-repeat</property>
