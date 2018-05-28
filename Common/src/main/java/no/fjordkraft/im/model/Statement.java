@@ -1,5 +1,6 @@
 package no.fjordkraft.im.model;
 
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -80,7 +81,7 @@ public class Statement {
     private float creditLimit;
 
     @Column(name="ATTACHMENT_CONFIG_ID")
-    private int attachmentConfigId;
+    private Integer attachmentConfigId;
 
     @Transient
     private boolean isOnline = false;
