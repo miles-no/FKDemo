@@ -12547,8 +12547,8 @@ strømregningen, se</text-property>
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Som kunde hos Fjordkraft får du&#13;
-strøm og nettleie på én regning  dersom Fjordkraft har avtale om dette med din lokale netteier. </text-property>
+                                            <text-property name="text">Som kunde hos Trondheim Kraft får du&#13;
+strøm og nettleie på én regning  dersom Trondheim Kraft har avtale om dette med din lokale netteier. </text-property>
                                         </label>
                                         <label id="831">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
@@ -12562,11 +12562,7 @@ strøm og nettleie på én regning  dersom Fjordkraft har avtale om dette med di
                                             <property name="fontSize">7pt</property>
                                             <property name="paddingTop">3pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Strøm kjøper du fra Fjordkraft, siden&#13;
-vi er din strømleverandør. Beløpet du&#13;
-betaler til oss styres først og fremst&#13;
-av strømpriser og av hvor mye strøm&#13;
-du bruker.</text-property>
+                                            <text-property name="text">Strøm kjøper du fra Trondheim Kraft, siden vi er din strømleverandør.    Beløpet du betaler til oss styres først og fremst av strømpriser og av hvor mye strøm du bruker.  </text-property>
                                         </label>
                                         <label id="835">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
