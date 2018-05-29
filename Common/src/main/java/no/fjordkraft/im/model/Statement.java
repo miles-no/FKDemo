@@ -78,7 +78,7 @@ public class Statement {
     private String brand;
 
     @Column(name="CREDIT_LIMIT")
-    private float creditLimit;
+    private Float creditLimit;
 
     @Column(name="ATTACHMENT_CONFIG_ID")
     private Integer attachmentConfigId;
