@@ -6430,10 +6430,10 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                 <property name="textAlign">right</property>
                                 <image id="2622">
                                     <property name="marginLeft">1px</property>
-                                    <property name="height">1.75in</property>
-                                    <property name="width">2.1666666666666665in</property>
+                                    <property name="height">1.8645833333333333in</property>
+                                    <property name="width">2.2916666666666665in</property>
                                     <property name="source">file</property>
-                                    <expression name="uri" type="constant">Full-kontroll_graf-rgb-tk.png</expression>
+                                    <expression name="uri" type="constant">TKAS_Full_Kontroll_illustration.png</expression>
                                 </image>
                             </cell>
                         </row>
