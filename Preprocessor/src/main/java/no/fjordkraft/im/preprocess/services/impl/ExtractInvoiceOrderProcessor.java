@@ -200,13 +200,20 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
     }
 
     private void addNewAttachmentsAndTransactions(ArrayList<Attachment> listOfNewAttachments,PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request, List<Transaction> listOfTrans) {
+
         for(Attachment attachment:listOfNewAttachments )
         {
             for(Transaction trans : listOfTrans)
             {
-               float invoiceGrossTotal =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
+                float invoiceGrossTotal =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
                 float kraftDistAmount = trans.getDistributions().getDistribution().get(0).getAmount();
-                if(Float.compare(StrictMath.abs(kraftDistAmount),invoiceGrossTotal)==0 )
+
+                String transReference  = trans.getReference();
+                if(null != transReference && transReference.indexOf("-") != -1) {
+                    transReference = transReference.substring(0, transReference.indexOf("-"));
+                }
+
+                if(Float.compare(StrictMath.abs(kraftDistAmount),invoiceGrossTotal)==0 && null != transReference && transReference.equals(attachment.getFAKTURA().getFAKTURANR()))
                 {
                      trans.setFreeText(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo().trim());
                      trans.setAmountWithVat(kraftDistAmount);
