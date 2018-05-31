@@ -42,6 +42,22 @@
                 <include>*.png</include>
             </includes>
         </fileSet>
+		<fileSet>
+            <directory>src/main/resources/templateResources/VKAS</directory>
+            <outputDirectory>/Layout</outputDirectory>
+            <includes>
+                <include>*.png</include>
+				<include>*.jpeg</include>
+            </includes>
+        </fileSet>
+		<fileSet>
+            <directory>src/main/resources/templateResources/SEAS</directory>
+            <outputDirectory>/Layout</outputDirectory>
+            <includes>
+                <include>*.png</include>
+				<include>*.jpeg</include>
+            </includes>
+        </fileSet>
 
         <fileSet>
             <directory>src/main/resources/sampleFile/</directory>
