@@ -4787,7 +4787,7 @@
                                     <property name="height">0.7in</property>
                                     <property name="width">2in</property>
                                     <property name="source">file</property>
-                                    <expression name="uri" type="constant">C:\Users\miles12\Desktop\Workspace\SEAS_Top_logo_left.png</expression>
+                                    <expression name="uri" type="constant">SEAS_Top_logo_left.png</expression>
                                 </image>
                                 <text id="1934">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
@@ -5607,10 +5607,10 @@ else &#13;
                             <property name="height">0.34375in</property>
                             <cell id="1459">
                                 <image id="1460">
-                                    <property name="height">0.1875in</property>
-                                    <property name="width">1.1041666666666667in</property>
-                                    <property name="source">embed</property>
-                                    <property name="imageName">AvtaleGiro.jpg</property>
+                                    <property name="height">0.188in</property>
+                                    <property name="width">1.104in</property>
+                                    <property name="source">file</property>
+                                    <expression name="uri" type="constant">AvtaleGiro.jpeg</expression>
                                 </image>
                             </cell>
                             <cell id="1461">
@@ -13651,7 +13651,7 @@ else&#13;
                                             <property name="height">0.3in</property>
                                             <property name="width">1.2in</property>
                                             <property name="source">file</property>
-                                            <expression name="uri" type="constant">C:\Users\miles12\Desktop\Workspace\SEAS_GreyPart_Header_logo.png</expression>
+                                            <expression name="uri" type="constant">SEAS_GreyPart_Header_logo.png</expression>
                                         </image>
                                         <label id="3932">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
