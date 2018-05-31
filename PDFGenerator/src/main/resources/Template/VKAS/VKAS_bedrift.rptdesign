@@ -4863,8 +4863,8 @@ else &#13;
                                                         <image id="1394">
                                                             <property name="height">0.56in</property>
                                                             <property name="width">0.89in</property>
-                                                            <property name="source">embed</property>
-                                                            <property name="imageName">VKAS - Logo.png</property>
+                                                            <property name="source">file</property>
+                                                            <expression name="uri" type="constant">VKAS_top_Left_Logo.png</expression>
                                                         </image>
                                                         <text id="110">
                                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
@@ -5037,8 +5037,8 @@ else &#13;
                                                     <cell id="1892">
                                                         <property name="paddingTop">5pt</property>
                                                         <image id="1893">
-                                                            <property name="height">0.22916666666666666in</property>
-                                                            <property name="width">0.5104166666666666in</property>
+                                                            <property name="height">0.229in</property>
+                                                            <property name="width">0.51in</property>
                                                             <property name="dataSet">MainInfo</property>
                                                             <list-property name="visibility">
                                                                 <structure>
@@ -5058,8 +5058,8 @@ else &#13;
                                                                     <property name="dataType">string</property>
                                                                 </structure>
                                                             </list-property>
-                                                            <property name="source">embed</property>
-                                                            <property name="imageName">copy.jpg</property>
+                                                            <property name="source">file</property>
+                                                            <expression name="uri" type="constant">Copy_Image.jpeg</expression>
                                                         </image>
                                                     </cell>
                                                 </row>
@@ -5319,17 +5319,12 @@ else &#13;
                     <property name="paddingLeft">6pt</property>
                     <property name="paddingBottom">0pt</property>
                     <property name="paddingRight">5.7pt</property>
-                    <label id="1769">
-                        <property name="backgroundColor">#298F7E</property>
-                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                        <property name="fontSize">8pt</property>
-                        <property name="fontWeight">normal</property>
-                        <property name="color">#FFFFFF</property>
-                        <property name="paddingTop">5pt</property>
-                        <property name="paddingLeft">15pt</property>
-                        <property name="paddingBottom">7pt</property>
-                        <text-property name="text"></text-property>
-                    </label>
+                    <image id="3918">
+                        <property name="height">0.2916666666666667in</property>
+                        <property name="width">7.01in</property>
+                        <property name="source">file</property>
+                        <expression name="uri" type="constant">VKAS_Center_Logo.jpg</expression>
+                    </image>
                 </cell>
             </row>
         </grid>
@@ -5810,10 +5805,10 @@ else &#13;
                             <property name="height">0.34375in</property>
                             <cell id="1459">
                                 <image id="1460">
-                                    <property name="height">0.1875in</property>
-                                    <property name="width">1.1041666666666667in</property>
-                                    <property name="source">embed</property>
-                                    <property name="imageName">AvtaleGiro.jpg</property>
+                                    <property name="height">0.188in</property>
+                                    <property name="width">1.104in</property>
+                                    <property name="source">file</property>
+                                    <expression name="uri" type="constant">AvtaleGiro.jpeg</expression>
                                 </image>
                             </cell>
                             <cell id="1461">
@@ -8193,13 +8188,13 @@ if(null == dataSetRow["StartDate"]) {&#13;
             </list-property>
             <column id="640">
                 <property name="fontSize">8.7pt</property>
-                <property name="width">2in</property>
+                <property name="width">1.8in</property>
             </column>
             <column id="641">
-                <property name="width">1.6in</property>
+                <property name="width">1.4in</property>
             </column>
             <column id="642">
-                <property name="width">1.3in</property>
+                <property name="width">1.18in</property>
             </column>
             <column id="2031">
                 <property name="width">0.7in</property>
@@ -8208,7 +8203,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                 <property name="width">0.09in</property>
             </column>
             <column id="2035">
-                <property name="width">0.6in</property>
+                <property name="width">0.7in</property>
             </column>
             <column id="3701">
                 <property name="width">0.09in</property>
@@ -12432,8 +12427,8 @@ else&#13;
                                         <image id="1346">
                                             <property name="height">0.4in</property>
                                             <property name="width">0.7in</property>
-                                            <property name="source">embed</property>
-                                            <property name="imageName">2018-04-13.png</property>
+                                            <property name="source">file</property>
+                                            <expression name="uri" type="constant">VKAS_GreyPart_Logo.png</expression>
                                         </image>
                                         <label id="814">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
