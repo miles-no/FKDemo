@@ -2,13 +2,11 @@ package no.fjordkraft.im.preprocess.services.impl;
 
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.model.BlanketNumber;
+import no.fjordkraft.im.model.BrandConfig;
 import no.fjordkraft.im.model.CustomerDetailsView;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
-import no.fjordkraft.im.services.AuditLogService;
-import no.fjordkraft.im.services.BlanketNumberService;
-import no.fjordkraft.im.services.ConfigService;
-import no.fjordkraft.im.services.CustomerDetailsViewService;
+import no.fjordkraft.im.services.*;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
@@ -48,16 +46,32 @@ public class SetGiroPreprocessor extends BasePreprocessor {
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, InstantiationException {
-         long accountNumber = request.getStatement().getAccountNumber();
-        CustomerDetailsView customerDetailsView =customerDetailsViewService.findByAccountNumber(Long.toString(accountNumber));
 
-        if(customerDetailsView!=null && customerDetailsView.getGiroEnabled())
-        {
-            String message = "Giro is enabled for account number "+ accountNumber;
-            auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.INFO);
-            logger.debug("GIRO is enabled for account number " + Long.toString(accountNumber));
+     /* BrandConfig brandConfig =brandService.getBrandConfigByName(request.getEntity().getSystemBatchInput().getTransferFile().getBrand());
+           if(brandConfig!=null && brandConfig.getAlwaysEnableGIRO()==IMConstants.TRUE)   {
+               request.getStatement().setGIROEnabled(true);
+           }*/ if(request.getEntity().getSystemBatchInput().getTransferFile().getBrand().equals("SEAS")) {
             request.getStatement().setGIROEnabled(true);
+             }
+            else {
+              long accountNumber = request.getStatement().getAccountNumber();
+              CustomerDetailsView customerDetailsView =customerDetailsViewService.findByAccountNumber(Long.toString(accountNumber));
 
+              if(customerDetailsView!=null && customerDetailsView.getGiroEnabled())
+              {
+                 String message = "Giro is enabled for account number "+ accountNumber;
+                 auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.INFO);
+                 logger.debug("GIRO is enabled for account number " + Long.toString(accountNumber));
+                 request.getStatement().setGIROEnabled(true);
+              }  else {
+                  String message = "Giro is disabled for account number "+ accountNumber;
+                  // auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.WARNING);
+                  logger.debug("GIRO is disabled for account number " + Long.toString(accountNumber));
+                  request.getStatement().setGIROEnabled(false);
+              }
+
+           }
+            if(request.getStatement().isGIROEnabled()) {
             logger.debug("Get latest blanket number");
             int validTill = configService.getInteger(IMConstants.BLANKETNUMBER_VALIDITY_PERIOD_MONTHS);
             logger.debug("Validity period is "+ validTill + " months ");
@@ -78,7 +92,7 @@ public class SetGiroPreprocessor extends BasePreprocessor {
                         blanketNumberService.updateBlankettNumber(blanketNumber);
                         break;
                     } else {
-                        logger.info("Blanket Number {} for statement id {} already used ",blanketNumber.getBlanketNumber(), request.getEntity().getId());
+                        logger.info("Blanket Number {} for statement id {} already used ",blanketNumber, request.getEntity().getId());
                         retryCount++;
                     }
                     /*if (blanketNumber != null && blankettNumberSet.contains(blanketNumber)) {
@@ -99,13 +113,6 @@ public class SetGiroPreprocessor extends BasePreprocessor {
                  logger.debug("Check sum value is " + checksum);
                  request.getStatement().setCheckSum(checksum);
              }
-        }
-        else
-        {
-            String message = "Giro is disabled for account number "+ accountNumber;
-           // auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.WARNING);
-            logger.debug("GIRO is disabled for account number " + Long.toString(accountNumber));
-            request.getStatement().setGIROEnabled(false);
         }
     }
 
