@@ -7,7 +7,7 @@ Insert into IM_TRANSACTION_CATEGORY (ID,TYPE,DESCRIPTION,CATEGORY) values (187,'
 Insert into IM_TRANSACTION_CATEGORY (ID,TYPE,DESCRIPTION,CATEGORY) values (188,'Debit','Kraftkjøp/Fastledd','FT;Kraftkjøp/Fastledd');
 Insert into IM_TRANSACTION_CATEGORY (ID,TYPE,DESCRIPTION,CATEGORY) values (189,'Debit','Leie av solcelle','FT;Leie av solcelle');
 
--- Adding transaction categories in Diverse Group for SEAS brand
+-- Adding transaction categories in Diverse Group for SEAS brand 
   Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (265,6,19);
   Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (266,6,20);
   Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (267,6,37);
