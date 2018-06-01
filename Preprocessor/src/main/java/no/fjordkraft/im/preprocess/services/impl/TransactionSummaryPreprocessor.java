@@ -5,6 +5,7 @@ import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.util.IMConstants;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.InvoiceLineType;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_2.OrganizationDepartment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -24,13 +25,13 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 @Service
-@PreprocessorInfo(order=17)
+@PreprocessorInfo(order=17,legalPartClass = "Organization")
 public class TransactionSummaryPreprocessor extends BasePreprocessor {
     private static final Logger logger = LoggerFactory.getLogger(TransactionSummaryPreprocessor.class);
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request)  {
-
+        if(request.getStatement().getLegalPartClass().equals("Organization"))   {
         List<Transaction> transactions = request.getStatement().getTransactions().getTransaction();
         List<Attachment> attachments = request.getStatement().getAttachments().getAttachment();
         List<Distribution> distributions = null;
@@ -72,7 +73,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                         }
                     } else if(IMConstants.NETT.equals(distribution.getName())) {
                         for(Attachment attachment:attachments) {
-                            if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getFakturanr().equals(transaction.getReference())) {
+                            if(attachment!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getFakturanr().equals(transaction.getReference())) {
                                 attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().setTransactionName(transaction.getTransactionCategory().substring(3));
                                 float transVat = Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
                                 Map<Float,Float> vatAndAmtOfLineItem = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getMapOfVatSumOfGross();
@@ -132,6 +133,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
         boolean isNettStartDate = true;
         String startMonthYear = "";
         for(Attachment attachment:attachments) {
+            if(attachment!=null) {
             Map<Float,Float> stromVatAndSum = new HashMap<Float,Float>();
             Map<Float,Float> nettVatAndSum = new HashMap<Float,Float>();
             Set<Float> vatSet = new HashSet<Float>();
@@ -202,6 +204,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 isStromStartDate = false;
                 isNettStartDate = false;
                 startMonthYear = null;
+            }
             }
         }
 
@@ -282,6 +285,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
 
         processedTransaction.addAll(processedOtherTrans);
         request.getStatement().getTransactionGroup().setTransaction(processedTransaction);
+        }
     }
 
     private String getMonth(int month) {
