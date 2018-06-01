@@ -11,6 +11,7 @@ package no.fjordkraft.im.if320.models;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -99,6 +100,8 @@ public class InvoiceOrder {
     protected Nettleie nettleie;
     @XmlElement(name = "NettleieList")
     protected List<Nettleie> nettleieList;
+    @XmlTransient
+    protected Map mapOfVatSumOfGross;
 
     /**
      * Gets the value of the invoiceOrderInfo110 property.
@@ -451,5 +454,13 @@ public class InvoiceOrder {
 
     public void setNettleieList(List<Nettleie> nettleieList) {
         this.nettleieList = nettleieList;
+    }
+
+    public Map getMapOfVatSumOfGross() {
+        return mapOfVatSumOfGross;
+    }
+
+    public void setMapOfVatSumOfGross(Map mapOfVatSumOfGross) {
+        this.mapOfVatSumOfGross = mapOfVatSumOfGross;
     }
 }

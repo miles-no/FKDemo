@@ -60,6 +60,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                     List<InvoiceLine120> invoiceLine120List = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceLine120();
                                     XMLGregorianCalendar startDate = null;
                                     XMLGregorianCalendar endDate = null;
+                                    Map<Float,Float> mapOfVatSumOfGross = new HashMap<Float,Float>();
                                     if(null != invoiceLine120List) {
                                         for (InvoiceLine120 invoiceLine120 : invoiceLine120List) {
                                             if (null == startDate) {
@@ -73,7 +74,16 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                                     endDate = invoiceLine120.getEndDate();
                                                 }
                                             }
+                                            float vat =invoiceLine120.getVatRate();
+                                            if(mapOfVatSumOfGross.containsKey(vat))  {
+                                                         float Net = mapOfVatSumOfGross.get(vat);
+                                                        Net+=invoiceLine120.getNet()*IMConstants.NEGATIVE;
+                                                        mapOfVatSumOfGross.put(vat,Net);
+                                            }   else {
+                                                       mapOfVatSumOfGross.put(vat,invoiceLine120.getNet()*IMConstants.NEGATIVE);
+                                            }
                                         }
+                                        attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setMapOfVatSumOfGross(mapOfVatSumOfGross);
                                     }
                                     transaction.setStartDate(startDate);
                                     transaction.setEndDate(endDate);
@@ -95,6 +105,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                                             if(null != attachment.getFAKTURA().getVedleggehfObj()) {
                                                                 XMLGregorianCalendar startDate = null;
                                                                 XMLGregorianCalendar endDate = null;
+                                                                String startMonthyear = null;
                                                                  if( "creditnote".equalsIgnoreCase(attachment.getFAKTURA().getFAKTURATYPE().toLowerCase()))
                                                                  {
                                                                      List<CreditNoteLineType> creditNoteLineTypeList = attachment.getFAKTURA().getVedleggehfObj().getCreditNote().getCreditNoteLines();
@@ -108,6 +119,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                                                                  {
                                                                                     startDate = creditNotelineType.getInvoicePeriods().get(0).getStartDate().getValue();
                                                                                     endDate = creditNotelineType.getInvoicePeriods().get(0).getEndDate().getValue();
+
                                                                                  }
                                                                                 else
                                                                                  {

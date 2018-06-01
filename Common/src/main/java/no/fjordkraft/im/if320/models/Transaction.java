@@ -67,7 +67,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "startDate",
     "endDate",
     "maalepunktID",
-    "leveringAddress"
+    "leveringAddress",
+    "vatRate"
 })
 @XmlRootElement(name = "Transaction")
 public class Transaction {
@@ -118,6 +119,9 @@ public class Transaction {
     @XmlElement(name = "LeveringAddress")
     @XmlSchemaType(name = "string")
     protected String leveringAddress;
+
+    @XmlElement(name = "VatRate")
+    protected float vatRate;
 
     /**
      * Gets the value of the transactionId property.
@@ -461,5 +465,13 @@ public class Transaction {
 
     public void setLeveringAddress(String leveringAddress) {
         this.leveringAddress = leveringAddress;
+    }
+
+    public float getVatRate() {
+        return vatRate;
+    }
+
+    public void setVatRate(float vatRate) {
+        this.vatRate = vatRate;
     }
 }

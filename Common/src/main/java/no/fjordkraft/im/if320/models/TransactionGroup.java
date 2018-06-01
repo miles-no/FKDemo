@@ -10,7 +10,9 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
         "transaction",
-        "totalTransactions"
+        "totalTransactions",
+        "transactionSummary",
+        "sumOfTransactions"
 })
 @XmlRootElement(name = "TransactionGroup")
 public class TransactionGroup {
@@ -18,8 +20,14 @@ public class TransactionGroup {
     @XmlElement(name = "Transaction")
     protected List<Transaction> transaction;
 
+    @XmlElement(name = "TransactionSummary")
+    protected List<TransactionSummary> transactionSummary;
+
     @XmlElement(name = "TotalTransactions")
     protected int totalTransactions;
+
+    @XmlElement(name = "SumOfTransactions")
+    protected float sumOfTransactions;
 
     public List<Transaction> getTransaction() {
         if(null == transaction) {
@@ -38,5 +46,21 @@ public class TransactionGroup {
 
     public void setTotalTransactions(int totalTransactions) {
         this.totalTransactions = totalTransactions;
+    }
+
+    public List<TransactionSummary> getTransactionSummary() {
+        return transactionSummary;
+    }
+
+    public void setTransactionSummary(List<TransactionSummary> transactionSummary) {
+        this.transactionSummary = transactionSummary;
+    }
+
+    public float getSumOfTransactions() {
+        return sumOfTransactions;
+    }
+
+    public void setSumOfTransactions(float sumOfTransactions) {
+        this.sumOfTransactions = sumOfTransactions;
     }
 }

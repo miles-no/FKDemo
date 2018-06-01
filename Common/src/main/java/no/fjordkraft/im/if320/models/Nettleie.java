@@ -3,7 +3,9 @@ package no.fjordkraft.im.if320.models;
 import com.sun.org.apache.xerces.internal.impl.dtd.XMLElementDecl;
 
 import javax.xml.bind.annotation.*;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by miles on 9/8/2017.
@@ -20,7 +22,11 @@ import java.util.List;
         "annualConsumption",
         "gridName",
         "isCreditNote",
-        "isSumMatching"
+        "isSumMatching",
+        "fakturanr",
+        "sumOfNettAmount",
+        "totalVatAmount",
+        "transactionName"
      //   "invoice",
      //   "ehfInvoice"
 })
@@ -54,6 +60,19 @@ public class Nettleie {
     protected  boolean isCreditNote;
     @XmlElement(name="IsSumMatching")
     protected  boolean isSumMatching = true;
+    @XmlElement(name="FAKTURANR")
+    protected String  fakturanr;
+    @XmlElement(name="SumOfNettAmount")
+    protected float sumOfNettAmount;
+    @XmlElement(name="TransactionName")
+    protected String transactionName;
+    @XmlTransient
+    protected Map mapOfVatSumOfGross;
+    @XmlTransient
+    protected String startMonthAndYear;
+
+    @XmlElement(name="TotalVatAmount")
+    protected float totalVatAmount;
 
     public List<BaseItemDetails> getBaseItemDetails() {
         return baseItemDetails;
@@ -157,5 +176,54 @@ public class Nettleie {
 
     public void setSumMatching(boolean sumMatching) {
         isSumMatching = sumMatching;
+    }
+
+    public String getFakturanr() {
+        return fakturanr;
+    }
+
+    public void setFakturanr(String fakturanr) {
+        this.fakturanr = fakturanr;
+    }
+
+
+    public float getSumOfNettAmount() {
+        return sumOfNettAmount;
+    }
+
+    public void setSumOfNettAmount(float sumOfNettAmount) {
+        this.sumOfNettAmount = sumOfNettAmount;
+    }
+
+    public Map getMapOfVatSumOfGross() {
+        return mapOfVatSumOfGross;
+    }
+
+    public void setMapOfVatSumOfGross(Map mapOfVatSumOfGross) {
+        this.mapOfVatSumOfGross = mapOfVatSumOfGross;
+    }
+
+    public float getTotalVatAmount() {
+        return totalVatAmount;
+    }
+
+    public void setTotalVatAmount(float totalVatAmount) {
+        this.totalVatAmount = totalVatAmount;
+    }
+
+    public String getTransactionName() {
+        return transactionName;
+    }
+
+    public void setTransactionName(String transactionName) {
+        this.transactionName = transactionName;
+    }
+
+    public String getStartMonthAndYear() {
+        return startMonthAndYear;
+    }
+
+    public void setStartMonthAndYear(String startMonthAndYear) {
+        this.startMonthAndYear = startMonthAndYear;
     }
 }

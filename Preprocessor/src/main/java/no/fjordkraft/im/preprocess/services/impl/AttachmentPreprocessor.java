@@ -32,6 +32,8 @@ import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
@@ -66,6 +68,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     if (null != stromStartDate) {
                         meterIdStartMonMapEMUXML.put(attachment.getFAKTURA().getMAALEPUNKT() + "-" + stromStartDate.getMonth(), attachment);
                         logger.debug(" Meterid - month added to map " + attachment.getFAKTURA().getMAALEPUNKT() + "-" + stromStartDate.getMonth() + " invoice number " + invoicenumber);
+                        String monthName =  Month.of(stromStartDate.getMonth()).getDisplayName (TextStyle.FULL, new Locale("no","NO"));
+                        int year =   stromStartDate.getYear();
+                        attachment.setStartMonthYear(monthName+ " " + year );
                     }
                 }
             }
@@ -153,6 +158,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getYearlyConsumption123().setAnnualConsumption(nettleie.getAnnualConsumption());
 
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(nettleie);
+                             dummyStromAttachment.getFAKTURA().setFAKTURANR(null);
                              dummyStromAttachment.setDisplayStromData(false);
                              dummyStromAttachment.setOnlyGrid(true);
                              meterIdMapEMUXML.put(dummyStromAttachment.getFAKTURA().getMAALEPUNKT(),dummyStromAttachment);
@@ -170,6 +176,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getYearlyConsumption123().setAnnualConsumption(nettleie.getAnnualConsumption());
 
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(nettleie);
+                             dummyStromAttachment.getFAKTURA().setFAKTURANR(null);
                              dummyStromAttachment.setDisplayStromData(false);
                              dummyStromAttachment.setOnlyGrid(true);
                              meterIdMapEMUXML.put(dummyStromAttachment.getFAKTURA().getMAALEPUNKT(),dummyStromAttachment);
@@ -212,6 +219,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     for (int i = 1; i < nettleieList.size(); i++) {
                         Attachment stromAttachment = deepClone(attachment);
                         stromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(nettleieList.get(i));
+                        stromAttachment.getFAKTURA().setFAKTURANR(null);
                         stromAttachment.setDisplayStromData(false);
                         attachmentList.add(stromAttachment);
                     }
@@ -240,12 +248,22 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 float sumStrom = 0.0f;
                 if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113()!=null)
                 {
+                    if(request.getStatement().getLegalPartClass().equals("Individual")) {
                     sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
+                    }
+                    else {
+                        sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getToBePaidNet();
+                    }
                 }
 
                 float sumNett = 0.0f;
                 if( attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null) {
+                    if(request.getStatement().getLegalPartClass().equals("Individual")) {
                     sumNett = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getInvoiceSummary().getInvoiceTotals().getOrigGrossAmount();
+                    }
+                    else {
+                        sumNett = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getSumOfNettAmount();
+                    }
                 }
                 attachment.setSumOfOutGoingCurrentClaim(request.getStatement().getOutgoingBalance()+request.getStatement().getCurrentClaim());
                 attachment.setSumOfNettStrom(sumStrom+sumNett);
@@ -289,6 +307,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             }
            // attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(null);
             logger.debug("cloning stromAttachment " + stromAttachment.getFAKTURA().getMAALEPUNKT());
+            attachment.getFAKTURA().setFAKTURANR(null);
             attachment.setDisplayStromData(false);
             return attachment;
         } catch (Exception e) {
@@ -304,9 +323,11 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         invoiceSummary.setInvoiceTotals(invoiceTotals);
         BaseItemDetails baseItemDetails;
         Float taxAmount = 0.0f;
+
         List<BaseItemDetails> baseItemDetailsList = new ArrayList<>();
         if(pdfAttachment.getFAKTURA().getVedleggehfObj()!=null)
         {
+            nettleie.setFakturanr(pdfAttachment.getFAKTURA().getFAKTURANR());
             if("creditnote".equalsIgnoreCase(pdfAttachment.getFAKTURA().getFAKTURATYPE().toLowerCase()))
             {
             CreditNote creditNote = pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote();
@@ -341,6 +362,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
             List<CreditNoteLineType> creditNoteLineTypeList = creditNote.getCreditNoteLines();
             Float sumGrossAmount = 0.0f;
+            float sumOfVatAmount = 0.0f;
+            XMLGregorianCalendar startDate = null;
             for(CreditNoteLineType creditNoteLineType : creditNoteLineTypeList)
             {
                 baseItemDetails = new BaseItemDetails();
@@ -357,12 +380,33 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
                 List<TaxCategoryType> categoryTypeList = creditNoteLineType.getItem().getClassifiedTaxCategories();
                 BigDecimal vat = null;
+                Map<Float,Float> mapOfVatSumOfGross = new HashMap<Float,Float>();
                 for(TaxCategoryType taxCategoryType: categoryTypeList) {
                     logger.debug("taxScheme " + taxCategoryType.getTaxScheme().getID().getValue()+ " vat "+ taxCategoryType.getPercent().getValue());
                     if("VAT".equals(taxCategoryType.getTaxScheme().getID().getValue())) {
                         vat = taxCategoryType.getPercent().getValue();
                         break;
                     }
+                }
+
+                baseItemDetails.setVatRate(Float.valueOf(vat.toString()));
+                baseItemDetails.setLineExtensionAmount(Float.valueOf(creditNoteLineType.getLineExtensionAmount().getValue().toString()));
+                if(baseItemDetails.getVatInfo()==null) {
+                    VatInfo vatInfo = new VatInfo();
+                    if(creditNoteLineType.getTaxTotals()!=null && creditNoteLineType.getTaxTotals().size()>0) {
+                    vatInfo.setVatAmount(Float.valueOf(creditNoteLineType.getTaxTotals().get(0).getTaxAmount().toString()));
+                    }
+                    baseItemDetails.setVatInfo(vatInfo);
+                }
+
+                if(mapOfVatSumOfGross.containsKey(baseItemDetails.getVatRate()))
+                {
+                    float vatAmount = mapOfVatSumOfGross.get(baseItemDetails.getVatRate());
+                    vatAmount += baseItemDetails.getLineExtensionAmount()*IMConstants.NEGATIVE; //baseItemDetails.getVatInfo().getVatAmount();
+                    mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),vatAmount);
+                } else {
+
+                    mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),baseItemDetails.getLineExtensionAmount()*IMConstants.NEGATIVE);
                 }
                 if(null != vat) {
                     baseItemDetails.setUnitPriceGross((baseItemDetails.getUnitPrice() + ((vat.floatValue()/100)*baseItemDetails.getUnitPrice()))* IMConstants.NEGATIVE);
@@ -397,7 +441,19 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 }
                 baseItemDetailsList.add(baseItemDetails);
                 sumGrossAmount +=baseItemDetails.getLineItemGrossAmount();
+                sumOfVatAmount+=baseItemDetails.getVatInfo().getVatAmount();
                 nettleie.setBaseItemDetails(baseItemDetailsList);
+                nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
+                nettleie.setSumOfNettAmount(Float.valueOf(creditNote.getLegalMonetaryTotal().getTaxExclusiveAmount().getValue().toString()));
+
+                if (null == startDate) {
+                    startDate = baseItemDetails.getStartDate();
+                } else {
+                    XMLGregorianCalendar startDate2 = baseItemDetails.getStartDate();
+                    if (null != startDate2 && startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
+                        startDate = startDate2;
+                    }
+                }
             }
                 DecimalFormat df = new DecimalFormat("#.##");
                 if(  df.format(sumGrossAmount).equals(df.format(nettleie.getInvoiceSummary().getInvoiceTotals().getGrossAmount())))
@@ -408,7 +464,13 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 {
                     nettleie.setSumMatching(false);
                 }
-            nettleie.setCreditNote(true);
+                nettleie.setTotalVatAmount(sumOfVatAmount);
+                nettleie.setCreditNote(true);
+                if(startDate!=null) {
+                String monthName =  Month.of(startDate.getMonth()).getDisplayName (TextStyle.FULL, new Locale("no","NO"));
+                int year =   startDate.getYear();
+                nettleie.setStartMonthAndYear(monthName + " " + year);
+                }
         }  else {
                 Invoice invoice = pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice();
                 if(invoice!=null) {
@@ -449,6 +511,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
                     List<InvoiceLineType> invoiceLineTypeList = invoice.getInvoiceLines();
                     Float sumGrossAmount = 0.0f;
+                    Float sumOfVatAmount = 0.0f;
+                    Map<Float,Float> mapOfVatSumOfGross = new HashMap<Float,Float>();
+                    XMLGregorianCalendar startDate = null;
                     for (InvoiceLineType invoiceLineType : invoiceLineTypeList) {
                         baseItemDetails = new BaseItemDetails();
                         baseItemDetails.setDescription(invoiceLineType.getItem().getName().getValue().toString());
@@ -457,6 +522,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         baseItemDetails.setUnitPrice(Float.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString()));
                         baseItemDetails.setPriceDenomination(invoiceLineType.getPrice().getPriceAmount().getCurrencyID());
                         baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
+
                         List<TaxCategoryType> categoryTypeList = invoiceLineType.getItem().getClassifiedTaxCategories();
                         BigDecimal vat = null;
                         for(TaxCategoryType taxCategoryType: categoryTypeList) {
@@ -466,8 +532,26 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                                 break;
                             }
                         }
+                        baseItemDetails.setVatRate(Float.valueOf(vat.toString()));
+                        baseItemDetails.setLineExtensionAmount( Float.valueOf(invoiceLineType.getLineExtensionAmount().getValue().toString()));
+                        if(baseItemDetails.getVatInfo() == null) {
+                        VatInfo vatInfo = new VatInfo();
+                        if(invoiceLineType.getTaxTotals()!=null && invoiceLineType.getTaxTotals().size()>0) {
+                        vatInfo.setVatAmount(Float.valueOf(invoiceLineType.getTaxTotals().get(0).getTaxAmount().getValue().toString()));
+                        }
+                        baseItemDetails.setVatInfo(vatInfo);
+                        }
+                        if(mapOfVatSumOfGross.containsKey(baseItemDetails.getVatRate()))
+                        {
+                           float taxAmt = mapOfVatSumOfGross.get(baseItemDetails.getVatRate());
+                            taxAmt += baseItemDetails.getLineExtensionAmount();//baseItemDetails.getVatInfo().getVatAmount();
+                            mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),taxAmt);
+                        } else {
+
+                            mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),baseItemDetails.getLineExtensionAmount());
+                        }
                         if(null != vat) {
-                            baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice() + ((vat.floatValue()/100)*baseItemDetails.getUnitPrice()));
+                            baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice() + ((vat.floatValue() / 100) * baseItemDetails.getUnitPrice()));
                         } else {
                             baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
                         }
@@ -498,6 +582,16 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         }
                         baseItemDetailsList.add(baseItemDetails);
                         sumGrossAmount +=baseItemDetails.getLineItemGrossAmount();
+                        sumOfVatAmount+=baseItemDetails.getVatInfo().getVatAmount();
+                        if (null == startDate && baseItemDetails.getStartDate()!=null ) {
+                            startDate = baseItemDetails.getStartDate();
+                        } else {
+                            XMLGregorianCalendar startDate2 = baseItemDetails.getStartDate();
+                            if (null != startDate2 && startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
+                                startDate = startDate2;
+                            }
+                        }
+
                     }
                     DecimalFormat df = new DecimalFormat("#.##");
                     if(  df.format(sumGrossAmount).equals(df.format(nettleie.getInvoiceSummary().getInvoiceTotals().getGrossAmount())))
@@ -508,7 +602,13 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     {
                         nettleie.setSumMatching(false);
                     }
+                    nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
                     nettleie.setBaseItemDetails(baseItemDetailsList);
+                    nettleie.setSumOfNettAmount(Float.valueOf(invoice.getLegalMonetaryTotal().getTaxExclusiveAmount().getValue().toString()));
+                    nettleie.setTotalVatAmount(sumOfVatAmount);
+                    String monthName =  Month.of(startDate.getMonth()).getDisplayName (TextStyle.FULL, new Locale("no","NO"));
+                    int year =   startDate.getYear();
+                    nettleie.setStartMonthAndYear(monthName + " " + year);
                 }
             }
 
@@ -528,6 +628,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         nettleie.setAnnualConsumption(0);
         nettleie.setGridName(invoice.getInvoiceHeader().getEnergyHeader().getLdc1());
         List<BaseItemDetails> baseItemDetailsList = invoice.getInvoiceDetails().getBaseItemDetails();
+            Map<Float,Float> mapOfVatSumOfGross = new HashMap<Float,Float>();
         for (BaseItemDetails baseItemDetails : baseItemDetailsList) {
             List<Ref> refList = baseItemDetails.getRef();
             baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
@@ -542,12 +643,26 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
                 baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(),baseItemDetails.getEndDate()));
             }
+
+            baseItemDetails.setVatRate(Float.valueOf(baseItemDetails.getVatInfo().getVatPercent()));
+            baseItemDetails.setLineExtensionAmount( Float.valueOf(baseItemDetails.getLineItemAmount()));
+            baseItemDetails.getVatInfo().setVatAmount(invoice.getInvoiceSummary().getInvoiceTotals().getVatTotalsAmount());
+            if(mapOfVatSumOfGross.containsKey(baseItemDetails.getVatRate()))
+            {
+                float lineExtensionAmt = mapOfVatSumOfGross.get(baseItemDetails.getVatRate());
+                lineExtensionAmt += baseItemDetails.getLineExtensionAmount()*IMConstants.NEGATIVE;
+                mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),lineExtensionAmt);
+            } else {
+
+                mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),baseItemDetails.getLineExtensionAmount()*IMConstants.NEGATIVE);
+            }
         }
 
-
+        nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
         nettleie.setBaseItemDetails(invoice.getInvoiceDetails().getBaseItemDetails());
         invoice.getInvoiceSummary().getInvoiceTotals().setOrigGrossAmount(invoice.getInvoiceSummary().getInvoiceTotals().getGrossAmount());
         nettleie.setInvoiceSummary(invoice.getInvoiceSummary());
+        nettleie.setSumOfNettAmount(invoice.getInvoiceSummary().getInvoiceTotals().getLineItemTotalsAmount());
         return nettleie;
     }
 

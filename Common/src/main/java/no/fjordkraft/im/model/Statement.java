@@ -78,10 +78,10 @@ public class Statement {
     private String brand;
 
     @Column(name="CREDIT_LIMIT")
-    private Float creditLimit;
+    private float creditLimit;
 
     @Column(name="ATTACHMENT_CONFIG_ID")
-    private Integer attachmentConfigId;
+    private int attachmentConfigId;
 
     @Transient
     private boolean isOnline = false;

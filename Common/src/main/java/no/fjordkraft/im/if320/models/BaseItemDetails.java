@@ -60,7 +60,9 @@ import java.util.List;
     "unitPriceGross",
     "ref",
     "noOfDays",
-    "attachmentFormat"
+    "attachmentFormat",
+    "vatRate",
+    "lineExtensionAmount"
 })
 @XmlRootElement(name = "BaseItemDetails")
 public class BaseItemDetails {
@@ -103,6 +105,12 @@ public class BaseItemDetails {
 
     @XmlElement(name = "AttachmentFormat")
     protected String attachmentFormat;
+
+    @XmlElement(name = "VatRate")
+    protected float vatRate;
+    @XmlElement(name = "LineExtensionAmount")
+    protected float lineExtensionAmount;
+
 
     /**
      * Gets the value of the level property.
@@ -374,5 +382,21 @@ public class BaseItemDetails {
 
     public void setAttachmentFormat(String attachmentFormat) {
         this.attachmentFormat = attachmentFormat;
+    }
+
+    public float getVatRate() {
+        return vatRate;
+    }
+
+    public void setVatRate(float vatRate) {
+        this.vatRate = vatRate;
+    }
+
+    public float getLineExtensionAmount() {
+        return lineExtensionAmount;
+    }
+
+    public void setLineExtensionAmount(float lineExtensionAmount) {
+        this.lineExtensionAmount = lineExtensionAmount;
     }
 }

@@ -10,6 +10,7 @@ package no.fjordkraft.im.if320.models;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.List;
 
 
 /**
@@ -33,7 +34,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "faktura","addedToList","displayStromData","attachmentNumber","startDate","endDate","isOnlyGrid","sumOfNettStrom","sumOfOutGoingCurrentClaim","leveringsAdresse","sumOfIngoingIBtrans"
+    "faktura","addedToList","displayStromData","attachmentNumber","startDate","endDate","isOnlyGrid","sumOfNettStrom","sumOfOutGoingCurrentClaim","leveringsAdresse","sumOfIngoingIBtrans","transactionSummary","sumInklMVA","transactionName"
 })
 @XmlRootElement(name = "Attachment")
 public class Attachment {
@@ -71,6 +72,17 @@ public class Attachment {
     @XmlElement(name = "SumOfInGoingIBTrans")
     @XmlSchemaType(name = "float")
     protected Float sumOfIngoingIBtrans;
+    @XmlElement(name="TransactionSummary")
+    protected List<TransactionSummary> transactionSummary;
+    @XmlElement(name = "SumInclusiveMVA")
+    @XmlSchemaType(name = "float")
+    protected Float sumInklMVA;
+    @XmlElement(name="TransactionName")
+    protected String transactionName;
+    @XmlTransient
+    protected String startMonthYear;
+
+
     /**
      * Gets the value of the faktura property.
      * 
@@ -181,5 +193,37 @@ public class Attachment {
 
     public void setSumOfIngoingIBtrans(Float sumOfIngoingIBtrans) {
         this.sumOfIngoingIBtrans = sumOfIngoingIBtrans;
+    }
+
+    public List<TransactionSummary> getTransactionSummary() {
+        return transactionSummary;
+    }
+
+    public void setTransactionSummary(List<TransactionSummary> transactionSummary) {
+        this.transactionSummary = transactionSummary;
+    }
+
+    public Float getSumInklMVA() {
+        return sumInklMVA;
+    }
+
+    public void setSumInklMVA(Float sumInklMVA) {
+        this.sumInklMVA = sumInklMVA;
+    }
+
+    public String getTransactionName() {
+        return transactionName;
+    }
+
+    public void setTransactionName(String transactionName) {
+        this.transactionName = transactionName;
+    }
+
+    public String getStartMonthYear() {
+        return startMonthYear;
+    }
+
+    public void setStartMonthYear(String startMonthYear) {
+        this.startMonthYear = startMonthYear;
     }
 }

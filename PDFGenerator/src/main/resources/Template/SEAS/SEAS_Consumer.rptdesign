@@ -4857,7 +4857,8 @@
                                                     <structure>
                                                         <property name="name">Name</property>
                                                         <text-property name="displayName">Name</text-property>
-                                                        <expression name="expression" type="javascript">if(dataSetRow["CareOfName"] == null)&#13;
+                                                        <expression name="expression" type="javascript">vars["DirectDebit"] = dataSetRow["DirectDebit"];&#13;
+if(dataSetRow["CareOfName"] == null)&#13;
 {&#13;
 dataSetRow["Name"];&#13;
 }&#13;
@@ -5541,7 +5542,21 @@ else &#13;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">true</expression>
+                    <expression name="valueExpr" type="javascript">if(row["IsGiro"] == "true")&#13;
+{&#13;
+   if(row["CurrentClaim"] &lt; 0 || vars["DirectDebit"] == "YES" )&#13;
+    {&#13;
+    false;&#13;
+    }&#13;
+    else &#13;
+  		{&#13;
+		true;&#13;
+		}&#13;
+}&#13;
+else &#13;
+{&#13;
+true; &#13;
+}</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
@@ -5569,12 +5584,6 @@ else &#13;
             </column>
             <row id="1453">
                 <property name="height">0.40625in</property>
-                <list-property name="visibility">
-                    <structure>
-                        <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">true</expression>
-                    </structure>
-                </list-property>
                 <cell id="1454">
                     <property name="colSpan">3</property>
                     <property name="rowSpan">1</property>
@@ -5629,12 +5638,6 @@ else &#13;
             </row>
             <row id="1463">
                 <property name="height">2.123in</property>
-                <list-property name="visibility">
-                    <structure>
-                        <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">true</expression>
-                    </structure>
-                </list-property>
                 <cell id="1464">
                     <property name="colSpan">3</property>
                     <property name="rowSpan">1</property>
@@ -6075,12 +6078,6 @@ else &#13;
             </row>
             <row id="1496">
                 <property name="height">2in</property>
-                <list-property name="visibility">
-                    <structure>
-                        <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">true</expression>
-                    </structure>
-                </list-property>
                 <cell id="1497">
                     <property name="colSpan">2</property>
                     <property name="rowSpan">1</property>
@@ -6094,12 +6091,7 @@ else &#13;
                         <list-property name="visibility">
                             <structure>
                                 <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if(null == params["campaignImage"].value || "" == params["campaignImage"].value) &#13;
-{&#13;
-	true;&#13;
-} else {&#13;
-	false;&#13;
-}</expression>
+                                <expression name="valueExpr" type="javascript">true</expression>
                             </structure>
                         </list-property>
                         <property name="source">expr</property>
@@ -7928,6 +7920,26 @@ else&#13;
             <property name="height">6.5in</property>
             <property name="width">8.6in</property>
             <property name="dataSet">TransactionInfo</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">if(row["IsGiro"] == "true")&#13;
+{&#13;
+   if(row["CurrentClaim"] &lt; 0 || vars["DirectDebit"] == "YES" )&#13;
+    {&#13;
+    true;&#13;
+    }&#13;
+    else &#13;
+  		{&#13;
+		false;&#13;
+		}&#13;
+}&#13;
+else &#13;
+{&#13;
+true; &#13;
+}</expression>
+                </structure>
+            </list-property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">CurrentClaim</property>
@@ -8912,7 +8924,15 @@ dataSetRow["CareOfName"];&#13;
                                                     <structure>
                                                         <property name="name">City</property>
                                                         <text-property name="displayName">City</text-property>
-                                                        <expression name="expression" type="javascript">"Postboks " + dataSetRow["PostCode"] + " " + dataSetRow["City"]</expression>
+                                                        <expression name="expression" type="javascript">if(dataSetRow["PostCode"] == null || BirtStr.trim(dataSetRow["PostCode"]) == "")&#13;
+{&#13;
+dataSetRow["City"];&#13;
+}&#13;
+&#13;
+else&#13;
+{&#13;
+"Postboks " + dataSetRow["PostCode"] + " " + dataSetRow["City"];&#13;
+}</expression>
                                                         <property name="dataType">string</property>
                                                         <property name="allowExport">true</property>
                                                     </structure>
@@ -13843,6 +13863,9 @@ etter gjeldende satser.&#13;
             <property name="type">report</property>
         </variable-element>
         <variable-element name="AttachmentNumber">
+            <property name="type">report</property>
+        </variable-element>
+        <variable-element name="DirectDebit">
             <property name="type">report</property>
         </variable-element>
     </property>

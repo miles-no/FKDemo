@@ -155,7 +155,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "toAddress",
     "isGIROEnabled",
     "blanketNumber",
-    "checkSum"
+    "checkSum",
+    "isOneMeter",
+    "statementPeriod"
 })
 @XmlRootElement(name = "Statement")
 public class Statement {
@@ -292,6 +294,11 @@ public class Statement {
     protected String blanketNumber;
     @XmlElement(name="CheckSum")
     protected String checkSum;
+    @XmlElement(name="IsOneMeter")
+    protected boolean isOneMeter = false;
+    @XmlElement(name="StatementPeriod")
+    protected String statementPeriod;
+
     /**
      * Gets the value of the customerReference property.
      * 
@@ -1538,5 +1545,21 @@ public class Statement {
 
     public void setCheckSum(String checkSum) {
         this.checkSum = checkSum;
+    }
+
+    public boolean isOneMeter() {
+        return isOneMeter;
+    }
+
+    public void setOneMeter(boolean oneMeter) {
+        isOneMeter = oneMeter;
+    }
+
+    public String getStatementPeriod() {
+        return statementPeriod;
+    }
+
+    public void setStatementPeriod(String statementPeriod) {
+        this.statementPeriod = statementPeriod;
     }
 }
