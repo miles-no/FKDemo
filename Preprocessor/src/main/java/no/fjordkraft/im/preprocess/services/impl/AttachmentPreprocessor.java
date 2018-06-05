@@ -158,6 +158,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getYearlyConsumption123().setAnnualConsumption(nettleie.getAnnualConsumption());
 
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(nettleie);
+                             dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setMapOfVatSumOfGross(new HashMap());
                              dummyStromAttachment.getFAKTURA().setFAKTURANR(null);
                              dummyStromAttachment.setDisplayStromData(false);
                              dummyStromAttachment.setOnlyGrid(true);
@@ -394,7 +395,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 if(baseItemDetails.getVatInfo()==null) {
                     VatInfo vatInfo = new VatInfo();
                     if(creditNoteLineType.getTaxTotals()!=null && creditNoteLineType.getTaxTotals().size()>0) {
-                    vatInfo.setVatAmount(Float.valueOf(creditNoteLineType.getTaxTotals().get(0).getTaxAmount().toString()));
+                    vatInfo.setVatAmount(Float.valueOf(creditNoteLineType.getTaxTotals().get(0).getTaxAmount().getValue().toString()));
                     }
                     baseItemDetails.setVatInfo(vatInfo);
                 }

@@ -232,6 +232,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
             //attachment.getFAKTURA().setFAKTURANR(String.valueOf(referenceNo));
             attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(null);
             logger.debug("cloning stromAttachment " + stromAttachment.getFAKTURA().getMAALEPUNKT());
+            attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setMapOfVatSumOfGross(new HashMap());
            // attachment.setDisplayStromData(false);
             return attachment;
         } catch (Exception e) {
