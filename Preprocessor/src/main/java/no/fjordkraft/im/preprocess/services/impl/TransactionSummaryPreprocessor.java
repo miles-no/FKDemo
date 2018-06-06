@@ -90,7 +90,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                             {
                                 if(attachment!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null &&
                                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null &&
-                                   attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getFakturanr().equals(transaction.getReference()))
+                                   transaction.getReference().equals(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getFakturanr()))
                                 {
                                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().setTransactionName(transaction.getTransactionCategory().substring(3));
                                     float transVat = Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
@@ -205,8 +205,8 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                     }
                     TransactionSummary attachmentSummary = new TransactionSummary();
                     attachmentSummary.setMvaValue(vat);
-                    attachmentSummary.setSumOfNettStrom(sumOfStrom+sumOfNett);
-                    attachmentSummary.setSumOfBelop((sumOfStrom+sumOfNett)*(vat/100));
+                    attachmentSummary.setSumOfNettStrom((sumOfStrom*IMConstants.NEGATIVE)+sumOfNett);
+                    attachmentSummary.setSumOfBelop(((sumOfStrom*IMConstants.NEGATIVE)+sumOfNett)*(vat/100));
                     sumInklMVA+= attachmentSummary.getSumOfNettStrom()+attachmentSummary.getSumOfBelop();
                     if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null)
                     {
@@ -344,14 +344,14 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                         {
                             tran.setAmount(tran.getAmount()*IMConstants.NEGATIVE);
                             processedOtherTrans.add(tran);
-                            sumOfOtherTrans+=tran.getAmount()*IMConstants.NEGATIVE;
+                            sumOfOtherTrans+=tran.getAmount();
                         }
                     }
                 }
                 transactionSummary.setMvaValue(vatAmount);
                 if(vatAmount!=0.0)
                 {
-                    transactionSummary.setSumOfNettStrom(request.getStatement().getTotalVatAmount()*IMConstants.NEGATIVE);
+                    transactionSummary.setSumOfNettStrom(request.getStatement().getTotalVatAmount());
                 }
                 transactionSummary.setSumOfBelop(sumOfKrafts+sumOfNetts+sumOfOtherTrans);
                 sumOfTransAmount +=transactionSummary.getSumOfBelop();
