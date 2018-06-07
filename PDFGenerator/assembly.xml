@@ -42,13 +42,14 @@
                 <include>*.png</include>
             </includes>
         </fileSet>
-        <fileSet>
+
+		<fileSet>
             <directory>src/main/resources/templateResources/VKAS</directory>
             <outputDirectory>/Layout</outputDirectory>
             <includes>
                 <include>*.png</include>
-	      <include>*.jpeg</include>
-	      <include>*.jpg</include>
+	     		<include>*.jpeg</include>
+				<include>*.jpg</include>
             </includes>
         </fileSet>
 		<fileSet>
@@ -56,11 +57,10 @@
             <outputDirectory>/Layout</outputDirectory>
             <includes>
                 <include>*.png</include>
-	      <include>*.jpeg</include>
-	      <include>*.jpg</include>
+				<include>*.jpeg</include>
+				<include>*.jpg</include>
             </includes>
-        </fileSet>      
-
+        </fileSet>
         <fileSet>
             <directory>src/main/resources/sampleFile/</directory>
             <outputDirectory>/sampleFile</outputDirectory>
