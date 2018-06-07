@@ -25,7 +25,8 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request)
     {
-        if(request.getStatement().getLegalPartClass().equals("Organization"))
+       String brand =  request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
+        if(request.getStatement().getLegalPartClass().equals("Organization") && (!brand.equals("SEAS") && !brand.equals("VKAS")))
         {
             logger.debug("Legal Part Class = Organization for statement " + request.getEntity().getId());
             List<Transaction> transactions = request.getStatement().getTransactions().getTransaction();
@@ -285,14 +286,14 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 request.getStatement().setStatementPeriod("Strom og Nettlie");
             }
         }
-        request.getStatement().getTransactionGroup().setTransaction(null);
+       // request.getStatement().getTransactionGroup().setTransaction(null);
         String stromName = null;
         String nettName = null;
         float sumOfTransAmount = 0.0f;
         List<TransactionSummary> listOfTranSummary = new ArrayList<TransactionSummary>();
         Map<String,Float> mapOfNameAndAmt = new HashMap<String,Float>();
         Map<String,Float>  mapOfNameAndVat = new HashMap<String,Float>();
-        Set<Transaction> processedOtherTrans = new HashSet<Transaction>();
+        Map<String,Transaction> processedOtherTrans = new HashMap<String,Transaction>();
 
         for(float vatAmount:vatVsListOfTransactions.keySet())
         {
@@ -343,7 +344,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                         else
                         {
                             tran.setAmount(tran.getAmount()*IMConstants.NEGATIVE);
-                            processedOtherTrans.add(tran);
+                            processedOtherTrans.put(tran.getTransactionCategory(),tran);
                             sumOfOtherTrans+=tran.getAmount();
                         }
                     }
@@ -360,17 +361,21 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
         }
         request.getStatement().getTransactionGroup().setTransactionSummary(listOfTranSummary);
         request.getStatement().getTransactionGroup().setSumOfTransactions(sumOfTransAmount);
-        List<Transaction> processedTransaction = new ArrayList();
-        for(String transactionName:mapOfNameAndAmt.keySet())
+        List<Transaction> processedTransaction = request.getStatement().getTransactionGroup().getTransaction();
+        for(Transaction transaction :processedTransaction)
         {
-            Transaction newTransaction = new Transaction();
-            newTransaction.setTransactionCategory(transactionName.substring(3));
-            newTransaction.setAmount(mapOfNameAndAmt.get(transactionName));
-            newTransaction.setVatRate(mapOfNameAndVat.get(transactionName));
-            processedTransaction.add(newTransaction);
+            if(mapOfNameAndAmt.containsKey(transaction.getTransactionCategory())) {
+                transaction.setTransactionCategory(transaction.getTransactionCategory().substring(3));
+                transaction.setAmount(mapOfNameAndAmt.get(transaction.getTransactionCategory()));
+                transaction.setVatRate(mapOfNameAndVat.get(transaction.getTransactionCategory()));
+           // processedTransaction.add(transaction);
+            }
+            if(processedOtherTrans.containsKey(transaction.getTransactionCategory())) {
+                //processedTransaction.add(transaction);
+            }
         }
 
-        processedTransaction.addAll(processedOtherTrans);
+       // processedTransaction.addAll(processedOtherTrans);
         request.getStatement().getTransactionGroup().setTransaction(processedTransaction);
         }
     }
