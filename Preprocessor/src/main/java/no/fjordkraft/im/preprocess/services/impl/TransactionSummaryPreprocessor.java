@@ -224,8 +224,8 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                     }
                     TransactionSummary attachmentSummary = new TransactionSummary();
                     attachmentSummary.setMvaValue(vat);
-                    attachmentSummary.setSumOfNettStrom((sumOfStrom+sumOfNett)*IMConstants.NEGATIVE);
-                    attachmentSummary.setSumOfBelop(((sumOfStrom)+sumOfNett)*(vat/100)*IMConstants.NEGATIVE);
+                    attachmentSummary.setSumOfNettStrom((sumOfStrom+sumOfNett));
+                    attachmentSummary.setSumOfBelop(((sumOfStrom)+sumOfNett)*(vat/100));
                     sumInklMVA+= attachmentSummary.getSumOfNettStrom()+attachmentSummary.getSumOfBelop();
                     if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null)
                     {
