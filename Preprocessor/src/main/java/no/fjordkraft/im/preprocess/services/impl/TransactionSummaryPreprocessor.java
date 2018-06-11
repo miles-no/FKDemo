@@ -1,5 +1,6 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
+import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.*;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
@@ -25,6 +26,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request)
     {
+        try{
        String brand =  request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
         if(request.getStatement().getLegalPartClass().equals("Organization") && (!brand.equals("SEAS") && !brand.equals("VKAS")))
         {
@@ -37,7 +39,23 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
             {
                 logger.debug("Statement "+request.getEntity().getId() + " has only one meter " );
                 request.getStatement().setOneMeter(true);
-                request.getStatement().setStatementPeriod("Strøm for "+attachments.get(0).getStartMonthYear());
+                if(attachments.get(0)!=null && attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice()!=null
+                        && attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null
+                        && attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null ) {
+                    String nettlieStartMonth = null;
+                    if(attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getStartMonthAndYear()!=null)   {
+                        nettlieStartMonth = attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getStartMonthAndYear();
+                    }
+                    if(nettlieStartMonth!=null && attachments.get(0).getStartMonthYear().equals(nettlieStartMonth))  {
+                        request.getStatement().setStatementPeriod("Strøm og nettleie "+attachments.get(0).getStartMonthYear());
+                    }
+                    else
+                    {
+                        request.getStatement().setStatementPeriod("Strøm og nettleie ");
+                    }
+                } else {
+                    request.getStatement().setStatementPeriod("Strøm for "+attachments.get(0).getStartMonthYear());
+                }
             }
             Map<Float,List<Transaction>> vatVsListOfTransactions = new HashMap<Float,List<Transaction>>();
             List<Transaction> listOfOtherTrans = new ArrayList<Transaction>();
@@ -100,7 +118,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                     if(!vatAndAmtOfLineItem.isEmpty() && vatAndAmtOfLineItem.containsKey(transVat) && vatAndAmtOfLineItem.size()==1)
                                     {
                                         transaction.setVatRate(transVat);
-                                        if(Math.round(vatAndAmtOfLineItem.get(transVat))== Math.round(Math.abs(transaction.getAmount())))
+                                        if(Math.round(vatAndAmtOfLineItem.get(transVat))== Math.round(transaction.getAmount()))
                                         {
                                             if(!vatVsListOfTransactions.containsKey(transVat))
                                             {
@@ -206,8 +224,8 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                     }
                     TransactionSummary attachmentSummary = new TransactionSummary();
                     attachmentSummary.setMvaValue(vat);
-                    attachmentSummary.setSumOfNettStrom((sumOfStrom*IMConstants.NEGATIVE)+sumOfNett);
-                    attachmentSummary.setSumOfBelop(((sumOfStrom*IMConstants.NEGATIVE)+sumOfNett)*(vat/100));
+                    attachmentSummary.setSumOfNettStrom((sumOfStrom+sumOfNett)*IMConstants.NEGATIVE);
+                    attachmentSummary.setSumOfBelop(((sumOfStrom)+sumOfNett)*(vat/100)*IMConstants.NEGATIVE);
                     sumInklMVA+= attachmentSummary.getSumOfNettStrom()+attachmentSummary.getSumOfBelop();
                     if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null)
                     {
@@ -361,22 +379,24 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
         }
         request.getStatement().getTransactionGroup().setTransactionSummary(listOfTranSummary);
         request.getStatement().getTransactionGroup().setSumOfTransactions(sumOfTransAmount);
-        List<Transaction> processedTransaction = request.getStatement().getTransactionGroup().getTransaction();
-        for(Transaction transaction :processedTransaction)
+        List<Transaction> processedTransaction = new ArrayList<Transaction>();
+        for(String transactionName :mapOfNameAndAmt.keySet())
         {
-            if(mapOfNameAndAmt.containsKey(transaction.getTransactionCategory())) {
-                transaction.setTransactionCategory(transaction.getTransactionCategory().substring(3));
-                transaction.setAmount(mapOfNameAndAmt.get(transaction.getTransactionCategory()));
-                transaction.setVatRate(mapOfNameAndVat.get(transaction.getTransactionCategory()));
-           // processedTransaction.add(transaction);
-            }
-            if(processedOtherTrans.containsKey(transaction.getTransactionCategory())) {
-                //processedTransaction.add(transaction);
+            Transaction newTransaction = new Transaction();
+            if(mapOfNameAndAmt.containsKey(transactionName)) {
+                newTransaction.setTransactionCategory(transactionName.substring(3));
+                newTransaction.setAmount(mapOfNameAndAmt.get(transactionName));
+                newTransaction.setVatRate(mapOfNameAndVat.get(transactionName));
+           processedTransaction.add(newTransaction);
             }
         }
 
-       // processedTransaction.addAll(processedOtherTrans);
+       processedTransaction.addAll(processedOtherTrans.values());
         request.getStatement().getTransactionGroup().setTransaction(processedTransaction);
+        }
+        } catch (Exception e) {
+            logger.error("Exception in Transaction Summary preprocessor",e);
+            throw new PreprocessorException(e);
         }
     }
 

@@ -620,6 +620,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
     private Nettleie createE2BEntry(Attachment pdfAttachment) {
         logger.debug("createE2BEntry " + pdfAttachment.getFAKTURA().getMAALEPUNKT());
         Nettleie nettleie = new Nettleie();
+        nettleie.setFakturanr(pdfAttachment.getFAKTURA().getFAKTURANR());
         no.fjordkraft.im.if320.models.Invoice invoice = pdfAttachment.getFAKTURA().getVedlegge2BObj().getInvoice();
         nettleie.setReferenceNumber(String.valueOf(invoice.getInvoiceHeader().getInvoiceNumber()));
         nettleie.setFreeText(invoice.getInvoiceHeader().getEnergyHeader().getMeterLocation());
