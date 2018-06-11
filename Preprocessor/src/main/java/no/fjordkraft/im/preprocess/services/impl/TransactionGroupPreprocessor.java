@@ -77,10 +77,10 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                             float vat =invoiceLine120.getVatRate();
                                             if(mapOfVatSumOfGross.containsKey(vat))  {
                                                          float Net = mapOfVatSumOfGross.get(vat);
-                                                        Net+=invoiceLine120.getNet()*IMConstants.NEGATIVE;
+                                                        Net+=invoiceLine120.getNet();
                                                         mapOfVatSumOfGross.put(vat,Net);
                                             }   else {
-                                                       mapOfVatSumOfGross.put(vat,invoiceLine120.getNet()*IMConstants.NEGATIVE);
+                                                       mapOfVatSumOfGross.put(vat,invoiceLine120.getNet());
                                             }
                                         }
                                         attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setMapOfVatSumOfGross(mapOfVatSumOfGross);

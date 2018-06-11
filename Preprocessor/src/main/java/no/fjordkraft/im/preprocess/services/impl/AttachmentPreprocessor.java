@@ -652,11 +652,11 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             if(mapOfVatSumOfGross.containsKey(baseItemDetails.getVatRate()))
             {
                 float lineExtensionAmt = mapOfVatSumOfGross.get(baseItemDetails.getVatRate());
-                lineExtensionAmt += baseItemDetails.getLineExtensionAmount()*IMConstants.NEGATIVE;
+                lineExtensionAmt += baseItemDetails.getLineExtensionAmount();
                 mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),lineExtensionAmt);
             } else {
 
-                mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),baseItemDetails.getLineExtensionAmount()*IMConstants.NEGATIVE);
+                mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),baseItemDetails.getLineExtensionAmount());
             }
         }
 
