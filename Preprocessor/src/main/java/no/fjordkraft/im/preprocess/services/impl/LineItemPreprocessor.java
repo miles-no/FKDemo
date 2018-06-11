@@ -25,13 +25,16 @@ public class LineItemPreprocessor extends BasePreprocessor {
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
         no.fjordkraft.im.if320.models.TransactionGroup transactionGroup = request.getStatement().getTransactionGroup();
         LineItems lineItems = request.getStatement().getLineItems();
+        boolean hasLineItems = false;
         if(null != lineItems ) {
             List<LineItem> lineItemList = lineItems.getLineItem();
             if(null != lineItemList) {
                 if(null == transactionGroup) {
                     transactionGroup = new TransactionGroup();
                 }
+
                 for(LineItem lineItem : lineItemList) {
+                    hasLineItems = true;
                     Transaction transaction = new Transaction();
                     transaction.setAmount(lineItem.getAmount()*(-1));
                     transaction.setAmountWithVat(lineItem.getAmountWithVat()*(-1));
@@ -44,6 +47,7 @@ public class LineItemPreprocessor extends BasePreprocessor {
                     transactionGroup.getTransaction().add(transaction);
                     transactionGroup.setTotalTransactions(transactionGroup.getTotalTransactions() + 1);
                 }
+                request.getStatement().setHasLineItems(hasLineItems);
                 request.getStatement().setTransactionGroup(transactionGroup);
             }
         }

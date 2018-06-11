@@ -157,7 +157,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "blanketNumber",
     "checkSum",
     "isOneMeter",
-    "statementPeriod"
+    "statementPeriod",
+    "hasLineItems"
 })
 @XmlRootElement(name = "Statement")
 public class Statement {
@@ -298,6 +299,8 @@ public class Statement {
     protected boolean isOneMeter = false;
     @XmlElement(name="StatementPeriod")
     protected String statementPeriod;
+    @XmlElement(name="HasLineItems")
+    protected boolean hasLineItems = false;
 
     /**
      * Gets the value of the customerReference property.
@@ -1561,5 +1564,13 @@ public class Statement {
 
     public void setStatementPeriod(String statementPeriod) {
         this.statementPeriod = statementPeriod;
+    }
+
+    public boolean isHasLineItems() {
+        return hasLineItems;
+    }
+
+    public void setHasLineItems(boolean hasLineItems) {
+        this.hasLineItems = hasLineItems;
     }
 }
