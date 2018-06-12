@@ -254,6 +254,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     }
                     else {
                         sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getToBePaidNet();
+                        if(0 == attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getToBePaidNet()) {
+                            sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getNetPrintet();
+                        }
                     }
                 }
 

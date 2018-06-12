@@ -84,7 +84,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                     {
                                         logger.debug("Attachment's vat is matching with transaction Vat rate ");
                                         transaction.setVatRate(transVat);
-                                        if(Math.round(vatAndAmtOfLineItem.get(transVat)) == Math.round(transaction.getAmount()))
+                                        if(Math.round(vatAndAmtOfLineItem.get(transVat)) == Math.round(transaction.getAmount()*IMConstants.NEGATIVE))
                                         {
                                             if(!vatVsListOfTransactions.containsKey(transVat))
                                             {
@@ -111,6 +111,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null &&
                                    transaction.getReference().equals(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getFakturanr()))
                                 {
+                                    transaction.setTransactionName("Nettleie fra " +  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getGridName());
                                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().setTransactionName(transaction.getTransactionCategory().substring(3));
                                     float transVat = Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
                                     logger.debug("Transaction's vat Rate  " + transVat);
@@ -118,7 +119,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                     if(!vatAndAmtOfLineItem.isEmpty() && vatAndAmtOfLineItem.containsKey(transVat) && vatAndAmtOfLineItem.size()==1)
                                     {
                                         transaction.setVatRate(transVat);
-                                        if(Math.round(vatAndAmtOfLineItem.get(transVat))== Math.round(transaction.getAmount()))
+                                        if(Math.round(vatAndAmtOfLineItem.get(transVat))== Math.round(transaction.getAmount()*IMConstants.NEGATIVE))
                                         {
                                             if(!vatVsListOfTransactions.containsKey(transVat))
                                             {
