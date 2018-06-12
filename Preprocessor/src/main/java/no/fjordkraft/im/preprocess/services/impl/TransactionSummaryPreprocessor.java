@@ -459,6 +459,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
         request.getStatement().getTransactionGroup().setTransaction(processedTransaction);
         }
         } catch (Exception e) {
+            e.printStackTrace();
             logger.error("Exception in Transaction Summary preprocessor",e);
             throw new PreprocessorException(e);
         }

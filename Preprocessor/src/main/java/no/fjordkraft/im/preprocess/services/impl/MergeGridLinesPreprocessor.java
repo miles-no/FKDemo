@@ -57,56 +57,50 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
                 attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderInfo110()!=null &&
                 attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderInfo110().getLDC1()!=null)
                     gridName = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderInfo110().getLDC1();
-             if((gridName ==null ||(gridName!=null && gridName.isEmpty()))&& nettleie.getGridName()!=null)
+            if(null!=nettleie) {
+                if ((gridName == null || (gridName != null && gridName.isEmpty())) && nettleie.getGridName() != null)
                     gridName = nettleie.getGridName().trim();
-            attachment.getFAKTURA().setGrid(getGridConfigInfo(gridName,request.getEntity().getId()));
-          if(nettleie!=null && nettleie.getGridName()!=null && gridName!=null && gridName.toUpperCase().contains(nettleie.getGridName().trim().toUpperCase()))
-          {
-              List<GridGroup> listOfGridGroups = gridGroupService.getGridGroupByGridConfigName(gridName.toUpperCase());
-              Map<String,List<String>> groupVsGridlines = new HashMap<>();
-              for(GridGroup gridGroup :listOfGridGroups )
-              {
-                    logger.debug("Found group of grids " + listOfGridGroups.size() + " for Grid Name " + gridName);
-                    List<String> gridLineNames = new ArrayList<String>();
-                    for(GroupGridLine groupGridLine: gridGroup.getGroupGridLines() )
-                    {
-                        GridLine gridLine = groupGridLine.getGridLine();
-                        gridLineNames.add(gridLine.getGridLineName());
-                    }
-                    groupVsGridlines.put(gridGroup.getGridGroupName(),gridLineNames);
-                }
-                List<BaseItemDetails> newBaseItemDetails = new ArrayList<BaseItemDetails>();
-                for(String mergeGridName:groupVsGridlines.keySet())
-                {
-                   List<BaseItemDetails> mergedLineItems = new ArrayList<BaseItemDetails>();
-                   List<String> toMergeLineItems = groupVsGridlines.get(mergeGridName);
-                    for(BaseItemDetails itemDetail : nettleie.getBaseItemDetails())
-                    {
-                        if(toMergeLineItems!=null && !toMergeLineItems.isEmpty() && toMergeLineItems.contains(itemDetail.getDescription().trim()))
-                        {
-                            String message = "Merging grid line "+itemDetail.getDescription().trim()+" into new grid name " + mergeGridName;
-                            auditLogService.saveAuditLog(request.getEntity().getId(),StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.INFO);
-                            logger.debug("Merging item details for " + itemDetail.getDescription() + " into grid name " + mergeGridName );
-                            itemDetail.setDescription(mergeGridName);
-                          if(mergedLineItems.isEmpty())
-                              mergedLineItems.add(itemDetail);
-                          else
-                          {
-                               for(BaseItemDetails mergeLineItem :mergedLineItems)
-                               {
-                                   mergeLineItem.setUnitPriceGross(mergeLineItem.getUnitPriceGross()+itemDetail.getUnitPriceGross());
-                                   mergeLineItem.setLineItemGrossAmount(mergeLineItem.getLineItemGrossAmount()+itemDetail.getLineItemGrossAmount());
-                               }
-                          }
+                attachment.getFAKTURA().setGrid(getGridConfigInfo(gridName, request.getEntity().getId()));
+                if (nettleie != null && nettleie.getGridName() != null && gridName != null && gridName.toUpperCase().contains(nettleie.getGridName().trim().toUpperCase())) {
+                    List<GridGroup> listOfGridGroups = gridGroupService.getGridGroupByGridConfigName(gridName.toUpperCase());
+                    Map<String, List<String>> groupVsGridlines = new HashMap<>();
+                    for (GridGroup gridGroup : listOfGridGroups) {
+                        logger.debug("Found group of grids " + listOfGridGroups.size() + " for Grid Name " + gridName);
+                        List<String> gridLineNames = new ArrayList<String>();
+                        for (GroupGridLine groupGridLine : gridGroup.getGroupGridLines()) {
+                            GridLine gridLine = groupGridLine.getGridLine();
+                            gridLineNames.add(gridLine.getGridLineName());
                         }
-                        else
-                            newBaseItemDetails.add(itemDetail);
+                        groupVsGridlines.put(gridGroup.getGridGroupName(), gridLineNames);
                     }
-                    newBaseItemDetails.addAll(mergedLineItems);
-                    nettleie.setBaseItemDetails(newBaseItemDetails);
+                    List<BaseItemDetails> newBaseItemDetails = new ArrayList<BaseItemDetails>();
+                    for (String mergeGridName : groupVsGridlines.keySet()) {
+                        List<BaseItemDetails> mergedLineItems = new ArrayList<BaseItemDetails>();
+                        List<String> toMergeLineItems = groupVsGridlines.get(mergeGridName);
+                        for (BaseItemDetails itemDetail : nettleie.getBaseItemDetails()) {
+                            if (toMergeLineItems != null && !toMergeLineItems.isEmpty() && toMergeLineItems.contains(itemDetail.getDescription().trim())) {
+                                String message = "Merging grid line " + itemDetail.getDescription().trim() + " into new grid name " + mergeGridName;
+                                auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), message, IMConstants.INFO);
+                                logger.debug("Merging item details for " + itemDetail.getDescription() + " into grid name " + mergeGridName);
+                                itemDetail.setDescription(mergeGridName);
+                                if (mergedLineItems.isEmpty())
+                                    mergedLineItems.add(itemDetail);
+                                else {
+                                    for (BaseItemDetails mergeLineItem : mergedLineItems) {
+                                        mergeLineItem.setUnitPriceGross(mergeLineItem.getUnitPriceGross() + itemDetail.getUnitPriceGross());
+                                        mergeLineItem.setLineItemGrossAmount(mergeLineItem.getLineItemGrossAmount() + itemDetail.getLineItemGrossAmount());
+                                    }
+                                }
+                            } else
+                                newBaseItemDetails.add(itemDetail);
+                        }
+                        newBaseItemDetails.addAll(mergedLineItems);
+                        nettleie.setBaseItemDetails(newBaseItemDetails);
+                    }
                 }
             }
         }
+
     }
 
     private Grid getGridConfigInfo(String ldc1, Long id) {
