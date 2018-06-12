@@ -123,6 +123,9 @@ public class Transaction {
     @XmlElement(name = "VatRate")
     protected float vatRate;
 
+    @XmlTransient
+    private String transactionName;
+
     /**
      * Gets the value of the transactionId property.
      * 
@@ -473,5 +476,13 @@ public class Transaction {
 
     public void setVatRate(float vatRate) {
         this.vatRate = vatRate;
+    }
+
+    public String getTransactionName() {
+        return transactionName;
+    }
+
+    public void setTransactionName(String transactionName) {
+        this.transactionName = transactionName;
     }
 }
