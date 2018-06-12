@@ -77,13 +77,13 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                 if (transaction.getReference().equals(attachment.getFAKTURA().getFAKTURANR()))
                                 {
                                     attachment.setTransactionName(transaction.getTransactionCategory().substring(3));
-                                    float transVat = Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
+                                    float transVat =  Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
                                     logger.debug("Transaction's vat Rate  " + transVat);
                                     Map<Float,Float> vatAndAmtOfLineItem = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getMapOfVatSumOfGross();
                                     if(!vatAndAmtOfLineItem.isEmpty() && vatAndAmtOfLineItem.containsKey(transVat) && vatAndAmtOfLineItem.size()==1)
                                     {
                                         logger.debug("Attachment's vat is matching with transaction Vat rate ");
-                                        transaction.setVatRate(transVat);
+                                        transaction.setVatRate(String.valueOf(transVat));
                                         if(Math.round(vatAndAmtOfLineItem.get(transVat)) == Math.round(transaction.getAmount()*IMConstants.NEGATIVE))
                                         {
                                             if(!vatVsListOfTransactions.containsKey(transVat))
@@ -118,7 +118,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                     Map<Float,Float> vatAndAmtOfLineItem = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getMapOfVatSumOfGross();
                                     if(!vatAndAmtOfLineItem.isEmpty() && vatAndAmtOfLineItem.containsKey(transVat) && vatAndAmtOfLineItem.size()==1)
                                     {
-                                        transaction.setVatRate(transVat);
+                                        transaction.setVatRate(String.valueOf(transVat));
                                         if(Math.round(vatAndAmtOfLineItem.get(transVat))== Math.round(transaction.getAmount()*IMConstants.NEGATIVE))
                                         {
                                             if(!vatVsListOfTransactions.containsKey(transVat))
@@ -134,7 +134,26 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                             vatVsListOfTransactions.put(transVat,listOfTransactions);
                                             logger.debug("Adding Transaction"+ transaction.getFreeText() +" into vat Vs ListOfTransactions Map with Vat " + transVat);
                                         }
+                                    } else {
+                                        if(vatVsListOfTransactions.containsKey(null) && !vatVsListOfTransactions.get(null).isEmpty())  {
+                                            listOfTransactions =  vatVsListOfTransactions.get(null);
+                                            listOfTransactions.add(transaction);
+                                            vatVsListOfTransactions.put(null,listOfTransactions);
+                                        } else {
+                                           listOfTransactions = new ArrayList<Transaction>();
+                                            listOfTransactions.add(transaction);
+                                        vatVsListOfTransactions.put(null,listOfTransactions);
+                                        }
                                     }
+                                }else {
+                                    float transVat = Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
+                                    if(vatVsListOfTransactions.containsKey(transVat)) {
+                                        listOfTransactions = vatVsListOfTransactions.get(transVat);
+                                    } else {
+                                        listOfTransactions = new ArrayList<Transaction>();
+                                    }
+                                    listOfTransactions.add(transaction);
+                                    vatVsListOfTransactions.put(transVat,listOfTransactions);
                                 }
                             }
                         }
@@ -155,7 +174,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                 logger.debug("Adding Transaction"+ transaction.getFreeText() +" into vat Vs ListOfTransactions Map with Vat " + vatRate);
                             }
                             int vatRate = Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
-                            transaction.setVatRate(vatRate);
+                            transaction.setVatRate(String.valueOf(vatRate));
                             listOfOtherTrans.add(transaction);
                             logger.debug("Adding Transaction"+ transaction.getFreeText() +" as other transaction ");
                         }
@@ -172,7 +191,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                     list.add(transaction);
                     vatVsListOfTransactions.put(vatRate,list);
                     logger.debug("Adding Transaction"+ transaction.getFreeText() +" into vat Vs ListOfTransactions Map with Vat " + vatRate);
-                    transaction.setVatRate(vatRate);
+                    transaction.setVatRate(String.valueOf(vatRate));
                     listOfOtherTrans.add(transaction);
                     logger.debug("Adding Transaction"+ transaction.getFreeText() +" as other transaction ");
                 }
@@ -180,6 +199,33 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
             }
         }
 
+        //Code to add lineitems in the transactions
+       List<LineItem> lineItems =   request.getStatement().getLineItems().getLineItem();
+        if(lineItems!=null && lineItems.size()>0) {
+            for(LineItem lineItem : lineItems) {
+                float transVat =  Math.round(lineItem.getVatAmount()/lineItem.getAmount() *100);
+
+                Transaction transaction = new Transaction();
+                transaction.setAmount(lineItem.getAmount());
+                transaction.setAmountWithVat(lineItem.getAmountWithVat());
+                transaction.setVatAmount(lineItem.getVatAmount());
+                transaction.setVatRate(String.valueOf(transVat));
+                if(lineItem.getLineItemCategory().indexOf(";") != -1) {
+                    transaction.setTransactionCategory(lineItem.getLineItemCategory());
+                } else {
+                    transaction.setTransactionCategory(lineItem.getLineItemCategory());
+                }
+
+                List<Transaction> listOfTrans = new ArrayList<Transaction>();
+                if( vatVsListOfTransactions.containsKey(transVat))  {
+                     listOfTrans = vatVsListOfTransactions.get(transVat);
+                }
+                listOfTrans.add(transaction);
+                vatVsListOfTransactions.put(transVat,listOfTrans);
+                listOfOtherTrans.add(transaction);
+
+            }
+        }
         boolean isStromStartDate = true;
         boolean isNettStartDate = true;
         String startMonthYear = "";
@@ -312,11 +358,10 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
         List<TransactionSummary> listOfTranSummary = new ArrayList<TransactionSummary>();
         Map<String,Float> mapOfNameAndAmt = new HashMap<String,Float>();
         Map<String,Float>  mapOfNameAndVat = new HashMap<String,Float>();
-        Map<String,Transaction> processedOtherTrans = new HashMap<String,Transaction>();
+        List<Transaction> processedOtherTrans = new ArrayList<Transaction>();
 
-        for(float vatAmount:vatVsListOfTransactions.keySet())
+        for(Float vatAmount:vatVsListOfTransactions.keySet())
         {
-            TransactionSummary transactionSummary = new TransactionSummary();
             float sumOfKraftTrans = 0.0f;
             float sumOfNettTrans = 0.0f;
             float sumOfOtherTrans = 0.0f;
@@ -351,6 +396,13 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                             if(mapOfNameAndAmt.containsKey(nettName))
                             {
                                  sumOfNettTrans = mapOfNameAndAmt.get(nettName);
+                                if(mapOfNameAndVat.containsKey(nettName)) {
+                                   Float vatForNett = mapOfNameAndVat.get(nettName);
+                                    if(vatAmount==null) {
+                                        mapOfNameAndVat.put(nettName,vatAmount);
+                                        mapOfNameAndAmt.put(nettName,sumOfNettTrans+tran.getAmount());
+                                    }
+                                }
                             } else
                             {
                                 sumOfNettTrans = 0.0f;
@@ -363,11 +415,13 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                         else
                         {
                             tran.setAmount(tran.getAmount()*IMConstants.NEGATIVE);
-                            processedOtherTrans.put(tran.getTransactionCategory(),tran);
+                            processedOtherTrans.add(tran);
                             sumOfOtherTrans+=tran.getAmount();
                         }
                     }
                 }
+                if(vatAmount!=null)   {
+                TransactionSummary transactionSummary = new TransactionSummary();
                 transactionSummary.setMvaValue(vatAmount);
                 if(vatAmount!=0.0)
                 {
@@ -376,6 +430,11 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 transactionSummary.setSumOfBelop(sumOfKrafts+sumOfNetts+sumOfOtherTrans);
                 sumOfTransAmount +=transactionSummary.getSumOfBelop();
                 listOfTranSummary.add(transactionSummary);
+                } else
+                {
+                    sumOfTransAmount+=sumOfKrafts+sumOfNetts+sumOfOtherTrans;
+                }
+
             }
         }
         request.getStatement().getTransactionGroup().setTransactionSummary(listOfTranSummary);
@@ -387,12 +446,16 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
             if(mapOfNameAndAmt.containsKey(transactionName)) {
                 newTransaction.setTransactionCategory(transactionName.substring(3));
                 newTransaction.setAmount(mapOfNameAndAmt.get(transactionName));
-                newTransaction.setVatRate(mapOfNameAndVat.get(transactionName));
+                if(mapOfNameAndVat.get(transactionName) == null) {
+                    newTransaction.setVatRate("");
+                }else {
+                newTransaction.setVatRate(String.valueOf(mapOfNameAndVat.get(transactionName)));
+                }
            processedTransaction.add(newTransaction);
             }
         }
 
-       processedTransaction.addAll(processedOtherTrans.values());
+       processedTransaction.addAll(processedOtherTrans);
         request.getStatement().getTransactionGroup().setTransaction(processedTransaction);
         }
         } catch (Exception e) {
