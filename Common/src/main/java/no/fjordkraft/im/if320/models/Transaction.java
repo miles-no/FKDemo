@@ -121,7 +121,7 @@ public class Transaction {
     protected String leveringAddress;
 
     @XmlElement(name = "VatRate")
-    protected float vatRate;
+    protected String vatRate;
 
     @XmlTransient
     private String transactionName;
@@ -470,11 +470,11 @@ public class Transaction {
         this.leveringAddress = leveringAddress;
     }
 
-    public float getVatRate() {
+    public String getVatRate() {
         return vatRate;
     }
 
-    public void setVatRate(float vatRate) {
+    public void setVatRate(String vatRate) {
         this.vatRate = vatRate;
     }
 

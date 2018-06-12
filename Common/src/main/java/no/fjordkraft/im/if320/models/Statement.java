@@ -304,7 +304,7 @@ public class Statement {
     @XmlElement(name="HasLineItems")
     protected boolean hasLineItems = false;
     @XmlElement(name = "Dummies")
-    protected List<Dummy> dummies;
+    protected Dummies dummies;
     /**
      * Gets the value of the customerReference property.
      * 
@@ -1577,11 +1577,11 @@ public class Statement {
         this.hasLineItems = hasLineItems;
     }
 
-    public List<Dummy> getDummies() {
+    public Dummies getDummies() {
         return dummies;
     }
 
-    public void setDummies(List<Dummy> dummies) {
+    public void setDummies(Dummies dummies) {
         this.dummies = dummies;
     }
 }

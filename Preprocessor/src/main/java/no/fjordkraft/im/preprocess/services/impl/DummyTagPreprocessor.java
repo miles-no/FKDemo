@@ -1,5 +1,6 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
+import no.fjordkraft.im.if320.models.Dummies;
 import no.fjordkraft.im.if320.models.Dummy;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
@@ -19,7 +20,7 @@ import java.util.List;
 public class DummyTagPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(DummyTagPreprocessor.class);
-    int totalDummyTag = 13;
+    int totalDummyTag = 9;
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
@@ -44,7 +45,9 @@ public class DummyTagPreprocessor extends BasePreprocessor {
             logger.debug("Adding dummy ");
             dummyList.add(d);
         }
-        stmt.setDummies(dummyList);
+        Dummies dummies = new Dummies();
+        dummies.setDummy(dummyList);
+        stmt.setDummies(dummies);
     }
 }
 
