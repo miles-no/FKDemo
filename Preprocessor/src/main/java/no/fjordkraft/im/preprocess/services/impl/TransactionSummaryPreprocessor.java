@@ -46,7 +46,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                     if(attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getStartMonthAndYear()!=null)   {
                         nettlieStartMonth = attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getStartMonthAndYear();
                     }
-                    if(nettlieStartMonth!=null && attachments.get(0).getStartMonthYear().equals(nettlieStartMonth))  {
+                    if(nettlieStartMonth != null && attachments.get(0) != null && attachments.get(0).getStartMonthYear() != null && attachments.get(0).getStartMonthYear().equals(nettlieStartMonth))  {
                         request.getStatement().setStatementPeriod("Strøm og nettleie "+attachments.get(0).getStartMonthYear());
                     }
                     else
