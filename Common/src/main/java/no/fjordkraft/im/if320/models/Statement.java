@@ -160,7 +160,7 @@ import java.util.List;
     "isOneMeter",
     "statementPeriod",
     "hasLineItems",
-    "dummy"
+    "dummies"
 })
 @XmlRootElement(name = "Statement")
 public class Statement {
@@ -304,7 +304,7 @@ public class Statement {
     @XmlElement(name="HasLineItems")
     protected boolean hasLineItems = false;
     @XmlElement(name = "Dummies")
-    protected List<Dummy> dummy;
+    protected List<Dummy> dummies;
     /**
      * Gets the value of the customerReference property.
      * 
@@ -1577,11 +1577,11 @@ public class Statement {
         this.hasLineItems = hasLineItems;
     }
 
-    public List<Dummy> getDummy() {
-        return dummy;
+    public List<Dummy> getDummies() {
+        return dummies;
     }
 
-    public void setDummy(List<Dummy> dummy) {
-        this.dummy = dummy;
+    public void setDummies(List<Dummy> dummies) {
+        this.dummies = dummies;
     }
 }
