@@ -10,6 +10,7 @@ package no.fjordkraft.im.if320.models;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.List;
 
 
 /**
@@ -158,7 +159,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "checkSum",
     "isOneMeter",
     "statementPeriod",
-    "hasLineItems"
+    "hasLineItems",
+    "dummy"
 })
 @XmlRootElement(name = "Statement")
 public class Statement {
@@ -301,7 +303,8 @@ public class Statement {
     protected String statementPeriod;
     @XmlElement(name="HasLineItems")
     protected boolean hasLineItems = false;
-
+    @XmlElement(name = "Dummies")
+    protected List<Dummy> dummy;
     /**
      * Gets the value of the customerReference property.
      * 
@@ -1572,5 +1575,13 @@ public class Statement {
 
     public void setHasLineItems(boolean hasLineItems) {
         this.hasLineItems = hasLineItems;
+    }
+
+    public List<Dummy> getDummy() {
+        return dummy;
+    }
+
+    public void setDummy(List<Dummy> dummy) {
+        this.dummy = dummy;
     }
 }
