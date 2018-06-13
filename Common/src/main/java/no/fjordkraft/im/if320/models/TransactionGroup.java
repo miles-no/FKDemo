@@ -12,7 +12,8 @@ import java.util.List;
         "transaction",
         "totalTransactions",
         "transactionSummary",
-        "sumOfTransactions"
+        "sumOfTransactions",
+        "labelKraftNettSummary"
 })
 @XmlRootElement(name = "TransactionGroup")
 public class TransactionGroup {
@@ -28,6 +29,9 @@ public class TransactionGroup {
 
     @XmlElement(name = "SumOfTransactions")
     protected float sumOfTransactions;
+
+    @XmlElement(name = "LabelKraftNettSummary")
+    protected String labelKraftNettSummary;
 
     public List<Transaction> getTransaction() {
         if(null == transaction) {
@@ -62,5 +66,13 @@ public class TransactionGroup {
 
     public void setSumOfTransactions(float sumOfTransactions) {
         this.sumOfTransactions = sumOfTransactions;
+    }
+
+    public String getLabelKraftNettSummary() {
+        return labelKraftNettSummary;
+    }
+
+    public void setLabelKraftNettSummary(String labelKraftNettSummary) {
+        this.labelKraftNettSummary = labelKraftNettSummary;
     }
 }
