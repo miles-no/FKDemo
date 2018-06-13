@@ -634,6 +634,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             float sumOfVatAmount = 0.0f;
         XMLGregorianCalendar startDate = null;
         for (BaseItemDetails baseItemDetails : baseItemDetailsList) {
+            if(!"Beløpet overføres din Kraftleverandør".equals(baseItemDetails.getDescription().trim()))  {
             List<Ref> refList = baseItemDetails.getRef();
             baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
             baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
@@ -648,11 +649,10 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(),baseItemDetails.getEndDate()));
             }
 
-            baseItemDetails.setVatRate(Float.valueOf(baseItemDetails.getVatInfo().getVatPercent()));
+            baseItemDetails.setVatRate(Float.valueOf(Math.round(baseItemDetails.getVatInfo().getVatAmount()/baseItemDetails.getLineItemAmount()*100)));
             baseItemDetails.setLineExtensionAmount( Float.valueOf(baseItemDetails.getLineItemAmount()));
             baseItemDetails.getVatInfo().setVatAmount(invoice.getInvoiceSummary().getInvoiceTotals().getVatTotalsAmount());
             sumOfVatAmount+=baseItemDetails.getVatInfo().getVatAmount();
-
             if(mapOfVatSumOfGross.containsKey(baseItemDetails.getVatRate()))
             {
                 float lineExtensionAmt = mapOfVatSumOfGross.get(baseItemDetails.getVatRate());
@@ -671,7 +671,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 }
             }
         }
-
+        }
         nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
         nettleie.setBaseItemDetails(invoice.getInvoiceDetails().getBaseItemDetails());
         invoice.getInvoiceSummary().getInvoiceTotals().setOrigGrossAmount(invoice.getInvoiceSummary().getInvoiceTotals().getGrossAmount());
