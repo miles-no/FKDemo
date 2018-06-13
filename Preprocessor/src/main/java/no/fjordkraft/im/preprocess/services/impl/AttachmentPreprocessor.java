@@ -391,7 +391,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 }
 
                 baseItemDetails.setVatRate(Float.valueOf(vat.toString()));
-                baseItemDetails.setLineExtensionAmount(Float.valueOf(creditNoteLineType.getLineExtensionAmount().getValue().toString()));
+                baseItemDetails.setLineExtensionAmount(Float.valueOf(creditNoteLineType.getLineExtensionAmount().getValue().toString())*IMConstants.NEGATIVE);
                 if(baseItemDetails.getVatInfo()==null) {
                     VatInfo vatInfo = new VatInfo();
                     if(creditNoteLineType.getTaxTotals()!=null && creditNoteLineType.getTaxTotals().size()>0) {
