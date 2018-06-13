@@ -223,7 +223,9 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 } else {
                     transaction.setTransactionCategory(lineItem.getLineItemCategory());
                 }
-
+                 if(lineItem.getClosedClaimStatementSequenceNumber()!=0) {
+                     transaction.setTransactionCategory(lineItem.getLineItemCategory()+ " fakturanr. "+request.getStatement().getAccountNumber()+lineItem.getClosedClaimStatementSequenceNumber());
+                 }
                 List<Transaction> listOfTrans = new ArrayList<Transaction>();
                 if( vatVsListOfTransactions.containsKey(transVat))  {
                      listOfTrans = vatVsListOfTransactions.get(transVat);
