@@ -475,7 +475,13 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 }else {
                 newTransaction.setVatRate(String.valueOf(mapOfNameAndVat.get(transactionName)));
                 }
-           processedTransaction.add(newTransaction);
+             if(transactionName.contains("KR;")) {
+                 processedTransaction.add(0,newTransaction);
+             } else
+             {
+                 processedTransaction.add(newTransaction);
+             }
+
             }
         }
 
