@@ -105,12 +105,14 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                         else if(IMConstants.NETT.equals(distribution.getName()))
                         {
                             logger.debug("NETT Transaction " + transaction.getTransactionCategory());
+                            boolean isAttachmentFound = false;
                             for(Attachment attachment:attachments)
                             {
                                 if(attachment!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null &&
                                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null &&
                                    transaction.getReference().equals(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getFakturanr()))
                                 {
+                                    isAttachmentFound = true;
                                     transaction.setTransactionName("Nettleie fra " +  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getGridName());
                                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().setTransactionName(transaction.getTransactionCategory().substring(3));
                                     float transVat = Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
@@ -134,7 +136,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                             vatVsListOfTransactions.put(transVat,listOfTransactions);
                                             logger.debug("Adding Transaction"+ transaction.getFreeText() +" into vat Vs ListOfTransactions Map with Vat " + transVat);
                                         }
-                                    } else {
+                                    } else if(!vatAndAmtOfLineItem.isEmpty() && vatAndAmtOfLineItem.size()>1 ){
                                         if(vatVsListOfTransactions.containsKey(null) && !vatVsListOfTransactions.get(null).isEmpty())  {
                                             listOfTransactions =  vatVsListOfTransactions.get(null);
                                                 transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
@@ -147,7 +149,9 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                         vatVsListOfTransactions.put(null,listOfTransactions);
                                         }
                                     }
-                                }else {
+                                }
+                            }
+                            if(!isAttachmentFound) {
                                     float transVat = Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
                                     if(vatVsListOfTransactions.containsKey(transVat)) {
                                         listOfTransactions = vatVsListOfTransactions.get(transVat);
@@ -156,7 +160,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                     }
                                     listOfTransactions.add(transaction);
                                     vatVsListOfTransactions.put(transVat,listOfTransactions);
-                                }
+
                             }
                         }
                         else
@@ -405,7 +409,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                    Float vatForNett = mapOfNameAndVat.get(nettName);
                                     if(vatAmount==null) {
                                         mapOfNameAndVat.put(nettName,vatAmount);
-                                                mapOfNameAndAmt.put(nettName,sumOfNettTrans);
+                                        mapOfNameAndAmt.put(nettName,sumOfNettTrans);
                                     }
                                 }
                             } else

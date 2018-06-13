@@ -676,7 +676,10 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         nettleie.setBaseItemDetails(invoice.getInvoiceDetails().getBaseItemDetails());
         invoice.getInvoiceSummary().getInvoiceTotals().setOrigGrossAmount(invoice.getInvoiceSummary().getInvoiceTotals().getGrossAmount());
         nettleie.setInvoiceSummary(invoice.getInvoiceSummary());
-        nettleie.setSumOfNettAmount(invoice.getInvoiceSummary().getInvoiceTotals().getLineItemTotalsAmount());
+        if(invoice.getInvoiceSummary().getInvoiceTotals().getLineItemTotalsAmount()!=0.0f)
+             nettleie.setSumOfNettAmount(invoice.getInvoiceSummary().getInvoiceTotals().getLineItemTotalsAmount());
+        else
+            nettleie.setSumOfNettAmount(invoice.getInvoiceSummary().getInvoiceTotals().getNetAmount());
         nettleie.setTotalVatAmount(sumOfVatAmount);
         String monthName =  Month.of(startDate.getMonth()).getDisplayName (TextStyle.FULL, new Locale("no","NO"));
         int year =   startDate.getYear();
