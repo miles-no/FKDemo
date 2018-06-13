@@ -10,6 +10,7 @@ package no.fjordkraft.im.if320.models;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.Map;
 
 
 /**
@@ -125,6 +126,10 @@ public class Transaction {
 
     @XmlTransient
     private String transactionName;
+
+    @XmlTransient
+    private Map<Float,Float> mapOfVatVsAmount;
+
 
     /**
      * Gets the value of the transactionId property.
@@ -484,5 +489,17 @@ public class Transaction {
 
     public void setTransactionName(String transactionName) {
         this.transactionName = transactionName;
+    }
+
+    public Map<Float, Float> getMapOfVatVsAmount() {
+        return mapOfVatVsAmount;
+    }
+
+    public void setMapOfVatVsAmount(Map<Float, Float> mapOfVatVsAmount) {
+        this.mapOfVatVsAmount = mapOfVatVsAmount;
+    }
+
+    public Float getAmountBasedOnVat(Float vat) {
+        return mapOfVatVsAmount.get(vat);
     }
 }

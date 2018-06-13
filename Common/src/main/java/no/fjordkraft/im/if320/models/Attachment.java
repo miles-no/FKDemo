@@ -34,7 +34,7 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "faktura","addedToList","displayStromData","attachmentNumber","startDate","endDate","isOnlyGrid","sumOfNettStrom","sumOfOutGoingCurrentClaim","leveringsAdresse","sumOfIngoingIBtrans","transactionSummary","sumInklMVA","transactionName"
+    "faktura","addedToList","displayStromData","attachmentNumber","startDate","endDate","isOnlyGrid","sumOfNettStrom","sumOfOutGoingCurrentClaim","leveringsAdresse","sumOfIngoingIBtrans","transactionSummary","sumInklMVA","transactionName","sumOfTransactions"
 })
 @XmlRootElement(name = "Attachment")
 public class Attachment {
@@ -81,6 +81,9 @@ public class Attachment {
     protected String transactionName;
     @XmlTransient
     protected String startMonthYear;
+    @XmlElement(name="SumOfTransaction")
+    protected Float sumOfTransactions;
+
 
 
     /**
@@ -225,5 +228,13 @@ public class Attachment {
 
     public void setStartMonthYear(String startMonthYear) {
         this.startMonthYear = startMonthYear;
+    }
+
+    public Float getSumOfTransactions() {
+        return sumOfTransactions;
+    }
+
+    public void setSumOfTransactions(Float sumOfTransactions) {
+        this.sumOfTransactions = sumOfTransactions;
     }
 }

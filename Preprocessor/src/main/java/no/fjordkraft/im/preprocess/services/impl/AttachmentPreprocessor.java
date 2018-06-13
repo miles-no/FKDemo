@@ -362,6 +362,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             nettleie.setInvoiceSummary(invoiceSummary);
 
             List<CreditNoteLineType> creditNoteLineTypeList = creditNote.getCreditNoteLines();
+            Map<Float,Float> mapOfVatSumOfGross = new HashMap<Float,Float>();
             Float sumGrossAmount = 0.0f;
             float sumOfVatAmount = 0.0f;
             XMLGregorianCalendar startDate = null;
@@ -381,7 +382,6 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
                 List<TaxCategoryType> categoryTypeList = creditNoteLineType.getItem().getClassifiedTaxCategories();
                 BigDecimal vat = null;
-                Map<Float,Float> mapOfVatSumOfGross = new HashMap<Float,Float>();
                 for(TaxCategoryType taxCategoryType: categoryTypeList) {
                     logger.debug("taxScheme " + taxCategoryType.getTaxScheme().getID().getValue()+ " vat "+ taxCategoryType.getPercent().getValue());
                     if("VAT".equals(taxCategoryType.getTaxScheme().getID().getValue())) {
@@ -403,11 +403,11 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 if(mapOfVatSumOfGross.containsKey(baseItemDetails.getVatRate()))
                 {
                     float vatAmount = mapOfVatSumOfGross.get(baseItemDetails.getVatRate());
-                    vatAmount += baseItemDetails.getLineExtensionAmount()*IMConstants.NEGATIVE; //baseItemDetails.getVatInfo().getVatAmount();
+                    vatAmount += baseItemDetails.getLineExtensionAmount(); //baseItemDetails.getVatInfo().getVatAmount();
                     mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),vatAmount);
                 } else {
 
-                    mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),baseItemDetails.getLineExtensionAmount()*IMConstants.NEGATIVE);
+                    mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),baseItemDetails.getLineExtensionAmount());
                 }
                 if(null != vat) {
                     baseItemDetails.setUnitPriceGross((baseItemDetails.getUnitPrice() + ((vat.floatValue()/100)*baseItemDetails.getUnitPrice()))* IMConstants.NEGATIVE);
@@ -631,6 +631,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         nettleie.setGridName(invoice.getInvoiceHeader().getEnergyHeader().getLdc1());
         List<BaseItemDetails> baseItemDetailsList = invoice.getInvoiceDetails().getBaseItemDetails();
             Map<Float,Float> mapOfVatSumOfGross = new HashMap<Float,Float>();
+            float sumOfVatAmount = 0.0f;
+        XMLGregorianCalendar startDate = null;
         for (BaseItemDetails baseItemDetails : baseItemDetailsList) {
             List<Ref> refList = baseItemDetails.getRef();
             baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
@@ -649,6 +651,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             baseItemDetails.setVatRate(Float.valueOf(baseItemDetails.getVatInfo().getVatPercent()));
             baseItemDetails.setLineExtensionAmount( Float.valueOf(baseItemDetails.getLineItemAmount()));
             baseItemDetails.getVatInfo().setVatAmount(invoice.getInvoiceSummary().getInvoiceTotals().getVatTotalsAmount());
+            sumOfVatAmount+=baseItemDetails.getVatInfo().getVatAmount();
+
             if(mapOfVatSumOfGross.containsKey(baseItemDetails.getVatRate()))
             {
                 float lineExtensionAmt = mapOfVatSumOfGross.get(baseItemDetails.getVatRate());
@@ -658,6 +662,14 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
                 mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),baseItemDetails.getLineExtensionAmount());
             }
+            if (null == startDate && baseItemDetails.getStartDate()!=null ) {
+                startDate = baseItemDetails.getStartDate();
+            } else {
+                XMLGregorianCalendar startDate2 = baseItemDetails.getStartDate();
+                if (null != startDate2 && startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
+                    startDate = startDate2;
+                }
+            }
         }
 
         nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
@@ -665,6 +677,10 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         invoice.getInvoiceSummary().getInvoiceTotals().setOrigGrossAmount(invoice.getInvoiceSummary().getInvoiceTotals().getGrossAmount());
         nettleie.setInvoiceSummary(invoice.getInvoiceSummary());
         nettleie.setSumOfNettAmount(invoice.getInvoiceSummary().getInvoiceTotals().getLineItemTotalsAmount());
+        nettleie.setTotalVatAmount(sumOfVatAmount);
+        String monthName =  Month.of(startDate.getMonth()).getDisplayName (TextStyle.FULL, new Locale("no","NO"));
+        int year =   startDate.getYear();
+        nettleie.setStartMonthAndYear(monthName + " " + year);
         return nettleie;
     }
 

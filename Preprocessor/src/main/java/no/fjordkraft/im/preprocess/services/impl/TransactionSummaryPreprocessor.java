@@ -137,10 +137,12 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                     } else {
                                         if(vatVsListOfTransactions.containsKey(null) && !vatVsListOfTransactions.get(null).isEmpty())  {
                                             listOfTransactions =  vatVsListOfTransactions.get(null);
+                                                transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
                                             listOfTransactions.add(transaction);
                                             vatVsListOfTransactions.put(null,listOfTransactions);
                                         } else {
                                            listOfTransactions = new ArrayList<Transaction>();
+                                                transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
                                             listOfTransactions.add(transaction);
                                         vatVsListOfTransactions.put(null,listOfTransactions);
                                         }
@@ -259,6 +261,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 float sumOfNett = 0.0f;
                 List<TransactionSummary> transactionSummaryList = new ArrayList<TransactionSummary>();
                 float sumInklMVA = 0.0f;
+                        float sumExclMVA = 0.0f;
                 for(Float vat : vatSet)
                 {
                     if(stromVatAndSum.containsKey(vat))
@@ -273,6 +276,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                     attachmentSummary.setMvaValue(vat);
                     attachmentSummary.setSumOfNettStrom((sumOfStrom+sumOfNett));
                     attachmentSummary.setSumOfBelop(((sumOfStrom)+sumOfNett)*(vat/100));
+                            sumExclMVA +=sumOfNett+sumOfStrom;
                     sumInklMVA+= attachmentSummary.getSumOfNettStrom()+attachmentSummary.getSumOfBelop();
                     if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null)
                     {
@@ -282,6 +286,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 }
                 attachment.setTransactionSummary(transactionSummaryList);
                 attachment.setSumInklMVA(sumInklMVA);
+                        attachment.setSumOfTransactions(sumExclMVA);
                 if(stromStartMonthYear==null && nettStartMonthYear!=null )
                 {
                     if(nettStartMonthYear.equals(startMonthYear) || (startMonthYear==null && isNettStartDate && isStromStartDate) ||(startMonthYear!=null && startMonthYear.equals("")))
@@ -355,7 +360,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
         String stromName = null;
         String nettName = null;
         float sumOfTransAmount = 0.0f;
-        List<TransactionSummary> listOfTranSummary = new ArrayList<TransactionSummary>();
+                Map<Float,TransactionSummary> mapOfVatVsTransactionSummary = new HashMap<Float,TransactionSummary>();
         Map<String,Float> mapOfNameAndAmt = new HashMap<String,Float>();
         Map<String,Float>  mapOfNameAndVat = new HashMap<String,Float>();
         List<Transaction> processedOtherTrans = new ArrayList<Transaction>();
@@ -400,7 +405,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                    Float vatForNett = mapOfNameAndVat.get(nettName);
                                     if(vatAmount==null) {
                                         mapOfNameAndVat.put(nettName,vatAmount);
-                                        mapOfNameAndAmt.put(nettName,sumOfNettTrans+tran.getAmount());
+                                                mapOfNameAndAmt.put(nettName,sumOfNettTrans);
                                     }
                                 }
                             } else
@@ -429,15 +434,28 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 }
                 transactionSummary.setSumOfBelop(sumOfKrafts+sumOfNetts+sumOfOtherTrans);
                 sumOfTransAmount +=transactionSummary.getSumOfBelop();
-                listOfTranSummary.add(transactionSummary);
-                } else
-                {
+                            mapOfVatVsTransactionSummary.put(vatAmount, transactionSummary);
+                        } else {
                     sumOfTransAmount+=sumOfKrafts+sumOfNetts+sumOfOtherTrans;
                 }
 
             }
         }
-        request.getStatement().getTransactionGroup().setTransactionSummary(listOfTranSummary);
+
+
+                List<Transaction> listOfTrans = vatVsListOfTransactions.get(null);
+                if(listOfTrans!=null && listOfTrans.size()>0) {
+                    for(Transaction transaction: listOfTrans) {
+                        for (Float vat :transaction.getMapOfVatVsAmount().keySet()) {
+                            if(mapOfVatVsTransactionSummary.containsKey(vat)){
+                                TransactionSummary tranSummary = mapOfVatVsTransactionSummary.get(vat);
+                                tranSummary.setSumOfBelop(tranSummary.getSumOfBelop() + transaction.getAmountBasedOnVat(vat));
+                            }
+                        }
+                    }
+                }
+
+                request.getStatement().getTransactionGroup().setTransactionSummary(new ArrayList(mapOfVatVsTransactionSummary.values()));
         request.getStatement().getTransactionGroup().setSumOfTransactions(sumOfTransAmount);
         List<Transaction> processedTransaction = new ArrayList<Transaction>();
         for(String transactionName :mapOfNameAndAmt.keySet())
