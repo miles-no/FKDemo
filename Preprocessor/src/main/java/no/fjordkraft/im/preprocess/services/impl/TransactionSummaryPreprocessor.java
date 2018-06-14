@@ -488,7 +488,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 {
                     if(mapOfTransaction.containsKey(IMConstants.NETT)) {
                         newTransaction = mapOfTransaction.get(IMConstants.NETT);
-                        newTransaction.setTransactionCategory("Nettleie fra nettleie");
+                        newTransaction.setTransactionCategory("Nettleie fra netteier");
                     }   else {
                         newTransaction = new Transaction();
                         newTransaction.setTransactionCategory(transactionName.substring(3));
