@@ -41,12 +41,13 @@ public class SummaryLabelPreprocessor  extends BasePreprocessor {
                     hasNett = true;
                 }
             }
-
             if(hasNett) {
                 attachment.setLabelStromNetSummary("Sum Strøm og nettleie");
             } else {
                 attachment.setLabelStromNetSummary("Sum Strøm");
             }
+            hasNett = false;
+            hasStrom = false;
         }
 
         for(Transaction transaction : stmt.getTransactionGroup().getTransaction()){
