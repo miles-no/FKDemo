@@ -222,6 +222,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         stromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(nettleieList.get(i));
                         stromAttachment.getFAKTURA().setFAKTURANR(null);
                         stromAttachment.setDisplayStromData(false);
+                        stromAttachment.setOnlyGrid(true);
                         attachmentList.add(stromAttachment);
                     }
                 } else {
