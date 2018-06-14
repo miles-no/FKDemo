@@ -267,7 +267,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 vatSet.addAll(nettVatAndSum.keySet());
                 List<TransactionSummary> transactionSummaryList = new ArrayList<TransactionSummary>();
                 float sumInklMVA = 0.0f;
-                        float sumExclMVA = 0.0f;
+                float sumExclMVA = 0.0f;
                 for(Float vat : vatSet)
                 {
                     float sumOfStrom = 0.0f;
@@ -284,7 +284,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                     attachmentSummary.setMvaValue(vat);
                     attachmentSummary.setSumOfNettStrom((sumOfStrom+sumOfNett));
                     attachmentSummary.setSumOfBelop(((sumOfStrom)+sumOfNett)*(vat/100));
-                            sumExclMVA +=sumOfNett+sumOfStrom;
+                    sumExclMVA +=sumOfNett+sumOfStrom;
                     sumInklMVA+= attachmentSummary.getSumOfNettStrom()+attachmentSummary.getSumOfBelop();
                     if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null)
                     {
@@ -465,28 +465,47 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
 
                 request.getStatement().getTransactionGroup().setTransactionSummary(new ArrayList(mapOfVatVsTransactionSummary.values()));
         request.getStatement().getTransactionGroup().setSumOfTransactions(sumOfTransAmount);
+        Map<String,Transaction> mapOfTransaction = new HashMap<String,Transaction>();
         List<Transaction> processedTransaction = new ArrayList<Transaction>();
+        float stromAmount = 0.0f;
+        float nettAmount = 0.0f;
         for(String transactionName :mapOfNameAndAmt.keySet())
         {
-            Transaction newTransaction = new Transaction();
+            Transaction newTransaction = null;
             if(mapOfNameAndAmt.containsKey(transactionName)) {
-                newTransaction.setTransactionCategory(transactionName.substring(3));
-                newTransaction.setAmount(mapOfNameAndAmt.get(transactionName));
+                if(transactionName.contains("KR;") || transactionName.contains("KN;")) {
+                    if(mapOfTransaction.containsKey(IMConstants.KRAFT)) {
+                        newTransaction = mapOfTransaction.get(IMConstants.KRAFT);
+                    }
+                    else {
+                        newTransaction = new Transaction();
+                    }
+                    stromAmount+=mapOfNameAndAmt.get(transactionName);
+                    newTransaction.setTransactionCategory("Strøm fra Fjordkraft");
+                    newTransaction.setAmount(stromAmount);
+                    mapOfTransaction.put(IMConstants.KRAFT,newTransaction);
+                } else
+                {
+                    if(mapOfTransaction.containsKey(IMConstants.NETT)) {
+                        newTransaction = mapOfTransaction.get(IMConstants.NETT);
+                        newTransaction.setTransactionCategory("Nettleie fra nettleie");
+                    }   else {
+                        newTransaction = new Transaction();
+                        newTransaction.setTransactionCategory(transactionName.substring(3));
+                    }
+                    nettAmount+=mapOfNameAndAmt.get(transactionName);
+                    newTransaction.setAmount(nettAmount);
+                    mapOfTransaction.put(IMConstants.NETT,newTransaction);
+                }
                 if(mapOfNameAndVat.get(transactionName) == null) {
                     newTransaction.setVatRate("");
                 }else {
                 newTransaction.setVatRate(String.valueOf(mapOfNameAndVat.get(transactionName)));
                 }
-             if(transactionName.contains("KR;")) {
-                 processedTransaction.add(0,newTransaction);
-             } else
-             {
-                 processedTransaction.add(newTransaction);
-             }
-
             }
         }
 
+       processedTransaction = new ArrayList<>(mapOfTransaction.values());
        processedTransaction.addAll(processedOtherTrans);
         request.getStatement().getTransactionGroup().setTransaction(processedTransaction);
         }

@@ -445,7 +445,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 sumOfVatAmount+=baseItemDetails.getVatInfo().getVatAmount();
                 nettleie.setBaseItemDetails(baseItemDetailsList);
                 nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
-                nettleie.setSumOfNettAmount(Float.valueOf(creditNote.getLegalMonetaryTotal().getTaxExclusiveAmount().getValue().toString()));
+                nettleie.setSumOfNettAmount(Float.valueOf(creditNote.getLegalMonetaryTotal().getTaxExclusiveAmount().getValue().toString())*IMConstants.NEGATIVE);
 
                 if (null == startDate) {
                     startDate = baseItemDetails.getStartDate();
