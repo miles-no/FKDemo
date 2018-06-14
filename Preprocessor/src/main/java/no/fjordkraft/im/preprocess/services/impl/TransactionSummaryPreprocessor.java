@@ -329,7 +329,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                     }
                     else
                     {
-                        request.getStatement().setStatementPeriod("Strom og Nettlie");
+                        request.getStatement().setStatementPeriod("Strøm og nettleie");
                     }
                     isStromStartDate = true;
                     isNettStartDate = true;
@@ -346,22 +346,22 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
         {
             if(isNettStartDate && isStromStartDate && startMonthYear!=null)
             {
-                request.getStatement().setStatementPeriod("Strom og Nettlie av " + startMonthYear);
+                request.getStatement().setStatementPeriod("Strøm og nettleie " + startMonthYear);
             }
             else if((isNettStartDate || isStromStartDate) && startMonthYear !=null )
             {
                 if(isNettStartDate)
                 {
-                    request.getStatement().setStatementPeriod("Nettlie for " + startMonthYear);
+                    request.getStatement().setStatementPeriod("Nettleie for " + startMonthYear);
                 }
                 if(isStromStartDate)
                 {
-                    request.getStatement().setStatementPeriod("Strom for " + startMonthYear);
+                    request.getStatement().setStatementPeriod("Strøm for " + startMonthYear);
                 }
             }
             else
             {
-                request.getStatement().setStatementPeriod("Strom og Nettlie");
+                request.getStatement().setStatementPeriod("Strøm og nettleie ");
             }
         }
        // request.getStatement().getTransactionGroup().setTransaction(null);

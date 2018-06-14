@@ -20,7 +20,7 @@ import java.util.List;
 public class DummyTagPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(DummyTagPreprocessor.class);
-    int totalDummyTag = 9;
+    int totalDummyTag = 10;
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
