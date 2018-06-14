@@ -1,5 +1,6 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
+import com.carfey.jdk.collection.CollectionUtil;
 import no.fjordkraft.im.exceptions.PreprocessorException;
 import no.fjordkraft.im.if320.models.*;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
@@ -505,7 +506,13 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
             }
         }
 
-       processedTransaction = new ArrayList<>(mapOfTransaction.values());
+      for(String tranType:mapOfTransaction.keySet())  {
+          if(tranType.equals(IMConstants.KRAFT)) {
+              processedTransaction.add(0,mapOfTransaction.get(IMConstants.KRAFT));
+          }else {
+              processedTransaction.add(0,mapOfTransaction.get(IMConstants.NETT));
+          }
+      }
        processedTransaction.addAll(processedOtherTrans);
         request.getStatement().getTransactionGroup().setTransaction(processedTransaction);
         }
