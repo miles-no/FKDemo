@@ -36,10 +36,10 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
             List<Attachment> attachments = request.getStatement().getAttachments().getAttachment();
             List<Distribution> distributions = null;
             Distribution distribution = null;
-            if(request.getStatement().getTotalAttachment() ==1)
+            if(request.getStatement().isOneMeter())
             {
                 logger.debug("Statement "+request.getEntity().getId() + " has only one meter " );
-                request.getStatement().setOneMeter(true);
+                //request.getStatement().setOneMeter(true);
                 if(attachments.get(0)!=null && attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice()!=null
                         && attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null
                         && attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null ) {
@@ -50,9 +50,13 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                     if(nettlieStartMonth != null && attachments.get(0) != null && attachments.get(0).getStartMonthYear() != null && attachments.get(0).getStartMonthYear().equals(nettlieStartMonth))  {
                         request.getStatement().setStatementPeriod("Strøm og nettleie "+attachments.get(0).getStartMonthYear());
                     }
-                    else
+                    else if(!attachments.get(0).getDisplayStromData())
                     {
-                        request.getStatement().setStatementPeriod("Strøm og nettleie ");
+                        if(nettlieStartMonth!=null) {
+                            request.getStatement().setStatementPeriod("Nettleie for " + nettlieStartMonth);
+                        } else {
+                        request.getStatement().setStatementPeriod("Nettleie ");
+                        }
                     }
                 } else {
                     request.getStatement().setStatementPeriod("Strøm for "+attachments.get(0).getStartMonthYear());
@@ -406,7 +410,11 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                     {
                         if(!listOfOtherTrans.contains(tran))
                         {
-                            nettName = tran.getTransactionCategory();
+                            if(tran.getTransactionName()!=null) {
+                                nettName = tran.getTransactionName();
+                            } else {
+                            nettName = tran.getTransactionCategory().substring(3);
+                            }
                             if(mapOfNameAndAmt.containsKey(nettName))
                             {
                                  sumOfNettTrans = mapOfNameAndAmt.get(nettName);
@@ -492,7 +500,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                         newTransaction.setTransactionCategory("Nettleie fra netteier");
                     }   else {
                         newTransaction = new Transaction();
-                        newTransaction.setTransactionCategory(transactionName.substring(3));
+                        newTransaction.setTransactionCategory(transactionName);
                     }
                     nettAmount+=mapOfNameAndAmt.get(transactionName);
                     newTransaction.setAmount(nettAmount);
@@ -510,7 +518,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
           if(tranType.equals(IMConstants.KRAFT)) {
               processedTransaction.add(0,mapOfTransaction.get(IMConstants.KRAFT));
           }else {
-              processedTransaction.add(0,mapOfTransaction.get(IMConstants.NETT));
+              processedTransaction.add(mapOfTransaction.get(IMConstants.NETT));
           }
       }
        processedTransaction.addAll(processedOtherTrans);
