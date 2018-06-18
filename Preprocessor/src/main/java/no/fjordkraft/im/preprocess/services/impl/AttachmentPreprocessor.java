@@ -204,6 +204,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
             logger.debug("meterIdMapEMUXML size " + meterIdMapEMUXML.size() + " invoice number " + invoicenumber);
             logger.debug("meterIdStartMonMapEMUXML size " + meterIdStartMonMapEMUXML.size() + " invoice number " + invoicenumber);
+            if(meterIdMapEMUXML.size()==1) {
+                request.getStatement().setOneMeter(true);
+            }
 
             mapNettToStrom(meterIdMapEMUXML, meterIdStartMonMapEMUXML, attachments, invoicenumber,request.getEntity().getId());
 
@@ -516,6 +519,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     Float sumOfVatAmount = 0.0f;
                     Map<Float,Float> mapOfVatSumOfGross = new HashMap<Float,Float>();
                     XMLGregorianCalendar startDate = null;
+                    int noOfDays = 0;
                     for (InvoiceLineType invoiceLineType : invoiceLineTypeList) {
                         baseItemDetails = new BaseItemDetails();
                         baseItemDetails.setDescription(invoiceLineType.getItem().getName().getValue().toString());
@@ -568,6 +572,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                             }
                         if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
                             baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(), baseItemDetails.getEndDate()));
+                            noOfDays = (int)baseItemDetails.getNoOfDays();
                         }
                         //IM-40 : if grid Owners do not explicitly state the vat amount, in this case vat-amount has to be calculated based on
                         // cbc:LineExtensionAmount currencyID="NOK">593.61</cbc:LineExtensionAmount and <cbc:Percent>25.00</cbc:Percent>
@@ -608,9 +613,11 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     nettleie.setBaseItemDetails(baseItemDetailsList);
                     nettleie.setSumOfNettAmount(Float.valueOf(invoice.getLegalMonetaryTotal().getTaxExclusiveAmount().getValue().toString()));
                     nettleie.setTotalVatAmount(sumOfVatAmount);
+                    if(noOfDays<30) {
                     String monthName =  Month.of(startDate.getMonth()).getDisplayName (TextStyle.FULL, new Locale("no","NO"));
                     int year =   startDate.getYear();
                     nettleie.setStartMonthAndYear(monthName + " " + year);
+                    }
                 }
             }
 
