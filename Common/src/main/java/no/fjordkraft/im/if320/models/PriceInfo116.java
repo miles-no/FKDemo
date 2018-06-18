@@ -55,7 +55,7 @@ public class PriceInfo116 {
     @XmlElement(name = "StatisticCode", required = true)
     protected String statisticCode;
     @XmlElement(name = "Gross")
-    protected float gross;
+    protected double gross;
     @XmlElement(name = "PriceCode", required = true)
     protected String priceCode;
     @XmlElement(name = "Description", required = true)
@@ -66,7 +66,7 @@ public class PriceInfo116 {
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar priceDate;
     @XmlElement(name = "Gross_high_precision")
-    protected float grossHighPrecision;
+    protected double grossHighPrecision;
     @XmlElement(name = "ServiceAgreeSerialNo")
     protected byte serviceAgreeSerialNo;
 
@@ -98,7 +98,7 @@ public class PriceInfo116 {
      * Gets the value of the gross property.
      * 
      */
-    public float getGross() {
+    public double getGross() {
         return gross;
     }
 
@@ -106,7 +106,7 @@ public class PriceInfo116 {
      * Sets the value of the gross property.
      * 
      */
-    public void setGross(float value) {
+    public void setGross(double value) {
         this.gross = value;
     }
 
@@ -210,7 +210,7 @@ public class PriceInfo116 {
      * Gets the value of the grossHighPrecision property.
      * 
      */
-    public float getGrossHighPrecision() {
+    public double getGrossHighPrecision() {
         return grossHighPrecision;
     }
 
@@ -218,7 +218,7 @@ public class PriceInfo116 {
      * Sets the value of the grossHighPrecision property.
      * 
      */
-    public void setGrossHighPrecision(float value) {
+    public void setGrossHighPrecision(double value) {
         this.grossHighPrecision = value;
     }
 

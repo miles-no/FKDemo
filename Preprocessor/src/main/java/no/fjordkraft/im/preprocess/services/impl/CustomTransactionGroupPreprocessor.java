@@ -41,8 +41,8 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
         TransactionGroup transactionGroup = new TransactionGroup();
         String brand = request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
 
-        Float amountWithVatTotal = 0.0f;
-        Float vatTotalAmount = 0.0f;
+        Double amountWithVatTotal = 0.0;
+        Double vatTotalAmount = 0.0;
 
         try {
             Map<String, Set<String>> transactionGroupMap = configService.getTransactionGroupForBrand(brand);
@@ -87,7 +87,7 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
                                                               String groupName) {
         Transaction existingElement;
         Transaction resultTransaction = new Transaction();
-        float newAmount;
+        double newAmount;
         /*//IM-69 : If the transaction category starts with "FT;" and free text is not empty then freetext should be displayed else transaction category should be displayed.
         if(transaction.getTransactionCategory().startsWith(IMConstants.FT_TRANSACTION_PREFIX) ) {
             if(transaction.getFreeText()!=null && !transaction.getFreeText().isEmpty())    {

@@ -47,11 +47,11 @@ public class ConsumptionsPreprocessor extends BasePreprocessor {
 
                                     Method lastYearConsumptionMethod = ConsumptionPillars132.class.getMethod("getLastYearConsumption" + i);
                                     Object lastYearConsumption = lastYearConsumptionMethod.invoke(consumptionPillars132);
-                                    consumption.setLastYearConsumption(null != lastYearConsumption ? Float.valueOf(lastYearConsumption.toString()) : 0.0f);
+                                    consumption.setLastYearConsumption(null != lastYearConsumption ? Double.valueOf(lastYearConsumption.toString()) : 0.0);
 
                                     Method thisYearConsumptionMethod = ConsumptionPillars132.class.getMethod("getThisYearConsumption" + i);
                                     Object thisYearConsumption = thisYearConsumptionMethod.invoke(consumptionPillars132);
-                                    consumption.setThisYearConsumption(null != thisYearConsumption ? Float.valueOf(thisYearConsumption.toString()) : 0.0f);
+                                    consumption.setThisYearConsumption(null != thisYearConsumption ? Double.valueOf(thisYearConsumption.toString()) : 0.0);
                                     consumptions.add(consumption);
                                 }
                             } catch (Exception e) {

@@ -82,7 +82,7 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
                                     break;
                                 }
                             } else if (null != value && (IMConstants.INTEGER.equals(ruleAttributeType) || IMConstants.FLOAT.equals(ruleAttributeType))) {
-                                int comparedResult = Float.valueOf(layoutRuleMap.getValue()).compareTo(Float.valueOf(value.toString()));
+                                int comparedResult = Double.valueOf(layoutRuleMap.getValue()).compareTo(Double.valueOf(value.toString()));
 
                                 if (IMConstants.EQUALS.equals(layoutRuleMap.getOperation())
                                         && IMConstants.ZERO == comparedResult) {

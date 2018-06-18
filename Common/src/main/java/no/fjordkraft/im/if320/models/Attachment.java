@@ -63,28 +63,28 @@ public class Attachment {
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar endDate;
     @XmlElement(name = "SumOfNettStrom")
-    @XmlSchemaType(name = "float")
-    protected Float sumOfNettStrom;
+    @XmlSchemaType(name = "double")
+    protected Double sumOfNettStrom;
     @XmlElement(name = "SumOfOutGoingCurrentClaim")
-    @XmlSchemaType(name = "float")
-    protected Float sumOfOutGoingCurrentClaim;
+    @XmlSchemaType(name = "double")
+    protected Double sumOfOutGoingCurrentClaim;
     @XmlElement(name="LeveringsAdresse")
     @XmlSchemaType(name = "string")
     protected  String leveringsAdresse;
     @XmlElement(name = "SumOfInGoingIBTrans")
-    @XmlSchemaType(name = "float")
-    protected Float sumOfIngoingIBtrans;
+    @XmlSchemaType(name = "double")
+    protected Double sumOfIngoingIBtrans;
     @XmlElement(name="TransactionSummary")
     protected List<TransactionSummary> transactionSummary;
     @XmlElement(name = "SumInclusiveMVA")
-    @XmlSchemaType(name = "float")
-    protected Float sumInklMVA;
+    @XmlSchemaType(name = "double")
+    protected Double sumInklMVA;
     @XmlElement(name="TransactionName")
     protected String transactionName;
     @XmlTransient
     protected String startMonthYear;
     @XmlElement(name="SumOfTransaction")
-    protected Float sumOfTransactions;
+    protected Double sumOfTransactions;
     @XmlElement(name="LabelStromNetSummary")
     protected String labelStromNetSummary;
 
@@ -169,19 +169,19 @@ public class Attachment {
         isOnlyGrid = onlyGrid;
     }
 
-    public Float getSumOfNettStrom() {
+    public Double getSumOfNettStrom() {
         return sumOfNettStrom;
     }
 
-    public void setSumOfNettStrom(Float sumOfNettStrom) {
+    public void setSumOfNettStrom(Double sumOfNettStrom) {
         this.sumOfNettStrom = sumOfNettStrom;
     }
 
-    public Float getSumOfOutGoingCurrentClaim() {
+    public Double getSumOfOutGoingCurrentClaim() {
         return sumOfOutGoingCurrentClaim;
     }
 
-    public void setSumOfOutGoingCurrentClaim(Float sumOfOutGoingCurrentClaim) {
+    public void setSumOfOutGoingCurrentClaim(Double sumOfOutGoingCurrentClaim) {
         this.sumOfOutGoingCurrentClaim = sumOfOutGoingCurrentClaim;
     }
 
@@ -193,11 +193,11 @@ public class Attachment {
         this.leveringsAdresse = leveringsAdresse;
     }
 
-    public Float getSumOfIngoingIBtrans() {
+    public Double getSumOfIngoingIBtrans() {
         return sumOfIngoingIBtrans;
     }
 
-    public void setSumOfIngoingIBtrans(Float sumOfIngoingIBtrans) {
+    public void setSumOfIngoingIBtrans(Double sumOfIngoingIBtrans) {
         this.sumOfIngoingIBtrans = sumOfIngoingIBtrans;
     }
 
@@ -209,11 +209,11 @@ public class Attachment {
         this.transactionSummary = transactionSummary;
     }
 
-    public Float getSumInklMVA() {
+    public Double getSumInklMVA() {
         return sumInklMVA;
     }
 
-    public void setSumInklMVA(Float sumInklMVA) {
+    public void setSumInklMVA(Double sumInklMVA) {
         this.sumInklMVA = sumInklMVA;
     }
 
@@ -233,11 +233,11 @@ public class Attachment {
         this.startMonthYear = startMonthYear;
     }
 
-    public Float getSumOfTransactions() {
+    public Double getSumOfTransactions() {
         return sumOfTransactions;
     }
 
-    public void setSumOfTransactions(Float sumOfTransactions) {
+    public void setSumOfTransactions(Double sumOfTransactions) {
         this.sumOfTransactions = sumOfTransactions;
     }
 

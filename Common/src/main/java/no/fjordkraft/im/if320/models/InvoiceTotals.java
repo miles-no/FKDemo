@@ -44,22 +44,22 @@ import javax.xml.bind.annotation.*;
 public class InvoiceTotals {
 
     @XmlElement(name = "GrossAmount")
-    protected float grossAmount;
+    protected double grossAmount;
     @XmlElement(name = "VatTotalsAmount")
-    protected float vatTotalsAmount;
+    protected double vatTotalsAmount;
     @XmlElement(name = "NetAmount")
-    protected float netAmount;
+    protected double netAmount;
     @XmlElement(name = "OrigGrossAmount")
-    protected float origGrossAmount;
+    protected double origGrossAmount;
     @XmlElement(name = "LineItemTotalsAmount")
-    protected float lineItemTotalsAmount;
+    protected double lineItemTotalsAmount;
 
 
     /**
      * Gets the value of the grossAmount property.
      * 
      */
-    public float getGrossAmount() {
+    public double getGrossAmount() {
         return grossAmount;
     }
 
@@ -67,7 +67,7 @@ public class InvoiceTotals {
      * Sets the value of the grossAmount property.
      * 
      */
-    public void setGrossAmount(float value) {
+    public void setGrossAmount(double value) {
         this.grossAmount = value;
     }
 
@@ -75,7 +75,7 @@ public class InvoiceTotals {
      * Gets the value of the vatTotalsAmount property.
      * 
      */
-    public float getVatTotalsAmount() {
+    public double getVatTotalsAmount() {
         return vatTotalsAmount;
     }
 
@@ -83,7 +83,7 @@ public class InvoiceTotals {
      * Sets the value of the vatTotalsAmount property.
      * 
      */
-    public void setVatTotalsAmount(float value) {
+    public void setVatTotalsAmount(double value) {
         this.vatTotalsAmount = value;
     }
 
@@ -91,7 +91,7 @@ public class InvoiceTotals {
      * Gets the value of the netAmount property.
      * 
      */
-    public float getNetAmount() {
+    public double getNetAmount() {
         return netAmount;
     }
 
@@ -99,23 +99,23 @@ public class InvoiceTotals {
      * Sets the value of the netAmount property.
      * 
      */
-    public void setNetAmount(float value) {
+    public void setNetAmount(double value) {
         this.netAmount = value;
     }
 
-    public float getOrigGrossAmount() {
+    public double getOrigGrossAmount() {
         return origGrossAmount;
     }
 
-    public void setOrigGrossAmount(float origGrossAmount) {
+    public void setOrigGrossAmount(double origGrossAmount) {
         this.origGrossAmount = origGrossAmount;
     }
 
-    public float getLineItemTotalsAmount() {
+    public double getLineItemTotalsAmount() {
         return lineItemTotalsAmount;
     }
 
-    public void setLineItemTotalsAmount(float lineItemTotalsAmount) {
+    public void setLineItemTotalsAmount(double lineItemTotalsAmount) {
         this.lineItemTotalsAmount = lineItemTotalsAmount;
     }
 }

@@ -48,13 +48,13 @@ public class Transactions {
 	@XmlElement(name = "Transaction")
     protected List<Transaction> transaction;
     @XmlElement(name = "DIAmountWithVat")
-    protected float diAmountWithVat;
+    protected double diAmountWithVat;
     @XmlElement(name = "DIVatTotal")
-    protected float diVatTotal;
+    protected double diVatTotal;
     @XmlElement(name = "IBAmountWithVat")
-    protected float ibAmountWithVat;
+    protected double ibAmountWithVat;
     @XmlElement(name = "OrigDIAmountWithVat")
-    protected float origDIAmountWithVat;
+    protected double origDIAmountWithVat;
     /**
      * Gets the value of the content property.
      * 
@@ -85,35 +85,35 @@ public class Transactions {
         return this.transaction;
     }
 
-    public float getDiAmountWithVat() {
+    public double getDiAmountWithVat() {
         return diAmountWithVat;
     }
 
-    public void setDiAmountWithVat(float diAmountWithVat) {
+    public void setDiAmountWithVat(double diAmountWithVat) {
         this.diAmountWithVat = diAmountWithVat;
     }
 
-    public float getDiVatTotal() {
+    public double getDiVatTotal() {
         return diVatTotal;
     }
 
-    public void setDiVatTotal(float diVatTotal) {
+    public void setDiVatTotal(double diVatTotal) {
         this.diVatTotal = diVatTotal;
     }
 
-    public float getIbAmountWithVat() {
+    public double getIbAmountWithVat() {
         return ibAmountWithVat;
     }
 
-    public void setIbAmountWithVat(float ibAmountWithVat) {
+    public void setIbAmountWithVat(double ibAmountWithVat) {
         this.ibAmountWithVat = ibAmountWithVat;
     }
 
-    public float getOrigDIAmountWithVat() {
+    public double getOrigDIAmountWithVat() {
         return origDIAmountWithVat;
     }
 
-    public void setOrigDIAmountWithVat(float origDIAmountWithVat) {
+    public void setOrigDIAmountWithVat(double origDIAmountWithVat) {
         this.origDIAmountWithVat = origDIAmountWithVat;
     }
 }

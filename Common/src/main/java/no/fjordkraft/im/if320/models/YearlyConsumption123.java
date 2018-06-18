@@ -45,7 +45,7 @@ public class YearlyConsumption123 {
     @XmlElement(name = "AnnualConsumption")
     protected long annualConsumption;
     @XmlElement(name = "B-AccountAmount")
-    protected float bAccountAmount;
+    protected double bAccountAmount;
     @XmlElement(name = "PriceDate", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar priceDate;
@@ -70,7 +70,7 @@ public class YearlyConsumption123 {
      * Gets the value of the bAccountAmount property.
      * 
      */
-    public float getBAccountAmount() {
+    public double getBAccountAmount() {
         return bAccountAmount;
     }
 
@@ -78,7 +78,7 @@ public class YearlyConsumption123 {
      * Sets the value of the bAccountAmount property.
      * 
      */
-    public void setBAccountAmount(float value) {
+    public void setBAccountAmount(double value) {
         this.bAccountAmount = value;
     }
 

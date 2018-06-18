@@ -91,11 +91,11 @@ public class ReadingInfo111 {
     @XmlElement(name = "MeterId")
     protected String meterId;
     @XmlElement(name = "StartReading")
-    protected float startReading;
+    protected double startReading;
     @XmlElement(name = "FinalC-Reading")
-    protected float finalCReading;
+    protected double finalCReading;
     @XmlElement(name = "AreaFactor")
-    protected float areaFactor;
+    protected double areaFactor;
     @XmlElement(name = "FixedPricePeriodStart", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar fixedPricePeriodStart;
@@ -111,7 +111,7 @@ public class ReadingInfo111 {
     @XmlElement(name = "MethodStartReading")
     protected byte methodStartReading;
     @XmlElement(name = "MethodFinalC-Reading")
-    protected float methodFinalCReading;
+    protected double methodFinalCReading;
     @XmlElement(name = "V-Reading", required = true)
     protected String vReading;
     @XmlElement(name = "ProdCounterNo")
@@ -129,7 +129,7 @@ public class ReadingInfo111 {
     @XmlElement(name = "ServiceAgreeSerialNo")
     protected byte serviceAgreeSerialNo;
     @XmlElement(name = "TotConsCurrCounter")
-    protected float totConsCurrCounter;
+    protected double totConsCurrCounter;
     @XmlElement(name = "MeterIdNew")
     protected long meterIdNew;
 
@@ -201,7 +201,7 @@ public class ReadingInfo111 {
      * Gets the value of the startReading property.
      *
      */
-    public float getStartReading() {
+    public double getStartReading() {
         return startReading;
     }
 
@@ -209,7 +209,7 @@ public class ReadingInfo111 {
      * Sets the value of the startReading property.
      *
      */
-    public void setStartReading(float value) {
+    public void setStartReading(double value) {
         this.startReading = value;
     }
 
@@ -217,7 +217,7 @@ public class ReadingInfo111 {
      * Gets the value of the finalCReading property.
      *
      */
-    public float getFinalCReading() {
+    public double getFinalCReading() {
         return finalCReading;
     }
 
@@ -225,7 +225,7 @@ public class ReadingInfo111 {
      * Sets the value of the finalCReading property.
      *
      */
-    public void setFinalCReading(float value) {
+    public void setFinalCReading(double value) {
         this.finalCReading = value;
     }
 
@@ -233,7 +233,7 @@ public class ReadingInfo111 {
      * Gets the value of the areaFactor property.
      *
      */
-    public float getAreaFactor() {
+    public double getAreaFactor() {
         return areaFactor;
     }
 
@@ -241,7 +241,7 @@ public class ReadingInfo111 {
      * Sets the value of the areaFactor property.
      *
      */
-    public void setAreaFactor(float value) {
+    public void setAreaFactor(double value) {
         this.areaFactor = value;
     }
 
@@ -361,7 +361,7 @@ public class ReadingInfo111 {
      * Gets the value of the methodFinalCReading property.
      * 
      */
-    public float getMethodFinalCReading() {
+    public double getMethodFinalCReading() {
         return methodFinalCReading;
     }
 
@@ -369,7 +369,7 @@ public class ReadingInfo111 {
      * Sets the value of the methodFinalCReading property.
      * 
      */
-    public void setMethodFinalCReading(float value) {
+    public void setMethodFinalCReading(double value) {
         this.methodFinalCReading = value;
     }
 
@@ -529,7 +529,7 @@ public class ReadingInfo111 {
      * Gets the value of the totConsCurrCounter property.
      * 
      */
-    public float getTotConsCurrCounter() {
+    public double getTotConsCurrCounter() {
         return totConsCurrCounter;
     }
 
@@ -537,7 +537,7 @@ public class ReadingInfo111 {
      * Sets the value of the totConsCurrCounter property.
      * 
      */
-    public void setTotConsCurrCounter(float value) {
+    public void setTotConsCurrCounter(double value) {
         this.totConsCurrCounter = value;
     }
 

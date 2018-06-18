@@ -29,11 +29,11 @@ public class LineItem {
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar lineItemDate;
     @XmlElement(name = "Amount")
-    protected float amount;
+    protected double amount;
     @XmlElement(name = "VatAmount")
-    protected float vatAmount;
+    protected double vatAmount;
     @XmlElement(name = "AmountWithVat")
-    protected float amountWithVat;
+    protected double amountWithVat;
 
     public int getClosedClaimStatementSequenceNumber() {
         return closedClaimStatementSequenceNumber;
@@ -67,27 +67,27 @@ public class LineItem {
         this.lineItemDate = lineItemDate;
     }
 
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    public float getVatAmount() {
+    public double getVatAmount() {
         return vatAmount;
     }
 
-    public void setVatAmount(float vatAmount) {
+    public void setVatAmount(double vatAmount) {
         this.vatAmount = vatAmount;
     }
 
-    public float getAmountWithVat() {
+    public double getAmountWithVat() {
         return amountWithVat;
     }
 
-    public void setAmountWithVat(float amountWithVat) {
+    public void setAmountWithVat(double amountWithVat) {
         this.amountWithVat = amountWithVat;
     }
 }

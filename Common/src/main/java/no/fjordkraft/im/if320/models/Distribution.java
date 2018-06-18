@@ -42,7 +42,7 @@ public class Distribution {
     @XmlElement(name = "Name", required = true)
     protected String name;
     @XmlElement(name = "Amount")
-    protected float amount;
+    protected double amount;
 
     /**
      * Gets the value of the name property.
@@ -72,7 +72,7 @@ public class Distribution {
      * Gets the value of the amount property.
      * 
      */
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -80,7 +80,7 @@ public class Distribution {
      * Sets the value of the amount property.
      * 
      */
-    public void setAmount(float value) {
+    public void setAmount(double value) {
         this.amount = value;
     }
 

@@ -43,7 +43,7 @@ public class InterestRate {
 	
 	
 	@XmlElement(name = "Rate", required = true)
-	protected float rate;
+	protected double rate;
 
 
 	public String getName() {
@@ -56,12 +56,12 @@ public class InterestRate {
 	}
 
 
-	public float getRate() {
+	public double getRate() {
 		return rate;
 	}
 
 
-	public void setRate(float rate) {
+	public void setRate(double rate) {
 		this.rate = rate;
 	}
     

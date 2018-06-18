@@ -59,7 +59,8 @@ import javax.xml.bind.annotation.*;
     "vedleggpdf",
     "vedlegge2BObj",
     "vedleggehf",
-    "vedleggehfObj"
+    "vedleggehfObj",
+    "nettleie"
 })
 @XmlRootElement(name = "FAKTURA")
 public class FAKTURA {
@@ -96,6 +97,8 @@ public class FAKTURA {
     protected VEDLEGGEHF vedleggehfObj;
     @XmlElement(name = "VEDLEGG_EHF", required = true)
     protected String vedleggehf;
+    @XmlElement(name = "Nettleie", required = true)
+    protected Nettleie nettleie;
 
     /**
      * Gets the value of the aktor property.
@@ -423,5 +426,13 @@ public class FAKTURA {
 
     public void setGrid(Grid grid) {
         this.grid = grid;
+    }
+
+    public Nettleie getNettleie() {
+        return nettleie;
+    }
+
+    public void setNettleie(Nettleie nettleie) {
+        this.nettleie = nettleie;
     }
 }

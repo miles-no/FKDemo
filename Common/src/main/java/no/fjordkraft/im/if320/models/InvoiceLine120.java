@@ -139,13 +139,13 @@ public class InvoiceLine120 {
     @XmlElement(name = "EndMonth", required = true)
     protected String endMonth;
     @XmlElement(name = "Net")
-    protected float net;
+    protected double net;
     @XmlElement(name = "Gross")
-    protected float gross;
+    protected double gross;
     @XmlElement(name = "StatisticCode", required = true)
     protected String statisticCode;
     @XmlElement(name = "VatRate")
-    protected float vatRate;
+    protected double vatRate;
     @XmlElement(name = "SuppCode", required = true)
     protected String suppCode;
     @XmlElement(name = "Text", required = true)
@@ -153,17 +153,17 @@ public class InvoiceLine120 {
     @XmlElement(name = "PriceCode", required = true)
     protected String priceCode;
     @XmlElement(name = "PriceRate")
-    protected float priceRate;
+    protected double priceRate;
     @XmlElement(name = "Basis")
-    protected float basis;
+    protected double basis;
     @XmlElement(name = "NoOfDays")
     protected byte noOfDays;
     @XmlElement(name = "OldC-Reading")
-    protected float oldCReading;
+    protected double oldCReading;
     @XmlElement(name = "FinalC-Reading")
-    protected float finalCReading;
+    protected double finalCReading;
     @XmlElement(name = "TotalTaxPrice")
-    protected float totalTaxPrice;
+    protected double totalTaxPrice;
     @XmlElement(name = "UnitCode", required = true)
     protected String unitCode;
     @XmlElement(name = "ProdId", required = true)
@@ -171,9 +171,9 @@ public class InvoiceLine120 {
     @XmlElement(name = "ProdDenomination", required = true)
     protected String prodDenomination;
     @XmlElement(name = "GrossPrice")
-    protected float grossPrice;
+    protected double grossPrice;
     @XmlElement(name = "TotalGross")
-    protected float totalGross;
+    protected double totalGross;
     @XmlElement(name = "PriceDenomination", required = true)
     protected String priceDenomination;
     @XmlElement(name = "MiscCode")
@@ -183,19 +183,19 @@ public class InvoiceLine120 {
     @XmlElement(name = "Type", required = true)
     protected String type;
     @XmlElement(name = "VAT")
-    protected float vat;
+    protected double vat;
     @XmlElement(name = "DiscPercent")
-    protected float discPercent;
+    protected double discPercent;
     @XmlElement(name = "GrossPriceWithoutTax")
-    protected float grossPriceWithoutTax;
+    protected double grossPriceWithoutTax;
     @XmlElement(name = "TotalGrossWithoutTax")
-    protected float totalGrossWithoutTax;
+    protected double totalGrossWithoutTax;
     @XmlElement(name = "TotalTaxPrice_high_precision")
-    protected float totalTaxPriceHighPrecision;
+    protected double totalTaxPriceHighPrecision;
     @XmlElement(name = "GrossPrice_high_precision")
-    protected float grossPriceHighPrecision;
+    protected double grossPriceHighPrecision;
     @XmlElement(name = "GrossPriceWithoutTax_high_precision")
-    protected float grossPriceWithoutTaxHighPrecision;
+    protected double grossPriceWithoutTaxHighPrecision;
     @XmlElement(name = "ActivityType", required = true)
     protected String activityType;
     @XmlElement(name = "ActivitySubType", required = true)
@@ -215,11 +215,11 @@ public class InvoiceLine120 {
     @XmlElement(name = "TextNew", required = true)
     protected String textNew;
     @XmlElement(name = "DiscAmount")
-    protected float discAmount;
+    protected double discAmount;
     @XmlElement(name = "SuppSubscriptionPrice")
-    protected float suppSubscriptionPrice;
+    protected double suppSubscriptionPrice;
     @XmlElement(name = "FireValue")
-    protected float fireValue;
+    protected double fireValue;
     @XmlElement(name = "ProductSaleId")
     protected byte productSaleId;
 
@@ -323,7 +323,7 @@ public class InvoiceLine120 {
      * Gets the value of the net property.
      * 
      */
-    public float getNet() {
+    public double getNet() {
         return net;
     }
 
@@ -331,7 +331,7 @@ public class InvoiceLine120 {
      * Sets the value of the net property.
      * 
      */
-    public void setNet(float value) {
+    public void setNet(double value) {
         this.net = value;
     }
 
@@ -339,7 +339,7 @@ public class InvoiceLine120 {
      * Gets the value of the gross property.
      * 
      */
-    public float getGross() {
+    public double getGross() {
         return gross;
     }
 
@@ -347,7 +347,7 @@ public class InvoiceLine120 {
      * Sets the value of the gross property.
      * 
      */
-    public void setGross(float value) {
+    public void setGross(double value) {
         this.gross = value;
     }
 
@@ -379,7 +379,7 @@ public class InvoiceLine120 {
      * Gets the value of the vatRate property.
      * 
      */
-    public float getVatRate() {
+    public double getVatRate() {
         return vatRate;
     }
 
@@ -387,7 +387,7 @@ public class InvoiceLine120 {
      * Sets the value of the vatRate property.
      * 
      */
-    public void setVatRate(float value) {
+    public void setVatRate(double value) {
         this.vatRate = value;
     }
 
@@ -467,7 +467,7 @@ public class InvoiceLine120 {
      * Gets the value of the priceRate property.
      * 
      */
-    public float getPriceRate() {
+    public double getPriceRate() {
         return priceRate;
     }
 
@@ -475,7 +475,7 @@ public class InvoiceLine120 {
      * Sets the value of the priceRate property.
      * 
      */
-    public void setPriceRate(float value) {
+    public void setPriceRate(double value) {
         this.priceRate = value;
     }
 
@@ -483,7 +483,7 @@ public class InvoiceLine120 {
      * Gets the value of the basis property.
      * 
      */
-    public float getBasis() {
+    public double getBasis() {
         return basis;
     }
 
@@ -491,7 +491,7 @@ public class InvoiceLine120 {
      * Sets the value of the basis property.
      * 
      */
-    public void setBasis(float value) {
+    public void setBasis(double value) {
         this.basis = value;
     }
 
@@ -515,7 +515,7 @@ public class InvoiceLine120 {
      * Gets the value of the oldCReading property.
      * 
      */
-    public float getOldCReading() {
+    public double getOldCReading() {
         return oldCReading;
     }
 
@@ -523,7 +523,7 @@ public class InvoiceLine120 {
      * Sets the value of the oldCReading property.
      * 
      */
-    public void setOldCReading(float value) {
+    public void setOldCReading(double value) {
         this.oldCReading = value;
     }
 
@@ -531,7 +531,7 @@ public class InvoiceLine120 {
      * Gets the value of the finalCReading property.
      * 
      */
-    public float getFinalCReading() {
+    public double getFinalCReading() {
         return finalCReading;
     }
 
@@ -539,7 +539,7 @@ public class InvoiceLine120 {
      * Sets the value of the finalCReading property.
      * 
      */
-    public void setFinalCReading(float value) {
+    public void setFinalCReading(double value) {
         this.finalCReading = value;
     }
 
@@ -547,7 +547,7 @@ public class InvoiceLine120 {
      * Gets the value of the totalTaxPrice property.
      * 
      */
-    public float getTotalTaxPrice() {
+    public double getTotalTaxPrice() {
         return totalTaxPrice;
     }
 
@@ -555,7 +555,7 @@ public class InvoiceLine120 {
      * Sets the value of the totalTaxPrice property.
      * 
      */
-    public void setTotalTaxPrice(float value) {
+    public void setTotalTaxPrice(double value) {
         this.totalTaxPrice = value;
     }
 
@@ -635,7 +635,7 @@ public class InvoiceLine120 {
      * Gets the value of the grossPrice property.
      * 
      */
-    public float getGrossPrice() {
+    public double getGrossPrice() {
         return grossPrice;
     }
 
@@ -643,7 +643,7 @@ public class InvoiceLine120 {
      * Sets the value of the grossPrice property.
      * 
      */
-    public void setGrossPrice(float value) {
+    public void setGrossPrice(double value) {
         this.grossPrice = value;
     }
 
@@ -651,7 +651,7 @@ public class InvoiceLine120 {
      * Gets the value of the totalGross property.
      * 
      */
-    public float getTotalGross() {
+    public double getTotalGross() {
         return totalGross;
     }
 
@@ -659,7 +659,7 @@ public class InvoiceLine120 {
      * Sets the value of the totalGross property.
      * 
      */
-    public void setTotalGross(float value) {
+    public void setTotalGross(double value) {
         this.totalGross = value;
     }
 
@@ -755,7 +755,7 @@ public class InvoiceLine120 {
      * Gets the value of the vat property.
      * 
      */
-    public float getVAT() {
+    public double getVAT() {
         return vat;
     }
 
@@ -763,7 +763,7 @@ public class InvoiceLine120 {
      * Sets the value of the vat property.
      * 
      */
-    public void setVAT(float value) {
+    public void setVAT(double value) {
         this.vat = value;
     }
 
@@ -771,7 +771,7 @@ public class InvoiceLine120 {
      * Gets the value of the discPercent property.
      * 
      */
-    public float getDiscPercent() {
+    public double getDiscPercent() {
         return discPercent;
     }
 
@@ -779,7 +779,7 @@ public class InvoiceLine120 {
      * Sets the value of the discPercent property.
      * 
      */
-    public void setDiscPercent(float value) {
+    public void setDiscPercent(double value) {
         this.discPercent = value;
     }
 
@@ -787,7 +787,7 @@ public class InvoiceLine120 {
      * Gets the value of the grossPriceWithoutTax property.
      * 
      */
-    public float getGrossPriceWithoutTax() {
+    public double getGrossPriceWithoutTax() {
         return grossPriceWithoutTax;
     }
 
@@ -795,7 +795,7 @@ public class InvoiceLine120 {
      * Sets the value of the grossPriceWithoutTax property.
      * 
      */
-    public void setGrossPriceWithoutTax(float value) {
+    public void setGrossPriceWithoutTax(double value) {
         this.grossPriceWithoutTax = value;
     }
 
@@ -803,7 +803,7 @@ public class InvoiceLine120 {
      * Gets the value of the totalGrossWithoutTax property.
      * 
      */
-    public float getTotalGrossWithoutTax() {
+    public double getTotalGrossWithoutTax() {
         return totalGrossWithoutTax;
     }
 
@@ -811,7 +811,7 @@ public class InvoiceLine120 {
      * Sets the value of the totalGrossWithoutTax property.
      * 
      */
-    public void setTotalGrossWithoutTax(float value) {
+    public void setTotalGrossWithoutTax(double value) {
         this.totalGrossWithoutTax = value;
     }
 
@@ -819,7 +819,7 @@ public class InvoiceLine120 {
      * Gets the value of the totalTaxPriceHighPrecision property.
      * 
      */
-    public float getTotalTaxPriceHighPrecision() {
+    public double getTotalTaxPriceHighPrecision() {
         return totalTaxPriceHighPrecision;
     }
 
@@ -827,7 +827,7 @@ public class InvoiceLine120 {
      * Sets the value of the totalTaxPriceHighPrecision property.
      * 
      */
-    public void setTotalTaxPriceHighPrecision(float value) {
+    public void setTotalTaxPriceHighPrecision(double value) {
         this.totalTaxPriceHighPrecision = value;
     }
 
@@ -835,7 +835,7 @@ public class InvoiceLine120 {
      * Gets the value of the grossPriceHighPrecision property.
      * 
      */
-    public float getGrossPriceHighPrecision() {
+    public double getGrossPriceHighPrecision() {
         return grossPriceHighPrecision;
     }
 
@@ -843,7 +843,7 @@ public class InvoiceLine120 {
      * Sets the value of the grossPriceHighPrecision property.
      * 
      */
-    public void setGrossPriceHighPrecision(float value) {
+    public void setGrossPriceHighPrecision(double value) {
         this.grossPriceHighPrecision = value;
     }
 
@@ -851,7 +851,7 @@ public class InvoiceLine120 {
      * Gets the value of the grossPriceWithoutTaxHighPrecision property.
      * 
      */
-    public float getGrossPriceWithoutTaxHighPrecision() {
+    public double getGrossPriceWithoutTaxHighPrecision() {
         return grossPriceWithoutTaxHighPrecision;
     }
 
@@ -859,7 +859,7 @@ public class InvoiceLine120 {
      * Sets the value of the grossPriceWithoutTaxHighPrecision property.
      * 
      */
-    public void setGrossPriceWithoutTaxHighPrecision(float value) {
+    public void setGrossPriceWithoutTaxHighPrecision(double value) {
         this.grossPriceWithoutTaxHighPrecision = value;
     }
 
@@ -1059,7 +1059,7 @@ public class InvoiceLine120 {
      * Gets the value of the discAmount property.
      * 
      */
-    public float getDiscAmount() {
+    public double getDiscAmount() {
         return discAmount;
     }
 
@@ -1067,7 +1067,7 @@ public class InvoiceLine120 {
      * Sets the value of the discAmount property.
      * 
      */
-    public void setDiscAmount(float value) {
+    public void setDiscAmount(double value) {
         this.discAmount = value;
     }
 
@@ -1075,7 +1075,7 @@ public class InvoiceLine120 {
      * Gets the value of the suppSubscriptionPrice property.
      * 
      */
-    public float getSuppSubscriptionPrice() {
+    public double getSuppSubscriptionPrice() {
         return suppSubscriptionPrice;
     }
 
@@ -1083,7 +1083,7 @@ public class InvoiceLine120 {
      * Sets the value of the suppSubscriptionPrice property.
      * 
      */
-    public void setSuppSubscriptionPrice(float value) {
+    public void setSuppSubscriptionPrice(double value) {
         this.suppSubscriptionPrice = value;
     }
 
@@ -1091,7 +1091,7 @@ public class InvoiceLine120 {
      * Gets the value of the fireValue property.
      * 
      */
-    public float getFireValue() {
+    public double getFireValue() {
         return fireValue;
     }
 
@@ -1099,7 +1099,7 @@ public class InvoiceLine120 {
      * Sets the value of the fireValue property.
      * 
      */
-    public void setFireValue(float value) {
+    public void setFireValue(double value) {
         this.fireValue = value;
     }
 

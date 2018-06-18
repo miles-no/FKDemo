@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.*;
  *         &lt;element ref="{}ObjectId"/&gt;
  *         &lt;element ref="{}AnnualConsumption"/&gt;
  *       &lt;/sequence&gt;
- *       &lt;attribute name="MessageVersion" type="{http://www.w3.org/2001/XMLSchema}float" /&gt;
+ *       &lt;attribute name="MessageVersion" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -51,7 +51,7 @@ public class EnergyHeader {
 
     @XmlElement(name = "Ldc1", required = true)
     protected String ldc1;
-    @XmlElement(name = "Supplier1", required = true)
+    @XmlElement(name = "Supplierl", required = true)
     protected String supplier1;
     @XmlElement(name = "Description", required = true)
     protected String description;
@@ -62,7 +62,7 @@ public class EnergyHeader {
     @XmlElement(name = "AnnualConsumption", required = true)
     protected String annualConsumption;
     @XmlAttribute(name = "MessageVersion")
-    protected Float messageVersion;
+    protected Double messageVersion;
     @XmlElement(name = "MeterLocation")
     protected String meterLocation;
 
@@ -199,10 +199,10 @@ public class EnergyHeader {
      * 
      * @return
      *     possible object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public Float getMessageVersion() {
+    public Double getMessageVersion() {
         return messageVersion;
     }
 
@@ -211,10 +211,10 @@ public class EnergyHeader {
      * 
      * @param value
      *     allowed object is
-     *     {@link Float }
+     *     {@link Double }
      *     
      */
-    public void setMessageVersion(Float value) {
+    public void setMessageVersion(Double value) {
         this.messageVersion = value;
     }
 

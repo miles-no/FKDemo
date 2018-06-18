@@ -43,7 +43,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
             List<Transaction> nettTransaction = new ArrayList<Transaction>();
             List<Distribution> distributions;
             Distribution distribuion = null;
-            Float ingoingAmoutWithVatTotal = 0.0f;
+            Double ingoingAmoutWithVatTotal = 0.0;
             int invoiceLineSize;
             int i = 0;
 
@@ -60,7 +60,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                     List<InvoiceLine120> invoiceLine120List = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceLine120();
                                     XMLGregorianCalendar startDate = null;
                                     XMLGregorianCalendar endDate = null;
-                                    Map<Float,Float> mapOfVatSumOfGross = new HashMap<Float,Float>();
+                                    Map<Double,Double> mapOfVatSumOfGross = new HashMap<Double,Double>();
                                     if(null != invoiceLine120List) {
                                         for (InvoiceLine120 invoiceLine120 : invoiceLine120List) {
                                             if (null == startDate) {
@@ -74,9 +74,9 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                                     endDate = invoiceLine120.getEndDate();
                                                 }
                                             }
-                                            float vat =invoiceLine120.getVatRate();
+                                            double vat =invoiceLine120.getVatRate();
                                             if(mapOfVatSumOfGross.containsKey(vat))  {
-                                                         float Net = mapOfVatSumOfGross.get(vat);
+                                                         double Net = mapOfVatSumOfGross.get(vat);
                                                         Net+=invoiceLine120.getNet();
                                                         mapOfVatSumOfGross.put(vat,Net);
                                             }   else {

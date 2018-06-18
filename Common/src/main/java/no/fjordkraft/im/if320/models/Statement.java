@@ -224,27 +224,27 @@ public class Statement {
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dueDate;
     @XmlElement(name = "IngoingBalance")
-    protected float ingoingBalance;
+    protected double ingoingBalance;
     @XmlElement(name = "OutgoingBalance")
-    protected float outgoingBalance;
+    protected double outgoingBalance;
     @XmlElement(name = "CreditLimit")
-    protected float creditLimit;
+    protected double creditLimit;
     @XmlElement(name = "AvailableCredit")
-    protected float availableCredit;
+    protected double availableCredit;
     @XmlElement(name = "NonCreditedInterest")
-    protected float nonCreditedInterest;
+    protected double nonCreditedInterest;
     @XmlElement(name = "GeneralMessage", required = true)
     protected String generalMessage;
     @XmlElement(name = "AccountMessage", required = true)
     protected String accountMessage;
     @XmlElement(name = "CurrentClaim")
-    protected float currentClaim;
+    protected double currentClaim;
     @XmlElement(name = "TotalOpenClaim")
-    protected float totalOpenClaim;
+    protected double totalOpenClaim;
     @XmlElement(name = "TotalAttachment")
     protected int totalAttachment;
     @XmlElement(name = "TotalVatAmount")
-    protected float totalVatAmount;
+    protected double totalVatAmount;
     @XmlElement(name = "CurrentInterestRates", required = true)
     protected CurrentInterestRates currentInterestRates;
     @XmlElement(name = "OutstandingClaims", required = true)
@@ -274,9 +274,9 @@ public class Statement {
     @XmlElement(name = "MinClaimFixedAmount", required = true)
     protected String minClaimFixedAmount;
     @XmlElement(name = "BudgetStatementAmount")
-    protected float budgetStatementAmount;
+    protected double budgetStatementAmount;
     @XmlElement(name = "RecommendedStatementAmount")
-    protected float recommendedStatementAmount;
+    protected double recommendedStatementAmount;
     @XmlElement(name = "Collection", required = true)
     protected String collection;
     @XmlElement(name = "AccountType", required = true)
@@ -837,7 +837,7 @@ public class Statement {
      * Gets the value of the ingoingBalance property.
      *
      */
-    public float getIngoingBalance() {
+    public double getIngoingBalance() {
         return ingoingBalance;
     }
 
@@ -845,7 +845,7 @@ public class Statement {
      * Sets the value of the ingoingBalance property.
      *
      */
-    public void setIngoingBalance(float value) {
+    public void setIngoingBalance(double value) {
         this.ingoingBalance = value;
     }
 
@@ -853,7 +853,7 @@ public class Statement {
      * Gets the value of the outgoingBalance property.
      *
      */
-    public float getOutgoingBalance() {
+    public double getOutgoingBalance() {
         return outgoingBalance;
     }
 
@@ -861,7 +861,7 @@ public class Statement {
      * Sets the value of the outgoingBalance property.
      *
      */
-    public void setOutgoingBalance(float value) {
+    public void setOutgoingBalance(double value) {
         this.outgoingBalance = value;
     }
 
@@ -869,7 +869,7 @@ public class Statement {
      * Gets the value of the creditLimit property.
      *
      */
-    public float getCreditLimit() {
+    public double getCreditLimit() {
         return creditLimit;
     }
 
@@ -877,7 +877,7 @@ public class Statement {
      * Sets the value of the creditLimit property.
      *
      */
-    public void setCreditLimit(float value) {
+    public void setCreditLimit(double value) {
         this.creditLimit = value;
     }
 
@@ -885,7 +885,7 @@ public class Statement {
      * Gets the value of the availableCredit property.
      *
      */
-    public float getAvailableCredit() {
+    public double getAvailableCredit() {
         return availableCredit;
     }
 
@@ -893,7 +893,7 @@ public class Statement {
      * Sets the value of the availableCredit property.
      *
      */
-    public void setAvailableCredit(float value) {
+    public void setAvailableCredit(double value) {
         this.availableCredit = value;
     }
 
@@ -901,7 +901,7 @@ public class Statement {
      * Gets the value of the nonCreditedInterest property.
      *
      */
-    public float getNonCreditedInterest() {
+    public double getNonCreditedInterest() {
         return nonCreditedInterest;
     }
 
@@ -909,7 +909,7 @@ public class Statement {
      * Sets the value of the nonCreditedInterest property.
      *
      */
-    public void setNonCreditedInterest(float value) {
+    public void setNonCreditedInterest(double value) {
         this.nonCreditedInterest = value;
     }
 
@@ -965,7 +965,7 @@ public class Statement {
      * Gets the value of the currentClaim property.
      *
      */
-    public float getCurrentClaim() {
+    public double getCurrentClaim() {
         return currentClaim;
     }
 
@@ -973,7 +973,7 @@ public class Statement {
      * Sets the value of the currentClaim property.
      *
      */
-    public void setCurrentClaim(float value) {
+    public void setCurrentClaim(double value) {
         this.currentClaim = value;
     }
 
@@ -981,7 +981,7 @@ public class Statement {
      * Gets the value of the totalOpenClaim property.
      *
      */
-    public float getTotalOpenClaim() {
+    public double getTotalOpenClaim() {
         return totalOpenClaim;
     }
 
@@ -989,7 +989,7 @@ public class Statement {
      * Sets the value of the totalOpenClaim property.
      *
      */
-    public void setTotalOpenClaim(float value) {
+    public void setTotalOpenClaim(double value) {
         this.totalOpenClaim = value;
     }
 
@@ -997,7 +997,7 @@ public class Statement {
      * Gets the value of the totalVatAmount property.
      *
      */
-    public float getTotalVatAmount() {
+    public double getTotalVatAmount() {
         return totalVatAmount;
     }
 
@@ -1005,7 +1005,7 @@ public class Statement {
      * Sets the value of the totalVatAmount property.
      *
      */
-    public void setTotalVatAmount(float value) {
+    public void setTotalVatAmount(double value) {
         this.totalVatAmount = value;
     }
 
@@ -1301,7 +1301,7 @@ public class Statement {
      * Gets the value of the budgetStatementAmount property.
      *
      */
-    public float getBudgetStatementAmount() {
+    public double getBudgetStatementAmount() {
         return budgetStatementAmount;
     }
 
@@ -1309,7 +1309,7 @@ public class Statement {
      * Sets the value of the budgetStatementAmount property.
      *
      */
-    public void setBudgetStatementAmount(float value) {
+    public void setBudgetStatementAmount(double value) {
         this.budgetStatementAmount = value;
     }
 
@@ -1317,7 +1317,7 @@ public class Statement {
      * Gets the value of the recommendedStatementAmount property.
      *
      */
-    public float getRecommendedStatementAmount() {
+    public double getRecommendedStatementAmount() {
         return recommendedStatementAmount;
     }
 
@@ -1325,7 +1325,7 @@ public class Statement {
      * Sets the value of the recommendedStatementAmount property.
      *
      */
-    public void setRecommendedStatementAmount(float value) {
+    public void setRecommendedStatementAmount(double value) {
         this.recommendedStatementAmount = value;
     }
 

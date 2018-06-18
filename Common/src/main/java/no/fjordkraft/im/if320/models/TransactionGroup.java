@@ -28,7 +28,7 @@ public class TransactionGroup {
     protected int totalTransactions;
 
     @XmlElement(name = "SumOfTransactions")
-    protected float sumOfTransactions;
+    protected double sumOfTransactions;
 
     @XmlElement(name = "LabelKraftNettSummary")
     protected String labelKraftNettSummary;
@@ -60,11 +60,11 @@ public class TransactionGroup {
         this.transactionSummary = transactionSummary;
     }
 
-    public float getSumOfTransactions() {
+    public double getSumOfTransactions() {
         return sumOfTransactions;
     }
 
-    public void setSumOfTransactions(float sumOfTransactions) {
+    public void setSumOfTransactions(double sumOfTransactions) {
         this.sumOfTransactions = sumOfTransactions;
     }
 

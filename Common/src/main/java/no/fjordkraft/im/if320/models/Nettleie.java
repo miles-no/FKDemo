@@ -63,7 +63,7 @@ public class Nettleie {
     @XmlElement(name="FAKTURANR")
     protected String  fakturanr;
     @XmlElement(name="SumOfNettAmount")
-    protected float sumOfNettAmount;
+    protected double sumOfNettAmount;
     @XmlElement(name="TransactionName")
     protected String transactionName;
     @XmlTransient
@@ -72,7 +72,7 @@ public class Nettleie {
     protected String startMonthAndYear;
 
     @XmlElement(name="TotalVatAmount")
-    protected float totalVatAmount;
+    protected double totalVatAmount;
 
     public List<BaseItemDetails> getBaseItemDetails() {
         return baseItemDetails;
@@ -187,11 +187,11 @@ public class Nettleie {
     }
 
 
-    public float getSumOfNettAmount() {
+    public double getSumOfNettAmount() {
         return sumOfNettAmount;
     }
 
-    public void setSumOfNettAmount(float sumOfNettAmount) {
+    public void setSumOfNettAmount(double sumOfNettAmount) {
         this.sumOfNettAmount = sumOfNettAmount;
     }
 
@@ -203,11 +203,11 @@ public class Nettleie {
         this.mapOfVatSumOfGross = mapOfVatSumOfGross;
     }
 
-    public float getTotalVatAmount() {
+    public double getTotalVatAmount() {
         return totalVatAmount;
     }
 
-    public void setTotalVatAmount(float totalVatAmount) {
+    public void setTotalVatAmount(double totalVatAmount) {
         this.totalVatAmount = totalVatAmount;
     }
 

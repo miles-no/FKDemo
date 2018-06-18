@@ -54,9 +54,9 @@ public class Payment {
     @XmlElement(name = "KidNumber")
     protected long kidNumber;
     @XmlElement(name = "PaymentTerms")
-    protected float paymentTerms;
+    protected double paymentTerms;
     @XmlElement(name = "OverDuePercent")
-    protected float overDuePercent;
+    protected double overDuePercent;
 
     /**
      * Gets the value of the dueDate property.
@@ -126,7 +126,7 @@ public class Payment {
      * Gets the value of the paymentTerms property.
      * 
      */
-    public float getPaymentTerms() {
+    public double getPaymentTerms() {
         return paymentTerms;
     }
 
@@ -134,7 +134,7 @@ public class Payment {
      * Sets the value of the paymentTerms property.
      * 
      */
-    public void setPaymentTerms(float value) {
+    public void setPaymentTerms(double value) {
         this.paymentTerms = value;
     }
 
@@ -142,7 +142,7 @@ public class Payment {
      * Gets the value of the overDuePercent property.
      * 
      */
-    public float getOverDuePercent() {
+    public double getOverDuePercent() {
         return overDuePercent;
     }
 
@@ -150,7 +150,7 @@ public class Payment {
      * Sets the value of the overDuePercent property.
      * 
      */
-    public void setOverDuePercent(float value) {
+    public void setOverDuePercent(double value) {
         this.overDuePercent = value;
     }
 

@@ -39,7 +39,7 @@ public class RestStatement {
 
     private String distributionMethod;
 
-    private float amount;
+    private double amount;
 
     private Date invoiceDate;
 
@@ -155,11 +155,11 @@ public class RestStatement {
         this.distributionMethod = distributionMethod;
     }
 
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

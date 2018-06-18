@@ -95,17 +95,17 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class InvoiceOrderAmounts113 {
 
     @XmlElement(name = "GrossSettled")
-    protected float grossSettled;
+    protected double grossSettled;
     @XmlElement(name = "NetSettled")
-    protected float netSettled;
+    protected double netSettled;
     @XmlElement(name = "VatSettled")
-    protected float vatSettled;
+    protected double vatSettled;
     @XmlElement(name = "GrossB-Account")
-    protected float grossBAccount;
+    protected double grossBAccount;
     @XmlElement(name = "NetB-Account")
-    protected float netBAccount;
+    protected double netBAccount;
     @XmlElement(name = "VatB-Account")
-    protected float vatBAccount;
+    protected double vatBAccount;
     @XmlElement(name = "BAccountTermNo")
     protected byte bAccountTermNo;
     @XmlElement(name = "BAccountTermStartDate")
@@ -115,51 +115,51 @@ public class InvoiceOrderAmounts113 {
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar bAccountTermEndDate;
     @XmlElement(name = "GrossWriteBacks")
-    protected float grossWriteBacks;
+    protected double grossWriteBacks;
     @XmlElement(name = "NetWriteBacks")
-    protected float netWriteBacks;
+    protected double netWriteBacks;
     @XmlElement(name = "VatWriteBacks")
-    protected float vatWriteBacks;
+    protected double vatWriteBacks;
     @XmlElement(name = "GrossMisc")
-    protected float grossMisc;
+    protected double grossMisc;
     @XmlElement(name = "NetMisc")
-    protected float netMisc;
+    protected double netMisc;
     @XmlElement(name = "VatMisc")
-    protected float vatMisc;
+    protected double vatMisc;
     @XmlElement(name = "GrossItem")
-    protected float grossItem;
+    protected double grossItem;
     @XmlElement(name = "NetItem")
-    protected float netItem;
+    protected double netItem;
     @XmlElement(name = "VatItem")
-    protected float vatItem;
+    protected double vatItem;
     @XmlElement(name = "VatTotal")
-    protected float vatTotal;
+    protected double vatTotal;
     @XmlElement(name = "GrossTax")
-    protected float grossTax;
+    protected double grossTax;
     @XmlElement(name = "NetTotal")
-    protected float netTotal;
+    protected double netTotal;
     @XmlElement(name = "GrossTotal")
-    protected float grossTotal;
+    protected double grossTotal;
     @XmlElement(name = "GrossSettledAndWriteBacks")
-    protected float grossSettledAndWriteBacks;
+    protected double grossSettledAndWriteBacks;
     @XmlElement(name = "NetSettledAndWriteBacks")
-    protected float netSettledAndWriteBacks;
+    protected double netSettledAndWriteBacks;
     @XmlElement(name = "VatSettledAndWriteBacks")
-    protected float vatSettledAndWriteBacks;
+    protected double vatSettledAndWriteBacks;
     @XmlElement(name = "ServiceAgreeSerialNo")
     protected byte serviceAgreeSerialNo;
     @XmlElement(name = "NetWithTax")
-    protected float netWithTax;
+    protected double netWithTax;
     @XmlElement(name = "GrossWithTax")
-    protected float grossWithTax;
+    protected double grossWithTax;
     @XmlElement(name = "NetNoTax")
-    protected float netNoTax;
+    protected double netNoTax;
 
     /**
      * Gets the value of the grossSettled property.
      * 
      */
-    public float getGrossSettled() {
+    public double getGrossSettled() {
         return grossSettled;
     }
 
@@ -167,7 +167,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the grossSettled property.
      * 
      */
-    public void setGrossSettled(float value) {
+    public void setGrossSettled(double value) {
         this.grossSettled = value;
     }
 
@@ -175,7 +175,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the netSettled property.
      * 
      */
-    public float getNetSettled() {
+    public double getNetSettled() {
         return netSettled;
     }
 
@@ -183,7 +183,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the netSettled property.
      * 
      */
-    public void setNetSettled(float value) {
+    public void setNetSettled(double value) {
         this.netSettled = value;
     }
 
@@ -191,7 +191,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the vatSettled property.
      * 
      */
-    public float getVatSettled() {
+    public double getVatSettled() {
         return vatSettled;
     }
 
@@ -199,7 +199,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the vatSettled property.
      * 
      */
-    public void setVatSettled(float value) {
+    public void setVatSettled(double value) {
         this.vatSettled = value;
     }
 
@@ -207,7 +207,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the grossBAccount property.
      * 
      */
-    public float getGrossBAccount() {
+    public double getGrossBAccount() {
         return grossBAccount;
     }
 
@@ -215,7 +215,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the grossBAccount property.
      * 
      */
-    public void setGrossBAccount(float value) {
+    public void setGrossBAccount(double value) {
         this.grossBAccount = value;
     }
 
@@ -223,7 +223,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the netBAccount property.
      * 
      */
-    public float getNetBAccount() {
+    public double getNetBAccount() {
         return netBAccount;
     }
 
@@ -231,7 +231,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the netBAccount property.
      * 
      */
-    public void setNetBAccount(float value) {
+    public void setNetBAccount(double value) {
         this.netBAccount = value;
     }
 
@@ -239,7 +239,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the vatBAccount property.
      * 
      */
-    public float getVatBAccount() {
+    public double getVatBAccount() {
         return vatBAccount;
     }
 
@@ -247,7 +247,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the vatBAccount property.
      * 
      */
-    public void setVatBAccount(float value) {
+    public void setVatBAccount(double value) {
         this.vatBAccount = value;
     }
 
@@ -319,7 +319,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the grossWriteBacks property.
      * 
      */
-    public float getGrossWriteBacks() {
+    public double getGrossWriteBacks() {
         return grossWriteBacks;
     }
 
@@ -327,7 +327,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the grossWriteBacks property.
      * 
      */
-    public void setGrossWriteBacks(float value) {
+    public void setGrossWriteBacks(double value) {
         this.grossWriteBacks = value;
     }
 
@@ -335,7 +335,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the netWriteBacks property.
      * 
      */
-    public float getNetWriteBacks() {
+    public double getNetWriteBacks() {
         return netWriteBacks;
     }
 
@@ -343,7 +343,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the netWriteBacks property.
      * 
      */
-    public void setNetWriteBacks(float value) {
+    public void setNetWriteBacks(double value) {
         this.netWriteBacks = value;
     }
 
@@ -351,7 +351,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the vatWriteBacks property.
      * 
      */
-    public float getVatWriteBacks() {
+    public double getVatWriteBacks() {
         return vatWriteBacks;
     }
 
@@ -359,7 +359,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the vatWriteBacks property.
      * 
      */
-    public void setVatWriteBacks(float value) {
+    public void setVatWriteBacks(double value) {
         this.vatWriteBacks = value;
     }
 
@@ -367,7 +367,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the grossMisc property.
      * 
      */
-    public float getGrossMisc() {
+    public double getGrossMisc() {
         return grossMisc;
     }
 
@@ -375,7 +375,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the grossMisc property.
      * 
      */
-    public void setGrossMisc(float value) {
+    public void setGrossMisc(double value) {
         this.grossMisc = value;
     }
 
@@ -383,7 +383,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the netMisc property.
      * 
      */
-    public float getNetMisc() {
+    public double getNetMisc() {
         return netMisc;
     }
 
@@ -391,7 +391,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the netMisc property.
      * 
      */
-    public void setNetMisc(float value) {
+    public void setNetMisc(double value) {
         this.netMisc = value;
     }
 
@@ -399,7 +399,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the vatMisc property.
      * 
      */
-    public float getVatMisc() {
+    public double getVatMisc() {
         return vatMisc;
     }
 
@@ -407,7 +407,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the vatMisc property.
      * 
      */
-    public void setVatMisc(float value) {
+    public void setVatMisc(double value) {
         this.vatMisc = value;
     }
 
@@ -415,7 +415,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the grossItem property.
      * 
      */
-    public float getGrossItem() {
+    public double getGrossItem() {
         return grossItem;
     }
 
@@ -423,7 +423,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the grossItem property.
      * 
      */
-    public void setGrossItem(float value) {
+    public void setGrossItem(double value) {
         this.grossItem = value;
     }
 
@@ -431,7 +431,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the netItem property.
      * 
      */
-    public float getNetItem() {
+    public double getNetItem() {
         return netItem;
     }
 
@@ -439,7 +439,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the netItem property.
      * 
      */
-    public void setNetItem(float value) {
+    public void setNetItem(double value) {
         this.netItem = value;
     }
 
@@ -447,7 +447,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the vatItem property.
      * 
      */
-    public float getVatItem() {
+    public double getVatItem() {
         return vatItem;
     }
 
@@ -455,7 +455,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the vatItem property.
      * 
      */
-    public void setVatItem(float value) {
+    public void setVatItem(double value) {
         this.vatItem = value;
     }
 
@@ -463,7 +463,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the vatTotal property.
      * 
      */
-    public float getVatTotal() {
+    public double getVatTotal() {
         return vatTotal;
     }
 
@@ -471,7 +471,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the vatTotal property.
      * 
      */
-    public void setVatTotal(float value) {
+    public void setVatTotal(double value) {
         this.vatTotal = value;
     }
 
@@ -479,7 +479,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the grossTax property.
      * 
      */
-    public float getGrossTax() {
+    public double getGrossTax() {
         return grossTax;
     }
 
@@ -487,7 +487,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the grossTax property.
      * 
      */
-    public void setGrossTax(float value) {
+    public void setGrossTax(double value) {
         this.grossTax = value;
     }
 
@@ -495,7 +495,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the netTotal property.
      * 
      */
-    public float getNetTotal() {
+    public double getNetTotal() {
         return netTotal;
     }
 
@@ -503,7 +503,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the netTotal property.
      * 
      */
-    public void setNetTotal(float value) {
+    public void setNetTotal(double value) {
         this.netTotal = value;
     }
 
@@ -511,7 +511,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the grossTotal property.
      * 
      */
-    public float getGrossTotal() {
+    public double getGrossTotal() {
         return grossTotal;
     }
 
@@ -519,7 +519,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the grossTotal property.
      * 
      */
-    public void setGrossTotal(float value) {
+    public void setGrossTotal(double value) {
         this.grossTotal = value;
     }
 
@@ -527,7 +527,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the grossSettledAndWriteBacks property.
      * 
      */
-    public float getGrossSettledAndWriteBacks() {
+    public double getGrossSettledAndWriteBacks() {
         return grossSettledAndWriteBacks;
     }
 
@@ -535,7 +535,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the grossSettledAndWriteBacks property.
      * 
      */
-    public void setGrossSettledAndWriteBacks(float value) {
+    public void setGrossSettledAndWriteBacks(double value) {
         this.grossSettledAndWriteBacks = value;
     }
 
@@ -543,7 +543,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the netSettledAndWriteBacks property.
      * 
      */
-    public float getNetSettledAndWriteBacks() {
+    public double getNetSettledAndWriteBacks() {
         return netSettledAndWriteBacks;
     }
 
@@ -551,7 +551,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the netSettledAndWriteBacks property.
      * 
      */
-    public void setNetSettledAndWriteBacks(float value) {
+    public void setNetSettledAndWriteBacks(double value) {
         this.netSettledAndWriteBacks = value;
     }
 
@@ -559,7 +559,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the vatSettledAndWriteBacks property.
      * 
      */
-    public float getVatSettledAndWriteBacks() {
+    public double getVatSettledAndWriteBacks() {
         return vatSettledAndWriteBacks;
     }
 
@@ -567,7 +567,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the vatSettledAndWriteBacks property.
      * 
      */
-    public void setVatSettledAndWriteBacks(float value) {
+    public void setVatSettledAndWriteBacks(double value) {
         this.vatSettledAndWriteBacks = value;
     }
 
@@ -591,7 +591,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the netWithTax property.
      * 
      */
-    public float getNetWithTax() {
+    public double getNetWithTax() {
         return netWithTax;
     }
 
@@ -599,7 +599,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the netWithTax property.
      * 
      */
-    public void setNetWithTax(float value) {
+    public void setNetWithTax(double value) {
         this.netWithTax = value;
     }
 
@@ -607,7 +607,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the grossWithTax property.
      * 
      */
-    public float getGrossWithTax() {
+    public double getGrossWithTax() {
         return grossWithTax;
     }
 
@@ -615,7 +615,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the grossWithTax property.
      * 
      */
-    public void setGrossWithTax(float value) {
+    public void setGrossWithTax(double value) {
         this.grossWithTax = value;
     }
 
@@ -623,7 +623,7 @@ public class InvoiceOrderAmounts113 {
      * Gets the value of the netNoTax property.
      * 
      */
-    public float getNetNoTax() {
+    public double getNetNoTax() {
         return netNoTax;
     }
 
@@ -631,7 +631,7 @@ public class InvoiceOrderAmounts113 {
      * Sets the value of the netNoTax property.
      * 
      */
-    public void setNetNoTax(float value) {
+    public void setNetNoTax(double value) {
         this.netNoTax = value;
     }
 

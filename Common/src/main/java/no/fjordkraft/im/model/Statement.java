@@ -63,7 +63,7 @@ public class Statement {
     private String distributionMethod;
 
     @Column(name="AMOUNT")
-    private float amount;
+    private double amount;
 
     @Column(name="INVOICE_DATE")
     private Date invoiceDate;
@@ -78,7 +78,7 @@ public class Statement {
     private String brand;
 
     @Column(name="CREDIT_LIMIT")
-    private float creditLimit;
+    private double creditLimit;
 
     @Column(name="ATTACHMENT_CONFIG_ID")
     private int attachmentConfigId;
@@ -210,11 +210,11 @@ public class Statement {
         this.distributionMethod = distributionMethod;
     }
 
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
@@ -258,11 +258,11 @@ public class Statement {
         this.layoutID = layoutID;
     }
 
-    public float getCreditLimit() {
+    public double getCreditLimit() {
         return creditLimit;
     }
 
-    public void setCreditLimit(float creditLimit) {
+    public void setCreditLimit(double creditLimit) {
         this.creditLimit = creditLimit;
     }
 

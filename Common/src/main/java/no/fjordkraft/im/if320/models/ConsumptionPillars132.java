@@ -112,75 +112,75 @@ public class ConsumptionPillars132 {
     @XmlElement(name = "PeriodDescription1", required = true)
     protected String periodDescription1;
     @XmlElement(name = "LastYearConsumption1")
-    protected float lastYearConsumption1;
+    protected double lastYearConsumption1;
     @XmlElement(name = "ThisYearConsumption1")
-    protected float thisYearConsumption1;
+    protected double thisYearConsumption1;
     @XmlElement(name = "PeriodDescription2", required = true)
     protected String periodDescription2;
     @XmlElement(name = "LastYearConsumption2")
-    protected float lastYearConsumption2;
+    protected double lastYearConsumption2;
     @XmlElement(name = "ThisYearConsumption2")
-    protected float thisYearConsumption2;
+    protected double thisYearConsumption2;
     @XmlElement(name = "PeriodDescription3", required = true)
     protected String periodDescription3;
     @XmlElement(name = "LastYearConsumption3")
-    protected float lastYearConsumption3;
+    protected double lastYearConsumption3;
     @XmlElement(name = "ThisYearConsumption3")
-    protected float thisYearConsumption3;
+    protected double thisYearConsumption3;
     @XmlElement(name = "PeriodDescription4", required = true)
     protected String periodDescription4;
     @XmlElement(name = "LastYearConsumption4")
-    protected float lastYearConsumption4;
+    protected double lastYearConsumption4;
     @XmlElement(name = "ThisYearConsumption4")
-    protected float thisYearConsumption4;
+    protected double thisYearConsumption4;
     @XmlElement(name = "PeriodDescription5", required = true)
     protected String periodDescription5;
     @XmlElement(name = "LastYearConsumption5")
-    protected float lastYearConsumption5;
+    protected double lastYearConsumption5;
     @XmlElement(name = "ThisYearConsumption5")
-    protected float thisYearConsumption5;
+    protected double thisYearConsumption5;
     @XmlElement(name = "PeriodDescription6", required = true)
     protected String periodDescription6;
     @XmlElement(name = "LastYearConsumption6")
-    protected float lastYearConsumption6;
+    protected double lastYearConsumption6;
     @XmlElement(name = "ThisYearConsumption6")
-    protected float thisYearConsumption6;
+    protected double thisYearConsumption6;
     @XmlElement(name = "PeriodDescription7", required = true)
     protected String periodDescription7;
     @XmlElement(name = "LastYearConsumption7")
-    protected float lastYearConsumption7;
+    protected double lastYearConsumption7;
     @XmlElement(name = "ThisYearConsumption7")
-    protected float thisYearConsumption7;
+    protected double thisYearConsumption7;
     @XmlElement(name = "PeriodDescription8", required = true)
     protected String periodDescription8;
     @XmlElement(name = "LastYearConsumption8")
-    protected float lastYearConsumption8;
+    protected double lastYearConsumption8;
     @XmlElement(name = "ThisYearConsumption8")
-    protected float thisYearConsumption8;
+    protected double thisYearConsumption8;
     @XmlElement(name = "PeriodDescription9", required = true)
     protected String periodDescription9;
     @XmlElement(name = "LastYearConsumption9")
-    protected float lastYearConsumption9;
+    protected double lastYearConsumption9;
     @XmlElement(name = "ThisYearConsumption9")
-    protected float thisYearConsumption9;
+    protected double thisYearConsumption9;
     @XmlElement(name = "PeriodDescription10", required = true)
     protected String periodDescription10;
     @XmlElement(name = "LastYearConsumption10")
-    protected float lastYearConsumption10;
+    protected double lastYearConsumption10;
     @XmlElement(name = "ThisYearConsumption10")
-    protected float thisYearConsumption10;
+    protected double thisYearConsumption10;
     @XmlElement(name = "PeriodDescription11", required = true)
     protected String periodDescription11;
     @XmlElement(name = "LastYearConsumption11")
-    protected float lastYearConsumption11;
+    protected double lastYearConsumption11;
     @XmlElement(name = "ThisYearConsumption11")
-    protected float thisYearConsumption11;
+    protected double thisYearConsumption11;
     @XmlElement(name = "PeriodDescription12", required = true)
     protected String periodDescription12;
     @XmlElement(name = "LastYearConsumption12")
-    protected float lastYearConsumption12;
+    protected double lastYearConsumption12;
     @XmlElement(name = "ThisYearConsumption12")
-    protected float thisYearConsumption12;
+    protected double thisYearConsumption12;
     @XmlElement(name = "ServiceAgreeSerialNo")
     protected byte serviceAgreeSerialNo;
 
@@ -212,7 +212,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the lastYearConsumption1 property.
      * 
      */
-    public float getLastYearConsumption1() {
+    public double getLastYearConsumption1() {
         return lastYearConsumption1;
     }
 
@@ -220,7 +220,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the lastYearConsumption1 property.
      * 
      */
-    public void setLastYearConsumption1(float value) {
+    public void setLastYearConsumption1(double value) {
         this.lastYearConsumption1 = value;
     }
 
@@ -228,7 +228,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the thisYearConsumption1 property.
      * 
      */
-    public float getThisYearConsumption1() {
+    public double getThisYearConsumption1() {
         return thisYearConsumption1;
     }
 
@@ -236,7 +236,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the thisYearConsumption1 property.
      * 
      */
-    public void setThisYearConsumption1(float value) {
+    public void setThisYearConsumption1(double value) {
         this.thisYearConsumption1 = value;
     }
 
@@ -268,7 +268,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the lastYearConsumption2 property.
      * 
      */
-    public float getLastYearConsumption2() {
+    public double getLastYearConsumption2() {
         return lastYearConsumption2;
     }
 
@@ -276,7 +276,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the lastYearConsumption2 property.
      * 
      */
-    public void setLastYearConsumption2(float value) {
+    public void setLastYearConsumption2(double value) {
         this.lastYearConsumption2 = value;
     }
 
@@ -284,7 +284,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the thisYearConsumption2 property.
      * 
      */
-    public float getThisYearConsumption2() {
+    public double getThisYearConsumption2() {
         return thisYearConsumption2;
     }
 
@@ -292,7 +292,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the thisYearConsumption2 property.
      * 
      */
-    public void setThisYearConsumption2(float value) {
+    public void setThisYearConsumption2(double value) {
         this.thisYearConsumption2 = value;
     }
 
@@ -324,7 +324,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the lastYearConsumption3 property.
      * 
      */
-    public float getLastYearConsumption3() {
+    public double getLastYearConsumption3() {
         return lastYearConsumption3;
     }
 
@@ -332,7 +332,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the lastYearConsumption3 property.
      * 
      */
-    public void setLastYearConsumption3(float value) {
+    public void setLastYearConsumption3(double value) {
         this.lastYearConsumption3 = value;
     }
 
@@ -340,7 +340,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the thisYearConsumption3 property.
      * 
      */
-    public float getThisYearConsumption3() {
+    public double getThisYearConsumption3() {
         return thisYearConsumption3;
     }
 
@@ -348,7 +348,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the thisYearConsumption3 property.
      * 
      */
-    public void setThisYearConsumption3(float value) {
+    public void setThisYearConsumption3(double value) {
         this.thisYearConsumption3 = value;
     }
 
@@ -380,7 +380,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the lastYearConsumption4 property.
      * 
      */
-    public float getLastYearConsumption4() {
+    public double getLastYearConsumption4() {
         return lastYearConsumption4;
     }
 
@@ -388,7 +388,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the lastYearConsumption4 property.
      * 
      */
-    public void setLastYearConsumption4(float value) {
+    public void setLastYearConsumption4(double value) {
         this.lastYearConsumption4 = value;
     }
 
@@ -396,7 +396,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the thisYearConsumption4 property.
      * 
      */
-    public float getThisYearConsumption4() {
+    public double getThisYearConsumption4() {
         return thisYearConsumption4;
     }
 
@@ -404,7 +404,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the thisYearConsumption4 property.
      * 
      */
-    public void setThisYearConsumption4(float value) {
+    public void setThisYearConsumption4(double value) {
         this.thisYearConsumption4 = value;
     }
 
@@ -436,7 +436,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the lastYearConsumption5 property.
      * 
      */
-    public float getLastYearConsumption5() {
+    public double getLastYearConsumption5() {
         return lastYearConsumption5;
     }
 
@@ -444,7 +444,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the lastYearConsumption5 property.
      * 
      */
-    public void setLastYearConsumption5(float value) {
+    public void setLastYearConsumption5(double value) {
         this.lastYearConsumption5 = value;
     }
 
@@ -452,7 +452,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the thisYearConsumption5 property.
      * 
      */
-    public float getThisYearConsumption5() {
+    public double getThisYearConsumption5() {
         return thisYearConsumption5;
     }
 
@@ -460,7 +460,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the thisYearConsumption5 property.
      * 
      */
-    public void setThisYearConsumption5(float value) {
+    public void setThisYearConsumption5(double value) {
         this.thisYearConsumption5 = value;
     }
 
@@ -492,7 +492,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the lastYearConsumption6 property.
      * 
      */
-    public float getLastYearConsumption6() {
+    public double getLastYearConsumption6() {
         return lastYearConsumption6;
     }
 
@@ -500,7 +500,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the lastYearConsumption6 property.
      * 
      */
-    public void setLastYearConsumption6(float value) {
+    public void setLastYearConsumption6(double value) {
         this.lastYearConsumption6 = value;
     }
 
@@ -508,7 +508,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the thisYearConsumption6 property.
      * 
      */
-    public float getThisYearConsumption6() {
+    public double getThisYearConsumption6() {
         return thisYearConsumption6;
     }
 
@@ -516,7 +516,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the thisYearConsumption6 property.
      * 
      */
-    public void setThisYearConsumption6(float value) {
+    public void setThisYearConsumption6(double value) {
         this.thisYearConsumption6 = value;
     }
 
@@ -548,7 +548,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the lastYearConsumption7 property.
      * 
      */
-    public float getLastYearConsumption7() {
+    public double getLastYearConsumption7() {
         return lastYearConsumption7;
     }
 
@@ -556,7 +556,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the lastYearConsumption7 property.
      * 
      */
-    public void setLastYearConsumption7(float value) {
+    public void setLastYearConsumption7(double value) {
         this.lastYearConsumption7 = value;
     }
 
@@ -564,7 +564,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the thisYearConsumption7 property.
      * 
      */
-    public float getThisYearConsumption7() {
+    public double getThisYearConsumption7() {
         return thisYearConsumption7;
     }
 
@@ -572,7 +572,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the thisYearConsumption7 property.
      * 
      */
-    public void setThisYearConsumption7(float value) {
+    public void setThisYearConsumption7(double value) {
         this.thisYearConsumption7 = value;
     }
 
@@ -604,7 +604,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the lastYearConsumption8 property.
      * 
      */
-    public float getLastYearConsumption8() {
+    public double getLastYearConsumption8() {
         return lastYearConsumption8;
     }
 
@@ -612,7 +612,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the lastYearConsumption8 property.
      * 
      */
-    public void setLastYearConsumption8(float value) {
+    public void setLastYearConsumption8(double value) {
         this.lastYearConsumption8 = value;
     }
 
@@ -620,7 +620,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the thisYearConsumption8 property.
      * 
      */
-    public float getThisYearConsumption8() {
+    public double getThisYearConsumption8() {
         return thisYearConsumption8;
     }
 
@@ -628,7 +628,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the thisYearConsumption8 property.
      * 
      */
-    public void setThisYearConsumption8(float value) {
+    public void setThisYearConsumption8(double value) {
         this.thisYearConsumption8 = value;
     }
 
@@ -660,7 +660,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the lastYearConsumption9 property.
      * 
      */
-    public float getLastYearConsumption9() {
+    public double getLastYearConsumption9() {
         return lastYearConsumption9;
     }
 
@@ -668,7 +668,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the lastYearConsumption9 property.
      * 
      */
-    public void setLastYearConsumption9(float value) {
+    public void setLastYearConsumption9(double value) {
         this.lastYearConsumption9 = value;
     }
 
@@ -676,7 +676,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the thisYearConsumption9 property.
      * 
      */
-    public float getThisYearConsumption9() {
+    public double getThisYearConsumption9() {
         return thisYearConsumption9;
     }
 
@@ -684,7 +684,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the thisYearConsumption9 property.
      * 
      */
-    public void setThisYearConsumption9(float value) {
+    public void setThisYearConsumption9(double value) {
         this.thisYearConsumption9 = value;
     }
 
@@ -716,7 +716,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the lastYearConsumption10 property.
      * 
      */
-    public float getLastYearConsumption10() {
+    public double getLastYearConsumption10() {
         return lastYearConsumption10;
     }
 
@@ -724,7 +724,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the lastYearConsumption10 property.
      * 
      */
-    public void setLastYearConsumption10(float value) {
+    public void setLastYearConsumption10(double value) {
         this.lastYearConsumption10 = value;
     }
 
@@ -732,7 +732,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the thisYearConsumption10 property.
      * 
      */
-    public float getThisYearConsumption10() {
+    public double getThisYearConsumption10() {
         return thisYearConsumption10;
     }
 
@@ -740,7 +740,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the thisYearConsumption10 property.
      * 
      */
-    public void setThisYearConsumption10(float value) {
+    public void setThisYearConsumption10(double value) {
         this.thisYearConsumption10 = value;
     }
 
@@ -772,7 +772,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the lastYearConsumption11 property.
      * 
      */
-    public float getLastYearConsumption11() {
+    public double getLastYearConsumption11() {
         return lastYearConsumption11;
     }
 
@@ -780,7 +780,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the lastYearConsumption11 property.
      * 
      */
-    public void setLastYearConsumption11(float value) {
+    public void setLastYearConsumption11(double value) {
         this.lastYearConsumption11 = value;
     }
 
@@ -788,7 +788,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the thisYearConsumption11 property.
      * 
      */
-    public float getThisYearConsumption11() {
+    public double getThisYearConsumption11() {
         return thisYearConsumption11;
     }
 
@@ -796,7 +796,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the thisYearConsumption11 property.
      * 
      */
-    public void setThisYearConsumption11(float value) {
+    public void setThisYearConsumption11(double value) {
         this.thisYearConsumption11 = value;
     }
 
@@ -828,7 +828,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the lastYearConsumption12 property.
      * 
      */
-    public float getLastYearConsumption12() {
+    public double getLastYearConsumption12() {
         return lastYearConsumption12;
     }
 
@@ -836,7 +836,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the lastYearConsumption12 property.
      * 
      */
-    public void setLastYearConsumption12(float value) {
+    public void setLastYearConsumption12(double value) {
         this.lastYearConsumption12 = value;
     }
 
@@ -844,7 +844,7 @@ public class ConsumptionPillars132 {
      * Gets the value of the thisYearConsumption12 property.
      * 
      */
-    public float getThisYearConsumption12() {
+    public double getThisYearConsumption12() {
         return thisYearConsumption12;
     }
 
@@ -852,7 +852,7 @@ public class ConsumptionPillars132 {
      * Sets the value of the thisYearConsumption12 property.
      * 
      */
-    public void setThisYearConsumption12(float value) {
+    public void setThisYearConsumption12(double value) {
         this.thisYearConsumption12 = value;
     }
 

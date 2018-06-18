@@ -42,17 +42,17 @@ import javax.xml.bind.annotation.*;
 public class VatInfo {
 
     @XmlElement(name = "VatPercent")
-    protected float vatPercent;
+    protected double vatPercent;
     @XmlElement(name = "VatBaseAmount")
-    protected float vatBaseAmount;
+    protected double vatBaseAmount;
     @XmlElement(name = "VatAmount")
-    protected float vatAmount;
+    protected double vatAmount;
 
     /**
      * Gets the value of the vatPercent property.
      * 
      */
-    public float getVatPercent() {
+    public double getVatPercent() {
         return vatPercent;
     }
 
@@ -60,7 +60,7 @@ public class VatInfo {
      * Sets the value of the vatPercent property.
      * 
      */
-    public void setVatPercent(float value) {
+    public void setVatPercent(double value) {
         this.vatPercent = value;
     }
 
@@ -68,7 +68,7 @@ public class VatInfo {
      * Gets the value of the vatBaseAmount property.
      * 
      */
-    public float getVatBaseAmount() {
+    public double getVatBaseAmount() {
         return vatBaseAmount;
     }
 
@@ -76,7 +76,7 @@ public class VatInfo {
      * Sets the value of the vatBaseAmount property.
      * 
      */
-    public void setVatBaseAmount(float value) {
+    public void setVatBaseAmount(double value) {
         this.vatBaseAmount = value;
     }
 
@@ -84,7 +84,7 @@ public class VatInfo {
      * Gets the value of the vatAmount property.
      * 
      */
-    public float getVatAmount() {
+    public double getVatAmount() {
         return vatAmount;
     }
 
@@ -92,7 +92,7 @@ public class VatInfo {
      * Sets the value of the vatAmount property.
      * 
      */
-    public void setVatAmount(float value) {
+    public void setVatAmount(double value) {
         this.vatAmount = value;
     }
 

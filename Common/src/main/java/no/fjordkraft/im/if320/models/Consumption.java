@@ -20,9 +20,9 @@ public class Consumption {
     @XmlElement(name = "PeriodDescription", required = true)
     protected String periodDescription;
     @XmlElement(name = "LastYearConsumption")
-    protected float lastYearConsumption;
+    protected double lastYearConsumption;
     @XmlElement(name = "ThisYearConsumption")
-    protected float thisYearConsumption;
+    protected double thisYearConsumption;
 
     public int getConsumptionSequence() {
         return consumptionSequence;
@@ -40,19 +40,19 @@ public class Consumption {
         this.periodDescription = periodDescription;
     }
 
-    public float getLastYearConsumption() {
+    public double getLastYearConsumption() {
         return lastYearConsumption;
     }
 
-    public void setLastYearConsumption(float lastYearConsumption) {
+    public void setLastYearConsumption(double lastYearConsumption) {
         this.lastYearConsumption = lastYearConsumption;
     }
 
-    public float getThisYearConsumption() {
+    public double getThisYearConsumption() {
         return thisYearConsumption;
     }
 
-    public void setThisYearConsumption(float thisYearConsumption) {
+    public void setThisYearConsumption(double thisYearConsumption) {
         this.thisYearConsumption = thisYearConsumption;
     }
 }

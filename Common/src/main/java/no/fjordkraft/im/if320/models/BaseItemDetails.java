@@ -74,15 +74,15 @@ public class BaseItemDetails {
     @XmlElement(name = "Description", required = true)
     protected String description;
     @XmlElement(name = "UnitPrice")
-    protected float unitPrice;
+    protected double unitPrice;
     @XmlElement(name = "PriceDenomination", required = true)
     protected String priceDenomination;
     @XmlElement(name = "LineItemAmount")
-    protected float lineItemAmount;
+    protected double lineItemAmount;
     @XmlElement(name = "LineItemGrossAmount")
-    protected float lineItemGrossAmount;
+    protected double lineItemGrossAmount;
     @XmlElement(name = "QuantityInvoiced")
-    protected float quantityInvoiced;
+    protected double quantityInvoiced;
     @XmlElement(name = "UnitOfMeasure", required = true)
     protected String unitOfMeasure;
     @XmlElement(name = "VatInfo", required = true)
@@ -95,7 +95,7 @@ public class BaseItemDetails {
     protected XMLGregorianCalendar endDate;
 
     @XmlElement(name = "UnitPriceGross")
-    protected float unitPriceGross;
+    protected double unitPriceGross;
 
     @XmlElement(name = "Ref")
     protected List<Ref> ref;
@@ -107,9 +107,9 @@ public class BaseItemDetails {
     protected String attachmentFormat;
 
     @XmlElement(name = "VatRate")
-    protected float vatRate;
+    protected double vatRate;
     @XmlElement(name = "LineExtensionAmount")
-    protected float lineExtensionAmount;
+    protected double lineExtensionAmount;
 
 
     /**
@@ -172,7 +172,7 @@ public class BaseItemDetails {
      * Gets the value of the unitPrice property.
      * 
      */
-    public float getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
@@ -180,7 +180,7 @@ public class BaseItemDetails {
      * Sets the value of the unitPrice property.
      * 
      */
-    public void setUnitPrice(float value) {
+    public void setUnitPrice(double value) {
         this.unitPrice = value;
     }
 
@@ -212,7 +212,7 @@ public class BaseItemDetails {
      * Gets the value of the lineItemAmount property.
      * 
      */
-    public float getLineItemAmount() {
+    public double getLineItemAmount() {
         return lineItemAmount;
     }
 
@@ -220,7 +220,7 @@ public class BaseItemDetails {
      * Sets the value of the lineItemAmount property.
      * 
      */
-    public void setLineItemAmount(float value) {
+    public void setLineItemAmount(double value) {
         this.lineItemAmount = value;
     }
 
@@ -228,7 +228,7 @@ public class BaseItemDetails {
      * Gets the value of the lineItemGrossAmount property.
      * 
      */
-    public float getLineItemGrossAmount() {
+    public double getLineItemGrossAmount() {
         return lineItemGrossAmount;
     }
 
@@ -236,7 +236,7 @@ public class BaseItemDetails {
      * Sets the value of the lineItemGrossAmount property.
      * 
      */
-    public void setLineItemGrossAmount(float value) {
+    public void setLineItemGrossAmount(double value) {
         this.lineItemGrossAmount = value;
     }
 
@@ -244,7 +244,7 @@ public class BaseItemDetails {
      * Gets the value of the quantityInvoiced property.
      * 
      */
-    public float getQuantityInvoiced() {
+    public double getQuantityInvoiced() {
         return quantityInvoiced;
     }
 
@@ -252,7 +252,7 @@ public class BaseItemDetails {
      * Sets the value of the quantityInvoiced property.
      * 
      */
-    public void setQuantityInvoiced(float value) {
+    public void setQuantityInvoiced(double value) {
         this.quantityInvoiced = value;
     }
 
@@ -352,11 +352,11 @@ public class BaseItemDetails {
         this.endDate = value;
     }
 
-    public float getUnitPriceGross() {
+    public double getUnitPriceGross() {
         return unitPriceGross;
     }
 
-    public void setUnitPriceGross(float unitPriceGross) {
+    public void setUnitPriceGross(double unitPriceGross) {
         this.unitPriceGross = unitPriceGross;
     }
 
@@ -384,19 +384,19 @@ public class BaseItemDetails {
         this.attachmentFormat = attachmentFormat;
     }
 
-    public float getVatRate() {
+    public double getVatRate() {
         return vatRate;
     }
 
-    public void setVatRate(float vatRate) {
+    public void setVatRate(double vatRate) {
         this.vatRate = vatRate;
     }
 
-    public float getLineExtensionAmount() {
+    public double getLineExtensionAmount() {
         return lineExtensionAmount;
     }
 
-    public void setLineExtensionAmount(float lineExtensionAmount) {
+    public void setLineExtensionAmount(double lineExtensionAmount) {
         this.lineExtensionAmount = lineExtensionAmount;
     }
 }

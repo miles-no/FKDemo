@@ -125,7 +125,7 @@ public class MainInvoiceInfo101 {
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dueDate;
     @XmlElement(name = "PayInst2Total")
-    protected float payInst2Total;
+    protected double payInst2Total;
     @XmlElement(name = "PaymentDocNo")
     protected byte paymentDocNo;
     @XmlElement(name = "GrossPresentation", required = true)
@@ -143,15 +143,15 @@ public class MainInvoiceInfo101 {
     @XmlElement(name = "DueDateDescription", required = true)
     protected String dueDateDescription;
     @XmlElement(name = "MoraInterest")
-    protected float moraInterest;
+    protected double moraInterest;
     @XmlElement(name = "PrintedAmount")
-    protected float printedAmount;
+    protected double printedAmount;
     @XmlElement(name = "PreviouslyPaid")
-    protected float previouslyPaid;
+    protected double previouslyPaid;
     @XmlElement(name = "ToBePaid")
-    protected float toBePaid;
+    protected double toBePaid;
     @XmlElement(name = "VAT")
-    protected float vat;
+    protected double vat;
     @XmlElement(name = "TotPrintWithoutDec")
     protected short totPrintWithoutDec;
     @XmlElement(name = "Decimals")
@@ -159,15 +159,15 @@ public class MainInvoiceInfo101 {
     @XmlElement(name = "Mod10")
     protected byte mod10;
     @XmlElement(name = "TotalOutstanding")
-    protected float totalOutstanding;
+    protected double totalOutstanding;
     @XmlElement(name = "EInvoiceUrl", required = true)
     protected String eInvoiceUrl;
     @XmlElement(name = "Utility", required = true)
     protected String utility;
     @XmlElement(name = "ReminderFee")
-    protected float reminderFee;
+    protected double reminderFee;
     @XmlElement(name = "ToBePaidNet")
-    protected float toBePaidNet;
+    protected double toBePaidNet;
     @XmlElement(name = "InvoiceDate", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar invoiceDate;
@@ -179,15 +179,15 @@ public class MainInvoiceInfo101 {
     protected byte creditedInvoiceNo;
     @XmlElement(name = "E-InvoiceReferenceNew")
     protected long eInvoiceReferenceNew;
-    protected float netPrintet;
+    protected double netPrintet;
     @XmlElement(name = "RegulationRecords")
-    protected float regulationRecords;
+    protected double regulationRecords;
     @XmlElement(name = "TemplateType", required = true)
     protected String templateType;
     @XmlElement(name = "Transactions", required = true)
     protected Transactions transactions;
     @XmlElement(name = "Balance")
-    protected float balance;
+    protected double balance;
     @XmlElement(name = "EInvoiceReferenceProposal")
     protected long eInvoiceReferenceProposal;
 
@@ -291,7 +291,7 @@ public class MainInvoiceInfo101 {
      * Gets the value of the payInst2Total property.
      *
      */
-    public float getPayInst2Total() {
+    public double getPayInst2Total() {
         return payInst2Total;
     }
 
@@ -299,7 +299,7 @@ public class MainInvoiceInfo101 {
      * Sets the value of the payInst2Total property.
      *
      */
-    public void setPayInst2Total(float value) {
+    public void setPayInst2Total(double value) {
         this.payInst2Total = value;
     }
 
@@ -483,7 +483,7 @@ public class MainInvoiceInfo101 {
      * Gets the value of the moraInterest property.
      *
      */
-    public float getMoraInterest() {
+    public double getMoraInterest() {
         return moraInterest;
     }
 
@@ -491,7 +491,7 @@ public class MainInvoiceInfo101 {
      * Sets the value of the moraInterest property.
      *
      */
-    public void setMoraInterest(float value) {
+    public void setMoraInterest(double value) {
         this.moraInterest = value;
     }
 
@@ -499,7 +499,7 @@ public class MainInvoiceInfo101 {
      * Gets the value of the printedAmount property.
      *
      */
-    public float getPrintedAmount() {
+    public double getPrintedAmount() {
         return printedAmount;
     }
 
@@ -507,7 +507,7 @@ public class MainInvoiceInfo101 {
      * Sets the value of the printedAmount property.
      *
      */
-    public void setPrintedAmount(float value) {
+    public void setPrintedAmount(double value) {
         this.printedAmount = value;
     }
 
@@ -515,7 +515,7 @@ public class MainInvoiceInfo101 {
      * Gets the value of the previouslyPaid property.
      *
      */
-    public float getPreviouslyPaid() {
+    public double getPreviouslyPaid() {
         return previouslyPaid;
     }
 
@@ -523,7 +523,7 @@ public class MainInvoiceInfo101 {
      * Sets the value of the previouslyPaid property.
      *
      */
-    public void setPreviouslyPaid(float value) {
+    public void setPreviouslyPaid(double value) {
         this.previouslyPaid = value;
     }
 
@@ -531,7 +531,7 @@ public class MainInvoiceInfo101 {
      * Gets the value of the toBePaid property.
      *
      */
-    public float getToBePaid() {
+    public double getToBePaid() {
         return toBePaid;
     }
 
@@ -539,7 +539,7 @@ public class MainInvoiceInfo101 {
      * Sets the value of the toBePaid property.
      *
      */
-    public void setToBePaid(float value) {
+    public void setToBePaid(double value) {
         this.toBePaid = value;
     }
 
@@ -547,7 +547,7 @@ public class MainInvoiceInfo101 {
      * Gets the value of the vat property.
      *
      */
-    public float getVAT() {
+    public double getVAT() {
         return vat;
     }
 
@@ -555,7 +555,7 @@ public class MainInvoiceInfo101 {
      * Sets the value of the vat property.
      *
      */
-    public void setVAT(float value) {
+    public void setVAT(double value) {
         this.vat = value;
     }
 
@@ -611,7 +611,7 @@ public class MainInvoiceInfo101 {
      * Gets the value of the totalOutstanding property.
      *
      */
-    public float getTotalOutstanding() {
+    public double getTotalOutstanding() {
         return totalOutstanding;
     }
 
@@ -619,7 +619,7 @@ public class MainInvoiceInfo101 {
      * Sets the value of the totalOutstanding property.
      *
      */
-    public void setTotalOutstanding(float value) {
+    public void setTotalOutstanding(double value) {
         this.totalOutstanding = value;
     }
 
@@ -675,7 +675,7 @@ public class MainInvoiceInfo101 {
      * Gets the value of the reminderFee property.
      *
      */
-    public float getReminderFee() {
+    public double getReminderFee() {
         return reminderFee;
     }
 
@@ -683,7 +683,7 @@ public class MainInvoiceInfo101 {
      * Sets the value of the reminderFee property.
      *
      */
-    public void setReminderFee(float value) {
+    public void setReminderFee(double value) {
         this.reminderFee = value;
     }
 
@@ -691,7 +691,7 @@ public class MainInvoiceInfo101 {
      * Gets the value of the toBePaidNet property.
      *
      */
-    public float getToBePaidNet() {
+    public double getToBePaidNet() {
         return toBePaidNet;
     }
 
@@ -699,7 +699,7 @@ public class MainInvoiceInfo101 {
      * Sets the value of the toBePaidNet property.
      *
      */
-    public void setToBePaidNet(float value) {
+    public void setToBePaidNet(double value) {
         this.toBePaidNet = value;
     }
 
@@ -803,7 +803,7 @@ public class MainInvoiceInfo101 {
      * Gets the value of the netPrintet property.
      * 
      */
-    public float getNetPrintet() {
+    public double getNetPrintet() {
         return netPrintet;
     }
 
@@ -811,7 +811,7 @@ public class MainInvoiceInfo101 {
      * Sets the value of the netPrintet property.
      * 
      */
-    public void setNetPrintet(float value) {
+    public void setNetPrintet(double value) {
         this.netPrintet = value;
     }
 
@@ -819,7 +819,7 @@ public class MainInvoiceInfo101 {
      * Gets the value of the regulationRecords property.
      * 
      */
-    public float getRegulationRecords() {
+    public double getRegulationRecords() {
         return regulationRecords;
     }
 
@@ -827,7 +827,7 @@ public class MainInvoiceInfo101 {
      * Sets the value of the regulationRecords property.
      * 
      */
-    public void setRegulationRecords(float value) {
+    public void setRegulationRecords(double value) {
         this.regulationRecords = value;
     }
 
@@ -883,7 +883,7 @@ public class MainInvoiceInfo101 {
      * Gets the value of the balance property.
      * 
      */
-    public float getBalance() {
+    public double getBalance() {
         return balance;
     }
 
@@ -891,7 +891,7 @@ public class MainInvoiceInfo101 {
      * Sets the value of the balance property.
      * 
      */
-    public void setBalance(float value) {
+    public void setBalance(double value) {
         this.balance = value;
     }
 

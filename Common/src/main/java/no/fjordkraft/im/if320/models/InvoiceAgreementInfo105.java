@@ -78,9 +78,9 @@ public class InvoiceAgreementInfo105 {
     @XmlElement(name = "AccountNo", required = true)
     protected String accountNo;
     @XmlElement(name = "TotalPrinted")
-    protected float totalPrinted;
+    protected double totalPrinted;
     @XmlElement(name = "TotalPrintedOtherInvoices")
-    protected float totalPrintedOtherInvoices;
+    protected double totalPrintedOtherInvoices;
     @XmlElement(name = "BIC-Customer", required = true)
     protected String bicCustomer;
     @XmlElement(name = "IBAN-Customer", required = true)
@@ -274,7 +274,7 @@ public class InvoiceAgreementInfo105 {
      * Gets the value of the totalPrinted property.
      * 
      */
-    public float getTotalPrinted() {
+    public double getTotalPrinted() {
         return totalPrinted;
     }
 
@@ -282,7 +282,7 @@ public class InvoiceAgreementInfo105 {
      * Sets the value of the totalPrinted property.
      * 
      */
-    public void setTotalPrinted(float value) {
+    public void setTotalPrinted(double value) {
         this.totalPrinted = value;
     }
 
@@ -290,7 +290,7 @@ public class InvoiceAgreementInfo105 {
      * Gets the value of the totalPrintedOtherInvoices property.
      * 
      */
-    public float getTotalPrintedOtherInvoices() {
+    public double getTotalPrintedOtherInvoices() {
         return totalPrintedOtherInvoices;
     }
 
@@ -298,7 +298,7 @@ public class InvoiceAgreementInfo105 {
      * Sets the value of the totalPrintedOtherInvoices property.
      * 
      */
-    public void setTotalPrintedOtherInvoices(float value) {
+    public void setTotalPrintedOtherInvoices(double value) {
         this.totalPrintedOtherInvoices = value;
     }
 

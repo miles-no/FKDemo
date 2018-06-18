@@ -85,7 +85,7 @@ public class Invoice {
     @XmlAttribute(name = "MessageType")
     protected String messageType;
     @XmlAttribute(name = "MessageVersion")
-    protected Float messageVersion;
+    protected Double messageVersion;
 
     /**
      * Gets the value of the mainInvoiceInfo101 property.
@@ -404,10 +404,10 @@ public class Invoice {
      *
      * @return
      *     possible object is
-     *     {@link Float }
+     *     {@link Double }
      *
      */
-    public Float getMessageVersion() {
+    public Double getMessageVersion() {
         return messageVersion;
     }
 
@@ -416,10 +416,10 @@ public class Invoice {
      *
      * @param value
      *     allowed object is
-     *     {@link Float }
+     *     {@link Double }
      *
      */
-    public void setMessageVersion(Float value) {
+    public void setMessageVersion(Double value) {
         this.messageVersion = value;
     }
 

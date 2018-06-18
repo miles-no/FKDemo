@@ -56,7 +56,7 @@ public class LastReading112 {
     @XmlElement(name = "MeterCounter1")
     protected byte meterCounter1;
     @XmlElement(name = "C-Reading1")
-    protected float cReading1;
+    protected double cReading1;
     @XmlElement(name = "MethodText", required = true)
     protected String methodText;
     @XmlElement(name = "ServiceAgreeSerialNo")
@@ -122,7 +122,7 @@ public class LastReading112 {
      * Gets the value of the cReading1 property.
      * 
      */
-    public float getCReading1() {
+    public double getCReading1() {
         return cReading1;
     }
 
@@ -130,7 +130,7 @@ public class LastReading112 {
      * Sets the value of the cReading1 property.
      * 
      */
-    public void setCReading1(float value) {
+    public void setCReading1(double value) {
         this.cReading1 = value;
     }
 

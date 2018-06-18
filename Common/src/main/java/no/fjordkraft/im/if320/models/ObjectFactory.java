@@ -674,21 +674,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Rate")
-    public JAXBElement<Float> createRate(Float value) {
-        return new JAXBElement<Float>(_Rate_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createRate(Double value) {
+        return new JAXBElement<Double>(_Rate_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Amount")
-    public JAXBElement<Float> createAmount(Float value) {
-        return new JAXBElement<Float>(_Amount_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createAmount(Double value) {
+        return new JAXBElement<Double>(_Amount_QNAME, Double.class, null, value);
     }
 
     /**
@@ -746,21 +746,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "VatAmount")
-    public JAXBElement<Float> createVatAmount(Float value) {
-        return new JAXBElement<Float>(_VatAmount_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createVatAmount(Double value) {
+        return new JAXBElement<Double>(_VatAmount_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "AmountWithVat")
-    public JAXBElement<Float> createAmountWithVat(Float value) {
-        return new JAXBElement<Float>(_AmountWithVat_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createAmountWithVat(Double value) {
+        return new JAXBElement<Double>(_AmountWithVat_QNAME, Double.class, null, value);
     }
 
     /**
@@ -845,12 +845,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "PayInst2Total")
-    public JAXBElement<Float> createPayInst2Total(Float value) {
-        return new JAXBElement<Float>(_PayInst2Total_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createPayInst2Total(Double value) {
+        return new JAXBElement<Double>(_PayInst2Total_QNAME, Double.class, null, value);
     }
 
     /**
@@ -926,48 +926,48 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "MoraInterest")
-    public JAXBElement<Float> createMoraInterest(Float value) {
-        return new JAXBElement<Float>(_MoraInterest_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createMoraInterest(Double value) {
+        return new JAXBElement<Double>(_MoraInterest_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "PrintedAmount")
-    public JAXBElement<Float> createPrintedAmount(Float value) {
-        return new JAXBElement<Float>(_PrintedAmount_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createPrintedAmount(Double value) {
+        return new JAXBElement<Double>(_PrintedAmount_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "PreviouslyPaid")
-    public JAXBElement<Float> createPreviouslyPaid(Float value) {
-        return new JAXBElement<Float>(_PreviouslyPaid_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createPreviouslyPaid(Double value) {
+        return new JAXBElement<Double>(_PreviouslyPaid_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ToBePaid")
-    public JAXBElement<Float> createToBePaid(Float value) {
-        return new JAXBElement<Float>(_ToBePaid_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createToBePaid(Double value) {
+        return new JAXBElement<Double>(_ToBePaid_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "VAT")
-    public JAXBElement<Float> createVAT(Float value) {
-        return new JAXBElement<Float>(_VAT_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createVAT(Double value) {
+        return new JAXBElement<Double>(_VAT_QNAME, Double.class, null, value);
     }
 
     /**
@@ -998,12 +998,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "TotalOutstanding")
-    public JAXBElement<Float> createTotalOutstanding(Float value) {
-        return new JAXBElement<Float>(_TotalOutstanding_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createTotalOutstanding(Double value) {
+        return new JAXBElement<Double>(_TotalOutstanding_QNAME, Double.class, null, value);
     }
 
     /**
@@ -1025,21 +1025,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ReminderFee")
-    public JAXBElement<Float> createReminderFee(Float value) {
-        return new JAXBElement<Float>(_ReminderFee_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createReminderFee(Double value) {
+        return new JAXBElement<Double>(_ReminderFee_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ToBePaidNet")
-    public JAXBElement<Float> createToBePaidNet(Float value) {
-        return new JAXBElement<Float>(_ToBePaidNet_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createToBePaidNet(Double value) {
+        return new JAXBElement<Double>(_ToBePaidNet_QNAME, Double.class, null, value);
     }
 
     /**
@@ -1088,21 +1088,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "netPrintet")
-    public JAXBElement<Float> createNetPrintet(Float value) {
-        return new JAXBElement<Float>(_NetPrintet_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createNetPrintet(Double value) {
+        return new JAXBElement<Double>(_NetPrintet_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "RegulationRecords")
-    public JAXBElement<Float> createRegulationRecords(Float value) {
-        return new JAXBElement<Float>(_RegulationRecords_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createRegulationRecords(Double value) {
+        return new JAXBElement<Double>(_RegulationRecords_QNAME, Double.class, null, value);
     }
 
     /**
@@ -1115,12 +1115,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Balance")
-    public JAXBElement<Float> createBalance(Float value) {
-        return new JAXBElement<Float>(_Balance_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createBalance(Double value) {
+        return new JAXBElement<Double>(_Balance_QNAME, Double.class, null, value);
     }
 
     /**
@@ -1331,21 +1331,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "TotalPrinted")
-    public JAXBElement<Float> createTotalPrinted(Float value) {
-        return new JAXBElement<Float>(_TotalPrinted_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createTotalPrinted(Double value) {
+        return new JAXBElement<Double>(_TotalPrinted_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "TotalPrintedOtherInvoices")
-    public JAXBElement<Float> createTotalPrintedOtherInvoices(Float value) {
-        return new JAXBElement<Float>(_TotalPrintedOtherInvoices_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createTotalPrintedOtherInvoices(Double value) {
+        return new JAXBElement<Double>(_TotalPrintedOtherInvoices_QNAME, Double.class, null, value);
     }
 
     /**
@@ -1601,12 +1601,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "YearEffect")
-    public JAXBElement<Float> createYearEffect(Float value) {
-        return new JAXBElement<Float>(_YearEffect_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createYearEffect(Double value) {
+        return new JAXBElement<Double>(_YearEffect_QNAME, Double.class, null, value);
     }
 
     /**
@@ -1637,30 +1637,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "StartReading")
-    public JAXBElement<Float> createStartReading(Float value) {
-        return new JAXBElement<Float>(_StartReading_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createStartReading(Double value) {
+        return new JAXBElement<Double>(_StartReading_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "FinalC-Reading")
-    public JAXBElement<Float> createFinalCReading(Float value) {
-        return new JAXBElement<Float>(_FinalCReading_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createFinalCReading(Double value) {
+        return new JAXBElement<Double>(_FinalCReading_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "AreaFactor")
-    public JAXBElement<Float> createAreaFactor(Float value) {
-        return new JAXBElement<Float>(_AreaFactor_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createAreaFactor(Double value) {
+        return new JAXBElement<Double>(_AreaFactor_QNAME, Double.class, null, value);
     }
 
     /**
@@ -1718,12 +1718,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "MethodFinalC-Reading")
-    public JAXBElement<Float> createMethodFinalCReading(Float value) {
-        return new JAXBElement<Float>(_MethodFinalCReading_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createMethodFinalCReading(Double value) {
+        return new JAXBElement<Double>(_MethodFinalCReading_QNAME, Double.class, null, value);
     }
 
     /**
@@ -1790,12 +1790,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "TotConsCurrCounter")
-    public JAXBElement<Float> createTotConsCurrCounter(Float value) {
-        return new JAXBElement<Float>(_TotConsCurrCounter_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createTotConsCurrCounter(Double value) {
+        return new JAXBElement<Double>(_TotConsCurrCounter_QNAME, Double.class, null, value);
     }
 
     /**
@@ -1835,12 +1835,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "C-Reading1")
-    public JAXBElement<Float> createCReading1(Float value) {
-        return new JAXBElement<Float>(_CReading1_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createCReading1(Double value) {
+        return new JAXBElement<Double>(_CReading1_QNAME, Double.class, null, value);
     }
 
     /**
@@ -1853,57 +1853,57 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "GrossSettled")
-    public JAXBElement<Float> createGrossSettled(Float value) {
-        return new JAXBElement<Float>(_GrossSettled_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossSettled(Double value) {
+        return new JAXBElement<Double>(_GrossSettled_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "NetSettled")
-    public JAXBElement<Float> createNetSettled(Float value) {
-        return new JAXBElement<Float>(_NetSettled_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createNetSettled(Double value) {
+        return new JAXBElement<Double>(_NetSettled_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "VatSettled")
-    public JAXBElement<Float> createVatSettled(Float value) {
-        return new JAXBElement<Float>(_VatSettled_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createVatSettled(Double value) {
+        return new JAXBElement<Double>(_VatSettled_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "GrossB-Account")
-    public JAXBElement<Float> createGrossBAccount(Float value) {
-        return new JAXBElement<Float>(_GrossBAccount_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossBAccount(Double value) {
+        return new JAXBElement<Double>(_GrossBAccount_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "NetB-Account")
-    public JAXBElement<Float> createNetBAccount(Float value) {
-        return new JAXBElement<Float>(_NetBAccount_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createNetBAccount(Double value) {
+        return new JAXBElement<Double>(_NetBAccount_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "VatB-Account")
-    public JAXBElement<Float> createVatBAccount(Float value) {
-        return new JAXBElement<Float>(_VatBAccount_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createVatBAccount(Double value) {
+        return new JAXBElement<Double>(_VatBAccount_QNAME, Double.class, null, value);
     }
 
     /**
@@ -1916,201 +1916,201 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "GrossWriteBacks")
-    public JAXBElement<Float> createGrossWriteBacks(Float value) {
-        return new JAXBElement<Float>(_GrossWriteBacks_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossWriteBacks(Double value) {
+        return new JAXBElement<Double>(_GrossWriteBacks_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "NetWriteBacks")
-    public JAXBElement<Float> createNetWriteBacks(Float value) {
-        return new JAXBElement<Float>(_NetWriteBacks_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createNetWriteBacks(Double value) {
+        return new JAXBElement<Double>(_NetWriteBacks_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "VatWriteBacks")
-    public JAXBElement<Float> createVatWriteBacks(Float value) {
-        return new JAXBElement<Float>(_VatWriteBacks_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createVatWriteBacks(Double value) {
+        return new JAXBElement<Double>(_VatWriteBacks_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "GrossMisc")
-    public JAXBElement<Float> createGrossMisc(Float value) {
-        return new JAXBElement<Float>(_GrossMisc_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossMisc(Double value) {
+        return new JAXBElement<Double>(_GrossMisc_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "NetMisc")
-    public JAXBElement<Float> createNetMisc(Float value) {
-        return new JAXBElement<Float>(_NetMisc_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createNetMisc(Double value) {
+        return new JAXBElement<Double>(_NetMisc_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "VatMisc")
-    public JAXBElement<Float> createVatMisc(Float value) {
-        return new JAXBElement<Float>(_VatMisc_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createVatMisc(Double value) {
+        return new JAXBElement<Double>(_VatMisc_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "GrossItem")
-    public JAXBElement<Float> createGrossItem(Float value) {
-        return new JAXBElement<Float>(_GrossItem_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossItem(Double value) {
+        return new JAXBElement<Double>(_GrossItem_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "NetItem")
-    public JAXBElement<Float> createNetItem(Float value) {
-        return new JAXBElement<Float>(_NetItem_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createNetItem(Double value) {
+        return new JAXBElement<Double>(_NetItem_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "VatItem")
-    public JAXBElement<Float> createVatItem(Float value) {
-        return new JAXBElement<Float>(_VatItem_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createVatItem(Double value) {
+        return new JAXBElement<Double>(_VatItem_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "VatTotal")
-    public JAXBElement<Float> createVatTotal(Float value) {
-        return new JAXBElement<Float>(_VatTotal_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createVatTotal(Double value) {
+        return new JAXBElement<Double>(_VatTotal_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "GrossTax")
-    public JAXBElement<Float> createGrossTax(Float value) {
-        return new JAXBElement<Float>(_GrossTax_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossTax(Double value) {
+        return new JAXBElement<Double>(_GrossTax_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "NetTotal")
-    public JAXBElement<Float> createNetTotal(Float value) {
-        return new JAXBElement<Float>(_NetTotal_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createNetTotal(Double value) {
+        return new JAXBElement<Double>(_NetTotal_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "GrossTotal")
-    public JAXBElement<Float> createGrossTotal(Float value) {
-        return new JAXBElement<Float>(_GrossTotal_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossTotal(Double value) {
+        return new JAXBElement<Double>(_GrossTotal_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "GrossSettledAndWriteBacks")
-    public JAXBElement<Float> createGrossSettledAndWriteBacks(Float value) {
-        return new JAXBElement<Float>(_GrossSettledAndWriteBacks_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossSettledAndWriteBacks(Double value) {
+        return new JAXBElement<Double>(_GrossSettledAndWriteBacks_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "NetSettledAndWriteBacks")
-    public JAXBElement<Float> createNetSettledAndWriteBacks(Float value) {
-        return new JAXBElement<Float>(_NetSettledAndWriteBacks_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createNetSettledAndWriteBacks(Double value) {
+        return new JAXBElement<Double>(_NetSettledAndWriteBacks_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "VatSettledAndWriteBacks")
-    public JAXBElement<Float> createVatSettledAndWriteBacks(Float value) {
-        return new JAXBElement<Float>(_VatSettledAndWriteBacks_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createVatSettledAndWriteBacks(Double value) {
+        return new JAXBElement<Double>(_VatSettledAndWriteBacks_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "NetWithTax")
-    public JAXBElement<Float> createNetWithTax(Float value) {
-        return new JAXBElement<Float>(_NetWithTax_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createNetWithTax(Double value) {
+        return new JAXBElement<Double>(_NetWithTax_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "GrossWithTax")
-    public JAXBElement<Float> createGrossWithTax(Float value) {
-        return new JAXBElement<Float>(_GrossWithTax_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossWithTax(Double value) {
+        return new JAXBElement<Double>(_GrossWithTax_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "NetNoTax")
-    public JAXBElement<Float> createNetNoTax(Float value) {
-        return new JAXBElement<Float>(_NetNoTax_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createNetNoTax(Double value) {
+        return new JAXBElement<Double>(_NetNoTax_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "VatRate")
-    public JAXBElement<Float> createVatRate(Float value) {
-        return new JAXBElement<Float>(_VatRate_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createVatRate(Double value) {
+        return new JAXBElement<Double>(_VatRate_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "SumBasis")
-    public JAXBElement<Float> createSumBasis(Float value) {
-        return new JAXBElement<Float>(_SumBasis_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createSumBasis(Double value) {
+        return new JAXBElement<Double>(_SumBasis_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "SumVat")
-    public JAXBElement<Float> createSumVat(Float value) {
-        return new JAXBElement<Float>(_SumVat_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createSumVat(Double value) {
+        return new JAXBElement<Double>(_SumVat_QNAME, Double.class, null, value);
     }
 
     /**
@@ -2123,12 +2123,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Gross")
-    public JAXBElement<Float> createGross(Float value) {
-        return new JAXBElement<Float>(_Gross_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGross(Double value) {
+        return new JAXBElement<Double>(_Gross_QNAME, Double.class, null, value);
     }
 
     /**
@@ -2159,12 +2159,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Gross_high_precision")
-    public JAXBElement<Float> createGrossHighPrecision(Float value) {
-        return new JAXBElement<Float>(_GrossHighPrecision_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossHighPrecision(Double value) {
+        return new JAXBElement<Double>(_GrossHighPrecision_QNAME, Double.class, null, value);
     }
 
     /**
@@ -2303,165 +2303,165 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field3")
-    public JAXBElement<Float> createField3(Float value) {
-        return new JAXBElement<Float>(_Field3_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField3(Double value) {
+        return new JAXBElement<Double>(_Field3_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field4")
-    public JAXBElement<Float> createField4(Float value) {
-        return new JAXBElement<Float>(_Field4_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField4(Double value) {
+        return new JAXBElement<Double>(_Field4_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field5")
-    public JAXBElement<Float> createField5(Float value) {
-        return new JAXBElement<Float>(_Field5_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField5(Double value) {
+        return new JAXBElement<Double>(_Field5_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field6")
-    public JAXBElement<Float> createField6(Float value) {
-        return new JAXBElement<Float>(_Field6_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField6(Double value) {
+        return new JAXBElement<Double>(_Field6_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field7")
-    public JAXBElement<Float> createField7(Float value) {
-        return new JAXBElement<Float>(_Field7_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField7(Double value) {
+        return new JAXBElement<Double>(_Field7_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field8")
-    public JAXBElement<Float> createField8(Float value) {
-        return new JAXBElement<Float>(_Field8_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField8(Double value) {
+        return new JAXBElement<Double>(_Field8_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field9")
-    public JAXBElement<Float> createField9(Float value) {
-        return new JAXBElement<Float>(_Field9_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField9(Double value) {
+        return new JAXBElement<Double>(_Field9_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field10")
-    public JAXBElement<Float> createField10(Float value) {
-        return new JAXBElement<Float>(_Field10_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField10(Double value) {
+        return new JAXBElement<Double>(_Field10_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field11")
-    public JAXBElement<Float> createField11(Float value) {
-        return new JAXBElement<Float>(_Field11_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField11(Double value) {
+        return new JAXBElement<Double>(_Field11_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field12")
-    public JAXBElement<Float> createField12(Float value) {
-        return new JAXBElement<Float>(_Field12_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField12(Double value) {
+        return new JAXBElement<Double>(_Field12_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field13")
-    public JAXBElement<Float> createField13(Float value) {
-        return new JAXBElement<Float>(_Field13_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField13(Double value) {
+        return new JAXBElement<Double>(_Field13_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field14")
-    public JAXBElement<Float> createField14(Float value) {
-        return new JAXBElement<Float>(_Field14_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField14(Double value) {
+        return new JAXBElement<Double>(_Field14_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field15")
-    public JAXBElement<Float> createField15(Float value) {
-        return new JAXBElement<Float>(_Field15_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField15(Double value) {
+        return new JAXBElement<Double>(_Field15_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field16")
-    public JAXBElement<Float> createField16(Float value) {
-        return new JAXBElement<Float>(_Field16_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField16(Double value) {
+        return new JAXBElement<Double>(_Field16_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field17")
-    public JAXBElement<Float> createField17(Float value) {
-        return new JAXBElement<Float>(_Field17_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField17(Double value) {
+        return new JAXBElement<Double>(_Field17_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field18")
-    public JAXBElement<Float> createField18(Float value) {
-        return new JAXBElement<Float>(_Field18_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField18(Double value) {
+        return new JAXBElement<Double>(_Field18_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field19")
-    public JAXBElement<Float> createField19(Float value) {
-        return new JAXBElement<Float>(_Field19_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField19(Double value) {
+        return new JAXBElement<Double>(_Field19_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Field20")
-    public JAXBElement<Float> createField20(Float value) {
-        return new JAXBElement<Float>(_Field20_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createField20(Double value) {
+        return new JAXBElement<Double>(_Field20_QNAME, Double.class, null, value);
     }
 
     /**
@@ -2663,12 +2663,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Net")
-    public JAXBElement<Float> createNet(Float value) {
-        return new JAXBElement<Float>(_Net_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createNet(Double value) {
+        return new JAXBElement<Double>(_Net_QNAME, Double.class, null, value);
     }
 
     /**
@@ -2690,21 +2690,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "PriceRate")
-    public JAXBElement<Float> createPriceRate(Float value) {
-        return new JAXBElement<Float>(_PriceRate_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createPriceRate(Double value) {
+        return new JAXBElement<Double>(_PriceRate_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "Basis")
-    public JAXBElement<Float> createBasis(Float value) {
-        return new JAXBElement<Float>(_Basis_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createBasis(Double value) {
+        return new JAXBElement<Double>(_Basis_QNAME, Double.class, null, value);
     }
 
     /**
@@ -2717,21 +2717,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "OldC-Reading")
-    public JAXBElement<Float> createOldCReading(Float value) {
-        return new JAXBElement<Float>(_OldCReading_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createOldCReading(Double value) {
+        return new JAXBElement<Double>(_OldCReading_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "TotalTaxPrice")
-    public JAXBElement<Float> createTotalTaxPrice(Float value) {
-        return new JAXBElement<Float>(_TotalTaxPrice_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createTotalTaxPrice(Double value) {
+        return new JAXBElement<Double>(_TotalTaxPrice_QNAME, Double.class, null, value);
     }
 
     /**
@@ -2753,21 +2753,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "GrossPrice")
-    public JAXBElement<Float> createGrossPrice(Float value) {
-        return new JAXBElement<Float>(_GrossPrice_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossPrice(Double value) {
+        return new JAXBElement<Double>(_GrossPrice_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "TotalGross")
-    public JAXBElement<Float> createTotalGross(Float value) {
-        return new JAXBElement<Float>(_TotalGross_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createTotalGross(Double value) {
+        return new JAXBElement<Double>(_TotalGross_QNAME, Double.class, null, value);
     }
 
     /**
@@ -2807,57 +2807,57 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "DiscPercent")
-    public JAXBElement<Float> createDiscPercent(Float value) {
-        return new JAXBElement<Float>(_DiscPercent_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createDiscPercent(Double value) {
+        return new JAXBElement<Double>(_DiscPercent_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "GrossPriceWithoutTax")
-    public JAXBElement<Float> createGrossPriceWithoutTax(Float value) {
-        return new JAXBElement<Float>(_GrossPriceWithoutTax_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossPriceWithoutTax(Double value) {
+        return new JAXBElement<Double>(_GrossPriceWithoutTax_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "TotalGrossWithoutTax")
-    public JAXBElement<Float> createTotalGrossWithoutTax(Float value) {
-        return new JAXBElement<Float>(_TotalGrossWithoutTax_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createTotalGrossWithoutTax(Double value) {
+        return new JAXBElement<Double>(_TotalGrossWithoutTax_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "TotalTaxPrice_high_precision")
-    public JAXBElement<Float> createTotalTaxPriceHighPrecision(Float value) {
-        return new JAXBElement<Float>(_TotalTaxPriceHighPrecision_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createTotalTaxPriceHighPrecision(Double value) {
+        return new JAXBElement<Double>(_TotalTaxPriceHighPrecision_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "GrossPrice_high_precision")
-    public JAXBElement<Float> createGrossPriceHighPrecision(Float value) {
-        return new JAXBElement<Float>(_GrossPriceHighPrecision_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossPriceHighPrecision(Double value) {
+        return new JAXBElement<Double>(_GrossPriceHighPrecision_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "GrossPriceWithoutTax_high_precision")
-    public JAXBElement<Float> createGrossPriceWithoutTaxHighPrecision(Float value) {
-        return new JAXBElement<Float>(_GrossPriceWithoutTaxHighPrecision_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createGrossPriceWithoutTaxHighPrecision(Double value) {
+        return new JAXBElement<Double>(_GrossPriceWithoutTaxHighPrecision_QNAME, Double.class, null, value);
     }
 
     /**
@@ -2915,30 +2915,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "DiscAmount")
-    public JAXBElement<Float> createDiscAmount(Float value) {
-        return new JAXBElement<Float>(_DiscAmount_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createDiscAmount(Double value) {
+        return new JAXBElement<Double>(_DiscAmount_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "SuppSubscriptionPrice")
-    public JAXBElement<Float> createSuppSubscriptionPrice(Float value) {
-        return new JAXBElement<Float>(_SuppSubscriptionPrice_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createSuppSubscriptionPrice(Double value) {
+        return new JAXBElement<Double>(_SuppSubscriptionPrice_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "FireValue")
-    public JAXBElement<Float> createFireValue(Float value) {
-        return new JAXBElement<Float>(_FireValue_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createFireValue(Double value) {
+        return new JAXBElement<Double>(_FireValue_QNAME, Double.class, null, value);
     }
 
     /**
@@ -2960,12 +2960,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "B-AccountAmount")
-    public JAXBElement<Float> createBAccountAmount(Float value) {
-        return new JAXBElement<Float>(_BAccountAmount_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createBAccountAmount(Double value) {
+        return new JAXBElement<Double>(_BAccountAmount_QNAME, Double.class, null, value);
     }
 
     /**
@@ -2996,21 +2996,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "LastYearConsumption1")
-    public JAXBElement<Float> createLastYearConsumption1(Float value) {
-        return new JAXBElement<Float>(_LastYearConsumption1_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createLastYearConsumption1(Double value) {
+        return new JAXBElement<Double>(_LastYearConsumption1_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ThisYearConsumption1")
-    public JAXBElement<Float> createThisYearConsumption1(Float value) {
-        return new JAXBElement<Float>(_ThisYearConsumption1_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createThisYearConsumption1(Double value) {
+        return new JAXBElement<Double>(_ThisYearConsumption1_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3023,21 +3023,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "LastYearConsumption2")
-    public JAXBElement<Float> createLastYearConsumption2(Float value) {
-        return new JAXBElement<Float>(_LastYearConsumption2_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createLastYearConsumption2(Double value) {
+        return new JAXBElement<Double>(_LastYearConsumption2_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ThisYearConsumption2")
-    public JAXBElement<Float> createThisYearConsumption2(Float value) {
-        return new JAXBElement<Float>(_ThisYearConsumption2_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createThisYearConsumption2(Double value) {
+        return new JAXBElement<Double>(_ThisYearConsumption2_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3050,21 +3050,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "LastYearConsumption3")
-    public JAXBElement<Float> createLastYearConsumption3(Float value) {
-        return new JAXBElement<Float>(_LastYearConsumption3_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createLastYearConsumption3(Double value) {
+        return new JAXBElement<Double>(_LastYearConsumption3_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ThisYearConsumption3")
-    public JAXBElement<Float> createThisYearConsumption3(Float value) {
-        return new JAXBElement<Float>(_ThisYearConsumption3_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createThisYearConsumption3(Double value) {
+        return new JAXBElement<Double>(_ThisYearConsumption3_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3077,21 +3077,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "LastYearConsumption4")
-    public JAXBElement<Float> createLastYearConsumption4(Float value) {
-        return new JAXBElement<Float>(_LastYearConsumption4_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createLastYearConsumption4(Double value) {
+        return new JAXBElement<Double>(_LastYearConsumption4_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ThisYearConsumption4")
-    public JAXBElement<Float> createThisYearConsumption4(Float value) {
-        return new JAXBElement<Float>(_ThisYearConsumption4_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createThisYearConsumption4(Double value) {
+        return new JAXBElement<Double>(_ThisYearConsumption4_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3104,21 +3104,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "LastYearConsumption5")
-    public JAXBElement<Float> createLastYearConsumption5(Float value) {
-        return new JAXBElement<Float>(_LastYearConsumption5_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createLastYearConsumption5(Double value) {
+        return new JAXBElement<Double>(_LastYearConsumption5_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ThisYearConsumption5")
-    public JAXBElement<Float> createThisYearConsumption5(Float value) {
-        return new JAXBElement<Float>(_ThisYearConsumption5_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createThisYearConsumption5(Double value) {
+        return new JAXBElement<Double>(_ThisYearConsumption5_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3131,21 +3131,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "LastYearConsumption6")
-    public JAXBElement<Float> createLastYearConsumption6(Float value) {
-        return new JAXBElement<Float>(_LastYearConsumption6_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createLastYearConsumption6(Double value) {
+        return new JAXBElement<Double>(_LastYearConsumption6_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ThisYearConsumption6")
-    public JAXBElement<Float> createThisYearConsumption6(Float value) {
-        return new JAXBElement<Float>(_ThisYearConsumption6_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createThisYearConsumption6(Double value) {
+        return new JAXBElement<Double>(_ThisYearConsumption6_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3158,21 +3158,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "LastYearConsumption7")
-    public JAXBElement<Float> createLastYearConsumption7(Float value) {
-        return new JAXBElement<Float>(_LastYearConsumption7_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createLastYearConsumption7(Double value) {
+        return new JAXBElement<Double>(_LastYearConsumption7_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ThisYearConsumption7")
-    public JAXBElement<Float> createThisYearConsumption7(Float value) {
-        return new JAXBElement<Float>(_ThisYearConsumption7_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createThisYearConsumption7(Double value) {
+        return new JAXBElement<Double>(_ThisYearConsumption7_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3185,21 +3185,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "LastYearConsumption8")
-    public JAXBElement<Float> createLastYearConsumption8(Float value) {
-        return new JAXBElement<Float>(_LastYearConsumption8_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createLastYearConsumption8(Double value) {
+        return new JAXBElement<Double>(_LastYearConsumption8_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ThisYearConsumption8")
-    public JAXBElement<Float> createThisYearConsumption8(Float value) {
-        return new JAXBElement<Float>(_ThisYearConsumption8_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createThisYearConsumption8(Double value) {
+        return new JAXBElement<Double>(_ThisYearConsumption8_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3212,21 +3212,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "LastYearConsumption9")
-    public JAXBElement<Float> createLastYearConsumption9(Float value) {
-        return new JAXBElement<Float>(_LastYearConsumption9_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createLastYearConsumption9(Double value) {
+        return new JAXBElement<Double>(_LastYearConsumption9_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ThisYearConsumption9")
-    public JAXBElement<Float> createThisYearConsumption9(Float value) {
-        return new JAXBElement<Float>(_ThisYearConsumption9_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createThisYearConsumption9(Double value) {
+        return new JAXBElement<Double>(_ThisYearConsumption9_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3239,21 +3239,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "LastYearConsumption10")
-    public JAXBElement<Float> createLastYearConsumption10(Float value) {
-        return new JAXBElement<Float>(_LastYearConsumption10_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createLastYearConsumption10(Double value) {
+        return new JAXBElement<Double>(_LastYearConsumption10_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ThisYearConsumption10")
-    public JAXBElement<Float> createThisYearConsumption10(Float value) {
-        return new JAXBElement<Float>(_ThisYearConsumption10_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createThisYearConsumption10(Double value) {
+        return new JAXBElement<Double>(_ThisYearConsumption10_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3266,21 +3266,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "LastYearConsumption11")
-    public JAXBElement<Float> createLastYearConsumption11(Float value) {
-        return new JAXBElement<Float>(_LastYearConsumption11_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createLastYearConsumption11(Double value) {
+        return new JAXBElement<Double>(_LastYearConsumption11_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ThisYearConsumption11")
-    public JAXBElement<Float> createThisYearConsumption11(Float value) {
-        return new JAXBElement<Float>(_ThisYearConsumption11_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createThisYearConsumption11(Double value) {
+        return new JAXBElement<Double>(_ThisYearConsumption11_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3293,21 +3293,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "LastYearConsumption12")
-    public JAXBElement<Float> createLastYearConsumption12(Float value) {
-        return new JAXBElement<Float>(_LastYearConsumption12_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createLastYearConsumption12(Double value) {
+        return new JAXBElement<Double>(_LastYearConsumption12_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "ThisYearConsumption12")
-    public JAXBElement<Float> createThisYearConsumption12(Float value) {
-        return new JAXBElement<Float>(_ThisYearConsumption12_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createThisYearConsumption12(Double value) {
+        return new JAXBElement<Double>(_ThisYearConsumption12_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3608,48 +3608,48 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "IngoingBalance")
-    public JAXBElement<Float> createIngoingBalance(Float value) {
-        return new JAXBElement<Float>(_IngoingBalance_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createIngoingBalance(Double value) {
+        return new JAXBElement<Double>(_IngoingBalance_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "OutgoingBalance")
-    public JAXBElement<Float> createOutgoingBalance(Float value) {
-        return new JAXBElement<Float>(_OutgoingBalance_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createOutgoingBalance(Double value) {
+        return new JAXBElement<Double>(_OutgoingBalance_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "CreditLimit")
-    public JAXBElement<Float> createCreditLimit(Float value) {
-        return new JAXBElement<Float>(_CreditLimit_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createCreditLimit(Double value) {
+        return new JAXBElement<Double>(_CreditLimit_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "AvailableCredit")
-    public JAXBElement<Float> createAvailableCredit(Float value) {
-        return new JAXBElement<Float>(_AvailableCredit_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createAvailableCredit(Double value) {
+        return new JAXBElement<Double>(_AvailableCredit_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "NonCreditedInterest")
-    public JAXBElement<Float> createNonCreditedInterest(Float value) {
-        return new JAXBElement<Float>(_NonCreditedInterest_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createNonCreditedInterest(Double value) {
+        return new JAXBElement<Double>(_NonCreditedInterest_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3671,30 +3671,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "CurrentClaim")
-    public JAXBElement<Float> createCurrentClaim(Float value) {
-        return new JAXBElement<Float>(_CurrentClaim_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createCurrentClaim(Double value) {
+        return new JAXBElement<Double>(_CurrentClaim_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "TotalOpenClaim")
-    public JAXBElement<Float> createTotalOpenClaim(Float value) {
-        return new JAXBElement<Float>(_TotalOpenClaim_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createTotalOpenClaim(Double value) {
+        return new JAXBElement<Double>(_TotalOpenClaim_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "TotalVatAmount")
-    public JAXBElement<Float> createTotalVatAmount(Float value) {
-        return new JAXBElement<Float>(_TotalVatAmount_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createTotalVatAmount(Double value) {
+        return new JAXBElement<Double>(_TotalVatAmount_QNAME, Double.class, null, value);
     }
 
     /**
@@ -3779,21 +3779,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "BudgetStatementAmount")
-    public JAXBElement<Float> createBudgetStatementAmount(Float value) {
-        return new JAXBElement<Float>(_BudgetStatementAmount_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createBudgetStatementAmount(Double value) {
+        return new JAXBElement<Double>(_BudgetStatementAmount_QNAME, Double.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Float }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
      *
      */
     @XmlElementDecl(namespace = "", name = "RecommendedStatementAmount")
-    public JAXBElement<Float> createRecommendedStatementAmount(Float value) {
-        return new JAXBElement<Float>(_RecommendedStatementAmount_QNAME, Float.class, null, value);
+    public JAXBElement<Double> createRecommendedStatementAmount(Double value) {
+        return new JAXBElement<Double>(_RecommendedStatementAmount_QNAME, Double.class, null, value);
     }
 
     /**

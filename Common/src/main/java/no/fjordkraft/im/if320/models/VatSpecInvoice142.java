@@ -42,17 +42,17 @@ import javax.xml.bind.annotation.*;
 public class VatSpecInvoice142 {
 
     @XmlElement(name = "VatRate")
-    protected float vatRate;
+    protected double vatRate;
     @XmlElement(name = "SumBasis")
-    protected float sumBasis;
+    protected double sumBasis;
     @XmlElement(name = "SumVat")
-    protected float sumVat;
+    protected double sumVat;
 
     /**
      * Gets the value of the vatRate property.
      * 
      */
-    public float getVatRate() {
+    public double getVatRate() {
         return vatRate;
     }
 
@@ -60,7 +60,7 @@ public class VatSpecInvoice142 {
      * Sets the value of the vatRate property.
      * 
      */
-    public void setVatRate(float value) {
+    public void setVatRate(double value) {
         this.vatRate = value;
     }
 
@@ -68,7 +68,7 @@ public class VatSpecInvoice142 {
      * Gets the value of the sumBasis property.
      * 
      */
-    public float getSumBasis() {
+    public double getSumBasis() {
         return sumBasis;
     }
 
@@ -76,7 +76,7 @@ public class VatSpecInvoice142 {
      * Sets the value of the sumBasis property.
      * 
      */
-    public void setSumBasis(float value) {
+    public void setSumBasis(double value) {
         this.sumBasis = value;
     }
 
@@ -84,7 +84,7 @@ public class VatSpecInvoice142 {
      * Gets the value of the sumVat property.
      * 
      */
-    public float getSumVat() {
+    public double getSumVat() {
         return sumVat;
     }
 
@@ -92,7 +92,7 @@ public class VatSpecInvoice142 {
      * Sets the value of the sumVat property.
      * 
      */
-    public void setSumVat(float value) {
+    public void setSumVat(double value) {
         this.sumVat = value;
     }
 

@@ -91,11 +91,11 @@ public class Transaction {
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar valueDate;
     @XmlElement(name = "Amount")
-    protected float amount;
+    protected double amount;
     @XmlElement(name = "VatAmount")
-    protected float vatAmount;
+    protected double vatAmount;
     @XmlElement(name = "AmountWithVat")
-    protected float amountWithVat;
+    protected double amountWithVat;
     @XmlElement(name = "Reference", required = true)
     protected String reference;
     @XmlElement(name = "Url", required = true)
@@ -128,7 +128,7 @@ public class Transaction {
     private String transactionName;
 
     @XmlTransient
-    private Map<Float,Float> mapOfVatVsAmount;
+    private Map<Double,Double> mapOfVatVsAmount;
 
 
     /**
@@ -271,7 +271,7 @@ public class Transaction {
      * Gets the value of the amount property.
      * 
      */
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -279,7 +279,7 @@ public class Transaction {
      * Sets the value of the amount property.
      * 
      */
-    public void setAmount(float value) {
+    public void setAmount(double value) {
         this.amount = value;
     }
 
@@ -287,7 +287,7 @@ public class Transaction {
      * Gets the value of the vatAmount property.
      * 
      */
-    public float getVatAmount() {
+    public double getVatAmount() {
         return vatAmount;
     }
 
@@ -295,7 +295,7 @@ public class Transaction {
      * Sets the value of the vatAmount property.
      * 
      */
-    public void setVatAmount(float value) {
+    public void setVatAmount(double value) {
         this.vatAmount = value;
     }
 
@@ -303,7 +303,7 @@ public class Transaction {
      * Gets the value of the amountWithVat property.
      * 
      */
-    public float getAmountWithVat() {
+    public double getAmountWithVat() {
         return amountWithVat;
     }
 
@@ -311,7 +311,7 @@ public class Transaction {
      * Sets the value of the amountWithVat property.
      * 
      */
-    public void setAmountWithVat(float value) {
+    public void setAmountWithVat(double value) {
         this.amountWithVat = value;
     }
 
@@ -491,15 +491,15 @@ public class Transaction {
         this.transactionName = transactionName;
     }
 
-    public Map<Float, Float> getMapOfVatVsAmount() {
+    public Map<Double, Double> getMapOfVatVsAmount() {
         return mapOfVatVsAmount;
     }
 
-    public void setMapOfVatVsAmount(Map<Float, Float> mapOfVatVsAmount) {
+    public void setMapOfVatVsAmount(Map<Double, Double> mapOfVatVsAmount) {
         this.mapOfVatVsAmount = mapOfVatVsAmount;
     }
 
-    public Float getAmountBasedOnVat(Float vat) {
+    public Double getAmountBasedOnVat(Double vat) {
         return mapOfVatVsAmount.get(vat);
     }
 }

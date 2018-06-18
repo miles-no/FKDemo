@@ -100,7 +100,7 @@ public class InvoiceOrderInfo110 {
     @XmlElement(name = "CloseCode", required = true)
     protected String closeCode;
     @XmlElement(name = "TotalPrinted")
-    protected float totalPrinted;
+    protected double totalPrinted;
     @XmlElement(name = "ShortTimeSA", required = true)
     protected String shortTimeSA;
     @XmlElement(name = "IndustryCode", required = true)
@@ -124,7 +124,7 @@ public class InvoiceOrderInfo110 {
     @XmlElement(name = "B-AccountText", required = true)
     protected String bAccountText;
     @XmlElement(name = "Amount")
-    protected float amount;
+    protected double amount;
     @XmlElement(name = "Instlmnt")
     protected byte instlmnt;
     @XmlElement(name = "ActivityId")
@@ -142,7 +142,7 @@ public class InvoiceOrderInfo110 {
     @XmlElement(name = "ActivitySubTypeName", required = true)
     protected String activitySubTypeName;
     @XmlElement(name = "YearEffect")
-    protected float yearEffect;
+    protected double yearEffect;
     @XmlElement(name = "ActivityCloseable", required = true)
     protected String activityCloseable;
 
@@ -238,7 +238,7 @@ public class InvoiceOrderInfo110 {
      * Gets the value of the totalPrinted property.
      * 
      */
-    public float getTotalPrinted() {
+    public double getTotalPrinted() {
         return totalPrinted;
     }
 
@@ -246,7 +246,7 @@ public class InvoiceOrderInfo110 {
      * Sets the value of the totalPrinted property.
      * 
      */
-    public void setTotalPrinted(float value) {
+    public void setTotalPrinted(double value) {
         this.totalPrinted = value;
     }
 
@@ -502,7 +502,7 @@ public class InvoiceOrderInfo110 {
      * Gets the value of the amount property.
      * 
      */
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -510,7 +510,7 @@ public class InvoiceOrderInfo110 {
      * Sets the value of the amount property.
      * 
      */
-    public void setAmount(float value) {
+    public void setAmount(double value) {
         this.amount = value;
     }
 
@@ -678,7 +678,7 @@ public class InvoiceOrderInfo110 {
      * Gets the value of the yearEffect property.
      * 
      */
-    public float getYearEffect() {
+    public double getYearEffect() {
         return yearEffect;
     }
 
@@ -686,7 +686,7 @@ public class InvoiceOrderInfo110 {
      * Sets the value of the yearEffect property.
      * 
      */
-    public void setYearEffect(float value) {
+    public void setYearEffect(double value) {
         this.yearEffect = value;
     }
 

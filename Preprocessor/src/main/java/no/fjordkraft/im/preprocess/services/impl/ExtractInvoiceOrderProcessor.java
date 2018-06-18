@@ -138,9 +138,9 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                 for(Distribution distribution : transaction.getDistributions().getDistribution())
                 {
 
-                    float invoiceGrossTotal =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
-                    float kraftDistAmt   =     distribution.getAmount();
-                    if(Float.compare(invoiceGrossTotal, StrictMath.abs(kraftDistAmt))==0)
+                    double invoiceGrossTotal =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
+                    double kraftDistAmt   =     distribution.getAmount();
+                    if(Double.compare(invoiceGrossTotal, StrictMath.abs(kraftDistAmt))==0)
                     {
                         return transaction;
                     }
@@ -165,9 +165,9 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                 for(Distribution distribution : transaction.getDistributions().getDistribution())
                 {
                     listOfDistribution = new ArrayList<Distribution>();
-                   float invoiceGrossTotal =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
-                    float kraftDistAmt   =     distribution.getAmount();
-                     if(Float.compare(StrictMath.abs(invoiceGrossTotal), StrictMath.abs(kraftDistAmt))==0)
+                   double invoiceGrossTotal =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
+                    double kraftDistAmt   =     distribution.getAmount();
+                     if(Double.compare(StrictMath.abs(invoiceGrossTotal), StrictMath.abs(kraftDistAmt))==0)
                      {
                          listOfDistribution.add(distribution);
                          if(transaction.getAmountWithVat()==(kraftDistAmt*IMConstants.NEGATIVE))
@@ -204,14 +204,14 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
         {
             for(Transaction trans : listOfTrans)
             {
-               float invoiceGrossTotal =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
-                float kraftDistAmount = trans.getDistributions().getDistribution().get(0).getAmount();
+               double invoiceGrossTotal =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
+                double kraftDistAmount = trans.getDistributions().getDistribution().get(0).getAmount();
                 String transReference  = trans.getReference();
                 if(null != transReference && transReference.indexOf("-") != -1) {
                     transReference = transReference.substring(0, transReference.indexOf("-"));
                 }
 
-                if(Float.compare(StrictMath.abs(kraftDistAmount),invoiceGrossTotal)==0 && null != transReference && transReference.equals(attachment.getFAKTURA().getFAKTURANR()))
+                if(Double.compare(StrictMath.abs(kraftDistAmount),invoiceGrossTotal)==0 && null != transReference && transReference.equals(attachment.getFAKTURA().getFAKTURANR()))
 
                 {
                      trans.setFreeText(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo().trim());

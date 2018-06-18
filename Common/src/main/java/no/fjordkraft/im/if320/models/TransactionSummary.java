@@ -28,28 +28,28 @@ public class TransactionSummary {
     @XmlElement(name = "TransactionType")
     protected String transactionType;
     @XmlElement(name = "SumOfBelop")
-    protected float sumOfBelop;
+    protected double sumOfBelop;
     @XmlElement(name = "MVAValue")
-    protected float mvaValue;
+    protected double mvaValue;
     @XmlElement(name = "SumOfNettStrom")
-    protected float sumOfNettStrom;
+    protected double sumOfNettStrom;
     @XmlElement(name = "TotalVatAmount")
-    protected float totalVatAmount;
+    protected double totalVatAmount;
 
 
-    public float getMvaValue() {
+    public double getMvaValue() {
         return mvaValue;
     }
 
-    public void setMvaValue(float mvaValue) {
+    public void setMvaValue(double mvaValue) {
         this.mvaValue = mvaValue;
     }
 
-    public float getSumOfBelop() {
+    public double getSumOfBelop() {
         return sumOfBelop;
     }
 
-    public void setSumOfBelop(float sumOfBelop) {
+    public void setSumOfBelop(double sumOfBelop) {
         this.sumOfBelop = sumOfBelop;
     }
 
@@ -69,19 +69,19 @@ public class TransactionSummary {
         this.transactionType = transactionType;
     }
 
-    public float getSumOfNettStrom() {
+    public double getSumOfNettStrom() {
         return sumOfNettStrom;
     }
 
-    public void setSumOfNettStrom(float sumOfNettStrom) {
+    public void setSumOfNettStrom(double sumOfNettStrom) {
         this.sumOfNettStrom = sumOfNettStrom;
     }
 
-    public float getTotalVatAmount() {
+    public double getTotalVatAmount() {
         return totalVatAmount;
     }
 
-    public void setTotalVatAmount(float totalVatAmount) {
+    public void setTotalVatAmount(double totalVatAmount) {
         this.totalVatAmount = totalVatAmount;
     }
 }

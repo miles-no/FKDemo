@@ -26,8 +26,8 @@ public class PieChartPreprocessor extends BasePreprocessor {
         List<DistributionDetails> distributionList = new ArrayList<DistributionDetails>();
         DistributionDetails distributionDetails = new DistributionDetails();
         PieChart pieChart = new PieChart();
-        float nettAmount = 0;
-        float otherAmount = 0;
+        double nettAmount = 0;
+        double otherAmount = 0;
 
         if(null != transactions && IMConstants.ZERO != transactions.size()) {
             for (Transaction transaction : transactions) {
@@ -41,8 +41,8 @@ public class PieChartPreprocessor extends BasePreprocessor {
             }
         }
         distributionDetails.setType(IMConstants.NETTLEIE);
-        if(Float.valueOf(IMConstants.ZERO) > nettAmount) {
-            distributionDetails.setAmount(Float.valueOf(0));
+        if(Double.valueOf(IMConstants.ZERO) > nettAmount) {
+            distributionDetails.setAmount(Double.valueOf(0));
         } else {
             distributionDetails.setAmount(nettAmount);
         }
@@ -50,8 +50,8 @@ public class PieChartPreprocessor extends BasePreprocessor {
 
         distributionDetails = new DistributionDetails();
         distributionDetails.setType(IMConstants.STROM);
-        if(Float.valueOf(IMConstants.ZERO) > otherAmount) {
-            distributionDetails.setAmount(Float.valueOf(0));
+        if(Double.valueOf(IMConstants.ZERO) > otherAmount) {
+            distributionDetails.setAmount(Double.valueOf(0));
         } else {
             distributionDetails.setAmount(otherAmount);
         }

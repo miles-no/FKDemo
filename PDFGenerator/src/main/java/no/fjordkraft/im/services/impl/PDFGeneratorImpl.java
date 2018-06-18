@@ -381,14 +381,14 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 brand = statement.getBrand();
             }
             int attachmentConfigId =0;
-            float creditLimit = statement.getCreditLimit();
+            double creditLimit = statement.getCreditLimit();
             if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))
             {
                 List<Statement>  listOfStatements = statementRepository.getProcessedStatementByAccountNumber(statement.getAccountNumber(),StatementStatusEnum.INVOICE_PROCESSED.getStatus());
                 if(statement.getLegalPartClass()==null || statement.getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_INDIVIDUAL))
                 {
                     if(listOfStatements==null ||(listOfStatements!=null && listOfStatements.isEmpty())) {
-                        if( !Float.valueOf(creditLimit).equals(Float.valueOf("0")))
+                        if( !Double.valueOf(creditLimit).equals(Double.valueOf("0")))
                         {
                             attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();
                         }

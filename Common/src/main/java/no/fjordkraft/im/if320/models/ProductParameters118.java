@@ -128,41 +128,41 @@ public class ProductParameters118 {
     @XmlElement(name = "Field2")
     protected byte field2;
     @XmlElement(name = "Field3")
-    protected float field3;
+    protected double field3;
     @XmlElement(name = "Field4")
-    protected float field4;
+    protected double field4;
     @XmlElement(name = "Field5")
-    protected float field5;
+    protected double field5;
     @XmlElement(name = "Field6")
-    protected float field6;
+    protected double field6;
     @XmlElement(name = "Field7")
-    protected float field7;
+    protected double field7;
     @XmlElement(name = "Field8")
-    protected float field8;
+    protected double field8;
     @XmlElement(name = "Field9")
-    protected float field9;
+    protected double field9;
     @XmlElement(name = "Field10")
-    protected float field10;
+    protected double field10;
     @XmlElement(name = "Field11")
-    protected float field11;
+    protected double field11;
     @XmlElement(name = "Field12")
-    protected float field12;
+    protected double field12;
     @XmlElement(name = "Field13")
-    protected float field13;
+    protected double field13;
     @XmlElement(name = "Field14")
-    protected float field14;
+    protected double field14;
     @XmlElement(name = "Field15")
-    protected float field15;
+    protected double field15;
     @XmlElement(name = "Field16")
-    protected float field16;
+    protected double field16;
     @XmlElement(name = "Field17")
-    protected float field17;
+    protected double field17;
     @XmlElement(name = "Field18")
-    protected float field18;
+    protected double field18;
     @XmlElement(name = "Field19")
-    protected float field19;
+    protected double field19;
     @XmlElement(name = "Field20")
-    protected float field20;
+    protected double field20;
     @XmlElement(name = "Label1", required = true)
     protected String label1;
     @XmlElement(name = "Label2", required = true)
@@ -268,7 +268,7 @@ public class ProductParameters118 {
      * Gets the value of the field3 property.
      * 
      */
-    public float getField3() {
+    public double getField3() {
         return field3;
     }
 
@@ -276,7 +276,7 @@ public class ProductParameters118 {
      * Sets the value of the field3 property.
      * 
      */
-    public void setField3(float value) {
+    public void setField3(double value) {
         this.field3 = value;
     }
 
@@ -284,7 +284,7 @@ public class ProductParameters118 {
      * Gets the value of the field4 property.
      * 
      */
-    public float getField4() {
+    public double getField4() {
         return field4;
     }
 
@@ -292,7 +292,7 @@ public class ProductParameters118 {
      * Sets the value of the field4 property.
      * 
      */
-    public void setField4(float value) {
+    public void setField4(double value) {
         this.field4 = value;
     }
 
@@ -300,7 +300,7 @@ public class ProductParameters118 {
      * Gets the value of the field5 property.
      * 
      */
-    public float getField5() {
+    public double getField5() {
         return field5;
     }
 
@@ -308,7 +308,7 @@ public class ProductParameters118 {
      * Sets the value of the field5 property.
      * 
      */
-    public void setField5(float value) {
+    public void setField5(double value) {
         this.field5 = value;
     }
 
@@ -316,7 +316,7 @@ public class ProductParameters118 {
      * Gets the value of the field6 property.
      * 
      */
-    public float getField6() {
+    public double getField6() {
         return field6;
     }
 
@@ -324,7 +324,7 @@ public class ProductParameters118 {
      * Sets the value of the field6 property.
      * 
      */
-    public void setField6(float value) {
+    public void setField6(double value) {
         this.field6 = value;
     }
 
@@ -332,7 +332,7 @@ public class ProductParameters118 {
      * Gets the value of the field7 property.
      * 
      */
-    public float getField7() {
+    public double getField7() {
         return field7;
     }
 
@@ -340,7 +340,7 @@ public class ProductParameters118 {
      * Sets the value of the field7 property.
      * 
      */
-    public void setField7(float value) {
+    public void setField7(double value) {
         this.field7 = value;
     }
 
@@ -348,7 +348,7 @@ public class ProductParameters118 {
      * Gets the value of the field8 property.
      * 
      */
-    public float getField8() {
+    public double getField8() {
         return field8;
     }
 
@@ -356,7 +356,7 @@ public class ProductParameters118 {
      * Sets the value of the field8 property.
      * 
      */
-    public void setField8(float value) {
+    public void setField8(double value) {
         this.field8 = value;
     }
 
@@ -364,7 +364,7 @@ public class ProductParameters118 {
      * Gets the value of the field9 property.
      * 
      */
-    public float getField9() {
+    public double getField9() {
         return field9;
     }
 
@@ -372,7 +372,7 @@ public class ProductParameters118 {
      * Sets the value of the field9 property.
      * 
      */
-    public void setField9(float value) {
+    public void setField9(double value) {
         this.field9 = value;
     }
 
@@ -380,7 +380,7 @@ public class ProductParameters118 {
      * Gets the value of the field10 property.
      * 
      */
-    public float getField10() {
+    public double getField10() {
         return field10;
     }
 
@@ -388,7 +388,7 @@ public class ProductParameters118 {
      * Sets the value of the field10 property.
      * 
      */
-    public void setField10(float value) {
+    public void setField10(double value) {
         this.field10 = value;
     }
 
@@ -396,7 +396,7 @@ public class ProductParameters118 {
      * Gets the value of the field11 property.
      * 
      */
-    public float getField11() {
+    public double getField11() {
         return field11;
     }
 
@@ -404,7 +404,7 @@ public class ProductParameters118 {
      * Sets the value of the field11 property.
      * 
      */
-    public void setField11(float value) {
+    public void setField11(double value) {
         this.field11 = value;
     }
 
@@ -412,7 +412,7 @@ public class ProductParameters118 {
      * Gets the value of the field12 property.
      * 
      */
-    public float getField12() {
+    public double getField12() {
         return field12;
     }
 
@@ -420,7 +420,7 @@ public class ProductParameters118 {
      * Sets the value of the field12 property.
      * 
      */
-    public void setField12(float value) {
+    public void setField12(double value) {
         this.field12 = value;
     }
 
@@ -428,7 +428,7 @@ public class ProductParameters118 {
      * Gets the value of the field13 property.
      * 
      */
-    public float getField13() {
+    public double getField13() {
         return field13;
     }
 
@@ -436,7 +436,7 @@ public class ProductParameters118 {
      * Sets the value of the field13 property.
      * 
      */
-    public void setField13(float value) {
+    public void setField13(double value) {
         this.field13 = value;
     }
 
@@ -444,7 +444,7 @@ public class ProductParameters118 {
      * Gets the value of the field14 property.
      * 
      */
-    public float getField14() {
+    public double getField14() {
         return field14;
     }
 
@@ -452,7 +452,7 @@ public class ProductParameters118 {
      * Sets the value of the field14 property.
      * 
      */
-    public void setField14(float value) {
+    public void setField14(double value) {
         this.field14 = value;
     }
 
@@ -460,7 +460,7 @@ public class ProductParameters118 {
      * Gets the value of the field15 property.
      * 
      */
-    public float getField15() {
+    public double getField15() {
         return field15;
     }
 
@@ -468,7 +468,7 @@ public class ProductParameters118 {
      * Sets the value of the field15 property.
      * 
      */
-    public void setField15(float value) {
+    public void setField15(double value) {
         this.field15 = value;
     }
 
@@ -476,7 +476,7 @@ public class ProductParameters118 {
      * Gets the value of the field16 property.
      * 
      */
-    public float getField16() {
+    public double getField16() {
         return field16;
     }
 
@@ -484,7 +484,7 @@ public class ProductParameters118 {
      * Sets the value of the field16 property.
      * 
      */
-    public void setField16(float value) {
+    public void setField16(double value) {
         this.field16 = value;
     }
 
@@ -492,7 +492,7 @@ public class ProductParameters118 {
      * Gets the value of the field17 property.
      * 
      */
-    public float getField17() {
+    public double getField17() {
         return field17;
     }
 
@@ -500,7 +500,7 @@ public class ProductParameters118 {
      * Sets the value of the field17 property.
      * 
      */
-    public void setField17(float value) {
+    public void setField17(double value) {
         this.field17 = value;
     }
 
@@ -508,7 +508,7 @@ public class ProductParameters118 {
      * Gets the value of the field18 property.
      * 
      */
-    public float getField18() {
+    public double getField18() {
         return field18;
     }
 
@@ -516,7 +516,7 @@ public class ProductParameters118 {
      * Sets the value of the field18 property.
      * 
      */
-    public void setField18(float value) {
+    public void setField18(double value) {
         this.field18 = value;
     }
 
@@ -524,7 +524,7 @@ public class ProductParameters118 {
      * Gets the value of the field19 property.
      * 
      */
-    public float getField19() {
+    public double getField19() {
         return field19;
     }
 
@@ -532,7 +532,7 @@ public class ProductParameters118 {
      * Sets the value of the field19 property.
      * 
      */
-    public void setField19(float value) {
+    public void setField19(double value) {
         this.field19 = value;
     }
 
@@ -540,7 +540,7 @@ public class ProductParameters118 {
      * Gets the value of the field20 property.
      * 
      */
-    public float getField20() {
+    public double getField20() {
         return field20;
     }
 
@@ -548,7 +548,7 @@ public class ProductParameters118 {
      * Sets the value of the field20 property.
      * 
      */
-    public void setField20(float value) {
+    public void setField20(double value) {
         this.field20 = value;
     }
 
