@@ -25,7 +25,7 @@ public class DummyTagPreprocessor extends BasePreprocessor {
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
 
-        logger.debug("in DummyTagPreprocessor ");
+        logger.debug("in DummyTagPreprocessor "); 
         Statement stmt = request.getStatement();
         int transactionsCount = 0;
 
