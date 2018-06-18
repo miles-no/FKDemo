@@ -83,6 +83,9 @@ public class Statement {
     @Column(name="ATTACHMENT_CONFIG_ID")
     private int attachmentConfigId;
 
+    @Column(name="LEGAL_PART_CLASS")
+    private String legalPartClass;
+
     @Transient
     private boolean isOnline = false;
 
@@ -301,5 +304,13 @@ public class Statement {
 
     public void setSeqNo(String seqNo) {
         this.seqNo = seqNo;
+    }
+
+    public String getLegalPartClass() {
+        return legalPartClass;
+    }
+
+    public void setLegalPartClass(String legalPartClass) {
+        this.legalPartClass = legalPartClass;
     }
 }

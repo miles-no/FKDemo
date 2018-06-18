@@ -222,6 +222,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         statementEntity.setAmount(statement.getCurrentClaim());
         statementEntity.setInvoiceDate(invoiceDate);
         statementEntity.setDueDate(dueDate);
+        statementEntity.setLegalPartClass(statement.getLegalPartClass());
         statementEntity.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         statementEntity.setCreditLimit(statement.getCreditLimit());
         logger.debug("updating statement  "+ statementEntity.getId() + " statementOcr " + statementOcr + " customerId " + customerId + " accountNumber "+ accountNumber + " invoiceNumber "+  invoiceNumber );

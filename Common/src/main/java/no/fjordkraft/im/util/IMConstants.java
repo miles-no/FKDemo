@@ -92,5 +92,7 @@ public interface IMConstants {
     static final String TRANSACTION_CATEGORY_OPPHØR_SUFFIX="OPPHØR";
     static final String INGOING_TRANSACTION_PREFIX="IB;";
     static final String FT_TRANSACTION_PREFIX="FT;";
+    static final String LEGAL_PART_CLASS_ORGANIZATION="Organization";
+    static final String LEGAL_PART_CLASS_INDIVIDUAL="Individual";
 
 }

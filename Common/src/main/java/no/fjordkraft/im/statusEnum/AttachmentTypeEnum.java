@@ -11,7 +11,8 @@ public enum AttachmentTypeEnum {
 
     FIRST_TIME_ATTACHMENT(1),
     FULL_KONTROLL_ATTACHMENT(2),
-    OTHER_ATTACHMENT(3);
+    OTHER_ATTACHMENT(3),
+    ORGANIZATION(4);
 
     private int status;
 

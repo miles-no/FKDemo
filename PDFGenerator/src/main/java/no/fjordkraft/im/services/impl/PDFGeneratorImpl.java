@@ -385,19 +385,26 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))
             {
                 List<Statement>  listOfStatements = statementRepository.getProcessedStatementByAccountNumber(statement.getAccountNumber(),StatementStatusEnum.INVOICE_PROCESSED.getStatus());
-                if(listOfStatements==null ||(listOfStatements!=null && listOfStatements.isEmpty())) {
-                    if( !Float.valueOf(creditLimit).equals(Float.valueOf("0")))
-                    {
-                        attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();
+                if(statement.getLegalPartClass()==null || statement.getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_INDIVIDUAL))
+                {
+                    if(listOfStatements==null ||(listOfStatements!=null && listOfStatements.isEmpty())) {
+                        if( !Float.valueOf(creditLimit).equals(Float.valueOf("0")))
+                        {
+                            attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();
+                        }
+                        else
+                        {
+                            attachmentConfigId = AttachmentTypeEnum.FIRST_TIME_ATTACHMENT.getStatus();
+                        }
                     }
                     else
                     {
-                        attachmentConfigId = AttachmentTypeEnum.FIRST_TIME_ATTACHMENT.getStatus();
+                        attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
                     }
                 }
                 else
                 {
-                    attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
+                    attachmentConfigId = AttachmentTypeEnum.ORGANIZATION.getStatus();
                 }
                 logger.debug("Attachment Configuration ID " + attachmentConfigId + " For statement "+ statement.getStatementId() );
 
