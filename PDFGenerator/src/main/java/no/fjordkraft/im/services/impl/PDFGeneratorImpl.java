@@ -385,7 +385,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))
             {
                 List<Statement>  listOfStatements = statementRepository.getProcessedStatementByAccountNumber(statement.getAccountNumber(),StatementStatusEnum.INVOICE_PROCESSED.getStatus());
-                if(statement.getLegalPartClass()==null || statement.getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_INDIVIDUAL))
+                if(statement.getLegalPartClass()==null || statement.getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_INDIVIDUAL) )
                 {
                     if(listOfStatements==null ||(listOfStatements!=null && listOfStatements.isEmpty())) {
                         if( !Double.valueOf(creditLimit).equals(Double.valueOf("0")))
@@ -404,7 +404,24 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 }
                 else
                 {
-                    attachmentConfigId = AttachmentTypeEnum.ORGANIZATION.getStatus();
+                     if(statement.getSystemBatchInput().getTransferFile().getBrand().equals("FKAS") || statement.getSystemBatchInput().getTransferFile().getBrand().equals("TKAS")) {
+                          attachmentConfigId = AttachmentTypeEnum.ORGANIZATION.getStatus();
+                     } else {
+                         if(listOfStatements==null ||(listOfStatements!=null && listOfStatements.isEmpty())) {
+                             if( !Double.valueOf(creditLimit).equals(Double.valueOf("0")))
+                             {
+                                 attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();
+                             }
+                             else
+                             {
+                                 attachmentConfigId = AttachmentTypeEnum.FIRST_TIME_ATTACHMENT.getStatus();
+                             }
+                         }
+                         else
+                         {
+                             attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
+                         }
+                     }
                 }
                 logger.debug("Attachment Configuration ID " + attachmentConfigId + " For statement "+ statement.getStatementId() );
 

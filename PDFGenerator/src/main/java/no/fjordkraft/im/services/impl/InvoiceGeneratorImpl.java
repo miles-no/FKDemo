@@ -127,7 +127,13 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                     pdfBytes = getDefaultSegmentFile(brand,attachmentConfigId);
                 }
                 if(pdfBytes==null) {
+                    if(statement.getLegalPartClass()==null ||statement.getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_INDIVIDUAL)) {
                     pdfBytes = getSegmentFileFromFS(brand);
+                    } else {
+                        if(!(statement.getSystemBatchInput().getTransferFile().getBrand().equals("FKAS")) && !(statement.getSystemBatchInput().getTransferFile().getBrand().equals("TKAS"))) {
+                            pdfBytes = getSegmentFileFromFS(brand);
+                        }
+                    }
                 }
             } else {
                 pdfBytes = getSegmentFile(accountNo, brand);

@@ -257,7 +257,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
                     }
                     else {
-                        sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getNetPrintet();
+                        //sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getNetPrintet();
+                        sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getNetTotal();
                     }
                 }
 

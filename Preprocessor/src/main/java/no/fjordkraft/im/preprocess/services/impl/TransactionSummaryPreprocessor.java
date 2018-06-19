@@ -301,7 +301,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 }
                 attachment.setTransactionSummary(transactionSummaryList);
                 attachment.setSumInklMVA(Double.valueOf(df.format(sumInklMVA)));
-                        attachment.setSumOfTransactions(Double.valueOf(df.format(sumExclMVA)));
+                attachment.setSumOfTransactions(Double.valueOf(df.format(sumExclMVA)));
                 if(stromStartMonthYear==null && nettStartMonthYear!=null )
                 {
                     if(nettStartMonthYear.equals(startMonthYear) || (startMonthYear==null && isNettStartDate && isStromStartDate) ||(startMonthYear!=null && startMonthYear.equals("")))
@@ -492,7 +492,11 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                         newTransaction = new Transaction();
                     }
                     stromAmount+=mapOfNameAndAmt.get(transactionName);
+                    if(request.getEntity().getSystemBatchInput().getTransferFile().getBrand().equals("TKAS")) {
+                        newTransaction.setTransactionCategory("Strøm fra Trondheim Kraft");
+                    }else {
                     newTransaction.setTransactionCategory("Strøm fra Fjordkraft");
+                    }
                     newTransaction.setAmount(Double.valueOf(df.format(stromAmount)));
                     mapOfTransaction.put(IMConstants.KRAFT,newTransaction);
                 } else

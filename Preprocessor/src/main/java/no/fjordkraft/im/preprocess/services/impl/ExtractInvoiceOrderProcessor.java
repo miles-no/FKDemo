@@ -69,6 +69,8 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                                 if(Long.compare(malepunktID,faktura.getMAALEPUNKT())==0)
                                 {
                                     listOfInvoice.add(invoiceOrder);
+
+                                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().setNetPrintet(invoiceOrder.getInvoiceOrderAmounts113().getNetTotal());
                                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().setInvoiceOrder(listOfInvoice);
                                     listOfTransactions.addAll(getKraftTransactionGroup(request.getStatement().getTransactions().getTransaction(), attachment));
                                 }
@@ -76,7 +78,9 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                                 {
                                     Attachment newAttachment = deepClone(emuxmlAttachment);
                                     newAttachment.getFAKTURA().setMAALEPUNKT(malepunktID);
-                                    listOfInvoice.add(malepunktVsOrder.get(Long.valueOf(malepunktID)));
+                                    InvoiceOrder newInvoiceOrder = malepunktVsOrder.get(Long.valueOf(malepunktID));
+                                    newAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().setNetPrintet(newInvoiceOrder.getInvoiceOrderAmounts113().getNetTotal());
+                                    listOfInvoice.add(newInvoiceOrder);
                                     newAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().setInvoiceOrder(listOfInvoice);
                                     listOfNewAttachments.add(newAttachment);
                                 }
@@ -173,10 +177,12 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                          if(transaction.getAmountWithVat()==(kraftDistAmt*IMConstants.NEGATIVE))
                          {
                              transaction.setAmountWithVat(transaction.getAmountWithVat());
+                             transaction.setAmount(distribution.getAmount());
                          }
                          else
                          {
                              transaction.setAmountWithVat(kraftDistAmt);
+                             transaction.setAmount(distribution.getAmount());
                          }
                          transaction.getDistributions().setDistribution(listOfDistribution);
                      }
@@ -185,6 +191,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                             Transaction transactionNew = deepClone(newTransaction,k);
                             listOfDistribution.add(distribution);
                             transactionNew.setAmountWithVat(kraftDistAmt);
+                            transactionNew.setAmount(distribution.getAmount());
                             transactionNew.getDistributions().setDistribution(listOfDistribution);
                             listOfNewTransactions.add(transactionNew);
                      }
