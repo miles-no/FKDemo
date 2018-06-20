@@ -26,7 +26,9 @@ import java.util.Map;
         "fakturanr",
         "sumOfNettAmount",
         "totalVatAmount",
-        "transactionName"
+        "transactionName",
+        "grid",
+        "sequenceNumber"
      //   "invoice",
      //   "ehfInvoice"
 })
@@ -62,6 +64,7 @@ public class Nettleie {
     protected  boolean isSumMatching = true;
     @XmlElement(name="FAKTURANR")
     protected String  fakturanr;
+    //total sum without vat
     @XmlElement(name="SumOfNettAmount")
     protected double sumOfNettAmount;
     @XmlElement(name="TransactionName")
@@ -73,6 +76,12 @@ public class Nettleie {
 
     @XmlElement(name="TotalVatAmount")
     protected double totalVatAmount;
+
+    @XmlElement(name = "GRID", required = true)
+    protected Grid grid;
+
+    @XmlElement(name = "SequenceNumber")
+    protected int sequenceNumber;
 
     public List<BaseItemDetails> getBaseItemDetails() {
         return baseItemDetails;
@@ -225,5 +234,21 @@ public class Nettleie {
 
     public void setStartMonthAndYear(String startMonthAndYear) {
         this.startMonthAndYear = startMonthAndYear;
+    }
+
+    public Grid getGrid() {
+        return grid;
+    }
+
+    public void setGrid(Grid grid) {
+        this.grid = grid;
+    }
+
+    public int getSequenceNumber() {
+        return sequenceNumber;
+    }
+
+    public void setSequenceNumber(int sequenceNumber) {
+        this.sequenceNumber = sequenceNumber;
     }
 }

@@ -9,6 +9,8 @@
 package no.fjordkraft.im.if320.models;
 
 import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -60,7 +62,7 @@ import javax.xml.bind.annotation.*;
     "vedlegge2BObj",
     "vedleggehf",
     "vedleggehfObj",
-    "nettleie"
+    "nettleieList"
 })
 @XmlRootElement(name = "FAKTURA")
 public class FAKTURA {
@@ -98,7 +100,7 @@ public class FAKTURA {
     @XmlElement(name = "VEDLEGG_EHF", required = true)
     protected String vedleggehf;
     @XmlElement(name = "Nettleie", required = true)
-    protected Nettleie nettleie;
+    protected List<Nettleie> nettleieList;
 
     /**
      * Gets the value of the aktor property.
@@ -428,11 +430,14 @@ public class FAKTURA {
         this.grid = grid;
     }
 
-    public Nettleie getNettleie() {
-        return nettleie;
+    public List<Nettleie> getNettleieList() {
+        if(null == nettleieList)
+            nettleieList = new ArrayList<>();
+        return nettleieList;
     }
 
-    public void setNettleie(Nettleie nettleie) {
-        this.nettleie = nettleie;
+    public void setNettleieList(List<Nettleie> nettleieList) {
+        this.nettleieList = nettleieList;
     }
+
 }

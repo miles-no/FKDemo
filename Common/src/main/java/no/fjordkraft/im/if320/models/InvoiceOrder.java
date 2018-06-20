@@ -63,7 +63,10 @@ import java.util.Map;
         "consumptions",
     "invoiceOrderEndRecord134",
     "nettleie",
-    "nettleieList"
+    "nettleieList",
+    "sequenceNumber",
+        "transactionName",
+        "invoiceNo"
 })
 @XmlRootElement(name = "InvoiceOrder")
 public class InvoiceOrder {
@@ -102,6 +105,14 @@ public class InvoiceOrder {
     protected List<Nettleie> nettleieList;
     @XmlTransient
     protected Map mapOfVatSumOfGross;
+    @XmlElement(name = "SequenceNumber")
+    protected int sequenceNumber;
+    @XmlElement(name = "TransactionName")
+    protected String transactionName;
+    @XmlElement(name = "InvoiceNo")
+    protected long invoiceNo;
+
+
 
     /**
      * Gets the value of the invoiceOrderInfo110 property.
@@ -462,5 +473,29 @@ public class InvoiceOrder {
 
     public void setMapOfVatSumOfGross(Map mapOfVatSumOfGross) {
         this.mapOfVatSumOfGross = mapOfVatSumOfGross;
+    }
+
+    public int getSequenceNumber() {
+        return sequenceNumber;
+    }
+
+    public void setSequenceNumber(int sequenceNumber) {
+        this.sequenceNumber = sequenceNumber;
+    }
+
+    public String getTransactionName() {
+        return transactionName;
+    }
+
+    public void setTransactionName(String transactionName) {
+        this.transactionName = transactionName;
+    }
+
+    public long getInvoiceNo() {
+        return invoiceNo;
+    }
+
+    public void setInvoiceNo(long invoiceNo) {
+        this.invoiceNo = invoiceNo;
     }
 }
