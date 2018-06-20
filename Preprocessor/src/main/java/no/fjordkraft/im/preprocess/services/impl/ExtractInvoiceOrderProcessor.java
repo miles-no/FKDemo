@@ -177,12 +177,13 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                          if(transaction.getAmountWithVat()==(kraftDistAmt*IMConstants.NEGATIVE))
                          {
                              transaction.setAmountWithVat(transaction.getAmountWithVat());
-                             transaction.setAmount(distribution.getAmount());
+                             transaction.setAmount(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getNetTotal());
+
                          }
                          else
                          {
                              transaction.setAmountWithVat(kraftDistAmt);
-                             transaction.setAmount(distribution.getAmount());
+                             transaction.setAmount(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getNetTotal());
                          }
                          transaction.getDistributions().setDistribution(listOfDistribution);
                      }
@@ -191,7 +192,8 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                             Transaction transactionNew = deepClone(newTransaction,k);
                             listOfDistribution.add(distribution);
                             transactionNew.setAmountWithVat(kraftDistAmt);
-                            transactionNew.setAmount(distribution.getAmount());
+                            transactionNew.setAmount(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getNetTotal());
+                            //transactionNew.setFreeText(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo());
                             transactionNew.getDistributions().setDistribution(listOfDistribution);
                             listOfNewTransactions.add(transactionNew);
                      }
