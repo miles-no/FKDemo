@@ -43,6 +43,7 @@ public class MapToSameMeterPreprocessor extends BasePreprocessor {
                         invoiceOrder.setTransactionName(attachment.getTransactionName());
                         invoiceOrder.setInvoiceNo(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getInvoiceNo());
                         attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().add(invoiceOrder);
+                        attachmentFromMap.setOnlyGrid(false);
                     }
 
                 } else {

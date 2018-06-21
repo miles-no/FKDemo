@@ -26,7 +26,7 @@ public class SummaryLabelPreprocessor  extends BasePreprocessor {
         logger.debug("SummaryLabelPreprocessor..........");
         boolean hasStrom = false;
         boolean hasNett = false;
-        boolean hasKreditNote = false;
+        //boolean hasKreditNote = false;
 
         Statement stmt = request.getStatement();
         List<Attachment> attachmentList = stmt.getAttachments().getAttachment();
@@ -36,11 +36,11 @@ public class SummaryLabelPreprocessor  extends BasePreprocessor {
                 attachment.setLabelStromNetSummary("Sum nettleie");
                 continue;
             }
-            for(InvoiceOrder order : attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder()) {
-                if(order.getNettleie() !=null) {
-                    hasNett = true;
-                }
+
+            if(null != attachment.getFAKTURA().getNettleieList() && attachment.getFAKTURA().getNettleieList().size()>0) {
+                hasNett = true;
             }
+
             if(hasNett) {
                 attachment.setLabelStromNetSummary("Sum Strøm og nettleie");
             } else {
