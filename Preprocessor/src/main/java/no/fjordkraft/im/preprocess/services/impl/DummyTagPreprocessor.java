@@ -30,7 +30,7 @@ public class DummyTagPreprocessor extends BasePreprocessor {
             totalDummyTag = 5;
         }
         else if(!request.getStatement().isOneMeter() && "YES".equals(request.getStatement().getDirectDebit())) {
-            totalDummyTag = 7;
+            totalDummyTag = 7 ;
         } else if(!request.getStatement().isOneMeter()) {
             totalDummyTag = 15;
         }
