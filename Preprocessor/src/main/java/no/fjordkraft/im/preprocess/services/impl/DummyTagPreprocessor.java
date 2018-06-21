@@ -20,12 +20,22 @@ import java.util.List;
 public class DummyTagPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(DummyTagPreprocessor.class);
-    int totalDummyTag = 9;
+
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
+        int totalDummyTag = 9;
 
-        logger.debug("in DummyTagPreprocessor "); 
+        if("YES".equals(request.getStatement().getDirectDebit()) && request.getStatement().isOneMeter() ) {
+            totalDummyTag = 3;
+        }
+        else if(!request.getStatement().isOneMeter() && "YES".equals(request.getStatement().getDirectDebit())) {
+            totalDummyTag = 5;
+        } else if(!request.getStatement().isOneMeter()) {
+            totalDummyTag = 11;
+        }
+
+        logger.debug("in DummyTagPreprocessor ");
         Statement stmt = request.getStatement();
         int transactionsCount = 0;
 
