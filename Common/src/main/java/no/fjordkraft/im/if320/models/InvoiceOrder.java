@@ -9,6 +9,7 @@
 package no.fjordkraft.im.if320.models;
 
 import javax.xml.bind.annotation.*;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +67,9 @@ import java.util.Map;
     "nettleieList",
     "sequenceNumber",
         "transactionName",
-        "invoiceNo"
+        "invoiceNo",
+        "startDate",
+        "endDate"
 })
 @XmlRootElement(name = "InvoiceOrder")
 public class InvoiceOrder {
@@ -111,6 +114,13 @@ public class InvoiceOrder {
     protected String transactionName;
     @XmlElement(name = "InvoiceNo")
     protected long invoiceNo;
+
+    @XmlElement(name = "StartDate", required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar startDate;
+    @XmlElement(name = "EndDate", required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar endDate;
 
 
 
@@ -497,5 +507,21 @@ public class InvoiceOrder {
 
     public void setInvoiceNo(long invoiceNo) {
         this.invoiceNo = invoiceNo;
+    }
+
+    public XMLGregorianCalendar getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(XMLGregorianCalendar startDate) {
+        this.startDate = startDate;
+    }
+
+    public XMLGregorianCalendar getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(XMLGregorianCalendar endDate) {
+        this.endDate = endDate;
     }
 }

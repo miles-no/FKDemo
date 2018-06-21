@@ -83,6 +83,13 @@ public class Nettleie {
     @XmlElement(name = "SequenceNumber")
     protected int sequenceNumber;
 
+    @XmlElement(name = "StartDate", required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar startDate;
+    @XmlElement(name = "EndDate", required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar endDate;
+
     public List<BaseItemDetails> getBaseItemDetails() {
         return baseItemDetails;
     }
@@ -250,5 +257,21 @@ public class Nettleie {
 
     public void setSequenceNumber(int sequenceNumber) {
         this.sequenceNumber = sequenceNumber;
+    }
+
+    public XMLGregorianCalendar getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(XMLGregorianCalendar startDate) {
+        this.startDate = startDate;
+    }
+
+    public XMLGregorianCalendar getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(XMLGregorianCalendar endDate) {
+        this.endDate = endDate;
     }
 }

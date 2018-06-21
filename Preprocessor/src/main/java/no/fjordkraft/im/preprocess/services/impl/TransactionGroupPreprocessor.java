@@ -94,6 +94,9 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                             request.getEntity().getId()));*/
                                     attachment.setStartDate(startDate);
                                     attachment.setEndDate(endDate);
+                                    //added to sort based on dates
+                                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setStartDate(startDate);
+                                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setEndDate(endDate);
                                 }
                             }
                             kraftTransaction.add(createTransactionEntry(transaction, IMConstants.KRAFT));
