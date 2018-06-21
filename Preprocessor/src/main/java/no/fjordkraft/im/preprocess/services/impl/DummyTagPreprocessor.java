@@ -24,15 +24,15 @@ public class DummyTagPreprocessor extends BasePreprocessor {
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
-        int totalDummyTag = 9;
+        int totalDummyTag = 14;
 
         if("YES".equals(request.getStatement().getDirectDebit()) && request.getStatement().isOneMeter() ) {
-            totalDummyTag = 3;
+            totalDummyTag = 5;
         }
         else if(!request.getStatement().isOneMeter() && "YES".equals(request.getStatement().getDirectDebit())) {
-            totalDummyTag = 5;
+            totalDummyTag = 7;
         } else if(!request.getStatement().isOneMeter()) {
-            totalDummyTag = 11;
+            totalDummyTag = 15;
         }
 
         logger.debug("in DummyTagPreprocessor ");
