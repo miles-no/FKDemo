@@ -44,18 +44,22 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request)
     {
         try {
-            StopWatch stopWatch = new StopWatch();
-            stopWatch.start("Check EMUXML Attachments with Multiple Invoice Order and create new Attachments");
-            HashMap<Long,InvoiceOrder> malepunktVsOrder = new HashMap<Long,InvoiceOrder>();
-            ArrayList<Attachment> listOfNewAttachments = new ArrayList<Attachment>();
-            List<Attachment> attachments = request.getStatement().getAttachments().getAttachment();
-            List<Transaction> listOfTransactions = new ArrayList<Transaction>();
-            Attachment emuxmlAttachment  = null;
-
-            for( Attachment attachment :request.getStatement().getAttachments().getAttachment())
+            String legalPartClass = request.getEntity().getLegalPartClass();
+            String brand = request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
+            if(!isMultipleDistributionForOrganization(request.getStatement().getTransactions().getTransaction(),legalPartClass,brand) )
             {
-                FAKTURA faktura = attachment.getFAKTURA();
-                if(faktura.getVEDLEGGFORMAT().equalsIgnoreCase("EMUXML") && faktura.getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().size()>1) {
+                StopWatch stopWatch = new StopWatch();
+                stopWatch.start("Check EMUXML Attachments with Multiple Invoice Order and create new Attachments");
+                HashMap<Long,InvoiceOrder> malepunktVsOrder = new HashMap<Long,InvoiceOrder>();
+                ArrayList<Attachment> listOfNewAttachments = new ArrayList<Attachment>();
+                List<Attachment> attachments = request.getStatement().getAttachments().getAttachment();
+                List<Transaction> listOfTransactions = new ArrayList<Transaction>();
+                Attachment emuxmlAttachment = null;
+
+                for( Attachment attachment :request.getStatement().getAttachments().getAttachment())
+                {
+                    FAKTURA faktura = attachment.getFAKTURA();
+                    if(faktura.getVEDLEGGFORMAT().equalsIgnoreCase("EMUXML") && faktura.getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().size()>1) {
                         emuxmlAttachment = attachment;
                         for(InvoiceOrder invoiceOrder :faktura.getVEDLEGGEMUXML().getInvoice().getInvoiceOrder())
                         {
@@ -69,8 +73,6 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                                 if(Long.compare(malepunktID,faktura.getMAALEPUNKT())==0)
                                 {
                                     listOfInvoice.add(invoiceOrder);
-
-                                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().setNetPrintet(invoiceOrder.getInvoiceOrderAmounts113().getNetTotal());
                                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().setInvoiceOrder(listOfInvoice);
                                     listOfTransactions.addAll(getKraftTransactionGroup(request.getStatement().getTransactions().getTransaction(), attachment));
                                 }
@@ -78,9 +80,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                                 {
                                     Attachment newAttachment = deepClone(emuxmlAttachment);
                                     newAttachment.getFAKTURA().setMAALEPUNKT(malepunktID);
-                                    InvoiceOrder newInvoiceOrder = malepunktVsOrder.get(Long.valueOf(malepunktID));
-                                    newAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().setNetPrintet(newInvoiceOrder.getInvoiceOrderAmounts113().getNetTotal());
-                                    listOfInvoice.add(newInvoiceOrder);
+                                    listOfInvoice.add(malepunktVsOrder.get(Long.valueOf(malepunktID)));
                                     newAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().setInvoiceOrder(listOfInvoice);
                                     listOfNewAttachments.add(newAttachment);
                                 }
@@ -107,28 +107,52 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
 
 
                          /* //IM-53 ; If freeText is not available then get the information from supplypointinfo-117.streetno
-                         if(attachment.getFaktura().getFreeText()==null )
-                          {
-                            Transaction transaction =  getKraftTransaction(request.getStatement().getTransactions().getTransaction(),attachment) ;
-                             if(transaction!=null && (transaction.getFreeText()==null || (transaction.getFreeText()!=null && transaction.getFreeText().isEmpty()))&& attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117()!=null)
-                             {
-                                 String message = "Kraft Transaction "+transaction.getMaalepunktID()+" has no free text.Setting value " +attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo() ;
-                                 auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), message, IMConstants.INFO);
-                                 transaction.setFreeText(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo());
-                             }
-                          }*/
+                        if(attachment.getFaktura().getFreeText()==null )
+                        {
+                            Transaction transaction = getKraftTransaction(request.getStatement().getTransactions().getTransaction(),attachment) ;
+                            if(transaction!=null && (transaction.getFreeText()==null || (transaction.getFreeText()!=null && transaction.getFreeText().isEmpty()))&& attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117()!=null)
+                            {
+                                String message = "Kraft Transaction "+transaction.getMaalepunktID()+" has no free text.Setting value " +attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo() ;
+                                auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), message, IMConstants.INFO);
+                                transaction.setFreeText(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo());
+                            }
+                        }*/
                     }
                 }
 
 
-           addNewAttachmentsAndTransactions(listOfNewAttachments,request,listOfTransactions);
-           stopWatch.stop();
-           logger.debug("TIme taken for creating new attachment of statement with id  " + request.getEntity().getId() + stopWatch.prettyPrint());
+                addNewAttachmentsAndTransactions(listOfNewAttachments,request,listOfTransactions);
+                stopWatch.stop();
+                logger.debug("TIme taken for creating new attachment of statement with id " + request.getEntity().getId() + stopWatch.prettyPrint());
+            } else {
+                String errorMessage = "Found multiple distributions in transaction for statement " +request.getEntity().getId();
+                auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.ERROR);
+                logger.error("Found multiple Distributions for Legal Part class " + legalPartClass +" and brand " + brand +" statement ID " + request.getEntity().getId());
+                throw new PreprocessorException("Found multiple Distributions for Legal Part class " + legalPartClass +" and brand " + brand +" statement ID " + request.getEntity().getId());
+            }
         } catch (Exception e) {
             logger.error("Exception in Extract Invoice Order preprocessor",e);
             throw new PreprocessorException(e);
         }
 
+    }
+
+    /**
+     * This method will check whether transaction has multiple distributions, If yes and if LegalPartClass = Organization and brand = FKAS and TKAS then in
+     * that case the invoice should fail.
+     * @return
+     */
+    private boolean isMultipleDistributionForOrganization(List<Transaction> transactions,String legalPartClass,String brand) {
+        if(IMConstants.LEGAL_PART_CLASS_ORGANIZATION.equals(legalPartClass) && (brand.equals("FKAS") || brand.equals("TKAS"))) {
+            for(Transaction transaction : transactions) {
+                if(transaction.getTransactionCategory().contains("KR;") || transaction.getTransactionCategory().contains("KN;")) {
+                    if(transaction.getDistributions().getDistribution().size()>1) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     private Transaction getKraftTransaction(List<Transaction> transactions, Attachment attachment) {
@@ -142,8 +166,8 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                 for(Distribution distribution : transaction.getDistributions().getDistribution())
                 {
 
-                    double invoiceGrossTotal =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
-                    double kraftDistAmt   =     distribution.getAmount();
+                    double invoiceGrossTotal = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
+                    double kraftDistAmt = distribution.getAmount();
                     if(Double.compare(invoiceGrossTotal, StrictMath.abs(kraftDistAmt))==0)
                     {
                         return transaction;
@@ -154,7 +178,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
         return null;
     }
 
-    private List<Transaction>  getKraftTransactionGroup(List<Transaction> transactions,Attachment attachment) {
+    private List<Transaction> getKraftTransactionGroup(List<Transaction> transactions,Attachment attachment) {
 
         List<Distribution> listOfDistribution =null ;
         List<Transaction> listOfNewTransactions = new ArrayList<Transaction>();
@@ -169,34 +193,29 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                 for(Distribution distribution : transaction.getDistributions().getDistribution())
                 {
                     listOfDistribution = new ArrayList<Distribution>();
-                   double invoiceGrossTotal =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
-                    double kraftDistAmt   =     distribution.getAmount();
-                     if(Double.compare(StrictMath.abs(invoiceGrossTotal), StrictMath.abs(kraftDistAmt))==0)
-                     {
-                         listOfDistribution.add(distribution);
-                         if(transaction.getAmountWithVat()==(kraftDistAmt*IMConstants.NEGATIVE))
-                         {
-                             transaction.setAmountWithVat(transaction.getAmountWithVat());
-                             transaction.setAmount(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getNetTotal());
-
-                         }
-                         else
-                         {
-                             transaction.setAmountWithVat(kraftDistAmt);
-                             transaction.setAmount(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getNetTotal());
-                         }
-                         transaction.getDistributions().setDistribution(listOfDistribution);
-                     }
+                    double invoiceGrossTotal = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
+                    double kraftDistAmt = distribution.getAmount();
+                    if(Double.compare(StrictMath.abs(invoiceGrossTotal), StrictMath.abs(kraftDistAmt))==0)
+                    {
+                        listOfDistribution.add(distribution);
+                        if(transaction.getAmountWithVat()==(kraftDistAmt*IMConstants.NEGATIVE))
+                        {
+                            transaction.setAmountWithVat(transaction.getAmountWithVat());
+                        }
+                        else
+                        {
+                            transaction.setAmountWithVat(kraftDistAmt);
+                        }
+                        transaction.getDistributions().setDistribution(listOfDistribution);
+                    }
                     else
-                     {
-                            Transaction transactionNew = deepClone(newTransaction,k);
-                            listOfDistribution.add(distribution);
-                            transactionNew.setAmountWithVat(kraftDistAmt);
-                            transactionNew.setAmount(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getNetTotal());
-                            //transactionNew.setFreeText(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo());
-                            transactionNew.getDistributions().setDistribution(listOfDistribution);
-                            listOfNewTransactions.add(transactionNew);
-                     }
+                    {
+                        Transaction transactionNew = deepClone(newTransaction,k);
+                        listOfDistribution.add(distribution);
+                        transactionNew.setAmountWithVat(kraftDistAmt);
+                        transactionNew.getDistributions().setDistribution(listOfDistribution);
+                        listOfNewTransactions.add(transactionNew);
+                    }
                     k++;
                 }
 
@@ -204,7 +223,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
             }
 
 
-         }
+        }
         return listOfNewTransactions;
     }
 
@@ -213,9 +232,9 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
         {
             for(Transaction trans : listOfTrans)
             {
-               double invoiceGrossTotal =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
+                double invoiceGrossTotal = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
                 double kraftDistAmount = trans.getDistributions().getDistribution().get(0).getAmount();
-                String transReference  = trans.getReference();
+                String transReference = trans.getReference();
                 if(null != transReference && transReference.indexOf("-") != -1) {
                     transReference = transReference.substring(0, transReference.indexOf("-"));
                 }
@@ -223,11 +242,11 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                 if(Double.compare(StrictMath.abs(kraftDistAmount),invoiceGrossTotal)==0 && null != transReference && transReference.equals(attachment.getFAKTURA().getFAKTURANR()))
 
                 {
-                     trans.setFreeText(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo().trim());
-                     trans.setAmountWithVat(kraftDistAmount);
-                     attachment.getFAKTURA().setFAKTURANR(trans.getReference());
-                     request.getStatement().getAttachments().getAttachment().add(attachment);
-                     request.getStatement().getTransactions().getTransaction().add(trans);
+                    trans.setFreeText(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().getStreetNo().trim());
+                    trans.setAmountWithVat(kraftDistAmount);
+                    attachment.getFAKTURA().setFAKTURANR(trans.getReference());
+                    request.getStatement().getAttachments().getAttachment().add(attachment);
+                    request.getStatement().getTransactions().getTransaction().add(trans);
                 }
 
             }
@@ -248,7 +267,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
             attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(null);
             logger.debug("cloning stromAttachment " + stromAttachment.getFAKTURA().getMAALEPUNKT());
             attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setMapOfVatSumOfGross(new HashMap());
-           // attachment.setDisplayStromData(false);
+            // attachment.setDisplayStromData(false);
             return attachment;
         } catch (Exception e) {
             throw new PreprocessorException(e);
@@ -264,10 +283,10 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
 
             StreamSource source = new StreamSource(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
             Transaction transaction = (Transaction) unMarshaller.unmarshal(source);
-              Random random = new Random();
+            Random random = new Random();
             String refNo = transaction.getReference()+"-" +k;
-             transaction.setReference(refNo);
-             transaction.getDistributions().getDistribution().clear();
+            transaction.setReference(refNo);
+            transaction.getDistributions().getDistribution().clear();
             logger.debug("cloning kraftTransaction with Reference " + transaction.getReference());
             //attachment.setDisplayStromData(false);
             return transaction;
