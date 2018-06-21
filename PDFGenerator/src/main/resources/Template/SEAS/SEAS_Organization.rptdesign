@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement_713089250314 (1).xml</property>
+            <property name="FILELIST">C:\Users\miles12\Downloads\statement.xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -1729,6 +1729,20 @@
 }</expression>
                     <simple-property-list name="value1">
                         <value>"Fornybar energi-"</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="operator">ne</property>
+                    <expression name="expr" type="javascript">if(parseFloat(row["TotalGross"]) == 0) &#13;
+{&#13;
+row["Text"] + '-';&#13;
+}&#13;
+else&#13;
+{&#13;
+row["Text"]&#13;
+}</expression>
+                    <simple-property-list name="value1">
+                        <value>"Strømforsikring-"</value>
                     </simple-property-list>
                 </structure>
             </list-property>
