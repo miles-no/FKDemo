@@ -28,7 +28,9 @@ import java.util.Map;
         "totalVatAmount",
         "transactionName",
         "grid",
-        "sequenceNumber"
+        "sequenceNumber",
+        "startDate",
+        "endDate"
      //   "invoice",
      //   "ehfInvoice"
 })
