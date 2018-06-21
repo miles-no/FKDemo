@@ -477,6 +477,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 int year =   startDate.getYear();
                 nettleie.setStartMonthAndYear(monthName + " " + year);
                 }
+                nettleie.setStartDate(pdfAttachment.getStartDate());
+                nettleie.setEndDate(pdfAttachment.getEndDate());
         }  else {
                 Invoice invoice = pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice();
                 if(invoice!=null) {
@@ -619,6 +621,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     int year =   startDate.getYear();
                     nettleie.setStartMonthAndYear(monthName + " " + year);
                     }
+                    nettleie.setStartDate(pdfAttachment.getStartDate());
+                    nettleie.setEndDate(pdfAttachment.getEndDate());
                 }
             }
 
@@ -693,6 +697,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         String monthName =  Month.of(startDate.getMonth()).getDisplayName (TextStyle.FULL, new Locale("no","NO"));
         int year =   startDate.getYear();
         nettleie.setStartMonthAndYear(monthName + " " + year);
+        nettleie.setStartDate(pdfAttachment.getStartDate());
+        nettleie.setEndDate(pdfAttachment.getEndDate());
         return nettleie;
     }
 
