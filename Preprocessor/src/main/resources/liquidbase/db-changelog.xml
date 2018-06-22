@@ -9,7 +9,7 @@
     <include file="db-changelog-2.0.0.sql" relativeToChangelogFile="true" />
     <include file="db-changelog-3.0.0.sql" relativeToChangelogFile="true" />
    <!--<include file="db-changelog-4.0.0.sql" relativeToChangelogFile="true" />-->
-    <include file="db-changelog-5.0.0.sql" relativeToChangelogFile="true" />
+    <!--<include file="db-changelog-5.0.0.sql" relativeToChangelogFile="true" />-->
 
 
 
