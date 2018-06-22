@@ -38,32 +38,6 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
             List<Attachment> attachments = request.getStatement().getAttachments().getAttachment();
             List<Distribution> distributions = null;
             Distribution distribution = null;
-            if(request.getStatement().isOneMeter())
-            {
-                logger.debug("Statement "+request.getEntity().getId() + " has only one meter " );
-                //request.getStatement().setOneMeter(true);
-                if(attachments.get(0)!=null && attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice()!=null
-                        && attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null
-                        && attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null ) {
-                    String nettlieStartMonth = null;
-                    if(attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getStartMonthAndYear()!=null)   {
-                        nettlieStartMonth = attachments.get(0).getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getStartMonthAndYear();
-                    }
-                    if(nettlieStartMonth != null && attachments.get(0) != null && attachments.get(0).getStartMonthYear() != null && attachments.get(0).getStartMonthYear().equals(nettlieStartMonth))  {
-                        request.getStatement().setStatementPeriod("Strøm og nettleie "+attachments.get(0).getStartMonthYear());
-                    }
-                    else if(!attachments.get(0).getDisplayStromData())
-                    {
-                        if(nettlieStartMonth!=null) {
-                            request.getStatement().setStatementPeriod("Nettleie for " + nettlieStartMonth);
-                        } else {
-                        request.getStatement().setStatementPeriod("Nettleie ");
-                        }
-                    }
-                } else {
-                    request.getStatement().setStatementPeriod("Strøm for "+attachments.get(0).getStartMonthYear());
-                }
-            }
             Map<Double,List<Transaction>> vatVsListOfTransactions = new HashMap<Double,List<Transaction>>();
             List<Transaction> listOfOtherTrans = new ArrayList<Transaction>();
             List<Transaction> listOfTransactions = null;
@@ -90,10 +64,11 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                     if(!vatAndAmtOfLineItem.isEmpty() /*&& vatAndAmtOfLineItem.containsKey(transVat)*/ && vatAndAmtOfLineItem.size()==1)
                                     {
                                         Double vat = Double.valueOf(vatAndAmtOfLineItem.keySet().toArray()[0].toString());
-                                        logger.debug("Attachment's vat is matching with transaction Vat rate ");
+                                        logger.debug("Attachment's vat is matching with transaction Vat");
                                         transaction.setVatRate(String.valueOf(vat));
                                         if(Math.round(vatAndAmtOfLineItem.get(vat)) == Math.round(transaction.getAmount()*IMConstants.NEGATIVE))
                                         {
+                                            logger.debug("Attachment's amount is matching with transaction's amount ");
                                             if(!vatVsListOfTransactions.containsKey(vat))
                                             {
                                                 listOfTransactions = new ArrayList<Transaction>();
@@ -132,6 +107,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                         transaction.setVatRate(String.valueOf(vat));
                                         if(Math.round(vatAndAmtOfLineItem.get(vat))== Math.round(transaction.getAmount()*IMConstants.NEGATIVE))
                                         {
+                                            logger.debug("Attachment's amount is matching with transaction amount  " + transVat);
                                             if(!vatVsListOfTransactions.containsKey(vat))
                                             {
                                                 listOfTransactions = new ArrayList<Transaction>();
@@ -146,6 +122,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                             logger.debug("Adding Transaction"+ transaction.getFreeText() +" into vat Vs ListOfTransactions Map with Vat " + transVat);
                                         }
                                     } else if(!vatAndAmtOfLineItem.isEmpty() && vatAndAmtOfLineItem.size()>1 ){
+                                        logger.debug("Found multiple vat rate for attachment "+ attachment.getFAKTURA().getFAKTURANR());
                                         if(vatVsListOfTransactions.containsKey(null) && !vatVsListOfTransactions.get(null).isEmpty())  {
                                             listOfTransactions =  vatVsListOfTransactions.get(null);
                                                 transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
@@ -161,6 +138,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                 }
                             }
                             if(!isAttachmentFound) {
+                                    logger.debug("Attachment not found for transaction  " + transaction.getReference());
                                     double transVat = Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
                                     if(vatVsListOfTransactions.containsKey(transVat)) {
                                         listOfTransactions = vatVsListOfTransactions.get(transVat);
@@ -196,7 +174,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 }
                 else
                 {
-                    logger.debug("No Distributions for statement " + request.getEntity().getId());
+                    logger.debug("No Distributions for transaction " + transaction.getReference());
                     double vatRate = Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
                     List<Transaction> list = vatVsListOfTransactions.get(vatRate);
                     if(list ==null || list.isEmpty())
@@ -258,14 +236,14 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 String nettStartMonthYear = null;
                 if((attachment.getDisplayStromData()!=null && attachment.getDisplayStromData()) || attachment.getDisplayStromData() == null)
                 {
-                    logger.debug("Getting map of Vate and its sum for strom attachment " );
+                    logger.debug("Getting map of Vat and its sum for strom attachment " );
                     stromVatAndSum =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getMapOfVatSumOfGross();
                     stromStartMonthYear = attachment.getStartMonthYear();
                 }
                 //in case of only strom nettlie is null
                 if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null)
                 {
-                    logger.debug("Getting map of Vate and its sum for Nett attachment " );
+                    logger.debug("Getting map of Vat and its sum for Nett attachment " );
                     nettVatAndSum = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getMapOfVatSumOfGross();
                     nettStartMonthYear = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getStartMonthAndYear();
                 }
@@ -275,6 +253,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 List<TransactionSummary> transactionSummaryList = new ArrayList<TransactionSummary>();
                 double sumInklMVA = 0.0;
                 double sumExclMVA = 0.0;
+                //this for loop calculates sum Exclusive MVA and inclusive MVA and creates transaction summary for first page.
                 for(Double vat : vatSet)
                 {
                     double sumOfStrom = 0.0;
@@ -302,80 +281,13 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                 attachment.setTransactionSummary(transactionSummaryList);
                 attachment.setSumInklMVA(Double.valueOf(df.format(sumInklMVA)));
                 attachment.setSumOfTransactions(Double.valueOf(df.format(sumExclMVA)));
-                if(stromStartMonthYear==null && nettStartMonthYear!=null )
-                {
-                    if(nettStartMonthYear.equals(startMonthYear) || (startMonthYear==null && isNettStartDate && isStromStartDate) ||(startMonthYear!=null && startMonthYear.equals("")))
-                    {
-                        startMonthYear = nettStartMonthYear;
-                    }
-                    else
-                    {
-                        startMonthYear = null;
-                    }
-                    isStromStartDate = false;
-                    isNettStartDate = true;
-
-                } else if(stromStartMonthYear!=null && nettStartMonthYear==null)
-                {
-                    if(stromStartMonthYear.equals(startMonthYear) /*||  (startMonthYear==null && isNettStartDate && isStromStartDate)*/
-                            || (startMonthYear!=null && startMonthYear.equals("")))
-                    {
-                        startMonthYear = stromStartMonthYear;
-                    }
-                    else
-                    {
-                        startMonthYear = null;
-                    }
-                    isNettStartDate = false;
-                    isStromStartDate = true;
-                }   else if(stromStartMonthYear!=null && nettStartMonthYear!=null && stromStartMonthYear.equals(nettStartMonthYear) )
-                {
-                    if((startMonthYear!=null && stromStartMonthYear.equals(startMonthYear)) || startMonthYear==null)
-                    {
-                        startMonthYear = stromStartMonthYear;
-                    }
-                    else
-                    {
-                        request.getStatement().setStatementPeriod("Strøm og nettleie");
-                    }
-                    isStromStartDate = true;
-                    isNettStartDate = true;
-                }
-                else if(stromStartMonthYear!=null && nettStartMonthYear!=null && !stromStartMonthYear.equals(nettStartMonthYear))
-                {
-                    isStromStartDate = false;
-                    isNettStartDate = false;
-                    startMonthYear = null;
-                }
-            }
-        }
-        if(!request.getStatement().isOneMeter())
-        {
-            if(isNettStartDate && isStromStartDate && startMonthYear!=null)
-            {
-                request.getStatement().setStatementPeriod("Strøm og nettleie " + startMonthYear);
-            }
-            else if((isNettStartDate || isStromStartDate) && startMonthYear !=null )
-            {
-                if(isNettStartDate)
-                {
-                    request.getStatement().setStatementPeriod("Nettleie for " + startMonthYear);
-                }
-                if(isStromStartDate)
-                {
-                    request.getStatement().setStatementPeriod("Strøm for " + startMonthYear);
-                }
-            }
-            else
-            {
-                request.getStatement().setStatementPeriod("Strøm og nettleie ");
             }
         }
        // request.getStatement().getTransactionGroup().setTransaction(null);
         String stromName = null;
         String nettName = null;
         double sumOfTransAmount = 0.0;
-                Map<Double,TransactionSummary> mapOfVatVsTransactionSummary = new HashMap<Double,TransactionSummary>();
+        Map<Double,TransactionSummary> mapOfVatVsTransactionSummary = new HashMap<Double,TransactionSummary>();
         Map<String,Double> mapOfNameAndAmt = new HashMap<String,Double>();
         Map<String,Double>  mapOfNameAndVat = new HashMap<String,Double>();
         List<Transaction> processedOtherTrans = new ArrayList<Transaction>();

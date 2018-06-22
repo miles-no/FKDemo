@@ -204,11 +204,13 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
             logger.debug("meterIdMapEMUXML size " + meterIdMapEMUXML.size() + " invoice number " + invoicenumber);
             logger.debug("meterIdStartMonMapEMUXML size " + meterIdStartMonMapEMUXML.size() + " invoice number " + invoicenumber);
-            if(meterIdMapEMUXML.size()==1) {
-                request.getStatement().setOneMeter(true);
-            }
+
 
             mapNettToStrom(meterIdMapEMUXML, meterIdStartMonMapEMUXML, attachments, invoicenumber,request.getEntity().getId());
+
+            if(meterIdMapEMUXML.keySet().size()==1) {
+                request.getStatement().setOneMeter(true);
+            }
 
             int index = 1;
             for (Attachment attachment : meterIdMapEMUXML.values()) {
