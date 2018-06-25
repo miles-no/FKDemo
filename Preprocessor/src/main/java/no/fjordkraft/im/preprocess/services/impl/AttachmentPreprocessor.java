@@ -618,10 +618,10 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     nettleie.setBaseItemDetails(baseItemDetailsList);
                     nettleie.setSumOfNettAmount(Double.valueOf(invoice.getLegalMonetaryTotal().getTaxExclusiveAmount().getValue().toString()));
                     nettleie.setTotalVatAmount(sumOfVatAmount);
-                    if(noOfDays<30) {
-                    String monthName =  Month.of(startDate.getMonth()).getDisplayName (TextStyle.FULL, new Locale("no","NO"));
-                    int year =   startDate.getYear();
-                    nettleie.setStartMonthAndYear(monthName + " " + year);
+                    if(null != startDate && noOfDays < 30) {
+                        String monthName =  Month.of(startDate.getMonth()).getDisplayName (TextStyle.FULL, new Locale("no","NO"));
+                        int year =   startDate.getYear();
+                        nettleie.setStartMonthAndYear(monthName + " " + year);
                     }
                     nettleie.setStartDate(pdfAttachment.getStartDate());
                     nettleie.setEndDate(pdfAttachment.getEndDate());
@@ -696,9 +696,11 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         else
             nettleie.setSumOfNettAmount(invoice.getInvoiceSummary().getInvoiceTotals().getNetAmount());
         nettleie.setTotalVatAmount(sumOfVatAmount);
-        String monthName =  Month.of(startDate.getMonth()).getDisplayName (TextStyle.FULL, new Locale("no","NO"));
-        int year =   startDate.getYear();
-        nettleie.setStartMonthAndYear(monthName + " " + year);
+        if(null != startDate) {
+            String monthName = Month.of(startDate.getMonth()).getDisplayName(TextStyle.FULL, new Locale("no", "NO"));
+            int year = startDate.getYear();
+            nettleie.setStartMonthAndYear(monthName + " " + year);
+        }
         nettleie.setStartDate(pdfAttachment.getStartDate());
         nettleie.setEndDate(pdfAttachment.getEndDate());
         return nettleie;
