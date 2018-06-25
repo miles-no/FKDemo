@@ -6349,7 +6349,14 @@ true;&#13;
                             </structure>
                             <structure>
                                 <property name="name">TranCategory</property>
-                                <expression name="expression" type="javascript">dataSetRow["TransactionCategory"]</expression>
+                                <expression name="expression" type="javascript">if(dataSetRow["TransactionCategory"].indexOf("Nettleie") != -1)&#13;
+{&#13;
+"Nettleie fra netteier";&#13;
+}&#13;
+else&#13;
+{&#13;
+dataSetRow["TransactionCategory"];&#13;
+}</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
