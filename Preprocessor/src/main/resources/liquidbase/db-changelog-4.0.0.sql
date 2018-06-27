@@ -47,3 +47,8 @@ Insert into IM_TRANSACTION_CATEGORY (ID,TYPE,DESCRIPTION,CATEGORY) values (189,'
   Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (301,6,187);
   Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (302,6,188);
   Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (303,6,189);
+
+--changeset arpita:2 context:prod
+--Added new column to check the legal part class in PDFGenerator.
+alter table im_statement add LEGAL_PART_CLASS VARCHAR2(100 BYTE);
+--Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (304,4,96);
