@@ -346,7 +346,17 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                          nettleie.setFreeText(creditNote.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName().getValue());
             nettleie.setDescription(null);
             nettleie.setObjectId((Long.valueOf(creditNote.getDeliveries().get(0).getDeliveryLocation().getID().getValue().toString())));
-            nettleie.setMeterId(creditNote.getAccountingSupplierParty().getParty().getPartyLegalEntities().get(0).getCompanyID().getValue());
+                //IM-98 : in case of EHF and there are no strom available then in that case the meterId should come from <cac:InvoiceLine> -> <cbc:ID>3</cbc:ID> ->  <cbc:Note>
+               if(creditNote.getCreditNoteLines()!=null && creditNote.getCreditNoteLines().size()>0
+                       && creditNote.getCreditNoteLines().get(0).getNotes()!=null
+                       && creditNote.getCreditNoteLines().get(0).getNotes().size()>0
+                       && creditNote.getCreditNoteLines().get(0).getNotes().get(0).getValue()!=null)
+               {
+                        String meterId = getmeterIdFromValue(creditNote.getCreditNoteLines().get(0).getNotes().get(0).getValue());
+                        nettleie.setMeterId(meterId);
+               } else {
+                   logger.debug("meterId is missing for " + pdfAttachment.getFAKTURA().getFAKTURANR());
+               }
             nettleie.setAnnualConsumption(0);
             nettleie.setGridName(pdfAttachment.getFAKTURA().getAKTORNAVN());
             invoiceSummary.getInvoiceTotals().setGrossAmount(Double.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote()
@@ -492,7 +502,17 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     nettleie.setFreeText(invoice.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName().getValue());
                     nettleie.setDescription(null);
                     nettleie.setObjectId((Long.valueOf(invoice.getDeliveries().get(0).getDeliveryLocation().getID().getValue().toString())));
-                    nettleie.setMeterId(invoice.getAccountingSupplierParty().getParty().getPartyLegalEntities().get(0).getCompanyID().getValue());
+                    //IM-98 : in case of EHF and there are no strom available then in that case the meterId should come from <cac:InvoiceLine> -> <cbc:ID>3</cbc:ID> ->  <cbc:Note>
+                    if(invoice.getInvoiceLines()!=null && invoice.getInvoiceLines().size() >0
+                       && invoice.getInvoiceLines().get(0).getNotes()!=null && invoice.getInvoiceLines().get(0).getNotes().size()>0
+                       && invoice.getInvoiceLines().get(0).getNotes().get(0).getValue()!=null ) {
+
+                        String meterId = getmeterIdFromValue(invoice.getInvoiceLines().get(0).getNotes().get(0).getValue());
+                        nettleie.setMeterId(meterId);
+                    } else {
+                        logger.debug("meterId is missing for " + pdfAttachment.getFAKTURA().getFAKTURANR());
+                    }
+
                     nettleie.setAnnualConsumption(0);
                     nettleie.setGridName(pdfAttachment.getFAKTURA().getAKTORNAVN());
                     invoiceSummary.getInvoiceTotals().setGrossAmount(Double.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice()
@@ -630,6 +650,27 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
         }
         return nettleie;
+    }
+
+    private String getmeterIdFromValue(String note) {
+        if(note.contains("Målernummer")) {
+
+            String seperator = "";
+            if(note.contains(",")) {
+                seperator = ",";
+            } else if(note.contains("."))
+            {
+                seperator = ".";
+            }
+            StringTokenizer tokenizer =  new StringTokenizer(note,seperator);
+               while(tokenizer.hasMoreElements()) {
+                   String value = tokenizer.nextElement().toString();
+                   if(value.contains("Målernummer:")){
+                       return  value.replaceAll("Målernummer:","");
+                   }
+               }
+        }
+        return null;
     }
 
     private Nettleie createE2BEntry(Attachment pdfAttachment) {
