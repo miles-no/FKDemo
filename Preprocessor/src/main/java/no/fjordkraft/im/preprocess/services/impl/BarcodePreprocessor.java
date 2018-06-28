@@ -40,8 +40,8 @@ public class BarcodePreprocessor extends BasePreprocessor {
 
         if(null != brandConfig) {
             if (IMConstants.TRUE == brandConfig.getUseEABarcode()) {
-                String barcode = IMConstants.BARCODE_PREFIX + brandConfig.getAgreementNumber() + brandConfig.getServiceLevel()
-                        + brandConfig.getPrefixKID() + request.getStatement().getAccountNumber();
+                String barcode = IMConstants.BARCODE_PREFIX + brandConfig.getAgreementNumber() + brandConfig.getServiceLevel() +
+                       "0" + brandConfig.getPrefixKID() + request.getStatement().getAccountNumber();
                 logger.debug("Barcode for statementId " + statement.getId() + " is " + barcode);
                 request.getStatement().setBarcode(Long.parseLong(barcode));
             }
