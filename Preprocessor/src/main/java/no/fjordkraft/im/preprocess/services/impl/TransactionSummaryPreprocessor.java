@@ -81,6 +81,21 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                             vatVsListOfTransactions.put(vat,listOfTransactions);
                                             logger.debug("Adding Transaction"+ transaction.getFreeText() +" into vat Vs ListOfTransactions Map with Vat " + transVat);
                                         }
+                                    }   else if(!vatAndAmtOfLineItem.isEmpty() && vatAndAmtOfLineItem.size()>1 ){
+                                        logger.debug("Found multiple vat rate for attachment "+ attachment.getFAKTURA().getFAKTURANR());
+                                        if(vatVsListOfTransactions.containsKey(null) && !vatVsListOfTransactions.get(null).isEmpty())  {
+                                            listOfTransactions =  vatVsListOfTransactions.get(null);
+                                            transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
+                                            transaction.setTransactionType(IMConstants.KRAFT);
+                                            listOfTransactions.add(transaction);
+                                            vatVsListOfTransactions.put(null,listOfTransactions);
+                                        } else {
+                                            listOfTransactions = new ArrayList<Transaction>();
+                                            transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
+                                            transaction.setTransactionType(IMConstants.KRAFT);
+                                            listOfTransactions.add(transaction);
+                                            vatVsListOfTransactions.put(null,listOfTransactions);
+                                        }
                                     }
                                 }
                             }
@@ -126,11 +141,13 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                         if(vatVsListOfTransactions.containsKey(null) && !vatVsListOfTransactions.get(null).isEmpty())  {
                                             listOfTransactions =  vatVsListOfTransactions.get(null);
                                                 transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
+                                            transaction.setTransactionType(IMConstants.NETT);
                                             listOfTransactions.add(transaction);
                                             vatVsListOfTransactions.put(null,listOfTransactions);
                                         } else {
                                            listOfTransactions = new ArrayList<Transaction>();
                                                 transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
+                                            transaction.setTransactionType(IMConstants.NETT);
                                             listOfTransactions.add(transaction);
                                         vatVsListOfTransactions.put(null,listOfTransactions);
                                         }
