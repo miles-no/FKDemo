@@ -43,7 +43,7 @@ public class BarcodePreprocessor extends BasePreprocessor {
                 String barcode = IMConstants.BARCODE_PREFIX + brandConfig.getAgreementNumber() + brandConfig.getServiceLevel() +
                        "0" + brandConfig.getPrefixKID() + request.getStatement().getAccountNumber();
                 logger.debug("Barcode for statementId " + statement.getId() + " is " + barcode);
-                request.getStatement().setBarcode(Long.parseLong(barcode));
+                request.getStatement().setBarcode(barcode);
             }
             request.getStatement().setKontonummer(brandConfig.getKontonummer());
             ToAddress toAddress = new ToAddress();

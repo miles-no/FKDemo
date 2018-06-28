@@ -186,7 +186,7 @@ public class Statement {
     @XmlElement(name = "NationalId")
     protected int nationalId;
     @XmlElement(name = "Barcode", required = true)
-    protected long barcode;
+    protected String barcode;
     @XmlElement(name = "Name", required = true)
     protected String name;
     @XmlElement(name = "CareOfName", required = true)
@@ -1465,11 +1465,11 @@ public class Statement {
         this.creditedInvoice = value;
     }
 
-    public long getBarcode() {
+    public String getBarcode() {
         return barcode;
     }
 
-    public void setBarcode(long barcode) {
+    public void setBarcode(String barcode) {
         this.barcode = barcode;
     }
 
