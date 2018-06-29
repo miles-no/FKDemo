@@ -340,13 +340,18 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             {
             CreditNote creditNote = pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote();
             nettleie.setReferenceNumber(creditNote.getID().getValue().toString());
-                if(creditNote.getDeliveries().get(0)!=null && creditNote.getDeliveries().get(0).getDeliveryLocation()!=null &&
-                        creditNote.getDeliveries().get(0).getDeliveryLocation().getAddress()!=null
-                        && creditNote.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName()!=null)
-                         nettleie.setFreeText(creditNote.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName().getValue());
-            nettleie.setDescription(null);
-            nettleie.setObjectId((Long.valueOf(creditNote.getDeliveries().get(0).getDeliveryLocation().getID().getValue().toString())));
-                //IM-98 : in case of EHF and there are no strom available then in that case the meterId should come from <cac:InvoiceLine> -> <cbc:ID>3</cbc:ID> ->  <cbc:Note>
+                if(null != creditNote.getDeliveries() && creditNote.getDeliveries().size()> 0 && creditNote.getDeliveries().get(0).getDeliveryLocation()!=null) {
+                    if(creditNote.getDeliveries().get(0).getDeliveryLocation().getAddress()!=null &&
+                            creditNote.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName()!=null){
+                        nettleie.setFreeText(creditNote.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName().getValue());
+                    }
+                    if(null != creditNote.getDeliveries().get(0).getDeliveryLocation().getID() && null != creditNote.getDeliveries().get(0).getDeliveryLocation().getID().getValue()) {
+                        nettleie.setObjectId((Long.valueOf(creditNote.getDeliveries().get(0).getDeliveryLocation().getID().getValue().toString())));
+                    }
+                }
+                nettleie.setDescription(null);
+
+               //IM-98 : in case of EHF and there are no strom available then in that case the meterId should come from <cac:InvoiceLine> -> <cbc:ID>3</cbc:ID> ->  <cbc:Note>
                if(creditNote.getCreditNoteLines()!=null && creditNote.getCreditNoteLines().size()>0
                        && creditNote.getCreditNoteLines().get(0).getNotes()!=null
                        && creditNote.getCreditNoteLines().get(0).getNotes().size()>0
@@ -495,13 +500,19 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 Invoice invoice = pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice();
                 if(invoice!=null) {
                     nettleie.setReferenceNumber(invoice.getID().getValue().toString());
-                    if(invoice.getDeliveries().get(0)!=null && invoice.getDeliveries().get(0).getDeliveryLocation()!=null &&
-                            invoice.getDeliveries().get(0).getDeliveryLocation().getAddress()!=null &&
-                            invoice.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName()!=null)
+                    if(null != invoice.getDeliveries() && invoice.getDeliveries().size()> 0 && invoice.getDeliveries().get(0).getDeliveryLocation()!=null) {
+                        if(invoice.getDeliveries().get(0).getDeliveryLocation().getAddress()!=null &&
+                                invoice.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName()!=null){
+                            nettleie.setFreeText(invoice.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName().getValue());
+                        }
+                        if(null != invoice.getDeliveries().get(0).getDeliveryLocation().getID() && null != invoice.getDeliveries().get(0).getDeliveryLocation().getID().getValue()) {
+                            nettleie.setObjectId((Long.valueOf(invoice.getDeliveries().get(0).getDeliveryLocation().getID().getValue().toString())));
+                        }
+                    }
 
-                    nettleie.setFreeText(invoice.getDeliveries().get(0).getDeliveryLocation().getAddress().getStreetName().getValue());
+
                     nettleie.setDescription(null);
-                    nettleie.setObjectId((Long.valueOf(invoice.getDeliveries().get(0).getDeliveryLocation().getID().getValue().toString())));
+
                     //IM-98 : in case of EHF and there are no strom available then in that case the meterId should come from <cac:InvoiceLine> -> <cbc:ID>3</cbc:ID> ->  <cbc:Note>
                     if(invoice.getInvoiceLines()!=null && invoice.getInvoiceLines().size() >0
                        && invoice.getInvoiceLines().get(0).getNotes()!=null && invoice.getInvoiceLines().get(0).getNotes().size()>0
