@@ -58,7 +58,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
     AuditLogService auditLogService;
 
     private void generateAttachmentMap(Multimap<Long, Attachment> meterIdMapEMUXML, Map<String, Attachment> meterIdStartMonMapEMUXML, Attachments attachments, String invoicenumber) {
-        for (int i = 0; i < attachments.getAttachment().size(); i++) {
+        for (int i = 0; i < attachments.getAttachment().size(); i++) { 
             Attachment attachment = attachments.getAttachment().get(i);
             if (IMConstants.EMUXML.equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
                 logger.debug("Attachment with meterid " + attachment.getFAKTURA().getMAALEPUNKT() + " added to map ");
