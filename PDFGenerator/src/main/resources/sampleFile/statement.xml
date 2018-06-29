@@ -223,6 +223,38 @@
            <CollectionFeeForStatements/>
            <MAALEPUNKT>0</MAALEPUNKT>
        </Transaction>
+       <Transaction>
+           <TransactionId>103821689</TransactionId>
+           <ParentTransactionId/>
+           <TransactionType>Charge</TransactionType>
+           <TransactionCategory>DI;Rabatt jevn strømregning</TransactionCategory>
+           <TransactionDate>2018-06-05</TransactionDate>
+           <ValueDate>2018-07-10</ValueDate>
+           <Amount>-100.01</Amount>
+           <VatAmount>0.00</VatAmount>
+           <AmountWithVat>-100.01</AmountWithVat>
+           <Reference>0506201812473-1</Reference>
+           <Url/>
+           <FreeText/>
+           <Distributions/>
+           <CollectionFeeForStatements/>
+       </Transaction>
+       <Transaction>
+           <TransactionId>103821690</TransactionId>
+           <ParentTransactionId/>
+           <TransactionType>Charge</TransactionType>
+           <TransactionCategory>DI;Rabatt: Papirfaktura</TransactionCategory>
+           <TransactionDate>2018-06-05</TransactionDate>
+           <ValueDate>2018-07-10</ValueDate>
+           <Amount>100.00</Amount>
+           <VatAmount>0.00</VatAmount>
+           <AmountWithVat>100.00</AmountWithVat>
+           <Reference>0506201812482-1</Reference>
+           <Url/>
+           <FreeText/>
+           <Distributions/>
+           <CollectionFeeForStatements/>
+       </Transaction>
       <DIAmountWithVat>8919.57</DIAmountWithVat>
       <DIVatTotal>-9.8</DIVatTotal>
       <IBAmountWithVat>1799.0</IBAmountWithVat>
@@ -283,7 +315,15 @@
          <VatAmount>0.0</VatAmount>
          <AmountWithVat>-49.0</AmountWithVat>
       </Transaction>
-      <TotalTransactions>5</TotalTransactions>
+       <Transaction>
+           <TransactionId>0</TransactionId>
+           <TransactionSequence>6</TransactionSequence>
+           <TransactionCategory>Rabatter</TransactionCategory>
+           <Amount>0.0</Amount>
+           <VatAmount>0.0</VatAmount>
+           <AmountWithVat>-0.01</AmountWithVat>
+       </Transaction>
+      <TotalTransactions>6</TotalTransactions>
        <SumOfTransactions>0.0</SumOfTransactions>
        <LabelKraftNettSummary>Strøm og nettleie</LabelKraftNettSummary>
    </TransactionGroup>
@@ -297,7 +337,25 @@
          <Amount>0.0</Amount>
       </DistributionDetails>
    </PieChart>
-   <LineItems />
+    <LineItems>
+        <LineItem>
+            <LineItemId>334752</LineItemId>
+            <LineItemDate>2018-06-05</LineItemDate>
+            <Amount>3839.50</Amount>
+            <VatAmount>0.00</VatAmount>
+            <AmountWithVat>3839.50</AmountWithVat>
+            <LineItemCategory>DI;Overført tilgodebeløp</LineItemCategory>
+        </LineItem>
+        <LineItem>
+            <LineItemId>343025</LineItemId>
+            <OriginStatementSequenceNumber>2</OriginStatementSequenceNumber>
+            <LineItemDate>2018-06-25</LineItemDate>
+            <Amount>-3149.00</Amount>
+            <VatAmount>0.00</VatAmount>
+            <AmountWithVat>-3149.00</AmountWithVat>
+            <LineItemCategory>DI;Overført skyldig beløp</LineItemCategory>
+        </LineItem>
+    </LineItems>
    <InstalmentAccounts />
    <Attachments>
       <Attachment>
@@ -2531,10 +2589,10 @@
            <StartDate>2017-10-01</StartDate>
            <EndDate>2018-04-01</EndDate>
            <isOnlyGrid>false</isOnlyGrid>
-           <SumOfNettStrom>2316.57</SumOfNettStrom>
-           <SumOfOutGoingCurrentClaim>-6551.790000000001</SumOfOutGoingCurrentClaim>
+           <SumOfNettStrom>-2316.57</SumOfNettStrom>
+           <SumOfOutGoingCurrentClaim>6551.790000000001</SumOfOutGoingCurrentClaim>
            <LeveringsAdresse>Kulten 80</LeveringsAdresse>
-           <SumOfInGoingIBTrans>-3196.16</SumOfInGoingIBTrans>
+           <SumOfInGoingIBTrans>3196.16</SumOfInGoingIBTrans>
            <LabelStromNetSummary>Sum Strøm</LabelStromNetSummary>
        </Attachment>
    </Attachments>
@@ -2560,5 +2618,5 @@
    <CreditedInvoice />
    <IsGiro>false</IsGiro>
    <IsOneMeter>true</IsOneMeter>
-   <HasLineItems>false</HasLineItems>
+   <HasLineItems>true</HasLineItems>
 </Statement>
