@@ -8811,8 +8811,17 @@ dataSetRow["CareOfName"];&#13;
                                                     <structure>
                                                         <property name="name">Address</property>
                                                         <text-property name="displayName">Address</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["Address"]</expression>
+                                                        <expression name="expression" type="javascript">var a = dataSetRow["Address"].length;&#13;
+if(a > 40)&#13;
+{&#13;
+dataSetRow["Address"].slice(0,40);&#13;
+}&#13;
+else&#13;
+{&#13;
+dataSetRow["Address"];&#13;
+}</expression>
                                                         <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
                                                     </structure>
                                                 </list-property>
                                                 <property name="resultSetColumn">Address</property>
@@ -9955,7 +9964,6 @@ year = "Siste 12 mnd" + "";</expression>
                                                             <property name="width">1.1041666666666667in</property>
                                                         </column>
                                                         <row id="2691">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -10005,7 +10013,6 @@ false;}</expression>
                                                             <property name="width">1.1041666666666667in</property>
                                                         </column>
                                                         <row id="2683">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -10043,7 +10050,6 @@ else&#13;
                                                             <property name="width">1.1041666666666667in</property>
                                                         </column>
                                                         <row id="2699">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -10106,7 +10112,6 @@ else&#13;
                                                             <property name="width">1.1041666666666667in</property>
                                                         </column>
                                                         <row id="2005">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -10143,7 +10148,6 @@ else&#13;
                                                             <property name="width">0.9in</property>
                                                         </column>
                                                         <row id="1970">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -10168,7 +10172,6 @@ else&#13;
                                                             </cell>
                                                         </row>
                                                         <row id="3685">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -11262,14 +11265,20 @@ truncateDecimal(dataSetRow["QuantityInvoiced"]) + " " + dataSetRow["UnitOfMeasur
                                                 <structure>
                                                     <property name="name">Column Binding_2</property>
                                                     <text-property name="displayName">NetInfo:UnitPrice</text-property>
-                                                    <expression name="expression" type="javascript">if(null != dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"].toUpperCase() == 'KWH' ) {&#13;
+                                                    <expression name="expression" type="javascript">if(null != dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"] &amp;&amp; (dataSetRow["UnitOfMeasure"].toUpperCase() == 'KWH' || dataSetRow["UnitOfMeasure"].toUpperCase() == 'NAR' )) {&#13;
 	if(dataSetRow["NettInfo::UnitPriceGross"] !=null &amp;&amp;  parseFloat(dataSetRow["NettInfo::UnitPriceGross"]) &lt;1) {		&#13;
 		formatMoney(parseFloat(dataSetRow["NettInfo::UnitPriceGross"])*100, 2, '', '.', ',') + " " + 'øre/kWh';&#13;
 	}else {&#13;
 		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'øre/kWh';&#13;
 		}&#13;
 &#13;
-} else {&#13;
+}&#13;
+else if(dataSetRow["UnitOfMeasure"] == 'MON' &amp;&amp; (dataSetRow["NettInfo::AttachmentFormat"] == 'PDFEHF' || dataSetRow["NettInfo::AttachmentFormat"] == 'EHF'))&#13;
+{&#13;
+formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'kr/mnd';&#13;
+}&#13;
+&#13;
+else {&#13;
 	if(null != dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"].toUpperCase() == 'NOK') {&#13;
 		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'nok';&#13;
 	} else {&#13;

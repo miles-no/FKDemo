@@ -6356,7 +6356,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                     <property name="paddingLeft">2pt</property>
                                     <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
-                                    <text-property name="text">Jevn Betaling. Gjennomsnitt av forventet strøm- og nettleiekostnad beregnes for et år.</text-property>
+                                    <text-property name="text">Jevn Betaling. Vi beregner hvor mye du totalt skal betale for strømregningene dine </text-property>
                                 </label>
                                 <label id="2608">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
@@ -6364,7 +6364,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                     <property name="paddingLeft">2pt</property>
                                     <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
-                                    <text-property name="text">Deretter fordeler vi kostnaden gjennom året, slik at du betaler et likt beløp hver måned</text-property>
+                                    <text-property name="text">gjennom et år. Deretter fordeler vi kostnaden gjennom året, slik at du betaler et likt beløp</text-property>
                                 </label>
                                 <label id="2609">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
@@ -6373,7 +6373,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                     <property name="paddingLeft">2pt</property>
                                     <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
-                                    <text-property name="text">Dette kaller vi ”ditt månedsbeløp” . Ved store endringer i strømforbruket,  endrer vi </text-property>
+                                    <text-property name="text">hver måned. Dette kaller vi ”ditt månedsbeløp”. Ved store endringer i strømforbruket,  </text-property>
                                 </label>
                                 <label id="2610">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
@@ -6382,7 +6382,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                     <property name="paddingLeft">2pt</property>
                                     <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
-                                    <text-property name="text">beløpet og gir deg beskjed om dette via SMS.</text-property>
+                                    <text-property name="text">endrer vi beløpet automatisk.</text-property>
                                 </label>
                                 <label id="2611">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
@@ -6452,9 +6452,9 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                 <image id="720">
                                     <property name="marginLeft">1px</property>
                                     <property name="height">1.6in</property>
-                                    <property name="width">2.1in</property>
+                                    <property name="width">2.3in</property>
                                     <property name="source">file</property>
-                                    <expression name="uri" type="constant">VKAS_FullKontrol_Illustration.png</expression>
+                                    <expression name="uri" type="constant">JevnBetalling_Illustration.png</expression>
                                 </image>
                             </cell>
                         </row>
@@ -7862,8 +7862,17 @@ dataSetRow["CareOfName"];&#13;
                                                                 <structure>
                                                                     <property name="name">Address</property>
                                                                     <text-property name="displayName">Address</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["Address"]</expression>
+                                                                    <expression name="expression" type="javascript">var a = dataSetRow["Address"].length;&#13;
+if(a > 40)&#13;
+{&#13;
+dataSetRow["Address"].slice(0,40);&#13;
+}&#13;
+else&#13;
+{&#13;
+dataSetRow["Address"];&#13;
+}</expression>
                                                                     <property name="dataType">string</property>
+                                                                    <property name="allowExport">true</property>
                                                                 </structure>
                                                             </list-property>
                                                             <property name="resultSetColumn">Address</property>
@@ -8695,7 +8704,7 @@ year = "Siste 12 mnd" + "";</expression>
                                     <property name="pageBreakAfter">avoid</property>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
-                                    <property name="height">0.88in</property>
+                                    <property name="height">0.89in</property>
                                     <cell id="403">
                                         <property name="fontSize">8pt</property>
                                         <property name="paddingTop">0pt</property>
@@ -8749,7 +8758,6 @@ year = "Siste 12 mnd" + "";</expression>
                                                             <property name="width">1.1041666666666667in</property>
                                                         </column>
                                                         <row id="2691">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -8799,7 +8807,6 @@ false;}</expression>
                                                             <property name="width">1.1041666666666667in</property>
                                                         </column>
                                                         <row id="2683">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -8901,7 +8908,6 @@ else&#13;
                                                             <property name="width">1.1041666666666667in</property>
                                                         </column>
                                                         <row id="2005">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -8938,7 +8944,6 @@ else&#13;
                                                             <property name="width">0.9in</property>
                                                         </column>
                                                         <row id="1970">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -8961,7 +8966,6 @@ else&#13;
                                                             </cell>
                                                         </row>
                                                         <row id="3852">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -10051,14 +10055,19 @@ truncateDecimal(dataSetRow["QuantityInvoiced"]) + " " + dataSetRow["UnitOfMeasur
                                                 <structure>
                                                     <property name="name">Column Binding_2</property>
                                                     <text-property name="displayName">NetInfo:UnitPrice</text-property>
-                                                    <expression name="expression" type="javascript">if(null != dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"].toUpperCase() == 'KWH' ) {&#13;
+                                                    <expression name="expression" type="javascript">if(null != dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"] &amp;&amp; (dataSetRow["UnitOfMeasure"].toUpperCase() == 'KWH' || dataSetRow["UnitOfMeasure"].toUpperCase() == 'NAR' )) {&#13;
 	if(dataSetRow["NettInfo::UnitPriceGross"] !=null &amp;&amp;  parseFloat(dataSetRow["NettInfo::UnitPriceGross"]) &lt;1) {		&#13;
 		formatMoney(parseFloat(dataSetRow["NettInfo::UnitPriceGross"])*100, 2, '', '.', ',') + " " + 'øre/kWh';&#13;
 	}else {&#13;
 		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'øre/kWh';&#13;
 		}&#13;
 &#13;
-} else {&#13;
+} &#13;
+else if(dataSetRow["UnitOfMeasure"] == 'MON' &amp;&amp; (dataSetRow["NettInfo::AttachmentFormat"] == 'PDFEHF' || dataSetRow["NettInfo::AttachmentFormat"] == 'EHF'))&#13;
+{&#13;
+formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'kr/mnd';&#13;
+}&#13;
+else {&#13;
 	if(null != dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"].toUpperCase() == 'NOK') {&#13;
 		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'nok';&#13;
 	} else {&#13;
@@ -13216,7 +13225,7 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                                         <property name="marginTop">1pt</property>
                                                         <property name="marginLeft">0pt</property>
                                                         <property name="marginBottom">1pt</property>
-                                                        <text-property name="text">Månedsbeløp å betale i mars</text-property>
+                                                        <text-property name="text">Månedsbeløp å betale denne måneden</text-property>
                                                     </label>
                                                 </cell>
                                                 <cell id="3990">
@@ -13393,7 +13402,7 @@ else&#13;
 'Saldo viser at du har betalt inn mindre enn dine faktiske kostnader har vært. Saldoen vil naturlig variere fra måned til';&#13;
 }</expression>
                                                         </structure>
-                                                        <text-property name="text">Saldo viser at du har betalt inn mindre enn dine faktiske kostnader har vært.Saaldoen vil naturlig variere fra måned til måned,</text-property>
+                                                        <text-property name="text">Saldo viser at du har betalt inn mindre enn dine faktiske kostnader har vært.Saldoen vil naturlig variere fra måned til måned,</text-property>
                                                     </label>
                                                     <label id="4013">
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>

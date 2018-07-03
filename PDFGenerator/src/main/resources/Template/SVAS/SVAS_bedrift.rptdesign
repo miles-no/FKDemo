@@ -8645,7 +8645,7 @@ year = "Siste 12 mnd" + "";</expression>
                                     <property name="pageBreakAfter">avoid</property>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
-                                    <property name="height">1in</property>
+                                    <property name="height">0.9in</property>
                                     <cell id="403">
                                         <property name="fontSize">8pt</property>
                                         <property name="paddingTop">0pt</property>
@@ -8697,7 +8697,6 @@ year = "Siste 12 mnd" + "";</expression>
                                                             <property name="width">1.1041666666666667in</property>
                                                         </column>
                                                         <row id="2691">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -8747,7 +8746,6 @@ false;}</expression>
                                                             <property name="width">1.1041666666666667in</property>
                                                         </column>
                                                         <row id="2683">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -8785,7 +8783,6 @@ else&#13;
                                                             <property name="width">1.1041666666666667in</property>
                                                         </column>
                                                         <row id="2699">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -8847,7 +8844,6 @@ else&#13;
                                                             <property name="width">1.1041666666666667in</property>
                                                         </column>
                                                         <row id="2716">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -8884,7 +8880,6 @@ else&#13;
                                                             <property name="width">0.9in</property>
                                                         </column>
                                                         <row id="1970">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -8909,7 +8904,6 @@ else&#13;
                                                             </cell>
                                                         </row>
                                                         <row id="3685">
-                                                            <property name="height">0.15in</property>
                                                             <list-property name="visibility">
                                                                 <structure>
                                                                     <property name="format">all</property>
@@ -10003,14 +9997,19 @@ truncateDecimal(dataSetRow["QuantityInvoiced"]) + " " + dataSetRow["UnitOfMeasur
                                                 <structure>
                                                     <property name="name">Column Binding_2</property>
                                                     <text-property name="displayName">NetInfo:UnitPrice</text-property>
-                                                    <expression name="expression" type="javascript">if(null != dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"].toUpperCase() == 'KWH' ) {&#13;
+                                                    <expression name="expression" type="javascript">if(null != dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"] &amp;&amp; (dataSetRow["UnitOfMeasure"].toUpperCase() == 'KWH' || dataSetRow["UnitOfMeasure"].toUpperCase() == 'NAR' )) {&#13;
 	if(dataSetRow["NettInfo::UnitPriceGross"] !=null &amp;&amp;  parseFloat(dataSetRow["NettInfo::UnitPriceGross"]) &lt;1) {		&#13;
 		formatMoney(parseFloat(dataSetRow["NettInfo::UnitPriceGross"])*100, 2, '', '.', ',') + " " + 'øre/kWh';&#13;
 	}else {&#13;
 		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'øre/kWh';&#13;
 		}&#13;
 &#13;
-} else {&#13;
+} &#13;
+else if(dataSetRow["UnitOfMeasure"] == 'MON' &amp;&amp; (dataSetRow["NettInfo::AttachmentFormat"] == 'PDFEHF' || dataSetRow["NettInfo::AttachmentFormat"] == 'EHF'))&#13;
+{&#13;
+formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'kr/mnd';&#13;
+}&#13;
+else {&#13;
 	if(null != dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"].toUpperCase() == 'NOK') {&#13;
 		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'nok';&#13;
 	} else {&#13;
