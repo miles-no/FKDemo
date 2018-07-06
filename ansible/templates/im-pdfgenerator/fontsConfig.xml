@@ -195,6 +195,17 @@
 		<path path="{{app_basedir}}/{{app}}/current/font/arial/ARIALNI.TTF" />
 		<path path="{{app_basedir}}/{{app}}/current/font/arial/ariblk.ttf" />
 
+		<path path="{{app_basedir}}/{{app}}/current/font/opentype/MuseoSans-100.otf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/opentype/MuseoSans-100Italic.otf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/opentype/MuseoSans-300.otf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/opentype/MuseoSans-300Italic.otf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/opentype/MuseoSans-500.otf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/opentype/MuseoSans-500Italic.otf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/opentype/MuseoSans-700.otf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/opentype/MuseoSans-700Italic.otf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/opentype/MuseoSans-900.otf" />
+		<path path="{{app_basedir}}/{{app}}/current/font/opentype/MuseoSans-900Italic.otf" />
+
 	</font-paths>
 <!--
 	For <font-encodings> section,
