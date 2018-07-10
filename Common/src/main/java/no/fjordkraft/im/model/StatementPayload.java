@@ -16,7 +16,7 @@ public class StatementPayload {
     @SequenceGenerator(name="SEQ", sequenceName="IM_STATEMENT_PAYLOAD_SEQ")
     private Long id;
 
-    @OneToOne(targetEntity=Statement.class, cascade=CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @OneToOne(targetEntity=Statement.class, cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="STATEMENT_ID")
     private Statement statement;
 

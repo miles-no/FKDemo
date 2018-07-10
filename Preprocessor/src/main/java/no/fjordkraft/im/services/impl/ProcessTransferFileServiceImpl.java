@@ -40,6 +40,9 @@ public class ProcessTransferFileServiceImpl implements ProcessTransferFileServic
     ApplicationContext applicationContext;
 
     @Autowired
+    StatementService statementService;
+
+    @Autowired
     @Qualifier("FileSplitterExecutor")
     TaskExecutor taskExecutor;
 
@@ -94,6 +97,8 @@ public class ProcessTransferFileServiceImpl implements ProcessTransferFileServic
             logger.debug("File split successful for file " + transferFileArchive.getFilename() + " with id " + systemBatchInput.getId()+ stopWatch.prettyPrint());
         }   catch (Exception e) {
             logger.error("Exception while splitting file " +systemBatchInput.getTransferFile().getFilename()+ " id " + systemBatchInput.getId(), e);
+           // statementService.deleteStatementPayloadBySiId(systemBatchInput.getId());
+            statementService.deleteStatementBySiId(systemBatchInput.getId());
             systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.FAILED.getStatus());
             transferFileService.updateTransferFile(systemBatchInput.getTransferFile().getCompositeKey(), SystemBatchInputStatusEnum.FAILED.getStatus());
             auditLogService.saveAuditLog(IMConstants.SYSTEM_BATCH_FILE, systemBatchInput.getId(), SystemBatchInputStatusEnum.FAILED.getStatus(),

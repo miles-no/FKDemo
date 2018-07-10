@@ -29,4 +29,7 @@ public interface StatementService {
     Statement getStatement(Long statementId);
     Map<String, Integer> getStatementBySystemBatchId(Long systemBatchInputId);
 
+    void deleteStatementBySiId(Long siId);
+
+    int updateStatementsBySiId(Long siId,StatementStatusEnum status);
 }

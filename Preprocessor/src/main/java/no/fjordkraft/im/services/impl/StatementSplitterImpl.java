@@ -10,6 +10,7 @@ import no.fjordkraft.im.model.SystemBatchInput;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.services.StatementSplitter;
+import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class StatementSplitterImpl implements StatementSplitter {
         XMLInputFactory factory = XMLInputFactory.newInstance();
         XMLEventReader eventReader = factory.createXMLEventReader(inputStream);
         String numberOfRecords = splitAndSaveInDB(eventReader, systemBatchInput);
+        statementService.updateStatementsBySiId(systemBatchInput.getId(), StatementStatusEnum.PENDING);
         systemBatchInput.setNumOfRecords(Integer.valueOf(numberOfRecords));
     }
 
@@ -134,6 +136,9 @@ public class StatementSplitterImpl implements StatementSplitter {
         } catch (Exception e) {
             //logger.error("Exception while splitting the file "+systemBatchInput.getId() + " "+ systemBatchInput.getTransferFile().getFilename(),e);
             //throw e;
+
+          /*  statementService.deleteStatementBySiId(systemBatchInput.getId());*/
+
             throw new StatementSplitterException(e.getMessage());
         } finally {
 

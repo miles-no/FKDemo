@@ -3,9 +3,11 @@ package no.fjordkraft.im.repository;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.model.StatusCount;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -47,4 +49,15 @@ public interface StatementRepository extends JpaRepository<Statement,Long> {
 
     @Query("select s from Statement s where s.accountNumber = :acctNo and s.status = :status")
     List<Statement> getProcessedStatementByAccountNumber(@Param("acctNo") String accountNo,@Param("status") String status);
+
+    @Modifying
+    @Transactional
+    @Query("delete  from Statement s where s.systemBatchInput.id = :siId and s.status =:status")
+    int deleteStatementsBySiId(@Param("siId") Long siId,@Param("status") String status);
+
+    @Modifying
+    @Transactional
+    @Query("update Statement s set s.status = :status where s.systemBatchInput.id = :siId")
+    int updateStatementsBySiId (@Param("siId")Long siId,@Param("status") String status);
+
 }

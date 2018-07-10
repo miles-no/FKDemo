@@ -101,7 +101,7 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
 
     @Transactional()
     public Statement saveIMStatementinDB(String xml, Statement imStatement) throws IOException {
-        imStatement.setStatus(StatementStatusEnum.PENDING.getStatus());
+        imStatement.setStatus(StatementStatusEnum.NEW.getStatus());
         imStatement.setCreateTime(new Timestamp(System.currentTimeMillis()));
         imStatement.setUpdateTime(new Timestamp(System.currentTimeMillis()));
 
@@ -133,6 +133,16 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
             }
         }
         return statusCountMap;
+    }
+
+    @Override
+    public void deleteStatementBySiId(Long siId) {
+       statementRepository.deleteStatementsBySiId(siId,StatementStatusEnum.NEW.getStatus());
+    }
+
+    @Override
+    public int updateStatementsBySiId(Long siId,StatementStatusEnum status) {
+       return statementRepository.updateStatementsBySiId(siId,status.getStatus());
     }
 
 }
