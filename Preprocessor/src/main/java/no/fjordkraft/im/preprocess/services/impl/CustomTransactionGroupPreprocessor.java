@@ -57,6 +57,17 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
                             vatTotalAmount += transaction.getVatAmount();
                             break;
                         }
+                        //IM-125 If Transaction is not part of Diverse or Rabatter group then in that case it should be displayed on Page 1 and
+                        // It should not be displayed under Diverse box in Page 2 and others.
+                        else if(!transaction.getTransactionCategory().contains("IB;") && !transaction.getTransactionCategory().contains("NA;") &&
+                                !transaction.getTransactionCategory().contains("NE;") &&  !transaction.getTransactionCategory().contains("KR;")) {
+                                transaction.setTransactionCategory(transaction.getTransactionCategory().substring(3));
+                                transaction.setAmountWithVat(IMConstants.NEGATIVE * transaction.getAmountWithVat());
+                                transaction.setVatAmount(IMConstants.NEGATIVE * transaction.getVatAmount());
+                                processedTransaction.add(transaction);
+                                transaction.setDisplayTransaction(false);
+                            break;
+                        }
                     }
                 }
 
