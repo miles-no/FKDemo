@@ -31,7 +31,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
         DecimalFormat df=new DecimalFormat("0.00");
         try{
        String brand =  request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
-        if(request.getStatement().getLegalPartClass().equals("Organization") && (!brand.equals("SEAS") && !brand.equals("VKAS")))
+        if(request.getStatement().getLegalPartClass().equals("Organization") && (brand.equals("FKAS") || brand.equals("TKAS")))
         {
             logger.debug("Legal Part Class = Organization for statement " + request.getEntity().getId());
             List<Transaction> transactions = request.getStatement().getTransactions().getTransaction();

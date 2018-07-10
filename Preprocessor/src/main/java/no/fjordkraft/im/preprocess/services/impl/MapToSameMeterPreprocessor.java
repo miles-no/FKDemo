@@ -24,7 +24,7 @@ public class MapToSameMeterPreprocessor extends BasePreprocessor {
 
         Statement stmt = request.getStatement();
         String brand = request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
-        if (request.getStatement().getLegalPartClass().equals("Organization") && (!brand.equals("SEAS") && !brand.equals("VKAS"))) {
+        if (request.getStatement().getLegalPartClass().equals("Organization") && (brand.equals("FKAS") || brand.equals("TKAS"))) {
 
             Map<Long, Attachment> meterAttachmentMap = new LinkedHashMap<>();
             List<Attachment> attachmentList = stmt.getAttachments().getAttachment();
