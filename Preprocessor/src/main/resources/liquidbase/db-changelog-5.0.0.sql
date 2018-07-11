@@ -10,7 +10,7 @@ Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (305,2,185);
 --changeset arpita:3 context:prod
 --New Brand SVAS configuration inserts.
 
-Insert into IM_BRAND_CONFIG (ID,BRAND,USE_EA_BARCODE,AGREEMENT_NUMBER,SERVICELEVEL,PREFIX_KID,KONTONUMMER,DESCRIPTION,POSTCODE,CITY,REGION,NATIONALID,ALWAYS_ENABLE_GIRO) values (6,'SVAS','0','0704','4','333','15060796855','Svartvassvegen 6','6650','Surnadal','Nordmøre',null,'0');
+Insert into IM_BRAND_CONFIG (ID,BRAND,USE_EA_BARCODE,AGREEMENT_NUMBER,SERVICELEVEL,PREFIX_KID,KONTONUMMER,DESCRIPTION,POSTCODE,CITY,REGION,NATIONALID) values (6,'SVAS','0','0704','4','333','15060796855','Svartvassvegen 6','6650','Surnadal','Nordmøre',null);
 Insert into IM_TRANSACTION_GROUP (ID,NAME,BRAND,TYPE,DESCRIPTION) values (7,'Diverse','SVAS',null,null);
 
 --Existing transaction Categories in SVAS brand for Diverse group
@@ -68,3 +68,7 @@ Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (356,7,189);
 --Adding new transaction Category and into group
 Insert into IM_TRANSACTION_CATEGORY (ID,TYPE,DESCRIPTION,CATEGORY) values (190,'Debit','Purregebyr Lindorff','DI;Purregebyr');
 Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (357,7,190);
+
+--changeset arpita:4 context:prod
+--Brand TKAS name is changed from 'Trondheim Kraft AS' to 'TrøndelagKraft AS'.
+update IM_brand_config set description = 'TrøndelagKraft AS' where brand = 'TKAS';
