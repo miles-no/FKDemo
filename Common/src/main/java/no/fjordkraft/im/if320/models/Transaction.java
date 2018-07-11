@@ -69,7 +69,8 @@ import java.util.Map;
     "endDate",
     "maalepunktID",
     "leveringAddress",
-    "vatRate"
+    "vatRate",
+    "displayTransaction"
 })
 @XmlRootElement(name = "Transaction")
 public class Transaction {
@@ -123,6 +124,9 @@ public class Transaction {
 
     @XmlElement(name = "VatRate")
     protected String vatRate;
+
+    @XmlElement(name = "DisplayTransaction")
+    protected Boolean displayTransaction = true;
 
     @XmlTransient
     private String transactionName;
@@ -501,5 +505,13 @@ public class Transaction {
 
     public Double getAmountBasedOnVat(Double vat) {
         return mapOfVatVsAmount.get(vat);
+    }
+
+    public boolean isDisplayTransaction() {
+        return displayTransaction;
+    }
+
+    public void setDisplayTransaction(boolean displayTransaction) {
+        displayTransaction = displayTransaction;
     }
 }
