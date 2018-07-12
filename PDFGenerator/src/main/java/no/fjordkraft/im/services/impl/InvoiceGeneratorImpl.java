@@ -200,8 +200,11 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     private byte[] getDefaultSegmentFile(String brand,int attachmentConfigId)
     {
         String advPDF = null;
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start("Attachment Configuration Query in Invoice generator Impl");
         List<Attachment> listOfAttachments = attachmentConfigService.getAttachmentByBrandAndAttachmentName(brand, attachmentConfigId);
-
+        stopWatch.stop();
+        logger.info(stopWatch.prettyPrint());
         if(listOfAttachments!=null && !listOfAttachments.isEmpty())
         {
             logger.debug("No Of attachment configuration " + listOfAttachments.size());
@@ -220,6 +223,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                 return pdfBytes;
             }
         }
+
         return null;
     }
 

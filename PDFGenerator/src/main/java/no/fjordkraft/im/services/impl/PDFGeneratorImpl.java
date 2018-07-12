@@ -295,7 +295,11 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     public byte[] generatePreview(Long layoutId, Integer version) throws IOException, BirtException {
         ByteArrayOutputStream baos = null;
         try {
+            StopWatch stopWatch = new StopWatch();
+            stopWatch.start("Layout content Query getLayoutContentByLayoutIdandVersion");
             String rptDesign = layoutContentService.getLayoutContentByLayoutIdandVersion(layoutId, version);
+            stopWatch.stop();
+            logger.debug(stopWatch.prettyPrint());
             if(null != rptDesign) {
                 String encoding = configService.getString("layout.encoding");
                 encoding = encoding == null ? "UTF-8" : encoding;
@@ -384,7 +388,12 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             double creditLimit = statement.getCreditLimit();
             if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))
             {
+                StopWatch stopWatch = new StopWatch();
+                stopWatch.start("Attachment Configuration Query getProcessedStatementByAccountNumber");
+
                 List<Statement>  listOfStatements = statementRepository.getProcessedStatementByAccountNumber(statement.getAccountNumber(),StatementStatusEnum.INVOICE_PROCESSED.getStatus());
+                stopWatch.stop();
+                logger.info(stopWatch.prettyPrint());
                 if(statement.getLegalPartClass()==null || statement.getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_INDIVIDUAL) )
                 {
                     if(listOfStatements==null ||(listOfStatements!=null && listOfStatements.isEmpty())) {
@@ -429,7 +438,11 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 if(SetInvoiceASOnline.get() == null || !SetInvoiceASOnline.get()) {
                 statementService.updateStatement(statement);
                 }
+                stopWatch = new StopWatch();
+                stopWatch.start("Attachment Config Query getAttachmentByBrandAndAttachmentName ");
                 List<Attachment> listOfAttachments = attachmentConfigService.getAttachmentByBrandAndAttachmentName(brand,attachmentConfigId);
+                stopWatch.stop();
+                logger.debug(stopWatch.prettyPrint());
                 if(listOfAttachments!=null && !listOfAttachments.isEmpty())
                 {
                     logger.debug("list Of attachments found for brand " + brand+ " and attachment configuration ID " + attachmentConfigId + " = " + listOfAttachments.size() );
@@ -445,6 +458,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                         }
                     }
                 }
+
             }
             if(campaignImage==null)
             {
