@@ -158,10 +158,14 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             pdfCombine.close();
             if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
             {
+                StopWatch stopWatch1 = new StopWatch() ;
+                stopWatch1.start("Saving PDF in DB");
                 byte[] outputBytes =  byteArrayOutputStream.toByteArray();
                 InvoicePdf invoicePdf = saveInvoicePDFs(outputBytes, statement);
                 invoiceService.saveInvoicePdf(invoicePdf);
                 statement = statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
+                stopWatch1.stop();
+                logger.info(stopWatch1.prettyPrint());
             }
             else
             {
