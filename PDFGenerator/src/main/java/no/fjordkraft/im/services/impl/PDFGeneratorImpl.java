@@ -190,7 +190,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             cleanUpFiles(directoryPath);
 
             stopWatch.stop();
-            logger.debug(stopWatch.prettyPrint());
+            logger.info(stopWatch.prettyPrint());
 
         } catch (PDFGeneratorException e) {
             if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())   {
@@ -276,7 +276,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             task.run();
             task.close();
             stopWatch.stop();
-            logger.debug(stopWatch.prettyPrint());
+            logger.info(stopWatch.prettyPrint());
             //logger.debug("Time to generate PDF for statement id  " + statement.getId() + " "+(endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
             return baos.toByteArray();
         } catch (Exception e) {
@@ -299,7 +299,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             stopWatch.start("Layout content Query getLayoutContentByLayoutIdandVersion");
             String rptDesign = layoutContentService.getLayoutContentByLayoutIdandVersion(layoutId, version);
             stopWatch.stop();
-            logger.debug(stopWatch.prettyPrint());
+            logger.info(stopWatch.prettyPrint());
             if(null != rptDesign) {
                 String encoding = configService.getString("layout.encoding");
                 encoding = encoding == null ? "UTF-8" : encoding;
@@ -442,7 +442,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 stopWatch.start("Attachment Config Query getAttachmentByBrandAndAttachmentName ");
                 List<Attachment> listOfAttachments = attachmentConfigService.getAttachmentByBrandAndAttachmentName(brand,attachmentConfigId);
                 stopWatch.stop();
-                logger.debug(stopWatch.prettyPrint());
+                logger.info(stopWatch.prettyPrint());
                 if(listOfAttachments!=null && !listOfAttachments.isEmpty())
                 {
                     logger.debug("list Of attachments found for brand " + brand+ " and attachment configuration ID " + attachmentConfigId + " = " + listOfAttachments.size() );

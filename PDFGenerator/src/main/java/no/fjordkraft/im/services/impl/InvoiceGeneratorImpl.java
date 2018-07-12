@@ -171,7 +171,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             }
             logger.debug(" saved invoice pdf and update statement status to INVOICE_PROCESSED "+ statement.getId());
             stopWatch.stop();
-            logger.debug(stopWatch.prettyPrint());
+            logger.info(stopWatch.prettyPrint());
 
         } catch (Exception ex) {
             statement.setStatus(StatementStatusEnum.INVOICE_PROCESSING_FAILED.getStatus());
