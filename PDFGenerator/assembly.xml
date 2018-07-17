@@ -33,6 +33,7 @@
             <outputDirectory>/Layout</outputDirectory>
             <includes>
                 <include>*.png</include>
+                <include>*.PNG</include>
             </includes>
         </fileSet>
         <fileSet>
@@ -40,6 +41,7 @@
             <outputDirectory>/Layout</outputDirectory>
             <includes>
                 <include>*.png</include>
+                <include>*.PNG</include>
             </includes>
         </fileSet>
 
@@ -48,6 +50,7 @@
             <outputDirectory>/Layout</outputDirectory>
             <includes>
                 <include>*.png</include>
+                <include>*.PNG</include>
 	     		<include>*.jpeg</include>
 				<include>*.jpg</include>
             </includes>
