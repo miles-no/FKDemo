@@ -4638,7 +4638,7 @@ else&#13;
                                     <cell id="5575">
                                         <property name="textAlign">left</property>
                                         <data id="5577">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="fontSize">10pt</property>
                                             <property name="paddingTop">1pt</property>
                                             <property name="paddingBottom">0pt</property>
@@ -4730,6 +4730,7 @@ else&#13;
             </page-header>
             <page-footer>
                 <grid id="204">
+                    <property name="fontFamily">"Museo Sans 300"</property>
                     <property name="borderTopColor">#00A2B9</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">1px</property>
@@ -4768,9 +4769,9 @@ else &#13;
                             <property name="paddingLeft">0pt</property>
                             <property name="paddingRight">0pt</property>
                             <label id="7332">
-                                <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
+                                <property name="fontFamily">"Museo Sans 700"</property>
                                 <property name="fontSize">7.3pt</property>
-                                <property name="fontWeight">bold</property>
+                                <property name="fontWeight">normal</property>
                                 <property name="paddingTop">5pt</property>
                                 <property name="paddingLeft">4pt</property>
                                 <text-property name="text">TrøndelagKraft AS</text-property>
@@ -4778,7 +4779,7 @@ else &#13;
                         </cell>
                         <cell id="209">
                             <label id="211">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                <property name="fontFamily">"Museo Sans 300"</property>
                                 <property name="fontSize">7.1pt</property>
                                 <property name="paddingTop">5pt</property>
                                 <property name="paddingLeft">0pt</property>
@@ -4798,9 +4799,10 @@ else &#13;
             <property name="height">11.69in</property>
             <property name="width">8.3in</property>
             <property name="headerHeight">5mm</property>
-            <property name="footerHeight">1.25in</property>
+            <property name="footerHeight">1.29in</property>
             <page-header>
                 <grid id="6863">
+                    <property name="fontFamily">"Museo Sans 300"</property>
                     <property name="marginRight">12mm</property>
                     <property name="height">0.3541666666666667in</property>
                     <column id="6864"/>
@@ -4820,7 +4822,7 @@ else &#13;
                                     <cell id="6871">
                                         <property name="textAlign">left</property>
                                         <data id="6872">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="fontSize">10pt</property>
                                             <property name="paddingTop">1pt</property>
                                             <property name="paddingBottom">0pt</property>
@@ -4913,6 +4915,7 @@ else &#13;
             <page-footer>
                 <grid id="5080">
                     <property name="backgroundColor">#E1E1E1</property>
+                    <property name="fontFamily">"Museo Sans 300"</property>
                     <property name="fontSize">8pt</property>
                     <property name="marginTop">2pt</property>
                     <property name="marginLeft">15mm</property>
@@ -4940,7 +4943,7 @@ else &#13;
                             <property name="fontSize">7pt</property>
                             <property name="paddingTop">3pt</property>
                             <label id="5088">
-                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                <property name="fontFamily">"Museo Sans 700"</property>
                                 <property name="fontSize">7pt</property>
                                 <property name="marginTop">3pt</property>
                                 <property name="paddingTop">2pt</property>
@@ -4955,7 +4958,7 @@ else &#13;
                         <cell id="5090">
                             <property name="paddingTop">1pt</property>
                             <label id="5091">
-                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                <property name="fontFamily">"Museo Sans 700"</property>
                                 <property name="fontSize">7pt</property>
                                 <property name="marginTop">3pt</property>
                                 <property name="paddingTop">3pt</property>
@@ -4966,7 +4969,7 @@ else &#13;
                         <cell id="5093">
                             <property name="paddingTop">1pt</property>
                             <label id="5094">
-                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                <property name="fontFamily">"Museo Sans 700"</property>
                                 <property name="fontSize">7pt</property>
                                 <property name="marginTop">3pt</property>
                                 <property name="paddingTop">3pt</property>
@@ -4981,33 +4984,33 @@ else &#13;
                         <cell id="5096">
                             <property name="paddingBottom">4pt</property>
                             <label id="5097">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                <property name="fontSize">7pt</property>
+                                <property name="fontFamily">"Museo Sans 300"</property>
+                                <property name="fontSize">6.9pt</property>
                                 <property name="paddingLeft">5pt</property>
                                 <property name="lineHeight">8pt</property>
-                                <text-property name="text">Som kunde av Trondheim Kraft har dere tilgang til energi- og ledelsesverktøyet Min Bedrift. </text-property>
+                                <text-property name="text">Som kunde av TrøndelagKraft har dere tilgang til energi- og ledelsesverktøyet Min Bedrift. </text-property>
                             </label>
                             <label id="5098">
                                 <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                <property name="fontSize">7pt</property>
+                                <property name="fontSize">6.8pt</property>
                                 <property name="paddingLeft">5pt</property>
                                 <property name="lineHeight">8pt</property>
                                 <text-property name="text"></text-property>
                             </label>
                             <label id="5099">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                <property name="fontSize">7pt</property>
+                                <property name="fontFamily">"Museo Sans 300"</property>
+                                <property name="fontSize">6.9pt</property>
                                 <property name="paddingLeft">5pt</property>
                                 <property name="lineHeight">8pt</property>
                                 <text-property name="text">Min Bedrift gir deg full kontroll over bedrift-ens energiforbruk og strømkostnader. For mer informasjon, se</text-property>
                             </label>
                             <label id="5100">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                <property name="fontSize">7pt</property>
+                                <property name="fontFamily">"Museo Sans 300"</property>
+                                <property name="fontSize">6.9pt</property>
                                 <property name="paddingLeft">5pt</property>
                                 <property name="paddingBottom">1pt</property>
                                 <property name="lineHeight">8pt</property>
-                                <text-property name="text">trondheimkraft.no/min-bedrift</text-property>
+                                <text-property name="text">trondelagkraft.no/min-bedrift</text-property>
                             </label>
                         </cell>
                         <cell id="5101">
@@ -5016,18 +5019,18 @@ else &#13;
                         <cell id="5102">
                             <property name="paddingBottom">4pt</property>
                             <label id="5103">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                <property name="fontSize">7pt</property>
+                                <property name="fontFamily">"Museo Sans 300"</property>
+                                <property name="fontSize">6.9pt</property>
                                 <property name="lineHeight">8pt</property>
-                                <text-property name="text">Strøm kjøper dere fra Trondheim Kraft Beløpet dere betaler til oss styres av strømpriser og strømforbruk.</text-property>
+                                <text-property name="text">Strøm kjøper dere fra TrøndelagKraft AS Beløpet dere betaler til oss styres av strømpriser og strømforbruk.</text-property>
                             </label>
                             <label id="5770">
-                                <property name="fontSize">13pt</property>
+                                <property name="fontSize">5pt</property>
                                 <property name="marginBottom">0pt</property>
                             </label>
                             <label id="5104">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                <property name="fontSize">7pt</property>
+                                <property name="fontFamily">"Museo Sans 300"</property>
+                                <property name="fontSize">6.9pt</property>
                                 <property name="paddingBottom">2pt</property>
                                 <property name="lineHeight">8pt</property>
                                 <text-property name="text">Nettleien betales videre til deres lokale netteier, som eier ledningsnettet dere er tilknyttet. Nettleien går blant annet til å dekke drift og vedlikehold av ledningsnettet, samt offentlige avgifter.</text-property>
@@ -5039,8 +5042,9 @@ else &#13;
                         <cell id="5106">
                             <property name="paddingBottom">4pt</property>
                             <label id="5107">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                <property name="fontSize">7pt</property>
+                                <property name="fontFamily">"Museo Sans 300"</property>
+                                <property name="fontSize">6.9pt</property>
+                                <property name="paddingTop">1pt</property>
                                 <property name="paddingLeft">0pt</property>
                                 <property name="paddingBottom">2pt</property>
                                 <property name="paddingRight">3pt</property>
@@ -5056,20 +5060,20 @@ else &#13;
                                 <text-property name="text"></text-property>
                             </label>
                             <label id="5110">
-                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                                <property name="fontSize">7pt</property>
+                                <property name="fontFamily">"Museo Sans 700"</property>
+                                <property name="fontSize">6.9pt</property>
                                 <property name="paddingBottom">2pt</property>
                                 <property name="paddingRight">3pt</property>
                                 <property name="lineHeight">8pt</property>
                                 <text-property name="text">Varedeklarasjon: </text-property>
                             </label>
                             <label id="5111">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                <property name="fontSize">7pt</property>
+                                <property name="fontFamily">"Museo Sans 300"</property>
+                                <property name="fontSize">6.9pt</property>
                                 <property name="paddingBottom">2pt</property>
                                 <property name="paddingRight">3pt</property>
                                 <property name="lineHeight">8pt</property>
-                                <text-property name="text">trondheimkraft.no/varedeklarasjon</text-property>
+                                <text-property name="text">trondelagkraft.no/varedeklarasjon</text-property>
                             </label>
                         </cell>
                     </row>
@@ -5111,10 +5115,10 @@ else &#13;
                         <property name="marginLeft">4pt</property>
                         <property name="width">2.35in</property>
                         <property name="source">file</property>
-                        <expression name="uri" type="constant">logo-topp-tkas.png</expression>
+                        <expression name="uri" type="constant">TKAS_LeftTopLogo.PNG</expression>
                     </image>
                     <text id="5610">
-                        <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                        <property name="fontFamily">"Museo Sans 500"</property>
                         <property name="fontSize">8pt</property>
                         <property name="color">#808080</property>
                         <property name="marginTop">2pt</property>
@@ -5198,7 +5202,7 @@ else &#13;
                                     </row>
                                 </grid>
                                 <data id="5623">
-                                    <property name="fontFamily">"Arial"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">10pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="color">#000000</property>
@@ -5233,7 +5237,7 @@ dataSetRow["CareOfName"];&#13;
                                     <row id="5626">
                                         <cell id="5627">
                                             <data id="5628">
-                                                <property name="fontFamily">"Arial"</property>
+                                                <property name="fontFamily">"Museo Sans 700"</property>
                                                 <property name="paddingLeft">1.5pt</property>
                                                 <property name="dataSet">MainInfo</property>
                                                 <list-property name="visibility">
@@ -5258,7 +5262,7 @@ else &#13;
                                                 <property name="resultSetColumn">Address1</property>
                                             </data>
                                             <data id="5629">
-                                                <property name="fontFamily">"Arial"</property>
+                                                <property name="fontFamily">"Museo Sans 700"</property>
                                                 <property name="paddingLeft">1.5pt</property>
                                                 <property name="dataSet">MainInfo</property>
                                                 <list-property name="visibility">
@@ -5286,7 +5290,7 @@ else &#13;
                                     </row>
                                 </grid>
                                 <data id="5630">
-                                    <property name="fontFamily">"Arial"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">10pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="color">#000000</property>
@@ -5309,7 +5313,7 @@ else &#13;
                                     <property name="resultSetColumn">City</property>
                                 </data>
                                 <data id="5631">
-                                    <property name="fontFamily">"Arial"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="paddingTop">0pt</property>
                                     <property name="paddingLeft">3.1pt</property>
                                     <property name="paddingBottom">0pt</property>
@@ -5349,8 +5353,8 @@ else &#13;
                     <property name="rowSpan">1</property>
                     <property name="paddingBottom">0pt</property>
                     <text id="5638">
-                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
-                        <property name="fontSize">10.5pt</property>
+                        <property name="fontFamily">"Museo Sans 900"</property>
+                        <property name="fontSize">10pt</property>
                         <property name="fontWeight">normal</property>
                         <property name="color">#00A2B9</property>
                         <property name="textAlign">right</property>
@@ -5358,33 +5362,25 @@ else &#13;
                         <text-property name="content"><![CDATA[Telefon kundesenter: 735 06161]]></text-property>
                     </text>
                     <label id="5639">
-                        <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
-                        <property name="fontSize">10.5pt</property>
+                        <property name="fontFamily">"Museo Sans 300"</property>
+                        <property name="fontSize">10pt</property>
                         <property name="color">#00A2B9</property>
                         <property name="paddingTop">3pt</property>
                         <property name="textAlign">right</property>
                         <text-property name="text">Mandag - fredag kl. 08 -20</text-property>
                     </label>
                     <label id="5641">
-                        <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
-                        <property name="fontSize">10.5pt</property>
+                        <property name="fontFamily">"Museo Sans 300"</property>
+                        <property name="fontSize">10pt</property>
                         <property name="color">#00A2B9</property>
                         <property name="paddingTop">3pt</property>
                         <property name="textAlign">right</property>
-                        <text-property name="text">Min Bedrift: trondheimkraft.no/min-bedrift</text-property>
-                    </label>
-                    <label id="5640">
-                        <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
-                        <property name="fontSize">10.5pt</property>
-                        <property name="color">#FF5500</property>
-                        <property name="paddingTop">3pt</property>
-                        <property name="textAlign">right</property>
-                        <text-property name="text"></text-property>
+                        <text-property name="text">Min Bedrift: trondelagkraft.no/min-bedrift</text-property>
                     </label>
                     <data id="5642">
-                        <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                        <property name="fontFamily">"Museo Sans 300"</property>
                         <property name="fontSize">10pt</property>
-                        <property name="paddingTop">24pt</property>
+                        <property name="paddingTop">18pt</property>
                         <property name="textAlign">right</property>
                         <property name="lineHeight">10pt</property>
                         <property name="dataSet">MainInfo</property>
@@ -5401,7 +5397,7 @@ else &#13;
                         <property name="resultSetColumn">StatementDate</property>
                     </data>
                     <data id="5643">
-                        <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                        <property name="fontFamily">"Museo Sans 300"</property>
                         <property name="fontSize">10pt</property>
                         <property name="paddingTop">3pt</property>
                         <property name="textAlign">right</property>
@@ -5419,7 +5415,7 @@ else &#13;
                         <property name="resultSetColumn">SequenceNumber</property>
                     </data>
                     <data id="5644">
-                        <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                        <property name="fontFamily">"Museo Sans 300"</property>
                         <property name="fontSize">10pt</property>
                         <property name="paddingTop">3pt</property>
                         <property name="textAlign">right</property>
@@ -5437,7 +5433,7 @@ else &#13;
                         <property name="resultSetColumn">NationalId</property>
                     </data>
                     <data id="5645">
-                        <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                        <property name="fontFamily">"Museo Sans 300"</property>
                         <property name="paddingTop">3pt</property>
                         <property name="textAlign">right</property>
                         <property name="dataSet">MainInfo</property>
@@ -5457,7 +5453,7 @@ var res3 = accountnum.substring(6, 11);&#13;
                         <property name="resultSetColumn">VatId</property>
                     </data>
                     <data id="5646">
-                        <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
+                        <property name="fontFamily">"Museo Sans 300"</property>
                         <property name="paddingTop">3pt</property>
                         <property name="textAlign">right</property>
                         <property name="display">block</property>
@@ -5628,11 +5624,11 @@ false;&#13;
                     <property name="paddingRight">5.7pt</property>
                     <data id="4994">
                         <property name="backgroundColor">#00A2B9</property>
-                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                        <property name="fontFamily">"Museo Sans 700"</property>
                         <property name="fontSize">9pt</property>
                         <property name="color">white</property>
                         <property name="marginTop">1pt</property>
-                        <property name="paddingTop">5pt</property>
+                        <property name="paddingTop">3pt</property>
                         <property name="paddingLeft">5pt</property>
                         <property name="paddingBottom">6pt</property>
                         <property name="resultSetColumn">StatementPeriod1</property>
@@ -5691,7 +5687,7 @@ false;&#13;
                         <row id="1467">
                             <cell id="1468">
                                 <label id="1469">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 900"</property>
                                     <property name="fontSize">9pt</property>
                                     <property name="color">#00A2B9</property>
                                     <property name="paddingBottom">5pt</property>
@@ -5794,7 +5790,7 @@ else &#13;
                                     <property name="borderRightStyle">solid</property>
                                     <property name="borderRightWidth">1px</property>
                                     <label id="1473">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="paddingTop">2pt</property>
@@ -5827,7 +5823,7 @@ else &#13;
                                     <property name="borderRightStyle">solid</property>
                                     <property name="borderRightWidth">1px</property>
                                     <label id="1475">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="paddingTop">2pt</property>
@@ -5859,7 +5855,7 @@ else &#13;
                                     <property name="borderRightStyle">solid</property>
                                     <property name="borderRightWidth">1px</property>
                                     <label id="1477">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="paddingTop">2pt</property>
@@ -5888,7 +5884,7 @@ else &#13;
                                         <text-property name="text">Trekkdato</text-property>
                                     </label>
                                     <label id="1478">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="paddingTop">2pt</property>
@@ -5918,7 +5914,7 @@ else &#13;
                                 </cell>
                                 <cell id="1479">
                                     <label id="1480">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="paddingTop">2pt</property>
@@ -5951,7 +5947,7 @@ else &#13;
                                         <text-property name="text">Beløp</text-property>
                                     </label>
                                     <label id="1481">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="paddingTop">2pt</property>
@@ -5990,7 +5986,7 @@ else&#13;
                                         <text-property name="text">Å betale</text-property>
                                     </label>
                                     <label id="1482">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="paddingTop">2pt</property>
@@ -6034,7 +6030,7 @@ else &#13;
                                     <property name="paddingTop">5pt</property>
                                     <property name="paddingBottom">5pt</property>
                                     <data id="1485">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="paddingTop">1pt</property>
                                         <property name="paddingLeft">10pt</property>
@@ -6068,7 +6064,7 @@ else &#13;
                                     <property name="paddingBottom">4pt</property>
                                     <property name="textAlign">center</property>
                                     <data id="1487">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">9pt</property>
                                         <list-property name="highlightRules">
                                             <structure>
@@ -6098,7 +6094,7 @@ else &#13;
                                     <property name="paddingTop">5pt</property>
                                     <property name="paddingBottom">5pt</property>
                                     <data id="1489">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="paddingTop">1pt</property>
                                         <property name="paddingBottom">1pt</property>
@@ -6128,7 +6124,7 @@ else &#13;
                                     <property name="paddingTop">5pt</property>
                                     <property name="paddingBottom">5pt</property>
                                     <data id="1491">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="paddingTop">1pt</property>
                                         <property name="paddingBottom">1pt</property>
@@ -6162,14 +6158,14 @@ else &#13;
                                         <property name="width">5.447916666666667in</property>
                                         <column id="4827">
                                             <property name="textAlign">right</property>
-                                            <property name="width">0.45in</property>
+                                            <property name="width">0.5in</property>
                                         </column>
                                         <column id="4828">
                                             <property name="fontSize">10pt</property>
                                             <property name="width">0.18in</property>
                                         </column>
                                         <column id="4829">
-                                            <property name="width">0.4in</property>
+                                            <property name="width">0.45in</property>
                                         </column>
                                         <column id="4830">
                                             <property name="width">2in</property>
@@ -6178,7 +6174,7 @@ else &#13;
                                             <cell id="4832">
                                                 <property name="paddingRight">0pt</property>
                                                 <label id="4836">
-                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                    <property name="fontFamily">"Museo Sans 300"</property>
                                                     <property name="fontSize">7.3pt</property>
                                                     <property name="fontStyle">normal</property>
                                                     <property name="paddingTop">3pt</property>
@@ -6210,7 +6206,7 @@ else &#13;
                                                 <property name="paddingLeft">0pt</property>
                                                 <property name="paddingRight">0pt</property>
                                                 <data id="4837">
-                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                    <property name="fontFamily">"Museo Sans 300"</property>
                                                     <property name="fontSize">7.3pt</property>
                                                     <property name="paddingTop">3pt</property>
                                                     <property name="paddingLeft">0pt</property>
@@ -6240,7 +6236,7 @@ else &#13;
                                                 <property name="paddingLeft">0pt</property>
                                                 <property name="paddingRight">0pt</property>
                                                 <label id="4838">
-                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                    <property name="fontFamily">"Museo Sans 300"</property>
                                                     <property name="fontSize">7.3pt</property>
                                                     <property name="fontStyle">normal</property>
                                                     <property name="marginLeft">0pt</property>
@@ -6272,7 +6268,7 @@ else &#13;
                                             <cell id="4835">
                                                 <property name="paddingLeft">0pt</property>
                                                 <data id="4839">
-                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                    <property name="fontFamily">"Museo Sans 300"</property>
                                                     <property name="fontSize">7.3pt</property>
                                                     <property name="paddingTop">3pt</property>
                                                     <property name="paddingLeft">0pt</property>
@@ -6304,9 +6300,10 @@ else &#13;
                         </footer>
                     </table>
                     <text id="1640">
-                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <property name="fontFamily">"Museo Sans 300"</property>
                         <property name="fontSize">7pt</property>
                         <property name="fontStyle">normal</property>
+                        <property name="marginBottom">0pt</property>
                         <property name="paddingTop">5pt</property>
                         <property name="dataSet">PaymentInfo</property>
                         <list-property name="visibility">
@@ -6339,44 +6336,10 @@ else &#13;
 ]]></text-property>
                     </text>
                     <text id="5764">
-                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <property name="fontFamily">"Museo Sans 300"</property>
                         <property name="fontSize">7pt</property>
                         <property name="fontStyle">normal</property>
                         <property name="marginTop">2pt</property>
-                        <property name="paddingTop">5pt</property>
-                        <property name="dataSet">PaymentInfo</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if(parseFloat(row["CurrentClaim"]) > 0 || parseFloat(row["CurrentClaim"]) == 0)&#13;
-{true;&#13;
-}&#13;
-else &#13;
-{false;}</expression>
-                            </structure>
-                        </list-property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">CurrentClaim</property>
-                                <text-property name="displayName">CurrentClaim</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">DirectDebit</property>
-                                <text-property name="displayName">DirectDebit</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["DirectDebit"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                        <property name="contentType">auto</property>
-                        <text-property name="content"><![CDATA[Som hovedregel blir tilgodebeløpet utbetalt på forfallsdato til kontonummeret dere sist betalte fra, forutsatt at det ikke finnes andre åpne krav. Dersom vi mangler
-]]></text-property>
-                    </text>
-                    <text id="5765">
-                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                        <property name="fontSize">7pt</property>
-                        <property name="fontStyle">normal</property>
                         <property name="paddingTop">3pt</property>
                         <property name="dataSet">PaymentInfo</property>
                         <list-property name="visibility">
@@ -6404,10 +6367,46 @@ else &#13;
                             </structure>
                         </list-property>
                         <property name="contentType">auto</property>
-                        <text-property name="content"><![CDATA[kontonummer blir tilgodebeløpet lagt til fratrekk på neste faktura.
+                        <text-property name="content"><![CDATA[Som hovedregel blir tilgodebeløpet utbetalt på forfallsdato til kontonummeret dere sist betalte fra, forutsatt at det ikke finnes andre åpne krav. Dersom vi
+]]></text-property>
+                    </text>
+                    <text id="5765">
+                        <property name="fontFamily">"Museo Sans 300"</property>
+                        <property name="fontSize">7pt</property>
+                        <property name="fontStyle">normal</property>
+                        <property name="paddingTop">2pt</property>
+                        <property name="paddingBottom">0pt</property>
+                        <property name="dataSet">PaymentInfo</property>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">if(parseFloat(row["CurrentClaim"]) > 0 || parseFloat(row["CurrentClaim"]) == 0)&#13;
+{true;&#13;
+}&#13;
+else &#13;
+{false;}</expression>
+                            </structure>
+                        </list-property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">CurrentClaim</property>
+                                <text-property name="displayName">CurrentClaim</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">DirectDebit</property>
+                                <text-property name="displayName">DirectDebit</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["DirectDebit"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="contentType">auto</property>
+                        <text-property name="content"><![CDATA[mangler kontonummer blir tilgodebeløpet lagt til fratrekk på neste faktura.
 ]]></text-property>
                     </text>
                     <grid id="7077">
+                        <property name="marginBottom">0pt</property>
                         <property name="dataSet">PaymentInfo</property>
                         <list-property name="visibility">
                             <structure>
@@ -6444,26 +6443,26 @@ else &#13;
                             <cell id="7082">
                                 <property name="paddingRight">0pt</property>
                                 <label id="7085">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                    <property name="fontSize">7pt</property>
+                                    <property name="fontFamily">"Museo Sans 300"</property>
+                                    <property name="fontSize">6.9pt</property>
                                     <property name="marginTop">7pt</property>
                                     <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text-property name="text">Dere har inngått avtale med deres bank om betaling til oss gjennom AvtaleGiro, og faktura blir automatisk trukket på forfall. Automatisk</text-property>
                                 </label>
                                 <label id="7086">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                    <property name="fontSize">7pt</property>
+                                    <property name="fontFamily">"Museo Sans 300"</property>
+                                    <property name="fontSize">6.9pt</property>
                                     <property name="marginTop">1pt</property>
                                     <property name="marginBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text-property name="text">trekk forutsetter dekning på konto og at beløpet er under deres beløpsgrense. Ved for sen betaling beregnes forsinkelsesrente og</text-property>
                                 </label>
                                 <label id="7087">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                    <property name="fontSize">7pt</property>
+                                    <property name="fontFamily">"Museo Sans 300"</property>
+                                    <property name="fontSize">6.9pt</property>
                                     <property name="marginTop">1pt</property>
-                                    <property name="paddingBottom">2pt</property>
+                                    <property name="paddingBottom">0pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text-property name="text">purregebyr etter gjeldende satser.</text-property>
                                 </label>
@@ -6473,7 +6472,7 @@ else &#13;
                 </cell>
             </row>
             <row id="7173">
-                <property name="height">2in</property>
+                <property name="height">1.8in</property>
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -6487,7 +6486,7 @@ else &#13;
                     <property name="colSpan">3</property>
                     <property name="rowSpan">1</property>
                     <image id="7318">
-                        <property name="marginTop">30pt</property>
+                        <property name="marginTop">27pt</property>
                         <property name="height">30mm</property>
                         <property name="width">184mm</property>
                         <expression name="altText" type="javascript">""</expression>
@@ -6509,7 +6508,7 @@ else &#13;
                 </cell>
             </row>
             <row id="1496">
-                <property name="height">1.5in</property>
+                <property name="height">1.4in</property>
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -6527,7 +6526,7 @@ else &#13;
                     <property name="paddingLeft">0pt</property>
                     <property name="paddingRight">0pt</property>
                     <image id="1498">
-                        <property name="marginTop">20pt</property>
+                        <property name="marginTop">15pt</property>
                         <property name="height">30mm</property>
                         <property name="width">184mm</property>
                         <expression name="altText" type="javascript">""</expression>
@@ -6599,6 +6598,56 @@ else &#13;
             </detail>
         </table>
         <grid id="7325">
+            <property name="fontSize">20pt</property>
+            <property name="marginLeft">15mm</property>
+            <property name="dataSet">PaymentInfo</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">if(row["IsGiro"] == "false")&#13;
+{&#13;
+	if("NO" == row["DirectDebit"] &amp;&amp; (parseFloat(row["CurrentClaim"]) > 0 || parseFloat(row["CurrentClaim"]) == 0)) {&#13;
+	false;&#13;
+	} &#13;
+	else {&#13;
+	true;&#13;
+	}&#13;
+}&#13;
+else{&#13;
+true;&#13;
+}</expression>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">DirectDebit</property>
+                    <text-property name="displayName">DirectDebit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["DirectDebit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">CurrentClaim</property>
+                    <text-property name="displayName">CurrentClaim</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">IsGiro</property>
+                    <text-property name="displayName">IsGiro</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["IsGiro"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="7326"/>
+            <row id="7327">
+                <cell id="7328">
+                    <label id="7329">
+                        <property name="fontSize">7pt</property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <grid id="7333">
             <property name="fontSize">9pt</property>
             <property name="marginLeft">15mm</property>
             <property name="dataSet">PaymentInfo</property>
@@ -6619,11 +6668,17 @@ else &#13;
                     <expression name="expression" type="javascript">dataSetRow["DirectDebit"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">IsGiro</property>
+                    <text-property name="displayName">IsGiro</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["IsGiro"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
-            <column id="7326"/>
-            <row id="7327">
-                <cell id="7328">
-                    <label id="7329">
+            <column id="7334"/>
+            <row id="7335">
+                <cell id="7336">
+                    <label id="7337">
                         <property name="fontSize">3.3pt</property>
                     </label>
                 </cell>
@@ -6657,11 +6712,11 @@ else &#13;
             <row id="5240">
                 <cell id="5241">
                     <text id="5242">
-                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                        <property name="fontFamily">"Museo Sans 900"</property>
                         <property name="fontSize">9pt</property>
                         <property name="fontStyle">normal</property>
                         <property name="color">#00A2B9</property>
-                        <property name="marginTop">22pt</property>
+                        <property name="marginTop">8pt</property>
                         <property name="marginBottom">0pt</property>
                         <property name="paddingTop">5pt</property>
                         <property name="paddingBottom">4pt</property>
@@ -6751,7 +6806,14 @@ else &#13;
                             </structure>
                             <structure>
                                 <property name="name">objectID</property>
-                                <expression name="expression" type="javascript">var round = Math.round(dataSetRow["TotConsCurrCounter"])&#13;
+                                <expression name="expression" type="javascript">var round;&#13;
+if(Math.round(dataSetRow["TotConsCurrCounter"]) == 0){&#13;
+round = "Beregnet";&#13;
+}&#13;
+else&#13;
+{&#13;
+round = Math.round(dataSetRow["TotConsCurrCounter"]);&#13;
+}&#13;
 var a = "Målepunkt ID: " + dataSetRow["ObjectId"].slice(-8) + "  - Målernummer: " + dataSetRow["MeterId"] + "  - Forbruk: " + round + "  - Referanse: " + dataSetRow["FAKTURA_MERKE_SO"];&#13;
 vars["OneMeterLength"] = a.length;&#13;
 if(vars["OneMeterLength"] > 133)&#13;
@@ -6793,7 +6855,14 @@ else&#13;
                             <structure>
                                 <property name="name">Column Binding_3</property>
                                 <text-property name="displayName">RefrenceNumber</text-property>
-                                <expression name="expression" type="javascript">var round = Math.round(dataSetRow["TotConsCurrCounter"])&#13;
+                                <expression name="expression" type="javascript">var round;&#13;
+if(Math.round(dataSetRow["TotConsCurrCounter"]) == 0){&#13;
+round = "Beregnet";&#13;
+}&#13;
+else&#13;
+{&#13;
+round = Math.round(dataSetRow["TotConsCurrCounter"]);&#13;
+}&#13;
 var a = "Målepunkt ID: " + dataSetRow["ObjectId"].slice(-8) + "  - Målernummer: " + dataSetRow["MeterId"] + "  - Forbruk: " + round + "  - Referanse: " + dataSetRow["FAKTURA_MERKE_SO"];&#13;
 vars["OneMeterLength"] = a.length;&#13;
 if(vars["OneMeterLength"] > 133)&#13;
@@ -6842,9 +6911,9 @@ true;&#13;
                                 <property name="backgroundColor">#DADADA</property>
                                 <property name="paddingRight">0pt</property>
                                 <data id="5253">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">8pt</property>
-                                    <property name="marginTop">2pt</property>
+                                    <property name="marginTop">1pt</property>
                                     <property name="marginLeft">3pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <property name="resultSetColumn">StreetNo1</property>
@@ -6871,9 +6940,9 @@ true;&#13;
                                 <property name="colSpan">4</property>
                                 <property name="rowSpan">1</property>
                                 <data id="5256">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">8pt</property>
-                                    <property name="marginTop">4pt</property>
+                                    <property name="marginTop">2pt</property>
                                     <property name="marginLeft">2.5pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <property name="resultSetColumn">objectID</property>
@@ -6907,7 +6976,7 @@ true;&#13;
                                 <property name="colSpan">4</property>
                                 <property name="rowSpan">1</property>
                                 <data id="7095">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">8pt</property>
                                     <property name="marginTop">2pt</property>
                                     <property name="marginLeft">2.5pt</property>
@@ -7000,7 +7069,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             <row id="5265">
                                 <cell id="5266">
                                     <data id="7088">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginTop">1pt</property>
                                         <property name="marginLeft">2.5pt</property>
@@ -7012,7 +7081,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 <cell id="5268">
                                     <property name="fontSize">8pt</property>
                                     <label id="5269">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="marginTop">1pt</property>
                                         <property name="marginBottom">2pt</property>
@@ -7021,7 +7090,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 </cell>
                                 <cell id="5270">
                                     <label id="5271">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="marginTop">1pt</property>
@@ -7037,7 +7106,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             <row id="5272">
                                 <cell id="5273">
                                     <data id="5274">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginLeft">2.5pt</property>
                                         <property name="resultSetColumn">TranCategory</property>
@@ -7045,7 +7114,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 </cell>
                                 <cell id="5275">
                                     <data id="5276">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="textAlign">center</property>
                                         <property name="resultSetColumn">VatRate1</property>
@@ -7053,7 +7122,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 </cell>
                                 <cell id="5277">
                                     <data id="5278">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginRight">1pt</property>
                                         <property name="textAlign">right</property>
@@ -7114,7 +7183,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                     <property name="colSpan">3</property>
                                     <property name="rowSpan">1</property>
                                     <label id="5285">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginLeft">2.5pt</property>
                                         <property name="marginRight">1pt</property>
@@ -7128,7 +7197,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             <row id="5286">
                                 <cell id="5287">
                                     <data id="5288">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginLeft">2.5pt</property>
                                         <property name="resultSetColumn">OtherTransactions</property>
@@ -7136,7 +7205,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 </cell>
                                 <cell id="5289">
                                     <data id="5290">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="textAlign">center</property>
                                         <property name="resultSetColumn">OtherVatRate</property>
@@ -7144,7 +7213,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 </cell>
                                 <cell id="5291">
                                     <data id="5292">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginRight">1pt</property>
                                         <property name="textAlign">right</property>
@@ -7208,7 +7277,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             <property name="borderTopWidth">thin</property>
                             <cell id="5301">
                                 <label id="5302">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">8pt</property>
                                     <property name="marginLeft">2.5pt</property>
                                     <text-property name="text">Sum ekskl. mva</text-property>
@@ -7217,7 +7286,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             <cell id="5303"/>
                             <cell id="5304">
                                 <data id="5305">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">8pt</property>
                                     <property name="marginRight">1pt</property>
                                     <property name="textAlign">right</property>
@@ -7282,7 +7351,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             <row id="5307">
                                 <cell id="5308">
                                     <data id="5309">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginTop">0.5pt</property>
                                         <property name="marginLeft">2.5pt</property>
@@ -7293,7 +7362,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 <cell id="5310"/>
                                 <cell id="5311">
                                     <data id="5312">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginTop">0.5pt</property>
                                         <property name="marginBottom">0.5pt</property>
@@ -7314,7 +7383,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 <property name="borderTopWidth">thin</property>
                                 <cell id="5314">
                                     <label id="5315">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginLeft">2.5pt</property>
                                         <property name="marginBottom">0pt</property>
@@ -7326,7 +7395,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 <cell id="5316"/>
                                 <cell id="5317">
                                     <data id="5318">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginBottom">0pt</property>
                                         <property name="marginRight">1pt</property>
@@ -7342,7 +7411,8 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
             </row>
         </grid>
         <grid id="1410">
-            <property name="marginTop">8pt</property>
+            <property name="fontFamily">"Museo Sans 300"</property>
+            <property name="marginTop">3pt</property>
             <property name="pageBreakAfter">always</property>
             <property name="height">6.5in</property>
             <property name="width">8.6in</property>
@@ -7437,9 +7507,9 @@ else &#13;
                             <cell id="2321">
                                 <property name="paddingBottom">0pt</property>
                                 <label id="2322">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">7.2pt</property>
-                                    <property name="fontWeight">bold</property>
+                                    <property name="fontWeight">normal</property>
                                     <property name="marginLeft">10mm</property>
                                     <property name="paddingTop">5pt</property>
                                     <property name="paddingLeft">9pt</property>
@@ -7451,7 +7521,7 @@ else &#13;
                             <cell id="2323">
                                 <property name="paddingBottom">0pt</property>
                                 <label id="7331">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">7.3pt</property>
                                     <property name="color">#808080</property>
                                     <property name="paddingTop">5pt</property>
@@ -7473,7 +7543,7 @@ else &#13;
                     <property name="paddingLeft">0pt</property>
                     <property name="paddingRight">0pt</property>
                     <grid id="896">
-                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <property name="fontFamily">"Museo Sans 300"</property>
                         <property name="borderBottomStyle">dotted</property>
                         <property name="borderBottomWidth">thin</property>
                         <property name="paddingLeft">0pt</property>
@@ -7489,25 +7559,26 @@ else &#13;
                             <cell id="902">
                                 <property name="paddingLeft">1pt</property>
                                 <label id="911">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">8.5pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="marginLeft">15mm</property>
-                                    <property name="paddingTop">9.2pt</property>
+                                    <property name="paddingTop">8pt</property>
                                     <text-property name="text">Kvittering</text-property>
                                 </label>
                                 <label id="912">
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">7.5pt</property>
                                     <property name="marginLeft">15mm</property>
-                                    <property name="paddingTop">8.2pt</property>
+                                    <property name="paddingTop">6pt</property>
                                     <property name="paddingBottom">1pt</property>
                                     <text-property name="text">Innbetalt til</text-property>
                                 </label>
                                 <data id="1145">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">11pt</property>
                                     <property name="marginLeft">15mm</property>
-                                    <property name="paddingTop">3pt</property>
+                                    <property name="paddingTop">1pt</property>
                                     <property name="paddingLeft">0pt</property>
                                     <property name="dataSet">BillingInfo</property>
                                     <list-property name="boundDataColumns">
@@ -7530,6 +7601,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                 <property name="paddingTop">19pt</property>
                                 <property name="paddingBottom">1pt</property>
                                 <label id="913">
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">7.5pt</property>
                                     <property name="paddingTop">7pt</property>
                                     <property name="paddingBottom">1pt</property>
@@ -7538,9 +7610,10 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                     <text-property name="text">Beløp</text-property>
                                 </label>
                                 <data id="1146">
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">11pt</property>
-                                    <property name="paddingTop">3pt</property>
-                                    <property name="paddingLeft">24pt</property>
+                                    <property name="paddingTop">1pt</property>
+                                    <property name="paddingLeft">17pt</property>
                                     <property name="textAlign">center</property>
                                     <property name="dataSet">BillingInfo</property>
                                     <list-property name="boundDataColumns">
@@ -7559,6 +7632,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                 <property name="paddingTop">18.5pt</property>
                                 <property name="paddingBottom">1pt</property>
                                 <label id="914">
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">7.5pt</property>
                                     <property name="paddingTop">7.2pt</property>
                                     <property name="paddingBottom">1pt</property>
@@ -7570,6 +7644,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                 <property name="paddingTop">19pt</property>
                                 <property name="paddingBottom">1pt</property>
                                 <label id="915">
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">7.5pt</property>
                                     <property name="paddingTop">7.2pt</property>
                                     <property name="paddingLeft">16pt</property>
@@ -7578,8 +7653,9 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                     <text-property name="text">Blankettnummer</text-property>
                                 </label>
                                 <data id="1661">
-                                    <property name="fontSize">11pt</property>
-                                    <property name="paddingTop">3pt</property>
+                                    <property name="fontFamily">"Museo Sans 300"</property>
+                                    <property name="fontSize">10pt</property>
+                                    <property name="paddingTop">2pt</property>
                                     <property name="paddingLeft">12pt</property>
                                     <property name="textAlign">left</property>
                                     <property name="resultSetColumn">BlanketNumber</property>
@@ -7589,9 +7665,10 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                         <row id="906">
                             <property name="height">0.22in</property>
                             <cell id="907">
+                                <property name="fontFamily">"Museo Sans 300"</property>
                                 <property name="paddingBottom">1pt</property>
                                 <label id="916">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 500"</property>
                                     <property name="fontSize">6pt</property>
                                     <property name="marginLeft">12mm</property>
                                     <property name="paddingTop">6.5pt</property>
@@ -7601,18 +7678,21 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                 </label>
                             </cell>
                             <cell id="908">
+                                <property name="fontFamily">"Museo Sans 300"</property>
                                 <property name="paddingBottom">0pt</property>
                             </cell>
                             <cell id="909">
+                                <property name="fontFamily">"Museo Sans 300"</property>
                                 <property name="paddingBottom">0pt</property>
                             </cell>
                             <cell id="910">
+                                <property name="fontFamily">"Museo Sans 300"</property>
                                 <property name="paddingBottom">0pt</property>
                             </cell>
                         </row>
                     </grid>
                     <grid id="917">
-                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <property name="fontFamily">"Museo Sans 300"</property>
                         <property name="width">8.520833333333334in</property>
                         <column id="918">
                             <property name="width">4.25in</property>
@@ -7628,7 +7708,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                     <row id="1398">
                                         <cell id="1399">
                                             <label id="1539">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                <property name="fontFamily">"Museo Sans 700"</property>
                                                 <property name="fontSize">7pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="marginLeft">15mm</property>
@@ -7640,7 +7720,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                     <row id="1540">
                                         <cell id="1541">
                                             <data id="1542">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="marginLeft">15mm</property>
@@ -7662,7 +7742,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <property name="resultSetColumn">NationalId</property>
                                             </data>
                                             <data id="1543">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="marginLeft">15mm</property>
@@ -7684,7 +7764,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <property name="resultSetColumn">SequenceNumber</property>
                                             </data>
                                             <data id="1544">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="marginLeft">15mm</property>
@@ -7706,7 +7786,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <property name="resultSetColumn">AccountNumber</property>
                                             </data>
                                             <data id="1776">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="marginLeft">15mm</property>
@@ -7763,7 +7843,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <text-property name="text">GIRO</text-property>
                                             </label>
                                             <label id="1143">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                <property name="fontFamily">"Museo Sans 500"</property>
                                                 <property name="fontSize">7pt</property>
                                                 <property name="paddingTop">11pt</property>
                                                 <property name="paddingLeft">6pt</property>
@@ -7775,7 +7855,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                         <cell id="1552">
                                             <property name="paddingTop">9pt</property>
                                             <label id="955">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                <property name="fontFamily">"Museo Sans 700"</property>
                                                 <property name="fontSize">7pt</property>
                                                 <property name="paddingTop">2pt</property>
                                                 <property name="paddingLeft">12pt</property>
@@ -7783,7 +7863,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <text-property name="text">Betalings-</text-property>
                                             </label>
                                             <label id="1802">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                <property name="fontFamily">"Museo Sans 700"</property>
                                                 <property name="fontSize">7pt</property>
                                                 <property name="paddingTop">2pt</property>
                                                 <property name="paddingLeft">12pt</property>
@@ -7806,7 +7886,9 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                     <property name="borderTopStyle">solid</property>
                                                     <property name="borderTopWidth">1px</property>
                                                     <property name="height">0.1in</property>
-                                                    <cell id="967"/>
+                                                    <cell id="967">
+                                                        <property name="fontFamily">"Museo Sans 300"</property>
+                                                    </cell>
                                                 </row>
                                                 <row id="968">
                                                     <cell id="1554">
@@ -7825,6 +7907,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                     <property name="borderLeftWidth">1px</property>
                                                     <property name="height">0.1in</property>
                                                     <cell id="1557">
+                                                        <property name="fontFamily">"Museo Sans 300"</property>
                                                         <property name="paddingTop">1pt</property>
                                                     </cell>
                                                 </row>
@@ -7836,7 +7919,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                             <property name="paddingRight">0mm</property>
                                             <property name="textAlign">center</property>
                                             <data id="1558">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontFamily">"Museo Sans 500"</property>
                                                 <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="paddingTop">5pt</property>
@@ -7877,6 +7960,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                     <property name="borderTopWidth">1px</property>
                                                     <property name="height">0.1in</property>
                                                     <cell id="1560">
+                                                        <property name="fontFamily">"Museo Sans 300"</property>
                                                         <property name="paddingLeft">1pt</property>
                                                         <property name="paddingBottom">0pt</property>
                                                         <property name="paddingRight">1pt</property>
@@ -7902,6 +7986,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                     <property name="borderRightWidth">1px</property>
                                                     <property name="height">0.1in</property>
                                                     <cell id="963">
+                                                        <property name="fontFamily">"Museo Sans 300"</property>
                                                         <property name="paddingRight">1pt</property>
                                                     </cell>
                                                 </row>
@@ -7930,6 +8015,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                     <row id="1566">
                                         <property name="height">0.1in</property>
                                         <cell id="1567">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="borderLeftStyle">solid</property>
                                             <property name="borderLeftWidth">1px</property>
                                             <property name="borderTopStyle">solid</property>
@@ -7946,6 +8032,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                             <property name="paddingTop">1pt</property>
                                         </cell>
                                         <cell id="982">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="borderRightStyle">solid</property>
                                             <property name="borderRightWidth">1px</property>
                                             <property name="borderTopStyle">solid</property>
@@ -7957,6 +8044,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                         <cell id="984"/>
                                         <cell id="1787"/>
                                         <cell id="985">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="borderBottomStyle">dotted</property>
                                             <property name="borderBottomWidth">thin</property>
                                             <property name="borderLeftStyle">none</property>
@@ -7978,6 +8066,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                     <row id="987">
                                         <property name="height">0.1in</property>
                                         <cell id="988">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="borderBottomStyle">solid</property>
                                             <property name="borderBottomWidth">1px</property>
                                             <property name="borderLeftStyle">solid</property>
@@ -7987,6 +8076,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                         <cell id="989"/>
                                         <cell id="1794"/>
                                         <cell id="990">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="borderBottomStyle">solid</property>
                                             <property name="borderBottomWidth">1px</property>
                                             <property name="borderRightStyle">solid</property>
@@ -7999,7 +8089,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                         <row id="923">
                             <cell id="924">
                                 <label id="991">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">7pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="marginLeft">15mm</property>
@@ -8010,7 +8100,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                             </cell>
                             <cell id="925">
                                 <label id="992">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">7pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="paddingLeft">10pt</property>
@@ -8020,6 +8110,7 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                             </cell>
                         </row>
                         <row id="926">
+                            <property name="fontFamily">"Museo Sans 300"</property>
                             <cell id="927">
                                 <grid id="993">
                                     <property name="marginLeft">13mm</property>
@@ -8151,6 +8242,7 @@ else {&#13;
                                         <property name="fontSize">9pt</property>
                                         <property name="height">0.1in</property>
                                         <cell id="999">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="borderLeftStyle">solid</property>
                                             <property name="borderLeftWidth">1px</property>
                                             <property name="borderTopStyle">solid</property>
@@ -8162,6 +8254,7 @@ else {&#13;
                                             <property name="paddingBottom">0pt</property>
                                         </cell>
                                         <cell id="1001">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="borderRightStyle">solid</property>
                                             <property name="borderRightWidth">1px</property>
                                             <property name="borderTopStyle">solid</property>
@@ -8179,7 +8272,7 @@ else {&#13;
                                             <property name="paddingLeft">1mm</property>
                                             <property name="paddingBottom">0pt</property>
                                             <data id="1571">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
@@ -8206,7 +8299,7 @@ dataSetRow["CareOfName"];&#13;
                                                 <property name="resultSetColumn">Name</property>
                                             </data>
                                             <data id="1572">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
@@ -8234,7 +8327,7 @@ dataSetRow["Address"];&#13;
                                                 <property name="resultSetColumn">Address</property>
                                             </data>
                                             <data id="1573">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">9.5pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
@@ -8253,12 +8346,6 @@ dataSetRow["Address"];&#13;
                                                 </list-property>
                                                 <property name="resultSetColumn">City</property>
                                             </data>
-                                            <label id="1036">
-                                                <property name="fontSize">8pt</property>
-                                                <property name="marginBottom">2pt</property>
-                                                <property name="paddingTop">0pt</property>
-                                                <property name="paddingBottom">0pt</property>
-                                            </label>
                                         </cell>
                                         <cell id="1574"/>
                                         <cell id="1575"/>
@@ -8266,6 +8353,7 @@ dataSetRow["Address"];&#13;
                                     <row id="1576">
                                         <property name="height">0.1in</property>
                                         <cell id="1577">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="fontSize">9%</property>
                                             <property name="borderBottomStyle">solid</property>
                                             <property name="borderBottomWidth">1px</property>
@@ -8280,6 +8368,7 @@ dataSetRow["Address"];&#13;
                                             <property name="paddingBottom">2pt</property>
                                         </cell>
                                         <cell id="1011">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="fontSize">9pt</property>
                                             <property name="borderBottomStyle">solid</property>
                                             <property name="borderBottomWidth">1px</property>
@@ -8310,6 +8399,7 @@ dataSetRow["Address"];&#13;
                                     <row id="1021">
                                         <property name="height">0.1in</property>
                                         <cell id="1022">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="borderLeftStyle">solid</property>
                                             <property name="borderLeftWidth">1px</property>
                                             <property name="borderTopStyle">solid</property>
@@ -8317,6 +8407,7 @@ dataSetRow["Address"];&#13;
                                         </cell>
                                         <cell id="1023"/>
                                         <cell id="1024">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="borderRightStyle">solid</property>
                                             <property name="borderRightWidth">1px</property>
                                             <property name="borderTopStyle">solid</property>
@@ -8330,6 +8421,7 @@ dataSetRow["Address"];&#13;
                                             <property name="paddingTop">0pt</property>
                                             <property name="paddingBottom">0pt</property>
                                             <data id="1152">
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">9.5pt</property>
                                                 <property name="paddingLeft">2pt</property>
                                                 <property name="paddingBottom">2pt</property>
@@ -8345,6 +8437,7 @@ dataSetRow["Address"];&#13;
                                                 <property name="resultSetColumn">Description</property>
                                             </data>
                                             <data id="1153">
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">9.5pt</property>
                                                 <property name="paddingLeft">2pt</property>
                                                 <property name="paddingBottom">2pt</property>
@@ -8369,6 +8462,7 @@ else&#13;
                                                 <property name="resultSetColumn">City</property>
                                             </data>
                                             <data id="1154">
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">9.5pt</property>
                                                 <property name="paddingLeft">2pt</property>
                                                 <property name="paddingBottom">2pt</property>
@@ -8384,16 +8478,13 @@ else&#13;
                                                 </list-property>
                                                 <property name="resultSetColumn">Region</property>
                                             </data>
-                                            <label id="1097">
-                                                <property name="marginBottom">4pt</property>
-                                                <property name="paddingBottom">0pt</property>
-                                            </label>
                                         </cell>
                                         <cell id="1028"/>
                                     </row>
                                     <row id="1029">
                                         <property name="height">0.1in</property>
                                         <cell id="1030">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="borderBottomStyle">solid</property>
                                             <property name="borderBottomWidth">1px</property>
                                             <property name="borderLeftStyle">solid</property>
@@ -8401,6 +8492,7 @@ else&#13;
                                         </cell>
                                         <cell id="1031"/>
                                         <cell id="1032">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="borderBottomStyle">solid</property>
                                             <property name="borderBottomWidth">1px</property>
                                             <property name="borderRightStyle">solid</property>
@@ -8413,7 +8505,7 @@ else&#13;
                         </row>
                     </grid>
                     <grid id="1038">
-                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <property name="fontFamily">"Museo Sans 300"</property>
                         <property name="marginTop">3pt</property>
                         <property name="marginLeft">0pt</property>
                         <property name="marginRight">12mm</property>
@@ -8446,16 +8538,19 @@ else&#13;
                             <property name="height">0.25in</property>
                             <cell id="1584">
                                 <label id="1585">
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">7.7pt</property>
                                     <property name="marginLeft">15mm</property>
-                                    <property name="paddingBottom">2pt</property>
+                                    <property name="paddingBottom">0pt</property>
                                     <property name="paddingRight">9pt</property>
                                     <property name="textAlign">right</property>
                                     <text-property name="text">Belast</text-property>
                                 </label>
                                 <label id="1796">
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">7.7pt</property>
                                     <property name="marginLeft">15mm</property>
+                                    <property name="paddingTop">0pt</property>
                                     <property name="paddingRight">9pt</property>
                                     <property name="textAlign">right</property>
                                     <text-property name="text">konto</text-property>
@@ -8474,7 +8569,7 @@ else&#13;
                             <cell id="1134"/>
                             <cell id="1587">
                                 <label id="1588">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">7pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="paddingBottom">0.4pt</property>
@@ -8483,7 +8578,7 @@ else&#13;
                                     <text-property name="text">Kvittering  </text-property>
                                 </label>
                                 <label id="1653">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">7pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="paddingTop">1pt</property>
@@ -8541,7 +8636,7 @@ else&#13;
                         </row>
                     </grid>
                     <grid id="1590">
-                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                        <property name="fontFamily">"Museo Sans 300"</property>
                         <property name="height">1in</property>
                         <property name="width">8.125in</property>
                         <column id="1604">
@@ -8575,7 +8670,7 @@ else&#13;
                                 <property name="paddingLeft">0pt</property>
                                 <property name="paddingRight">0pt</property>
                                 <label id="1060">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">8pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="paddingTop">1.5pt</property>
@@ -8604,7 +8699,7 @@ else&#13;
                                         <cell id="1068">
                                             <property name="paddingTop">3pt</property>
                                             <label id="1072">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                <property name="fontFamily">"Museo Sans 700"</property>
                                                 <property name="fontSize">8pt</property>
                                                 <property name="paddingTop">2pt</property>
                                                 <text-property name="text">Kroner</text-property>
@@ -8617,7 +8712,7 @@ else&#13;
                                             <property name="borderRightWidth">1px</property>
                                             <property name="paddingTop">3pt</property>
                                             <label id="1073">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                <property name="fontFamily">"Museo Sans 700"</property>
                                                 <property name="fontSize">8pt</property>
                                                 <property name="paddingTop">2pt</property>
                                                 <property name="paddingLeft">5pt</property>
@@ -8635,7 +8730,7 @@ else&#13;
                                         <cell id="1070">
                                             <property name="paddingTop">3pt</property>
                                             <label id="1074">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                <property name="fontFamily">"Museo Sans 700"</property>
                                                 <property name="fontSize">8pt</property>
                                                 <property name="paddingTop">2pt</property>
                                                 <property name="paddingLeft">7pt</property>
@@ -8647,7 +8742,7 @@ else&#13;
                                         <cell id="1071">
                                             <property name="paddingTop">3pt</property>
                                             <label id="1075">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                <property name="fontFamily">"Museo Sans 700"</property>
                                                 <property name="fontSize">8pt</property>
                                                 <property name="marginLeft">1pt</property>
                                                 <property name="paddingTop">2pt</property>
@@ -8669,7 +8764,7 @@ else&#13;
                                 <property name="paddingLeft">0pt</property>
                                 <property name="paddingRight">0pt</property>
                                 <label id="1606">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">9pt</property>
                                     <property name="marginTop">1pt</property>
                                     <property name="paddingTop">4pt</property>
@@ -8684,7 +8779,7 @@ else&#13;
                                 <property name="borderRightStyle">solid</property>
                                 <property name="borderRightWidth">2px</property>
                                 <data id="1087">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">11pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="marginTop">1pt</property>
@@ -8726,7 +8821,7 @@ else&#13;
                                             <property name="paddingLeft">0pt</property>
                                             <property name="paddingRight">0pt</property>
                                             <data id="1148">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">11pt</property>
                                                 <property name="marginTop">1pt</property>
                                                 <property name="marginLeft">0pt</property>
@@ -8751,7 +8846,7 @@ else&#13;
                                         </cell>
                                         <cell id="1655">
                                             <data id="1658">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">11pt</property>
                                                 <property name="marginTop">1pt</property>
                                                 <property name="marginRight">2pt</property>
@@ -8776,7 +8871,7 @@ else&#13;
                                             <property name="fontSize">9pt</property>
                                             <property name="paddingLeft">3pt</property>
                                             <data id="1772">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">11pt</property>
                                                 <property name="paddingTop">2pt</property>
                                                 <property name="paddingLeft">4pt</property>
@@ -8788,7 +8883,7 @@ else&#13;
                                             <property name="paddingLeft">0pt</property>
                                             <property name="paddingRight">0pt</property>
                                             <data id="1150">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">11pt</property>
                                                 <property name="paddingTop">2pt</property>
                                                 <property name="paddingLeft">0pt</property>
@@ -8813,7 +8908,7 @@ res1 + "   " + res2 + "   "+ res3 + " ";</expression>
                                         </cell>
                                         <cell id="1662">
                                             <data id="1664">
-                                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                <property name="fontFamily">"Museo Sans 300"</property>
                                                 <property name="fontSize">11pt</property>
                                                 <property name="paddingTop">2pt</property>
                                                 <property name="paddingLeft">3.5pt</property>
@@ -8858,7 +8953,7 @@ else &#13;
                 <property name="masterPage">NewSimpleMasterPage</property>
                 <cell id="7099">
                     <text id="7100">
-                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                        <property name="fontFamily">"Museo Sans 900"</property>
                         <property name="fontSize">9pt</property>
                         <property name="fontStyle">normal</property>
                         <property name="color">#00A2B9</property>
@@ -8952,7 +9047,14 @@ else &#13;
                             </structure>
                             <structure>
                                 <property name="name">objectID</property>
-                                <expression name="expression" type="javascript">var round = Math.round(dataSetRow["TotConsCurrCounter"])&#13;
+                                <expression name="expression" type="javascript">var round;&#13;
+if(Math.round(dataSetRow["TotConsCurrCounter"]) == 0){&#13;
+round = "Beregnet";&#13;
+}&#13;
+else&#13;
+{&#13;
+round = Math.round(dataSetRow["TotConsCurrCounter"]);&#13;
+}&#13;
 var a = "Målepunkt ID: " + dataSetRow["ObjectId"].slice(-8) + "  - Målernummer: " + dataSetRow["MeterId"] + "  - Forbruk: " + round + "  - Referanse: " + dataSetRow["FAKTURA_MERKE_SO"];&#13;
 vars["OneMeterLength"] = a.length;&#13;
 if(vars["OneMeterLength"] > 133)&#13;
@@ -8993,7 +9095,14 @@ else&#13;
                             </structure>
                             <structure>
                                 <property name="name">RefrenceNumber</property>
-                                <expression name="expression" type="javascript">var round = Math.round(dataSetRow["TotConsCurrCounter"])&#13;
+                                <expression name="expression" type="javascript">var round;&#13;
+if(Math.round(dataSetRow["TotConsCurrCounter"]) == 0){&#13;
+round = "Beregnet";&#13;
+}&#13;
+else&#13;
+{&#13;
+round = Math.round(dataSetRow["TotConsCurrCounter"]);&#13;
+}&#13;
 var a = "Målepunkt ID: " + dataSetRow["ObjectId"].slice(-8) + "  - Målernummer: " + dataSetRow["MeterId"] + "  - Forbruk: " + round + "  - Referanse: " + dataSetRow["FAKTURA_MERKE_SO"];&#13;
 vars["OneMeterLength"] = a.length;&#13;
 if(vars["OneMeterLength"] > 133)&#13;
@@ -9042,7 +9151,7 @@ true;&#13;
                                 <property name="backgroundColor">#DADADA</property>
                                 <property name="paddingRight">0pt</property>
                                 <data id="7109">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">8pt</property>
                                     <property name="marginTop">2pt</property>
                                     <property name="marginLeft">3pt</property>
@@ -9071,7 +9180,7 @@ true;&#13;
                                 <property name="colSpan">4</property>
                                 <property name="rowSpan">1</property>
                                 <data id="7112">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">8pt</property>
                                     <property name="marginTop">4pt</property>
                                     <property name="marginLeft">2.5pt</property>
@@ -9108,7 +9217,7 @@ true;&#13;
                                 <property name="rowSpan">1</property>
                                 <property name="paddingBottom">0pt</property>
                                 <data id="7114">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">8pt</property>
                                     <property name="marginTop">2pt</property>
                                     <property name="marginLeft">2.5pt</property>
@@ -9205,7 +9314,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             <row id="7116">
                                 <cell id="7117">
                                     <data id="7118">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginTop">1pt</property>
                                         <property name="marginLeft">2.5pt</property>
@@ -9217,7 +9326,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 <cell id="7119">
                                     <property name="fontSize">8pt</property>
                                     <label id="7120">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="marginTop">1pt</property>
                                         <property name="marginBottom">2pt</property>
@@ -9226,7 +9335,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 </cell>
                                 <cell id="7121">
                                     <label id="7122">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="marginTop">1pt</property>
@@ -9242,7 +9351,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             <row id="7123">
                                 <cell id="7124">
                                     <data id="7125">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginLeft">2.5pt</property>
                                         <property name="resultSetColumn">TranCategory</property>
@@ -9250,7 +9359,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 </cell>
                                 <cell id="7126">
                                     <data id="7127">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="textAlign">center</property>
                                         <property name="resultSetColumn">VatRate1</property>
@@ -9258,7 +9367,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 </cell>
                                 <cell id="7128">
                                     <data id="7129">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginRight">1pt</property>
                                         <property name="textAlign">right</property>
@@ -9319,7 +9428,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                     <property name="colSpan">3</property>
                                     <property name="rowSpan">1</property>
                                     <label id="7136">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginLeft">2.5pt</property>
                                         <property name="marginRight">1pt</property>
@@ -9333,7 +9442,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             <row id="7137">
                                 <cell id="7138">
                                     <data id="7139">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginLeft">2.5pt</property>
                                         <property name="resultSetColumn">OtherTransactions</property>
@@ -9341,7 +9450,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 </cell>
                                 <cell id="7140">
                                     <data id="7141">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="textAlign">center</property>
                                         <property name="resultSetColumn">OtherVatRate</property>
@@ -9349,7 +9458,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 </cell>
                                 <cell id="7142">
                                     <data id="7143">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginRight">1pt</property>
                                         <property name="textAlign">right</property>
@@ -9413,7 +9522,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             <property name="borderTopWidth">thin</property>
                             <cell id="7152">
                                 <label id="7153">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">8pt</property>
                                     <property name="marginLeft">2.5pt</property>
                                     <text-property name="text">Sum ekskl. mva</text-property>
@@ -9422,7 +9531,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             <cell id="7154"/>
                             <cell id="7155">
                                 <data id="7156">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">8pt</property>
                                     <property name="marginRight">1pt</property>
                                     <property name="textAlign">right</property>
@@ -9487,7 +9596,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             <row id="7158">
                                 <cell id="7159">
                                     <data id="7160">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginTop">0.5pt</property>
                                         <property name="marginLeft">2.5pt</property>
@@ -9498,7 +9607,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 <cell id="7161"/>
                                 <cell id="7162">
                                     <data id="7163">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                        <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginTop">0.5pt</property>
                                         <property name="marginBottom">0.5pt</property>
@@ -9519,7 +9628,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 <property name="borderTopWidth">thin</property>
                                 <cell id="7165">
                                     <label id="7166">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginLeft">2.5pt</property>
                                         <property name="marginBottom">0pt</property>
@@ -9531,7 +9640,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                 <cell id="7167"/>
                                 <cell id="7168">
                                     <data id="7169">
-                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                        <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginBottom">0pt</property>
                                         <property name="marginRight">1pt</property>
@@ -9822,7 +9931,7 @@ dataSetRow["TransactionName"];&#13;
                                     <property name="pageBreakAfter">avoid</property>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
-                                    <property name="height">0.89in</property>
+                                    <property name="height">0.96in</property>
                                     <cell id="403">
                                         <property name="fontSize">8pt</property>
                                         <property name="paddingTop">0pt</property>
@@ -9858,7 +9967,7 @@ dataSetRow["TransactionName"];&#13;
                                                             <cell id="528">
                                                                 <property name="paddingBottom">0pt</property>
                                                                 <label id="2678">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                                    <property name="fontFamily">"Museo Sans 700"</property>
                                                                     <property name="fontWeight">normal</property>
                                                                     <property name="paddingBottom">0pt</property>
                                                                     <text-property name="text">Anleggsadresse:</text-property>
@@ -9867,7 +9976,7 @@ dataSetRow["TransactionName"];&#13;
                                                             <cell id="529">
                                                                 <property name="paddingBottom">0pt</property>
                                                                 <data id="2679">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                                    <property name="fontFamily">"Museo Sans 300"</property>
                                                                     <property name="paddingBottom">0pt</property>
                                                                     <method name="onRender"><![CDATA[vars["AttachmentIndex"]++;]]></method>
                                                                     <property name="resultSetColumn">Column Binding</property>
@@ -9895,7 +10004,7 @@ dataSetRow["TransactionName"];&#13;
                                                         <row id="5674">
                                                             <cell id="5675">
                                                                 <label id="5676">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                                    <property name="fontFamily">"Museo Sans 700"</property>
                                                                     <property name="fontWeight">normal</property>
                                                                     <property name="marginBottom">0pt</property>
                                                                     <property name="paddingBottom">1pt</property>
@@ -9904,7 +10013,7 @@ dataSetRow["TransactionName"];&#13;
                                                             </cell>
                                                             <cell id="5677">
                                                                 <data id="5678">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                                    <property name="fontFamily">"Museo Sans 500"</property>
                                                                     <property name="resultSetColumn">Column Binding_1</property>
                                                                 </data>
                                                             </cell>
@@ -9924,7 +10033,7 @@ dataSetRow["TransactionName"];&#13;
                                                         <row id="5682">
                                                             <cell id="5683">
                                                                 <label id="5684">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                                    <property name="fontFamily">"Museo Sans 700"</property>
                                                                     <property name="fontWeight">normal</property>
                                                                     <property name="marginBottom">0pt</property>
                                                                     <property name="paddingBottom">0pt</property>
@@ -9933,7 +10042,7 @@ dataSetRow["TransactionName"];&#13;
                                                             </cell>
                                                             <cell id="5685">
                                                                 <data id="5686">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                                    <property name="fontFamily">"Museo Sans 500"</property>
                                                                     <property name="resultSetColumn">Column Binding_2</property>
                                                                 </data>
                                                             </cell>
@@ -9952,7 +10061,7 @@ dataSetRow["TransactionName"];&#13;
                                                             <cell id="5691">
                                                                 <property name="paddingRight">0pt</property>
                                                                 <label id="5692">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                                    <property name="fontFamily">"Museo Sans 700"</property>
                                                                     <property name="fontWeight">normal</property>
                                                                     <property name="paddingBottom">0pt</property>
                                                                     <property name="paddingRight">0pt</property>
@@ -9962,7 +10071,7 @@ dataSetRow["TransactionName"];&#13;
                                                             <cell id="5693">
                                                                 <property name="paddingLeft">0pt</property>
                                                                 <data id="5694">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                                    <property name="fontFamily">"Museo Sans 500"</property>
                                                                     <property name="marginBottom">0pt</property>
                                                                     <property name="paddingLeft">0pt</property>
                                                                     <property name="resultSetColumn">ObjectId</property>
@@ -9986,14 +10095,14 @@ dataSetRow["TransactionName"];&#13;
                                                         <row id="5698">
                                                             <cell id="5699">
                                                                 <label id="5700">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                                    <property name="fontFamily">"Museo Sans 700"</property>
                                                                     <property name="fontWeight">normal</property>
                                                                     <text-property name="text">Referanse:</text-property>
                                                                 </label>
                                                             </cell>
                                                             <cell id="5701">
                                                                 <data id="5702">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                                    <property name="fontFamily">"Museo Sans 500"</property>
                                                                     <property name="resultSetColumn">Column Binding_3</property>
                                                                 </data>
                                                             </cell>
@@ -10012,20 +10121,21 @@ dataSetRow["TransactionName"];&#13;
                                                         <row id="5706">
                                                             <cell id="5707">
                                                                 <label id="5708">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                                    <property name="fontFamily">"Museo Sans 700"</property>
                                                                     <property name="fontWeight">normal</property>
                                                                     <text-property name="text">Målernummer:</text-property>
                                                                 </label>
                                                             </cell>
                                                             <cell id="5709">
                                                                 <data id="5710">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                                    <property name="fontFamily">"Museo Sans 500"</property>
                                                                     <property name="resultSetColumn">MeterId1</property>
                                                                 </data>
                                                             </cell>
                                                         </row>
                                                     </grid>
                                                     <grid id="5711">
+                                                        <property name="fontFamily">"Museo Sans 300"</property>
                                                         <property name="marginTop">0.8pt</property>
                                                         <property name="height">0.3333333333333333in</property>
                                                         <property name="width">2.28125in</property>
@@ -10039,7 +10149,7 @@ dataSetRow["TransactionName"];&#13;
                                                             <cell id="5715">
                                                                 <property name="paddingRight">0pt</property>
                                                                 <label id="5716">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                                    <property name="fontFamily">"Museo Sans 700"</property>
                                                                     <property name="fontWeight">normal</property>
                                                                     <property name="paddingRight">0pt</property>
                                                                     <text-property name="text">Forventet årsforbruk: </text-property>
@@ -10048,7 +10158,7 @@ dataSetRow["TransactionName"];&#13;
                                                             <cell id="5717">
                                                                 <property name="paddingLeft">0pt</property>
                                                                 <data id="5718">
-                                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                                                    <property name="fontFamily">"Museo Sans 500"</property>
                                                                     <property name="paddingTop">0.5pt</property>
                                                                     <property name="paddingLeft">0pt</property>
                                                                     <property name="paddingBottom">0pt</property>
@@ -10067,6 +10177,7 @@ dataSetRow["TransactionName"];&#13;
                     </row>
                 </grid>
                 <list id="6919">
+                    <property name="fontFamily">"Museo Sans 300"</property>
                     <property name="pageBreakBefore">auto</property>
                     <property name="dataSet">InvoiceOrderDataSet</property>
                     <list-property name="visibility">
@@ -10150,7 +10261,11 @@ dataSetRow["TransactionName"];&#13;
                                 <structure>
                                     <property name="name">Basis</property>
                                     <text-property name="displayName">Basis</text-property>
-                                    <expression name="expression" type="javascript">if (dataSetRow["Basis"] == parseFloat("1") )&#13;
+                                    <expression name="expression" type="javascript">if(BirtStr.trim(dataSetRow["Text"]) == "Beregnet beløp")&#13;
+{&#13;
+""&#13;
+}&#13;
+else if (dataSetRow["Basis"] == parseFloat("1") )&#13;
 {&#13;
 dataSetRow["NoOfDays"]  + " " + "dager";&#13;
 }&#13;
@@ -10439,7 +10554,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                                     <property name="paddingLeft">4.4pt</property>
                                                     <property name="paddingRight">0pt</property>
                                                     <data id="6928">
-                                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                        <property name="fontFamily">"Museo Sans 700"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="marginLeft">3pt</property>
                                                         <property name="marginRight">0pt</property>
@@ -10454,7 +10569,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                                     <property name="paddingLeft">0pt</property>
                                                     <property name="paddingRight">0pt</property>
                                                     <data id="6930">
-                                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                        <property name="fontFamily">"Museo Sans 300"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="marginRight">15pt</property>
                                                         <property name="paddingTop">1.5pt</property>
@@ -10472,7 +10587,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                     <cell id="6932">
                                         <property name="paddingLeft">5pt</property>
                                         <label id="6933">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="marginTop">5pt</property>
                                             <property name="marginBottom">1pt</property>
@@ -10483,7 +10598,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                     </cell>
                                     <cell id="6934">
                                         <label id="6935">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontSize">7.5pt</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="marginTop">5pt</property>
@@ -10494,7 +10609,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                     </cell>
                                     <cell id="6936">
                                         <label id="6937">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontSize">7.5pt</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="marginTop">5pt</property>
@@ -10505,7 +10620,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                     </cell>
                                     <cell id="6938">
                                         <label id="6939">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontSize">7.5pt</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="marginTop">5pt</property>
@@ -10516,7 +10631,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                     </cell>
                                     <cell id="6940">
                                         <label id="6941">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontSize">7.5pt</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="marginTop">5pt</property>
@@ -10528,7 +10643,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                     <cell id="6942">
                                         <property name="paddingRight">5pt</property>
                                         <label id="6943">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontSize">7.5pt</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="marginTop">5pt</property>
@@ -10546,6 +10661,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                     <cell id="6945">
                                         <property name="paddingLeft">5pt</property>
                                         <data id="6946">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="marginLeft">1pt</property>
                                             <property name="marginRight">1pt</property>
                                             <property name="paddingLeft">1pt</property>
@@ -10556,6 +10672,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                     </cell>
                                     <cell id="6947">
                                         <data id="6948">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="textAlign">left</property>
                                             <property name="lineHeight">8pt</property>
                                             <property name="resultSetColumn">StartDate</property>
@@ -10563,6 +10680,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                     </cell>
                                     <cell id="6949">
                                         <data id="6950">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="color">#000000</property>
                                             <property name="textAlign">right</property>
                                             <property name="lineHeight">8pt</property>
@@ -10571,6 +10689,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                     </cell>
                                     <cell id="6951">
                                         <data id="6952">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="textAlign">right</property>
                                             <property name="lineHeight">8pt</property>
                                             <property name="resultSetColumn">GrossPrice</property>
@@ -10578,6 +10697,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                     </cell>
                                     <cell id="6953">
                                         <data id="6954">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="textAlign">right</property>
                                             <property name="resultSetColumn">VatRate</property>
                                         </data>
@@ -10589,6 +10709,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                         <property name="borderTopStyle">none</property>
                                         <property name="paddingRight">5pt</property>
                                         <data id="6956">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="marginRight">10pt</property>
                                             <property name="textAlign">right</property>
                                             <property name="lineHeight">8pt</property>
@@ -10605,8 +10726,8 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                     <cell id="6958">
                                         <property name="paddingLeft">5pt</property>
                                         <label id="6959">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
-                                            <property name="fontWeight">bold</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
+                                            <property name="fontWeight">normal</property>
                                             <property name="marginLeft">1pt</property>
                                             <property name="marginBottom">4pt</property>
                                             <property name="marginRight">1pt</property>
@@ -10631,9 +10752,9 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                             <property name="backgroundPositionX">0%</property>
                                             <property name="backgroundPositionY">0%</property>
                                             <property name="backgroundRepeat">repeat</property>
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontSize">6.4pt</property>
-                                            <property name="fontWeight">bold</property>
+                                            <property name="fontWeight">normal</property>
                                             <property name="fontStyle">normal</property>
                                             <property name="fontVariant">normal</property>
                                             <property name="color">black</property>
@@ -11090,7 +11211,7 @@ else &#13;
                                                     <property name="paddingLeft">4.4pt</property>
                                                     <property name="paddingRight">0pt</property>
                                                     <data id="6979">
-                                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                        <property name="fontFamily">"Museo Sans 700"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="marginTop">1.2pt</property>
                                                         <property name="marginLeft">2pt</property>
@@ -11104,7 +11225,7 @@ else &#13;
                                                     <property name="paddingLeft">0pt</property>
                                                     <property name="paddingRight">0pt</property>
                                                     <data id="6981">
-                                                        <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                        <property name="fontFamily">"Museo Sans 700"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="marginTop">1.2pt</property>
                                                         <property name="marginRight">13.5pt</property>
@@ -11149,6 +11270,7 @@ else &#13;
                                                     <property name="rowSpan">1</property>
                                                     <property name="paddingRight">0pt</property>
                                                     <data id="6989">
+                                                        <property name="fontFamily">"Museo Sans 300"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
                                                         <property name="marginTop">2pt</property>
@@ -11167,7 +11289,7 @@ else &#13;
                                     <cell id="6991">
                                         <property name="paddingLeft">5pt</property>
                                         <label id="6992">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="marginLeft">1pt</property>
                                             <property name="textAlign">left</property>
@@ -11176,7 +11298,7 @@ else &#13;
                                     </cell>
                                     <cell id="6993">
                                         <label id="6994">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontSize">7.5pt</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="marginBottom">1pt</property>
@@ -11186,7 +11308,7 @@ else &#13;
                                     </cell>
                                     <cell id="6995">
                                         <label id="6996">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontSize">7.5pt</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="marginBottom">1pt</property>
@@ -11196,7 +11318,7 @@ else &#13;
                                     </cell>
                                     <cell id="6997">
                                         <label id="6998">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontSize">7.5pt</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="marginBottom">1pt</property>
@@ -11206,7 +11328,7 @@ else &#13;
                                     </cell>
                                     <cell id="6999">
                                         <label id="7000">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontSize">7.5pt</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="marginBottom">1pt</property>
@@ -11216,7 +11338,7 @@ else &#13;
                                     </cell>
                                     <cell id="7001">
                                         <label id="7002">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontSize">7.5pt</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="marginBottom">1pt</property>
@@ -11233,6 +11355,7 @@ else &#13;
                                     <cell id="7004">
                                         <property name="paddingLeft">5pt</property>
                                         <data id="7005">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="marginLeft">1pt</property>
                                             <property name="paddingLeft">1.4pt</property>
                                             <property name="textAlign">left</property>
@@ -11242,6 +11365,7 @@ else &#13;
                                     </cell>
                                     <cell id="7006">
                                         <data id="7007">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="textAlign">left</property>
                                             <property name="lineHeight">8pt</property>
                                             <property name="resultSetColumn">StartDate</property>
@@ -11249,6 +11373,7 @@ else &#13;
                                     </cell>
                                     <cell id="7008">
                                         <data id="7009">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="color">#000000</property>
                                             <property name="textAlign">right</property>
                                             <property name="lineHeight">8pt</property>
@@ -11257,6 +11382,7 @@ else &#13;
                                     </cell>
                                     <cell id="7010">
                                         <data id="7011">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="textAlign">right</property>
                                             <property name="lineHeight">8pt</property>
                                             <property name="resultSetColumn">Column Binding_2</property>
@@ -11264,6 +11390,7 @@ else &#13;
                                     </cell>
                                     <cell id="7012">
                                         <data id="7013">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="textAlign">right</property>
                                             <property name="resultSetColumn">Column Binding_3</property>
                                         </data>
@@ -11274,6 +11401,7 @@ else &#13;
                                         <property name="borderRightStyle">none</property>
                                         <property name="borderTopStyle">none</property>
                                         <data id="7015">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
                                             <property name="marginRight">13pt</property>
                                             <property name="textAlign">right</property>
                                             <property name="lineHeight">8pt</property>
@@ -11290,8 +11418,8 @@ else &#13;
                                     <cell id="7017">
                                         <property name="paddingLeft">5pt</property>
                                         <label id="7018">
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
-                                            <property name="fontWeight">bold</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
+                                            <property name="fontWeight">normal</property>
                                             <property name="marginLeft">1pt</property>
                                             <property name="marginBottom">10pt</property>
                                             <property name="paddingLeft">1.4pt</property>
@@ -11314,9 +11442,9 @@ else &#13;
                                             <property name="backgroundPositionX">0%</property>
                                             <property name="backgroundPositionY">0%</property>
                                             <property name="backgroundRepeat">repeat</property>
-                                            <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontSize">6.4pt</property>
-                                            <property name="fontWeight">bold</property>
+                                            <property name="fontWeight">normal</property>
                                             <property name="fontStyle">normal</property>
                                             <property name="fontVariant">normal</property>
                                             <property name="color">black</property>
@@ -11398,7 +11526,7 @@ else &#13;
                             <property name="backgroundColor">#DADADA</property>
                             <property name="paddingBottom">1pt</property>
                             <data id="7076">
-                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                <property name="fontFamily">"Museo Sans 700"</property>
                                 <property name="fontSize">7pt</property>
                                 <property name="marginTop">1.26pt</property>
                                 <property name="marginLeft">6pt</property>
@@ -11517,7 +11645,7 @@ else &#13;
                         <row id="7055">
                             <cell id="7056">
                                 <label id="7057">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">7pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="marginTop">10pt</property>
@@ -11528,7 +11656,7 @@ else &#13;
                             </cell>
                             <cell id="7058">
                                 <data id="7059">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">7pt</property>
                                     <property name="marginTop">10pt</property>
                                     <property name="marginRight">13pt</property>
@@ -11544,6 +11672,7 @@ else &#13;
                             <property name="lineHeight">10pt</property>
                             <cell id="7061">
                                 <data id="7062">
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="marginLeft">5.5pt</property>
                                     <property name="textAlign">left</property>
                                     <property name="lineHeight">8pt</property>
@@ -11556,6 +11685,7 @@ else &#13;
                                 <property name="borderRightStyle">none</property>
                                 <property name="borderTopStyle">none</property>
                                 <data id="7064">
+                                    <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="marginRight">13pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <property name="textAlign">right</property>
@@ -11572,9 +11702,9 @@ else &#13;
                             <property name="borderTopWidth">thin</property>
                             <cell id="7066">
                                 <label id="7067">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">7pt</property>
-                                    <property name="fontWeight">bold</property>
+                                    <property name="fontWeight">normal</property>
                                     <property name="marginLeft">5.5pt</property>
                                     <property name="marginBottom">10pt</property>
                                     <property name="paddingTop">1pt</property>
@@ -11587,7 +11717,7 @@ else &#13;
                                 <property name="borderRightStyle">none</property>
                                 <property name="borderTopStyle">none</property>
                                 <data id="7069">
-                                    <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                    <property name="fontFamily">"Museo Sans 700"</property>
                                     <property name="fontSize">7pt</property>
                                     <property name="marginBottom">10pt</property>
                                     <property name="marginRight">13pt</property>
@@ -11664,16 +11794,16 @@ true;&#13;
                     <row id="7321">
                         <cell id="7322">
                             <label id="7323">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                <property name="fontFamily">"Museo Sans 300"</property>
                                 <property name="fontSize">7.3pt</property>
                                 <property name="paddingTop">5pt</property>
-                                <text-property name="text">Trondheim kraft leverer 100 % fornybar energi. Trondheim kraft følger Norsk bransjenorm for opprinnelsesgaranterte kraftavtaler fra fornybar energi. Se våre </text-property>
+                                <text-property name="text">TrøndelagKraft leverer 100 % fornybar energi. TrøndelagKraft følger Norsk bransjenorm for opprinnelsesgaranterte kraftavtaler fra fornybar energi. Se </text-property>
                             </label>
                             <label id="7324">
-                                <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                <property name="fontFamily">"Museo Sans 300"</property>
                                 <property name="fontSize">7.3pt</property>
                                 <property name="paddingTop">3pt</property>
-                                <text-property name="text">nettsider for mer informasjon.&#13;
+                                <text-property name="text">våre nettsider for mer informasjon.&#13;
 </text-property>
                             </label>
                         </cell>
