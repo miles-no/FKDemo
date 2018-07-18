@@ -90,17 +90,20 @@ public class MapToSameMeterPreprocessor extends BasePreprocessor {
     //add transaction summary and belop and vat sum
     private void addTransactionAmounts(Attachment attachmentFromMap,Attachment attachment){
         //sum with vat
-        attachmentFromMap.setSumInklMVA(attachmentFromMap.getSumInklMVA()+ attachment.getSumInklMVA());
+
+        attachmentFromMap.setSumInklMVA((attachmentFromMap.getSumInklMVA()!=null?attachmentFromMap.getSumInklMVA():0)+
+                (attachment.getSumInklMVA()!=null?attachment.getSumInklMVA():0));
         //sum without vat
-        attachmentFromMap.setSumOfTransactions(attachmentFromMap.getSumOfTransactions() + attachment.getSumOfTransactions());
+        attachmentFromMap.setSumOfTransactions((attachmentFromMap.getSumOfTransactions()!=null ?attachmentFromMap.getSumOfTransactions():0)
+                + (attachment.getSumOfTransactions()!=null ?attachment.getSumOfTransactions():0) );
 
         //sum total without vat for strom
         //IM-129 - added null check as not sure this field is used in template or not.No reference found in new template of organization.
        // In future it should be removed from template and code as well.
-                if(attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101()!=null) {
-                attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().setNetPrintet(
-                attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getNetPrintet()
-                        + attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getNetPrintet());
+        if(attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101()!=null) {
+               attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().setNetPrintet(
+               attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getNetPrintet()
+               + attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getNetPrintet());
         }
         List<TransactionSummary> newTransactionSummaryToAdd = new ArrayList<>();
         for(TransactionSummary transactionSummaryFromMap : attachmentFromMap.getTransactionSummary()) {
