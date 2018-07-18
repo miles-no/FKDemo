@@ -219,8 +219,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 if (null != nettleieList && nettleieList.size() >= 1) {
                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(nettleieList.get(0));
                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleieList(null);
-                    attachment.setDisplayStromData(true);
-
+                    if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101()!=null) {
+                        attachment.setDisplayStromData(true);
+                    }
                     attachmentList.add(attachment);
                     for (int i = 1; i < nettleieList.size(); i++) {
                         Attachment stromAttachment = deepClone(attachment);
