@@ -95,10 +95,13 @@ public class MapToSameMeterPreprocessor extends BasePreprocessor {
         attachmentFromMap.setSumOfTransactions(attachmentFromMap.getSumOfTransactions() + attachment.getSumOfTransactions());
 
         //sum total without vat for strom
-        attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().setNetPrintet(
+        //IM-129 - added null check as not sure this field is used in template or not.No reference found in new template of organization.
+       // In future it should be removed from template and code as well.
+                if(attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101()!=null) {
+                attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().setNetPrintet(
                 attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getNetPrintet()
                         + attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getNetPrintet());
-
+        }
         List<TransactionSummary> newTransactionSummaryToAdd = new ArrayList<>();
         for(TransactionSummary transactionSummaryFromMap : attachmentFromMap.getTransactionSummary()) {
             for(TransactionSummary transactionSummary : attachment.getTransactionSummary()) {
