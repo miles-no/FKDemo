@@ -68,7 +68,7 @@ public class GenericPreprocessor extends BasePreprocessor {
                 if(!data.contains("VEDLEGG_EHF")) {
                     data = data.replaceAll("&", "&amp;");
                 }
-                data = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n" + data;
+               // data = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n" + data;
                 //System.out.println("attachment "+ data);
                 //logger.debug("attachment is "+data.getBytes(StandardCharsets.ISO_8859_1));
                 StreamSource source = new StreamSource(new ByteArrayInputStream(data.getBytes(StandardCharsets.ISO_8859_1)));
@@ -90,7 +90,7 @@ public class GenericPreprocessor extends BasePreprocessor {
                 byte[] decoded = null;
                 if(null != data) {
                     decoded = Base64.decodeBase64(data);
-                    StreamSource source = new StreamSource(new InputStreamReader(new ByteArrayInputStream(decoded), StandardCharsets.ISO_8859_1));
+                    StreamSource source = new StreamSource(new InputStreamReader(new ByteArrayInputStream(decoded)));
                     try {
 
                         VEDLEGGEHF ehf = new VEDLEGGEHF();
