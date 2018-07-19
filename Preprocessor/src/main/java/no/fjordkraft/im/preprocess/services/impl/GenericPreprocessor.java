@@ -38,6 +38,9 @@ public class GenericPreprocessor extends BasePreprocessor {
     @Qualifier("unmarshaller")
     private Unmarshaller unMarshaller;
 
+    @Autowired
+    ConfigService configService;
+
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
 
@@ -61,6 +64,7 @@ public class GenericPreprocessor extends BasePreprocessor {
 
 
     public Statement unmarshallAttachments(Statement statement) throws IOException {
+        String fileEncoding = configService.getString(IMConstants.FILE_ENCODING);
         if(null != statement.getAttachments() && null != statement.getAttachments().getAttachmentList()) {
             for (String data : statement.getAttachments().getAttachmentList()) {
                 data = data.replaceAll("&lt;", "<");
@@ -68,10 +72,10 @@ public class GenericPreprocessor extends BasePreprocessor {
                 if(!data.contains("VEDLEGG_EHF")) {
                     data = data.replaceAll("&", "&amp;");
                 }
-               data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + data;
+               data = "<?xml version=\"1.0\" encoding=\""+fileEncoding+"\" ?>\n" + data;
                 //System.out.println("attachment "+ data);
                 //logger.debug("attachment is "+data.getBytes(StandardCharsets.ISO_8859_1));
-                StreamSource source = new StreamSource(new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8)));
+                StreamSource source = new StreamSource(new ByteArrayInputStream(data.getBytes(fileEncoding)));
                 FAKTURA faktura = (FAKTURA) unMarshaller.unmarshal(source);
                 Attachment attachment = new Attachment();
                 attachment.setFAKTURA(faktura);
@@ -86,11 +90,12 @@ public class GenericPreprocessor extends BasePreprocessor {
     public void decodeAndUnmarshalEHFAttachment(Statement statement) throws IOException {
         for(Attachment attachment : statement.getAttachments().getAttachment()){
             if("PDFEHF".equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
+               String ehfEncoding =  configService.getString(IMConstants.EHF_FILE_ENCODING);
                 String data = attachment.getFAKTURA().getVedleggehf();
                 byte[] decoded = null;
                 if(null != data) {
                     decoded = Base64.decodeBase64(data);
-                    StreamSource source = new StreamSource(new InputStreamReader(new ByteArrayInputStream(decoded),StandardCharsets.UTF_8));
+                    StreamSource source = new StreamSource(new InputStreamReader(new ByteArrayInputStream(decoded),ehfEncoding));
                     try {
 
                         VEDLEGGEHF ehf = new VEDLEGGEHF();
@@ -116,18 +121,19 @@ public class GenericPreprocessor extends BasePreprocessor {
                         }
                 }
             } else if("PDFE2B".equals(attachment.getFAKTURA().getVEDLEGGFORMAT())){
+                String e2bEncoding = configService.getString(IMConstants.E2B_FILE_ENCODING);
                 String data = attachment.getFAKTURA().getVedlegge2B();
                 if(null != data) {
                     if(data.endsWith("&gt;")) {
                         data = data.replaceAll("&gt;","");
                     }
                     byte[] decoded = Base64.decodeBase64(data);
-                   decoded = new String(decoded,StandardCharsets.UTF_8).replaceAll("&", "&amp;").
+                   decoded = new String(decoded,e2bEncoding).replaceAll("&", "&amp;").
                            replaceAll("xsi:schemaLocation=\"http://www.e2b.no/XMLSchema e2b_Invoice_v3p3.xsd\"","").
-                           replaceAll("xmlns=\"http://www.e2b.no/XMLSchema\"","").replaceAll("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"","").getBytes(StandardCharsets.UTF_8);
+                           replaceAll("xmlns=\"http://www.e2b.no/XMLSchema\"","").replaceAll("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"","").getBytes(e2bEncoding);
                     //logger.debug("New Decoded file " + new String(decoded));
 
-                    StreamSource source = new StreamSource(new InputStreamReader(new ByteArrayInputStream(decoded),StandardCharsets.UTF_8));
+                    StreamSource source = new StreamSource(new InputStreamReader(new ByteArrayInputStream(decoded),e2bEncoding));
                     Invoice invoice = (Invoice)unMarshaller.unmarshal(source);
                     VEDLEGGE2B e2b = new VEDLEGGE2B();
                     e2b.setInvoice(invoice);

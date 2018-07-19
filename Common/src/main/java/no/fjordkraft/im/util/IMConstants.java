@@ -94,5 +94,7 @@ public interface IMConstants {
     static final String FT_TRANSACTION_PREFIX="FT;";
     static final String LEGAL_PART_CLASS_ORGANIZATION="Organization";
     static final String LEGAL_PART_CLASS_INDIVIDUAL="Individual";
-
+    static final String FILE_ENCODING="file.encoding";
+    static final String EHF_FILE_ENCODING="EHF.file.encoding";
+    static final String E2B_FILE_ENCODING="E2B.file.encoding";
 }
