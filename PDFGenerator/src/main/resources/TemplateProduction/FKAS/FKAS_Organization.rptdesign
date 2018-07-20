@@ -5267,7 +5267,7 @@ else &#13;
                             <structure>
                                 <property name="name">CurrentClaim</property>
                                 <text-property name="displayName">CurrentClaim</text-property>
-                                <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
+                                <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', ' ', ',')</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
@@ -6018,7 +6018,7 @@ else &#13;
                     <property name="paddingRight">0pt</property>
                     <image id="1498">
                         <property name="marginTop">30pt</property>
-                        <property name="height">35mm</property>
+                        <property name="height">30mm</property>
                         <property name="width">184mm</property>
                         <expression name="altText" type="javascript">""</expression>
                         <list-property name="visibility">
@@ -6086,7 +6086,7 @@ else &#13;
                         <property name="fontSize">9pt</property>
                         <property name="fontStyle">normal</property>
                         <property name="color">#FF5500</property>
-                        <property name="marginTop">30pt</property>
+                        <property name="marginTop">22pt</property>
                         <property name="marginBottom">0pt</property>
                         <property name="paddingTop">5pt</property>
                         <property name="paddingBottom">4pt</property>
@@ -6177,7 +6177,16 @@ else &#13;
                             <structure>
                                 <property name="name">objectID</property>
                                 <expression name="expression" type="javascript">var round = Math.round(dataSetRow["TotConsCurrCounter"])&#13;
-"Målepunkt ID: " + dataSetRow["ObjectId"].slice(-8) + "  - Målernummer: " + dataSetRow["MeterId"] + "  - Forbruk: " + round + "  - Referanse: " + dataSetRow["FAKTURA_MERKE_SO"];</expression>
+var a = "Målepunkt ID: " + dataSetRow["ObjectId"].slice(-8) + "  - Målernummer: " + dataSetRow["MeterId"] + "  - Forbruk: " + round + "  - Referanse: " + dataSetRow["FAKTURA_MERKE_SO"];&#13;
+vars["OneMeterLength"] = a.length;&#13;
+if(vars["OneMeterLength"] > 133)&#13;
+{&#13;
+"Målepunkt ID: " + dataSetRow["ObjectId"].slice(-8) + "  - Målernummer: " + dataSetRow["MeterId"] + "  - Forbruk: " + round;&#13;
+}&#13;
+else&#13;
+{&#13;
+"Målepunkt ID: " + dataSetRow["ObjectId"].slice(-8) + "  - Målernummer: " + dataSetRow["MeterId"] + "  - Forbruk: " + round + "  - Referanse: " + dataSetRow["FAKTURA_MERKE_SO"];&#13;
+}</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
@@ -6205,6 +6214,22 @@ else &#13;
                                 <text-property name="displayName">FAKTURA_MERKE_SO</text-property>
                                 <expression name="expression" type="javascript">dataSetRow["FAKTURA_MERKE_SO"]</expression>
                                 <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">RefrenceNumber</property>
+                                <expression name="expression" type="javascript">var round = Math.round(dataSetRow["TotConsCurrCounter"])&#13;
+var a = "Målepunkt ID: " + dataSetRow["ObjectId"].slice(-8) + "  - Målernummer: " + dataSetRow["MeterId"] + "  - Forbruk: " + round + "  - Referanse: " + dataSetRow["FAKTURA_MERKE_SO"];&#13;
+vars["OneMeterLength"] = a.length;&#13;
+if(vars["OneMeterLength"] > 133)&#13;
+{&#13;
+"Referanse: " + dataSetRow["FAKTURA_MERKE_SO"];&#13;
+}&#13;
+else&#13;
+{&#13;
+""&#13;
+}</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
                             </structure>
                         </list-property>
                         <column id="5245">
@@ -6279,6 +6304,44 @@ true;&#13;
                                 </data>
                             </cell>
                         </row>
+                        <row id="7090">
+                            <property name="borderBottomColor">#DADADA</property>
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">thin</property>
+                            <property name="height">0.2in</property>
+                            <list-property name="visibility">
+                                <structure>
+                                    <property name="format">all</property>
+                                    <expression name="valueExpr" type="javascript">if(row["IsOneMeter"] == "true")&#13;
+{&#13;
+	if(vars["OneMeterLength"] > 133)&#13;
+	{&#13;
+	false;&#13;
+	}&#13;
+	else&#13;
+	{true;}&#13;
+}&#13;
+else &#13;
+{&#13;
+true;&#13;
+}</expression>
+                                </structure>
+                            </list-property>
+                            <cell id="7091">
+                                <property name="colSpan">4</property>
+                                <property name="rowSpan">1</property>
+                                <property name="paddingBottom">0pt</property>
+                                <data id="7095">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontSize">8pt</property>
+                                    <property name="marginTop">2pt</property>
+                                    <property name="marginLeft">2.5pt</property>
+                                    <property name="paddingBottom">0pt</property>
+                                    <property name="paddingRight">0pt</property>
+                                    <property name="resultSetColumn">RefrenceNumber</property>
+                                </data>
+                            </cell>
+                        </row>
                     </grid>
                     <table id="5264">
                         <property name="marginTop">3pt</property>
@@ -6342,7 +6405,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             </structure>
                             <structure>
                                 <property name="name">Amount1</property>
-                                <expression name="expression" type="javascript">formatMoney(dataSetRow["Amount"], 2, '', '.', ',')</expression>
+                                <expression name="expression" type="javascript">formatMoney(dataSetRow["Amount"], 2, '', ' ', ',')</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
@@ -6460,7 +6523,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             </structure>
                             <structure>
                                 <property name="name">OthersAmount</property>
-                                <expression name="expression" type="javascript">formatMoney(dataSetRow["Amount"], 2, '', '.', ',')</expression>
+                                <expression name="expression" type="javascript">formatMoney(dataSetRow["Amount"], 2, '', ' ', ',')</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
@@ -6551,7 +6614,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             </structure>
                             <structure>
                                 <property name="name">SumOfTrans</property>
-                                <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfTransactions"], 2, '', '.', ',');</expression>
+                                <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfTransactions"], 2, '', ' ', ',');</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
@@ -6618,19 +6681,19 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                             <structure>
                                 <property name="name">CurrentClaim</property>
                                 <text-property name="displayName">CurrentClaim</text-property>
-                                <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',');</expression>
+                                <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', ' ', ',');</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
                             <structure>
                                 <property name="name">TransactionSummary</property>
-                                <expression name="expression" type="javascript">'Merverdiavgift '+Math.abs(dataSetRow["MVAValue"])+' % av '+formatMoney(dataSetRow["SumOfBelop"], 2, '', '.', ',')</expression>
+                                <expression name="expression" type="javascript">'Merverdiavgift '+Math.abs(dataSetRow["MVAValue"])+' % av '+formatMoney(dataSetRow["SumOfBelop"], 2, '', ' ', ',')</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
                             <structure>
                                 <property name="name">SumOfSameVat</property>
-                                <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfNettStrom"], 2, '', '.', ',');</expression>
+                                <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfNettStrom"], 2, '', ' ', ',');</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
@@ -7329,11 +7392,11 @@ truncateDecimal(dataSetRow["Basis"]) + " " + dataSetRow["ProdDenomination"] &#13
 }&#13;
 else if(BirtStr.toLower(dataSetRow["PriceDenomination"]) == "øre/kwh")&#13;
 {&#13;
-	formatMoney((parseFloat(dataSetRow["PriceRate"]) * 100), 2, '', '.', ',') + " " + dataSetRow["PriceDenomination"] ;&#13;
+	formatMoney((parseFloat(dataSetRow["PriceRate"]) * 100), 2, '', ' ', ',') + " " + dataSetRow["PriceDenomination"] ;&#13;
 }&#13;
 else &#13;
 {&#13;
-	formatMoney(dataSetRow["PriceRate"], 2, '', '.', ',') + " " + dataSetRow["PriceDenomination"];&#13;
+	formatMoney(dataSetRow["PriceRate"], 2, '', ' ', ',') + " " + dataSetRow["PriceDenomination"];&#13;
 }</expression>
                                     <property name="dataType">string</property>
                                     <property name="allowExport">true</property>
@@ -7341,7 +7404,7 @@ else &#13;
                                 <structure>
                                     <property name="name">TotalGross</property>
                                     <text-property name="displayName">TotalGross</text-property>
-                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["Net"], 2, '', '.', ',')</expression>
+                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["Net"], 2, '', ' ', ',')</expression>
                                     <property name="dataType">string</property>
                                     <property name="allowExport">true</property>
                                 </structure>
@@ -7428,7 +7491,7 @@ Math.abs(dataSetRow["VatRate"])+ " %"&#13;
                                 <structure>
                                     <property name="name">Column Binding</property>
                                     <text-property name="displayName">GrossTotal</text-property>
-                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["NetTotal"], 2, '', '.', ',')</expression>
+                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["NetTotal"], 2, '', ' ', ',')</expression>
                                     <property name="dataType">string</property>
                                     <property name="allowExport">true</property>
                                 </structure>
@@ -8070,21 +8133,21 @@ truncateDecimal(dataSetRow["QuantityInvoiced"]) + " " + dataSetRow["UnitOfMeasur
                                 <structure>
                                     <property name="name">Column Binding_2</property>
                                     <text-property name="displayName">UnitPrice</text-property>
-                                    <expression name="expression" type="javascript">if(dataSetRow["AttachmentFormat"] == "PDFEHF" &amp;&amp; dataSetRow["UnitOfMeasure"] =='MON'){&#13;
-		formatMoney(dataSetRow["UnitPrice"], 2, '', '.', ',') + " " + 'kr/mnd';&#13;
+                                    <expression name="expression" type="javascript">if((dataSetRow["AttachmentFormat"] == "PDFEHF" || dataSetRow["AttachmentFormat"] == 'EHF') &amp;&amp; dataSetRow["UnitOfMeasure"] =='MON'){&#13;
+		formatMoney(dataSetRow["UnitPrice"], 2, '', ' ', ',') + " " + 'kr/mnd';&#13;
 }&#13;
 else if(null != dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"] &amp;&amp; (dataSetRow["UnitOfMeasure"].toUpperCase() == 'KWH' || dataSetRow["UnitOfMeasure"].toUpperCase() == 'NAR' )) {&#13;
 	if(dataSetRow["UnitPrice"] !=null &amp;&amp;  parseFloat(dataSetRow["UnitPrice"]) &lt;1) {		&#13;
-		formatMoney(parseFloat(dataSetRow["UnitPrice"])*100, 2, '', '.', ',') + " " + 'øre/kWh';&#13;
+		formatMoney(parseFloat(dataSetRow["UnitPrice"])*100, 2, '', ' ', ',') + " " + 'øre/kWh';&#13;
 	}else {&#13;
-		formatMoney(dataSetRow["UnitPrice"], 2, '', '.', ',') + " " + 'øre/kWh';&#13;
+		formatMoney(dataSetRow["UnitPrice"], 2, '', ' ', ',') + " " + 'øre/kWh';&#13;
 		}&#13;
 &#13;
 } else {&#13;
 	if(null != dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"].toUpperCase() == 'NOK') {&#13;
-		formatMoney(dataSetRow["UnitPrice"], 2, '', '.', ',') + " " + 'nok';&#13;
+		formatMoney(dataSetRow["UnitPrice"], 2, '', ' ', ',') + " " + 'nok';&#13;
 	} else {&#13;
-		formatMoney(dataSetRow["UnitPrice"], 2, '', '.', ',') + " " + dataSetRow["PriceDenomination"];&#13;
+		formatMoney(dataSetRow["UnitPrice"], 2, '', ' ', ',') + " " + dataSetRow["PriceDenomination"];&#13;
 	}&#13;
 }</expression>
                                     <property name="dataType">string</property>
@@ -8107,14 +8170,14 @@ Math.abs(dataSetRow["VatRate"])+ " %"&#13;
                                 <structure>
                                     <property name="name">34</property>
                                     <text-property name="displayName">LineExtensionAmount</text-property>
-                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["LineExtensionAmount"], 2, '', '.', ',')</expression>
+                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["LineExtensionAmount"], 2, '', ' ', ',')</expression>
                                     <property name="dataType">string</property>
                                     <property name="allowExport">true</property>
                                 </structure>
                                 <structure>
                                     <property name="name">Column Binding_4</property>
                                     <text-property name="displayName">SumOfNettAmount</text-property>
-                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfNettAmount"], 2, '', '.', ',')</expression>
+                                    <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfNettAmount"], 2, '', ' ', ',')</expression>
                                     <property name="dataType">string</property>
                                     <property name="allowExport">true</property>
                                 </structure>
@@ -8211,7 +8274,7 @@ Math.abs(dataSetRow["VatRate"])+ " %"&#13;
                                                     <property name="name">Column Binding</property>
                                                     <expression name="expression" type="javascript">if(row._outer["Name"] == null || row._outer["Name"] == " ")&#13;
 {&#13;
-" "&#13;
+"Nettleie fra netteier"&#13;
 }&#13;
 else &#13;
 {&#13;
@@ -8602,28 +8665,28 @@ else &#13;
                         <structure>
                             <property name="name">SumInclusiveMVA</property>
                             <text-property name="displayName">SumInclusiveMVA</text-property>
-                            <expression name="expression" type="javascript">formatMoney(dataSetRow["SumInclusiveMVA"], 2, '', '.', ',')</expression>
+                            <expression name="expression" type="javascript">formatMoney(dataSetRow["SumInclusiveMVA"], 2, '', ' ', ',')</expression>
                             <property name="dataType">string</property>
                             <property name="allowExport">true</property>
                         </structure>
                         <structure>
                             <property name="name">Column Binding</property>
                             <text-property name="displayName">SumOfNettStrom</text-property>
-                            <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfTransaction"], 2, '', '.', ',')</expression>
+                            <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfTransaction"], 2, '', ' ', ',')</expression>
                             <property name="dataType">string</property>
                             <property name="allowExport">true</property>
                         </structure>
                         <structure>
                             <property name="name">Column Binding_1</property>
                             <text-property name="displayName">SumOfNettStrom1</text-property>
-                            <expression name="expression" type="javascript">'Merverdiavgift ' + formatMoney(dataSetRow["MVAValue"], 0, '', '.', ',') + " % av " + formatMoney(dataSetRow["SumOfNettStrom"], 2, '', '.', ',')</expression>
+                            <expression name="expression" type="javascript">'Merverdiavgift ' + formatMoney(dataSetRow["MVAValue"], 0, '', ' ', ',') + " % av " + formatMoney(dataSetRow["SumOfNettStrom"], 2, '', ' ', ',')</expression>
                             <property name="dataType">string</property>
                             <property name="allowExport">true</property>
                         </structure>
                         <structure>
                             <property name="name">Column Binding_2</property>
                             <text-property name="displayName">SumOfBelop</text-property>
-                            <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfBelop"], 2, '', '.', ',')</expression>
+                            <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfBelop"], 2, '', ' ', ',')</expression>
                             <property name="dataType">string</property>
                             <property name="allowExport">true</property>
                         </structure>
@@ -8763,6 +8826,10 @@ else &#13;
             <property name="type">report</property>
         </variable-element>
         <variable-element name="AttachmentNumber">
+            <property name="type">report</property>
+        </variable-element>
+        <variable-element name="OneMeterLength">
+            <expression name="value" type="javascript">5</expression>
             <property name="type">report</property>
         </variable-element>
     </property>

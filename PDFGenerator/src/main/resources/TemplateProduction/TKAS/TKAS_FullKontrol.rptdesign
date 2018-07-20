@@ -5567,7 +5567,7 @@ else &#13;
                                 <property name="fontWeight">bold</property>
                                 <property name="paddingTop">5pt</property>
                                 <property name="paddingLeft">0pt</property>
-                                <text-property name="text">Trondheim Kraft AS</text-property>
+                                <text-property name="text">TrøndelagKraft AS</text-property>
                             </label>
                         </cell>
                         <cell id="209">
@@ -6302,7 +6302,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                     <property name="paddingLeft">2pt</property>
                                     <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
-                                    <text-property name="text">Full kontroll. Gjennomsnitt av forventet strøm- og nettleiekostnad beregnes for et år.</text-property>
+                                    <text-property name="text">Full Kontroll. Vi beregner hvor mye du totalt skal betale for strømregningene dine gjennom</text-property>
                                 </label>
                                 <label id="2608">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
@@ -6310,7 +6310,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                     <property name="paddingLeft">2pt</property>
                                     <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
-                                    <text-property name="text">Deretter fordeler vi kostnaden gjennom året, slik at du betaler et likt beløp hver måned</text-property>
+                                    <text-property name="text">et år. Deretter fordeler vi kostnaden gjennom året, slik at du betaler et likt beløp hver </text-property>
                                 </label>
                                 <label id="2609">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
@@ -6319,7 +6319,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                     <property name="paddingLeft">2pt</property>
                                     <property name="paddingBottom">2pt</property>
                                     <property name="paddingRight">0pt</property>
-                                    <text-property name="text">Dette kaller vi ”ditt månedsbeløp” . Ved store endringer i strømforbruket,  endrer vi </text-property>
+                                    <text-property name="text">måned. Dette kaller vi ”ditt månedsbeløp”. Ved store endringer i strømforbruket,  endrer vi </text-property>
                                 </label>
                                 <label id="2610">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
@@ -7039,9 +7039,10 @@ else &#13;
                                                 <property name="fontWeight">bold</property>
                                                 <property name="marginLeft">10mm</property>
                                                 <property name="paddingTop">5pt</property>
+                                                <property name="paddingLeft">1pt</property>
                                                 <property name="paddingBottom">0pt</property>
                                                 <property name="textAlign">left</property>
-                                                <text-property name="text">Trondheim Kraft AS</text-property>
+                                                <text-property name="text">TrøndelagKraft AS</text-property>
                                             </label>
                                         </cell>
                                         <cell id="2323">
@@ -7814,8 +7815,17 @@ dataSetRow["CareOfName"];&#13;
                                                                 <structure>
                                                                     <property name="name">Address</property>
                                                                     <text-property name="displayName">Address</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["Address"]</expression>
+                                                                    <expression name="expression" type="javascript">var a = dataSetRow["Address"].length;&#13;
+if(a > 40)&#13;
+{&#13;
+dataSetRow["Address"].slice(0,40);&#13;
+}&#13;
+else&#13;
+{&#13;
+dataSetRow["Address"];&#13;
+}</expression>
                                                                     <property name="dataType">string</property>
+                                                                    <property name="allowExport">true</property>
                                                                 </structure>
                                                             </list-property>
                                                             <property name="resultSetColumn">Address</property>
@@ -9952,14 +9962,19 @@ truncateDecimal(dataSetRow["QuantityInvoiced"]) + " " + dataSetRow["UnitOfMeasur
                                                 <structure>
                                                     <property name="name">Column Binding_2</property>
                                                     <text-property name="displayName">NetInfo:UnitPrice</text-property>
-                                                    <expression name="expression" type="javascript">if(null != dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"].toUpperCase() == 'KWH' ) {&#13;
+                                                    <expression name="expression" type="javascript">if(null != dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure"] &amp;&amp; (dataSetRow["UnitOfMeasure"].toUpperCase() == 'KWH' || dataSetRow["UnitOfMeasure"].toUpperCase() == 'NAR' )) {&#13;
 	if(dataSetRow["NettInfo::UnitPriceGross"] !=null &amp;&amp;  parseFloat(dataSetRow["NettInfo::UnitPriceGross"]) &lt;1) {		&#13;
 		formatMoney(parseFloat(dataSetRow["NettInfo::UnitPriceGross"])*100, 2, '', '.', ',') + " " + 'øre/kWh';&#13;
 	}else {&#13;
 		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'øre/kWh';&#13;
 		}&#13;
 &#13;
-} else {&#13;
+}&#13;
+else if(dataSetRow["UnitOfMeasure"] == 'MON' &amp;&amp; (dataSetRow["NettInfo::AttachmentFormat"] == 'PDFEHF' || dataSetRow["NettInfo::AttachmentFormat"] == 'EHF'))&#13;
+{&#13;
+formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'kr/mnd';&#13;
+}&#13;
+ else {&#13;
 	if(null != dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"].toUpperCase() == 'NOK') {&#13;
 		formatMoney(dataSetRow["NettInfo::UnitPriceGross"], 2, '', '.', ',') + " " + 'nok';&#13;
 	} else {&#13;
