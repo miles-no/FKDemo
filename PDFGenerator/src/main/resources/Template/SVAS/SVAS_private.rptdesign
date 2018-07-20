@@ -4704,7 +4704,7 @@
             </page-header>
             <page-footer>
                 <grid id="204">
-                    <property name="borderTopColor">#0041C4</property>
+                    <property name="borderTopColor">#004587</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">1px</property>
                     <property name="marginLeft">15mm</property>
@@ -5021,7 +5021,7 @@ else &#13;
                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                     <property name="fontSize">10.5pt</property>
                                     <property name="fontWeight">normal</property>
-                                    <property name="color">#0041C4</property>
+                                    <property name="color">#004587</property>
                                     <property name="textAlign">right</property>
                                     <property name="contentType">auto</property>
                                     <text-property name="content"><![CDATA[Telefon kundesenter: 97 91 22 22]]></text-property>
@@ -5029,7 +5029,7 @@ else &#13;
                                 <label id="717">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
                                     <property name="fontSize">10.5pt</property>
-                                    <property name="color">#0041C4</property>
+                                    <property name="color">#004587</property>
                                     <property name="paddingTop">3pt</property>
                                     <property name="textAlign">right</property>
                                     <text-property name="text">Mandag - fredag 09:00 - 15:00</text-property>
@@ -5037,7 +5037,7 @@ else &#13;
                                 <label id="718">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
                                     <property name="fontSize">10.5pt</property>
-                                    <property name="color">#0041C4</property>
+                                    <property name="color">#004587</property>
                                     <property name="paddingTop">3pt</property>
                                     <property name="textAlign">right</property>
                                     <text-property name="text">Se forbruk og fakturaer på ms.svorka.no</text-property>
@@ -5265,7 +5265,7 @@ else &#13;
                     <property name="paddingBottom">0pt</property>
                     <property name="paddingRight">5.7pt</property>
                     <label id="1769">
-                        <property name="backgroundColor">#0041C4</property>
+                        <property name="backgroundColor">#004587</property>
                         <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                         <property name="fontSize">9pt</property>
                         <property name="fontWeight">normal</property>
@@ -13700,7 +13700,7 @@ else&#13;
                                             <property name="fontSize">8pt</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="paddingTop">5pt</property>
-                                            <text-property name="text">(man-fre 08:00 -15:00)</text-property>
+                                            <text-property name="text">(man-fre 09:00 -15:00)</text-property>
                                         </label>
                                         <label id="817">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
@@ -13815,8 +13815,7 @@ måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <text-property name="text">Hvis det mot formodning skulle&#13;
 oppstå en konflikt som ikke kan løses&#13;
 direkte mellom deg og oss, kan du&#13;
-klage til Elklagenemnda. Elklagenemnda er opprettet av norske energibedrifter&#13;
-og Forbrukerrådet for å løse tvistesaker.&#13;
+klage til Elklagenemnda. Elklagenemnda er opprettet av norske energibedrifter og Forbrukerrådet for å løse tvistesaker.&#13;
 Se elklagenemnda.no</text-property>
                                         </label>
                                         <label id="848">
