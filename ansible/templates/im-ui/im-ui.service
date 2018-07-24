@@ -1,0 +1,10 @@
+[Unit]
+Description={{app}} application
+After=syslog.target
+
+[Service]
+User=miles2
+ExecStart=/app-invoicemanager/invoice-manager/{{app}}/current/{{app}}.jar SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

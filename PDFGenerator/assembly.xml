@@ -94,5 +94,12 @@
                 <include>**/*</include>
             </includes>
         </fileSet>
+        <fileSet>
+            <directory>../libs</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>newrelic.jar</include>
+            </includes>
+        </fileSet>
     </fileSets>
 </assembly>
