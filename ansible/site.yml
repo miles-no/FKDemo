@@ -88,20 +88,12 @@
       when: app == 'im-pdfgenerator'
 
     -
-      name: "{{app}}@{{inventory_hostname}} - Copying new binaries"
-      copy:
-        src="../{{appfolder}}/target/{{app}}.jar"
-        dest="{{app_basedir}}/{{app}}/current/"
-        mode=0700
-      when: app != 'im-pdfgenerator'
-
-    -
       name: "{{app}}@{{inventory_hostname}} - Copying zip binaries"
       copy:
         src="../{{appfolder}}/target/{{app}}.zip"
         dest="{{app_basedir}}/{{app}}/current/"
         mode=0700
-      when: app == 'im-pdfgenerator'
+
 
     -
       name: "{{app}}@{{inventory_hostname}} - unzip files"
@@ -110,18 +102,18 @@
           dest: "{{app_basedir}}/{{app}}/current/"
           remote_src: yes
           mode: 0700
-      when: app == 'im-pdfgenerator'
+
 
     -
       name: "{{app}}@{{inventory_hostname}} - Copying unzip files to {{app_basedir}}/{{app}}/current"
       command: "cp -R {{app_basedir}}/{{app}}/current/{{app}}/. {{app_basedir}}/{{app}}/current/"
-      when: app == 'im-pdfgenerator'
+
 
     - name: "{{app}}@{{inventory_hostname}} Delete directory {{app_basedir}}/{{app}}/current/{{app}}"
       file:
         path={{app_basedir}}/{{app}}/current/{{app}}
         state=absent
-      when: app == 'im-pdfgenerator'
+
 
     -
       name: "{{app}}@{{inventory_hostname}} - Copying application.yml"
@@ -156,7 +148,7 @@
         src=templates/{{app}}/newrelic.yml
         dest={{app_basedir}}/{{app}}/current/
         owner=miles2
-      when: app == "im-ui"
+
 
 
     -

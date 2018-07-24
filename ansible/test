@@ -1,5 +1,5 @@
 [test-preprocessor]
-fk-t-lx14.bkk.no ansible_user=miles2
+fk-t-lx12.bkk.no ansible_user=miles2
 
 [test-pdfgenerator]
 fk-t-lx12.bkk.no ansible_user=miles2

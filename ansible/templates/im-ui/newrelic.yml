@@ -2,7 +2,7 @@
 # Java applications with deep visibility and low overhead.  For more details and additional
 # configuration options visit https://docs.newrelic.com/docs/java/java-agent-configuration.
 #
-# This configuration file is custom generated for Miles AS_1
+# <%= generated_for_user %>
 #
 # This section is for settings common to all environments.
 # Do not add anything above this next line.
@@ -43,8 +43,6 @@ common: &default_settings
   # Default is false.
   enable_auto_app_naming: false
 
-  enable_custom_tracing: true
-
   # Set to true to enable component-based transaction naming.
   # Set to false to use the URI of a web request as the name of the transaction.
   # Default is true.
@@ -83,15 +81,6 @@ common: &default_settings
   # The log file directory.
   # Default is the logs directory in the newrelic.jar parent directory.
   #log_file_path:
-
-  # The agent communicates with New Relic via https by
-  # default.  If you want to communicate with newrelic via http,
-  # then turn off SSL by setting this value to false.
-  # This work is done asynchronously to the threads that process your
-  # application code, so response times will not be directly affected
-  # by this change.
-  # Default is true.
-  ssl: true
 
   # Proxy settings for connecting to the New Relic server:
   # If a proxy is used, the host setting is required.  Other settings
@@ -209,7 +198,7 @@ common: &default_settings
     enabled: true
 
     # Events are collected up to the configured amount. Afterwards, events are sampled to
-    # maintain an even distribution across the harvest cycle. Largest value accepted is 10000.
+    # maintain an even distribution across the harvest cycle.
     # Default is 2000.  Setting to 0 will disable.
     max_samples_stored: 2000
 
@@ -250,6 +239,28 @@ common: &default_settings
     com.newrelic.instrumentation.servlet-user:
       enabled: false
 
+    com.newrelic.instrumentation.spring-aop-2:
+      enabled: false
+
+    # Classes loaded by classloaders in this list will not be instrumented.
+    # This is a useful optimization for runtimes which use classloaders to
+    # load dynamic classes which the agent would not instrument.
+    classloader_excludes:
+      groovy.lang.GroovyClassLoader$InnerLoader,
+      org.codehaus.groovy.runtime.callsite.CallSiteClassLoader,
+      com.collaxa.cube.engine.deployment.BPELClassLoader,
+      org.springframework.data.convert.ClassGeneratingEntityInstantiator$ObjectInstantiatorClassGenerator,
+      org.mvel2.optimizers.impl.asm.ASMAccessorOptimizer$ContextClassLoader,
+      gw.internal.gosu.compiler.SingleServingGosuClassLoader,
+
+  # User-configurable custom labels for this agent.  Labels are name-value pairs.
+  # There is a maximum of 64 labels per agent.  Names and values are limited to 255 characters.
+  # Names and values may not contain colons (:) or semicolons (;).
+  labels:
+
+    # An example label
+    #label_name: label_value
+
 
 # Application Environments
 # ------------------------------------------
@@ -265,15 +276,16 @@ common: &default_settings
 
 development:
   <<: *default_settings
-  app_name: {{app}} (Development)
+  app_name:  {{app}} (Development)
 
 test:
   <<: *default_settings
-  app_name: {{app}} (Test)
+  app_name:  {{app}} (Test)
 
 production:
   <<: *default_settings
 
-utv:
+staging:
   <<: *default_settings
-  app_name: {{app}} (Utv)
+  app_name:  {{app}} (Staging)
+
