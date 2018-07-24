@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">C:\Users\miles12\Desktop\Javascript_s06\processed_statement.xml</property>
+            <property name="FILELIST">C:\Users\hp\Desktop\QA Attachment CONFIG\700304390367\processed_statement.xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -1316,6 +1316,11 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">TransactionName</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">Field2</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">Field2</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -1423,6 +1428,11 @@
                     <structure>
                         <property name="position">21</property>
                         <property name="name">TransactionName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">22</property>
+                        <property name="name">Field2</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -1576,8 +1586,15 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">22</property>
+                    <property name="name">Field2</property>
+                    <property name="nativeName">Field2</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{Address1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/CustomerInfo-103/Address1},{Description_1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Description},{MeterId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/MeterId},{ObjectId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/ObjectId},{AnnualConsumption;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/YearlyConsumption-123/AnnualConsumption},{InvoiceNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/MainInvoiceInfo-101/InvoiceNo},{FREE_TEXT;STRING;/FAKTURA/FREE_TEXT},{Name;STRING;/FAKTURA/GRID/Name},{Email;STRING;/FAKTURA/GRID/Email},{Telephone;STRING;/FAKTURA/GRID/Telephone},{StatementDate;STRING;../../StatementDate},{ReferenceNumber;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/ReferenceNumber},{InvoiceType;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/InvoiceType},{AttachmentNumber;STRING;/AttachmentNumber},{DisplayStromData;STRING;/DisplayStromData},{isOnlyGrid;STRING;/isOnlyGrid},{StreetNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/StreetNo},{Description;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/Description},{LeveringsAdresse;STRING;/LeveringsAdresse},{FAKTURA_MERKE_SO;STRING;/FAKTURA/FAKTURA_MERKE_SO},{TransactionName;STRING;/TransactionName}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{Address1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/CustomerInfo-103/Address1},{Description_1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Description},{MeterId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/MeterId},{ObjectId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/ObjectId},{AnnualConsumption;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/YearlyConsumption-123/AnnualConsumption},{InvoiceNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/MainInvoiceInfo-101/InvoiceNo},{FREE_TEXT;STRING;/FAKTURA/FREE_TEXT},{Name;STRING;/FAKTURA/GRID/Name},{Email;STRING;/FAKTURA/GRID/Email},{Telephone;STRING;/FAKTURA/GRID/Telephone},{StatementDate;STRING;../../StatementDate},{ReferenceNumber;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/ReferenceNumber},{InvoiceType;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/InvoiceType},{AttachmentNumber;STRING;/AttachmentNumber},{DisplayStromData;STRING;/DisplayStromData},{isOnlyGrid;STRING;/isOnlyGrid},{StreetNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/StreetNo},{Description;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/Description},{LeveringsAdresse;STRING;/LeveringsAdresse},{FAKTURA_MERKE_SO;STRING;/FAKTURA/FAKTURA_MERKE_SO},{TransactionName;STRING;/TransactionName},{Field2;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Field2}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -9925,6 +9942,7 @@ dataSetRow["AnnualConsumption"] + " kWh"&#13;
                     <text-property name="displayName">StreetNo</text-property>
                     <expression name="expression" type="javascript">vars["IsFornybarEnergi"] = 'false';&#13;
 vars["AttachmentNumber"] = dataSetRow["AttachmentNumber"];&#13;
+vars["VarField2"] = dataSetRow["Field2"];&#13;
 dataSetRow["StreetNo"]</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
@@ -11853,7 +11871,7 @@ else &#13;
                     <list-property name="visibility">
                         <structure>
                             <property name="format">all</property>
-                            <expression name="valueExpr" type="javascript">if((vars["IsFornybarEnergi"] == "true" || (parseInt(row["Field2"]) != 0  &amp;&amp; parseInt(row["Field2"]) != 9)) &amp;&amp; row["AttachmentNumber"] == row._outer["AttachmentNumber"])&#13;
+                            <expression name="valueExpr" type="javascript">if((vars["IsFornybarEnergi"] == "true" || (parseInt(vars["VarField2"]) != 0  &amp;&amp; parseInt(vars["VarField2"]) != 9)))&#13;
 {	&#13;
 	false;&#13;
 }&#13;
@@ -11954,6 +11972,10 @@ true;&#13;
         </variable-element>
         <variable-element name="IsFornybarEnergi">
             <expression name="value" type="javascript">"false"</expression>
+            <property name="type">report</property>
+        </variable-element>
+        <variable-element name="VarField2">
+            <expression name="value" type="javascript">0</expression>
             <property name="type">report</property>
         </variable-element>
     </property>

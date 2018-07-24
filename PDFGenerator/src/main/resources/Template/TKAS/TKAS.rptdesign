@@ -7122,6 +7122,16 @@ else &#13;
 </model:ChartWithoutAxes>
 ]]></xml-property>
                         <property name="outputFormat">SVG</property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">ne</property>
+                                <expression name="expr" type="javascript">row["Amount"]</expression>
+                                <simple-property-list name="value1">
+                                    <value>0</value>
+                                </simple-property-list>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
                         <property name="inheritColumns">false</property>
                         <property name="marginTop">20pt</property>
                         <property name="marginLeft">1pt</property>
@@ -8068,6 +8078,16 @@ else &#13;
 </model:ChartWithoutAxes>
 ]]></xml-property>
                         <property name="outputFormat">SVG</property>
+                        <list-property name="filter">
+                            <structure>
+                                <property name="operator">ne</property>
+                                <expression name="expr" type="javascript">row["Amount"]</expression>
+                                <simple-property-list name="value1">
+                                    <value>0</value>
+                                </simple-property-list>
+                                <property name="updateAggregation">true</property>
+                            </structure>
+                        </list-property>
                         <property name="inheritColumns">false</property>
                         <property name="marginTop">0pt</property>
                         <property name="paddingTop">20pt</property>
@@ -14155,8 +14175,6 @@ etter gjeldende satser.&#13;
                 PHvvM+Ea94yCzijojILOKOiMgs4o6IyCzijojILOKOiMgs64b4w/w0MNJZ7buWsAAAAASUVORK5CYII=
 </property>
         </structure>
-
-
         <structure>
             <property name="name">AvtaleGiro.jpg</property>
             <property name="data">
@@ -14717,6 +14735,5 @@ etter gjeldende satser.&#13;
                 qVcYTkE9VERlzTyhpz4NCAA7
 </property>
         </structure>
-        
     </list-property>
 </report>
