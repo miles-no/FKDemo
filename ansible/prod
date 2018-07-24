@@ -1,5 +1,9 @@
-[prod]
+[prod-preprocessor]
 fklx12.bkk.no ansible_user=miles2
 
 [prod-pdfgenerator]
+fklx14.bkk.no ansible_user=miles2
+fklx12.bkk.no ansible_user=miles2
+
+[prod-ui]
 fklx14.bkk.no ansible_user=miles2

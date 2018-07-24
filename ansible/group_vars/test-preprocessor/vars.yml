@@ -5,4 +5,4 @@ eureka_client_serviceUrl_defaultZone: http://fk-t-lx03.bkk.no:8761/eureka/
 log_base_dir_path: /var/log
 kafka_host: fk-t-lx02
 kafka_port: 9092
-listOfServers_pdfgenerator: fk-t-lx12:9044
+listOfServers_pdfgenerator: fk-t-lx12:9044,fk-t-lx14:9044
