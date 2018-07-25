@@ -32,7 +32,7 @@ import java.nio.charset.StandardCharsets;
 @PreprocessorInfo(order=1)
 public class GenericPreprocessor extends BasePreprocessor {
 
-    private static final Logger logger = LoggerFactory.getLogger(PDFAttachmentExtractor.class);
+    private static final Logger logger = LoggerFactory.getLogger(GenericPreprocessor.class);
 
     @Autowired
     @Qualifier("unmarshaller")
@@ -54,7 +54,7 @@ public class GenericPreprocessor extends BasePreprocessor {
             decodeAndUnmarshalEHFAttachment(request.getStatement());
             stopWatch.stop();
 
-            logger.debug("TIme taken for unmarshalling of attachment of statement with id  " + request.getEntity().getId() + stopWatch.prettyPrint());
+            logger.debug("Time taken for unmarshalling of attachment of statement with id  " + request.getEntity().getId() + stopWatch.prettyPrint());
         } catch (Exception e) {
             logger.error("Exception in generic preprocessor",e);
             throw new PreprocessorException(e);
@@ -116,7 +116,7 @@ public class GenericPreprocessor extends BasePreprocessor {
                         attachment.getFAKTURA().setVedleggehf(null);
                     } catch(Exception e) {
 
-                            e.printStackTrace();
+                            throw e;
                             //throw e;
                         }
                 }
