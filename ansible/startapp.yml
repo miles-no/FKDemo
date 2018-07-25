@@ -6,7 +6,7 @@
       service:
         name="{{app}}"
         state=started
-        enabled=yes
+        enabled=no
 
 
 
