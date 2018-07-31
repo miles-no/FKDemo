@@ -34,6 +34,8 @@
             <includes>
                 <include>*.png</include>
                 <include>*.PNG</include>
+                <include>*.jpeg</include>
+                <include>*.jpg</include>
             </includes>
         </fileSet>
         <fileSet>
@@ -42,6 +44,8 @@
             <includes>
                 <include>*.png</include>
                 <include>*.PNG</include>
+                <include>*.jpeg</include>
+                <include>*.jpg</include>
             </includes>
         </fileSet>
 
