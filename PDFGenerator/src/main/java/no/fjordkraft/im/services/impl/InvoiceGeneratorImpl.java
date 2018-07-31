@@ -81,7 +81,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         String brand = null;//statement.getBrand();
         if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
         {
-            brand = statement.getSystemBatchInput().getTransferFile().getBrand();
+            brand = statement.getSystemBatchInput().getBrand();
         }
         else
         {
@@ -130,7 +130,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                     if(statement.getLegalPartClass()==null ||statement.getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_INDIVIDUAL)) {
                     pdfBytes = getSegmentFileFromFS(brand);
                     } else {
-                        if(!(statement.getSystemBatchInput().getTransferFile().getBrand().equals("FKAS")) && !(statement.getSystemBatchInput().getTransferFile().getBrand().equals("TKAS"))) {
+                        if(!(statement.getSystemBatchInput().getBrand().equals("FKAS")) && !(statement.getSystemBatchInput().getBrand().equals("TKAS"))) {
                             pdfBytes = getSegmentFileFromFS(brand);
                         }
                     }

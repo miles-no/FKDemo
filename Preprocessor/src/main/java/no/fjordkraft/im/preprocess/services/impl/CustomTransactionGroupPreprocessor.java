@@ -39,7 +39,7 @@ public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
         int totalTransactions = request.getStatement().getTransactionGroup().getTotalTransactions();
         List<Transaction> processedTransaction = request.getStatement().getTransactionGroup().getTransaction();
         TransactionGroup transactionGroup = new TransactionGroup();
-        String brand = request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
+        String brand = request.getEntity().getSystemBatchInput().getBrand();
 
         Double amountWithVatTotal = 0.0;
         Double vatTotalAmount = 0.0;

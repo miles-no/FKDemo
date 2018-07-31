@@ -20,6 +20,7 @@ import org.eclipse.birt.report.engine.api.IReportEngine;
 import org.eclipse.birt.report.engine.api.IReportRunnable;
 import org.eclipse.birt.report.engine.api.IRunAndRenderTask;
 import org.eclipse.birt.report.engine.api.PDFRenderOption;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -378,7 +379,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             String brand =  null;
             if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
             {
-                brand = statement.getSystemBatchInput().getTransferFile().getBrand();
+                brand = statement.getSystemBatchInput().getBrand();
             }
             else
             {
@@ -391,12 +392,12 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 StopWatch stopWatch = new StopWatch();
                 stopWatch.start("Attachment Configuration Query getProcessedStatementByAccountNumber");
 
-                List<Statement>  listOfStatements = statementRepository.getProcessedStatementByAccountNumber(statement.getAccountNumber(),StatementStatusEnum.INVOICE_PROCESSED.getStatus());
+                Long  countOfStatements = statementRepository.getProcessedStatementByAccountNumber(statement.getAccountNumber(),StatementStatusEnum.INVOICE_PROCESSED.getStatus());
                 stopWatch.stop();
                 logger.info(stopWatch.prettyPrint());
                 if(statement.getLegalPartClass()==null || statement.getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_INDIVIDUAL) )
                 {
-                    if(listOfStatements==null ||(listOfStatements!=null && listOfStatements.isEmpty())) {
+                    if(countOfStatements!=null && countOfStatements.intValue()==0) {
                         if( !Double.valueOf(creditLimit).equals(Double.valueOf("0")))
                         {
                             attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();
@@ -413,10 +414,10 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 }
                 else
                 {
-                     if(statement.getSystemBatchInput().getTransferFile().getBrand().equals("FKAS") || statement.getSystemBatchInput().getTransferFile().getBrand().equals("TKAS")) {
+                     if(statement.getSystemBatchInput().getBrand().equals("FKAS") || statement.getSystemBatchInput().getBrand().equals("TKAS")) {
                           attachmentConfigId = AttachmentTypeEnum.ORGANIZATION.getStatus();
                      } else {
-                         if(listOfStatements==null ||(listOfStatements!=null && listOfStatements.isEmpty())) {
+                         if(countOfStatements!=null && countOfStatements.intValue()==0) {
                              if( !Double.valueOf(creditLimit).equals(Double.valueOf("0")))
                              {
                                  attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();

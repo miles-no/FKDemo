@@ -45,7 +45,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
     {
         try {
             String legalPartClass = request.getEntity().getLegalPartClass();
-            String brand = request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
+            String brand = request.getEntity().getSystemBatchInput().getBrand();
             if(!isMultipleDistributionForOrganization(request.getStatement().getTransactions().getTransaction(),legalPartClass,brand) )
             {
                 StopWatch stopWatch = new StopWatch();

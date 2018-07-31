@@ -30,7 +30,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
     {
         DecimalFormat df=new DecimalFormat("0.00");
         try{
-       String brand =  request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
+       String brand =  request.getEntity().getSystemBatchInput().getBrand();
         if(request.getStatement().getLegalPartClass().equals("Organization") && (brand.equals("FKAS") || brand.equals("TKAS")))
         {
             logger.debug("Legal Part Class = Organization for statement " + request.getEntity().getId());
@@ -421,7 +421,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                         newTransaction = new Transaction();
                     }
                     stromAmount+=mapOfNameAndAmt.get(transactionName);
-                    if(request.getEntity().getSystemBatchInput().getTransferFile().getBrand().equals("TKAS")) {
+                    if(request.getEntity().getSystemBatchInput().getBrand().equals("TKAS")) {
                         newTransaction.setTransactionCategory("Strøm fra Trondheim Kraft");
                     }else {
                     newTransaction.setTransactionCategory("Strøm fra Fjordkraft");

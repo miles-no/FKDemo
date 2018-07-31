@@ -50,7 +50,7 @@ public class SetGiroPreprocessor extends BasePreprocessor {
      /* BrandConfig brandConfig =brandService.getBrandConfigByName(request.getEntity().getSystemBatchInput().getTransferFile().getBrand());
            if(brandConfig!=null && brandConfig.getAlwaysEnableGIRO()==IMConstants.TRUE)   {
                request.getStatement().setGIROEnabled(true);
-           }*/ if(request.getEntity().getSystemBatchInput().getTransferFile().getBrand().equals("SEAS")) {
+           }*/ if(request.getEntity().getSystemBatchInput().getBrand().equals("SEAS")) {
             request.getStatement().setGIROEnabled(true);
              }
             else {

@@ -39,7 +39,7 @@ public class LayoutSelectionPreprocessor extends BasePreprocessor {
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request)
             throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, InstantiationException {
         Long layoutID = 0l;
-        String statementBrand = request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
+        String statementBrand = request.getEntity().getSystemBatchInput().getBrand();
         Statement statement = request.getStatement();
         boolean foundLayout = false;
 

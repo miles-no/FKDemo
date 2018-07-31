@@ -29,8 +29,11 @@ public class SystemBatchInput {
             @JoinColumn(name="brand", referencedColumnName="brand"),
             @JoinColumn(name="filename", referencedColumnName="filename"),
     })
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     public TransferFile transferFile;
+
+    @Column(name="brand", insertable= false, updatable = false)
+    private String brand;
 
     public Long getId() {
         return id;
@@ -78,5 +81,13 @@ public class SystemBatchInput {
 
     public void setNumOfRecords(Integer numOfRecords) {
         this.numOfRecords = numOfRecords;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

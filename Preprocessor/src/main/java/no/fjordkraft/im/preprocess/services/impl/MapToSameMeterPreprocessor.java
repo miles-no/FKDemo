@@ -23,7 +23,7 @@ public class MapToSameMeterPreprocessor extends BasePreprocessor {
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
 
         Statement stmt = request.getStatement();
-        String brand = request.getEntity().getSystemBatchInput().getTransferFile().getBrand();
+        String brand = request.getEntity().getSystemBatchInput().getBrand();
         if (request.getStatement().getLegalPartClass().equals("Organization") && (brand.equals("FKAS") || brand.equals("TKAS"))) {
 
             Map<Long, Attachment> meterAttachmentMap = new LinkedHashMap<>();
