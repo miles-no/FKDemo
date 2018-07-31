@@ -10,7 +10,7 @@ Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (305,2,185);
 --changeset arpita:3 context:prod
 --New Brand SVAS configuration inserts.
 
-Insert into IM_BRAND_CONFIG (ID,BRAND,USE_EA_BARCODE,AGREEMENT_NUMBER,SERVICELEVEL,PREFIX_KID,KONTONUMMER,DESCRIPTION,POSTCODE,CITY,REGION,NATIONALID) values (6,'SVAS','0','0704','4','333','15060796855','Svartvassvegen 6','6650','Surnadal','Nordmøre',null);
+Insert into IM_BRAND_CONFIG (ID,BRAND,USE_EA_BARCODE,AGREEMENT_NUMBER,SERVICELEVEL,PREFIX_KID,KONTONUMMER,DESCRIPTION,POSTCODE,CITY,REGION,NATIONALID) values (6,'SVAS','0','0704','4','333','15060796855','SvorkaEnergi AS Avd.Kraft',null,'Svartvassvegen 6','Surnadal','6650');
 Insert into IM_TRANSACTION_GROUP (ID,NAME,BRAND,TYPE,DESCRIPTION) values (7,'Diverse','SVAS',null,null);
 
 --Existing transaction Categories in SVAS brand for Diverse group
