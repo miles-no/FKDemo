@@ -47,12 +47,12 @@ function formatMoneyReverseSign(value,decimalPlaces, symbol, thousand, decimal) 
 };
 
 function monthNumToName(date) {
-    var d = parseInt(date.substr(5,2));
+    var d = parseInt(date.substr(5,2),10);
     return months[d-1];
 }
 
 function monthNumToNorwegianName(date) {
-    var d = parseInt(date.substr(5,2));
+    var d = parseInt(date.substr(5,2),10);
     return monthsNorwegian[d-1];
 }
 
