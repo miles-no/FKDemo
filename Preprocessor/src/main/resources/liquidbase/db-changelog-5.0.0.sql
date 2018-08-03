@@ -1,15 +1,15 @@
---changeset arpita:1 context:prod
+--liquibase formatted sql
+--changeset arpita:1 context:dev,prod
 --Added new column to check the legal part class in PDFGenerator.
-alter table im_statement add LEGAL_PART_CLASS VARCHAR2(100);
-Insert into INVOICEMAN.IM_ATTACHMENT_CONFIG (ID,ATTACHMENT_NAME) values (4,'ORGANIZATION');
+--alter table im_statement add LEGAL_PART_CLASS VARCHAR2(100);
+Insert into IM_ATTACHMENT_CONFIG (ID,ATTACHMENT_NAME) values (4,'ORGANIZATION');
 
---changeset arpita:2 context:prod
+--changeset arpita:2 context:dev,prod
 -- Add transction category "Rabatt Prismatch" in FKAS Rabatter
 Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (305,2,185);
 
---changeset arpita:3 context:prod
+--changeset arpita:3 context:dev,prod
 --New Brand SVAS configuration inserts.
-
 Insert into IM_BRAND_CONFIG (ID,BRAND,USE_EA_BARCODE,AGREEMENT_NUMBER,SERVICELEVEL,PREFIX_KID,KONTONUMMER,DESCRIPTION,POSTCODE,CITY,REGION,NATIONALID) values (6,'SVAS','0','0704','4','333','15060796855','SvorkaEnergi AS Avd.Kraft',null,'Svartvassvegen 6','Surnadal','6650');
 Insert into IM_TRANSACTION_GROUP (ID,NAME,BRAND,TYPE,DESCRIPTION) values (7,'Diverse','SVAS',null,null);
 
@@ -69,6 +69,6 @@ Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (356,7,189);
 Insert into IM_TRANSACTION_CATEGORY (ID,TYPE,DESCRIPTION,CATEGORY) values (190,'Debit','Purregebyr Lindorff','DI;Purregebyr');
 Insert into IM_TRANSACTION_GRP_CATEGORY (ID,TG_ID,TC_ID) values (357,7,190);
 
---changeset arpita:4 context:prod
+--changeset arpita:4 context:dev,prod
 --Brand TKAS name is changed from 'Trondheim Kraft AS' to 'TrøndelagKraft AS'.
-update IM_brand_config set description = 'TrøndelagKraft AS' where brand = 'TKAS';
+--update IM_brand_config set description = 'TrøndelagKraft AS' where brand = 'TKAS';
