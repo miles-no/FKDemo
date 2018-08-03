@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,6 +62,7 @@ public class IMAttachmentController {
             attachment.setFileContent(content);
             attachment.setFileType(fileExtension);
         }
+        attachment.setUpdatedTms(new Timestamp(System.currentTimeMillis()));
         attachmentService.updateAttachment(id,attachment);
     }
 

@@ -3,6 +3,7 @@ package no.fjordkraft.im.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -33,6 +34,11 @@ public class GridGroup {
     @JoinColumn(name="GRID_CONFIG_ID")
     private GridConfig gridConfig;
 
+    @Column (name="CREATED_TMS")
+    private Timestamp createdTms;
+
+    @Column(name="LAST_UPDATED")
+    private Timestamp lastUpdated;
 
     public Long getId() {
         return id;
@@ -65,5 +71,21 @@ public class GridGroup {
 
     public void setGroupGridLines(List<GroupGridLine> groupGridLines) {
         this.groupGridLines = groupGridLines;
+    }
+
+    public Timestamp getCreatedTms() {
+        return createdTms;
+    }
+
+    public void setCreatedTms(Timestamp createdTms) {
+        this.createdTms = createdTms;
+    }
+
+    public Timestamp getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Timestamp lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }

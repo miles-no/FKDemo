@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class UIRuleAttributesServiceImpl implements UIRuleAttributesService {
     @Override
     @Transactional
     public void saveLayoutConfig(RuleAttributes ruleAttributes) {
+        ruleAttributes.setCreatedTms(new Timestamp(System.currentTimeMillis()));
         ruleAttributesRepository.saveAndFlush(ruleAttributes);
     }
 
@@ -54,6 +56,7 @@ public class UIRuleAttributesServiceImpl implements UIRuleAttributesService {
         config.setType(ruleAttributes.getType());
         config.setFieldMapping(ruleAttributes.getFieldMapping());
         config.setOptions(ruleAttributes.getOptions());
+        config.setUpdateTms(new Timestamp(System.currentTimeMillis()));
         ruleAttributesRepository.saveAndFlush(config);
     }
 

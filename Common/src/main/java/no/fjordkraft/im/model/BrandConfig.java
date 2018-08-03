@@ -1,6 +1,7 @@
 package no.fjordkraft.im.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by miles on 5/18/2017.
@@ -65,6 +66,12 @@ public class BrandConfig {
 
     @Column(name="REGION")
     private String region;
+
+    @Column(name="CREATED_TMS")
+    private Timestamp createdTms;
+
+    @Column(name="UPDATED_TMS")
+    private Timestamp updatedTms;
 
     public String getBrand() {
         return brand;
@@ -160,5 +167,21 @@ public class BrandConfig {
 
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    public Timestamp getCreatedTms() {
+        return createdTms;
+    }
+
+    public void setCreatedTms(Timestamp createdTms) {
+        this.createdTms = createdTms;
+    }
+
+    public Timestamp getUpdatedTms() {
+        return updatedTms;
+    }
+
+    public void setUpdatedTms(Timestamp updatedTms) {
+        this.updatedTms = updatedTms;
     }
 }

@@ -7,6 +7,7 @@ import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,10 +25,12 @@ public class UILayoutContentServiceImpl implements UILayoutContentService {
         List<LayoutContent> layoutContentList = layoutContentRepository.getLayoutContentById(layoutId);
         for(LayoutContent layoutContent:layoutContentList) {
             layoutContent.setActive(Boolean.FALSE);
+            layoutContent.setUpdateTms(new Timestamp(System.currentTimeMillis()));
             layoutContentRepository.saveAndFlush(layoutContent);
         }
         LayoutContent layoutContent = layoutContentRepository.getLayoutContentByIdAndVersion(layoutId, version);
         layoutContent.setActive(Boolean.TRUE);
+        layoutContent.setUpdateTms(new Timestamp(System.currentTimeMillis()));
         layoutContentRepository.saveAndFlush(layoutContent);
     }
 
@@ -35,6 +38,7 @@ public class UILayoutContentServiceImpl implements UILayoutContentService {
     public void deActivateLayoutTemplate(Long layoutId, Integer version) {
         LayoutContent layoutContent = layoutContentRepository.getLayoutContentByIdAndVersion(layoutId, version);
         layoutContent.setActive(Boolean.FALSE);
+        layoutContent.setUpdateTms(new Timestamp(System.currentTimeMillis()));
         layoutContentRepository.saveAndFlush(layoutContent);
     }
 
@@ -54,6 +58,7 @@ public class UILayoutContentServiceImpl implements UILayoutContentService {
         layoutContent.setFileContent(file);
         layoutContent.setVersion(IMConstants.ONE);
         layoutContent.setActive(Boolean.FALSE);
+        layoutContent.setCreatedTms(new Timestamp(System.currentTimeMillis()));
         layoutContentRepository.saveAndFlush(layoutContent);
     }
 
@@ -62,6 +67,7 @@ public class UILayoutContentServiceImpl implements UILayoutContentService {
         LayoutContent layoutContent = layoutContentRepository.getLayoutContentByLayoutId(layoutId);
         layoutContent.setFileContent(file);
         layoutContent.setActive(Boolean.FALSE);
+        layoutContent.setUpdateTms(new Timestamp(System.currentTimeMillis()));
         layoutContentRepository.saveAndFlush(layoutContent);
     }
 
@@ -79,6 +85,7 @@ public class UILayoutContentServiceImpl implements UILayoutContentService {
         layoutContent.setFileContent(template);
         layoutContent.setVersion(++version);
         layoutContent.setActive(Boolean.FALSE);
+        layoutContent.setUpdateTms(new Timestamp(System.currentTimeMillis()));
         layoutContentRepository.saveAndFlush(layoutContent);
     }
 

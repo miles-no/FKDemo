@@ -2,6 +2,7 @@ package no.fjordkraft.im.model;
 
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,6 +22,12 @@ public class AttachmentConfig {
 
     @Column(name="ATTACHMENT_NAME")
     private String attachmentName;
+
+    @Column(name="CREATED_TMS")
+    private Timestamp createdTms;
+
+    @Column(name="LAST_UPDATED")
+    private Timestamp lastUpdated;
 
   /*  @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch = FetchType.EAGER)
     @JoinColumn(name="ATTACHMENT_ID")
@@ -45,5 +52,19 @@ public class AttachmentConfig {
         this.attachmentName = attachmentName;
     }
 
+    public Timestamp getCreatedTms() {
+        return createdTms;
+    }
 
+    public void setCreatedTms(Timestamp createdTms) {
+        this.createdTms = createdTms;
+    }
+
+    public Timestamp getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Timestamp lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
 }

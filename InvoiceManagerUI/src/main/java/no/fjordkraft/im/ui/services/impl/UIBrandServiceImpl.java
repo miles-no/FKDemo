@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class UIBrandServiceImpl implements UIBrandService {
     @Override
     @Transactional
     public void saveBrandConfig(BrandConfig brandConfig) {
+        brandConfig.setCreatedTms(new Timestamp(System.currentTimeMillis()));
         brandConfigRepository.saveAndFlush(brandConfig);
     }
 
@@ -49,6 +51,7 @@ public class UIBrandServiceImpl implements UIBrandService {
         config.setCity(brandConfig.getCity());
         config.setNationalId(brandConfig.getNationalId());
         config.setRegion(brandConfig.getRegion());
+        config.setUpdatedTms(new Timestamp(System.currentTimeMillis()));
         brandConfigRepository.saveAndFlush(config);
     }
 

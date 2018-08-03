@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,7 @@ public class UIConfigServiceImpl implements UIConfigService  {
             configDb.setName(key);
         }
         configDb.setValue(value);
+        configDb.setLastUpdated(new Timestamp(System.currentTimeMillis()));
         synchronized (this) {
             cache.put(key, value);
         }
@@ -48,6 +50,7 @@ public class UIConfigServiceImpl implements UIConfigService  {
         Config config = new Config();
         config.setName(key);
         config.setValue(value);
+        config.setCreatedTms(new Timestamp(System.currentTimeMillis()));
         configRepository.save(config);
     }
 

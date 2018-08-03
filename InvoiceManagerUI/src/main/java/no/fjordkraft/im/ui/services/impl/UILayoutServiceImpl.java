@@ -40,7 +40,6 @@ public class UILayoutServiceImpl implements UILayoutService {
         layout.setName(restLayoutTemplate.getName());
         layout.setDescription(restLayoutTemplate.getDescription());
         layout.setCreateTime(new Timestamp(System.currentTimeMillis()));
-        layout.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         Layout saved = layoutRepository.saveAndFlush(layout);
 
         layoutContentService.saveLayoutContent(saved.getId(), restLayoutTemplate.getRptDesign());

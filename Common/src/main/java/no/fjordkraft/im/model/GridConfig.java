@@ -1,6 +1,7 @@
 package no.fjordkraft.im.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by miles on 6/12/2017.
@@ -26,6 +27,12 @@ public class GridConfig {
 
     @Column(name="PHONE")
     private String phone;
+
+    @Column(name="CREATED_TMS")
+    private Timestamp createdTms;
+
+    @Column(name="UPDATED_TMS")
+    private Timestamp updatedTms;
 
     public Long getId() {
         return id;
@@ -65,5 +72,21 @@ public class GridConfig {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Timestamp getCreatedTms() {
+        return createdTms;
+    }
+
+    public void setCreatedTms(Timestamp createdTms) {
+        this.createdTms = createdTms;
+    }
+
+    public Timestamp getUpdatedTms() {
+        return updatedTms;
+    }
+
+    public void setUpdatedTms(Timestamp updatedTms) {
+        this.updatedTms = updatedTms;
     }
 }

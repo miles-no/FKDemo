@@ -3,6 +3,7 @@ package no.fjordkraft.im.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by miles on 9/7/2017.
@@ -27,6 +28,12 @@ public class TransactionGroupCategory {
     @JoinColumn(name="TC_ID")
     private TransactionCategory transactionCategory;
 
+    @Column(name="CREATED_TMS")
+    private Timestamp createdTms;
+
+    @Column(name="UPDATED_TMS")
+    private Timestamp updatedTms;
+
     public Long getId() {
         return id;
     }
@@ -50,4 +57,22 @@ public class TransactionGroupCategory {
     public void setTransactionCategory(TransactionCategory transactionCategory) {
         this.transactionCategory = transactionCategory;
     }
+
+    public Timestamp getCreatedTms() {
+        return createdTms;
+    }
+
+    public void setCreatedTms(Timestamp createdTms) {
+        this.createdTms = createdTms;
+    }
+
+    public Timestamp getUpdatedTms() {
+        return updatedTms;
+    }
+
+    public void setUpdatedTms(Timestamp updatedTms) {
+        this.updatedTms = updatedTms;
+    }
+
+
 }

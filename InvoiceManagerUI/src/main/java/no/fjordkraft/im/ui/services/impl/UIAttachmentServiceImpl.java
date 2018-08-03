@@ -9,6 +9,7 @@ import no.fjordkraft.im.ui.services.UIAttachmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +49,7 @@ public class UIAttachmentServiceImpl implements UIAttachmentService {
         }
         if(!isAlreadyExists)
         {
+        attachment.setCreatedTms(new Timestamp(System.currentTimeMillis()));
         Attachment savedAttachment = attachmentRepository.save(attachment);  //To change body of implemented methods use File | Settings | File Templates.
         RestAttachment newAttachment = new RestAttachment();
         newAttachment.setAttachmentId(savedAttachment.getAttachmentID());
@@ -100,6 +102,7 @@ public class UIAttachmentServiceImpl implements UIAttachmentService {
             attachmentfound.setFileContent(attachment.getFileContent());
             attachmentfound.setBrand(attachment.getBrand());
             attachmentfound.setAttachmentConfig(attachment.getAttachmentConfig());
+            attachmentfound.setUpdatedTms(new Timestamp(System.currentTimeMillis()));
             attachmentRepository.saveAndFlush(attachmentfound);
 
         }

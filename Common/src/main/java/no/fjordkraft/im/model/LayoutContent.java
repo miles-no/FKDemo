@@ -1,6 +1,7 @@
 package no.fjordkraft.im.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by miles on 6/30/2017.
@@ -28,6 +29,15 @@ public class LayoutContent {
 
     @Column(name="ACTIVE")
     private boolean active;
+
+    @Column(name="CREATED_TMS")
+    private Timestamp createdTms;
+
+    @Column(name="UPDATE_TMS")
+    private Timestamp updateTms;
+
+    @Transient
+    private String reason;
 
     public Long getId() {
         return id;
@@ -67,5 +77,29 @@ public class LayoutContent {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Timestamp getCreatedTms() {
+        return createdTms;
+    }
+
+    public void setCreatedTms(Timestamp createdTms) {
+        this.createdTms = createdTms;
+    }
+
+    public Timestamp getUpdateTms() {
+        return updateTms;
+    }
+
+    public void setUpdateTms(Timestamp updateTms) {
+        this.updateTms = updateTms;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

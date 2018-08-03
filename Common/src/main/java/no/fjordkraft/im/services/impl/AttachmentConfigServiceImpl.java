@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -36,12 +37,14 @@ public class AttachmentConfigServiceImpl implements AttachmentConfigService {
 
     @Override
     public void saveAttachmentConfig(AttachmentConfig config) {
+        config.setCreatedTms(new Timestamp(System.currentTimeMillis()));
         attachmentConfigRepository.saveAndFlush(config);
     }
 
 
     public void saveAttachment(Attachment attachment)
     {
+        attachment.setCreatedTms(new Timestamp(System.currentTimeMillis()));
         attachmentRepository.saveAndFlush(attachment) ;
     }
 

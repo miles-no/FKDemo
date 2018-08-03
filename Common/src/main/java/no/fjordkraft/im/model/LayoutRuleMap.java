@@ -1,6 +1,7 @@
 package no.fjordkraft.im.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by miles on 6/27/2017.
@@ -30,6 +31,12 @@ public class LayoutRuleMap {
 
     @Column(name="VALUE")
     private String value;
+
+    @Column(name="CREATED_TMS")
+    private Timestamp createdTms;
+
+    @Column(name="UPDATE_TMS")
+    private Timestamp updateTms;
 
     public Long getId() {
         return id;
@@ -77,5 +84,20 @@ public class LayoutRuleMap {
 
     public void setValue(String value) {
         this.value = value;
+    }
+    public Timestamp getCreatedTms() {
+        return createdTms;
+    }
+
+    public void setCreatedTms(Timestamp createdTms) {
+        this.createdTms = createdTms;
+    }
+
+    public Timestamp getUpdateTms() {
+        return updateTms;
+    }
+
+    public void setUpdateTms(Timestamp updateTms) {
+        this.updateTms = updateTms;
     }
 }

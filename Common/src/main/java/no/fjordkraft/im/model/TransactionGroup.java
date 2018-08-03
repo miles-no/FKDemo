@@ -3,6 +3,7 @@ package no.fjordkraft.im.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -32,6 +33,13 @@ public class TransactionGroup {
     @JsonIgnore
     @OneToMany(mappedBy = "transactionGroup",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<TransactionGroupCategory> transactionGroupCategories;
+
+    @Column(name="CREATED_TMS")
+    private Timestamp createdTms;
+
+    @Column(name="UPDATE_TMS")
+    private Timestamp updateTms;
+
 
     public String getName() {
         return name;
@@ -80,5 +88,22 @@ public class TransactionGroup {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
+    public Timestamp getCreatedTms() {
+        return createdTms;
+    }
+
+    public void setCreatedTms(Timestamp createdTms) {
+        this.createdTms = createdTms;
+    }
+
+    public Timestamp getUpdateTms() {
+        return updateTms;
+    }
+
+    public void setUpdateTms(Timestamp updateTms) {
+        this.updateTms = updateTms;
+    }
+
+
 }

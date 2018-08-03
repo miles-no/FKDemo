@@ -6,6 +6,7 @@ import no.fjordkraft.im.ui.services.UILayoutRuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public class UILayoutRuleServiceImpl implements UILayoutRuleService {
 
     @Override
     public void saveLayoutRule(LayoutRule layoutRule) {
+        layoutRule.setCreatedTms(new Timestamp(System.currentTimeMillis()));
         layoutRuleRepository.saveAndFlush(layoutRule);
     }
 
@@ -27,6 +29,7 @@ public class UILayoutRuleServiceImpl implements UILayoutRuleService {
         LayoutRule rule = layoutRuleRepository.findOne(layoutRule.getId());
         rule.setBrand(layoutRule.getBrand());
         rule.setLayoutId(layoutRule.getLayoutId());
+        rule.setUpdatedTms(new Timestamp(System.currentTimeMillis()));
         rule.setLayoutRuleMapList(layoutRule.getLayoutRuleMapList());
         layoutRuleRepository.saveAndFlush(rule);
     }

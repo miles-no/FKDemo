@@ -1,5 +1,6 @@
 package no.fjordkraft.im.ui.services;
 
+import no.fjordkraft.im.domain.RestTransactionCategory;
 import no.fjordkraft.im.domain.RestTransactionGroup;
 import no.fjordkraft.im.model.TransactionCategory;
 
@@ -17,4 +18,6 @@ public interface UITransactionGroupService {
     List<RestTransactionGroup> getTransactionGroupByBrand(String brand);
     List<TransactionCategory> getTransactionCategoryOnType(String type);
     List<TransactionCategory> getAllTransactionCategories();
+
+    //void  createTransactionCategory(RestTransactionCategory transactionCategory);
 }

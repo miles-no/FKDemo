@@ -7,6 +7,7 @@ import no.fjordkraft.im.util.IMConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,12 +36,14 @@ public class IMGridController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
     void saveGridConfig(@RequestBody GridConfig gridConfig) {
+        gridConfig.setCreatedTms(new Timestamp(System.currentTimeMillis()));
         gridConfigService.saveGridConfig(gridConfig);
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
     @ResponseBody
     void updateGridConfig(@RequestBody GridConfig gridConfig) {
+        gridConfig.setUpdatedTms(new Timestamp(System.currentTimeMillis()));
         gridConfigService.updateGridConfig(gridConfig);
     }
 

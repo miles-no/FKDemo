@@ -1,6 +1,7 @@
 package no.fjordkraft.im.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -26,6 +27,12 @@ public class LayoutRule implements Comparable<LayoutRule> {
     @Column(name="LAYOUT_ID")
     private Long layoutId;
 
+    @Column(name="CREATED_TMS")
+    private Timestamp createdTms;
+
+    @Column(name="UPDATED_TMS")
+    private Timestamp updatedTms;
+
     public Long getId() {
         return id;
     }
@@ -48,6 +55,22 @@ public class LayoutRule implements Comparable<LayoutRule> {
 
     public void setLayoutId(Long layoutId) {
         this.layoutId = layoutId;
+    }
+
+    public Timestamp getCreatedTms() {
+        return createdTms;
+    }
+
+    public void setCreatedTms(Timestamp createdTms) {
+        this.createdTms = createdTms;
+    }
+
+    public Timestamp getUpdatedTms() {
+        return updatedTms;
+    }
+
+    public void setUpdatedTms(Timestamp updatedTms) {
+        this.updatedTms = updatedTms;
     }
 
     public List<LayoutRuleMap> getLayoutRuleMapList() {

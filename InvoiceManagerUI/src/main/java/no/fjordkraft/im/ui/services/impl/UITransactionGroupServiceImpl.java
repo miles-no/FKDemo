@@ -1,5 +1,6 @@
 package no.fjordkraft.im.ui.services.impl;
 
+import no.fjordkraft.im.domain.RestTransactionCategory;
 import no.fjordkraft.im.domain.RestTransactionGroup;
 import no.fjordkraft.im.model.TransactionCategory;
 import no.fjordkraft.im.model.TransactionGroup;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,6 +97,16 @@ public class UITransactionGroupServiceImpl implements UITransactionGroupService 
         return transactionCategoryRepository.findAll();
     }
 
+   /* @Override
+    public void createTransactionCategory(RestTransactionCategory transactionCategory) {
+        TransactionCategory newTransactionCategory = new TransactionCategory();
+        newTransactionCategory.setCategory(transactionCategory.getCategory());
+        newTransactionCategory.setDescription(transactionCategory.getDescription());
+        newTransactionCategory.setType(transactionCategory.getType());
+        newTransactionCategory.setCreatedTms(new Timestamp(System.currentTimeMillis()));
+        transactionCategoryRepository.saveAndFlush(newTransactionCategory);
+    }*/
+
     @Override
     public void saveTransactionGroup(RestTransactionGroup restTransactionGroup) {
 
@@ -106,11 +118,13 @@ public class UITransactionGroupServiceImpl implements UITransactionGroupService 
         transactionGroup.setBrand(restTransactionGroup.getBrand());
         transactionGroup.setType(restTransactionGroup.getType());
         transactionGroup.setDescription(restTransactionGroup.getDescription());
+        transactionGroup.setCreatedTms(new Timestamp(System.currentTimeMillis()));
 
         for(TransactionCategory transactionCategory:restTransactionGroup.getTransactionCategories()) {
             transactionGroupCategory = new TransactionGroupCategory();
             transactionGroupCategory.setTransactionGroup(transactionGroup);
             transactionGroupCategory.setTransactionCategory(transactionCategory);
+            transactionGroupCategory.setCreatedTms(new Timestamp(System.currentTimeMillis()));
             transactionGroupCategoryList.add(transactionGroupCategory);
         }
         transactionGroup.setTransactionGroupCategories(transactionGroupCategoryList);
@@ -128,6 +142,7 @@ public class UITransactionGroupServiceImpl implements UITransactionGroupService 
         transactionGroup.setBrand(restTransactionGroup.getBrand());
         transactionGroup.setType(restTransactionGroup.getType());
         transactionGroup.setDescription(restTransactionGroup.getDescription());
+        transactionGroup.setUpdateTms(new Timestamp(System.currentTimeMillis()));
 
         for(TransactionGroupCategory transGrpCategory:transactionGroup.getTransactionGroupCategories()) {
             deleteTransGrpCategory(transGrpCategory.getId());
@@ -138,6 +153,7 @@ public class UITransactionGroupServiceImpl implements UITransactionGroupService 
             transactionGroupCategory = new TransactionGroupCategory();
             transactionGroupCategory.setTransactionGroup(transactionGroup);
             transactionGroupCategory.setTransactionCategory(transactionCategory);
+            transactionGroupCategory.setUpdatedTms(new Timestamp(System.currentTimeMillis()));
             transactionGroupCategoryList.add(transactionGroupCategory);
         }
         transactionGroup.setTransactionGroupCategories(transactionGroupCategoryList);
