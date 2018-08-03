@@ -70,4 +70,10 @@ public class IMTransactionGroupController {
         types.add("Credit");
         return types;
     }
+
+   /* @RequestMapping(value = "category", method = RequestMethod.PUT)
+    @ResponseBody
+    void saveTransactionCategory(@RequestBody RestTransactionCategory transactionCategory) {
+        // transactionGroupService.createTransactionCategory(transactionCategory);
+    }*/
 }
