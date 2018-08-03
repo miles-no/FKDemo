@@ -1,6 +1,5 @@
 package no.fjordkraft.im.ui.services.impl;
 
-import no.fjordkraft.im.domain.RestTransactionCategory;
 import no.fjordkraft.im.domain.RestTransactionGroup;
 import no.fjordkraft.im.model.TransactionCategory;
 import no.fjordkraft.im.model.TransactionGroup;
