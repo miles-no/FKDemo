@@ -26,6 +26,7 @@ public class OpphoreTransactionProcessor  extends BasePreprocessor {
           List<Transaction> listOfTransactions =  request.getStatement().getTransactionGroup().getTransaction();
           List<Attachment> listOfAttachments = request.getStatement().getAttachments().getAttachment();
           for(Attachment attachment: listOfAttachments) {
+             if(attachment.isOnlyGrid() || (attachment.getDisplayStromData()!=null && attachment.getDisplayStromData())) {
              if(IMConstants.EMUXML.equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
                 String fakturanr = attachment.getFAKTURA().getFAKTURANR();
                  for(Transaction transaction:listOfTransactions){
@@ -37,6 +38,7 @@ public class OpphoreTransactionProcessor  extends BasePreprocessor {
                          }
                      }
                  }
+             }
              }
           }
 

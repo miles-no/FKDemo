@@ -37,7 +37,7 @@ public class SummaryLabelPreprocessor  extends BasePreprocessor {
                 continue;
             }
 
-            if(null != attachment.getFAKTURA().getNettleieList() && attachment.getFAKTURA().getNettleieList().size()>0) {
+            if(attachment.getFAKTURA()!=null && null != attachment.getFAKTURA().getNettleieList() && attachment.getFAKTURA().getNettleieList().size()>0) {
                 hasNett = true;
             }
 

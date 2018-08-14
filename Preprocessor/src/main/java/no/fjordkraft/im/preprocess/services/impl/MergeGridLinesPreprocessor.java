@@ -48,6 +48,7 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
         for (int i = 0; i < attachments.getAttachment().size(); i++)
         {
            Attachment attachment = attachments.getAttachment().get(i);
+            if((attachment.getDisplayStromData()!=null && attachment.getDisplayStromData()) ||(attachment.isOnlyGrid())) {
            Nettleie nettleie = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie();
            String gridName = null;
            if( attachment.getFAKTURA().getGrid()!=null && attachment.getFAKTURA().getGrid().getName()!=null)
@@ -98,6 +99,7 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
                         nettleie.setBaseItemDetails(newBaseItemDetails);
                     }
                 }
+            }
             }
         }
 

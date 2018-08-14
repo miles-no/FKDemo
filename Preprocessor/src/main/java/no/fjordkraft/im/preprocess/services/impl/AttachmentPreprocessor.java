@@ -199,7 +199,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             Multimap<Long, Attachment> meterIdMapEMUXML = ArrayListMultimap.create();
             Map<String, Attachment> meterIdStartMonMapEMUXML = new HashMap<>();
           //  Multimap<Long, Attachment> meterIdVsOnlyGrid =ArrayListMultimap.create();
-
+            if(attachments.getAttachment().size() >0 )
+            {
             generateAttachmentMap(meterIdMapEMUXML, meterIdStartMonMapEMUXML, attachments, invoicenumber);
 
             logger.debug("meterIdMapEMUXML size " + meterIdMapEMUXML.size() + " invoice number " + invoicenumber);
@@ -278,6 +279,12 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 attachment.setSumOfNettStrom(sumStrom+sumNett);
                 attachment.setSumOfIngoingIBtrans(request.getStatement().getIngoingBalance()+request.getStatement().getTransactions().getIbAmountWithVat());
                 attachment.setAttachmentNumber(index++);
+            }
+            } else {
+                Attachment dummyAttachment = new Attachment();
+                dummyAttachment.setDisplayStromData(false);
+                dummyAttachment.setOnlyGrid(false);
+                attachmentList.add(dummyAttachment);
             }
             attachments.setAttachment(attachmentList);
             request.getStatement().setTotalAttachment(attachmentList.size());
