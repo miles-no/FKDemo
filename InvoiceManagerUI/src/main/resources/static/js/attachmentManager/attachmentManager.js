@@ -110,6 +110,60 @@ const attachmentManagerController = ($scope,$http,ModalService) => {
     })
     }
 
+    $scope.loading = false
+    $scope.previewLayout = (attachment) => {
+        var id = attachment.attachmentId
+        $scope.loading = true
+        $http({
+            method : 'GET',
+            url : '/invoicemanager/api/attachment/content/'+id,
+            responseType : 'arraybuffer'
+        }).then((response,status,headers) => {
+            $scope.loading = false
+            if((attachment.attachmentType).toLowerCase() == 'image'){
+            if((attachment.fileExtension).toLowerCase() == 'jpg'){
+                var file = new Blob([response.data], {type: 'image/jpeg'});
+            } else if ((attachment.fileExtension).toLowerCase() == 'png'){
+                var file = new Blob([response.data], {type: 'image/png'});
+            } else {
+                var file = new Blob([response.data], {type: 'image/'+`${attachment.fileExtension}`});
+        }
+        } else
+        {
+            var file = new Blob([response.data], {type: 'application/pdf'});
+        }
+        var fileURL = window.URL.createObjectURL(file);
+        if((attachment.attachmentType).toLowerCase() == 'image'){
+            ModalService.showModal({
+                templateUrl: 'templates/image-modal/image-display-modal.html',
+                controller: 'imageDisplayController',
+                inputs:{
+                    ImageUrl :fileURL,
+                }
+            }).then((modal) => {
+                modal.element.modal();
+            modal.close.then((result) => {
+            });
+        })
+        } else{
+            ModalService.showModal({
+                templateUrl: 'templates/pdf-modal/pdf-display-modal.html',
+                controller: 'pdfDisplayController',
+                inputs:{
+                    pdfUrl :fileURL
+                }
+            }).then((modal) => {
+                modal.element.modal();
+            modal.close.then((result) => {
+            });
+        })
+        };
+    }).error((error) => {
+        $scope.loading = false
+    }
+    )
+    }
+
     $scope.addAttachment =  () => {
         var newAttchmentObj = angular.copy($scope.attachmentObj);
         showModal(newAttchmentObj, 'Add')
@@ -133,6 +187,9 @@ const attachmentManagerController = ($scope,$http,ModalService) => {
     } else {
         var file = new Blob([response.data], {type: 'application/pdf'});
     }
+
+    var  testLink = window.URL.createObjectURL(file)
+    console.log(testLink)
     var downloadLink = angular.element('<a></a>');
     downloadLink.attr('href',window.URL.createObjectURL(file));
     if((attachment.attachmentType).toLowerCase() == 'image'){

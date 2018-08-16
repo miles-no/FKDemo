@@ -3,6 +3,13 @@
   .margin-download{
     margin-left: 63px;
   }
+
+  .align-attachment-preview{
+    margin-left: 20px;
+    &:focus{
+      outline: none;
+    }
+  }
 }
 
 

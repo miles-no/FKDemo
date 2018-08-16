@@ -1,6 +1,7 @@
 <div class="attachment-manager" ng-controller="attachmentManagerController" ng-init="getAttachments()">
     <div uib-alert ng-repeat="alert in alerts" class="alert-width" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}}</div>
     <div class="col-sm-12 text-center header-style">Attachment Manager</div>
+    <spinner size="medium" class-name="cover" ng-show="loading"></spinner>
     <div class="col-sm-4">
         <div class="row form-group">
             <label class="control-label col-sm-3 col-lg-2 text-match">Brand</label>
@@ -35,6 +36,7 @@
                 <th class="table-left">Type</th>
                 <th class="table-left" st-sort="brand"><span class="pointer">Brand</span></th>
                 <th class="table-left">Download Attachment</th>
+                <th class="table-left">Preview</th>
                 <th></th>
             </tr>
             </thead>
@@ -46,6 +48,8 @@
                 <td>
                     <i uib-tooltip="Click to download" tooltip-placement="bottom"  class="fa fa-download margin-download"  ng-click="downloadAttachment(attachment)" aria-hidden="true"></i>
                 </td>
+                <td ng-click="previewLayout(attachment)"><i uib-tooltip="Click to preview" tooltip-placement="bottom"
+                                                            ng-class="attachment.attachmentType.toLowerCase() == 'image' ? 'fa fa-file-image-o' : 'fa fa-file-pdf-o'"  class="align-attachment-preview" aria-hidden="true"></i></td>
                 <td ng-click="deleteAttachment(attachment)"><i uib-tooltip="Delete" tooltip-placement="bottom" class="fa fa-trash-o redIcon"></i></td>
             </tr>
             </tbody>

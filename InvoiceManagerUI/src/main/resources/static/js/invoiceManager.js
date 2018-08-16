@@ -7,6 +7,7 @@ import {mainController} from './controller/mainController'
 import {landingPageController} from './controller/landingPageController';
 import {drillDownController} from './controller/drillDownController';
 import {pdfDisplayController} from './controller/pdfDisplayController';
+import {imageDisplayController} from './controller/imageDisplayController';
 import {auditLogController} from './auditLog/auditController';
 import {ManageBrandsController} from './brands/brandCtrl';
 import {ManageBrandsPopupController} from './brands/brandPopUpController';
@@ -76,6 +77,7 @@ invoiceManager.controller('mainController',mainController);
 invoiceManager.controller('landingPageController',landingPageController);
 invoiceManager.controller('drillDownController',drillDownController);
 invoiceManager.controller('pdfDisplayController',pdfDisplayController);
+invoiceManager.controller('imageDisplayController',imageDisplayController);
 invoiceManager.controller('auditLogController',auditLogController);
 invoiceManager.controller('ManageBrandsController',ManageBrandsController);
 invoiceManager.controller('ManageBrandsPopupController',ManageBrandsPopupController);
