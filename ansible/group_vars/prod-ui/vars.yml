@@ -3,5 +3,6 @@ db_url: jdbc:oracle:oci:@P120
 file_out_directory: /home/miles2/app/prod/im/output
 eureka_client_serviceUrl_defaultZone: http://fklx03.bkk.no:8761/eureka/
 log_base_dir_path: /var/log
+newrelic_licence_key: "76b812bd8b1224357049577aa0a300815a0bef65"
 
 

@@ -72,7 +72,7 @@ public class StatementDetailRepository {
         selectQuery.append(AND);
         selectQuery.append("(:transferFileName is null or s.systemBatchInput.transferFile.filename like :transferFileName) ");
         selectQuery.append("order by s.updateTime desc");
-        logger.debug("Statement get details ",selectQuery.toString());
+        logger.debug("Statement get details " + selectQuery.toString());
         Query query = entityManager.createQuery(selectQuery.toString(), Statement.class)
                 .setFirstResult(page * size)
                 .setMaxResults(size)

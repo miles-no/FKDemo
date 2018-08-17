@@ -5,5 +5,5 @@ eureka_client_serviceUrl_defaultZone: http://fk-t-lx03.bkk.no:8761/eureka/
 log_base_dir_path: /var/log
 kafka_host: fk-t-lx02
 kafka_port: 9092
-newrelic_licence_key: "2480c11c71536a6c1cb7371e28adea750e3cf267cc446a8"
+newrelic_licence_key: "5d2375e90b3ff293684997b5a1366becfcc446a8"
 

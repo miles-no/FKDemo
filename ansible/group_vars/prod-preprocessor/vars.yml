@@ -8,4 +8,5 @@ log_base_dir_path: /var/log
 listOfServers_pdfgenerator: fklx14:9044,fklx12:9044
 kafka_host: 1
 kafka_port: 1
+newrelic_licence_key: "76b812bd8b1224357049577aa0a300815a0bef65"
 
