@@ -41,11 +41,13 @@ public class IMStatementController {
                                @RequestParam(value = "invoiceNumber", required=false) String invoiceNumber,
                                @RequestParam(value = "accountNumber", required=false) String accountNumber,
                                @RequestParam(value = "transferFileName", required=false) String transferFileName,
+                               @RequestParam(value = "legalPartClass", required=false) String legalPartClass,
+                               @RequestParam(value = "creditLimit", required=false) String creditLimit,
                                @RequestParam(value = "page") int page,
                                @RequestParam(value = "size") int size) {
         List<RestStatement> restStatements = statementService.getDetails(page, size, status, fromTime, toTime, brand,
-                customerID, invoiceNumber, accountNumber, transferFileName);
-        Long count = getCountByStatus(status, fromTime, toTime, brand, customerID, invoiceNumber, accountNumber, transferFileName);
+                customerID, invoiceNumber, accountNumber, transferFileName, legalPartClass, creditLimit);
+        Long count = getCountByStatus(status, fromTime, toTime, brand, customerID, invoiceNumber, accountNumber, transferFileName, legalPartClass, creditLimit);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put(IMConstants.STATEMENTS, restStatements);
         resultMap.put(IMConstants.TOTAL, count);
@@ -61,9 +63,12 @@ public class IMStatementController {
             @RequestParam(value = "customerID", required=false) String customerID,
             @RequestParam(value = "invoiceNumber", required=false) String invoiceNumber,
             @RequestParam(value = "accountNumber", required=false) String accountNumber,
-            @RequestParam(value = "transferFileName", required=false) String transferFileName) {
+            @RequestParam(value = "transferFileName", required=false) String transferFileName,
+            @RequestParam(value = "legalPartClass", required=false) String legalPartClass,
+            @RequestParam(value = "creditLimit", required=false) String creditLimit
+            ) {
         return statementService.getCountByStatus(status, fromTime, toTime, brand, customerID, invoiceNumber,
-                accountNumber, transferFileName);
+                accountNumber, transferFileName, legalPartClass, creditLimit);
     }
 
     @RequestMapping(value = "/pdf/{id}", method = RequestMethod.GET)

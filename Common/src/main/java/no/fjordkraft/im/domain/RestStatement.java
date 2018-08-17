@@ -51,6 +51,10 @@ public class RestStatement {
 
     private String if320FileName;
 
+    private String legalPartClass;
+
+    private Double creditLimit;
+
     public Long getId() {
         return id;
     }
@@ -204,5 +208,21 @@ public class RestStatement {
 
     public void setIf320FileName(String if320FileName) {
         this.if320FileName = if320FileName;
+    }
+
+    public String getLegalPartClass() {
+        return legalPartClass;
+    }
+
+    public void setLegalPartClass(String legalPartClass) {
+        this.legalPartClass = legalPartClass;
+    }
+
+    public Double getCreditLimit() {
+        return creditLimit;
+    }
+
+    public void setCreditLimit(Double creditLimit) {
+        this.creditLimit = creditLimit;
     }
 }

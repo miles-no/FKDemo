@@ -85,12 +85,12 @@ public class UIStatementServiceImpl implements UIStatementService {
     @Override
     @Transactional(readOnly = true)
     public List<RestStatement> getDetails(int page, int size, String status, Timestamp fromTime, Timestamp toTime,
-                                          String brand, String customerID, String invoiceNumber, String accountNumber, String transferFileName) {
+                                          String brand, String customerID, String invoiceNumber, String accountNumber, String transferFileName, String legalPartClass, String creditLimit) {
         String mappedStatus = mapStatus(status);
         String mappedBrand = mapStringData(brand);
 
         List<Statement> statementList = statementDetailRepository.getDetails(page, size, mappedStatus, fromTime, toTime,
-                mappedBrand, customerID, invoiceNumber, accountNumber, transferFileName);
+                mappedBrand, customerID, invoiceNumber, accountNumber, transferFileName, legalPartClass, creditLimit);
 
         List<RestStatement> restStatementList = new ArrayList<>();
         Map<Long,RestStatement> statementMap = new HashMap<Long,RestStatement>();
@@ -112,6 +112,8 @@ public class UIStatementServiceImpl implements UIStatementService {
                 restStatement.setDueDate(statement.getDueDate());
                 restStatement.setCreateTime(statement.getCreateTime());
                 restStatement.setIf320FileName(statement.getSystemBatchInput().getTransferFile().getFilename());
+                restStatement.setLegalPartClass(statement.getLegalPartClass());
+                restStatement.setCreditLimit(statement.getCreditLimit());
                 restStatementList.add(restStatement);
                 //statementIdList.add(statement.getId());
                 statementMap.put(statement.getId(),restStatement);
@@ -133,11 +135,11 @@ public class UIStatementServiceImpl implements UIStatementService {
     @Transactional(readOnly = true)
     public Long getCountByStatus(String status, Timestamp fromTime,
                                  Timestamp toTime, String brand, String customerID, String invoiceNumber,
-                                 String accountNumber, String transferFileName) {
+                                 String accountNumber, String transferFileName, String legalPartClass, String creditLimit) {
         String mappedStatus = mapStatus(status);
         String mappedBrand = mapStringData(brand);
         return statementDetailRepository.getCountByStatus(mappedStatus, fromTime, toTime,
-                mappedBrand, customerID, invoiceNumber, accountNumber, transferFileName);
+                mappedBrand, customerID, invoiceNumber, accountNumber, transferFileName, legalPartClass, creditLimit );
     }
 
     private String mapStatus(String states) {
