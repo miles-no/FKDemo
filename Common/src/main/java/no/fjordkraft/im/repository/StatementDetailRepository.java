@@ -60,7 +60,7 @@ public class StatementDetailRepository {
 
         if(null != creditLimit) {
             Double creditLmt = Double.valueOf(creditLimit);
-            selectQuery.append(" s.legalPartClass = "+ creditLmt);
+            selectQuery.append(" s.creditLimit = "+ creditLmt);
             selectQuery.append(AND);
         }
 
@@ -90,7 +90,7 @@ public class StatementDetailRepository {
     }
 
     private String addEqualityCondition(String value, String name) {
-        return "(" + name + " = " +   value + ")";
+        return "(" + name + " = '" +   value + "')";
     }
 
 
@@ -139,7 +139,7 @@ public class StatementDetailRepository {
 
         if(null != creditLimit) {
             Double creditLmt = Double.valueOf(creditLimit);
-            selectQuery.append(" s.legalPartClass = "+ creditLmt);
+            selectQuery.append(" s.creditLimit = "+ creditLmt);
             selectQuery.append(AND);
         }
 
