@@ -9,6 +9,7 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
     $scope.searchResults = [];
     $scope.states =[];
     $scope.brands =[];
+    $scope.legalPartClass = ''
     $scope.loading = false;
     $scope.datepickerConfig ={
         "dateFormat" :'YYYY-MM-DD',
@@ -48,6 +49,12 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
         });
         $scope.getOverviewDetails();
     }
+
+    $scope.onLegalSelect = function(item,model){
+        $scope.legalPartClass = item;
+        $scope.getOverviewDetails();
+    }
+
     $scope.onPageChanged = function(pageChangedTo){
         $scope.getOverviewDetails(pageChangedTo)
     }
@@ -67,11 +74,13 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
             "size":$scope.pageSize
         }
         $scope.states && $scope.states.length >0 ? queryParams.states = _.join($scope.states,',') :'';
+        $scope.legalPartClass ? queryParams.legalPartClass = $scope.legalPartClass :'';
         $scope.brands && $scope.brands.length >0 ? queryParams.brand = _.join($scope.brands,',') :'';
         $scope.invoiceNumber ? queryParams.invoiceNumber = $scope.invoiceNumber :'';
         $scope.accountNumber ? queryParams.accountNumber = $scope.accountNumber :'';
         $scope.customerID ? queryParams.customerID = $scope.customerID :'';
         $scope.transferFileName ?  queryParams.transferFileName = $scope.transferFileName : '';
+        $scope.creditLimit ?  queryParams.creditLimit = $scope.creditLimit : '';
         $scope.searchResults = []
         $http.get('/invoicemanager/api/statement/details',{params:queryParams}).then(function success(result){
             $scope.searchResults = result.data.STATEMENTS
@@ -147,6 +156,7 @@ const drillDownController = ($scope,$http,moment,$rootScope,$stateParams,ModalSe
         getAllBrands();
         $scope.possibleStates = $rootScope.states;
         !$scope.possibleStates || ($scope.possibleStates && $scope.possibleStates.length)== 0 ? $scope.possibleStates = ["PENDING","PRE-PROCESSING","PROCESSING","MERGING","READY","FAILED"] :'';
+        $scope.legalOptions = ["Individual","Organization"]
         $stateParams && $stateParams.processingState ? $scope.states.push($stateParams.processingState) :'';
         $scope.getOverviewDetails();
     }

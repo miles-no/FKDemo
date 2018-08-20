@@ -20,6 +20,18 @@
                     <input type="text" placeholder="Enter Invoice No." class="form-control" theme="bootstrap" ng-model="invoiceNumber" ng-change="getOverviewDetails()">
                 </div>
             </div>
+            <div class="row form-group">
+                <label class="control-label col-md-3 label-align">Legal PartClass</label>
+                <div class="col-md-9">
+                    <ui-select name="LegalPartClass" ng-model="LegalPartClass" theme="bootstrap"
+                               on-select="onLegalSelect($item, $model)" placeholder="Select Log Type">
+                        <ui-select-match allow-clear="true" placeholder="Select Legal Part class">{{LegalPartClass}}</ui-select-match>
+                        <ui-select-choices repeat="eachOverview in legalOptions" position='down'>
+                            <div ng-bind-html="eachOverview | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
         </div>
         <div class="col-md-3">
             <div class="row form-group">
@@ -37,6 +49,12 @@
                             <div ng-bind-html="eachBrand | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="control-label col-md-3 label-align">Credit Limit</label>
+                <div class="col-md-9">
+                    <input type="number" placeholder="Enter No." class="form-control" theme="bootstrap" ng-model="creditLimit" ng-change="getOverviewDetails()">
                 </div>
             </div>
         </div>
@@ -78,7 +96,9 @@
                     <th st-sort="invoiceNumber">Invoice No</th>
                     <th st-sort="distributionMethod">Distribution Method</th>
                     <th st-sort="amount">Amount</th>
-                    <th st-sort="city">City</th>
+                    <!--<th st-sort="city">City</th>-->
+                    <th st-sort="city">Legalpartclass</th>
+                    <th st-sort="city">Credit limit</th>
                     <th st-sort="dueDate">Due Date</th>
                     <th st-sort="udateTime">Updated Date</th>
                     <th st-sort="if320FileName">IF320</th>
@@ -101,7 +121,9 @@
                     </td>
                     <td>{{row.distributionMethod}}</td>
                     <td>{{row.amount}}</td>
-                    <td>{{row.city}}</td>
+                    <!--<td>{{row.city}}</td>-->
+                    <td>{{row.legalPartClass}}</td>
+                    <td>{{row.creditLimit}}</td>
                     <td>{{getForamttedDate(row.dueDate)}}</td>
                     <td>{{getForamttedDate(row.udateTime)}}</td>
                     <td>
