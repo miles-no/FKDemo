@@ -140,7 +140,7 @@ public class StatementDetailRepository {
         if(null != creditLimit) {
             Double creditLmt = Double.valueOf(creditLimit);
             selectQuery.append(" s.creditLimit = "+ creditLmt);
-            selectQuery.append(AND);
+            selectQuery.append(AND); 
         }
 
         selectQuery.append("(:fromTime is null or s.updateTime >= :fromTime) ");
