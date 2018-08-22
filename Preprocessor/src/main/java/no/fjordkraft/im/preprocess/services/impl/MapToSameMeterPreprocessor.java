@@ -29,43 +29,45 @@ public class MapToSameMeterPreprocessor extends BasePreprocessor {
             Map<Long, Attachment> meterAttachmentMap = new LinkedHashMap<>();
             List<Attachment> attachmentList = stmt.getAttachments().getAttachment();
             for (Attachment attachment : attachmentList) {
+                if(attachment.getDisplayStromData() || attachment.isOnlyGrid())
+                {
+                    long meterId = attachment.getFAKTURA().getMAALEPUNKT();
 
-                long meterId = attachment.getFAKTURA().getMAALEPUNKT();
-
-                if (meterAttachmentMap.containsKey(meterId)) {
-                    logger.debug("Statement "+ request.getEntity().getId() + " Invoice number "+ request.getEntity().getInvoiceNumber() + " meter " + meterId + " exists ");
-                    Attachment attachmentFromMap = meterAttachmentMap.get(meterId);
-                    //copyStromInvoiceToAttachmentMap(attachmentFromMap, attachment);
-                    addTransactionAmounts(attachmentFromMap, attachment);
-                    combineNetteleie(attachmentFromMap, attachment);
-                    if (!attachment.isOnlyGrid()) {
-                        InvoiceOrder invoiceOrder = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder();
-                        invoiceOrder.setTransactionName(attachment.getTransactionName());
-                        invoiceOrder.setInvoiceNo(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getInvoiceNo());
-                        attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().add(invoiceOrder);
-                        attachmentFromMap.setOnlyGrid(false);
-                    }
-
-                } else {
-                    if (attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder() != null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().size() > 0) {
-                        Nettleie nettleie = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie();
-                        if (nettleie != null && nettleie.getBaseItemDetails() != null && nettleie.getBaseItemDetails().size() > 0) {
-                            nettleie.setGrid(attachment.getFAKTURA().getGrid());
-                            attachment.getFAKTURA().getNettleieList().add(nettleie);
-                            attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(null);
+                    if (meterAttachmentMap.containsKey(meterId)) {
+                        logger.debug("Statement "+ request.getEntity().getId() + " Invoice number "+ request.getEntity().getInvoiceNumber() + " meter " + meterId + " exists ");
+                        Attachment attachmentFromMap = meterAttachmentMap.get(meterId);
+                        //copyStromInvoiceToAttachmentMap(attachmentFromMap, attachment);
+                        addTransactionAmounts(attachmentFromMap, attachment);
+                        combineNetteleie(attachmentFromMap, attachment);
+                        if (!attachment.isOnlyGrid()) {
+                            InvoiceOrder invoiceOrder = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder();
+                            invoiceOrder.setTransactionName(attachment.getTransactionName());
+                            invoiceOrder.setInvoiceNo(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getInvoiceNo());
+                            attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().add(invoiceOrder);
+                            attachmentFromMap.setOnlyGrid(false);
                         }
+
+                    } else {
+                        if (attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder() != null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().size() > 0) {
+                            Nettleie nettleie = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie();
+                            if (nettleie != null && nettleie.getBaseItemDetails() != null && nettleie.getBaseItemDetails().size() > 0) {
+                                nettleie.setGrid(attachment.getFAKTURA().getGrid());
+                                attachment.getFAKTURA().getNettleieList().add(nettleie);
+                                attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(null);
+                            }
+                        }
+                    /*if(attachment.isOnlyGrid() && null != attachment.getFAKTURA().getVEDLEGGEMUXML() && null !=attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice() &&
+                            null != attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder()) {
+                        attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().clear();
+                    }*/
+                        if (!attachment.isOnlyGrid()) {
+                            InvoiceOrder invoiceOrder = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder();
+                            invoiceOrder.setTransactionName(attachment.getTransactionName());
+                            invoiceOrder.setInvoiceNo(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getInvoiceNo());
+                        }
+                        logger.debug("Statement "+ request.getEntity().getId() + " Invoice number "+ request.getEntity().getInvoiceNumber() + " meter " + meterId + " does not exists ");
+                        meterAttachmentMap.put(meterId, attachment);
                     }
-                /*if(attachment.isOnlyGrid() && null != attachment.getFAKTURA().getVEDLEGGEMUXML() && null !=attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice() &&
-                        null != attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder()) {
-                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().clear();
-                }*/
-                    if (!attachment.isOnlyGrid()) {
-                        InvoiceOrder invoiceOrder = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder();
-                        invoiceOrder.setTransactionName(attachment.getTransactionName());
-                        invoiceOrder.setInvoiceNo(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getInvoiceNo());
-                    }
-                    logger.debug("Statement "+ request.getEntity().getId() + " Invoice number "+ request.getEntity().getInvoiceNumber() + " meter " + meterId + " does not exists ");
-                    meterAttachmentMap.put(meterId, attachment);
                 }
             }
             List<Attachment> newAttachmentList = new ArrayList<>();

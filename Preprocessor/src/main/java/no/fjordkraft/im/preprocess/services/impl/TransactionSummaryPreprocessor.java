@@ -54,51 +54,54 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                         {
                             logger.debug("Kraft Transaction " + transaction.getTransactionCategory());
                             for (Attachment attachment : attachments)
-                            {
-                                if (transaction.getReference().equals(attachment.getFAKTURA().getFAKTURANR()))
                                 {
-                                    attachment.setTransactionName(transaction.getTransactionCategory().substring(3));
-                                    double transVat =  Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
-                                    logger.debug("Transaction's vat Rate  " + transVat);
-                                    Map<Double,Double> vatAndAmtOfLineItem = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getMapOfVatSumOfGross();
-                                    if(!vatAndAmtOfLineItem.isEmpty() /*&& vatAndAmtOfLineItem.containsKey(transVat)*/ && vatAndAmtOfLineItem.size()==1)
+                                    if(attachment.getDisplayStromData() || attachment.isOnlyGrid())
                                     {
-                                        Double vat = Double.valueOf(vatAndAmtOfLineItem.keySet().toArray()[0].toString());
-                                        logger.debug("Attachment's vat is matching with transaction Vat");
-                                        transaction.setVatRate(String.valueOf(vat));
-                                        if(Math.round(vatAndAmtOfLineItem.get(vat)) == Math.round(transaction.getAmount()*IMConstants.NEGATIVE))
+                                        if (transaction.getReference().equals(attachment.getFAKTURA().getFAKTURANR()))
                                         {
-                                            logger.debug("Attachment's amount is matching with transaction's amount ");
-                                            if(!vatVsListOfTransactions.containsKey(vat))
+                                            attachment.setTransactionName(transaction.getTransactionCategory().substring(3));
+                                            double transVat =  Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
+                                            logger.debug("Transaction's vat Rate  " + transVat);
+                                            Map<Double,Double> vatAndAmtOfLineItem = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getMapOfVatSumOfGross();
+                                            if(!vatAndAmtOfLineItem.isEmpty() /*&& vatAndAmtOfLineItem.containsKey(transVat)*/ && vatAndAmtOfLineItem.size()==1)
                                             {
-                                                listOfTransactions = new ArrayList<Transaction>();
-                                            } else
-                                            {
-                                                listOfTransactions = vatVsListOfTransactions.get(vat);
+                                                Double vat = Double.valueOf(vatAndAmtOfLineItem.keySet().toArray()[0].toString());
+                                                logger.debug("Attachment's vat is matching with transaction Vat");
+                                                transaction.setVatRate(String.valueOf(vat));
+                                                if(Math.round(vatAndAmtOfLineItem.get(vat)) == Math.round(transaction.getAmount()*IMConstants.NEGATIVE))
+                                                {
+                                                    logger.debug("Attachment's amount is matching with transaction's amount ");
+                                                    if(!vatVsListOfTransactions.containsKey(vat))
+                                                    {
+                                                        listOfTransactions = new ArrayList<Transaction>();
+                                                    } else
+                                                    {
+                                                        listOfTransactions = vatVsListOfTransactions.get(vat);
+                                                    }
+                                                    transaction.setTransactionType(IMConstants.KRAFT);
+                                                    listOfTransactions.add(transaction);
+                                                    vatVsListOfTransactions.put(vat,listOfTransactions);
+                                                    logger.debug("Adding Transaction"+ transaction.getFreeText() +" into vat Vs ListOfTransactions Map with Vat " + transVat);
+                                                }
+                                            }   else if(!vatAndAmtOfLineItem.isEmpty() && vatAndAmtOfLineItem.size()>1 ){
+                                                logger.debug("Found multiple vat rate for attachment "+ attachment.getFAKTURA().getFAKTURANR());
+                                                if(vatVsListOfTransactions.containsKey(null) && !vatVsListOfTransactions.get(null).isEmpty())  {
+                                                    listOfTransactions =  vatVsListOfTransactions.get(null);
+                                                    transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
+                                                    transaction.setTransactionType(IMConstants.KRAFT);
+                                                    listOfTransactions.add(transaction);
+                                                    vatVsListOfTransactions.put(null,listOfTransactions);
+                                                } else {
+                                                    listOfTransactions = new ArrayList<Transaction>();
+                                                    transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
+                                                    transaction.setTransactionType(IMConstants.KRAFT);
+                                                    listOfTransactions.add(transaction);
+                                                    vatVsListOfTransactions.put(null,listOfTransactions);
+                                                }
                                             }
-                                            transaction.setTransactionType(IMConstants.KRAFT);
-                                            listOfTransactions.add(transaction);
-                                            vatVsListOfTransactions.put(vat,listOfTransactions);
-                                            logger.debug("Adding Transaction"+ transaction.getFreeText() +" into vat Vs ListOfTransactions Map with Vat " + transVat);
-                                        }
-                                    }   else if(!vatAndAmtOfLineItem.isEmpty() && vatAndAmtOfLineItem.size()>1 ){
-                                        logger.debug("Found multiple vat rate for attachment "+ attachment.getFAKTURA().getFAKTURANR());
-                                        if(vatVsListOfTransactions.containsKey(null) && !vatVsListOfTransactions.get(null).isEmpty())  {
-                                            listOfTransactions =  vatVsListOfTransactions.get(null);
-                                            transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
-                                            transaction.setTransactionType(IMConstants.KRAFT);
-                                            listOfTransactions.add(transaction);
-                                            vatVsListOfTransactions.put(null,listOfTransactions);
-                                        } else {
-                                            listOfTransactions = new ArrayList<Transaction>();
-                                            transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
-                                            transaction.setTransactionType(IMConstants.KRAFT);
-                                            listOfTransactions.add(transaction);
-                                            vatVsListOfTransactions.put(null,listOfTransactions);
                                         }
                                     }
                                 }
-                            }
                         }
                         else if(IMConstants.NETT.equals(distribution.getName()))
                         {
@@ -106,22 +109,24 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                             boolean isAttachmentFound = false;
                             for(Attachment attachment:attachments)
                             {
-                                if(attachment!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null &&
-                                   attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null &&
-                                   transaction.getReference().equals(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getFakturanr()))
+                                if(attachment.getDisplayStromData() || attachment.isOnlyGrid())
                                 {
-                                    isAttachmentFound = true;
-                                    transaction.setTransactionName("Nettleie fra " +  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getGridName());
-                                    attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().setTransactionName(transaction.getTransactionCategory().substring(3));
-                                    double transVat = Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
-                                    logger.debug("Transaction's vat Rate  " + transVat);
-                                    Map<Double,Double> vatAndAmtOfLineItem = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getMapOfVatSumOfGross();
-                                    if(!vatAndAmtOfLineItem.isEmpty() && vatAndAmtOfLineItem.size()==1)
+                                    if(attachment!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null &&
+                                       attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null &&
+                                       transaction.getReference().equals(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getFakturanr()))
                                     {
-                                        Double vat = Double.valueOf(vatAndAmtOfLineItem.keySet().toArray()[0].toString());
-                                        transaction.setVatRate(String.valueOf(vat));
-                                        if(Math.round(vatAndAmtOfLineItem.get(vat))== Math.round(transaction.getAmount()*IMConstants.NEGATIVE))
+                                        isAttachmentFound = true;
+                                        transaction.setTransactionName("Nettleie fra " +  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getGridName());
+                                        attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().setTransactionName(transaction.getTransactionCategory().substring(3));
+                                        double transVat = Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
+                                        logger.debug("Transaction's vat Rate  " + transVat);
+                                        Map<Double,Double> vatAndAmtOfLineItem = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getMapOfVatSumOfGross();
+                                        if(!vatAndAmtOfLineItem.isEmpty() && vatAndAmtOfLineItem.size()==1)
                                         {
+                                            Double vat = Double.valueOf(vatAndAmtOfLineItem.keySet().toArray()[0].toString());
+                                            transaction.setVatRate(String.valueOf(vat));
+                                            if(Math.round(vatAndAmtOfLineItem.get(vat))== Math.round(transaction.getAmount()*IMConstants.NEGATIVE))
+                                            {
                                             logger.debug("Attachment's amount is matching with transaction amount  " + transVat);
                                             if(!vatVsListOfTransactions.containsKey(vat))
                                             {
@@ -136,20 +141,21 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                             vatVsListOfTransactions.put(vat,listOfTransactions);
                                             logger.debug("Adding Transaction"+ transaction.getFreeText() +" into vat Vs ListOfTransactions Map with Vat " + transVat);
                                         }
-                                    } else if(!vatAndAmtOfLineItem.isEmpty() && vatAndAmtOfLineItem.size()>1 ){
-                                        logger.debug("Found multiple vat rate for attachment "+ attachment.getFAKTURA().getFAKTURANR());
-                                        if(vatVsListOfTransactions.containsKey(null) && !vatVsListOfTransactions.get(null).isEmpty())  {
-                                            listOfTransactions =  vatVsListOfTransactions.get(null);
-                                                transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
-                                            transaction.setTransactionType(IMConstants.NETT);
-                                            listOfTransactions.add(transaction);
+                                        } else if(!vatAndAmtOfLineItem.isEmpty() && vatAndAmtOfLineItem.size()>1 ){
+                                            logger.debug("Found multiple vat rate for attachment "+ attachment.getFAKTURA().getFAKTURANR());
+                                            if(vatVsListOfTransactions.containsKey(null) && !vatVsListOfTransactions.get(null).isEmpty())  {
+                                                listOfTransactions =  vatVsListOfTransactions.get(null);
+                                                    transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
+                                                transaction.setTransactionType(IMConstants.NETT);
+                                                listOfTransactions.add(transaction);
+                                                vatVsListOfTransactions.put(null,listOfTransactions);
+                                            } else {
+                                               listOfTransactions = new ArrayList<Transaction>();
+                                                    transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
+                                                transaction.setTransactionType(IMConstants.NETT);
+                                                listOfTransactions.add(transaction);
                                             vatVsListOfTransactions.put(null,listOfTransactions);
-                                        } else {
-                                           listOfTransactions = new ArrayList<Transaction>();
-                                                transaction.setMapOfVatVsAmount(vatAndAmtOfLineItem);
-                                            transaction.setTransactionType(IMConstants.NETT);
-                                            listOfTransactions.add(transaction);
-                                        vatVsListOfTransactions.put(null,listOfTransactions);
+                                            }
                                         }
                                     }
                                 }
@@ -243,61 +249,64 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
         String startMonthYear = "";
         for(Attachment attachment:attachments)
         {
-            logger.debug("Looping for attachment to create attachment level transactionSummary");
-            if(attachment!=null)
+            if(attachment.getDisplayStromData() || attachment.isOnlyGrid())
             {
-                Map<Double,Double> stromVatAndSum = new HashMap<Double,Double>();
-                Map<Double,Double> nettVatAndSum = new HashMap<Double,Double>();
-                Set<Double> vatSet = new HashSet<Double>();
-                String stromStartMonthYear = null;
-                String nettStartMonthYear = null;
-                if((attachment.getDisplayStromData()!=null && attachment.getDisplayStromData()) || attachment.getDisplayStromData() == null)
+                logger.debug("Looping for attachment to create attachment level transactionSummary");
+                if(attachment!=null)
                 {
-                    logger.debug("Getting map of Vat and its sum for strom attachment " );
-                    stromVatAndSum =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getMapOfVatSumOfGross();
-                    stromStartMonthYear = attachment.getStartMonthYear();
-                }
-                //in case of only strom nettlie is null
-                if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null)
-                {
-                    logger.debug("Getting map of Vat and its sum for Nett attachment " );
-                    nettVatAndSum = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getMapOfVatSumOfGross();
-                    nettStartMonthYear = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getStartMonthAndYear();
-                }
-
-                vatSet.addAll(stromVatAndSum.keySet());
-                vatSet.addAll(nettVatAndSum.keySet());
-                List<TransactionSummary> transactionSummaryList = new ArrayList<TransactionSummary>();
-                double sumInklMVA = 0.0;
-                double sumExclMVA = 0.0;
-                //this for loop calculates sum Exclusive MVA and inclusive MVA and creates transaction summary for first page.
-                for(Double vat : vatSet)
-                {
-                    double sumOfStrom = 0.0;
-                    double sumOfNett = 0.0;
-                    if(stromVatAndSum.containsKey(vat))
+                    Map<Double,Double> stromVatAndSum = new HashMap<Double,Double>();
+                    Map<Double,Double> nettVatAndSum = new HashMap<Double,Double>();
+                    Set<Double> vatSet = new HashSet<Double>();
+                    String stromStartMonthYear = null;
+                    String nettStartMonthYear = null;
+                    if((attachment.getDisplayStromData()!=null && attachment.getDisplayStromData()) || attachment.getDisplayStromData() == null)
                     {
-                        sumOfStrom =  stromVatAndSum.get(vat);
+                        logger.debug("Getting map of Vat and its sum for strom attachment " );
+                        stromVatAndSum =  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getMapOfVatSumOfGross();
+                        stromStartMonthYear = attachment.getStartMonthYear();
                     }
-                    if(nettVatAndSum.containsKey(vat))
-                    {
-                        sumOfNett = nettVatAndSum.get(vat);
-                    }
-                    TransactionSummary attachmentSummary = new TransactionSummary();
-                    attachmentSummary.setMvaValue(vat);
-                    attachmentSummary.setSumOfNettStrom(Double.valueOf(df.format(sumOfStrom + sumOfNett)));
-                    attachmentSummary.setSumOfBelop(Double.valueOf(df.format(((sumOfStrom)+sumOfNett)*(vat/100))));
-                    sumExclMVA +=sumOfNett+sumOfStrom;
-                    sumInklMVA+= attachmentSummary.getSumOfNettStrom()+attachmentSummary.getSumOfBelop();
+                    //in case of only strom nettlie is null
                     if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null)
                     {
-                        attachmentSummary.setTotalVatAmount(Double.valueOf(df.format(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getTotalVatAmount())));
+                        logger.debug("Getting map of Vat and its sum for Nett attachment " );
+                        nettVatAndSum = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getMapOfVatSumOfGross();
+                        nettStartMonthYear = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getStartMonthAndYear();
                     }
-                    transactionSummaryList.add(attachmentSummary);
+
+                    vatSet.addAll(stromVatAndSum.keySet());
+                    vatSet.addAll(nettVatAndSum.keySet());
+                    List<TransactionSummary> transactionSummaryList = new ArrayList<TransactionSummary>();
+                    double sumInklMVA = 0.0;
+                    double sumExclMVA = 0.0;
+                    //this for loop calculates sum Exclusive MVA and inclusive MVA and creates transaction summary for first page.
+                    for(Double vat : vatSet)
+                    {
+                        double sumOfStrom = 0.0;
+                        double sumOfNett = 0.0;
+                        if(stromVatAndSum.containsKey(vat))
+                        {
+                            sumOfStrom =  stromVatAndSum.get(vat);
+                        }
+                        if(nettVatAndSum.containsKey(vat))
+                        {
+                            sumOfNett = nettVatAndSum.get(vat);
+                        }
+                        TransactionSummary attachmentSummary = new TransactionSummary();
+                        attachmentSummary.setMvaValue(vat);
+                        attachmentSummary.setSumOfNettStrom(Double.valueOf(df.format(sumOfStrom + sumOfNett)));
+                        attachmentSummary.setSumOfBelop(Double.valueOf(df.format(((sumOfStrom)+sumOfNett)*(vat/100))));
+                        sumExclMVA +=sumOfNett+sumOfStrom;
+                        sumInklMVA+= attachmentSummary.getSumOfNettStrom()+attachmentSummary.getSumOfBelop();
+                        if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null)
+                        {
+                            attachmentSummary.setTotalVatAmount(Double.valueOf(df.format(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getTotalVatAmount())));
+                        }
+                        transactionSummaryList.add(attachmentSummary);
+                    }
+                    attachment.setTransactionSummary(transactionSummaryList);
+                    attachment.setSumInklMVA(Double.valueOf(df.format(sumInklMVA)));
+                    attachment.setSumOfTransactions(Double.valueOf(df.format(sumExclMVA)));
                 }
-                attachment.setTransactionSummary(transactionSummaryList);
-                attachment.setSumInklMVA(Double.valueOf(df.format(sumInklMVA)));
-                attachment.setSumOfTransactions(Double.valueOf(df.format(sumExclMVA)));
             }
         }
        // request.getStatement().getTransactionGroup().setTransaction(null);
