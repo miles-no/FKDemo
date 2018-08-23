@@ -8624,6 +8624,18 @@ year = "Siste 12 mnd" + "";</expression>
                                 <property name="pageBreakAfter">auto</property>
                                 <property name="height">6.583in</property>
                                 <property name="width">5.15625in</property>
+                                <list-property name="visibility">
+                                    <structure>
+                                        <property name="format">all</property>
+                                        <expression name="valueExpr" type="javascript">if((row["DisplayStromData"] == "false" &amp;&amp; row["isOnlyGrid"] == "false" ) || (row["DisplayStromData"] == null &amp;&amp;  row["isOnlyGrid"] == null ) )&#13;
+{&#13;
+true;&#13;
+}&#13;
+else{&#13;
+false;&#13;
+}</expression>
+                                    </structure>
+                                </list-property>
                                 <column id="400">
                                     <property name="paddingRight">10pt</property>
                                     <property name="width">5in</property>

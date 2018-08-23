@@ -9200,6 +9200,12 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">true</expression>
+                                                    </structure>
+                                                </list-property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">AccountNumber</property>
@@ -9222,6 +9228,12 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">true</expression>
+                                                    </structure>
+                                                </list-property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">AccountNumber</property>
@@ -10818,6 +10830,18 @@ year = "Siste 12 mnd" + "";</expression>
                                 <property name="canShrink">true</property>
                                 <property name="height">6in</property>
                                 <property name="width">5.15625in</property>
+                                <list-property name="visibility">
+                                    <structure>
+                                        <property name="format">all</property>
+                                        <expression name="valueExpr" type="javascript">if((row["DisplayStromData"] == "false" &amp;&amp; row["isOnlyGrid"] == "false" ) || (row["DisplayStromData"] == null &amp;&amp;  row["isOnlyGrid"] == null ) )&#13;
+{&#13;
+true;&#13;
+}&#13;
+else{&#13;
+false;&#13;
+}</expression>
+                                    </structure>
+                                </list-property>
                                 <column id="400">
                                     <property name="paddingRight">10pt</property>
                                     <property name="width">5in</property>
@@ -15633,7 +15657,7 @@ else&#13;
                 6IyCzijojILOKOiMgs4o6IyCzijojILOKOiMgs4o6IyCzijojILOKOiMgs4o6IyCzijojILOKOiMgs4o
                 PHvvM+Ea94yCzijojILOKOiMgs4o6IyCzijojILOKOiMgs64b4w/w0MNJZ7buWsAAAAASUVORK5CYII=
 </property>
-        </structure>     
+        </structure>
         <structure>
             <property name="name">EA sort-hvit.gif</property>
             <property name="type">image/gif</property>

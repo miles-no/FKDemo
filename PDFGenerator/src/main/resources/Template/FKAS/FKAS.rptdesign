@@ -8211,6 +8211,12 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">true</expression>
+                                                    </structure>
+                                                </list-property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">AccountNumber</property>
@@ -8233,6 +8239,12 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">true</expression>
+                                                    </structure>
+                                                </list-property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">AccountNumber</property>
@@ -9795,6 +9807,18 @@ year = "Siste 12 mnd" + "";</expression>
                                 <property name="pageBreakAfter">auto</property>
                                 <property name="height">6.583333333333333in</property>
                                 <property name="width">5.15625in</property>
+                                <list-property name="visibility">
+                                    <structure>
+                                        <property name="format">all</property>
+                                        <expression name="valueExpr" type="javascript">if((row["DisplayStromData"] == "false" &amp;&amp; row["isOnlyGrid"] == "false" ) || (row["DisplayStromData"] == null &amp;&amp;  row["isOnlyGrid"] == null ) )&#13;
+{&#13;
+true;&#13;
+}&#13;
+else{&#13;
+false;&#13;
+}</expression>
+                                    </structure>
+                                </list-property>
                                 <column id="400">
                                     <property name="paddingRight">10pt</property>
                                     <property name="width">5in</property>
@@ -13674,7 +13698,7 @@ du bruker.</text-property>
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">I samsvar med Lov om elsertifikater inneholder påslaget kostnader til kjøp av elsertifikater. For mer informasjon, se nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
+                                            <text-property name="text">I samsvar med Lov om elsertifikater inneholder påslaget kostnader til kjøp av elsertifikater. For mer informasjon, se nve.no/energiforsyning-og-konsesj-on/elsertifikater/</text-property>
                                         </label>
                                         <label id="844">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -13708,8 +13732,7 @@ Se elklagenemnda.no.</text-property>
                                             <property name="lineHeight">8pt</property>
                                             <text-property name="text">fjordkraft.no/varedeklarasjon.&#13;
 Fjordkraft org.nr NO 976944682&#13;
-MVA. For informasjon om elsertifikatkostnad&#13;
-se nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
+MVA.</text-property>
                                         </label>
                                         <label id="848">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>

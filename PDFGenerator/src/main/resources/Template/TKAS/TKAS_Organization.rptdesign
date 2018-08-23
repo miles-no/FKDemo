@@ -4834,7 +4834,7 @@ else &#13;
                                 <property name="fontSize">7.1pt</property>
                                 <property name="paddingTop">5pt</property>
                                 <property name="paddingLeft">0pt</property>
-                                <text-property name="text">Sluppenvegen 17 B, 7037 Trondheim | Foretaksregisteret NO 880396072 MVA | IBAN NO7315032873747 | SWIFT: DNBANOKKXXX</text-property>
+                                <text-property name="text">Sluppenvegen 17 B, 7037 Trondheim | Foretaksregisteret NO 880396072 MVA | IBAN NO7315032873747 | SWIFT DNBANOKKXXX</text-property>
                             </label>
                         </cell>
                     </row>
@@ -4850,7 +4850,7 @@ else &#13;
             <property name="height">11.69in</property>
             <property name="width">8.3in</property>
             <property name="headerHeight">5mm</property>
-            <property name="footerHeight">1.29in</property>
+            <property name="footerHeight">1.38in</property>
             <page-header>
                 <grid id="6863">
                     <property name="fontFamily">"Museo Sans 300"</property>
@@ -4972,7 +4972,7 @@ else &#13;
                     <property name="marginLeft">15mm</property>
                     <property name="marginRight">15mm</property>
                     <column id="5081">
-                        <property name="width">2.1in</property>
+                        <property name="width">2.3in</property>
                     </column>
                     <column id="5082">
                         <property name="width">0.16in</property>
@@ -4984,147 +4984,331 @@ else &#13;
                         <property name="width">0.16in</property>
                     </column>
                     <column id="5085">
-                        <property name="width">2.43in</property>
+                        <property name="width">2.35in</property>
                     </column>
-                    <row id="5086">
-                        <property name="fontSize">7pt</property>
-                        <property name="pageBreakAfter">avoid</property>
-                        <property name="pageBreakBefore">avoid</property>
-                        <cell id="5087">
-                            <property name="fontSize">7pt</property>
-                            <property name="paddingTop">3pt</property>
-                            <label id="5088">
-                                <property name="fontFamily">"Museo Sans 700"</property>
-                                <property name="fontSize">7pt</property>
-                                <property name="marginTop">3pt</property>
-                                <property name="paddingTop">2pt</property>
-                                <property name="paddingLeft">5pt</property>
-                                <property name="paddingBottom">0pt</property>
-                                <text-property name="text">Full oversikt i Min Bedrift&#13;</text-property>
-                            </label>
-                        </cell>
-                        <cell id="5089">
-                            <property name="fontSize">7pt</property>
-                        </cell>
-                        <cell id="5090">
-                            <property name="paddingTop">1pt</property>
-                            <label id="5091">
-                                <property name="fontFamily">"Museo Sans 700"</property>
-                                <property name="fontSize">7pt</property>
-                                <property name="marginTop">3pt</property>
-                                <property name="paddingTop">3pt</property>
-                                <text-property name="text">Forskjell på strøm og nettleie&#13;</text-property>
-                            </label>
-                        </cell>
-                        <cell id="5092"/>
-                        <cell id="5093">
-                            <property name="paddingTop">1pt</property>
-                            <label id="5094">
-                                <property name="fontFamily">"Museo Sans 700"</property>
-                                <property name="fontSize">7pt</property>
-                                <property name="marginTop">3pt</property>
-                                <property name="paddingTop">3pt</property>
-                                <property name="paddingRight">3pt</property>
-                                <text-property name="text">Elsertifikat</text-property>
-                            </label>
-                        </cell>
-                    </row>
                     <row id="5095">
                         <property name="pageBreakAfter">avoid</property>
                         <property name="pageBreakBefore">avoid</property>
                         <cell id="5096">
+                            <property name="paddingTop">1pt</property>
                             <property name="paddingBottom">4pt</property>
-                            <label id="5097">
+                            <property name="paddingRight">1pt</property>
+                            <grid id="7350">
+                                <property name="height">0.21875in</property>
+                                <property name="width">1.88in</property>
+                                <column id="7351">
+                                    <property name="width">1.28in</property>
+                                </column>
+                                <column id="7352"/>
+                                <row id="7353">
+                                    <property name="fontFamily">"Museo Sans 700"</property>
+                                    <property name="fontSize">7%</property>
+                                    <property name="height">0.19in</property>
+                                    <cell id="7354">
+                                        <property name="fontFamily">"Museo Sans 700"</property>
+                                        <property name="fontSize">7pt</property>
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <label id="7407">
+                                            <property name="paddingTop">6pt</property>
+                                            <property name="paddingLeft">5pt</property>
+                                            <property name="paddingBottom">0pt</property>
+                                            <property name="paddingRight">0pt</property>
+                                            <text-property name="text">Full oversikt i Min Bedrift:</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="7356">
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <label id="7357">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
+                                            <property name="fontSize">6.9pt</property>
+                                            <property name="paddingTop">6pt</property>
+                                            <property name="paddingBottom">0pt</property>
+                                            <property name="textAlign">left</property>
+                                            <text-property name="text">Som kunde av</text-property>
+                                        </label>
+                                    </cell>
+                                </row>
+                            </grid>
+                            <label id="7358">
                                 <property name="fontFamily">"Museo Sans 300"</property>
                                 <property name="fontSize">6.9pt</property>
+                                <property name="paddingTop">0pt</property>
                                 <property name="paddingLeft">5pt</property>
                                 <property name="lineHeight">8pt</property>
-                                <text-property name="text">Som kunde av TrøndelagKraft har dere tilgang til energi- og ledelsesverktøyet Min Bedrift. </text-property>
+                                <text-property name="text">TrøndelagKraft har dere tilgang til energi- og ledelsesverktøyet Min Bedrift. </text-property>
                             </label>
-                            <label id="5098">
-                                <property name="fontFamily">"Museo Sans 300"</property>
-                                <property name="fontSize">6.8pt</property>
-                                <property name="paddingLeft">5pt</property>
-                                <property name="lineHeight">8pt</property>
-                                <text-property name="text"></text-property>
-                            </label>
-                            <label id="5099">
+                            <label id="7360">
                                 <property name="fontFamily">"Museo Sans 300"</property>
                                 <property name="fontSize">6.9pt</property>
+                                <property name="paddingTop">5pt</property>
                                 <property name="paddingLeft">5pt</property>
                                 <property name="lineHeight">8pt</property>
-                                <text-property name="text">Min Bedrift gir deg full kontroll over bedrift-ens energiforbruk og strømkostnader. For mer informasjon, se</text-property>
+                                <text-property name="text">Min Bedrift gir deg full kontroll over bedriftens energiforbruk og strømkostnader. For mer informasjon, se trondelagkraft.no/min-bedrift</text-property>
                             </label>
-                            <label id="5100">
-                                <property name="fontFamily">"Museo Sans 300"</property>
-                                <property name="fontSize">6.9pt</property>
-                                <property name="paddingLeft">5pt</property>
-                                <property name="paddingBottom">1pt</property>
-                                <property name="lineHeight">8pt</property>
-                                <text-property name="text">trondelagkraft.no/min-bedrift</text-property>
-                            </label>
+                            <grid id="7362">
+                                <property name="width">2.13in</property>
+                                <column id="7363">
+                                    <property name="width">1.46in</property>
+                                </column>
+                                <column id="7364">
+                                    <property name="width">0.65in</property>
+                                </column>
+                                <row id="7365">
+                                    <cell id="7366">
+                                        <property name="paddingTop">1pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <label id="7413">
+                                            <property name="fontFamily">"Museo Sans 700"</property>
+                                            <property name="fontSize">7pt</property>
+                                            <property name="paddingTop">4pt</property>
+                                            <property name="paddingLeft">3pt</property>
+                                            <property name="paddingBottom">0pt</property>
+                                            <property name="paddingRight">0pt</property>
+                                            <text-property name="text">Forskjell på strøm og nettleie:</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="7368">
+                                        <property name="paddingTop">1pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <label id="7369">
+                                            <property name="fontSize">6.9pt</property>
+                                            <property name="paddingTop">4pt</property>
+                                            <property name="paddingLeft">0pt</property>
+                                            <property name="paddingBottom">0pt</property>
+                                            <property name="paddingRight">0pt</property>
+                                            <property name="textAlign">left</property>
+                                            <text-property name="text">Strøm kjøper</text-property>
+                                        </label>
+                                    </cell>
+                                </row>
+                            </grid>
+                            <grid id="7394">
+                                <property name="fontSize">7pt</property>
+                                <column id="7395"/>
+                                <row id="7396">
+                                    <cell id="7397">
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <label id="7370">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
+                                            <property name="fontSize">6.9pt</property>
+                                            <property name="paddingTop">0pt</property>
+                                            <property name="paddingLeft">5pt</property>
+                                            <property name="paddingBottom">0pt</property>
+                                            <property name="paddingRight">0pt</property>
+                                            <property name="lineHeight">8pt</property>
+                                            <text-property name="text">dere fra TrøndelagKraft AS. Beløpet dere betaler </text-property>
+                                        </label>
+                                        <label id="5103">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
+                                            <property name="fontSize">6.9pt</property>
+                                            <property name="marginBottom">2pt</property>
+                                            <property name="paddingTop">0pt</property>
+                                            <property name="paddingLeft">5pt</property>
+                                            <property name="paddingBottom">0pt</property>
+                                            <property name="lineHeight">8pt</property>
+                                            <text-property name="text">til oss styres av strømpriser og strømforbruk.</text-property>
+                                        </label>
+                                    </cell>
+                                </row>
+                            </grid>
                         </cell>
                         <cell id="5101">
                             <property name="paddingBottom">4pt</property>
                         </cell>
                         <cell id="5102">
                             <property name="paddingBottom">4pt</property>
-                            <label id="5103">
-                                <property name="fontFamily">"Museo Sans 300"</property>
-                                <property name="fontSize">6.9pt</property>
-                                <property name="lineHeight">8pt</property>
-                                <text-property name="text">Strøm kjøper dere fra TrøndelagKraft AS Beløpet dere betaler til oss styres av strømpriser og strømforbruk.</text-property>
-                            </label>
-                            <label id="5770">
-                                <property name="fontSize">5pt</property>
-                                <property name="marginBottom">0pt</property>
-                            </label>
                             <label id="5104">
                                 <property name="fontFamily">"Museo Sans 300"</property>
                                 <property name="fontSize">6.9pt</property>
+                                <property name="paddingTop">5pt</property>
                                 <property name="paddingBottom">2pt</property>
                                 <property name="lineHeight">8pt</property>
-                                <text-property name="text">Nettleien betales videre til deres lokale netteier, som eier ledningsnettet dere er tilknyttet. Nettleien går blant annet til å dekke drift og vedlikehold av ledningsnettet, samt offentlige avgifter.</text-property>
+                                <text-property name="text">Nettleien betales videre til deres lokale netteier, som eier ledningsnettet dere er tilknyttet.</text-property>
                             </label>
+                            <label id="7371">
+                                <property name="fontFamily">"Museo Sans 300"</property>
+                                <property name="fontSize">6.9pt</property>
+                                <property name="paddingTop">3pt</property>
+                                <property name="paddingBottom">2pt</property>
+                                <property name="lineHeight">8pt</property>
+                                <text-property name="text">Nettleien går blant annet til å dekke drift og vedlikehold av ledningsnettet, samt offentlige avgifter.</text-property>
+                            </label>
+                            <grid id="7435">
+                                <property name="height">0.16666666666666666in</property>
+                                <property name="width">2.13in</property>
+                                <column id="7436">
+                                    <property name="width">0.54in</property>
+                                </column>
+                                <column id="7437">
+                                    <property name="width">1.8in</property>
+                                </column>
+                                <row id="7438">
+                                    <property name="height">0.147in</property>
+                                    <cell id="7439">
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <label id="7440">
+                                            <property name="fontFamily">"Museo Sans 700"</property>
+                                            <property name="fontSize">7pt</property>
+                                            <property name="paddingTop">3pt</property>
+                                            <property name="paddingLeft">0.25pt</property>
+                                            <property name="paddingBottom">0pt</property>
+                                            <property name="paddingRight">0pt</property>
+                                            <text-property name="text">Elsertifikat:</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="7441">
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <label id="7442">
+                                            <property name="fontSize">6.9pt</property>
+                                            <property name="paddingTop">3pt</property>
+                                            <property name="paddingLeft">0pt</property>
+                                            <property name="paddingBottom">0pt</property>
+                                            <property name="paddingRight">0pt</property>
+                                            <property name="textAlign">left</property>
+                                            <text-property name="text">I samsvar med Lov om elsertifikater</text-property>
+                                        </label>
+                                    </cell>
+                                </row>
+                            </grid>
+                            <grid id="7443">
+                                <property name="fontSize">7pt</property>
+                                <column id="7444"/>
+                                <row id="7445">
+                                    <cell id="7446">
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">1pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <label id="7447">
+                                            <property name="fontFamily">"Museo Sans 300"</property>
+                                            <property name="fontSize">6.9pt</property>
+                                            <property name="paddingTop">0pt</property>
+                                            <property name="paddingLeft">0.25pt</property>
+                                            <property name="paddingBottom">0pt</property>
+                                            <property name="paddingRight">0pt</property>
+                                            <property name="lineHeight">8pt</property>
+                                            <text-property name="text">inneholder påslaget kostnader til kjøp av elsertifikater.</text-property>
+                                        </label>
+                                    </cell>
+                                </row>
+                            </grid>
                         </cell>
                         <cell id="5105">
                             <property name="paddingBottom">4pt</property>
                         </cell>
                         <cell id="5106">
+                            <property name="paddingTop">0pt</property>
+                            <property name="paddingLeft">0pt</property>
                             <property name="paddingBottom">4pt</property>
-                            <label id="5107">
+                            <label id="7384">
                                 <property name="fontFamily">"Museo Sans 300"</property>
                                 <property name="fontSize">6.9pt</property>
-                                <property name="paddingTop">1pt</property>
-                                <property name="paddingLeft">0pt</property>
-                                <property name="paddingBottom">2pt</property>
-                                <property name="paddingRight">3pt</property>
+                                <property name="marginRight">0pt</property>
+                                <property name="paddingTop">5pt</property>
+                                <property name="paddingLeft">0.25pt</property>
+                                <property name="paddingBottom">0pt</property>
+                                <property name="paddingRight">20pt</property>
+                                <property name="textAlign">left</property>
                                 <property name="lineHeight">8pt</property>
-                                <text-property name="text">I samsvar med Lov om elsertifikater inneholder påslaget kostnader til kjøp av elsertifikater. For mer informasjon, se nve.no/energiforsyning-og-konsesjon/elsertifikater/stromkunder</text-property>
+                                <text-property name="text">For mer informasjon, se </text-property>
                             </label>
-                            <label id="5109">
+                            <label id="7454">
                                 <property name="fontFamily">"Museo Sans 300"</property>
-                                <property name="fontSize">4.6pt</property>
+                                <property name="fontSize">6.9pt</property>
+                                <property name="paddingTop">0pt</property>
+                                <property name="paddingLeft">0.25pt</property>
                                 <property name="paddingBottom">2pt</property>
-                                <property name="paddingRight">3pt</property>
-                                <property name="lineHeight">8pt</property>
-                                <text-property name="text"></text-property>
+                                <property name="paddingRight">0pt</property>
+                                <property name="textAlign">left</property>
+                                <property name="whiteSpace">normal</property>
+                                <text-property name="text">nve.no/energiforsyning-og-konsesjon/elsertifikater/</text-property>
                             </label>
                             <label id="5110">
                                 <property name="fontFamily">"Museo Sans 700"</property>
                                 <property name="fontSize">6.9pt</property>
-                                <property name="paddingBottom">2pt</property>
+                                <property name="marginTop">0pt</property>
+                                <property name="paddingTop">3pt</property>
+                                <property name="paddingLeft">0.25pt</property>
+                                <property name="paddingBottom">0pt</property>
                                 <property name="paddingRight">3pt</property>
                                 <property name="lineHeight">8pt</property>
-                                <text-property name="text">Varedeklarasjon: </text-property>
+                                <text-property name="text">Varedeklarasjon:</text-property>
                             </label>
                             <label id="5111">
                                 <property name="fontFamily">"Museo Sans 300"</property>
                                 <property name="fontSize">6.9pt</property>
+                                <property name="paddingTop">0pt</property>
+                                <property name="paddingLeft">0.25pt</property>
                                 <property name="paddingBottom">2pt</property>
                                 <property name="paddingRight">3pt</property>
                                 <property name="lineHeight">8pt</property>
                                 <text-property name="text">trondelagkraft.no/varedeklarasjon</text-property>
+                            </label>
+                            <grid id="7385">
+                                <property name="height">0.167in</property>
+                                <property name="width">2.0208333333333335in</property>
+                                <column id="7386">
+                                    <property name="width">0.19in</property>
+                                </column>
+                                <column id="7387">
+                                    <property name="width">1.6in</property>
+                                </column>
+                                <row id="7388">
+                                    <property name="height">0.167in</property>
+                                    <cell id="7389">
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="paddingRight">0pt</property>
+                                        <label id="7390">
+                                            <property name="fontFamily">"Museo Sans 700"</property>
+                                            <property name="fontSize">7pt</property>
+                                            <property name="fontWeight">normal</property>
+                                            <property name="paddingTop">3pt</property>
+                                            <property name="paddingLeft">0pt</property>
+                                            <property name="paddingBottom">0pt</property>
+                                            <property name="paddingRight">0pt</property>
+                                            <text-property name="text">Vilkår:</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="7391">
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingLeft">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="textAlign">left</property>
+                                        <label id="7392">
+                                            <property name="fontSize">6.9pt</property>
+                                            <property name="paddingTop">3pt</property>
+                                            <property name="paddingBottom">0pt</property>
+                                            <property name="textAlign">left</property>
+                                            <text-property name="text">For oppdatert informasjon om dine</text-property>
+                                        </label>
+                                    </cell>
+                                </row>
+                            </grid>
+                            <label id="7393">
+                                <property name="fontFamily">"Museo Sans 300"</property>
+                                <property name="fontSize">6.9pt</property>
+                                <property name="paddingTop">0pt</property>
+                                <property name="paddingLeft">0pt</property>
+                                <property name="lineHeight">8pt</property>
+                                <text-property name="text">avtalevilkår se trondelagkraft.no/bedrift/avtalevilkar</text-property>
                             </label>
                         </cell>
                     </row>
@@ -6047,7 +6231,7 @@ else&#13;
                                         <list-property name="highlightRules">
                                             <structure>
                                                 <property name="operator">lt</property>
-                                                <property name="color">#000000</property>
+                                                <property name="color">#808080</property>
                                                 <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
                                                 <simple-property-list name="value1">
                                                     <value type="javascript">0</value>
@@ -6075,13 +6259,14 @@ else &#13;
                         <detail>
                             <row id="1483">
                                 <cell id="1484">
+                                    <property name="fontFamily">"Museo Sans 900"</property>
                                     <property name="borderRightColor">#DADADA</property>
                                     <property name="borderRightStyle">solid</property>
                                     <property name="borderRightWidth">1px</property>
                                     <property name="paddingTop">5pt</property>
                                     <property name="paddingBottom">5pt</property>
                                     <data id="1485">
-                                        <property name="fontFamily">"Museo Sans 700"</property>
+                                        <property name="fontFamily">"Museo Sans 900"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="paddingTop">1pt</property>
                                         <property name="paddingLeft">1pt</property>
@@ -6109,15 +6294,17 @@ else &#13;
                                     </data>
                                 </cell>
                                 <cell id="1486">
+                                    <property name="fontFamily">"Museo Sans 900"</property>
                                     <property name="borderRightColor">#DADADA</property>
                                     <property name="borderRightStyle">solid</property>
                                     <property name="borderRightWidth">1px</property>
-                                    <property name="paddingTop">5.3pt</property>
+                                    <property name="paddingTop">5pt</property>
                                     <property name="paddingBottom">5pt</property>
                                     <property name="textAlign">center</property>
                                     <data id="1487">
-                                        <property name="fontFamily">"Museo Sans 700"</property>
+                                        <property name="fontFamily">"Museo Sans 900"</property>
                                         <property name="fontSize">9pt</property>
+                                        <property name="paddingTop">1.3pt</property>
                                         <list-property name="highlightRules">
                                             <structure>
                                                 <property name="operator">eq</property>
@@ -6140,21 +6327,22 @@ else &#13;
                                     </data>
                                 </cell>
                                 <cell id="1488">
+                                    <property name="fontFamily">"Museo Sans 900"</property>
                                     <property name="borderRightColor">#DADADA</property>
                                     <property name="borderRightStyle">solid</property>
                                     <property name="borderRightWidth">1px</property>
                                     <property name="paddingTop">5pt</property>
                                     <property name="paddingBottom">5pt</property>
                                     <data id="1489">
-                                        <property name="fontFamily">"Museo Sans 700"</property>
+                                        <property name="fontFamily">"Museo Sans 900"</property>
                                         <property name="fontSize">9pt</property>
-                                        <property name="paddingTop">1pt</property>
+                                        <property name="paddingTop">1.3pt</property>
                                         <property name="paddingBottom">1pt</property>
                                         <property name="textAlign">center</property>
                                         <list-property name="highlightRules">
                                             <structure>
                                                 <property name="operator">eq</property>
-                                                <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
+                                                <property name="fontFamily">"Museo Sans 900"</property>
                                                 <expression name="testExpr" type="javascript">row["DirectDebit"]</expression>
                                                 <simple-property-list name="value1">
                                                     <value type="javascript">"YES"</value>
@@ -6173,10 +6361,11 @@ else &#13;
                                     </data>
                                 </cell>
                                 <cell id="1490">
+                                    <property name="fontFamily">"Museo Sans 900"</property>
                                     <property name="paddingTop">5pt</property>
                                     <property name="paddingBottom">5pt</property>
                                     <data id="1491">
-                                        <property name="fontFamily">"Museo Sans 700"</property>
+                                        <property name="fontFamily">"Museo Sans 900"</property>
                                         <property name="fontSize">9pt</property>
                                         <property name="paddingTop">1pt</property>
                                         <property name="paddingBottom">1pt</property>
@@ -6185,7 +6374,7 @@ else &#13;
                                         <list-property name="highlightRules">
                                             <structure>
                                                 <property name="operator">lt</property>
-                                                <property name="color">#000000</property>
+                                                <property name="color">#8A8883</property>
                                                 <expression name="testExpr" type="javascript">row["CurrentClaim"]</expression>
                                                 <simple-property-list name="value1">
                                                     <value type="javascript">0</value>
@@ -7115,15 +7304,14 @@ true;&#13;
                                 <property name="name">TranCategory</property>
                                 <expression name="expression" type="javascript">if(dataSetRow["TransactionCategory"].indexOf("Nettleie") != -1)&#13;
 {&#13;
-  if(dataSetRow["IsOneMeter"] == "true"){&#13;
-  dataSetRow["TransactionCategory"];&#13;
-  }&#13;
-  else{&#13;
-  "Nettleie fra netteier";&#13;
-  }&#13;
+"Nettleie fra netteier";&#13;
 }&#13;
-else&#13;
+else if(null !=dataSetRow["TransactionCategory"] &amp;&amp; dataSetRow["TransactionCategory"].toLowerCase().indexOf("strøm") != -1 )&#13;
 {&#13;
+"Strøm"&#13;
+} else if(null !=dataSetRow["TransactionCategory"] &amp;&amp; dataSetRow["TransactionCategory"].toLowerCase().indexOf("kreditnota") != -1){&#13;
+"Kreditnota"&#13;
+} else {&#13;
 dataSetRow["TransactionCategory"];&#13;
 }</expression>
                                 <property name="dataType">string</property>
@@ -7629,7 +7817,7 @@ else &#13;
                                     <property name="paddingBottom">0pt</property>
                                     <property name="paddingRight">3pt</property>
                                     <property name="textAlign">left</property>
-                                    <text-property name="text">Sluppenvegen 17 B, 7037 Trondheim | Foretaksregisteret NO 880396072 MVA | IBAN NO7315032873747 | SWIFT: DNBANOKKXXX</text-property>
+                                    <text-property name="text">Sluppenvegen 17 B, 7037 Trondheim | Foretaksregisteret NO 880396072 MVA | IBAN NO7315032873747 | SWIFT DNBANOKKXXX</text-property>
                                 </label>
                             </cell>
                         </row>
@@ -7875,6 +8063,12 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">true</expression>
+                                                    </structure>
+                                                </list-property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">AccountNumber</property>
@@ -7897,6 +8091,12 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">true</expression>
+                                                    </structure>
+                                                </list-property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">AccountNumber</property>
@@ -9407,7 +9607,7 @@ else if(null !=dataSetRow["TransactionCategory"] &amp;&amp; dataSetRow["Transact
 } else if(null !=dataSetRow["TransactionCategory"] &amp;&amp; dataSetRow["TransactionCategory"].toLowerCase().indexOf("kreditnota") != -1){&#13;
 "Kreditnota"&#13;
 } else {&#13;
-	dataSetRow["TransactionCategory"];&#13;
+dataSetRow["TransactionCategory"];&#13;
 }</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
@@ -9789,7 +9989,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
             </row>
         </grid>
         <list id="5766">
-            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+            <property name="fontFamily">"Museo Sans 500"</property>
             <property name="masterPage">NewSimpleMasterPage</property>
             <property name="pageBreakAfter">always</property>
             <property name="pageBreakBefore">always</property>
@@ -10012,7 +10212,7 @@ dataSetRow["TransactionName"];&#13;
             </list-property>
             <detail>
                 <grid id="782">
-                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                    <property name="fontFamily">"Museo Sans 500"</property>
                     <property name="marginTop">2pt</property>
                     <property name="marginLeft">15mm</property>
                     <property name="marginBottom">0pt</property>
@@ -10967,6 +11167,7 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                     </list-property>
                     <detail>
                         <table id="6971">
+                            <property name="fontFamily">"Museo Sans 500"</property>
                             <property name="fontSize">7pt</property>
                             <property name="borderBottomStyle">none</property>
                             <property name="borderLeftColor">#DADADA</property>
@@ -11290,6 +11491,7 @@ Math.abs(dataSetRow["VatRate"])+ " %"&#13;
                             </column>
                             <header>
                                 <row id="6972">
+                                    <property name="fontFamily">"Museo Sans 500"</property>
                                     <cell id="6973">
                                         <property name="colSpan">6</property>
                                         <property name="rowSpan">1</property>
@@ -11297,6 +11499,7 @@ Math.abs(dataSetRow["VatRate"])+ " %"&#13;
                                         <property name="paddingLeft">0pt</property>
                                         <property name="paddingRight">0pt</property>
                                         <grid id="6974">
+                                            <property name="fontFamily">"Museo Sans 700"</property>
                                             <property name="fontSize">10pt</property>
                                             <property name="width">7.09375in</property>
                                             <property name="dataSet">NettInfo1</property>
@@ -12008,400 +12211,6 @@ true;&#13;
                 6IyCzijojILOKOiMgs4o6IyCzijojILOKOiMgs4o6IyCzijojILOKOiMgs4o6IyCzijojILOKOiMgs4o
                 6IyCzijojILOKOiMgs4o6IyCzijojILOKOiMgs4o6IyCzijojILOKOiMgs4o6IyCzijojILOKOiMgs4o
                 PHvvM+Ea94yCzijojILOKOiMgs4o6IyCzijojILOKOiMgs64b4w/w0MNJZ7buWsAAAAASUVORK5CYII=
-</property>
-        </structure>
-        <structure>
-            <property name="name">AvtaleGiro.jpg</property>
-            <property name="data">
-                /9j/4AAQSkZJRgABAQAAZABkAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsN
-                DhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQU
-                FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCACZAyADASIAAhEBAxEB/8QA
-                HwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIh
-                MUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVW
-                V1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXG
-                x8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQF
-                BgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAV
-                YnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOE
-                hYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq
-                8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5ZppljB/jyP8AZpLlytuCOD5ij9a/W/4Zfsy/D/Wfhx4Wu7nR
-                rZ7iawjkkcoMsxXJJr9tzLM6eWxjKpFvm7H47luWTzFyUZJWPyR8+P8A2/8Avmjz4/8Ab/75r9lv+GUP
-                hvj/AJAdt/3wKP8AhlD4b/8AQDtv++BXg/604b+Rnu/6r1f+fi/E/Gnz4/8Ab/75o8+P/b/75r9lv+GU
-                fhv/ANAO2/74FH/DKPw3/wCgHbf98Cj/AFqw38jF/qvW/wCfi/E/Gnz4/wDb/wC+aPPj/wBv/vmv2W/4
-                ZQ+G/wD0A7b/AL4FH/DKPw3/AOgHbf8AfAo/1pw38jD/AFXrf8/F+J+NPnx/7f8A3zR58f8At/8AfNfs
-                t/wyh8N/+gHbf98Cj/hlD4b/APQDtv8AvgUf604b+Rh/qvW/5+L8T8afPj/2/wDvmjzo/wDb/wC+a/Zb
-                /hlD4b/9AO2/74FH/DKHw3/6Adt/3wKP9asN/Iw/1Xrf8/F+J+NPnx/7f/fNHnx/7f8A3zX7Lf8ADKHw
-                3/6Adt/3wKP+GUPhvn/kB23/AHwKP9acN/Iw/wBV63/PxfifjT58f+3/AN80efH/ALf/AHzX7Lf8Mo/D
-                f/oB23/fAo/4ZQ+G/wD0A7f/AL4FH+tOG/kYf6r1v+fi/E/Gnz4/9v8A75o8+P8A2/8Avmv2W/4ZQ+G/
-                /QDtv++BR/wyj8N/+gHbf98Cj/WnDfyMP9V63/PxfifjT58f+3/3zR58f+3/AN81+y3/AAyh8N/+gHb/
-                APfAo/4ZQ+G//QDtv++BR/rThv5GH+q9b/n4vxPxp8+P/b/75o8+P/b/AO+a/Zb/AIZR+G//AEA7b/vg
-                Uf8ADKHw3z/yA7f/AL4FH+tOG/kYf6r1v+fi/E/Gnz4/9v8A75o8+P8A2/8Avmv2W/4ZQ+G//QDtv++B
-                R/wyh8N/+gHbf98Cj/WnDfyMP9V63/PxfifjT50f+3/3zR58f+3/AN81+y3/AAyh8N/+gHbf98Cj/hlD
-                4b/9AO2/74FH+tOG/kYf6r1v+fi/E/Gnz4/9v/vmjz4/9v8A75r9lv8AhlD4b5/5Adv/AN8Cj/hlH4b/
-                APQDtv8AvgUf61Yb+Rh/qvW/5+L8T8afPj/2/wDvmjz4/wDb/wC+a/Zb/hlD4b/9AO3/AO+BR/wyh8N/
-                +gHb/wDfAo/1pw38jD/Vet/z8X4n40+fH/t/980efH/t/wDfNfst/wAMo/Df/oB23/fAo/4ZQ+G//QDt
-                /wDvgUf61Yb+Rh/qvW/5+L8T8afPj/2/++aPPj/2/wDvmv2W/wCGUPhv/wBAO3/74FH/AAyj8N/+gHbf
-                98Cj/WnDfyMP9V63/PxfifjT58f+3/3zR58f+3/3zX7Lf8MofDfP/IDt/wDvgUf8MofDf/oB23/fAo/1
-                pw38jD/Vet/z8X4n40+dH/t/980edH/t/wDfNfst/wAMofDf/oB23/fAo/4ZQ+G//QDtv++BR/rVhv5G
-                H+q9b/n4vxPxp8+P/b/75o8+P/b/AO+a/Zb/AIZQ+G//AEA7b/vgUf8ADKHw3z/yA7f/AL4FH+tOG/kY
-                f6r1v+fi/E/Gnzo/9v8A75o8+P8A2/8Avmv2W/4ZR+G//QDtv++BR/wyh8N/+gHb/wDfAo/1pw38j/AP
-                9V63/PxfifjT58f+3/3zR50f+3/3zX7Lf8MofDf/AKAdv/3wKP8AhlH4b/8AQDtv++BR/rThv5H+Af6r
-                1v8An4vxPxp8+P8A2/8Avmjz4/8Ab/75r9lv+GUPhv8A9AO3/wC+BR/wyh8N/wDoB2//AHwKP9asN/Iw
-                /wBV63/PxfifjT50f+3/AN80efH/ALf/AHzX7Lf8Mo/Df/oB23/fAo/4ZQ+G+f8AkB2//fAo/wBacN/I
-                /wAA/wBV63/PxfifjT58f+3/AN80edH/ALf/AHzX7Lf8MofDf/oB23/fAo/4ZQ+G/wD0A7b/AL4FH+tO
-                G/kf4B/qvW/5+L8T8afOj/2/++aPPj/2/wDvmv2W/wCGUPhv/wBAO2/74FH/AAyh8N/+gHbf98Cj/WnD
-                fyMP9V63/PxfifjT58f+3/3zR50f+3/3zX7Lf8MofDfP/IDt/wDvgUf8Mo/Df/oB23/fAo/1qw38jD/V
-                et/z8X4n40+fH/t/980efH/t/wDfNfst/wAMofDf/oB2/wD3wKP+GUPhv/0A7f8A74FH+tOG/kYf6r1v
-                +fi/E/Gnz4/9v/vmgzRj++f+A1+yx/ZQ+G//AEA7b/vgUqfsp/DhJQf7DtjweNgo/wBasN/Ix/6r1f8A
-                n4vxPxpDZ5GfqadXo37QuhWfhr4ueINN0+JYLSC4ZURRwBmvOBX2NKoqsI1F1Vz46vSdCrKk+jsLRRRW
-                pgFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUU
-                UAFFFFABRRRQAUUUUAFFFFAEV1/x7Af9NF/nX7jfB3H/AAqrwf8A9g2H/wBAFfhzd/8AHsP+ui/zr9xv
-                g7n/AIVV4P8A+wbD/wCixXwnFf8ACper/I+74X+Op6I7PjFHHtRzil5r81P0ITjPajjJ6Uc5o5yaADjH
-                akyD6YpecUh4HNABnn1oHI5pQcUwuR/HH+LUCHnHPSkOMCmeYf78f/fVHmHH34/++qdguPyCOlGee2KZ
-                5h/vx/8AfVPBJ9D9KVgFGPajjHagZx0o5xQMOPajjPal5pOc0AHHtRxjtS80nOKAA49qOM9qDml5zQAn
-                HtQcc9KOaDnmgAGOOlHHtQM8Uc0AHGe1Ax7UvOaQZoAQ49qO9MmlSGN5JHEcaDLMxwAPrWVY+MdE1G9W
-                0tdRhnuW6Ro+SaajJ6pCubA9+tLx7UnfHenc0hicY7UHHtRzig5oAOM9qOPal5zSc0ABxz0oGOOlBzzQ
-                M8UAHHtRxntRzS85oAQY9qOMdqBmjnFAAcdsZpufalclecqP944qPef78X/fVAiTv2pePaot5/vx/wDf
-                VKrFjjch9g2TRYLj+vYCl4z2pGyOf0peQaQw49qDjnpRzQc80wAY46Uce1AzxRzQAcZ7UDHtS85pBmgA
-                4x2o49qOcUvNADcCjjzR9D/Sl5zSc+aPof6UAfjF+1H/AMlz8Uf9fTfzrymvVv2pP+S5+KP+vpv515TX
-                7zg/92p+i/I/Esw/3up6sKKKK7DzwpKWkoABzS0mP8mhmC9Vdh6IM0DFpO9X9M0LUNa4sbC5nHT/AFR6
-                1uL8LvFmM/2Lcc/9MzWbqwjpJo6I4erNXjFtehyeaXPFdJefDfxPZW7Tz6PcJEvVhGeKwLq2nsJfJuba
-                4hkIyN0RHFOM4y+F3JlQqQ+KLXyIuuRRnnFAHocf73FGMVZiGaM0fpQOR0J5wAKA3DBPAozXtXgn9j/4
-                n+O9Gi1Wx0JlspgDE78bhXG/E74L+L/hBdxweKNKewWXiKQDIb8a5IYzD1J+yjUTl2vqd08DiKdP2s4N
-                R72OHzn2ozxmkIwcHtS49a6zhFopKWgQUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA
-                UUUUARXf/HsP+ui/zr9xvg7/AMkq8H/9g2H/ANFivw5u/wDj2H/XRf51+43wd/5JV4P5/wCYbD/6LFfC
-                cV/wqXq/yR93wv8AHU9Edn2paTt1pfxr81P0ITvR3NHfrR3PNAB2puKd26018hTjk4oAyfFniWz8IeHr
-                7Wb5tlraRszt6elfjd8UPjb4u8X+O9Z1CHxPqFnam4YW8VvMypsycdDX3L/wUQ+MT+EPBEHhWynBl1oF
-                Z1U8qua/M1R5aKvXaMV+mcNYCMaLxNRay29D894jxz9pHD03tq/U6M/EbxiP+Zw1f/wIb/GgfEbxj/0O
-                Gr/+BDf41zp45zR16d6+09lT/lX3I+M9vU7nQv8AEbxkEJXxjq+4D5f9Ibr+dfqT+xH8YIviZ8J7GwuL
-                t7rWtKUJdvIcs3PBr8lVO09OlfQ/7EXxdPww+LdnYTS+Xp2sOI53Y4Va8DO8vjisJLkXvR1R9BkmPlQx
-                SjUfuy0/yP1tVsj60uRioYJ47mISwuJInAKODwRipM+tfjx+qjutHejDZ6cfWjDen60ALSZ460Yb0/Wk
-                2t3GPxoACeM0u7mkJ4o5JxmgBSQO9GeOtIAc4HP40pVvT9aADPIFITRtf0H50cj73HHrQAuRmquo6la6
-                TZy3d7cxWlrENzzTMFXHPc1T8UeJ9N8G6Jdaxq10lnYW6l3lkbAr8v8A9q79sfUPjTcy6B4fMum+GIHK
-                ybWw1wQfvAjtXsZbllbMqloaRW77f8E8rH5jRwEOao9ei7nZftZ/tuX3iq8vPCnguYwaMuY5b1Dh2Ydc
-                H0rzD9ijXdWu/wBpzwtDcavd3MJVi0cshIbg9cmvn3P4+5717r+w+Cf2o/CuBk7GP/jtfp1XA0cFl9Wn
-                Sj9l+r0Pzulj62Nx0J1H1WnZXP19X/WSfX+lPByaaFfc/wAvBPHPtS7X9Bj61+Mn6yLmkzRyMZ4/Gg9a
-                QCk4NGaaTg89BQGLj5eR9aYDieDQDwDSbXA4UfnRh8fdH/fVAg3U7vTTlVywAH1pAwPINAxwpH+4fpSg
-                8daR/uHntQB8ef8ABRbXNV0Twjpj6Xqt1pbnOWtnKk8+1fnePiL4x2qf+Ex1fOP+fhv8a/QT/gpR/wAi
-                bpf0P86/NpfuL9K/W+HqcJYCLaW76H5lxDVnDGWi+iOiHxF8Ygf8jhq//gQ3+Ne//sJeMfEmr/tLaXa6
-                h4k1HUbQ2kha3uJWZCdvoTXy/X0R+wB/ydDpX/XnL/6DXp5lTgsFWaivhfTyPKy2tUli6ab6r80frSvV
-                /wDep/frTV6tz/FSnrX4ifsIbhRkUmeKFO4kA5I7ZpDHZwKAcikw56r/AOPUFWIxgfnTAXPNJnAzSE7W
-                APB+tGfekA4HIpaTtS/jTATvSf8ALUfQ/wBKXv1pP+Wo57H+lAH4xftR/wDJc/FP/X03868pr1b9qT/k
-                ufij/r6b+deU1+84L/dqfovyPxLMP97qerCkpaQnB6V2Hnhnmp7OzuNQuEgtLeS7uHOFhhUs5/AVb8Pe
-                HdR8VavbaZpdq93e3DhI40BJJzX6g/spfsgaT8JNJtNd163S+8UTKHUyLkW4I+6R614+ZZnRy2nzT1k9
-                ke3luV1cwn7ukVuz5b+CP7Afin4gW9rq3iNl0zRZufKziYD6V9jfD/8AYo+HHgNYPLtTqUkZyTdANuNe
-                +qm0DGFwPurwKdkZr8wxed4zFt3lyrsj9KwuU4XCJcsbvuzn7PwD4asECW3h3ToVHQJAg/pV3/hGtIx/
-                yCbT/v0v+FaYOByaQNvyFOfxrxHUm9Wz1lGK0SMuTwvo0yFH0ezdT1VoVI/lWHr3wj8H+JLN7W88OacF
-                YY8xYEDD8QK7IBs9P1qMOuSM1Uas4O8ZNMThGWkkfLfjf/gnr8OfFQmltpLmxvdpMQiYBd3bIr8+/j18
-                Gbr4IeNP7DupRKJMtGwOeM1+1a43Yz61+Vv/AAUMJ/4XLack/uz1PvX3HD2Y4qvifY1Z3jbqfH59gcPD
-                DOtCCUrrY+XcfpXqP7MPhew8a/H/AMJaHqcYksLmUGRMdcV5eetbvgLxpefDzxlpviPTnKX1jIGQ47d6
-                /QMRCc6M4werTt6nwGEnGFaEp7Jr8z9y9NsIdKs47K0UW9tbKI440AwABXl37T/gnTPGfwa8Tfb7aGW5
-                s7R5LeeQDKMAMVx3wj/bb+H/AI+0CKXWNXg8PX6RgTLdNt3tjkjivFv2vv21NC1bwveeEPCFx9tF4pju
-                LyL7pT2r8jweW41YyMeRppq7/wCCfrOKx2EeGlJzTTW1/wBD4BEZhHlsQzKxDEd+aO1IqhECqSQM8mlH
-                rX7Ifj0ndthnjNFBYDqcfhSBkA6n8qCbC5opN6/3v0pc56c0BYKM0Y/i7U3zo8nL/pQCVxwNGaFdXOFb
-                d+FIeeOlAWFzzRR39u1KEY9ATQAgNGaR3RPvNj8KQTxf3z/3yaB2bHZozTPMjbgOfpipNrMMgEigVrCE
-                iikPpS9fqO9AC0UgpaBBRRRQAUUUUARXf/HsP+ui/wA6/cb4O/8AJKvB/H/MNh/9Fivw5u/+PYf9dF/n
-                X7jfB3/klXg//sGw/wDosV8JxX/Cper/ACR93wv8dT0R2fbpS/hSdqWvzU/QhO/SjueKO9GfmNIA7dKq
-                alqFvpNjcX10/l29sjSSOeygZq3nivmn9uj4xL8NfhPJZQSg3mrZtiqkblUjrXXhcPLFV40YbtnPiK0c
-                PSlVlsj8+f2nviZJ8UfjDrt+lwZtLilK2nOQBntXkx55FABQFSSxyTk+9GeK/daNKNCnGnHZKx+J4itL
-                EVZVZbthjNPlt5IVQyI0YcZXcMZFdh8HPCEnjr4oeHdFjTelzcKshI4Az3r3/wDbw+CcXw21Tw3caVbh
-                NPEG2YoON3+RXLUxtOniYYZ7yTZ20sBOrhZ4lbRsfJnP0qa2uZrOeKeBzHNG6srDqMHNRE5PHQ80KcGv
-                QfY8xNp3R+x37Kfxbt/i38JdOvocCXT41tZh3LKuM/pXsuPmBzxX5gf8E9vjA3g74iP4UvJhHpN+pcbj
-                geZjiv0+PzKeR83I+lfiuc4P6li5QS916r5n7JleK+uYWNTrs/U/PT9qj4+fEr4MfFK9tIrqVNLvGL2g
-                yQAue1eOf8Nw/Ej/AJ/pP++jX17/AMFB/hM/jb4cr4mtkDT6KpJUfeYFq/L4ElVzkNjkHqK+8yalhMbh
-                IzlTXMtGfG5zicZgsS4wqNReqPoT/huL4kD/AJfpP++jXuf7H/7XHiPx58VIPDXiS4LwXETOkjt/FjgV
-                8EZI4zW14P8AEt34R8UaXq1lKYbiGdSzA87cjNenicpwtWjKnCmk2tH5nmYXOMVCtGVWbcb6ryP3ZB5P
-                pnilJAP4/wBa5b4b+MrLx54L0rWbB99vLCoJP97AzXTsRk7sBQNxP0Nfi8ouEnGW6P1lNSSkj5m/bY/a
-                Dufg74LgtNEnKeILiRWVQcEJ618Vf8NxfEjAP26ToM/Mapftm/FOT4ofGW5kDgwaVm0VU6HBNeE+2Tiv
-                1vKspoU8JD20E5PV38z8yzTN6/1qUaE7RWmh9Cp+2/8AEqWWJFvZS0jhAAx5Jr9A/CnxPb4YfBWy8R/E
-                W9MM0yeaGfktlQVFfm/+yR8LV+Knxl0qyuomfSof3srdgRyK+wv+Cl9smnfAPRLaN9kUN7HEo9VCgAfp
-                XkZph8LUxdHA04qPM9Wtz18sxOKjhKmMrS5rbJnyb+0x+1Lr3xv1+5tba7ksvDKMRHaoxCzDtmvBieAo
-                GEHQelK5TICkYAHApK+3w+Hp4amqdJWSPhcTiauKqOrVd2wPPHat/wACeNdR+Hfiyz8Q6U5jv7XIRhWA
-                fagHB5OK2lFTTjJXTMITlTkpxdmj6Fb9uL4jszML6RcnONxpk37cXxJ8okX0g5HO418+BwR98U2Z18k4
-                cdR/OvP/ALNwf/Ppfcess1xt/wCIz9qf2c/GF/45+Ful6tqTmS7miDMx9cV6Y7hFJJCADJZuBXi37IJB
-                +COiYIIMS8/hXz5+3z+0Z4o8HawfBWiyi0tZ4Q0s6cSYI7GvyhYCWMx88PR01fyR+nzxccLg44irrovm
-                7Hunxo/bE8D/AAiNxZfblv8AXEHy2sZypP1FfIXxA/4KO+L/ABNmDSdJTR4V4EsbHJr5Huria8maW6me
-                8mJyZZiWb86iyT0ziv0LCcP4PDJOa55d3/kfAYriDFVnak+VeW/3ns9x+158UJ5mdfEl1GD/AAhjxUf/
-                AA1t8Usj/ip7rAOfvGvHcN0waTGD3Fez9Rwv/PtfcjyP7Sxf/P1n1X4H/wCCh/jnwtLGL+yXWouFfzWP
-                T1r7T+B37Xngv40G3sY7tbHX3HzWbkgZ9ASa/IEucZBq5pGqXmh6hDfabcPZ3kLBlliO08c14+NyDCYm
-                LcI8ku6/U9fB8QYmhJe1fNH8fkfvQpz74of7h+lfPv7HHx6b42fDdXvXVdV03Fu6k/M+F+9X0A+Chr8p
-                xFCeFrSo1N0fplGtDEU1VpvRnxl/wUo/5E3S/of51+bS/cX6V+kv/BSj/kTdL+h/nX5tL9xfpX6rw5/u
-                EfVn5pxJ/vnyQtfRH7AH/J0Olf8AXnL/AOg187Gvon9gEgftQ6V/15yf+g16mZ/7lW/wv8jyMr/3yn6r
-                80frUvVv96lb6GmA8vnsTXm3x8+Nul/A7wTdaxfSI14VItoCRmRvYV+JUqU681Tpq7Z+yznGnBzm7JGj
-                8VfjP4X+DuivqHiLUEtztPlxKcsxxwMV8OfE3/gpLrurtLY+HNHS0twx23gY7mHavlv4p/FXXfi54nuN
-                a1u6kkErExWxb5FXPHFcbnjA49hX6jl/DuHoRUsQuaX4I/OcfxDWqTccN7se/Vns1x+138UZ55JR4luY
-                g5yEDHC+1SWX7YHxPtZxI/iG5mUfwMxrx6y0+71JitlaTXrD7whUnFLe6beaYFN9ZzWO7geepXNe/wDU
-                sJ8Ps4/cjwlj8dbm9oz7W+Ff/BSXVbCe20/xXpKSWmQGvsncK+4vhn8WfDPxb0NdU8Nagl3BwHUnDKcd
-                MV+HrDIwwyPQ13Pwo+MPiL4O+IbbVNDvHjiRwZrUn92yd+PWvnsw4coYiLnhlyy/BnvYDiGrTkoYr3o9
-                +p+3g6dKX8K4L4N/FvR/jL4EsPEelSYSZdskLEb0cY3ZH1ruxwc9a/LqlOVKThNWaP0aE41IqUXdMXvS
-                f8tRx2P9KQEE0v8Ay1H0P9Kgs/GL9qT/AJLn4o/6+m/nXlNerftR/wDJc/FP/X03868pr95wX+7U/Rfk
-                fiWYf73U9WFIc4OOTjgetLXSfDfw3J4t8daHpqLvV7pDIPVcjNdU5KEXJ7I5KVN1ZqEd2fen/BPn9nu3
-                0XQR4/1aASXl7xapIv8AqsHqK+2lBHJ6nqcVleGNDtPDeg2Om2MaxWkEKhUAHHStYEV+GY/FzxuIlWl1
-                29Oh+2YTDQwlGNGHQMc5FBzn3pC2AT3xXgv7Xv7Qy/AjwGTZ4Ou6kGjs89FPcmufD0KmKqxo01ds1rVo
-                UKbqzeiNL43ftVeDfgtBJb3l8lzrZH7uzjOc/Wvkfxn/AMFMfEmpS/Z9H8PRWlurZFwHO5/avjzxBr9/
-                4o1a51TVrh7y+uXMkjSnO0k9B7Vng8YBxX6ng+HsJQivarnl57H5ti+IcTVk1R92P4n1cf8Agot47JB/
-                s+MYIONxr0fwn/wU8u7qaCLXPDENpGMB5o2Y596+C8nuaDz15+td1TJMBUVnSS9LnFTzzHQlfnv6n7Lf
-                C79qT4e/Fi6itdG1hP7Sdfmt5flwfTJNfBf/AAUNGPjLaDej/u+qHIr5itLqfT5fMsrqWwl/56W7FW/M
-                Vf8AEPirU/FLWr6pdSXklsmxJZTliPc1x4LI4YDFe3pSvG1rP/M7MZnbx2FdGpG0tNUZMp2xuw6gV96f
-                su/sj+Evip8MLHWtUcrdSD5gBmvgmXJt5fpX60fsGgH4H6bwPuijiGvVw+EU6UrO4cO0adbESVSKat+q
-                MaX/AIJ4/Dq4IMpdj7cf1qSP/gnv8PYRtjd1HpjP9a+pAowOB0owNw4Hevzj+1cd/wA/WfoX1DC/8+l9
-                x+Qf7YHwl0n4PePLLSdHO6CRSTXgz8KxHavrD/gowMfFrT+3yH+dfKEn3Xr9byupKrg6c5u7aPyrNoRp
-                42pGCsrn2f8Ase/syeGPjL4Rub7WWKzREAADNfQS/wDBPzwBtGZWPuFH+Nc5/wAE3gD4B1DjuP519ixg
-                bBwOlfnOa5ji6ONqQhUaSZ+iZdg8PPCU5SpptpdD5eH/AAT9+H4dT5jEem0f41+ff7RfgOx+HPxZ1fQN
-                MzJbW0vlxhRy3PHFftIVHmJwO/p6V8T+FvgBF8UP2sPFPibV7fOm6Tc48qQfLKc8V1ZRm1WE6lXEzbjG
-                P43ObNMsp16caVCCTb38up5d+zd+wPe+O9Ph1/xnJJpVm4EkFuo5kXtmvq+0/Yn+GtvbxxtpUUhUY3FR
-                k17vDDHbwJFEixwooVEUDAGKl4A5A/SvGxWc4zE1HLncV0SPSwuV4XDU1BQT83qfKnxC/YA8AeIbCZrW
-                4OimNC++IAAYyefavzF17T4dK13UrC2l+0QWtw8Cyn+IA4z+lfrl+2L8QU+HvwP1e7jn8q9lIijVSAxz
-                kHFfk/4L8Jal8RvFdrpOmQvPeahMCxUZ2ZPJP519tw7Xr1KE62IneK2v5bnyHEFGiq1OjQguZ9vwKHh7
-                w5qXinVYdO0m0lvLyZgqKi5A+pr61+F//BODxB4nSKbxdetokTKHxDgn6V9ifs8/s0eHPgh4bt40s4rv
-                XJUVrq4lUNhv9nI4r2jBA5OR6cV4+YcS1JScMJou/U9TAcPUqcVLE+9Lt0R8x+FP2Avh94ehVLgnUyBg
-                tMozXSj9i34af9AiE/8AARXvHy+g/Sk+Uen6V8vPMsZN3dV/efSxwWGirKmvuPnvWv2Hfhxqdj5EVhHa
-                P/z1RRmvE/iF/wAEztONvNeeGdcne76i1kACmvu/A9qUDHT5fpitqOcY6g7xqP56mNXLcJWVp01+X5H4
-                lfFX4H+MPg1qS2viXTHgWTmKWIblYepNcB9MfhX7peOfAWh/ELQ59J12yiu7eZSvmOoLr9Djivym/au/
-                Zsn+Ani13sEkl8L3TZt5W5Ib0Jr9CyjPIY9+yqq0/wAGfB5rkbwa9tRd4/ijwcelLRjBx3or6s+RCiii
-                gAooooAiu/8Aj2H/AF0X+dfuN8Hc/wDCqvB//YNh/wDRYr8Obv8A49h/10X+dfuN8Hf+SVeD/wDsGw/+
-                ixXwnFf8Kl6v8kfd8L/HU9Ednzil5pO1LX5qfoQnOaQg9c0H2pN2OtADJpBFE8jHCxLvOfQZr8jv20fi
-                +Pir8XLpbOQ/2TZL5Ajzkb1GCa/Qv9rL4sj4S/CDU9QhkC6lMPJhTPJByCa/Hq5uHvLme5kO6S4cysT6
-                nmv0DhfBXcsXJeS/U+I4lxnJCOGi9Xq/ToRkk8Ugwo3HtzRUtpaPqF5bWaD95dSCFPqSBX6LtqfncVzO
-                x9sf8E3fhOuq+INV8VajBvghUfZSw/iz1FfUn7YHwzb4mfBPV7e1tvN1WJRJC+MlQCSf0rY/Zf8Ahq3w
-                t+DWh6PcRKl6qeZK4Ay24g816pcwrcW00TYKyRlCD3zkV+NY/MZVMxeJg/henov8z9iweBjTwKw01utf
-                nufgrNA1rNJbvxJbt5b/AO8OtR4yc9K9W/aa+Gb/AAq+MGraSykJcubpT2w2TXlXOK/X6NSNanGpHZq5
-                +SYijKhVlTlunYv6BrNz4e1uw1K0lMMttMspZTg4B6V+0vwL+JVv8V/hjpHiC3I/eRiJwD/EMA1+JeQQ
-                QehGK+4v+CcPxeTTdX1Lwfql2Y7VlDWMRPBcnmvmOI8F9Yw3tor3ofkfT8O4z2Nf2EnpL8z7/wDEOhWn
-                iTRrzTL2IT2txGysh5Bz0r8Wfjb8Pbv4Y/ErWNFvIzEzTtLCpGP3ZJxX7cKDtAPDdT+dfCn/AAUh+EbX
-                um2njqygDSxbYJWA5xjrXyvDeN+r4n2Mn7s/z6H0+fYP6zhvaL4o/l1Pz3zj/Gj+FvUg4+tKeQMdKTpX
-                6uflJ+k//BOH4pDXvA1z4NnfzbvTiZsk8hSRx/Kvd/2l/iQfhl8Hdf1aKcRagkJW3TOC5Jxx+FfmN+yb
-                8S5vht8YtKeOVoodUlW2lweCCe9e+f8ABR/4uR6vqej+GNKnEkES7rnae55FfnWLynnziKS92XvP5bn6
-                RhMztlTm370Vb/I+Jr6/k1W+ub+YnzrxzM5P94nNVy2wbz/CaVsDgcgcV2nwb8CTfEj4l6FoUcRkt7id
-                VuCB91c1+gTlGlBzlskfn9OEq9VRju2foJ/wT1+D7eDPh3ca/f2/+mao4ltpSORHg9K9r/aA+Bll8fPB
-                tvoOoXH2eOGYTh+eoFdz4T8O23hHw5puiWoxb2MKxJgdgK1XUFTkZGK/EsRjqtXGPFQdne68ux+zUMJT
-                pYaOHaukrf18z8zP2qP2R9G+CfhCHVLG58+R/lIxjpXx+vKAn86/Tr/goyoHw1s8DHzGvzFUZjWv1DIs
-                RVxOEVSq7u7PzfP6FLD4pRpRsrAB6cV6P+zz8Orb4sfGLRvCt5J5NteAs7/QZrzk9K90/YhAP7UfhTPT
-                a38q9XGzlTw1ScXZqLa+48jAQjUxNOMldNr8z64P/BNvwyXbGo4GeODTX/4Jr+GWQqNSxkg/dNfY4jUv
-                J8o6/wBBTtq55UV+Rf21j/8An6z9Z/szB/8APpfccr8NPANv8M/CdloVrJ5kVuAoavzn/wCCjoJ+NcQ/
-                6dU/9BFfqCyYK49RXwp+1d+zl4p+OPx+t4tLg26WLdBcXLfwjAzg12ZFiIwxzr15W0bbZy5xQlVwbo0V
-                d3VkfAOn6ddatfR2VlBJc3chwsaKTk17j4B/Ys+JHjaIS3GkTaRA33XlU8j1r9Cvgl+yZ4L+DmmRLHZR
-                6xqQALXVwgZlPfFe1tKlvGMyJbxgYAkwoFe1jOKJc3JhY6d3/keLg+GqcUpYqV32X+Z+Zq/8E2/F5IB1
-                ZVGMk7a8M+MnwA8U/BXUlt9ZtHNo/wDq7vB2tX6+eMfix4X8B2f2jWtYto4jniNwzfkDXwf+2d+1h4Q+
-                Lfhp/Dnh1TeFH/4+pEwVOecVtlWa5li68VOF4Pd2tb5izPK8uw9CTi+WXTXfyPin6flQvFIowijuBjNK
-                OK++Pzw+xf8Agm1rssHxMu9JGRFJC0hweM4r9LDykn1NfmD/AME4Dn40zf8AXq/8q/T/AANkn1NfkfEk
-                Use7dkfrWQybwML+Z8Zf8FKP+RN0v6H+dfm0v3F+lfpL/wAFKP8AkTdL+h/nX5tL9xfpX2vDn+4R9WfH
-                8Sf758kLX0R+wD/ydDpWP+fOX/0Gvnevon9gEf8AGUOlf9ecn/oNermf+5Vv8L/I8jLP97p/4l+aP1ke
-                VYhI8jbY1JLsewxX5N/tv/Fy5+Ivxg1HSVuDNpWjSGO2IPytX6jeP7x7DwP4juIyA8VrIwJ9lr8RfFmp
-                Sax4m1K9lIMksz5IOR1r4bhbDxnWnXlvHRfM+34kryp0I0k/ievyMk8kmuh+H3gy5+IXjbR/DtoSkuoT
-                LEZQPuDPWueAxXqH7O3xG0r4W/ES117VY98MDBlwM45r9DxEpwoydJXlbT1PgMJCnUrwjVdo31P1E+E3
-                7Mngr4W+H7Oyi0qK51FIwLi6ZcmR+5qx8VP2dfBHxK8PXdne6JEbsxN9nlRcFJMcGvGG/wCCkXgcOcRy
-                4OMfIaF/4KQ+BjIhaOUKDz8hr8oeCzd1Pbcsubufqv1vLfZ+y548vY/PD4k+B7r4b+O9W8M3xLXNhIVb
-                Pp2rmcZ69K9R/aQ+JGmfFj4p6n4l0uPZDdnqRgmvLmNfq+HlOdGEqqtKyv69T8qxUYQrzjSd430PrT/g
-                nx8WZ/CPxHudBu5y+nagojghJ4V89RX6fgYOOuK/D74N6pLonxc8IXkblFivULY/iGehr9udPvF1Gygu
-                04WZFYCvzXijDqniY1V9pfij9F4crurhXB/Zf5lkDn3o580fQ/0oGKP+Wo+h/pXxh9YfjF+1J/yXPxR/
-                19N/OvKa9W/ak/5Ln4p/6+m/nXlNfvOD/wB2p+i/I/Esw/3up6sK+iP2C/DUPin9oaC2nICW9q1wM9yo
-                zXzvX1B/wTlx/wANJSbmVR/Zsv3u/wAtc+aSccFWa/lZvlKTxtO/dfmfqipz7AfKKdjJpic7hj+I/wA6
-                fwBivw5n7KJzvT/Pavyw/wCChPjK91/4wzaLcOTbaYcQjsK/U7+NP89q/JX9vCJk/aB1pmBCsePevruG
-                IxeNu+iZ81xDJrBO3dHzweST+Ne+fsrfszxftD3+qwzaoNOWxjDdMluQP614Ge9fdH/BMVQ2v+Js4I8k
-                dfqK+/zevUw2CnVpO0kfCZPQp4jGRhVV0b4/4JgWhHPir/xxqP8Ah1/af9DT/wCONX3RFGmwcA07y0/u
-                ivzH+3cw/wCfn4I/SP7IwP8Az6R8Kn/gmBaDp4p/8cavnX9qn9mWP9nm+0qKLVBqKX0Zfpgrgkf0r9c5
-                ETYflFfnz/wU8ULrfhjAA/cn+Zr28mzbGYnGQpVZ3Tv0XY8nNctwlHBznTppNHwjN/x7ykc8dK/Wj9g3
-                P/Cj9N/3RX5LzD/R5PpX60fsGf8AJDtM/wB0V7nE/wDuS9UeJwz/ALzL0/VH0gucD6Uc7h+NC9B9KP4h
-                +NflJ+lH5c/8FGf+Staf/uH+dfKEn3Xr6v8A+CjP/JWtP/3D/OvlCT7r1+3ZR/uFL0Px7OP9/qep+l//
-                AATd/wCRB1D6j+dfYsedg+lfHX/BN3/kQdQ+o/nX2LH9wfSvyvOf9/q+p+nZZ/uVL0QpB655qnZ6PZ6f
-                c3E9tAIpbht0rgcuat461U1XVLXRdPnvr2VYbSBS8kjHAAFeMrv3V1PSZaHzcDr6GkZs5TOG/Gvz0+NH
-                /BRjVf7YvdI8HafE9jBIYzesTuJHpT/hR/wUq1CO6hs/GmkxQ2KKQbyLJc/UV9EuH8f7L2vJ8r6nh/21
-                glV9lz/Pp95i/wDBST4mx6x4y0rw9p1z5tvaxH7Sqnjfnoa7v/gnB8GILXQ7j4gXiAzXRNvCjr93B6iv
-                ib4reL0+IHxU1nWonZ7K/vt0G7rsJr9cv2b/AA1beGPg9olnbIY4zGJNrDByQM19Fmt8uyqnhY6OW/5s
-                8PLWsfmVXFPVR2PTwDnr/nNLyOKUjnimSOI0LtwqjLH2xX50fclDX/EGm+F9Ol1DVr2OwsoxlppWwBXi
-                mp/tt/C/Tr17ePXIbpEbb5qng+pr4v8A26PjzqvjP4l3nhbTb6SHw7ZKBiNiBK2OQa+VRDDk/uhj0zX6
-                Bl/DUK1GNXEyd3rZHxGP4hdCs6VCKdt2z9wvh/8AGHwh8UIi/hrXLfUZFGWiRvmX8K7QHNfhp8NPiDqv
-                wx8Vadq+kXstjFBOsk8cTECRQRkGv2g+GHjmL4keBtJ8SQKFS+iDbR0HPNeHnOTvLZRlB3g+57GVZpHM
-                YNNWktzqwMivMv2ifhnYfFH4Wazpt3AJZ4IWktWI5RwOtemgd6ZIiS4R1DIwIZT0PFeBRqSo1I1IvVM9
-                upCNSLhLZn4NavpM2g6pdabc5+0W0jI5P1qpXrv7Weiw6J+0J4vFugjhmuCyxr0XntXkVfvOHqe2owqd
-                0mfiGLpexrzp9mwooorc5QooooAiu/8Aj2H/AF0X+dfuN8HT/wAWq8H/APYNh/8ARYr8Obv/AI9h/wBd
-                F/nX7jfB3/klXg//ALBsP/osV8JxZ/Cper/JH3fC/wAdT0R2eeKM0c4pea/NT9CGk0mNxI7mnHjP0rzj
-                4+fESH4afC/XtXa6FrexwMbXJwWfjAFaUqcqs4047vQic1Ti5y2R+ff7fvxj/wCE9+JMeh2ExOm6UDDP
-                GDwXBr5W+nSrut61ceItZvdWumLXN9I0shPOSTVHvX7pg8NHCUIUY9EfiuOxMsXiJVZdRa7H4RapoOh+
-                PdO1LxHC0+m2kgm2L1LCuNpcV01IKpFwfU5aNR0qimlex+ocf/BRb4aoiKLG7AVQoAxwPTpS/wDDxn4b
-                H/lxu+PYf4V+XZ/zzR/nrXy/+rOB8/vPqf8AWXF/yo+nf2yfjd4J+N72OreHrSSDVY8RySS4yVFfMJ//
-                AF0Ywf8A69B5PWvocLhoYSkqNN6LufP4zFSxtV1ppJvsH8q6P4d+LZfAfjrRPEETsosLhZXAPUZ6Guc6
-                DFKFDgox4PWumUVOLi9mctObpzU47o/c/wCHnjC38e+C9I8QWzBkvoVkIU9OvFVPij4IsfiB4I1bR7+I
-                zRSW7+Uo/v7Tt/XFfJn/AATj+Mx1bQr7wfqdxtntiPsUbHkr7V9wj5cc/d6/lX4hjcPPL8XKC6O6/Q/a
-                cLXjjcPGp0ktf1Pwo8a+FLzwP4q1LQr9DHdW0zAqewzxWEOPrX2b/wAFGvhB/wAI34utfGVlEXXVmKzl
-                RwpFfGjDk46V+w4DFRxmHhWXVa+vU/JMwwrweJnSe3T06E+nX8+l6jbX1uQtzbOJIiexFXPEfiXUPFuq
-                y6jqcxnu5PvMTWWRk0DPc13cqvzW1OH2klHkvp2EztBJ7DNfe/8AwTa+EjLJqvjPUIQ8E6hbJiPusDzX
-                w14e0afxDrmnaZbxmWS7nWIqo6Akc1+1HwS+HNv8LPhrpHh23x+5jDscfxHBNfJcSYz2GF9jF6z/ACPr
-                eHMI6td15bR/M7pegLdaRiNp9MU7BNIwOw/Svyk/Sz5G/wCCjX/JNbP/AHjX5ir/AKta/Tr/AIKNf8k1
-                s/8AeNfmIhGxa/W+G/8AcV6s/MOJf97Xohc817p+xCcftR+Fc/3W/lXhfSvUf2YvG1p8O/jt4d8QX3/H
-                pA3ltn34r3cdFzwtWMd3F/keFgJKOJpuT0uvzP2hB+d/r/SnZzniqWlajFrWnwX9pKkttcIJFYNkYIqp
-                4n8W6V4OsDe63fw6faj+N3xX4SoScuVLU/a7pK5rDp1zWZ4g8Q6X4V02bUtUu4NOtUGTPKwXdxnGa5D4
-                Q/G7QvjRZ61eaFKJbHTbn7OZh/Hwef0r4M/b++O974q8cP4K067YaFZqHcoxAd8civYwGV1cXivq8vdt
-                v5I8vGZhSwuH+sbp7ebPV/jD/wAFHdJ0q4uNM8G2Ty3sTFWupADGx9q+WPH37YfxO+IqGPUNSjtoOipa
-                DZgfhXiYIAwv3ffmu1+EPwn1j4z+MovDuixF52G+VwP9Wnc1+m0crwGAp87itOr1PzqpmuPx1RQhJq+y
-                Why2pa7f6hM0l/q13MzdRNIWFEOh6hPpUmpw6dLJpsZw96qHYp9zX6a/Cn/gnr4M8GwpJ4jZfEsuMski
-                4APpVn9sH4f+HPh9+yn4msvDmkQaXamSMlI0xzu9a8//AFhw068KGHje7SvstTueQ140ZVsRK1k3bd/M
-                /LQHIB6ilpkP/HvD/uCn19cfHtWZ9Zf8E4P+S0zf9er/APoJr9Ps/K/1Nflf/wAE9PEFhovxxEN9cLbe
-                dbMsZY4BYjgV+qB3CNidpB5G05r8m4lTWOv5I/WOH2ngY+rPjL/gpR/yJul/Q/zr821+4v0r9Jf+ClP/
-                ACJul/Q/zr82l+4v0r7Lhz/cI+rPkeJP98+SA9K+if2Ah/xlDpR/6c5f/Qa+dq+iv2AD/wAZQ6Xx/wAu
-                cv8A6DXqZn/uVb/C/wAjyMs/3un6r80fp18U7cXXw28WwkkCSymXI6j5K/EG7tRY3dxbgkiOVwC3XrX7
-                u61pS61pGo6e5wt2jRE/UV+LPx18GzeAvi14i0WWMokE7bCRjcCa+P4UqpOrS66M+w4npN06dRLbQ4Op
-                bOyuNSvIrS0t2u7qY7YoEGWc+gFRVp+F/EN14R8S6Zrtlj7Zp8oliz6g1+gyuovl3Pz+mouaUnobZ+D3
-                j4HH/CB6pkdf9Hb/AAo/4U549x/yImqf+A7f4V+sf7O/7Rei/G3wnZNDfwf8JAsQ+1WpGCGxzgV7AXlU
-                ZJT/AICCa/Pq3EuJw83TqUUmvNn6BS4ew9aCqU6t0/L/AIJ+Hp+D/wAQO3gbVR7CBv8ACkHwf8f/APQj
-                6t/34b/Cv3E3SkZBTHuCK5Tx38VvDfwwsvtPifVrfTkKkoGPLfhUQ4pr1JKMKKb9WVLhqhFOUqll6f8A
-                BPyE+H/wp8d2/j7w/LL4L1SOKO6Qu7QsAoz1PFfsp4ZR4vD2nI6GN1iUFT2OK8G+A37ZGl/HD4h634bt
-                rFbKCyXdb3bMf9I5xwK+jAScEjB9K8bPMZiMTUjDEU+RxXfuexlGEo4anJ0J8yb/ACAUZ/ej6H+lLnNJ
-                z5o+h/pXzJ75+MX7Uf8AyXPxR/19N/OvKa9W/ak/5Ln4p/6+m/nXlNfvOC/3an6L8j8SzD/e6nqwr0/9
-                mrxgPBHxi0bUDL5ImkWAtnGckcV5hT7a4azu7e6TO+2kEqY9Qcitq1NVacqb6qxhhqzoVY1F0dz964JR
-                JFC/GHQNn1zipODXif7Jnxhi+Lfwr0+4muRJq9sgjuIs/MoGAK9tU5wa/B8RRlh6sqU90z9upVI1oKpD
-                Z6iMQAD6c/pXwH/wUi+EVwx0/wAY6Zbs8WT9ukUZC+5r7+6msbxd4T07xt4dvtD1WBbnT7xCksbDOa68
-                uxjwGJjXWy39Dnx2FWMw8qL67evQ/CQ4b5xyrdDX0X+yJ+0v4d/Z3v8AWLjXdOub9b2MJGbfGVOQe9dl
-                8cv+CffirwrqU954IhfXrGVi62yj/Ur6V8433wn8ZaRdyW11oU8U6cMnlk4NfrLrYLNcO4c6cXvrZn5h
-                HD43K8Rzxg7ryuj9JPhH+314J+LnxD0zwhpei6ha39/ny5ZguwY554r6fyCSPT/Cvyc/Y18F+IdM/aX8
-                K3N5pcsFugbdI0eAOK/WL/lo/wBf6V+a53g8Pgq8YYfZq+99bn6DlOJr4qi54hWd+1uiCQDYa/Pn/gp7
-                /wAhvwx/1xP8zX6DSElTX58/8FPv+Q34Y/64n+ZquH/+RhD5/kGdf7jUPhGb/j3k+lfrP+wZ/wAkO0z/
-                AHa/Jib/AI9pPpX60fsGf8kO0z/dr7Pif/cl6o+Q4Z/3qX+F/mj6OU8D6UufmH40LnA+lHO4fjX5SfpZ
-                +XP/AAUZ/wCStad/uH+dfKEn3Xr6v/4KM/8AJW9P/wBw/wA6+UJPuvX7dlH+4UvQ/Hs4/wB/qep+l/8A
-                wTd/5EHUPqP519iRn5B9K+O/+Cbv/Ig6h9R/OvsWPOwfSvyvOf8Af6vqfp2Wf7lS9EI52qT7V8nf8FCv
-                iVeeEfhoug2cphGrqVd1OGwD2r6wlz5bcdq+Ev8AgqB/x5+Ffo3/AKEaeS041MfSUl1/InNJuGCquO9j
-                8+VG2NR0OOT6n3pTggbgG9jR2GaOue1ftR+M3JrMhb/T3IGEukbA9iK/cX4Z6zDr3gPQ72GMRIbWNSg6
-                ZCgf0r8NVYoVYdUO8fUV+t37Efj5PHHwN05nmDX0DmJ4s8qBjFfD8VUXOhTqro/zPuOGKqVSpTe7S/A+
-                hTyarX8JnsbuJTh5IWVfqQas5JHBoPY+n+FfmSdj9CPxU/aJ8PXnhr4xa5YXystwHL/MOoPSvNupr9UP
-                2uf2Pofjdt1/RpRZ+IIV+cBebgAcLXw5d/sYfGe3uZI4vBk00asQrjuPWv2LLc3wtfDx5pqMktU3Y/Ks
-                zyrE08RKUItxb0a1PEzbvcIYE/1k3yJ9Sa/ZH9kvRLrw9+z34QsbwFbiKD5s+7Zr5H/Z5/4J/a/ea7Z6
-                145VtKS0kEosSM7yD0r9E7Gwg061itraIQ28ShUjHAAr5fiPMqOJUcPRfNZ3bPpMgy6rhVKtWVm9Eib8
-                aTo6fj/Kl/CqGvavH4f0W+1ObHlWcTStk44AzXwyV3ZH2LPyK/bNIP7QPiX184/zrxGu3+N3i8+PPi14
-                l10NuhurhjGPQZriK/ecHB08PThLdJfkfiWPqKriqk47NsKKKK6zgCiiigCK7/49h/10X+dfuN8Hf+SV
-                eD/+wbD/AOixX4c3f/HsP+ui/wA6/cb4O4/4VV4P/wCwbD/6LFfCcV/wqXq/yR93wv8AHU9Edn2paTjF
-                HFfmp+hCNzhfXj9K/OL/AIKQ/F1Nd8QWHguxnIOmOZLkKeGz2NfefxO8b2Xw98Eatrd9cLbpBbsYy3d9
-                pwK/FLx945k+IHjDU/EF7KWubuVskjtnivtOGcF7Wu8TJaR29T5PiHF+xw/sY7y/Iw24JHY9KTIH0ppn
-                iPWT9DSiaHdzJ8v0r9RPzGz7G94H8G6h8QPFlh4e0tA9/ettiB6V9Np/wTc+IbxoTc2QYjJHmDitD/gm
-                98L08TeM77xbMhC6QwELMOGJ9K/SpVzltzYPI+b2r4LOc8r4TE+xw7Wi106n3mUZNQxGG9tiFdvb0PzH
-                /wCHbXxC/wCfqy/7+Cj/AIdtfEL/AJ+rLH/XQV+nW3r8zfnSbePvN/31Xgf6yY/uvuPc/sDA/wAn4n5j
-                f8O2viDj/j6sv+/grx/48/s3eJP2fzpx14xSx32RE8BDDj1xX7MbMj77f99V4F+2j8LYPiL8HNVuUiMu
-                o6ZGZbfuc98V34HiLEzxMIV2uVuz0OLGZDhlh5ujG0kro/IvocUUwsIP3UzbZ0ysikHg5o8+L/np+lfp
-                p+ZuLT2O/wDgf8TJvhJ8TdH8SxkmOCRUeMdGB45r9pdB1aPXdE0/UI2R1vLdJ8rggblBx+tfg358J6v0
-                5HB61+nf/BPb40J42+HjeGr+78/WrFmI3HnyscV8NxPgvaUo4qC1jo/T/gH3XDeLcZSw0+uq9ep7H+0x
-                8NYPid8JdcsWhEl9FAz2oAGd/FfjXqGmT6LqFzp10pS5tXMcinqCDX71cEknBAyMH61+Tf7dPwo/4Vn8
-                XZL9ebXXCbkuqnapz0rh4XxnLOWEl11X6nXxJhOelHER3Wj9D5xPSgdfamefDj/WfoafGwleOOEmWZ3C
-                Kig5Oa/Rz88UXe1j6t/4J9fCZvGfxOk8Q31v5mjWUZ2ORx5oHFfqMi4HbjgfSvD/ANkD4Up8Kvg5YWhT
-                bNqAF2+fvAsvSvcQMDrX4vnWM+uYyUl8K0XyP2HKsL9UwsYPd6sUdqRhlT9KUY4o4rwj2D5r/bx8Ft4l
-                +C1/qMe5m01S5Ve9fk7HlreNiMHHIr94/EWgWXijRbzSdRi86yukMciHuDX5UftKfsj+KfhR4pu7rSbC
-                XV9BuWMqSwKSIF/umv0ThnMKcYPC1HZ3uv8AI+F4iwFWq1iaavZWf+Z86c9BSqdpBBwRyCOxpJGWOVop
-                CUlU4ZCpyKMqRwc/hX6Dufn9mtzttD+NPjjw9Yizs/E1+tup+VPNOFHoOaz9d+IvirxVKRqviK+vYj1h
-                kkJUfhmuYLxpyzYH0rf8KeCdf8Z3sMGhaVPqbyMFBiQ8VzunRp3qOKXnodirYmqlTUm/I+9v+CYaAfB/
-                xmFXBN50Hf5Gr4z/AGiIZrf4u60kysknmE7W64r9Iv2JfgJrHwH+G99Z65crPc6rOt15IHMI2n5T+deF
-                ft8/sz6pqGsjx74a09795VCXNtAuSgA5Yivh8Fj6Czis+b3Z7Pp0Pt8Zgq08qpw5fejq1958FDj8a+rv
-                +CfPxG0TwX8TZrHVnjtXu4ikd0+ByRwCa+UpgIJnhlzHMhwyFTlTSxSvE6yRSvHIhyHTgivtMXho4yhK
-                hJ2Uj4nB4mWCrxrJXsfvENV06NDIdSswrfNuMigfzr5J/bx+OHg9vhNrHgqHUUvNdvCpiW3IZBhsnJBr
-                8+rv4t+KLrTxZz65ci2UbeJDnFQeF/BHiT4galFBo9heazPMcByCxHvmvkcJw7DCVVXr1NIu/bbzPrsV
-                nzxVN0MPTd5K33nOqNkMS91QA0Accda7X4ofCLxL8Ir+K18QWMsEUqB1uWU7ckdK4kOrAENkfSvtqdSF
-                WKnB3R8TVpVKMnGorMsWV9dabcLdWlzJaXMfKzRHDD8a/Rj/AIJ2ap4p8RWWranruq3ep2Tpsha5YsoI
-                I6Zr84Qu9liB5k+QfjX69/sZeFP+ER/Z90W0MYSV2aRmxyckGvleJakaeD5WruTsfU8NwnPEOV9Ejyf/
-                AIKUf8iZpX0P86/NtfuL9K/SP/gpXIkfg3Stzbc5/nX5srPFsX9529K34c/3CPqzLiNN4zTsiSvoj9gD
-                /k6HSv8Aryl/9Br508+L/np+lfRP/BP+WNv2otKCvk/Y5eMf7Nepmf8AuVb/AAv8jycsTWLp+q/NH61j
-                +I9SCcV8T/8ABQH9nK68V6fH418P2vm3NmCb2OMZeQeoFfbK4y3+9TZokmRo5EWSNxtZHGQR9K/HMFjJ
-                4GvGtT6fij9bxWGhi6Lo1NmfgeysHKspSQH5kPVT6GkB/Sv0C/ap/YROo3V54r8CKIi+ZJ9NUHdI/crX
-                wp4j8Ja54PmMWu6VcaVIDjEyEZr9jwOY0MfTUqUte3VH5Ljstr4GbjNXXR9xnh3xRq3hO+W90bUZ9NnB
-                yWgYgt9a+gPBn7ffxK8GRbFhg1ZSoX/Ssn8a+aVkjbkPkfSnZAGckD1ror4PD4lWrQUjChjcThdKU2j6
-                Q8Vft7fEvxX5u5YdOVxjbb5G36V4T4j8Z694vnaXW9YutU3NuEdxIWC/TmsNpok+9Jj8DXX+BvhT4r+I
-                l5BBoWiXN7DKwX7SiHanuazp4bC4OPNCKiu5rPEYzGtQlJyL/wADfGF74G+Kvh3ULEybRcqJoYurrnpi
-                v2q0TVY9c0qz1GNGjW5jVwjjDLn1r5a/Zn/Yc0r4YPa694qKatrqYkhAHyxHrgivrFVCYwoUDjA4Ffmf
-                EGOw+NrR9jry6X7n6LkmCrYOg1We+tuw4cHFH/LUfQ/0oH1o480fQ/0r5U+iPxi/aj/5Ln4p/wCvpv51
-                5TXq37Un/Jc/FH/X03868pr95wf+7U/RfkfieYf73U9WFJnFLSdq7Dz0ex/sxfH+9+Avj2K+LtLol2wS
-                +i67Uz1Ar9c/BnjPSPHugWms6Jdx3dncoHUIQWUf7Qzwa/CkHH/1+9eqfBD9ovxZ8DNTV9JvXk0qRw1x
-                aSncCPQelfJ5zkix/wC+o6TX4n12T5z9T/c19Yfl/wAA/Z8EevNLwTXz18Gv21fAfxXt9txdJ4du1Ubo
-                7xwu9u+OK940zVrLWrcT6ddR3sB/jjcEV+X18LWw0uStFpn6RRr068eelJNFwZA4baPQAVnXHhzSbqZp
-                ZtLtZZG6u0akmtEK/wDd4+tO2sB0z+Nc6bWxtuZtr4c0qyuFnt9MtoJl6SJGoIrQIB/z7UpDf3f1pMPj
-                7n60Nt7htsJKcRmvz5/4Kff8hvwx/wBcT/M1986lrWn6Wh+3XsVpgZO9wMCvzy/4KQ+KtE8Sa14cGlar
-                BqLRRESrCwbYcnrX0nD8ZfX4O2mv5Hh520sDUTZ8Sz/8e0nrtr9Z/wBgz/kh+m/7or8mJuLaQ/7NfrR+
-                wfHIPgZpjlMqVABzX2PE/wDuSXmj5Lhn/eZej/NH0evQfSj+IfjTQHA+5/49S4fcDs/8er8pP0o/Lr/g
-                oz/yVvT/APcP86+UJPuvX1j/AMFG43j+LWm7125Qkc+9fJ0n3Xr9uyj/AHCl6H49nP8Av9T1P0v/AOCb
-                v/Ig6h9R/OvsWP7g+lfHf/BN9HHw+1BguVyBnPvX2GgcKAU7f3q/K85/3+r6n6dln+50vRBJ/q2+lfCH
-                /BUD/j08K/Rv/QjX3c6uUYBOcf3q+Ef+Cn6t9h8KsVwvzDOfetsh/wCRhT+f5GOb/wC41fQ/Pyiiiv2U
-                /GxK+jv2K/j6vwc+IQsdSmb+xtUIgAJ+WNiRz7V84mlGRjkgDkEdR9K5cTh4YqjKjU2Z2YTEzwlZVqe6
-                P3rs7mC8tori3kWa3lUOkiEFWB9DVgkY4r8xP2Yv26NT+GkUHh3xgH1XRFAjtZFPzQjPc1+hHgz4veEP
-                HltBLo2vWt1JMoP2dZBuU46EV+OY/KsRgJtTV49Gtj9dwWY0MdBSpvXt1OyAI6dfWgBz/wAtD+Qow5/g
-                x+NKFb+7j8a8c9QTB/ibcPcCnYwaTD4+7+tZut+ItM8N2v2nV76HToR/y0mcAU0m3ZCvbc0CcjAGT6Cv
-                j79vP9oq28F+E5PB+i3Qk128Gy6CH7kRFRftH/t7aN4OtbrQvBcg1LWZFwmpREGJPX8a/OnxT4q1Txpr
-                txrGs3LXWoTnLyE5r7nJMjqSqLE4lWitUn1/4B8hnGc06NN0KDvJ6N9jJA25GdxySSe9LSClr9LPzN6s
-                KKKKBBRRRQBFd/8AHsP+ui/zr9xvg7/ySrwf/wBg2H/0WK/Dm7/49h/10X+dfuN8Hf8AklXg/p/yDYf/
-                AEWK+E4s/hUvV/kj7vhf46nojs+3el/Ok7dqPyr81P0I5rx/4A0v4j6A2j6vF5tmxyVPevJP+GIfhpz/
-                AMSmL/vmvf2/CkGATwK66WLxFCPLSm0vJmFTD0qrvUin6o8B/wCGIfhmR/yCYv8AvmkP7EPwzKkf2TFz
-                3217+Meg/Sjj0H6Vt/aWM/5+v7zL6lhv+fcfuRyvw7+GPh/4X6V/Z2gWMdnC3LlBjdXWKMDGKTbz2pfy
-                rgnOVSTlN3bOqMVFWirIU9+tJ1x1oPfpR6dKkoD071W1HT4dTsprS4QPDKCrKRwRVg8jtS4yeaE7bAeD
-                Xn7Fnw3vr24updJiMk7F2+Xuah/4Yi+Gf/QJi/75r34AegowMdBXorMcWtPav7zkeDwz1dNfcjwA/sQ/
-                DTP/ACCYv++a6/4Zfs7eEvhLrs2qaBaLbXEsZjYKMZFeoEDPakH0FZ1MdiakXCdRtPzHDDUKcuaEEn6C
-                7eCPU1w/xN+DXhj4s2sUPiDT47povuSOOVrufypMBh2rlp1J0pKcHZo6JRjNcsldHgH/AAxD8NNoH9kx
-                dMfdqzpv7GPw40vUILuHSohLCwZfl7ivdCMelLt57V2vMcW9HVf3nKsJh07qmvuRHa2iWdrDbxLtjiQI
-                oHYAYqUdTRkYpeua887BR260fnSDt0o/KgBe9V7yxg1C0ktbmFJ7Zxh4nXIYVP37UD8KFpqgPE/HP7If
-                w38axuy6BbaZdOcmeFME/rXleo/8E3fBl5cxyR6rNbqp5RV6/rX18QCeaCqnsP0r06WZ4yirQqs4Z4HC
-                1HedNfcfM/hv9gf4faJqUNzcxDUY48boZF4avcvCnwz8KeCCP7B0C10phwDDHjH610wTB6DGPalxg1hW
-                xuJxGlWbfzNaWGo0XenBL0QoHUnqetRzwrPFJG6h45AVdSM7gRging5FIBXEdJ4r8QP2RPhz48jZhoNt
-                pd2zbnuIEwX+vNeV6p/wTd8GX15DNFq01sidY1Xhv1r6/Iz2zikKjuB+lepSzTGUVywquxwVMBhamsqa
-                +4+bfDH7Bvw70K+E91arqcYA/dSrwa9s8JfDTwt4HC/2DoVtpjKu0PEmDj866bAzgAUo6dqwrYzEYj+L
-                Nv5m1LDUaP8ADgl8jm/Gfw78N/EGy+y+I9Gt9Wi7CZM7eO1fP+v/APBPrwFq91dS27tYpKflSNeE+lfU
-                eDjtQQM9B+lOhjcThlalNpCq4ajX1qQT+R8i6F/wTj8GaTeW88uqTXXlSiTa68HHbrX1fpek2ujadBZW
-                cIgtoUCLGo4wMVaCgdh+QpcjFGIxuIxdvbzbsOjhqOHTVKKRxnxM+EmgfFiyitddtVuYo/uhhXmi/sQ/
-                DMAD+yYuB/dr6Axz0FNPB6ClSxmIox5Kc2l6jnhqNV804JvzR4Cf2Ifhmf8AmExf9810Xw+/Zf8ABHw0
-                8UxeINF0+ODUIkMauo5wRzXruV9BSfgP0qpY/FTi4yqNp+ZMcJh4PmjTSfog7Z6Z5p/emkYFL1NcB1Bj
-                ByOvuK5Txd8LfCXjok6/4ftdUc8b5Y8n+ddX+VB/CtITlTfNB2ZMoqStJXR80eIv2Cfh5rOovcW0A0+N
-                ukMa8CuVtP8Agm74Mt75521aaWNukRXgfrX1+QpxwKNg9AOPQV6kc2x0FZVWcLy/CSd3TX3Hz94Q/Yi+
-                G3hmZZbrSotX2/wTrwa9n8L+C9C8GWpt9C0m30qE/wAEKYH862wPYUdfTFcVbFV8R/Fm38zop4elR/hx
-                S9EAA5OOT1px/GmjOO1L+Vcp0BSf8tR16H+lL37Un/LUdOh/pQB+MX7Un/Jc/FP/AF9N/OvKa9W/aj/5
-                Ln4p/wCvpv515TX7zgv92p+i/I/Esw/3up6sKTH5UtFdh54mKB16496Wk70AKrFZRICyyKcqwYjBrvPC
-                /wAePiH4M2rpHiu7tbdTzArnBrge3Wlzk81nOlCquWcU15m9OtUpO9OTXofRmk/t3fEfTmjMt292F6hm
-                PNdUP+Cj/jbjOmJwMfePNfJJJBxmlJz3rzZZVgpu7pI9RZxjoq3tGfS+q/t+fELUbkyxO1op/gVjXKap
-                +2N8U9QZ/K8SXFoGHGxjxXieT60hODnqK0jluDhtSX3Gcs1xs96jO01j4zePted21LxXeXjv94u55rkb
-                m7nvZTJcSvNIerOxNQ9KWu6FOFPSEUvQ86pWqVPjk38xGAKkHoetem+Df2jPHngHRotL0TW5rKzj4WNC
-                cV5nSUqlKnWXLUimvMqjiKuHfNSlZntQ/bE+KuP+Rmuf++jS/wDDYnxUzn/hJrn/AL6NeK0hOK5fqGE/
-                59L7kdn9p4z/AJ+s6bx58Rtd+JWpR6hr9499dRjAkfqK5nqPXNHoaTGPx7V2QhGEVGKskcFSpKrJzm7t
-                noXgL48eMvhpZPaeHtWlsIG+8qE811A/bE+KijjxNc4/3jXi3Sj+Vc08HhqknKdNNvyOuGYYqnFRhUaS
-                Paj+2H8VGXH/AAk1yf8AgRrjfiN8Z/FfxUFsPEmqS6gLYYjEhztrhgcClyPrThhMPSkpwppP0FUx2Jqx
-                cJ1G0wpaToM0tdZwBSUtFABngjsa1PD3ijWPCVyLjRNSm02cHO+Nz1rLpMZHvScVJWauXCcoO8XY9w8P
-                ftkfFHQ02T+IrjUR0BkY5rttF/4KF+PdLgking+2s4wHZj8tfLOc+1LnA6mvNnlmDqfFSX3Hq082xlNW
-                jUZ9C6j+3J8Sb+OVY9Rkty5yCrH5a8u8W/Gjx147WRNd8S3V/A//ACxdzgVxWeMk0nfnrW1LBYai706a
-                T9DGrmGKrK1So2KiiMELkA9cnNLRRXaea3cKKKKACiiigAooooAiuj/o3/bRf51+43wd/wCSVeD/APsG
-                w/8AoAr8ObnmDAHPmL/Ov2d+FHxN8LWXww8JRTavbxyLp0SspkGQQgB718NxVCU6VLlV9X+R91ww0p1L
-                vovzPXB070v51x//AAtnwhj/AJDVt/38H+NL/wALZ8If9Bq2/wC/g/xr859jV/lf3H6Bzx7nXd+9GDk1
-                yP8Awtnwh/0Grb/v4P8AGj/hbPhDP/Iatv8Av4P8aPY1f5X9wc8e512PrRj161yP/C2fCH/Qatv+/g/x
-                o/4Wz4Q/6DVt/wB/B/jR7Gr/ACv7h88e515zmiuQ/wCFs+EM/wDIatv+/g/xo/4Wz4Q/6DVt/wB/B/jR
-                7Cp/K/uFzx7nXnv1o/OuQ/4Wz4Q/6DVt/wB/B/jR/wALZ8If9Bq2/wC/g/xo9jV/lf3Bzx7nXYx60vfv
-                XIf8LZ8If9Bq2/7+D/Gj/hbPhDP/ACGrb/v4P8aPY1f5X9wc8e51w/Gl7d65D/hbPhD/AKDVt/38H+NH
-                /C2fCH/Qatv+/g/xo9jV/lf3Bzx7nXkZPekx9a5H/hbPhD/oNW3/AH8H+NH/AAtnwh/0Grb/AL+D/Gj2
-                NX+V/cPnj3OvA+tJjjiuR/4Wz4Q/6DVt/wB/B/jR/wALZ8If9Bq2/wC/g/xo9hV/lf3C549zrsYFGMHi
-                uR/4Wz4Q/wCg1bf9/B/jR/wtnwhn/kNW3/fwf40exq/yv7g549zriDijGM1yP/C2fCH/AEGrb/v4P8aP
-                +Fs+EP8AoNW3/fwf40exq/yv7g549zrx260fnXIf8LZ8If8AQatv+/g/xo/4Wz4Q/wCg1bf9/B/jR7Gr
-                /K/uDnj3Ov796QfjXI/8LZ8IZ/5DVt/38H+NH/C2fCH/AEGrb/v4P8aPY1f5X9wc8e512PrRjnvXI/8A
-                C2fCH/Qatv8Av4P8aP8AhbPhD/oNW3/fwf40exq/yv7g549zrgCKX865D/hbPhD/AKDVt/38H+NH/C2f
-                CH/Qatv+/g/xo9jV/lf3D549zr+3ekP41yP/AAtnwh/0Grb/AL+D/Gj/AIWz4Q/6DVt/38H+NHsav8r+
-                4XPHudfzmj865D/hbPhDP/Iatv8Av4P8aP8AhbPhD/oNW3/fwf40ewq/yv7g549zrjntQB9a5H/hbPhD
-                /oNW3/fwf40f8LZ8If8AQatv+/g/xo9jV/lf3Bzx7nW4PrS4Oa5H/hbPhD/oNW3/AH8H+NH/AAtnwhn/
-                AJDVt/38H+NHsKv8r+4OePc64DjvRiuR/wCFs+EP+g1bf9/B/jR/wtnwh/0Grb/v4P8AGj2FX+V/cHPH
-                uddg560d+9cj/wALZ8If9Bq2/wC/g/xo/wCFs+EP+g1bf9/B/jR7Gr/K/uDnj3OuIoxxXI/8LZ8If9Bq
-                2/7+D/Gj/hbPhD/oNW3/AH8H+NHsKv8AK/uDnj3OuP40vfvXIf8AC2fCH/Qatv8Av4P8aP8AhbPhDP8A
-                yGrb/v4P8aPY1f5X9wc8e51/50hH1rkf+Fs+EP8AoNW3/fwf40f8LZ8If9Bq2/7+D/Gj2NX+V/cHPHud
-                eO3WjH1rkP8AhbPhD/oNW3/fwf40f8LZ8If9Bq2/7+D/ABo9hU/lf3Bzx7nX4570mPyrkf8AhbPhDP8A
-                yGrb/v4P8aP+Fs+EP+g1bf8Afwf40exq/wAr+4fPHudf270fnXIf8LZ8If8AQatv+/g/xo/4Wz4Q/wCg
-                1bf9/B/jR7Gr/K/uFzx7nXHikH+sHXof6VyLfFrwhj/kNW3/AH8H+NCfFbwi8wA1q2zg/wDLQf40exq/
-                yv7g549z8kP2o/8Akufij/r6b+deU16d+0tf2+pfGjxJc20glgkuWKspyCM15jX7ng9MNT9F+R+K5hZ4
-                qo13YUUUV2HnhRRRQAmOKMcUtFACYyKMZpaKAE/nRzmlooASloooAKQDmlooAQjNHOaWigBMelGOeKWi
-                gLhSEcUtFACUdOlLRQAmKWiigAooooAKQjJ9qWigBPrRg5paKAExRilooAKKKKACiiigAooooAKKKKAE
-                wMc9Ksrqd+qqq6ndqo4VRIcD9ar0UWvuUpOOxZ/tTUP+gpef9/T/AI0f2pqH/QUvP+/p/wAarUVPKuw/
-                aS7ln+1NQ/6Cl5/39P8AjS/2pqH/AEFLz/v6f8aq0Ucq7B7SXcs/2pqH/QUvP+/p/wAaP7U1D/oKXn/f
-                0/41Woo5UHtJdy1/amof9BS8/wC/p/xpP7U1D/oKXn/f0/41Woo5V2D2ku5Z/tTUP+gpef8Af0/40v8A
-                amof9BS8/wC/p/xqrRRyrsHtJdyz/amof9BS8/7+n/Gj+1NQ/wCgpef9/T/jVaijlQe0l3LP9qah/wBB
-                S8/7+n/Gj+1NQ/6Cl5/39P8AjVaijlXYPaS7ln+1NQ/6Cl5/39P+NH9qah/0FLz/AL+n/Gq1FHKuwe0l
-                3LX9qah/0FLz/v6f8aT+1NQ/6Cl5/wB/T/jVaijlXYPaS7ln+1NQ/wCgpef9/T/jS/2pqH/QUvP+/p/x
-                qrRRyrsHtJdyz/amof8AQUvP+/p/xpf7U1D/AKCl5/39P+NVaKOVdg9pLuWv7U1D/oKXn/f0/wCNJ/am
-                of8AQUvP+/p/xqtRRyrsHtJdy1/amof9BS8/7+n/ABpP7U1D/oKXn/f0/wCNVqKOVdg9pLuWf7U1D/oK
-                Xn/f0/40v9qah/0FLz/v6f8AGqtFHKuwe0l3LP8Aamof9BS8/wC/p/xpf7U1D/oKXn/f0/41Voo5V2D2
-                ku5Z/tTUP+gpef8Af0/40f2pqH/QUvP+/p/xqtRRyrsHtJdy1/amof8AQUvP+/p/xpP7U1D/AKCl5/39
-                P+NVqKOVdg9pLuWv7U1D/oKXn/f0/wCNH9qah/0FLz/v6f8AGqtFHKuwe0l3LP8Aamof9BS8/wC/p/xp
-                f7U1D/oKXn/f0/41Voo5V2D2ku5Z/tTUP+gpef8Af0/40f2pqH/QUvP+/p/xqtRRyrsHtJdy1/amof8A
-                QUvP+/p/xpP7U1D/AKCl5/39P+NVqKOVdg9pLuWv7U1D/oKXn/f0/wCNJ/amof8AQUvP+/p/xqtRRyrs
-                HtJdyz/amof9BS8/7+n/ABpf7U1D/oKXn/f0/wCNVaKOVdg9pLuWf7U1D/oKXn/f0/40v9qah/0FLz/v
-                6f8AGqtFHKuwe0l3LX9qah/0FLz/AL+n/Gk/tTUP+gpef9/T/jVaijlXYPaS7lr+1NQ/6Cl5/wB/T/jS
-                f2pqH/QUvP8Av6f8arUUcq7B7SXcs/2pqH/QUvP+/p/xpf7U1D/oKXn/AH9P+NVaKOVdg9pLuWTqmof9
-                BS8/7+n/ABpf7U1DOf7UvP8Av6f8aq0Ucq7D9pLuEkjyMWkdpW7s5yTSUtFUZt3CiiigAooooAKKKKAC
-                iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAC
-                iiigAooooA//2Q==
 </property>
         </structure>
         <structure>
