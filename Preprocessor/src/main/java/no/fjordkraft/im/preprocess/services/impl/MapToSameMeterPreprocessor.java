@@ -14,7 +14,7 @@ import java.util.*;
  */
 
 @Service
-@PreprocessorInfo(order = 88)
+@PreprocessorInfo(order = 18)
 public class MapToSameMeterPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(MapToSameMeterPreprocessor.class);

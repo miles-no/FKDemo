@@ -16,10 +16,10 @@ import java.util.List;
  * Created by bhavi on 6/13/2018.
  */
 @Service
-@PreprocessorInfo(order=89)
+@PreprocessorInfo(order=20)
 public class SummaryLabelPreprocessor  extends BasePreprocessor {
 
-    private static final Logger logger = LoggerFactory.getLogger(SaveProcessedXmlPreprocessor.class);
+    private static final Logger logger = LoggerFactory.getLogger(SummaryLabelPreprocessor.class);
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
