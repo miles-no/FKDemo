@@ -29,7 +29,7 @@ public class MapToSameMeterPreprocessor extends BasePreprocessor {
             Map<Long, Attachment> meterAttachmentMap = new LinkedHashMap<>();
             List<Attachment> attachmentList = stmt.getAttachments().getAttachment();
             for (Attachment attachment : attachmentList) {
-                if(attachment.getDisplayStromData() || attachment.isOnlyGrid())
+                if((attachment.getDisplayStromData()!=null && attachment.getDisplayStromData()) || attachment.isOnlyGrid())
                 {
                     long meterId = attachment.getFAKTURA().getMAALEPUNKT();
 

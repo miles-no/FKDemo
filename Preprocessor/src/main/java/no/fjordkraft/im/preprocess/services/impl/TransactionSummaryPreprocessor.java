@@ -55,7 +55,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                             logger.debug("Kraft Transaction " + transaction.getTransactionCategory());
                             for (Attachment attachment : attachments)
                                 {
-                                    if(attachment.getDisplayStromData() || attachment.isOnlyGrid())
+                                    if((attachment.getDisplayStromData()!=null &&  attachment.getDisplayStromData())|| attachment.isOnlyGrid())
                                     {
                                         if (transaction.getReference().equals(attachment.getFAKTURA().getFAKTURANR()))
                                         {
@@ -109,7 +109,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                             boolean isAttachmentFound = false;
                             for(Attachment attachment:attachments)
                             {
-                                if(attachment.getDisplayStromData() || attachment.isOnlyGrid())
+                                if((attachment.getDisplayStromData()!=null && attachment.getDisplayStromData()) || attachment.isOnlyGrid())
                                 {
                                     if(attachment!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null &&
                                        attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null &&
@@ -249,7 +249,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
         String startMonthYear = "";
         for(Attachment attachment:attachments)
         {
-            if(attachment.getDisplayStromData() || attachment.isOnlyGrid())
+            if((attachment.getDisplayStromData()!=null && attachment.getDisplayStromData()) || attachment.isOnlyGrid())
             {
                 logger.debug("Looping for attachment to create attachment level transactionSummary");
                 if(attachment!=null)
