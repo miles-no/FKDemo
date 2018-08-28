@@ -4,6 +4,7 @@ const auditLogController = ($scope,$http,moment,$state,$stateParams) => {
 
   $scope.logType = ''
   $scope.allLogTypes = ['INFO','ERROR','WARNING']
+  $scope.legalPartClass = ''
   $scope.datepickerConfig ={
     "dateFormat" :'YYYY-MM-DD',
     "minDate" : moment().subtract(20,'years'),
@@ -15,6 +16,7 @@ const auditLogController = ($scope,$http,moment,$state,$stateParams) => {
       "page": pageNumber ? pageNumber-1 : 0,
       "size": $scope.pageSize
       }
+      $scope.legalPartClass ? queryParams.legalPartClass = $scope.legalPartClass :'';
       $scope.invoiceNo ? queryParams.invoiceNo = $scope.invoiceNo :'';
       $scope.customerID ? queryParams.customerID = $scope.customerID :'';
       $scope.accountNumber ? queryParams.accountNumber = $scope.accountNumber :'';
@@ -44,9 +46,15 @@ const auditLogController = ($scope,$http,moment,$state,$stateParams) => {
     $scope.getLogs()
   }
 
+  $scope.onLegalSelect = function(item,model){
+    $scope.legalPartClass = item;
+    $scope.getLogs();
+  }
+
   $scope.init = () => {
     $scope.pageSize = 10;
     $stateParams.invoiceNo ? $scope.invoiceNo = $stateParams.invoiceNo : $scope.invoiceNo = null
+    $scope.legalOptions = ["Individual","Organization"]
     $scope.getLogs()
   }
 }

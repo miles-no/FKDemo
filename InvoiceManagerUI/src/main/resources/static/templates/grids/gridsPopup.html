@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="agreement-no">E-mail</label>
                         <div class=" col-sm-6">
-                            <input type="email" name="email" ng-model="grids.email" class="form-control" id="agreement-no"  limit-to="100" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
+                            <input type="email" name="email" ng-model="grids.email" class="form-control" id="agreement-no"  limit-to="100" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
                             <span class="error-msg" ng-show="gridValidations.email.$invalid && gridValidations.email.$touched">Please Enter a valid Email address</span>
                         </div>
                     </div>

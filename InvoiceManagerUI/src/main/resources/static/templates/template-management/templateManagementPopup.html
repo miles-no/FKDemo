@@ -25,8 +25,9 @@
                         <label class="control-label col-sm-offset-2 col-sm-3">Choose Template</label>
                         <div class="col-sm-6">
                             <div class="upload-btn-wrapper">
-                                <button class="btn btn-primary col-sm-5" >Upload new Template</button>
-                                <input type="file" accept=".xml" file-model="template.file" class="col-sm-4">
+                                <button class="btn btn-primary col-sm-5">Upload new
+                                    Template</button>
+                                <input type="file" ng-click="uploadButtonClicked()" accept=".xml" file-model="template.file" class="col-sm-4">
                             </div>
                             <div class="button-inline text-margin"> OR </div>
                             <div class="button-inline">
@@ -123,7 +124,8 @@
         </div>
         <div class="modal-footer"  ng-show="!addBrands">
             <button ng-if="templateInfo === null" type="button" ng-click="uploadLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid)">Next</button>
-            <button ng-if="templateInfo !== null" type="button" ng-click="postLayout()" class="btn btn-primary" ng-disabled = "((template.file === null && !templateInfo ) || uploadForm.$invalid)">Next</button>
+            <button ng-if="templateInfo !== null" type="button" ng-click="postLayout()" class="btn btn-primary" ng-disabled =
+                    "((template.file === null && !templateInfo ) || uploadForm.$invalid || !uploadClicked)">Next</button>
         </div>
     </div>
 </div>

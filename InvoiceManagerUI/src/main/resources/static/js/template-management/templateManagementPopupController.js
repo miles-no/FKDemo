@@ -12,6 +12,7 @@ const listPopupController = ($scope,options,close, $http,_) => {
     $scope.loading = false;
     $scope.selectedBrand = '';
     $scope.selectedTemplate={};
+    $scope.uploadClicked = false
     let allPossibleRules = {}
     var ruleObj = {name: '', type: '', fileMapping: ''}
     //$scope.rulesList = [angular.copy(ruleObj), angular.copy(ruleObj)]
@@ -59,6 +60,14 @@ const listPopupController = ($scope,options,close, $http,_) => {
         console.log($scope.rulesList)
         rule.value = item
         console.log($scope.rulesList)
+    }
+
+    $scope.uploadButtonClicked = () => {
+        if($scope.uploadClicked){
+            $scope.uploadClicked = false
+        } else {
+            $scope.uploadClicked = true
+        }
     }
 
     $scope.getAvailableRules = () => {

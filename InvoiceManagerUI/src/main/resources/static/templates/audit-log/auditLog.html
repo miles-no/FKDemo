@@ -64,6 +64,20 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-4">
+            <div class="row form-group">
+                <label class="control-label col-sm-2">Legal PartClass</label>
+                <div class="col-sm-6 change-audit-dropdown-size">
+                    <ui-select name="LegalPartClass" ng-model="LegalPartClass" theme="bootstrap"
+                               on-select="onLegalSelect($item, $model)" placeholder="Select Log Type">
+                        <ui-select-match allow-clear="true" placeholder="Select Legal Part class">{{LegalPartClass}}</ui-select-match>
+                        <ui-select-choices repeat="eachOverview in legalOptions" position='down'>
+                            <div ng-bind-html="eachOverview | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-sm-12">
         <table st-table="displayedCollection" st-safe-src="auditLog" class="table">

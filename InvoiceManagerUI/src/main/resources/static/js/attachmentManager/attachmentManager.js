@@ -194,7 +194,7 @@ const attachmentManagerController = ($scope,$http,ModalService) => {
     downloadLink.attr('href',window.URL.createObjectURL(file));
     if((attachment.attachmentType).toLowerCase() == 'image'){
         if((attachment.fileExtension).toLowerCase() == 'jpg'){
-            downloadLink.attr('download', attachment.attachmentTypeName+'.jpeg');
+            downloadLink.attr('download', attachment.attachmentTypeName+'_'+attachment.brandName+'.jpg');
         } else if ((attachment.fileExtension).toLowerCase() == 'png'){
             downloadLink.attr('download', attachment.attachmentTypeName+'.png');
         } else {
