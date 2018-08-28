@@ -158,6 +158,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getYearlyConsumption123().setAnnualConsumption(nettleie.getAnnualConsumption());
 
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(nettleie);
+                             ArrayList<Nettleie> listOfNettleie = new ArrayList<>();
+                             listOfNettleie.add(nettleie);
+                             dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleieList(listOfNettleie);
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setMapOfVatSumOfGross(new HashMap());
                              dummyStromAttachment.getFAKTURA().setFAKTURANR(null);
                              dummyStromAttachment.setDisplayStromData(false);
@@ -252,13 +255,15 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     throw  new PreprocessorException("Sum is not matching for invoice number " +request.getEntity().getInvoiceNumber()) ;
                 }*/
             }
-
+             double totalStrom = 0.0;
+             double totalNett = 0.0;
             for(Attachment attachment: attachmentList) {
                 double sumStrom = 0.0;
                 if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113()!=null)
                 {
                     if(request.getStatement().getLegalPartClass().equals("Individual")) {
                     sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
+                    totalStrom+= sumStrom;
                     }
                     else {
                         //sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getNetPrintet();
@@ -270,6 +275,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 if( attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null) {
                     if(request.getStatement().getLegalPartClass().equals("Individual")) {
                     sumNett = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getInvoiceSummary().getInvoiceTotals().getOrigGrossAmount();
+                    totalNett += sumNett;
                     }
                     else {
                         sumNett = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getSumOfNettAmount();
@@ -280,6 +286,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 attachment.setSumOfIngoingIBtrans(request.getStatement().getIngoingBalance()+request.getStatement().getTransactions().getIbAmountWithVat());
                 attachment.setAttachmentNumber(index++);
             }
+             request.getStatement().setAllMeterStromNett(totalStrom+totalNett);
             } else {
                 Attachment dummyAttachment = new Attachment();
                 dummyAttachment.setDisplayStromData(false);
@@ -287,6 +294,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 attachmentList.add(dummyAttachment);
             }
             attachments.setAttachment(attachmentList);
+
             request.getStatement().setTotalAttachment(attachmentList.size());
         } catch (Exception e) {
             logger.debug("Exception in attachment preprocessor", e);
@@ -672,7 +680,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
     }
 
     private String getmeterIdFromValue(String note) {
-        if(note.contains("Målernummer")) {
+        if(note.contains("Målernummer") || note.contains("MÃ¥lernummer")) {
 
             String seperator = "";
             if(note.contains(",")) {
@@ -686,6 +694,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                    String value = tokenizer.nextElement().toString();
                    if(value.contains("Målernummer:")){
                        return  value.replaceAll("Målernummer:","");
+                   }
+                   if(value.contains("MÃ¥lernummer:")){
+                       return  value.replaceAll("MÃ¥lernummer:","");
                    }
                }
         }

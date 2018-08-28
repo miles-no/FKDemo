@@ -160,7 +160,8 @@ import java.util.List;
     "isOneMeter",
     "statementPeriod",
     "hasLineItems",
-    "dummies"
+    "dummies",
+    "allMeterStromNett"
 })
 @XmlRootElement(name = "Statement")
 public class Statement {
@@ -305,6 +306,8 @@ public class Statement {
     protected boolean hasLineItems = false;
     @XmlElement(name = "Dummies")
     protected Dummies dummies;
+    @XmlElement(name="allMeterStromNett")
+    protected Double allMeterStromNett;
     /**
      * Gets the value of the customerReference property.
      * 
@@ -1583,5 +1586,13 @@ public class Statement {
 
     public void setDummies(Dummies dummies) {
         this.dummies = dummies;
+    }
+
+    public Double getAllMeterStromNett() {
+        return allMeterStromNett;
+    }
+
+    public void setAllMeterStromNett(Double allMeterStromNett) {
+        this.allMeterStromNett = allMeterStromNett;
     }
 }
