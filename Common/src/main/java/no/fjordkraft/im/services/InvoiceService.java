@@ -2,6 +2,7 @@ package no.fjordkraft.im.services;
 
 import no.fjordkraft.im.model.InvoicePdf;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,4 +13,5 @@ public interface InvoiceService {
     InvoicePdf saveInvoicePdf(InvoicePdf invoicePdf);
     List<InvoicePdf> getInvoicePdfsByStatementId(Long statementId);
     void deleteInvoicePDFsByStatementId(Long statementId);
+    int deleteInvoicePDFsByDate(Date tillDate);
 }

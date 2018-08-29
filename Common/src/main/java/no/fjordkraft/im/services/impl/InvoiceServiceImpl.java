@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -32,6 +33,12 @@ public class InvoiceServiceImpl implements InvoiceService {
         for(InvoicePdf invoicePdf:invoicePdfList) {
             invoicePdfRepository.delete(invoicePdf.getId());
         }
+    }
+
+    @Override
+    public int deleteInvoicePDFsByDate(java.util.Date tillDate) {
+        //To change body of implemented methods use File | Settings | File Templates.
+       return invoicePdfRepository.deleteInvoicePDFsTillDate(tillDate);
     }
 
     @Override
