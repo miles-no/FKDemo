@@ -63,12 +63,9 @@ const listPopupController = ($scope,options,close, $http,_) => {
     }
 
     $scope.uploadButtonClicked = () => {
-        if($scope.uploadClicked){
-            $scope.uploadClicked = false
-        } else {
-            $scope.uploadClicked = true
-        }
+        $scope.uploadClicked = true
     }
+
 
     $scope.getAvailableRules = () => {
         return _.filter(allPossibleRules,(eachRule) =>{
@@ -184,6 +181,10 @@ const listPopupController = ($scope,options,close, $http,_) => {
     }
 
     $scope.postLayout = () => {
+        if($scope.template.file === null){
+            $scope.uploadClicked = false
+            return
+        }
         var fd = new FormData()
         fd.append('name', $scope.template.name)
         fd.append('description', $scope.template.desc)
