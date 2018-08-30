@@ -153,7 +153,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             } else {
                 logger.warn(" Attach_PDF not found ");
                 auditLogService.saveAuditLog(IMConstants.ATTACH_PDF, statement.getId(), StatementStatusEnum.INVOICE_PROCESSING.getStatus(),
-                        "Attach_PDF not found", IMConstants.WARNING);
+                        "Attach_PDF not found", IMConstants.WARNING,statement.getLegalPartClass());
             }
             pdfCombine.close();
             if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())

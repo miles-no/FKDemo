@@ -14,8 +14,9 @@ public class AuditLogRecord {
     private String msg;
     private Timestamp dateTime;
     private String logType;
+    private String legalPartClass;
 
-    AuditLogRecord(String actionOnType, Long actionOnId, String action, String username, String msg, Timestamp dateTime, String logType) {
+    AuditLogRecord(String actionOnType, Long actionOnId, String action, String username, String msg, Timestamp dateTime, String logType,String legalPartClass) {
         this.actionOnType = actionOnType;
         this.actionOnId = actionOnId;
         this.action = action;
@@ -23,6 +24,7 @@ public class AuditLogRecord {
         this.msg = msg;
         this.dateTime = dateTime;
         this.logType = logType;
+        this.legalPartClass = legalPartClass;
     }
 
     public String getActionOnType() {
@@ -53,6 +55,10 @@ public class AuditLogRecord {
         return logType;
     }
 
+    public String getLegalPartClass() {
+        return legalPartClass;
+    }
+
     @Override
     public String toString() {
         return "Audit_Log{ +" +
@@ -63,6 +69,7 @@ public class AuditLogRecord {
                 "msg=" + msg +
                 "dateTime=" + dateTime +
                 "logType=" + logType +
+                "legalPartClass=" + legalPartClass +
                 "}";
     }
 
@@ -78,6 +85,7 @@ public class AuditLogRecord {
         private String msg;
         private Timestamp dateTime;
         private String logType;
+        private String legalPartClass;
 
         public AuditLogRecordBuilder() {
             dateTime = new Timestamp(System.currentTimeMillis());
@@ -118,6 +126,11 @@ public class AuditLogRecord {
             return this;
         }
 
+        public AuditLogRecordBuilder withLegalPartClass(String legalPartClass) {
+            this.legalPartClass = legalPartClass;
+            return this;
+        }
+
         public AuditLogRecord build() {
             return new AuditLogRecord(
                     actionOnType,
@@ -126,7 +139,7 @@ public class AuditLogRecord {
                     username,
                     msg,
                     dateTime,
-                    logType);
+                    logType,legalPartClass);
         }
     }
 }

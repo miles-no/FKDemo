@@ -22,7 +22,7 @@ public class AuditLogServiceImpl implements AuditLogService {
 
     @Override
     @Transactional
-    public void saveAuditLog(Long actionOnId, String action, String msg, String logType) {
+    public void saveAuditLog(Long actionOnId, String action, String msg, String logType,String legalPartClass) {
         AuditLogRecord auditLogRecord = AuditLogRecord.logBuilder()
                 .withActionOnType(IMConstants.STATEMENT)
                 .withActionOnId(actionOnId)
@@ -31,6 +31,7 @@ public class AuditLogServiceImpl implements AuditLogService {
                 .withDateTime(new Timestamp(System.currentTimeMillis()))
                 .withUsername(IMConstants.SYSTEM)
                 .withLogType(logType)
+                .withLegalPartClass(legalPartClass)
                 .build();
 
         AuditLog auditLog = new AuditLog();
@@ -41,13 +42,13 @@ public class AuditLogServiceImpl implements AuditLogService {
         auditLog.setMsg(auditLogRecord.getMsg());
         auditLog.setDateTime(auditLogRecord.getDateTime());
         auditLog.setLogType(auditLogRecord.getLogType());
-
+        auditLog.setLegalPartClass(auditLogRecord.getLegalPartClass());
         auditLogRepository.saveAndFlush(auditLog);
     }
 
     @Override
     @Transactional
-    public void saveAuditLog(String actionOnType, Long actionOnId, String action, String msg, String logType) {
+    public void saveAuditLog(String actionOnType, Long actionOnId, String action, String msg, String logType,String legalPartClass) {
         AuditLogRecord auditLogRecord = AuditLogRecord.logBuilder()
                 .withActionOnType(actionOnType)
                 .withActionOnId(actionOnId)
@@ -56,6 +57,7 @@ public class AuditLogServiceImpl implements AuditLogService {
                 .withDateTime(new Timestamp(System.currentTimeMillis()))
                 .withUsername(IMConstants.SYSTEM)
                 .withLogType(logType)
+                .withLegalPartClass(legalPartClass)
                 .build();
 
         AuditLog auditLog = new AuditLog();
@@ -65,6 +67,7 @@ public class AuditLogServiceImpl implements AuditLogService {
         auditLog.setUserName(auditLogRecord.getUsername());
         auditLog.setMsg(auditLogRecord.getMsg());
         auditLog.setDateTime(auditLogRecord.getDateTime());
+        auditLog.setLegalPartClass(auditLogRecord.getLegalPartClass());
         auditLogRepository.saveAndFlush(auditLog);
     }
 }

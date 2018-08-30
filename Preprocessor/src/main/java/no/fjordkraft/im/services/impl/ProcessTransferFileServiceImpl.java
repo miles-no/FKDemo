@@ -102,7 +102,7 @@ public class ProcessTransferFileServiceImpl implements ProcessTransferFileServic
             systemBatchInputService.updateStatusOfIMSystemBatchInput(systemBatchInput, SystemBatchInputStatusEnum.FAILED.getStatus());
             transferFileService.updateTransferFile(systemBatchInput.getTransferFile().getCompositeKey(), SystemBatchInputStatusEnum.FAILED.getStatus());
             auditLogService.saveAuditLog(IMConstants.SYSTEM_BATCH_FILE, systemBatchInput.getId(), SystemBatchInputStatusEnum.FAILED.getStatus(),
-                    e.getMessage(), IMConstants.SUCCESS);
+                    e.getMessage(), IMConstants.ERROR,null);
         }
 
     }

@@ -5,6 +5,6 @@ package no.fjordkraft.im.services;
  */
 public interface AuditLogService {
 
-    void saveAuditLog(Long actionOnId, String action, String msg, String logType);
-    void saveAuditLog(String actionOnType, Long actionOnId, String action, String msg, String logType);
+    void saveAuditLog(Long actionOnId, String action, String msg, String logType,String legalPartClass);
+    void saveAuditLog(String actionOnType, Long actionOnId, String action, String msg, String logType,String legalPartClass);
 }

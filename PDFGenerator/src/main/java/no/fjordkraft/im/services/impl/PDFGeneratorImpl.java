@@ -197,7 +197,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())   {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(), getCause(e).getMessage(), IMConstants.ERROR);
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(), getCause(e).getMessage(), IMConstants.ERROR,statement.getLegalPartClass());
             }
             else
             {
@@ -244,7 +244,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             }
             if (null == campaignImage) {
                 auditLogService.saveAuditLog(IMConstants.CAMPAIGN_IMAGE, statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(),
-                        "Campaign Image not found", IMConstants.WARNING);
+                        "Campaign Image not found", IMConstants.WARNING,statement.getLegalPartClass());
             }
             IReportRunnable runnable = null;
 
