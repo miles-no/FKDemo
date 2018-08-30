@@ -17,6 +17,7 @@ public class RestAuditLog {
     private String invoiceNo;
     private String accountNumber;
     private String customerId;
+    private String legalPartClass;
 
     public String getActionOnType() {
         return actionOnType;
@@ -96,5 +97,13 @@ public class RestAuditLog {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    public String getLegalPartClass() {
+        return legalPartClass;
+    }
+
+    public void setLegalPartClass(String legalPartClass) {
+        this.legalPartClass = legalPartClass;
     }
 }

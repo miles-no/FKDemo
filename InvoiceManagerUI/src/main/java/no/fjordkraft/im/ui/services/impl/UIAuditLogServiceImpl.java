@@ -36,6 +36,7 @@ public class UIAuditLogServiceImpl implements UIAuditLogService {
             restAuditLog.setDateTime(auditLog.getDateTime());
             restAuditLog.setUserName(auditLog.getUserName());
             restAuditLog.setMsg(auditLog.getMsg());
+            restAuditLog.setLegalPartClass(auditLog.getLegalPartClass());
             if(null != auditLog.getStatement()) {
                 restAuditLog.setAccountNumber(auditLog.getStatement().getAccountNumber());
                 restAuditLog.setCustomerId(auditLog.getStatement().getCustomerId());

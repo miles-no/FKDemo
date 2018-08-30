@@ -34,43 +34,58 @@ public class StatementDetailRepository {
                                       String invoiceNumber, String accountNumber, String transferFileName, String legalPartClass, String creditLimit){
 
         StringBuffer selectQuery = new StringBuffer();
-        selectQuery.append("select s from Statement s join s.systemBatchInput where ");
+        selectQuery.append("select s from Statement s join s.systemBatchInput where 1=1 ");
 
         if(null != status ) {
+            selectQuery.append(AND);
             selectQuery.append(addConditionForQueryValue(status, "s.status"));
-            selectQuery.append(AND);
         }
+
         if(null != brand) {
-            selectQuery.append(addConditionForQueryValue(brand, "s.systemBatchInput.transferFile.brand"));
             selectQuery.append(AND);
+            selectQuery.append(addConditionForQueryValue(brand, "s.systemBatchInput.brand"));
         }
+
         if(null != customerID) {
-            selectQuery.append(addConditionForQueryValue(customerID, "s.customerId"));
             selectQuery.append(AND);
+            selectQuery.append(addConditionForQueryValue(customerID, "s.customerId"));
+
         }
         if(null != accountNumber) {
-            selectQuery.append(addConditionForQueryValue(accountNumber, "s.accountNumber"));
             selectQuery.append(AND);
+            selectQuery.append(addConditionForQueryValue(accountNumber, "s.accountNumber"));
         }
 
         if(null != legalPartClass) {
-            selectQuery.append(addEqualityCondition(legalPartClass, "s.legalPartClass"));
             selectQuery.append(AND);
+            selectQuery.append(addEqualityCondition(legalPartClass, "s.legalPartClass"));
         }
 
         if(null != creditLimit) {
             Double creditLmt = Double.valueOf(creditLimit);
-            selectQuery.append(" s.creditLimit = "+ creditLmt);
             selectQuery.append(AND);
+            selectQuery.append(" s.creditLimit = "+ creditLmt);
         }
 
-        selectQuery.append("(:fromTime is null or s.updateTime >= :fromTime) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:toTime is null or s.updateTime <= :toTime) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:invoiceNumber is null or s.invoiceNumber like :invoiceNumber) ");
-        selectQuery.append(AND);
-        selectQuery.append("(:transferFileName is null or s.systemBatchInput.transferFile.filename like :transferFileName) ");
+        if(null != fromTime) {
+            selectQuery.append(AND);
+            selectQuery.append("s.updateTime >= :fromTime");
+        }
+
+        if(null != toTime) {
+            selectQuery.append(AND);
+            selectQuery.append("(:toTime is null or s.updateTime <= :toTime)");
+        }
+
+        if(null != invoiceNumber){
+            selectQuery.append(AND);
+            selectQuery.append("s.invoiceNumber like :invoiceNumber");
+        }
+        if(null != transferFileName){
+            selectQuery.append(AND);
+            selectQuery.append("s.systemBatchInput.transferFile.filename like :transferFileName");
+        }
+
         selectQuery.append("order by s.updateTime desc");
         logger.debug("Statement get details " + selectQuery.toString());
         Query query = entityManager.createQuery(selectQuery.toString(), Statement.class)
@@ -140,7 +155,7 @@ public class StatementDetailRepository {
         if(null != creditLimit) {
             Double creditLmt = Double.valueOf(creditLimit);
             selectQuery.append(" s.creditLimit = "+ creditLmt);
-            selectQuery.append(AND); 
+            selectQuery.append(AND);
         }
 
         selectQuery.append("(:fromTime is null or s.updateTime >= :fromTime) ");

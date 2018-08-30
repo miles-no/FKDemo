@@ -40,7 +40,7 @@ public class AuditLogDetailRepository {
             selectQuery.append(AND);
         }
         if(null != logType) {
-            selectQuery.append((addConditionForQueryValue(logType, "a.logType")));
+            selectQuery.append((addEqualityCondition(logType, "a.logType")));
             selectQuery.append(AND);
         }
         if(null != invoiceNo) {
@@ -57,9 +57,11 @@ public class AuditLogDetailRepository {
         }
 
         if(null != legalPartClass) {
-            selectQuery.append((addConditionForQueryValue(accountNumber, "a.statement.legalPartClass")));
+            selectQuery.append((addEqualityCondition(accountNumber, "a.statement.legalPartClass")));
             selectQuery.append(AND);
         }
+
+
         selectQuery.append("(:fromTime is null or a.dateTime >= :fromTime) ");
         selectQuery.append(AND);
         selectQuery.append("(:toTime is null or a.dateTime <= :toTime) ");
@@ -126,5 +128,9 @@ public class AuditLogDetailRepository {
 
     private String addConditionForQueryValue(String value, String name) {
         return "(" + name + " in " + "('" + value + "'))";
+    }
+
+    private String addEqualityCondition(String value, String name) {
+        return "(" + name + " = '" +   value + "')";
     }
 }

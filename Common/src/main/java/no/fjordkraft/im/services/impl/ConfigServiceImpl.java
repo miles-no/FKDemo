@@ -139,7 +139,12 @@ public class ConfigServiceImpl implements ConfigService {
         String value = getString(key);
         if (value == null) {
             return false;
+        } else if("YES".equalsIgnoreCase(value.trim())) {
+            return Boolean.TRUE;
+        } else if("NO".equalsIgnoreCase(value.trim())) {
+            return Boolean.FALSE;
         }
+
         return Boolean.valueOf(value);
     }
 
