@@ -32,10 +32,11 @@ public class IMAuditLogController {
                                    @RequestParam(value = "logType", required=false) String logType,
                                    @RequestParam(value = "invoiceNo", required=false) String invoiceNo,
                                    @RequestParam(value = "customerID", required=false) String customerID,
-                                   @RequestParam(value = "accountNumber", required=false) String accountNumber) {
+                                   @RequestParam(value = "accountNumber", required=false) String accountNumber,
+                                   @RequestParam(value = "legalPartClass", required=false) String legalPartClass) {
 
-        List<RestAuditLog> auditLogList = auditLogService.getAuditLogRecords(page, size, fromTime, toTime, action, actionOnType, logType, invoiceNo, customerID, accountNumber);
-        Long count = auditLogService.getAuditLogRecordsCount(fromTime, toTime, action, actionOnType, logType, invoiceNo, customerID, accountNumber);
+        List<RestAuditLog> auditLogList = auditLogService.getAuditLogRecords(page, size, fromTime, toTime, action, actionOnType, logType, invoiceNo, customerID, accountNumber,legalPartClass);
+        Long count = auditLogService.getAuditLogRecordsCount(fromTime, toTime, action, actionOnType, logType, invoiceNo, customerID, accountNumber,legalPartClass);
         Map<String, Object> resultMap = new HashMap<String, Object>();
         resultMap.put(IMConstants.AUDIT_LOG, auditLogList);
         resultMap.put(IMConstants.TOTAL, count);

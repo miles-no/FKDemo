@@ -11,7 +11,7 @@ import java.util.List;
 public interface UIAuditLogService {
 
     List<RestAuditLog> getAuditLogRecords(int page, int size, Timestamp fromTime, Timestamp toTime, String action,
-                                          String actionOnType, String logType, String invoiceNo, String customerID, String accountNumber);
+                                          String actionOnType, String logType, String invoiceNo, String customerID, String accountNumber,String legalPartClass);
     Long getAuditLogRecordsCount(Timestamp fromTime, Timestamp toTime, String action,
-                                 String actionOnType, String logType, String invoiceNo, String customerID, String accountNumber);
+                                 String actionOnType, String logType, String invoiceNo, String customerID, String accountNumber,String legalPartClass);
 }

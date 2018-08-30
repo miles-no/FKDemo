@@ -294,7 +294,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
             grid.setTelephone(gridConfig.getPhone());
         } else {
             String errorMessage = "Grid not found: " + ldc1;
-            auditLogService.saveAuditLog(id, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);
+            auditLogService.saveAuditLog(id, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING,null);
         }
         return grid;
     }

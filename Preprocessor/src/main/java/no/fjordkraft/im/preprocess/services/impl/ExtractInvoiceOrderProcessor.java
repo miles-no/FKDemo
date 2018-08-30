@@ -64,7 +64,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                         for(InvoiceOrder invoiceOrder :faktura.getVEDLEGGEMUXML().getInvoice().getInvoiceOrder())
                         {
                             String message = "Found Multiple invoice orders";
-                            auditLogService.saveAuditLog(request.getEntity().getId(),StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.INFO);
+                            auditLogService.saveAuditLog(request.getEntity().getId(),StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.INFO,request.getEntity().getLegalPartClass());
                             if( invoiceOrder.getSupplyPointInfo117()!=null)
                             {
                                 long malepunktID= invoiceOrder.getSupplyPointInfo117().getObjectId();
@@ -87,7 +87,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                             } else
                             {
                                 String errorMessage = "Missing SupplyPointInfo117 in Invoice Order" ;
-                                auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);
+                                auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING,request.getEntity().getLegalPartClass());
                             }
                         }
 
@@ -126,7 +126,7 @@ public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
                 logger.debug("TIme taken for creating new attachment of statement with id " + request.getEntity().getId() + stopWatch.prettyPrint());
             } else {
                 String errorMessage = "Found multiple distributions in transaction for statement " +request.getEntity().getId();
-                auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.ERROR);
+                auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.ERROR,request.getEntity().getLegalPartClass());
                 logger.error("Found multiple Distributions for Legal Part class " + legalPartClass +" and brand " + brand +" statement ID " + request.getEntity().getId());
                 throw new PreprocessorException("Found multiple Distributions for Legal Part class " + legalPartClass +" and brand " + brand +" statement ID " + request.getEntity().getId());
             }

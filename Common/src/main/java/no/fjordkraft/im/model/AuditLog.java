@@ -38,6 +38,10 @@ public class AuditLog {
     @Column(name="LOG_TYPE")
     private String logType;
 
+
+    @Column(name="LEGAL_PART_CLASS")
+    private String legalPartClass;
+
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name="ACTION_ON_ID", insertable = false, updatable = false)
     private Statement statement;
@@ -112,5 +116,13 @@ public class AuditLog {
 
     public void setStatement(Statement statement) {
         this.statement = statement;
+    }
+
+   public String getLegalPartClass() {
+        return legalPartClass;
+    }
+
+    public void setLegalPartClass(String legalPartClass) {
+        this.legalPartClass = legalPartClass;
     }
 }

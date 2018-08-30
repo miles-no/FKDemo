@@ -81,7 +81,7 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
                         for (BaseItemDetails itemDetail : nettleie.getBaseItemDetails()) {
                             if (toMergeLineItems != null && !toMergeLineItems.isEmpty() && toMergeLineItems.contains(itemDetail.getDescription().trim())) {
                                 String message = "Merging grid line " + itemDetail.getDescription().trim() + " into new grid name " + mergeGridName;
-                                auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), message, IMConstants.INFO);
+                                auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), message, IMConstants.INFO,request.getEntity().getLegalPartClass());
                                 logger.debug("Merging item details for " + itemDetail.getDescription() + " into grid name " + mergeGridName);
                                 itemDetail.setDescription(mergeGridName);
                                 if (mergedLineItems.isEmpty())
@@ -115,7 +115,7 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
             grid.setTelephone(gridConfig.getPhone());
         } else {
             String errorMessage = "Grid config not found "+ldc1.toUpperCase();
-            auditLogService.saveAuditLog(id, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING);
+            auditLogService.saveAuditLog(id, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING,null);
         }
         return grid;
     }

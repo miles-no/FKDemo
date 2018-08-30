@@ -26,7 +26,7 @@ public class AuditLogDetailRepository {
 
     @Transactional(readOnly = true)
     public List<AuditLog> getDetails(int page, int size, Timestamp fromTime, Timestamp toTime, String action,
-                                     String actionOnType, String logType, String invoiceNo, String customerID, String accountNumber) {
+                                     String actionOnType, String logType, String invoiceNo, String customerID, String accountNumber,String legalPartClass) {
 
         StringBuffer selectQuery = new StringBuffer();
         selectQuery.append("select a from AuditLog a join a.statement where ");
@@ -55,6 +55,11 @@ public class AuditLogDetailRepository {
             selectQuery.append((addConditionForQueryValue(accountNumber, "a.statement.accountNumber")));
             selectQuery.append(AND);
         }
+
+        if(null != legalPartClass) {
+            selectQuery.append((addConditionForQueryValue(accountNumber, "a.statement.legalPartClass")));
+            selectQuery.append(AND);
+        }
         selectQuery.append("(:fromTime is null or a.dateTime >= :fromTime) ");
         selectQuery.append(AND);
         selectQuery.append("(:toTime is null or a.dateTime <= :toTime) ");
@@ -72,7 +77,7 @@ public class AuditLogDetailRepository {
 
     @Transactional(readOnly = true)
     public Long getCount(Timestamp fromTime, Timestamp toTime, String action,
-                                     String actionOnType, String logType, String invoiceNo, String customerID, String accountNumber) {
+                                     String actionOnType, String logType, String invoiceNo, String customerID, String accountNumber,String legalPartClass) {
 
         StringBuffer selectQuery = new StringBuffer();
         selectQuery.append("select count(a) from AuditLog a join a.statement where ");
@@ -99,6 +104,11 @@ public class AuditLogDetailRepository {
         }
         if(null != accountNumber) {
             selectQuery.append((addConditionForQueryValue(accountNumber, "a.statement.accountNumber")));
+            selectQuery.append(AND);
+        }
+
+        if(null != legalPartClass) {
+            selectQuery.append((addConditionForQueryValue(accountNumber, "a.statement.legalPartClass")));
             selectQuery.append(AND);
         }
         selectQuery.append("(:fromTime is null or a.dateTime >= :fromTime) ");

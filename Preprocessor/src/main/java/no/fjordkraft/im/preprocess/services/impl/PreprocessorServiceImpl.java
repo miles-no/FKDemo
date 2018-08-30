@@ -180,7 +180,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             SetInvoiceASOnline.unset();
             logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), ex);
             statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), ex.getMessage(), IMConstants.ERROR);
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), ex.getMessage(), IMConstants.ERROR,statement.getLegalPartClass());
            }
             else
            {

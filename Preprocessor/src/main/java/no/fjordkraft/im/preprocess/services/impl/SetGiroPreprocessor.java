@@ -60,7 +60,7 @@ public class SetGiroPreprocessor extends BasePreprocessor {
               if(customerDetailsView!=null && customerDetailsView.getGiroEnabled())
               {
                  String message = "Giro is enabled for account number "+ accountNumber;
-                 auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.INFO);
+                 auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.INFO,request.getEntity().getLegalPartClass());
                  logger.debug("GIRO is enabled for account number " + Long.toString(accountNumber));
                  request.getStatement().setGIROEnabled(true);
               }  else {
@@ -84,7 +84,7 @@ public class SetGiroPreprocessor extends BasePreprocessor {
 
                         logger.debug("Blanket Number is valid as date of activation is " + blanketNumber.getDateOfActivation());
                         String message1 = "Blankett Number used is  "+ blanketNumber.getBlanketNumber() + " for account number "+ request.getStatement().getAccountNumber();
-                        auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message1,IMConstants.INFO);
+                        auditLogService.saveAuditLog(request.getEntity().getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(),message1,IMConstants.INFO,request.getEntity().getLegalPartClass());
                         request.getStatement().setBlanketNumber(blanketNumber.getBlanketNumber());
                         blanketNumber.setActive(false);
                         blanketNumber.setLastUpdated(new Date());

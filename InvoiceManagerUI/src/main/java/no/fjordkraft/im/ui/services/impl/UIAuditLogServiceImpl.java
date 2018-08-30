@@ -22,10 +22,10 @@ public class UIAuditLogServiceImpl implements UIAuditLogService {
 
     @Override
     public List<RestAuditLog> getAuditLogRecords(int page, int size, Timestamp fromTime, Timestamp toTime, String action, String actionOnType, String logType,
-                                                 String invoiceNo, String customerID, String accountNumber) {
+                                                 String invoiceNo, String customerID, String accountNumber,String legalPartClass) {
         List<RestAuditLog> restAuditLogs = new ArrayList<>();
         RestAuditLog restAuditLog;
-        List<AuditLog> auditLogList = auditLogDetailRepository.getDetails(page, size, fromTime, toTime, action, actionOnType, logType, invoiceNo, customerID, accountNumber);
+        List<AuditLog> auditLogList = auditLogDetailRepository.getDetails(page, size, fromTime, toTime, action, actionOnType, logType, invoiceNo, customerID, accountNumber,legalPartClass);
 
         for(AuditLog auditLog:auditLogList) {
             restAuditLog = new RestAuditLog();
@@ -48,7 +48,7 @@ public class UIAuditLogServiceImpl implements UIAuditLogService {
 
     @Override
     public Long getAuditLogRecordsCount(Timestamp fromTime, Timestamp toTime, String action, String actionOnType, String logType,
-                                        String invoiceNo, String customerID, String accountNumber) {
-        return auditLogDetailRepository.getCount(fromTime, toTime, action, actionOnType, logType, invoiceNo, customerID, accountNumber);
+                                        String invoiceNo, String customerID, String accountNumber,String legalPartClass) {
+        return auditLogDetailRepository.getCount(fromTime, toTime, action, actionOnType, logType, invoiceNo, customerID, accountNumber,legalPartClass);
     }
 }

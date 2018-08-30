@@ -147,7 +147,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 else  {
                          Attachment dummyStromAttachment = deepClone(gridAttachment);
                          String errorMessage = "Only Grid for Invoice Number";
-                         auditLogService.saveAuditLog(statementId, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.INFO);
+                         auditLogService.saveAuditLog(statementId, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.INFO,null);
                          if(IMConstants.PDFEHF.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()))
                          {
                              Nettleie nettleie = createEHFEntry(gridAttachment);
