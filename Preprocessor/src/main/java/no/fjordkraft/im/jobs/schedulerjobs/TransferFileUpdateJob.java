@@ -8,7 +8,9 @@ import com.carfey.ops.job.param.Parameter;
 import com.carfey.ops.job.param.Type;
 import no.fjordkraft.im.jobs.domain.JobInfo;
 import no.fjordkraft.im.jobs.domain.JobStatus;
+import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.services.TransferFileService;
+import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +37,19 @@ public class TransferFileUpdateJob implements InterruptableJob{
     @Autowired
     private TransferFileService transferFileService;
 
+    @Autowired
+    ConfigService configService;
+
     private static final Logger logger = LoggerFactory.getLogger(InvoiceFeedWatcherJob.class);
 
     public void execute(Context context) throws Exception {
-        logger.info("TransferFileUpdateJob job invoked ");
-        transferFileService.consolidateAndUpdateStatus();
+
+        if(configService.getBoolean(IMConstants.TRANSFERFILE_UPDATE_JOB_ACTIVE)) {
+            logger.info("TransferFileUpdateJob active and job invoked ");
+            transferFileService.consolidateAndUpdateStatus();
+        } else {
+            logger.info("TransferFileUpdateJob job is inactive ");
+        }
     }
 
     @Override
