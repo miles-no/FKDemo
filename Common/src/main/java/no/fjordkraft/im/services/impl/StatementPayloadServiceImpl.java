@@ -4,12 +4,14 @@ import no.fjordkraft.im.repository.StatementPayloadRepository;
 import no.fjordkraft.im.services.StatementPayloadService;
 import no.fjordkraft.im.services.StatementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
 /**
  * Created by bhavi on 8/30/2018.
  */
+@Service
 public class StatementPayloadServiceImpl implements StatementPayloadService{
 
     @Autowired
