@@ -30,11 +30,11 @@ public class LayoutContent {
     @Column(name="ACTIVE")
     private boolean active;
 
-    @Column(name="CREATED_TMS")
-    private Timestamp createdTms;
+    @Column(name="CREATE_TIME")
+    private Timestamp createTime;
 
-    @Column(name="UPDATE_TMS")
-    private Timestamp updateTms;
+    @Column(name="UPDATE_TIME")
+    private Timestamp updateTime;
 
     @Transient
     private String reason;
@@ -79,20 +79,20 @@ public class LayoutContent {
         this.active = active;
     }
 
-    public Timestamp getCreatedTms() {
-        return createdTms;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTms(Timestamp createdTms) {
-        this.createdTms = createdTms;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public Timestamp getUpdateTms() {
-        return updateTms;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdateTms(Timestamp updateTms) {
-        this.updateTms = updateTms;
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String getReason() {

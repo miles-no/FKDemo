@@ -28,11 +28,11 @@ public class GridConfig {
     @Column(name="PHONE")
     private String phone;
 
-    @Column(name="CREATED_TMS")
-    private Timestamp createdTms;
+    @Column(name="CREATE_TIME")
+    private Timestamp createTime;
 
-    @Column(name="UPDATED_TMS")
-    private Timestamp updatedTms;
+    @Column(name="UPDATE_TIME")
+    private Timestamp updateTime;
 
     public Long getId() {
         return id;
@@ -74,19 +74,19 @@ public class GridConfig {
         this.phone = phone;
     }
 
-    public Timestamp getCreatedTms() {
-        return createdTms;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTms(Timestamp createdTms) {
-        this.createdTms = createdTms;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public Timestamp getUpdatedTms() {
-        return updatedTms;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatedTms(Timestamp updatedTms) {
-        this.updatedTms = updatedTms;
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 }

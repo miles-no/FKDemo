@@ -38,11 +38,11 @@ public class Attachment {
     @JoinColumn(name="ATTACHMENT_CONFIG_ID")
     private AttachmentConfig attachmentConfig;
 
-    @Column(name="CREATED_TMS")
-    private Timestamp createdTms;
+    @Column(name="CREATE_TIME")
+    private Timestamp createTime;
 
-    @Column(name="UPDATED_TMS")
-    private Timestamp updatedTms;
+    @Column(name="UPDATE_TIME")
+    private Timestamp updateTime;
 
 
     public long getAttachmentID() {
@@ -94,19 +94,19 @@ public class Attachment {
         this.fileType = fileType;
     }
 
-    public Timestamp getCreatedTms() {
-        return createdTms;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTms(Timestamp createdTms) {
-        this.createdTms = createdTms;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public Timestamp getUpdatedTms() {
-        return updatedTms;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatedTms(Timestamp updatedTms) {
-        this.updatedTms = updatedTms;
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 }

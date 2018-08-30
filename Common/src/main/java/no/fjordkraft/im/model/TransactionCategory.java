@@ -28,11 +28,11 @@ public class TransactionCategory {
     @Column(name="CATEGORY")
     private String category;
 
-    @Column(name="CREATED_TMS")
-    private Timestamp createdTms;
+    @Column(name="CREATE_TIME")
+    private Timestamp createTime;
 
-    @Column(name="LAST_UPDATED")
-    private Timestamp updateTms;
+    @Column(name="UPDATE_TIME")
+    private Timestamp updateTime;
 
     @JsonIgnore
     @OneToMany(mappedBy = "transactionCategory", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
@@ -78,19 +78,19 @@ public class TransactionCategory {
         this.id = id;
     }
 
-    public Timestamp getCreatedTms() {
-        return createdTms;
+    public Timestamp getcreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTms(Timestamp createdTms) {
-        this.createdTms = createdTms;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public Timestamp getUpdateTms() {
-        return updateTms;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdateTms(Timestamp updateTms) {
-        this.updateTms = updateTms;
+    public void getUpdateTime(Timestamp updateTms) {
+        this.updateTime = updateTms;
     }
 }

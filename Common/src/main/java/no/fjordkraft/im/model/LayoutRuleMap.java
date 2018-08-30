@@ -32,11 +32,11 @@ public class LayoutRuleMap {
     @Column(name="VALUE")
     private String value;
 
-    @Column(name="CREATED_TMS")
-    private Timestamp createdTms;
+  /*  @Column(name="CREATE_TIME")
+    private Timestamp createTime;
 
     @Column(name="UPDATE_TMS")
-    private Timestamp updateTms;
+    private Timestamp updateTms;*/
 
     public Long getId() {
         return id;
@@ -82,22 +82,22 @@ public class LayoutRuleMap {
         return value;
     }
 
-    public void setValue(String value) {
+   public void setValue(String value) {
         this.value = value;
     }
-    public Timestamp getCreatedTms() {
-        return createdTms;
+   /* public Timestamp getcreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTms(Timestamp createdTms) {
-        this.createdTms = createdTms;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
     public Timestamp getUpdateTms() {
         return updateTms;
     }
 
-    public void setUpdateTms(Timestamp updateTms) {
+    public void getUpdateTime(Timestamp updateTms) {
         this.updateTms = updateTms;
-    }
+    }*/
 }

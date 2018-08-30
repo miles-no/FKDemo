@@ -38,7 +38,7 @@ public class UIConfigServiceImpl implements UIConfigService  {
             configDb.setName(key);
         }
         configDb.setValue(value);
-        configDb.setLastUpdated(new Timestamp(System.currentTimeMillis()));
+        configDb.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         synchronized (this) {
             cache.put(key, value);
         }
@@ -50,7 +50,7 @@ public class UIConfigServiceImpl implements UIConfigService  {
         Config config = new Config();
         config.setName(key);
         config.setValue(value);
-        config.setCreatedTms(new Timestamp(System.currentTimeMillis()));
+        config.setCreateTime(new Timestamp(System.currentTimeMillis()));
         configRepository.save(config);
     }
 

@@ -34,11 +34,11 @@ public class TransactionGroup {
     @OneToMany(mappedBy = "transactionGroup",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<TransactionGroupCategory> transactionGroupCategories;
 
-    @Column(name="CREATED_TMS")
-    private Timestamp createdTms;
+    @Column(name="CREATE_TIME")
+    private Timestamp createTime;
 
-    @Column(name="UPDATE_TMS")
-    private Timestamp updateTms;
+    @Column(name="UPDATE_TIME")
+    private Timestamp updateTime;
 
 
     public String getName() {
@@ -89,20 +89,20 @@ public class TransactionGroup {
         this.description = description;
     }
 
-    public Timestamp getCreatedTms() {
-        return createdTms;
+    public Timestamp getcreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTms(Timestamp createdTms) {
-        this.createdTms = createdTms;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public Timestamp getUpdateTms() {
-        return updateTms;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdateTms(Timestamp updateTms) {
-        this.updateTms = updateTms;
+    public void setUpdateTime(Timestamp updateTms) {
+        this.updateTime = updateTms;
     }
 
 

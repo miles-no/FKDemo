@@ -31,7 +31,7 @@ public class UIBrandServiceImpl implements UIBrandService {
     @Override
     @Transactional
     public void saveBrandConfig(BrandConfig brandConfig) {
-        brandConfig.setCreatedTms(new Timestamp(System.currentTimeMillis()));
+        brandConfig.setCreateTime(new Timestamp(System.currentTimeMillis()));
         brandConfigRepository.saveAndFlush(brandConfig);
     }
 
@@ -51,7 +51,7 @@ public class UIBrandServiceImpl implements UIBrandService {
         config.setCity(brandConfig.getCity());
         config.setNationalId(brandConfig.getNationalId());
         config.setRegion(brandConfig.getRegion());
-        config.setUpdatedTms(new Timestamp(System.currentTimeMillis()));
+        config.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         brandConfigRepository.saveAndFlush(config);
     }
 

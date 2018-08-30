@@ -102,7 +102,7 @@ public class UITransactionGroupServiceImpl implements UITransactionGroupService 
         newTransactionCategory.setCategory(transactionCategory.getCategory());
         newTransactionCategory.setDescription(transactionCategory.getDescription());
         newTransactionCategory.setType(transactionCategory.getType());
-        newTransactionCategory.setCreatedTms(new Timestamp(System.currentTimeMillis()));
+        newTransactionCategory.setCreateTime(new Timestamp(System.currentTimeMillis()));
         transactionCategoryRepository.saveAndFlush(newTransactionCategory);
     }*/
 
@@ -117,13 +117,13 @@ public class UITransactionGroupServiceImpl implements UITransactionGroupService 
         transactionGroup.setBrand(restTransactionGroup.getBrand());
         transactionGroup.setType(restTransactionGroup.getType());
         transactionGroup.setDescription(restTransactionGroup.getDescription());
-        transactionGroup.setCreatedTms(new Timestamp(System.currentTimeMillis()));
+        transactionGroup.setCreateTime(new Timestamp(System.currentTimeMillis()));
 
         for(TransactionCategory transactionCategory:restTransactionGroup.getTransactionCategories()) {
             transactionGroupCategory = new TransactionGroupCategory();
             transactionGroupCategory.setTransactionGroup(transactionGroup);
             transactionGroupCategory.setTransactionCategory(transactionCategory);
-            transactionGroupCategory.setCreatedTms(new Timestamp(System.currentTimeMillis()));
+            transactionGroupCategory.setCreateTime(new Timestamp(System.currentTimeMillis()));
             transactionGroupCategoryList.add(transactionGroupCategory);
         }
         transactionGroup.setTransactionGroupCategories(transactionGroupCategoryList);
@@ -141,7 +141,7 @@ public class UITransactionGroupServiceImpl implements UITransactionGroupService 
         transactionGroup.setBrand(restTransactionGroup.getBrand());
         transactionGroup.setType(restTransactionGroup.getType());
         transactionGroup.setDescription(restTransactionGroup.getDescription());
-        transactionGroup.setUpdateTms(new Timestamp(System.currentTimeMillis()));
+        transactionGroup.setUpdateTime(new Timestamp(System.currentTimeMillis()));
 
         for(TransactionGroupCategory transGrpCategory:transactionGroup.getTransactionGroupCategories()) {
             deleteTransGrpCategory(transGrpCategory.getId());
@@ -152,7 +152,7 @@ public class UITransactionGroupServiceImpl implements UITransactionGroupService 
             transactionGroupCategory = new TransactionGroupCategory();
             transactionGroupCategory.setTransactionGroup(transactionGroup);
             transactionGroupCategory.setTransactionCategory(transactionCategory);
-            transactionGroupCategory.setUpdatedTms(new Timestamp(System.currentTimeMillis()));
+            transactionGroupCategory.setUpdateTime(new Timestamp(System.currentTimeMillis()));
             transactionGroupCategoryList.add(transactionGroupCategory);
         }
         transactionGroup.setTransactionGroupCategories(transactionGroupCategoryList);

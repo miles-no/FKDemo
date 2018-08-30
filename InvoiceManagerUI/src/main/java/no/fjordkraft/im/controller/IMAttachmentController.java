@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -62,7 +64,7 @@ public class IMAttachmentController {
             attachment.setFileContent(content);
             attachment.setFileType(fileExtension);
         }
-        attachment.setUpdatedTms(new Timestamp(System.currentTimeMillis()));
+        attachment.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         attachmentService.updateAttachment(id,attachment);
     }
 
@@ -98,6 +100,8 @@ public class IMAttachmentController {
                 if(null != file) {
                     // template = IOUtils.toString(file.getBytes());
                     template= Base64.encodeBase64String(file.getBytes());
+
+
                 }
 
                 String fileExtension =  file.getOriginalFilename().split("\\.")[1];
@@ -108,6 +112,11 @@ public class IMAttachmentController {
                     newAttachment.setAttachmentType(fileType);
                     newAttachment.setFileContent(template);
                     newAttachment.setFileExtension(fileExtension);
+                    logger.debug("Writing file.........");
+                    File testPDFFile = new File("E:/test/testPDF.pdf");
+                    FileOutputStream fos = new FileOutputStream(testPDFFile);
+                    fos.write(template.getBytes());
+                    fos.close();
                    RestAttachment restAttachment =  attachmentService.saveAttachment(newAttachment,attachmentConfig);
                     if(restAttachment==null)
                     {

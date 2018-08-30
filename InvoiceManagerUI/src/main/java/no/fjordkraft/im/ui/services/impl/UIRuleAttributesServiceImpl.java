@@ -44,7 +44,7 @@ public class UIRuleAttributesServiceImpl implements UIRuleAttributesService {
     @Override
     @Transactional
     public void saveLayoutConfig(RuleAttributes ruleAttributes) {
-        ruleAttributes.setCreatedTms(new Timestamp(System.currentTimeMillis()));
+        ruleAttributes.setCreateTime(new Timestamp(System.currentTimeMillis()));
         ruleAttributesRepository.saveAndFlush(ruleAttributes);
     }
 
@@ -56,7 +56,7 @@ public class UIRuleAttributesServiceImpl implements UIRuleAttributesService {
         config.setType(ruleAttributes.getType());
         config.setFieldMapping(ruleAttributes.getFieldMapping());
         config.setOptions(ruleAttributes.getOptions());
-        config.setUpdateTms(new Timestamp(System.currentTimeMillis()));
+        config.getUpdateTime(new Timestamp(System.currentTimeMillis()));
         ruleAttributesRepository.saveAndFlush(config);
     }
 

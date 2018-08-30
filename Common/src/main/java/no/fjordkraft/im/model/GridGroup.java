@@ -34,11 +34,11 @@ public class GridGroup {
     @JoinColumn(name="GRID_CONFIG_ID")
     private GridConfig gridConfig;
 
-    @Column (name="CREATED_TMS")
-    private Timestamp createdTms;
+    @Column (name="CREATE_TIME")
+    private Timestamp createTime;
 
-    @Column(name="LAST_UPDATED")
-    private Timestamp lastUpdated;
+    @Column(name="UPDATE_TIME")
+    private Timestamp updateTime;
 
     public Long getId() {
         return id;
@@ -73,19 +73,19 @@ public class GridGroup {
         this.groupGridLines = groupGridLines;
     }
 
-    public Timestamp getCreatedTms() {
-        return createdTms;
+    public Timestamp getcreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTms(Timestamp createdTms) {
-        this.createdTms = createdTms;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public Timestamp getLastUpdated() {
-        return lastUpdated;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    public void setLastUpdated(Timestamp lastUpdated) {
-        this.lastUpdated = lastUpdated;
+    public void setUpdateTime(Timestamp lastUpdated) {
+        this.updateTime = lastUpdated;
     }
 }

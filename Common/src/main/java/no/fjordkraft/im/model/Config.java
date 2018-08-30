@@ -21,11 +21,11 @@ public class Config {
     @Column(name = "value")
     private String value;
 
-    @Column(name = "created_tms")
-    private Timestamp createdTms;
+    @Column(name = "create_time")
+    private Timestamp createTime;
 
-    @Column(name = "Last_Updated")
-    private Timestamp lastUpdated;
+    @Column(name = "update_time")
+    private Timestamp updateTime;
 
     public Config() {
     }
@@ -51,20 +51,20 @@ public class Config {
         this.value = value;
     }
 
-    public Timestamp getCreatedTms() {
-        return createdTms;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTms(Timestamp createdTms) {
-        this.createdTms = createdTms;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public Timestamp getLastUpdated() {
-        return lastUpdated;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    public void setLastUpdated(Timestamp lastUpdated) {
-        this.lastUpdated = lastUpdated;
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 
     @Override

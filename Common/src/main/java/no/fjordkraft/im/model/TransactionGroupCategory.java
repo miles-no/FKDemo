@@ -28,11 +28,11 @@ public class TransactionGroupCategory {
     @JoinColumn(name="TC_ID")
     private TransactionCategory transactionCategory;
 
-    @Column(name="CREATED_TMS")
-    private Timestamp createdTms;
+    @Column(name="CREATE_TIME")
+    private Timestamp createTime;
 
     @Column(name="UPDATED_TMS")
-    private Timestamp updatedTms;
+    private Timestamp updateTime;
 
     public Long getId() {
         return id;
@@ -58,20 +58,20 @@ public class TransactionGroupCategory {
         this.transactionCategory = transactionCategory;
     }
 
-    public Timestamp getCreatedTms() {
-        return createdTms;
+    public Timestamp getcreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTms(Timestamp createdTms) {
-        this.createdTms = createdTms;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public Timestamp getUpdatedTms() {
-        return updatedTms;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatedTms(Timestamp updatedTms) {
-        this.updatedTms = updatedTms;
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 
 

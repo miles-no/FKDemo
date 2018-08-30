@@ -36,14 +36,14 @@ public class IMGridController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
     void saveGridConfig(@RequestBody GridConfig gridConfig) {
-        gridConfig.setCreatedTms(new Timestamp(System.currentTimeMillis()));
+        gridConfig.setCreateTime(new Timestamp(System.currentTimeMillis()));
         gridConfigService.saveGridConfig(gridConfig);
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
     @ResponseBody
     void updateGridConfig(@RequestBody GridConfig gridConfig) {
-        gridConfig.setUpdatedTms(new Timestamp(System.currentTimeMillis()));
+        gridConfig.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         gridConfigService.updateGridConfig(gridConfig);
     }
 

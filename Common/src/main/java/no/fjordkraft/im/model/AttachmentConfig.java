@@ -23,11 +23,11 @@ public class AttachmentConfig {
     @Column(name="ATTACHMENT_NAME")
     private String attachmentName;
 
-    @Column(name="CREATED_TMS")
-    private Timestamp createdTms;
+    @Column(name="CREATE_TIME")
+    private Timestamp createTime;
 
-    @Column(name="LAST_UPDATED")
-    private Timestamp lastUpdated;
+    @Column(name="UPDATE_TIME")
+    private Timestamp updateTime;
 
   /*  @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch = FetchType.EAGER)
     @JoinColumn(name="ATTACHMENT_ID")
@@ -52,19 +52,19 @@ public class AttachmentConfig {
         this.attachmentName = attachmentName;
     }
 
-    public Timestamp getCreatedTms() {
-        return createdTms;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTms(Timestamp createdTms) {
-        this.createdTms = createdTms;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public Timestamp getLastUpdated() {
-        return lastUpdated;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    public void setLastUpdated(Timestamp lastUpdated) {
-        this.lastUpdated = lastUpdated;
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 }

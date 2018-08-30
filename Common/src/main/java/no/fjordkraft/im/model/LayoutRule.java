@@ -27,11 +27,11 @@ public class LayoutRule implements Comparable<LayoutRule> {
     @Column(name="LAYOUT_ID")
     private Long layoutId;
 
-    @Column(name="CREATED_TMS")
-    private Timestamp createdTms;
+    @Column(name="CREATE_TIME")
+    private Timestamp createTime;
 
     @Column(name="UPDATED_TMS")
-    private Timestamp updatedTms;
+    private Timestamp updateTime;
 
     public Long getId() {
         return id;
@@ -57,20 +57,20 @@ public class LayoutRule implements Comparable<LayoutRule> {
         this.layoutId = layoutId;
     }
 
-    public Timestamp getCreatedTms() {
-        return createdTms;
+    public Timestamp getcreateTime() {
+        return createTime;
     }
 
-    public void setCreatedTms(Timestamp createdTms) {
-        this.createdTms = createdTms;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public Timestamp getUpdatedTms() {
-        return updatedTms;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatedTms(Timestamp updatedTms) {
-        this.updatedTms = updatedTms;
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 
     public List<LayoutRuleMap> getLayoutRuleMapList() {
