@@ -196,12 +196,12 @@ const attachmentManagerController = ($scope,$http,ModalService) => {
         if((attachment.fileExtension).toLowerCase() == 'jpg'){
             downloadLink.attr('download', attachment.attachmentTypeName+'_'+attachment.brandName+'.jpg');
         } else if ((attachment.fileExtension).toLowerCase() == 'png'){
-            downloadLink.attr('download', attachment.attachmentTypeName+'.png');
+            downloadLink.attr('download', attachment.attachmentTypeName+'_'+attachment.brandName+'.png');
         } else {
-            downloadLink.attr('download', attachment.attachmentTypeName+attachment.fileExtension);
+            downloadLink.attr('download', attachment.attachmentTypeName+'_'+attachment.brandName+attachment.fileExtension);
         }
     } else {
-        downloadLink.attr('download', attachment.attachmentTypeName);
+        downloadLink.attr('download', attachment.attachmentTypeName+'_'+attachment.brandName);
     }
     downloadLink[0].click();
     })
