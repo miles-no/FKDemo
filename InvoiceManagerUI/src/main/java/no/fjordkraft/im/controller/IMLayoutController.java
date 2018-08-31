@@ -29,7 +29,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -215,7 +214,7 @@ public class IMLayoutController {
     public ResponseEntity<byte[]> getRptDesignFile(@RequestParam("id") Long id) throws IOException {
 
         LayoutContent layoutContent = layoutContentService.getLayoutContentByLayoutId(id);
-        byte rptFile[] = layoutContent.getFileContent().getBytes(StandardCharsets.ISO_8859_1);
+        byte rptFile[] = layoutContent.getFileContent().getBytes();
         logger.debug("File bytes is "+ rptFile.length+ " file length of string "+ layoutContent.getFileContent().length());
 
         HttpHeaders headers = new HttpHeaders();

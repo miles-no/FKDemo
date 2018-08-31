@@ -28,7 +28,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 @JobInfo(name = "PurgeStatementPayloadJob",
-        schedule = "0/1 * * * ?",
+        schedule = "0 0 * * *",
         manualAllowed = true,
         checkForWorkingDay = false,
         editAllowed = true,
@@ -65,12 +65,12 @@ public class PurgeStatementPayloadJob implements InterruptableJob
             if(null != configService.getInteger(IMConstants.DELETE_STATEMENT_PAYLOAD_BEFORE_DAYS)) {
                 noOfDays = configService.getInteger(IMConstants.DELETE_STATEMENT_PAYLOAD_BEFORE_DAYS);
             }
-            logger.debug("No of Days before PurgeStatementPayloadJob to be deleted " + noOfDays);
+            logger.debug("No of Days before StatementPayload to be deleted " + noOfDays);
             Date today = new Date(System.currentTimeMillis());
             Date tillDate =  DateUtils.addDays(today, -noOfDays);
             logger.debug("Till date ",tillDate);
             int recordsDeleted =  statementPayloadService.deleteStatementPayloadTillDate(tillDate);
-            logger.info("Statement Payload PDFs deleted " + recordsDeleted);
+            logger.info("Statement Payload deleted " + recordsDeleted);
         } catch (Exception e)
         {
             logger.error("Exception while purging Statement Payload "+  e);

@@ -28,7 +28,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 @JobInfo(name = "PurgeOldInvoicePDFJob",
-        schedule = "0/1 * * * ?",
+        schedule = "0 0 * * *",
         manualAllowed = true,
         checkForWorkingDay = false,
         editAllowed = true,
@@ -68,7 +68,7 @@ public class PurgeOldInvoicePDFJob  implements InterruptableJob
             logger.debug("No Of old Days Invoice PDFs to be deleted " + noOfDays);
             Date today = new Date(System.currentTimeMillis());
             Date tillDate =  DateUtils.addDays(today, -noOfDays);
-            logger.debug("Till date ",tillDate);
+            logger.debug("Till date ",tillDate.toString());
             int recordsDeleted =  invoiceService.deleteInvoicePDFsByDate(tillDate);
             logger.info("Invoice PDFs deleted " + recordsDeleted);
         } catch (Exception e)
