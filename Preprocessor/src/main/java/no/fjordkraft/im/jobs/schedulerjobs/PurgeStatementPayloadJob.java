@@ -28,11 +28,11 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 @JobInfo(name = "PurgeStatementPayloadJob",
-        schedule = "0/15 * * * ?",
+        schedule = "0/1 * * * ?",
         manualAllowed = true,
         checkForWorkingDay = false,
         editAllowed = true,
-        status = JobStatus.disabled
+        status = JobStatus.enabled
 
 )
 @Description("This Job will purge statement payload before no of days. Number of days is configurable and can set the value in IM_CONFIG table.")
@@ -59,7 +59,7 @@ public class PurgeStatementPayloadJob implements InterruptableJob
     @Override
     public void execute(Context context) throws Exception {
         int noOfDays = 7;
-        /*try {
+        try {
             logger.debug("PurgeStatementPayloadJob job invoked ");
 
             if(null != configService.getInteger(IMConstants.DELETE_STATEMENT_PAYLOAD_BEFORE_DAYS)) {
@@ -74,6 +74,6 @@ public class PurgeStatementPayloadJob implements InterruptableJob
         } catch (Exception e)
         {
             logger.error("Exception while purging Statement Payload "+  e);
-        }*/
+        }
     }
 }
