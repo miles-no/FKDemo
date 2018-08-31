@@ -30,7 +30,7 @@ public class LayoutRule implements Comparable<LayoutRule> {
     @Column(name="CREATE_TIME")
     private Timestamp createTime;
 
-    @Column(name="UPDATED_TMS")
+    @Column(name="UPDATE_TIME")
     private Timestamp updateTime;
 
     public Long getId() {
