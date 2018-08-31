@@ -30,12 +30,16 @@ alter table IM_TRANSACTION_GRP_CATEGORY add UPDATE_TIME Timestamp;
 
 --changeset arpita:2 context:prod
 --added NORGESNETT AS grid in IM_GRID_CONFIG
- Insert into IM_GRID_CONFIG (ID,GRID_NAME,EMAIL,PHONE,GRID_LABEL) values (113,'NORGESNETT AS','norgesnett@norgesnett.no','21492506','Norgesnett AS');
- Insert into IM_GRID_CONFIG (ID,GRID_NAME,EMAIL,PHONE,GRID_LABEL) values (114,'ENEAS ENERGY','post@eneasenergy.no','32242230','Eneas Energy');
+ --Insert into IM_GRID_CONFIG (ID,GRID_NAME,EMAIL,PHONE,GRID_LABEL) values (113,'NORGESNETT AS','norgesnett@norgesnett.no','21492506','Norgesnett AS');
+ --Insert into IM_GRID_CONFIG (ID,GRID_NAME,EMAIL,PHONE,GRID_LABEL) values (114,'ENEAS ENERGY','post@eneasenergy.no','32242230','Eneas Energy');
 
 --changeset arpita:3 context:prod
 --added config to delete invoice pdfs
 Insert into IM_CONFIG (NAME,VALUE) values ('delete.invoice.pdf.before.no.of.days','7');
 
 --changeset arpita:4 context:prod
- alter table im_audit_log add LEGAL_PART_CLASS VARCHAR2(50 BYTE);
+ alter table im_audit_log add LEGAL_PART_CLASS VARCHAR2(50);
+
+-- changeset bhavik:5 context:prod
+Insert into IM_CONFIG (NAME,VALUE) values ('delete.statement.payload.before.days','7');
+Insert into IM_CONFIG (NAME,VALUE) values ('transferfile.update.job.active','YES');

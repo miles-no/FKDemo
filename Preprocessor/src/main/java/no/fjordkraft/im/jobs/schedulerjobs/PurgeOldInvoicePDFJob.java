@@ -28,11 +28,11 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 @JobInfo(name = "PurgeOldInvoicePDFJob",
-        schedule = "0/1 * * * ?",
+        schedule = "0/15 * * * ?",
         manualAllowed = true,
         checkForWorkingDay = false,
         editAllowed = true,
-        status = JobStatus.enabled
+        status = JobStatus.disabled
 
 )
 @Description("This Job will purge invoice PDFs before no of days. Number of days is configurable and can set the value  in IM_CONFIG table.")
@@ -58,7 +58,7 @@ public class PurgeOldInvoicePDFJob  implements InterruptableJob
 
     @Override
     public void execute(Context context) throws Exception {
-        int noOfDays = 7;
+        /*int noOfDays = 7;
         try {
             logger.debug("PurgeOldInvoicePDFs  job invoked ");
 
@@ -74,6 +74,6 @@ public class PurgeOldInvoicePDFJob  implements InterruptableJob
         } catch (Exception e)
         {
             logger.error("Exception while purging invoice PDFs "+  e);
-        }
+        }*/
     }
 }
