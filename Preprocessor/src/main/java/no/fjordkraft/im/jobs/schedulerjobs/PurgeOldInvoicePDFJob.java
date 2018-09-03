@@ -28,7 +28,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 @JobInfo(name = "PurgeOldInvoicePDFJob",
-        schedule = "0 0 * * *",
+        schedule = "0 23 * * *",
         manualAllowed = true,
         checkForWorkingDay = false,
         editAllowed = true,

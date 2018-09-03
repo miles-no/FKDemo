@@ -28,7 +28,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 @JobInfo(name = "PurgeStatementPayloadJob",
-        schedule = "0 0 * * *",
+        schedule = "30 23 * * *",
         manualAllowed = true,
         checkForWorkingDay = false,
         editAllowed = true,
