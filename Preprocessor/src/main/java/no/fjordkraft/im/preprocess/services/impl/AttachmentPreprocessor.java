@@ -71,6 +71,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         String monthName =  Month.of(stromStartDate.getMonth()).getDisplayName (TextStyle.FULL, new Locale("no","NO"));
                         int year =   stromStartDate.getYear();
                         attachment.setStartMonthYear(monthName+ " " + year );
+                        attachment.setDisplayStromData(true);
                     }
                 }
             }
