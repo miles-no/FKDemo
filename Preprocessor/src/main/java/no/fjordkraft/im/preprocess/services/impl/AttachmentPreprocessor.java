@@ -63,6 +63,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             if (IMConstants.EMUXML.equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
                 logger.debug("Attachment with meterid " + attachment.getFAKTURA().getMAALEPUNKT() + " added to map ");
                 meterIdMapEMUXML.put(attachment.getFAKTURA().getMAALEPUNKT(), attachment);
+                attachment.setDisplayStromData(true);
                 if (null != attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getReadingInfo111()) {
                     XMLGregorianCalendar stromStartDate = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getReadingInfo111().getStartDate();
                     if (null != stromStartDate) {
@@ -71,7 +72,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         String monthName =  Month.of(stromStartDate.getMonth()).getDisplayName (TextStyle.FULL, new Locale("no","NO"));
                         int year =   stromStartDate.getYear();
                         attachment.setStartMonthYear(monthName+ " " + year );
-                        attachment.setDisplayStromData(true);
+
                     }
                 }
             }
