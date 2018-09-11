@@ -132,7 +132,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             statement.getSystemBatchInput().getTransferFile().getFilename();
             Statement if320statement = unmarshallStatement(new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1)));
             getUpdatedStatementEntity(if320statement, statement);
-
+            statement.getSystemBatchInput().setBrand(statement.getBrand());
             PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request = new PreprocessRequest();
             request.setStatement(if320statement);
             request.setEntity(statement);
