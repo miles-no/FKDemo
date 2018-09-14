@@ -35,7 +35,8 @@ public class SummaryPagePreprocessor extends BasePreprocessor  {
     {
         try
         {
-            if(request.getStatement().getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_ORGANIZATION))
+            String brand =  request.getEntity().getSystemBatchInput().getBrand();
+            if(request.getStatement().getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_ORGANIZATION) && ("TKAS".equals(brand) || "FKAS".equals(brand)))
             {
                 logger.info("In Save Summary Page Preprocessor");
                 Statement stmt = request.getStatement();
@@ -73,7 +74,11 @@ public class SummaryPagePreprocessor extends BasePreprocessor  {
                             logger.debug("No Of Strom for meter " + meterSummary.getMålepunktID() + " is " + listOfInvoiceOrder.size());
 
                             MeterDetails stromMeterDetail = getMeterDetailOfStrom(listOfInvoiceOrder,mapOfMvaVsBelop);
-                            stromMeterDetail.setMeterName(attachment.getTransactionName()+ " fra TrøndelagKraft");
+                            if("TKAS".equals(brand)) {
+                            stromMeterDetail.setMeterName(attachment.getTransactionName()+ " fra Trøndelag Kraft");
+                            }else {
+                                stromMeterDetail.setMeterName(attachment.getTransactionName());
+                            }
                             stromMeterDetail.setStartDate(attachment.getStartDate());
                             stromMeterDetail.setEndDate(attachment.getEndDate());
 
@@ -88,8 +93,7 @@ public class SummaryPagePreprocessor extends BasePreprocessor  {
                             List<Nettleie> listOfNett =  attachment.getFAKTURA().getNettleieList();
 
                             MeterDetails nettMeterDetails = getMeterDetailOfNettleie(listOfNett,mapOfMvaVsBelop);
-
-                            nettMeterDetails.setMeterName("Nettleie fra " +attachment.getFAKTURA().getNettleieList().get(0).getGridName());
+                            nettMeterDetails.setMeterName(attachment.getFAKTURA().getNettleieList().get(0).getGrid().getName());
                             nettMeterDetails.setStartDate(attachment.getFAKTURA().getNettleieList().get(0).getStartDate());
                             nettMeterDetails.setEndDate(attachment.getFAKTURA().getNettleieList().get(0).getEndDate());
                             sumOfNett+=nettMeterDetails.getBeløp();
