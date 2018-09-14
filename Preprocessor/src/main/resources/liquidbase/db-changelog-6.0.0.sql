@@ -43,3 +43,6 @@ Insert into IM_CONFIG (NAME,VALUE) values ('delete.invoice.pdf.before.no.of.days
 -- changeset bhavik:5 context:prod
 Insert into IM_CONFIG (NAME,VALUE) values ('delete.statement.payload.before.days','7');
 Insert into IM_CONFIG (NAME,VALUE) values ('transferfile.update.job.active','YES');
+
+-- changeset arpita:6 context:prod
+Insert into IM_CONFIG (NAME,VALUE) values ('summary.page.with.greater.or.equal.meter','4');

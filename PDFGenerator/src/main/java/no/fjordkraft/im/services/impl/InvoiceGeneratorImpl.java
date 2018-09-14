@@ -180,6 +180,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         } catch (Exception ex) {
             statement.setStatus(StatementStatusEnum.INVOICE_PROCESSING_FAILED.getStatus());
             statementService.updateStatement(statement);
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus(), getCause(ex).getMessage(), IMConstants.ERROR,statement.getLegalPartClass());
             logger.error("Exception in pdf merging",ex);
             throw ex;
         }
@@ -275,5 +276,15 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         invoicePdf.setPayload(outputBytes);
         invoicePdf.setType(IMConstants.INVOICE_PDF);
         return invoicePdf;
+    }
+
+    private Throwable getCause(Throwable e) {
+        Throwable cause = null;
+        Throwable result = e;
+
+        while(null != (cause = result.getCause())  && (result != cause) ) {
+            result = cause;
+        }
+        return result;
     }
 }

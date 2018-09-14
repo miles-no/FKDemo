@@ -77,7 +77,7 @@ public class InvoiceOrder {
     @XmlElement(name = "InvoiceOrderInfo-110", required = true)
     protected InvoiceOrderInfo110 invoiceOrderInfo110;
     @XmlElement(name = "ReadingInfo-111")
-    protected ReadingInfo111 readingInfo111;
+    protected List<ReadingInfo111> readingInfo111;
     @XmlElement(name = "LastReading-112")
     protected LastReading112 lastReading112;
     @XmlElement(name = "InvoiceOrderAmounts-113", required = true)
@@ -107,7 +107,7 @@ public class InvoiceOrder {
     @XmlElement(name = "NettleieList")
     protected List<Nettleie> nettleieList;
     @XmlTransient
-    protected Map mapOfVatSumOfGross;
+    protected Map<Double,Double> mapOfVatSumOfGross;
     @XmlElement(name = "SequenceNumber")
     protected int sequenceNumber;
     @XmlElement(name = "TransactionName")
@@ -156,7 +156,7 @@ public class InvoiceOrder {
      *     {@link no.fjordkraft.im.if320.models.ReadingInfo111 }
      *
      */
-    public ReadingInfo111 getReadingInfo111() {
+    public List<ReadingInfo111> getReadingInfo111() {
         return readingInfo111;
     }
 
@@ -168,7 +168,7 @@ public class InvoiceOrder {
      *     {@link no.fjordkraft.im.if320.models.ReadingInfo111 }
      *
      */
-    public void setReadingInfo111(ReadingInfo111 value) {
+    public void setReadingInfo111(List<ReadingInfo111> value) {
         this.readingInfo111 = value;
     }
 

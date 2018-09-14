@@ -65,7 +65,19 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 meterIdMapEMUXML.put(attachment.getFAKTURA().getMAALEPUNKT(), attachment);
                 attachment.setDisplayStromData(true);
                 if (null != attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getReadingInfo111()) {
-                    XMLGregorianCalendar stromStartDate = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getReadingInfo111().getStartDate();
+                    XMLGregorianCalendar startDate = null;
+                    for(ReadingInfo111 readingInfo111 :attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getReadingInfo111())
+                    {
+                        if (null == startDate) {
+                            startDate = readingInfo111.getStartDate();
+                        } else {
+                            XMLGregorianCalendar startDate2 = readingInfo111.getStartDate();
+                            if (null != startDate2 && startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
+                                startDate = startDate2;
+                            }
+                        }
+                    }
+                    XMLGregorianCalendar stromStartDate =startDate;
                     if (null != stromStartDate) {
                         meterIdStartMonMapEMUXML.put(attachment.getFAKTURA().getMAALEPUNKT() + "-" + stromStartDate.getMonth(), attachment);
                         logger.debug(" Meterid - month added to map " + attachment.getFAKTURA().getMAALEPUNKT() + "-" + stromStartDate.getMonth() + " invoice number " + invoicenumber);
@@ -328,7 +340,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().setInvoiceOrder(listofinvoiceOrder);
                 attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setProductParameters118(new ProductParameters118());
                 attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setSupplyPointInfo117(new SupplyPointInfo117());
-                attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setReadingInfo111(new ReadingInfo111());
+                List<ReadingInfo111> listOfReadingInfo111 = new ArrayList<ReadingInfo111>();
+                listOfReadingInfo111.add(new ReadingInfo111());
+                attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setReadingInfo111(listOfReadingInfo111);
                 attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setYearlyConsumption123(new YearlyConsumption123());
             }
            // attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(null);

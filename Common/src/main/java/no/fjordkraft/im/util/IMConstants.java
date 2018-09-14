@@ -100,4 +100,5 @@ public interface IMConstants {
     static final String E2B_FILE_ENCODING="E2B.file.encoding";
     static final String DELETE_STATEMENT_PAYLOAD_BEFORE_DAYS = "delete.statement.payload.before.days";
     static final String TRANSFERFILE_UPDATE_JOB_ACTIVE = "transferfile.update.job.active";
+    static final String SUMMARY_PAGE_WITH_GREATER_OR_EQUAL_METER= "summary.page.with.greater.or.equal.meter";
 }

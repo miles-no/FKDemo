@@ -161,7 +161,9 @@ import java.util.List;
     "statementPeriod",
     "hasLineItems",
     "dummies",
-    "allMeterStromNett"
+    "allMeterStromNett" ,
+    "showMeterSummary",
+    "meterSummaryGroup"
 })
 @XmlRootElement(name = "Statement")
 public class Statement {
@@ -308,6 +310,10 @@ public class Statement {
     protected Dummies dummies;
     @XmlElement(name="allMeterStromNett")
     protected Double allMeterStromNett;
+    @XmlElement(name="ShowMeterSummary")
+    protected boolean showMeterSummary;
+    @XmlElement(name="MeterSummaryGroup")
+    protected MeterSummaryGroup meterSummaryGroup;
     /**
      * Gets the value of the customerReference property.
      * 
@@ -1594,5 +1600,21 @@ public class Statement {
 
     public void setAllMeterStromNett(Double allMeterStromNett) {
         this.allMeterStromNett = allMeterStromNett;
+    }
+
+    public boolean isShowMeterSummary() {
+        return showMeterSummary;
+    }
+
+    public void setShowMeterSummary(boolean showMeterSummary) {
+        this.showMeterSummary = showMeterSummary;
+    }
+
+    public MeterSummaryGroup getMeterSummaryGroup() {
+        return meterSummaryGroup;
+    }
+
+    public void setMeterSummaryGroup(MeterSummaryGroup meterSummaryGroup) {
+        this.meterSummaryGroup = meterSummaryGroup;
     }
 }
