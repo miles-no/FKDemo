@@ -93,7 +93,7 @@ public class SummaryPagePreprocessor extends BasePreprocessor  {
                             List<Nettleie> listOfNett =  attachment.getFAKTURA().getNettleieList();
 
                             MeterDetails nettMeterDetails = getMeterDetailOfNettleie(listOfNett,mapOfMvaVsBelop);
-                            nettMeterDetails.setMeterName(attachment.getFAKTURA().getNettleieList().get(0).getGrid().getName());
+                            nettMeterDetails.setMeterName("Nettleie fra "+attachment.getFAKTURA().getNettleieList().get(0).getGrid().getName());
                             nettMeterDetails.setStartDate(attachment.getFAKTURA().getNettleieList().get(0).getStartDate());
                             nettMeterDetails.setEndDate(attachment.getFAKTURA().getNettleieList().get(0).getEndDate());
                             sumOfNett+=nettMeterDetails.getBeløp();
