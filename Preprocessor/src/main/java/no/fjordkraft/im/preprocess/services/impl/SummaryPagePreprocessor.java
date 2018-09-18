@@ -205,12 +205,10 @@ public class SummaryPagePreprocessor extends BasePreprocessor  {
                     mapOfMvaVsBelop.put(mva,sumOfBelop);
                 }
             }
-
-            MeterDetails meterDetails = new MeterDetails();
-            meterDetails.setForbruk(methodFinalCReading);
-            meterDetails.setBeløp(netTotal);
-            return meterDetails;
         }
-        return null;  //To change body of created methods use File | Settings | File Templates.
+        MeterDetails meterDetails = new MeterDetails();
+        meterDetails.setForbruk(methodFinalCReading);
+        meterDetails.setBeløp(netTotal);
+        return meterDetails;
     }
 }
