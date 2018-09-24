@@ -11,6 +11,7 @@ import no.fjordkraft.im.services.AuditLogService;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.CreditNoteLineType;
+import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.DocumentReferenceType;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.InvoiceLineType;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.TaxCategoryType;
 import oasis.names.specification.ubl.schema.xsd.creditnote_2.CreditNote;
@@ -140,7 +141,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 if (null != stromAttachment) {
                     if (IMConstants.PDFEHF.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
                         logger.debug("createEHFEntry " + " invoice number " + invoicenumber);
-                        nettleie = createEHFEntry(gridAttachment);
+                        nettleie = createEHFEntry(gridAttachment,statementId);
                     } else if (IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
                         logger.debug("createE2BEntry " + " invoice number " + invoicenumber);
                         nettleie = createE2BEntry(gridAttachment);
@@ -164,7 +165,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                          auditLogService.saveAuditLog(statementId, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.INFO,null);
                          if(IMConstants.PDFEHF.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()))
                          {
-                             Nettleie nettleie = createEHFEntry(gridAttachment);
+                             Nettleie nettleie = createEHFEntry(gridAttachment,statementId);
                              dummyStromAttachment.getFAKTURA().setFreeText(nettleie.getFreeText());
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getProductParameters118().setDescription(nettleie.getDescription());
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getSupplyPointInfo117().setObjectId(nettleie.getObjectId());
@@ -355,7 +356,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         }
     }
 
-    private Nettleie createEHFEntry(Attachment pdfAttachment) {
+    private Nettleie createEHFEntry(Attachment pdfAttachment,Long statementID) {
         logger.debug("createEHFEntry " + pdfAttachment.getFAKTURA().getMAALEPUNKT());
         Nettleie nettleie = new Nettleie();
         InvoiceSummary invoiceSummary = new InvoiceSummary();
@@ -383,17 +384,33 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 }
                 nettleie.setDescription(null);
 
-               //IM-98 : in case of EHF and there are no strom available then in that case the meterId should come from <cac:InvoiceLine> -> <cbc:ID>3</cbc:ID> ->  <cbc:Note>
-               if(creditNote.getCreditNoteLines()!=null && creditNote.getCreditNoteLines().size()>0
-                       && creditNote.getCreditNoteLines().get(0).getNotes()!=null
-                       && creditNote.getCreditNoteLines().get(0).getNotes().size()>0
-                       && creditNote.getCreditNoteLines().get(0).getNotes().get(0).getValue()!=null)
-               {
-                        String meterId = getmeterIdFromValue(creditNote.getCreditNoteLines().get(0).getNotes().get(0).getValue());
-                        nettleie.setMeterId(meterId);
-               } else {
-                   logger.debug("meterId is missing for " + pdfAttachment.getFAKTURA().getFAKTURANR());
-               }
+                //IM-161 : in case of EHF and there are no strom available then in that case meterId should first fetched from <cac:AdditionalDocumentReference> - ><cbc:ID schemeName="Malernummer">
+                // if it is not available then get it from note -> malenumber.
+                if(creditNote.getAdditionalDocumentReferences()!=null && creditNote.getAdditionalDocumentReferences().size()>0 )
+                {
+                    for(DocumentReferenceType additionalDocumentReferences:creditNote.getAdditionalDocumentReferences())  {
+                        if(additionalDocumentReferences.getID().getSchemeName().contains("Malernummer")){
+                            nettleie.setMeterId(additionalDocumentReferences.getID().getValue().toString());
+                        }
+                    }
+                }
+                else
+                {
+                    String message = "No Malernummer found in additionalDocumentReferences for meter Id " +pdfAttachment.getFAKTURA().getFAKTURANR();
+                    auditLogService.saveAuditLog(statementID,StatementStatusEnum.PRE_PROCESSING.getStatus(),IMConstants.WARNING,message,null);
+                    //IM-98 : in case of EHF and there are no strom available then in that case the meterId should come from <cac:InvoiceLine> -> <cbc:ID>3</cbc:ID> ->  <cbc:Note>
+                    if(creditNote.getCreditNoteLines()!=null && creditNote.getCreditNoteLines().size()>0
+                           && creditNote.getCreditNoteLines().get(0).getNotes()!=null
+                           && creditNote.getCreditNoteLines().get(0).getNotes().size()>0
+                           && creditNote.getCreditNoteLines().get(0).getNotes().get(0).getValue()!=null)
+                    {
+                            String meterId = getmeterIdFromValue(creditNote.getCreditNoteLines().get(0).getNotes().get(0).getValue());
+                            nettleie.setMeterId(meterId);
+                    } else
+                    {
+                       logger.debug("meterId is missing for " + pdfAttachment.getFAKTURA().getFAKTURANR());
+                    }
+                }
             nettleie.setAnnualConsumption(0);
             nettleie.setGridName(pdfAttachment.getFAKTURA().getAKTORNAVN());
             invoiceSummary.getInvoiceTotals().setGrossAmount(Double.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getCreditNote()
@@ -545,17 +562,32 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
                     nettleie.setDescription(null);
 
-                    //IM-98 : in case of EHF and there are no strom available then in that case the meterId should come from <cac:InvoiceLine> -> <cbc:ID>3</cbc:ID> ->  <cbc:Note>
-                    if(invoice.getInvoiceLines()!=null && invoice.getInvoiceLines().size() >0
-                       && invoice.getInvoiceLines().get(0).getNotes()!=null && invoice.getInvoiceLines().get(0).getNotes().size()>0
-                       && invoice.getInvoiceLines().get(0).getNotes().get(0).getValue()!=null ) {
-
-                        String meterId = getmeterIdFromValue(invoice.getInvoiceLines().get(0).getNotes().get(0).getValue());
-                        nettleie.setMeterId(meterId);
-                    } else {
-                        logger.debug("meterId is missing for " + pdfAttachment.getFAKTURA().getFAKTURANR());
+                    //IM-161 : in case of EHF and there are no strom available then in that case meterId should first fetched from <cac:AdditionalDocumentReference> - ><cbc:ID schemeName="Malernummer">
+                    // if it is not available then get it from Note-> malenumber
+                    if(invoice.getAdditionalDocumentReferences()!=null && invoice.getAdditionalDocumentReferences().size()>0 )
+                    {
+                        for(DocumentReferenceType additionalDocumentReferences:invoice.getAdditionalDocumentReferences())  {
+                            if(additionalDocumentReferences.getID().getSchemeName().contains("Malernummer")){
+                                nettleie.setMeterId(additionalDocumentReferences.getID().getValue().toString());
+                            }
+                        }
                     }
+                    else
+                    {
+                        String message = "No Malernummer found in additionalDocumentReferences for meter Id " +pdfAttachment.getFAKTURA().getFAKTURANR();
+                        auditLogService.saveAuditLog(statementID,StatementStatusEnum.PRE_PROCESSING.getStatus(),IMConstants.WARNING,message,null);
+                        //IM-98 : in case of EHF and there are no strom available then in that case the meterId should come from <cac:InvoiceLine> -> <cbc:ID>3</cbc:ID> ->  <cbc:Note>
+                        if(invoice.getInvoiceLines()!=null && invoice.getInvoiceLines().size() >0
+                           && invoice.getInvoiceLines().get(0).getNotes()!=null && invoice.getInvoiceLines().get(0).getNotes().size()>0
+                           && invoice.getInvoiceLines().get(0).getNotes().get(0).getValue()!=null ) {
 
+                            String meterId = getmeterIdFromValue(invoice.getInvoiceLines().get(0).getNotes().get(0).getValue());
+                            nettleie.setMeterId(meterId);
+                        } else
+                        {
+                            logger.debug("meterId is missing for " + pdfAttachment.getFAKTURA().getFAKTURANR());
+                        }
+                    }
                     nettleie.setAnnualConsumption(0);
                     nettleie.setGridName(pdfAttachment.getFAKTURA().getAKTORNAVN());
                     invoiceSummary.getInvoiceTotals().setGrossAmount(Double.valueOf(pdfAttachment.getFAKTURA().getVedleggehfObj().getInvoice()
@@ -746,6 +778,11 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         baseItemDetails.setUnitPriceGross(Double.valueOf(ref.getText()));
                     }
                 }
+            } else {
+                if(baseItemDetails.getVatInfo()!=null ) {
+                //IM-154 : In case of Ref tag is missing the UnitGrossPrice need to be calculated as <unitPrice>  + <unitprice>*<VatPercent>/100
+                baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice() + (baseItemDetails.getUnitPrice()*baseItemDetails.getVatInfo().getVatPercent()/100));
+                }
             }
             if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
                 baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(),baseItemDetails.getEndDate()));
@@ -772,6 +809,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     startDate = startDate2;
                 }
             }
+
         }
         }
         nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
