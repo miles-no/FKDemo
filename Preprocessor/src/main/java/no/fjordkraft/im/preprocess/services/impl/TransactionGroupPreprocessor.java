@@ -82,6 +82,9 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                             }   else {
                                                        mapOfVatSumOfGross.put(vat,invoiceLine120.getNet());
                                             }
+                                           if(invoiceLine120.getText().contains("Beregnet") && !attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().isBeregnetInvoiceLine()) {
+                                               attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setBeregnetInvoiceLine(true);
+                                           }
                                         }
                                         attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setMapOfVatSumOfGross(mapOfVatSumOfGross);
                                     }

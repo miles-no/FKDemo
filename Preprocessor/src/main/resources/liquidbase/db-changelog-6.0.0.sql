@@ -46,3 +46,6 @@ Insert into IM_CONFIG (NAME,VALUE) values ('transferfile.update.job.active','YES
 
 -- changeset arpita:6 context:prod
 Insert into IM_CONFIG (NAME,VALUE) values ('summary.page.with.greater.or.equal.meter','4');
+
+-- changeset arpita:7 context:prod
+Insert into IM_GRID_CONFIG (ID,GRID_NAME,EMAIL,PHONE,GRID_LABEL) values (115,'SVORKA ENERGI NETT AS','nettkunde@svorka.no','71659100','Svorka Energi Nett AS');

@@ -181,13 +181,20 @@ public class SummaryPagePreprocessor extends BasePreprocessor  {
         for(InvoiceOrder invoiceOrder:listOfInvoiceOrder)
         {
             logger.debug("looping for invoice order " + invoiceOrder.getInvoiceNo());
-            if(invoiceOrder.getReadingInfo111()!=null && invoiceOrder.getReadingInfo111().size()>0)
+            //IM-140 : if there is any berenet invoice line then methodFinalCReading should be forbruk
+            if(invoiceOrder.isBeregnetInvoiceLine())
             {
-                logger.info("Found Reading info for Strom " + invoiceOrder.getInvoiceNo());
-                List<ReadingInfo111> listOfCReading =  invoiceOrder.getReadingInfo111();
-                for(ReadingInfo111 readingInfo111:listOfCReading)
+                methodFinalCReading = 0.0;
+            } else
+            {
+                if(invoiceOrder.getReadingInfo111()!=null && invoiceOrder.getReadingInfo111().size()>0)
                 {
-                    methodFinalCReading+=  readingInfo111.getMethodFinalCReading();
+                    logger.info("Found Reading info for Strom " + invoiceOrder.getInvoiceNo());
+                    List<ReadingInfo111> listOfCReading =  invoiceOrder.getReadingInfo111();
+                    for(ReadingInfo111 readingInfo111:listOfCReading)
+                    {
+                        methodFinalCReading+=  readingInfo111.getMethodFinalCReading();
+                    }
                 }
             }
             logger.debug("Nett Total " + invoiceOrder.getInvoiceOrderAmounts113().getNetTotal());

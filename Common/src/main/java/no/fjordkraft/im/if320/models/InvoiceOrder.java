@@ -69,7 +69,8 @@ import java.util.Map;
         "transactionName",
         "invoiceNo",
         "startDate",
-        "endDate"
+        "endDate",
+        "beregnetInvoiceLine"
 })
 @XmlRootElement(name = "InvoiceOrder")
 public class InvoiceOrder {
@@ -121,7 +122,8 @@ public class InvoiceOrder {
     @XmlElement(name = "EndDate", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar endDate;
-
+    @XmlElement(name="BeregnetInvoiceLine")
+    protected boolean beregnetInvoiceLine = false;
 
 
     /**
@@ -523,5 +525,13 @@ public class InvoiceOrder {
 
     public void setEndDate(XMLGregorianCalendar endDate) {
         this.endDate = endDate;
+    }
+
+    public boolean isBeregnetInvoiceLine() {
+        return beregnetInvoiceLine;
+    }
+
+    public void setBeregnetInvoiceLine(boolean beregnetInvoiceLine) {
+        this.beregnetInvoiceLine = beregnetInvoiceLine;
     }
 }
