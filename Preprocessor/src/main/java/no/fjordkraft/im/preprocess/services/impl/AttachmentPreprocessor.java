@@ -389,7 +389,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 if(creditNote.getAdditionalDocumentReferences()!=null && creditNote.getAdditionalDocumentReferences().size()>0 )
                 {
                     for(DocumentReferenceType additionalDocumentReferences:creditNote.getAdditionalDocumentReferences())  {
-                        if(additionalDocumentReferences.getID().getSchemeName().contains("Malernummer")){
+                        if(additionalDocumentReferences.getID()!=null && additionalDocumentReferences.getID().getSchemeName()!=null && additionalDocumentReferences.getID().getSchemeName().contains("Malernummer")){
                             nettleie.setMeterId(additionalDocumentReferences.getID().getValue().toString());
                         }
                     }
@@ -567,7 +567,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     if(invoice.getAdditionalDocumentReferences()!=null && invoice.getAdditionalDocumentReferences().size()>0 )
                     {
                         for(DocumentReferenceType additionalDocumentReferences:invoice.getAdditionalDocumentReferences())  {
-                            if(additionalDocumentReferences.getID().getSchemeName().contains("Malernummer")){
+                            if(additionalDocumentReferences.getID()!=null && additionalDocumentReferences.getID().getSchemeName()!=null && additionalDocumentReferences.getID().getSchemeName().contains("Malernummer")){
                                 nettleie.setMeterId(additionalDocumentReferences.getID().getValue().toString());
                             }
                         }
