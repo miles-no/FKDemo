@@ -384,20 +384,23 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 }
                 nettleie.setDescription(null);
 
+
                 //IM-161 : in case of EHF and there are no strom available then in that case meterId should first fetched from <cac:AdditionalDocumentReference> - ><cbc:ID schemeName="Malernummer">
                 // if it is not available then get it from note -> malenumber.
+                boolean isMeterIDAvailable = false;
                 if(creditNote.getAdditionalDocumentReferences()!=null && creditNote.getAdditionalDocumentReferences().size()>0 )
                 {
                     for(DocumentReferenceType additionalDocumentReferences:creditNote.getAdditionalDocumentReferences())  {
                         if(additionalDocumentReferences.getID()!=null && additionalDocumentReferences.getID().getSchemeName()!=null && additionalDocumentReferences.getID().getSchemeName().contains("Malernummer")){
                             nettleie.setMeterId(additionalDocumentReferences.getID().getValue().toString());
+                            isMeterIDAvailable = true;
                         }
                     }
                 }
-                else
+                if(!isMeterIDAvailable)
                 {
                     String message = "No Malernummer found in additionalDocumentReferences for meter Id " +pdfAttachment.getFAKTURA().getFAKTURANR();
-                    auditLogService.saveAuditLog(statementID,StatementStatusEnum.PRE_PROCESSING.getStatus(),IMConstants.WARNING,message,null);
+                    auditLogService.saveAuditLog(statementID,StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.WARNING,null);
                     //IM-98 : in case of EHF and there are no strom available then in that case the meterId should come from <cac:InvoiceLine> -> <cbc:ID>3</cbc:ID> ->  <cbc:Note>
                     if(creditNote.getCreditNoteLines()!=null && creditNote.getCreditNoteLines().size()>0
                            && creditNote.getCreditNoteLines().get(0).getNotes()!=null
@@ -564,18 +567,20 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
                     //IM-161 : in case of EHF and there are no strom available then in that case meterId should first fetched from <cac:AdditionalDocumentReference> - ><cbc:ID schemeName="Malernummer">
                     // if it is not available then get it from Note-> malenumber
+                    boolean isMeterIDAvailable = false;
                     if(invoice.getAdditionalDocumentReferences()!=null && invoice.getAdditionalDocumentReferences().size()>0 )
                     {
                         for(DocumentReferenceType additionalDocumentReferences:invoice.getAdditionalDocumentReferences())  {
                             if(additionalDocumentReferences.getID()!=null && additionalDocumentReferences.getID().getSchemeName()!=null && additionalDocumentReferences.getID().getSchemeName().contains("Malernummer")){
                                 nettleie.setMeterId(additionalDocumentReferences.getID().getValue().toString());
+                                isMeterIDAvailable = true;
                             }
                         }
                     }
-                    else
+                    if(!isMeterIDAvailable)
                     {
                         String message = "No Malernummer found in additionalDocumentReferences for meter Id " +pdfAttachment.getFAKTURA().getFAKTURANR();
-                        auditLogService.saveAuditLog(statementID,StatementStatusEnum.PRE_PROCESSING.getStatus(),IMConstants.WARNING,message,null);
+                        auditLogService.saveAuditLog(statementID,StatementStatusEnum.PRE_PROCESSING.getStatus(),message,IMConstants.WARNING,null);
                         //IM-98 : in case of EHF and there are no strom available then in that case the meterId should come from <cac:InvoiceLine> -> <cbc:ID>3</cbc:ID> ->  <cbc:Note>
                         if(invoice.getInvoiceLines()!=null && invoice.getInvoiceLines().size() >0
                            && invoice.getInvoiceLines().get(0).getNotes()!=null && invoice.getInvoiceLines().get(0).getNotes().size()>0
