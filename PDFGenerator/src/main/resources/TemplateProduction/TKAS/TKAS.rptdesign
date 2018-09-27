@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement (18).xml</property>
+            <property name="FILELIST">C:\Users\miles12\Desktop\Workspace\Files\processed_statement_1.xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -145,6 +145,16 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">CareOfName</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">Address1</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">Address1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Address2</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">Address2</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -232,6 +242,16 @@
                     <structure>
                         <property name="position">17</property>
                         <property name="name">CareOfName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">Address1</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">Address2</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -357,8 +377,22 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">Address1</property>
+                    <property name="nativeName">Address1</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">Address2</property>
+                    <property name="nativeName">Address2</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{Name;STRING;/Name},{Address;STRING;/Address},{PostCode;STRING;/PostCode},{City;STRING;/City},{AccountNumber;STRING;/AccountNumber},{SequenceNumber;STRING;/SequenceNumber},{NationalId;STRING;/NationalId},{StatementDate;STRING;/StatementDate},{DueDate;DATE;/DueDate},{StatementOcrNumber;STRING;/StatementOcrNumber},{DirectDebit;STRING;/DirectDebit},{Version;STRING;/Version},{TotalAttachment;STRING;/TotalAttachment},{LegalPartClass;STRING;/LegalPartClass},{Region;STRING;/Region},{Country;STRING;/Country},{CareOfName;STRING;/CareOfName}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{Name;STRING;/Name},{Address;STRING;/Address},{PostCode;STRING;/PostCode},{City;STRING;/City},{AccountNumber;STRING;/AccountNumber},{SequenceNumber;STRING;/SequenceNumber},{NationalId;STRING;/NationalId},{StatementDate;STRING;/StatementDate},{DueDate;DATE;/DueDate},{StatementOcrNumber;STRING;/StatementOcrNumber},{DirectDebit;STRING;/DirectDebit},{Version;STRING;/Version},{TotalAttachment;STRING;/TotalAttachment},{LegalPartClass;STRING;/LegalPartClass},{Region;STRING;/Region},{Country;STRING;/Country},{CareOfName;STRING;/CareOfName},{Address1;STRING;/Address1},{Address2;STRING;/Address2}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -4877,15 +4911,73 @@ dataSetRow["CareOfName"];&#13;
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">7pt</property>
                                                 <property name="dataSet">MainInfo</property>
-                                                <list-property name="boundDataColumns">
+                                                <list-property name="visibility">
                                                     <structure>
-                                                        <property name="name">Address</property>
-                                                        <text-property name="displayName">Address</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["Address"]</expression>
-                                                        <property name="dataType">string</property>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">if(row["Address1"] == null || BirtStr.trim(row["Address1"]) == "")&#13;
+{&#13;
+true;&#13;
+}&#13;
+else &#13;
+{false;}</expression>
                                                     </structure>
                                                 </list-property>
-                                                <property name="resultSetColumn">Address</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Address1</property>
+                                                        <text-property name="displayName">Address1</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address1"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Column Binding</property>
+                                                        <text-property name="displayName">Address1</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address1"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Column Binding</property>
+                                            </data>
+                                            <data id="5012">
+                                                <property name="fontFamily">"Museo Sans 700"</property>
+                                                <property name="fontSize">10pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <property name="color">#000000</property>
+                                                <property name="paddingTop">0pt</property>
+                                                <property name="paddingLeft">3.1pt</property>
+                                                <property name="paddingBottom">0pt</property>
+                                                <property name="paddingRight">0pt</property>
+                                                <property name="textAlign">left</property>
+                                                <property name="lineHeight">7pt</property>
+                                                <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">if(row["Address2"] == null || BirtStr.trim(row["Address2"]) == "")&#13;
+{&#13;
+true;&#13;
+}&#13;
+else &#13;
+{false;}</expression>
+                                                    </structure>
+                                                </list-property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Address2</property>
+                                                        <text-property name="displayName">Address2</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address2"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Column Binding</property>
+                                                        <text-property name="displayName">Address2</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address2"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Column Binding</property>
                                             </data>
                                             <data id="1887">
                                                 <property name="fontFamily">"Museo Sans 700"</property>
@@ -6252,43 +6344,80 @@ else &#13;
                     </image>
                 </cell>
                 <cell id="3921">
-                    <property name="backgroundColor">#DADADA</property>
-                    <property name="paddingTop">4pt</property>
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <property name="paddingTop">1pt</property>
                     <property name="paddingLeft">0pt</property>
-                    <property name="paddingBottom">4pt</property>
+                    <property name="paddingBottom">0pt</property>
                     <property name="paddingRight">0pt</property>
-                    <label id="3919">
-                        <property name="fontFamily">"Museo Sans 900"</property>
-                        <property name="fontSize">9pt</property>
-                        <property name="fontWeight">normal</property>
-                        <property name="marginTop">20pt</property>
-                        <property name="marginLeft">10pt</property>
-                        <property name="paddingLeft">10pt</property>
-                        <property name="textAlign">left</property>
-                        <text-property name="text">Fordeling av</text-property>
-                    </label>
-                    <label id="3924">
-                        <property name="fontFamily">"Museo Sans 900"</property>
-                        <property name="fontSize">9pt</property>
-                        <property name="fontWeight">normal</property>
-                        <property name="marginTop">3pt</property>
-                        <property name="marginLeft">10pt</property>
-                        <property name="paddingLeft">10pt</property>
-                        <property name="textAlign">left</property>
-                        <text-property name="text">strøm og nettleie</text-property>
-                    </label>
-                    <label id="3925">
-                        <property name="fontFamily">"Museo Sans 900"</property>
-                        <property name="fontSize">9pt</property>
-                        <property name="fontWeight">normal</property>
-                        <property name="marginTop">3pt</property>
-                        <property name="marginLeft">10pt</property>
-                        <property name="paddingLeft">10pt</property>
-                        <property name="textAlign">left</property>
-                        <text-property name="text">denne periode:&#13;</text-property>
-                    </label>
-                    <extended-item extensionName="Chart" id="3923">
-                        <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
+                    <grid id="5001">
+                        <property name="backgroundColor">#DADADA</property>
+                        <property name="dataSet">PieChartInfo</property>
+                        <list-property name="visibility">
+                            <structure>
+                                <property name="format">all</property>
+                                <expression name="valueExpr" type="javascript">if(row["Type"] == null){&#13;
+true;&#13;
+}&#13;
+&#13;
+else&#13;
+{&#13;
+false;&#13;
+}</expression>
+                            </structure>
+                        </list-property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">Type</property>
+                                <text-property name="displayName">Type</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Type"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Amount</property>
+                                <text-property name="displayName">Amount</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Amount"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <column id="5002"/>
+                        <column id="5003"/>
+                        <row id="5004">
+                            <cell id="5005">
+                                <property name="paddingTop">0pt</property>
+                                <property name="paddingBottom">0pt</property>
+                                <label id="5007">
+                                    <property name="fontFamily">"Museo Sans 900"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="fontWeight">normal</property>
+                                    <property name="marginTop">20pt</property>
+                                    <property name="marginLeft">10pt</property>
+                                    <property name="paddingLeft">10pt</property>
+                                    <property name="textAlign">left</property>
+                                    <text-property name="text">Fordeling av</text-property>
+                                </label>
+                                <label id="5008">
+                                    <property name="fontFamily">"Museo Sans 900"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="fontWeight">normal</property>
+                                    <property name="marginTop">3pt</property>
+                                    <property name="marginLeft">10pt</property>
+                                    <property name="paddingLeft">10pt</property>
+                                    <property name="textAlign">left</property>
+                                    <text-property name="text">strøm og nettleie</text-property>
+                                </label>
+                                <label id="5009">
+                                    <property name="fontFamily">"Museo Sans 900"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="fontWeight">normal</property>
+                                    <property name="marginTop">3pt</property>
+                                    <property name="marginLeft">10pt</property>
+                                    <property name="paddingLeft">10pt</property>
+                                    <property name="textAlign">left</property>
+                                    <text-property name="text">denne periode:&#13;</text-property>
+                                </label>
+                                <extended-item extensionName="Chart" id="5010">
+                                    <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.6.1</Version>
   <Type>Pie Chart</Type>
   <SubType>Standard</SubType>
@@ -7197,44 +7326,45 @@ else &#13;
   </SeriesDefinitions>
 </model:ChartWithoutAxes>
 ]]></xml-property>
-                        <property name="outputFormat">SVG</property>
-                        <list-property name="filter">
-                            <structure>
-                                <property name="operator">ne</property>
-                                <expression name="expr" type="javascript">row["Amount"]</expression>
-                                <simple-property-list name="value1">
-                                    <value>0</value>
-                                </simple-property-list>
-                                <property name="updateAggregation">true</property>
-                            </structure>
-                        </list-property>
-                        <property name="inheritColumns">false</property>
-                        <property name="marginTop">20pt</property>
-                        <property name="marginLeft">1pt</property>
-                        <property name="paddingTop">20pt</property>
-                        <property name="height">42.75pt</property>
-                        <property name="width">107.25pt</property>
-                        <property name="dataSet">PieChartInfo</property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">Type</property>
-                                <text-property name="displayName">Type</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Type"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">Amount</property>
-                                <text-property name="displayName">Amount</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Amount"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                    </extended-item>
-                </cell>
-                <cell id="1499">
-                    <property name="backgroundColor">#DADADA</property>
-                    <extended-item extensionName="Chart" id="1500">
-                        <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
+                                    <property name="outputFormat">SVG</property>
+                                    <list-property name="filter">
+                                        <structure>
+                                            <property name="operator">ne</property>
+                                            <expression name="expr" type="javascript">row["Amount"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value>0</value>
+                                            </simple-property-list>
+                                            <property name="updateAggregation">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="inheritColumns">false</property>
+                                    <property name="marginTop">20pt</property>
+                                    <property name="marginLeft">1pt</property>
+                                    <property name="paddingTop">20pt</property>
+                                    <property name="height">42.75pt</property>
+                                    <property name="width">107.25pt</property>
+                                    <property name="dataSet">PieChartInfo</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">Type</property>
+                                            <text-property name="displayName">Type</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Type"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">Amount</property>
+                                            <text-property name="displayName">Amount</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Amount"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                </extended-item>
+                            </cell>
+                            <cell id="5006">
+                                <property name="paddingTop">0pt</property>
+                                <property name="paddingBottom">0pt</property>
+                                <extended-item extensionName="Chart" id="5011">
+                                    <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.6.1</Version>
   <Type>Pie Chart</Type>
   <SubType>Standard</SubType>
@@ -8157,47 +8287,50 @@ else &#13;
   <Coverage>0.9</Coverage>
 </model:ChartWithoutAxes>
 ]]></xml-property>
-                        <property name="outputFormat">SVG</property>
-                        <list-property name="filter">
-                            <structure>
-                                <property name="operator">ne</property>
-                                <expression name="expr" type="javascript">row["Amount"]</expression>
-                                <simple-property-list name="value1">
-                                    <value>0</value>
-                                </simple-property-list>
-                                <property name="updateAggregation">true</property>
-                            </structure>
-                        </list-property>
-                        <property name="inheritColumns">false</property>
-                        <property name="marginTop">0pt</property>
-                        <property name="paddingTop">20pt</property>
-                        <property name="height">154.5pt</property>
-                        <property name="width">113.25pt</property>
-                        <property name="dataSet">PieChartInfo</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if(0.0 == row["Amount"])&#13;
+                                    <property name="outputFormat">SVG</property>
+                                    <list-property name="filter">
+                                        <structure>
+                                            <property name="operator">ne</property>
+                                            <expression name="expr" type="javascript">row["Amount"]</expression>
+                                            <simple-property-list name="value1">
+                                                <value>0</value>
+                                            </simple-property-list>
+                                            <property name="updateAggregation">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="inheritColumns">false</property>
+                                    <property name="marginTop">0pt</property>
+                                    <property name="paddingTop">20pt</property>
+                                    <property name="height">154.5pt</property>
+                                    <property name="width">113.25pt</property>
+                                    <property name="dataSet">PieChartInfo</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">if(0.0 == row["Amount"])&#13;
 	true;&#13;
 else&#13;
 	false;</expression>
-                            </structure>
-                        </list-property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">Type</property>
-                                <text-property name="displayName">Type</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Type"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">Amount</property>
-                                <text-property name="displayName">Amount</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Amount"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                    </extended-item>
+                                        </structure>
+                                    </list-property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">Type</property>
+                                            <text-property name="displayName">Type</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Type"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">Amount</property>
+                                            <text-property name="displayName">Amount</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Amount"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                </extended-item>
+                            </cell>
+                        </row>
+                    </grid>
                 </cell>
             </row>
         </grid>
@@ -8370,6 +8503,7 @@ else &#13;
                                     <property name="marginLeft">15mm</property>
                                     <property name="paddingTop">2pt</property>
                                     <property name="paddingLeft">0pt</property>
+                                    <property name="paddingBottom">0pt</property>
                                     <property name="dataSet">BillingInfo</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
@@ -8563,6 +8697,12 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">true</expression>
+                                                    </structure>
+                                                </list-property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">AccountNumber</property>
@@ -8585,6 +8725,12 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">true</expression>
+                                                    </structure>
+                                                </list-property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">AccountNumber</property>
@@ -9314,12 +9460,14 @@ else&#13;
                             <property name="width">0.5in</property>
                         </column>
                         <row id="1583">
-                            <property name="height">0.25in</property>
+                            <property name="height">0.28in</property>
                             <cell id="1584">
+                                <property name="paddingTop">0pt</property>
                                 <label id="1585">
                                     <property name="fontFamily">"Museo Sans 300"</property>
                                     <property name="fontSize">7.7pt</property>
                                     <property name="marginLeft">15mm</property>
+                                    <property name="paddingTop">1pt</property>
                                     <property name="paddingBottom">0pt</property>
                                     <property name="paddingRight">9pt</property>
                                     <property name="textAlign">right</property>
@@ -10217,6 +10365,18 @@ year = "Siste 12 mnd" + "";</expression>
                                 <property name="pageBreakAfter">auto</property>
                                 <property name="height">6.34375in</property>
                                 <property name="width">5.15625in</property>
+                                <list-property name="visibility">
+                                    <structure>
+                                        <property name="format">all</property>
+                                        <expression name="valueExpr" type="javascript">if((row["DisplayStromData"] == "false" &amp;&amp; row["isOnlyGrid"] == "false" ) || (row["DisplayStromData"] == null &amp;&amp;  row["isOnlyGrid"] == null ) )&#13;
+{&#13;
+true;&#13;
+}&#13;
+else{&#13;
+false;&#13;
+}</expression>
+                                    </structure>
+                                </list-property>
                                 <column id="400">
                                     <property name="paddingRight">10pt</property>
                                     <property name="width">5in</property>

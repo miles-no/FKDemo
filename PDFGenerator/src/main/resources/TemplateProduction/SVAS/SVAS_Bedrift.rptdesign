@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">C:\Users\miles12\Downloads\713343460013-VKAS-Strfrisk.xml</property>
+            <property name="FILELIST">C:\Users\miles12\Desktop\Workspace\Files\processed_statement_2.xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -145,6 +145,16 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">CareOfName</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">Address1</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">Address1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Address2</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">Address2</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -232,6 +242,16 @@
                     <structure>
                         <property name="position">17</property>
                         <property name="name">CareOfName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">Address1</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">Address2</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -357,8 +377,22 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">Address1</property>
+                    <property name="nativeName">Address1</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">Address2</property>
+                    <property name="nativeName">Address2</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{Name;STRING;/Name},{Address;STRING;/Address},{PostCode;STRING;/PostCode},{City;STRING;/City},{AccountNumber;STRING;/AccountNumber},{SequenceNumber;STRING;/SequenceNumber},{NationalId;STRING;/NationalId},{StatementDate;STRING;/StatementDate},{DueDate;DATE;/DueDate},{StatementOcrNumber;STRING;/StatementOcrNumber},{DirectDebit;STRING;/DirectDebit},{Version;STRING;/Version},{TotalAttachment;STRING;/TotalAttachment},{LegalPartClass;STRING;/LegalPartClass},{Region;STRING;/Region},{Country;STRING;/Country},{CareOfName;STRING;/CareOfName}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{Name;STRING;/Name},{Address;STRING;/Address},{PostCode;STRING;/PostCode},{City;STRING;/City},{AccountNumber;STRING;/AccountNumber},{SequenceNumber;STRING;/SequenceNumber},{NationalId;STRING;/NationalId},{StatementDate;STRING;/StatementDate},{DueDate;DATE;/DueDate},{StatementOcrNumber;STRING;/StatementOcrNumber},{DirectDebit;STRING;/DirectDebit},{Version;STRING;/Version},{TotalAttachment;STRING;/TotalAttachment},{LegalPartClass;STRING;/LegalPartClass},{Region;STRING;/Region},{Country;STRING;/Country},{CareOfName;STRING;/CareOfName},{Address1;STRING;/Address1},{Address2;STRING;/Address2}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -4766,10 +4800,10 @@ else &#13;
     this.getStyle().display ="none"
 } ]]></method>
                     <column id="205">
-                        <property name="width">1.25in</property>
+                        <property name="width">0.8in</property>
                     </column>
                     <column id="206">
-                        <property name="width">5.82in</property>
+                        <property name="width">5.9in</property>
                     </column>
                     <row id="207">
                         <cell id="208">
@@ -4777,7 +4811,7 @@ else &#13;
                             <property name="paddingRight">0pt</property>
                             <label id="210">
                                 <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
-                                <property name="fontSize">6.8pt</property>
+                                <property name="fontSize">5.5pt</property>
                                 <property name="fontWeight">bold</property>
                                 <property name="paddingTop">5pt</property>
                                 <property name="paddingLeft">0pt</property>
@@ -4790,11 +4824,11 @@ else &#13;
                             <property name="paddingRight">0pt</property>
                             <label id="211">
                                 <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                <property name="fontSize">6.8pt</property>
+                                <property name="fontSize">5.9pt</property>
                                 <property name="paddingTop">5pt</property>
                                 <property name="paddingLeft">0pt</property>
                                 <property name="paddingRight">0pt</property>
-                                <text-property name="text">Svartvassvegen 6, 6650 Surnadal | svorka.no | Foretaksregisteret NO920 669 794 MVA | IBAN NO2415060796855 | SWIFT:DNBANOKKXXX</text-property>
+                                <text-property name="text">Svartvassvegen 6, 6650 Surnadal | svorka.no | Virksomhet 920 669 794 | Foretaksregisteret NO919 763 159MVA | IBAN NO2415060796855 | SWIFT:DNBANOKKXXX</text-property>
                             </label>
                         </cell>
                     </row>
@@ -4851,61 +4885,35 @@ else &#13;
                                 <property name="paddingLeft">0mm</property>
                                 <property name="paddingBottom">0pt</property>
                                 <property name="paddingRight">0pt</property>
-                                <grid id="1363">
-                                    <property name="height">0.6666666666666666in</property>
-                                    <column id="1364"/>
-                                    <row id="1365">
-                                        <property name="height">20mm</property>
-                                        <cell id="1366">
-                                            <property name="paddingTop">0pt</property>
-                                            <property name="paddingLeft">0pt</property>
-                                            <property name="paddingBottom">0pt</property>
-                                            <property name="paddingRight">0pt</property>
-                                            <grid id="1347">
-                                                <property name="height">0.4270833333333333in</property>
-                                                <column id="1348"/>
-                                                <row id="1349">
-                                                    <property name="height">20mm</property>
-                                                    <cell id="1350">
-                                                        <property name="paddingTop">0pt</property>
-                                                        <property name="paddingLeft">4pt</property>
-                                                        <property name="paddingBottom">0pt</property>
-                                                        <property name="paddingRight">0pt</property>
-                                                        <image id="1394">
-                                                            <property name="height">0.56in</property>
-                                                            <property name="width">0.89in</property>
-                                                            <property name="source">file</property>
-                                                            <expression name="uri" type="constant">Svorka_Top_Left_Logo.jpg</expression>
-                                                        </image>
-                                                        <text id="110">
-                                                            <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                                            <property name="fontSize">8pt</property>
-                                                            <property name="color">#1E1E1E</property>
-                                                            <property name="marginTop">4pt</property>
-                                                            <property name="paddingTop">1.6pt</property>
-                                                            <property name="paddingLeft">0pt</property>
-                                                            <property name="textAlign">left</property>
-                                                            <property name="contentType">auto</property>
-                                                            <text-property name="content"><![CDATA[Returadresse: Svartvassvegen 6, 6650 Surnadal]]></text-property>
-                                                        </text>
-                                                    </cell>
-                                                </row>
-                                            </grid>
-                                        </cell>
-                                    </row>
-                                </grid>
-                                <grid id="1873">
+                                <image id="3920">
+                                    <property name="height">0.96in</property>
+                                    <property name="width">0.94in</property>
+                                    <property name="source">file</property>
+                                    <expression name="uri" type="constant">Svorka_Top_Left_Logo.jpg</expression>
+                                </image>
+                                <text id="3921">
+                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
+                                    <property name="fontSize">8pt</property>
+                                    <property name="color">#1E1E1E</property>
+                                    <property name="marginTop">4pt</property>
+                                    <property name="paddingTop">1.6pt</property>
+                                    <property name="paddingLeft">0pt</property>
+                                    <property name="textAlign">left</property>
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[Returadresse: Svartvassvegen 6, 6650 Surnadal]]></text-property>
+                                </text>
+                                <grid id="3922">
                                     <property name="height">1.84375in</property>
-                                    <column id="1874"/>
-                                    <row id="1875">
+                                    <column id="3923"/>
+                                    <row id="3924">
                                         <property name="height">35mm</property>
-                                        <cell id="1876">
+                                        <cell id="3925">
                                             <property name="paddingTop">0pt</property>
                                             <property name="paddingLeft">0pt</property>
                                             <property name="paddingBottom">0pt</property>
                                             <property name="paddingRight">0pt</property>
-                                            <grid id="1877">
-                                                <property name="height">0.53125in</property>
+                                            <grid id="3926">
+                                                <property name="height">0.3in</property>
                                                 <property name="dataSet">BarcodeInfo</property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
@@ -4915,19 +4923,19 @@ else &#13;
                                                         <property name="dataType">string</property>
                                                     </structure>
                                                 </list-property>
-                                                <column id="1878">
+                                                <column id="3927">
                                                     <property name="width">0.6in</property>
                                                 </column>
-                                                <column id="1879"/>
-                                                <row id="1880">
+                                                <column id="3928"/>
+                                                <row id="3929">
                                                     <property name="height">10mm</property>
-                                                    <cell id="1881">
+                                                    <cell id="3930">
                                                         <property name="paddingTop">8pt</property>
                                                         <property name="paddingLeft">4pt</property>
                                                         <property name="paddingBottom">0pt</property>
                                                         <property name="paddingRight">0pt</property>
                                                     </cell>
-                                                    <cell id="1883">
+                                                    <cell id="3931">
                                                         <property name="paddingTop">0pt</property>
                                                         <property name="paddingLeft">0pt</property>
                                                         <property name="paddingBottom">0pt</property>
@@ -4935,7 +4943,7 @@ else &#13;
                                                     </cell>
                                                 </row>
                                             </grid>
-                                            <data id="1885">
+                                            <data id="3932">
                                                 <property name="fontFamily">"Arial"</property>
                                                 <property name="fontSize">10pt</property>
                                                 <property name="fontWeight">normal</property>
@@ -4965,7 +4973,7 @@ dataSetRow["CareOfName"];&#13;
                                                 </list-property>
                                                 <property name="resultSetColumn">Name</property>
                                             </data>
-                                            <data id="1886">
+                                            <data id="3933">
                                                 <property name="fontFamily">"Arial"</property>
                                                 <property name="fontSize">10pt</property>
                                                 <property name="fontWeight">normal</property>
@@ -4977,17 +4985,75 @@ dataSetRow["CareOfName"];&#13;
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">7pt</property>
                                                 <property name="dataSet">MainInfo</property>
-                                                <list-property name="boundDataColumns">
+                                                <list-property name="visibility">
                                                     <structure>
-                                                        <property name="name">Address</property>
-                                                        <text-property name="displayName">Address</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["Address"]</expression>
-                                                        <property name="dataType">string</property>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">if(row["Address1"] == null || BirtStr.trim(row["Address1"]) == "")&#13;
+{&#13;
+true;&#13;
+}&#13;
+else &#13;
+{false;}</expression>
                                                     </structure>
                                                 </list-property>
-                                                <property name="resultSetColumn">Address</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Address1</property>
+                                                        <text-property name="displayName">Address1</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address1"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Column Binding</property>
+                                                        <text-property name="displayName">Address1</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address1"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Column Binding</property>
                                             </data>
-                                            <data id="1887">
+                                            <data id="3936">
+                                                <property name="fontFamily">"Arial"</property>
+                                                <property name="fontSize">10pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <property name="color">#000000</property>
+                                                <property name="paddingTop">0pt</property>
+                                                <property name="paddingLeft">3.1pt</property>
+                                                <property name="paddingBottom">0pt</property>
+                                                <property name="paddingRight">0pt</property>
+                                                <property name="textAlign">left</property>
+                                                <property name="lineHeight">7pt</property>
+                                                <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">if(row["Address2"] == null || BirtStr.trim(row["Address2"]) == "")&#13;
+{&#13;
+true;&#13;
+}&#13;
+else &#13;
+{false;}</expression>
+                                                    </structure>
+                                                </list-property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Address2</property>
+                                                        <text-property name="displayName">Address2</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address2"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Column Binding</property>
+                                                        <text-property name="displayName">Address2</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address2"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Column Binding</property>
+                                            </data>
+                                            <data id="3934">
                                                 <property name="fontFamily">"Arial"</property>
                                                 <property name="fontSize">10pt</property>
                                                 <property name="fontWeight">normal</property>
@@ -5010,7 +5076,7 @@ dataSetRow["CareOfName"];&#13;
                                                 </list-property>
                                                 <property name="resultSetColumn">City</property>
                                             </data>
-                                            <data id="1888">
+                                            <data id="3935">
                                                 <property name="fontFamily">"Arial"</property>
                                                 <property name="paddingTop">0pt</property>
                                                 <property name="paddingLeft">3.1pt</property>
@@ -5788,6 +5854,7 @@ else &#13;
                             <property name="height">0.34375in</property>
                             <cell id="1459">
                                 <image id="1460">
+                                    <property name="marginTop">1.6pt</property>
                                     <property name="height">0.188in</property>
                                     <property name="width">1.104in</property>
                                     <property name="source">file</property>
@@ -6250,6 +6317,12 @@ else &#13;
             </row>
             <row id="1496">
                 <property name="height">2in</property>
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
                 <cell id="1497">
                     <property name="colSpan">2</property>
                     <property name="rowSpan">1</property>
@@ -8159,7 +8232,9 @@ else &#13;
                     <property name="colSpan">3</property>
                     <property name="rowSpan">1</property>
                     <property name="paddingTop">0pt</property>
+                    <property name="paddingLeft">0pt</property>
                     <property name="paddingBottom">0pt</property>
+                    <property name="paddingRight">0pt</property>
                     <grid id="3439">
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">1px</property>
@@ -8172,36 +8247,43 @@ else &#13;
                         <column id="3440">
                             <property name="color">#000000</property>
                             <property name="textAlign">right</property>
-                            <property name="width">1.83in</property>
+                            <property name="width">1.5in</property>
                         </column>
                         <column id="3441">
-                            <property name="width">6.8in</property>
+                            <property name="width">7in</property>
                         </column>
                         <row id="3442">
                             <property name="height">0.27in</property>
                             <cell id="3443">
+                                <property name="paddingLeft">0pt</property>
                                 <property name="paddingBottom">0pt</property>
+                                <property name="paddingRight">0pt</property>
                                 <label id="3684">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Bd"</property>
-                                    <property name="fontSize">6.9pt</property>
+                                    <property name="fontSize">5.7pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="paddingTop">5pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingRight">0pt</property>
-                                    <text-property name="text">SvorkaEnergi AS Avd.Kraft</text-property>
+                                    <property name="paddingRight">1.2pt</property>
+                                    <property name="textAlign">right</property>
+                                    <text-property name="text">SvorkaEnergi AS Avd.Kraft  </text-property>
                                 </label>
                             </cell>
                             <cell id="3445">
+                                <property name="paddingLeft">0pt</property>
                                 <property name="paddingBottom">0pt</property>
+                                <property name="paddingRight">0pt</property>
                                 <label id="3446">
                                     <property name="fontFamily">"Fjordkraft Neo Sans"</property>
-                                    <property name="fontSize">6.9pt</property>
+                                    <property name="fontSize">6.2pt</property>
                                     <property name="color">#808080</property>
+                                    <property name="marginLeft">1pt</property>
                                     <property name="paddingTop">5pt</property>
+                                    <property name="paddingLeft">0pt</property>
                                     <property name="paddingBottom">0pt</property>
-                                    <property name="paddingRight">3pt</property>
+                                    <property name="paddingRight">0pt</property>
                                     <property name="textAlign">left</property>
-                                    <text-property name="text">Svartvassvegen 6, 6650 Surnadal | svorka.no | Foretaksregisteret NO920 669 794 MVA | IBAN NO2415060796855 | SWIFT:DNBANOKKXXX</text-property>
+                                    <text-property name="text">Svartvassvegen 6, 6650 Surnadal | svorka.no | Virksomhet 920 669 794 | Foretaksregisteret NO919 763 159MVA | IBAN NO2415060796855 | SWIFT:DNBANOKKXXX</text-property>
                                 </label>
                             </cell>
                         </row>
@@ -8437,6 +8519,12 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">true</expression>
+                                                    </structure>
+                                                </list-property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">AccountNumber</property>
@@ -8459,6 +8547,12 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">10pt</property>
                                                 <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">true</expression>
+                                                    </structure>
+                                                </list-property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">AccountNumber</property>
@@ -10116,6 +10210,18 @@ year = "Siste 12 mnd" + "";</expression>
                                 <property name="pageBreakAfter">auto</property>
                                 <property name="height">6.583in</property>
                                 <property name="width">5.15625in</property>
+                                <list-property name="visibility">
+                                    <structure>
+                                        <property name="format">all</property>
+                                        <expression name="valueExpr" type="javascript">if((row["DisplayStromData"] == "false" &amp;&amp; row["isOnlyGrid"] == "false" ) || (row["DisplayStromData"] == null &amp;&amp;  row["isOnlyGrid"] == null ) )&#13;
+{&#13;
+true;&#13;
+}&#13;
+else{&#13;
+false;&#13;
+}</expression>
+                                    </structure>
+                                </list-property>
                                 <column id="400">
                                     <property name="paddingRight">10pt</property>
                                     <property name="width">5in</property>
@@ -13890,12 +13996,12 @@ else&#13;
                                     <property name="height">9.61in</property>
                                     <cell id="812">
                                         <property name="backgroundColor">#E1E1E1</property>
-                                        <property name="paddingTop">10pt</property>
+                                        <property name="paddingTop">9pt</property>
                                         <property name="paddingLeft">5pt</property>
                                         <property name="paddingRight">0pt</property>
                                         <image id="1346">
-                                            <property name="height">0.5in</property>
-                                            <property name="width">0.75in</property>
+                                            <property name="height">0.96in</property>
+                                            <property name="width">0.94in</property>
                                             <property name="source">file</property>
                                             <expression name="uri" type="constant">SVAS_Grey_Right_Logo.jpg</expression>
                                         </image>

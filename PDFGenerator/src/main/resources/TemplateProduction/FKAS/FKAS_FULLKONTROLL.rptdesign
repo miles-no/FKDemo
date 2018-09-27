@@ -145,6 +145,16 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">CareOfName</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">Address1</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">Address1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Address2</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">Address2</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -232,6 +242,16 @@
                     <structure>
                         <property name="position">17</property>
                         <property name="name">CareOfName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">Address1</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">Address2</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -357,8 +377,22 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">Address1</property>
+                    <property name="nativeName">Address1</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">Address2</property>
+                    <property name="nativeName">Address2</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{Name;STRING;/Name},{Address;STRING;/Address},{PostCode;STRING;/PostCode},{City;STRING;/City},{AccountNumber;STRING;/AccountNumber},{SequenceNumber;STRING;/SequenceNumber},{NationalId;STRING;/NationalId},{StatementDate;STRING;/StatementDate},{DueDate;DATE;/DueDate},{StatementOcrNumber;STRING;/StatementOcrNumber},{DirectDebit;STRING;/DirectDebit},{Version;STRING;/Version},{TotalAttachment;STRING;/TotalAttachment},{LegalPartClass;STRING;/LegalPartClass},{Region;STRING;/Region},{Country;STRING;/Country},{CareOfName;STRING;/CareOfName}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{Name;STRING;/Name},{Address;STRING;/Address},{PostCode;STRING;/PostCode},{City;STRING;/City},{AccountNumber;STRING;/AccountNumber},{SequenceNumber;STRING;/SequenceNumber},{NationalId;STRING;/NationalId},{StatementDate;STRING;/StatementDate},{DueDate;DATE;/DueDate},{StatementOcrNumber;STRING;/StatementOcrNumber},{DirectDebit;STRING;/DirectDebit},{Version;STRING;/Version},{TotalAttachment;STRING;/TotalAttachment},{LegalPartClass;STRING;/LegalPartClass},{Region;STRING;/Region},{Country;STRING;/Country},{CareOfName;STRING;/CareOfName},{Address1;STRING;/Address1},{Address2;STRING;/Address2}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -4820,6 +4854,11 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">OrigDIAmountWithVat</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">allMeterStromNett</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">allMeterStromNett</text-property>
+                </structure>
             </list-property>
             <list-property name="filter"/>
             <list-property name="parameters"/>
@@ -4875,6 +4914,11 @@
                         <property name="name">OrigDIAmountWithVat</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">allMeterStromNett</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <property name="dataSource">Data Source</property>
@@ -4884,63 +4928,80 @@
                     <property name="name">SumOfNettStrom</property>
                     <property name="nativeName">SumOfNettStrom</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">AttachmentNumber</property>
                     <property name="nativeName">AttachmentNumber</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">SumOfOutGoingCurrentClaim</property>
                     <property name="nativeName">SumOfOutGoingCurrentClaim</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">IngoingBalance</property>
                     <property name="nativeName">IngoingBalance</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">OutgoingBalance</property>
                     <property name="nativeName">OutgoingBalance</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
                     <property name="name">CurrentClaim</property>
                     <property name="nativeName">CurrentClaim</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">TransactionCategory</property>
                     <property name="nativeName">TransactionCategory</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
                     <property name="name">TotalAttachment</property>
                     <property name="nativeName">TotalAttachment</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">9</property>
                     <property name="name">SumOfInGoingIBTrans</property>
                     <property name="nativeName">SumOfInGoingIBTrans</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">10</property>
                     <property name="name">OrigDIAmountWithVat</property>
                     <property name="nativeName">OrigDIAmountWithVat</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">allMeterStromNett</property>
+                    <property name="nativeName">allMeterStromNett</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{SumOfNettStrom;STRING;/SumOfNettStrom},{AttachmentNumber;STRING;/AttachmentNumber},{SumOfOutGoingCurrentClaim;STRING;/SumOfOutGoingCurrentClaim},{IngoingBalance;STRING;../../IngoingBalance},{OutgoingBalance;STRING;../../OutgoingBalance},{CurrentClaim;STRING;../../CurrentClaim},{TransactionCategory;STRING;../../Transactions/Transaction/TransactionCategory},{TotalAttachment;STRING;../../TotalAttachment},{SumOfInGoingIBTrans;STRING;/SumOfInGoingIBTrans},{OrigDIAmountWithVat;STRING;../../Transactions/OrigDIAmountWithVat}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{SumOfNettStrom;STRING;/SumOfNettStrom},{AttachmentNumber;STRING;/AttachmentNumber},{SumOfOutGoingCurrentClaim;STRING;/SumOfOutGoingCurrentClaim},{IngoingBalance;STRING;../../IngoingBalance},{OutgoingBalance;STRING;../../OutgoingBalance},{CurrentClaim;STRING;../../CurrentClaim},{TransactionCategory;STRING;../../Transactions/Transaction/TransactionCategory},{TotalAttachment;STRING;../../TotalAttachment},{SumOfInGoingIBTrans;STRING;/SumOfInGoingIBTrans},{OrigDIAmountWithVat;STRING;../../Transactions/OrigDIAmountWithVat},{allMeterStromNett;STRING;../../allMeterStromNett}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -5789,15 +5850,73 @@ dataSetRow["CareOfName"];&#13;
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">7pt</property>
                                                 <property name="dataSet">MainInfo</property>
-                                                <list-property name="boundDataColumns">
+                                                <list-property name="visibility">
                                                     <structure>
-                                                        <property name="name">Address</property>
-                                                        <text-property name="displayName">Address</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["Address"]</expression>
-                                                        <property name="dataType">string</property>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">if(row["Address1"] == null || BirtStr.trim(row["Address1"]) == "")&#13;
+{&#13;
+true;&#13;
+}&#13;
+else &#13;
+{false;}</expression>
                                                     </structure>
                                                 </list-property>
-                                                <property name="resultSetColumn">Address</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Address1</property>
+                                                        <text-property name="displayName">Address1</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address1"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Column Binding</property>
+                                                        <text-property name="displayName">Address1</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address1"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Column Binding</property>
+                                            </data>
+                                            <data id="3962">
+                                                <property name="fontFamily">"Arial"</property>
+                                                <property name="fontSize">10pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <property name="color">#000000</property>
+                                                <property name="paddingTop">0pt</property>
+                                                <property name="paddingLeft">3.1pt</property>
+                                                <property name="paddingBottom">0pt</property>
+                                                <property name="paddingRight">0pt</property>
+                                                <property name="textAlign">left</property>
+                                                <property name="lineHeight">7pt</property>
+                                                <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">if(row["Address2"] == null || BirtStr.trim(row["Address2"]) == "")&#13;
+{&#13;
+true;&#13;
+}&#13;
+else &#13;
+{false;}</expression>
+                                                    </structure>
+                                                </list-property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Address2</property>
+                                                        <text-property name="displayName">Address2</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address2"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Column Binding</property>
+                                                        <text-property name="displayName">Address2</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address2"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Column Binding</property>
                                             </data>
                                             <data id="1887">
                                                 <property name="fontFamily">"Arial"</property>
@@ -6341,7 +6460,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                                     <property name="marginTop">0pt</property>
                                     <property name="paddingTop">1pt</property>
                                     <property name="paddingLeft">2pt</property>
-                                    <property name="paddingBottom">2pt</property>
+                                    <property name="paddingBottom">1pt</property>
                                     <property name="paddingRight">0pt</property>
                                     <text-property name="text">Detaljer om din saldo, finner du på neste side.</text-property>
                                 </label>
@@ -7295,6 +7414,12 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                             <property name="textAlign">left</property>
                                                             <property name="lineHeight">10pt</property>
                                                             <property name="dataSet">MainInfo</property>
+                                                            <list-property name="visibility">
+                                                                <structure>
+                                                                    <property name="format">all</property>
+                                                                    <expression name="valueExpr" type="javascript">true</expression>
+                                                                </structure>
+                                                            </list-property>
                                                             <list-property name="boundDataColumns">
                                                                 <structure>
                                                                     <property name="name">AccountNumber</property>
@@ -7317,6 +7442,12 @@ res1 + "   " + res2 + "   "+ res3;</expression>
                                                             <property name="textAlign">left</property>
                                                             <property name="lineHeight">10pt</property>
                                                             <property name="dataSet">MainInfo</property>
+                                                            <list-property name="visibility">
+                                                                <structure>
+                                                                    <property name="format">all</property>
+                                                                    <expression name="valueExpr" type="javascript">true</expression>
+                                                                </structure>
+                                                            </list-property>
                                                             <list-property name="boundDataColumns">
                                                                 <structure>
                                                                     <property name="name">AccountNumber</property>
@@ -8633,6 +8764,18 @@ year = "Siste 12 mnd" + "";</expression>
                                 <property name="pageBreakAfter">auto</property>
                                 <property name="height">6in</property>
                                 <property name="width">5.15625in</property>
+                                <list-property name="visibility">
+                                    <structure>
+                                        <property name="format">all</property>
+                                        <expression name="valueExpr" type="javascript">if((row["DisplayStromData"] == "false" &amp;&amp; row["isOnlyGrid"] == "false" ) || (row["DisplayStromData"] == null &amp;&amp;  row["isOnlyGrid"] == null ) )&#13;
+{&#13;
+true;&#13;
+}&#13;
+else{&#13;
+false;&#13;
+}</expression>
+                                    </structure>
+                                </list-property>
                                 <column id="400">
                                     <property name="paddingRight">10pt</property>
                                     <property name="width">5in</property>
@@ -10347,16 +10490,34 @@ else&#13;
                                                                 <label id="1912">
                                                                     <property name="fontSize">7pt</property>
                                                                     <property name="paddingTop">10pt</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">true</expression>
+                                                                        </structure>
+                                                                    </list-property>
                                                                     <text-property name="text">Husk at du kan melde&#13;</text-property>
                                                                 </label>
                                                                 <label id="1913">
                                                                     <property name="fontSize">7pt</property>
                                                                     <property name="paddingTop">2.3pt</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">true</expression>
+                                                                        </structure>
+                                                                    </list-property>
                                                                     <text-property name="text">inn målerstand så ofte</text-property>
                                                                 </label>
                                                                 <label id="1914">
                                                                     <property name="fontSize">7pt</property>
                                                                     <property name="paddingTop">2.3pt</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">true</expression>
+                                                                        </structure>
+                                                                    </list-property>
                                                                     <text-property name="text">du ønsker til din netteier.&#13;</text-property>
                                                                 </label>
                                                             </cell>
@@ -12644,213 +12805,99 @@ etter gjeldende satser.&#13;
                             </grid>
                             <grid id="3916">
                                 <property name="fontSize">10pt</property>
-                                <property name="dataSet">SaldoAttatchmentHeaderJoinDataSet</property>
+                                <property name="dataSet">SaldoDataSet</property>
                                 <list-property name="boundDataColumns">
                                     <structure>
-                                        <property name="name">SaldoDataSet::SumOfNettStrom</property>
+                                        <property name="name">SumOfNettStrom</property>
                                         <text-property name="displayName">SumOfNettStrom</text-property>
-                                        <expression name="expression" type="javascript">vars["AttachmentNumber"] = dataSetRow["SaldoDataSet::AttachmentNumber"];&#13;
-formatMoney(BirtMath.multiply(dataSetRow["SaldoDataSet::SumOfNettStrom"],-1), 2, '', '.', ',');</expression>
-                                        <property name="dataType">string</property>
-                                        <property name="allowExport">true</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">Address1</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::Address1</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["Address1"]</expression>
+                                        <expression name="expression" type="javascript">dataSetRow["SumOfNettStrom"]</expression>
                                         <property name="dataType">string</property>
                                     </structure>
                                     <structure>
-                                        <property name="name">Description</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::Description</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["Description"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">MeterId</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::MeterId</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["MeterId"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">ObjectId</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::ObjectId</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["ObjectId"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">AnnualConsumption</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::AnnualConsumption</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["AnnualConsumption"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">InvoiceNo</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::InvoiceNo</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["InvoiceNo"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">FREE_TEXT</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::FREE_TEXT</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["FREE_TEXT"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">Name</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::Name</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">Email</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::Email</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["Email"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">Telephone</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::Telephone</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["Telephone"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">StatementDate</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::StatementDate</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["StatementDate"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">ReferenceNumber</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::ReferenceNumber</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["ReferenceNumber"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">InvoiceType</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::InvoiceType</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["InvoiceType"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">AttachmentHeaderInfo::AttachmentNumber</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::AttachmentNumber</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["AttachmentHeaderInfo::AttachmentNumber"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">DisplayStromData</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::DisplayStromData</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["DisplayStromData"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">isOnlyGrid</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::isOnlyGrid</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["isOnlyGrid"]</expression>
+                                        <property name="name">AttachmentNumber</property>
+                                        <text-property name="displayName">AttachmentNumber</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["AttachmentNumber"]</expression>
                                         <property name="dataType">string</property>
                                     </structure>
                                     <structure>
                                         <property name="name">SumOfOutGoingCurrentClaim</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::SumOfOutGoingCurrentClaim</text-property>
+                                        <text-property name="displayName">SumOfOutGoingCurrentClaim</text-property>
                                         <expression name="expression" type="javascript">dataSetRow["SumOfOutGoingCurrentClaim"]</expression>
                                         <property name="dataType">string</property>
                                     </structure>
                                     <structure>
-                                        <property name="name">AttachmentHeaderInfo::SumOfNettStrom</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::SumOfNettStrom</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["AttachmentHeaderInfo::SumOfNettStrom"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
                                         <property name="name">IngoingBalance</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::IngoingBalance</text-property>
+                                        <text-property name="displayName">IngoingBalance</text-property>
                                         <expression name="expression" type="javascript">dataSetRow["IngoingBalance"]</expression>
                                         <property name="dataType">string</property>
                                     </structure>
                                     <structure>
                                         <property name="name">OutgoingBalance</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::OutgoingBalance</text-property>
+                                        <text-property name="displayName">OutgoingBalance</text-property>
                                         <expression name="expression" type="javascript">dataSetRow["OutgoingBalance"]</expression>
                                         <property name="dataType">string</property>
                                     </structure>
                                     <structure>
                                         <property name="name">CurrentClaim</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::CurrentClaim</text-property>
+                                        <text-property name="displayName">CurrentClaim</text-property>
                                         <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
                                         <property name="dataType">string</property>
                                     </structure>
                                     <structure>
-                                        <property name="name">DIAmountWithVat</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::DIAmountWithVat</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["DIAmountWithVat"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
                                         <property name="name">TransactionCategory</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::TransactionCategory</text-property>
+                                        <text-property name="displayName">TransactionCategory</text-property>
                                         <expression name="expression" type="javascript">dataSetRow["TransactionCategory"]</expression>
                                         <property name="dataType">string</property>
                                     </structure>
                                     <structure>
                                         <property name="name">TotalAttachment</property>
-                                        <text-property name="displayName">AttachmentHeaderInfo::TotalAttachment</text-property>
+                                        <text-property name="displayName">TotalAttachment</text-property>
                                         <expression name="expression" type="javascript">dataSetRow["TotalAttachment"]</expression>
                                         <property name="dataType">string</property>
                                     </structure>
                                     <structure>
-                                        <property name="name">SaldoDataSet::AttachmentNumber</property>
-                                        <text-property name="displayName">SaldoDataSet::AttachmentNumber</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::AttachmentNumber"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">SaldoDataSet::SumOfNettStrom_1</property>
-                                        <text-property name="displayName">SaldoDataSet::SumOfNettStrom</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::SumOfNettStrom"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">SaldoDataSet::SumOfOutGoingCurrentClaim</property>
-                                        <text-property name="displayName">SaldoDataSet::SumOfOutGoingCurrentClaim</text-property>
-                                        <expression name="expression" type="javascript">formatMoney(dataSetRow["SaldoDataSet::SumOfOutGoingCurrentClaim"], 2, '', '.', ',');</expression>
-                                        <property name="dataType">string</property>
-                                        <property name="allowExport">true</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">SaldoDataSet::IngoingBalance</property>
-                                        <text-property name="displayName">SaldoDataSet::IngoingBalance</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::IngoingBalance"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">SaldoDataSet::OutgoingBalance</property>
-                                        <text-property name="displayName">SaldoDataSet::OutgoingBalance</text-property>
-                                        <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::OutgoingBalance"]</expression>
-                                        <property name="dataType">string</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">SaldoDataSet::CurrentClaim</property>
-                                        <text-property name="displayName">CurrentClaim</text-property>
-                                        <expression name="expression" type="javascript">formatMoney(dataSetRow["SaldoDataSet::CurrentClaim"], 2, '', '.', ',');</expression>
-                                        <property name="dataType">string</property>
-                                        <property name="allowExport">true</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">SaldoDataSet::DIAmountWithVat</property>
-                                        <text-property name="displayName">OrigDIAmountWithVat</text-property>
-                                        <expression name="expression" type="javascript">if(null == dataSetRow["SaldoDataSet::TransactionCategory"] || dataSetRow["SaldoDataSet::TotalAttachment"] != vars["AttachmentIndex"]) {&#13;
-	'0.00';&#13;
-} else {&#13;
-formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#13;
-}</expression>
-                                        <property name="dataType">string</property>
-                                        <property name="allowExport">true</property>
-                                    </structure>
-                                    <structure>
-                                        <property name="name">SaldoDataSet::SumOfInGoingIBTrans</property>
+                                        <property name="name">SumOfInGoingIBTrans</property>
                                         <text-property name="displayName">SumOfInGoingIBTrans</text-property>
-                                        <expression name="expression" type="javascript">formatMoney(dataSetRow["SaldoDataSet::SumOfInGoingIBTrans"], 2, '', '.', ',');</expression>
+                                        <expression name="expression" type="javascript">dataSetRow["SumOfInGoingIBTrans"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">OrigDIAmountWithVat</property>
+                                        <text-property name="displayName">OrigDIAmountWithVat</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["OrigDIAmountWithVat"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">allMeterStromNett</property>
+                                        <text-property name="displayName">allMeterStromNett</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["allMeterStromNett"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">SumOfInGoingIBTrans1</property>
+                                        <text-property name="displayName">SumOfInGoingIBTrans</text-property>
+                                        <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfInGoingIBTrans"], 2, '', '.', ',');</expression>
+                                        <property name="dataType">string</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">CurrentClaim1</property>
+                                        <text-property name="displayName">CurrentClaim</text-property>
+                                        <expression name="expression" type="javascript">formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',');</expression>
+                                        <property name="dataType">string</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">allMeterStromNett1</property>
+                                        <text-property name="displayName">AllMeterStromNett</text-property>
+                                        <expression name="expression" type="javascript">formatMoney(BirtMath.multiply(dataSetRow["allMeterStromNett"],-1), 2, '', '.', ',');</expression>
+                                        <property name="dataType">string</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                    <structure>
+                                        <property name="name">SumOfOutGoingCurrentClaim1</property>
+                                        <text-property name="displayName">SumOfOutGoingCurrentClaim</text-property>
+                                        <expression name="expression" type="javascript">formatMoney(dataSetRow["SumOfOutGoingCurrentClaim"], 2, '', '.', ',');</expression>
                                         <property name="dataType">string</property>
                                         <property name="allowExport">true</property>
                                     </structure>
@@ -12901,7 +12948,7 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                                         <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
-                                                        <property name="resultSetColumn">SaldoDataSet::SumOfInGoingIBTrans</property>
+                                                        <property name="resultSetColumn">SumOfInGoingIBTrans1</property>
                                                     </data>
                                                 </cell>
                                             </row>
@@ -12923,7 +12970,7 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
                                                         <property name="textAlign">right</property>
-                                                        <property name="resultSetColumn">SaldoDataSet::CurrentClaim</property>
+                                                        <property name="resultSetColumn">CurrentClaim1</property>
                                                     </data>
                                                 </cell>
                                             </row>
@@ -12945,7 +12992,7 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
                                                         <property name="textAlign">right</property>
-                                                        <property name="resultSetColumn">SaldoDataSet::SumOfNettStrom</property>
+                                                        <property name="resultSetColumn">allMeterStromNett1</property>
                                                     </data>
                                                 </cell>
                                             </row>
@@ -12970,81 +13017,29 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
                                                         <property name="textAlign">right</property>
-                                                        <property name="dataSet">SaldoAttatchmentHeaderJoinDataSet</property>
+                                                        <property name="dataSet">SaldoDataSet</property>
                                                         <list-property name="boundDataColumns">
                                                             <structure>
-                                                                <property name="name">SaldoDataSet::SumOfNettStrom</property>
-                                                                <text-property name="displayName">SaldoDataSet::SumOfNettStrom</text-property>
-                                                                <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::SumOfNettStrom"]</expression>
+                                                                <property name="name">TransactionCategory</property>
+                                                                <text-property name="displayName">TransactionCategory</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["TransactionCategory"]</expression>
                                                                 <property name="dataType">string</property>
                                                             </structure>
                                                             <structure>
-                                                                <property name="name">SaldoDataSet::AttachmentNumber</property>
-                                                                <text-property name="displayName">SaldoDataSet::AttachmentNumber</text-property>
-                                                                <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::AttachmentNumber"]</expression>
-                                                                <property name="dataType">string</property>
-                                                            </structure>
-                                                            <structure>
-                                                                <property name="name">SaldoDataSet::SumOfOutGoingCurrentClaim</property>
-                                                                <text-property name="displayName">SaldoDataSet::SumOfOutGoingCurrentClaim</text-property>
-                                                                <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::SumOfOutGoingCurrentClaim"]</expression>
-                                                                <property name="dataType">string</property>
-                                                            </structure>
-                                                            <structure>
-                                                                <property name="name">SaldoDataSet::IngoingBalance</property>
-                                                                <text-property name="displayName">SaldoDataSet::IngoingBalance</text-property>
-                                                                <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::IngoingBalance"]</expression>
-                                                                <property name="dataType">string</property>
-                                                            </structure>
-                                                            <structure>
-                                                                <property name="name">SaldoDataSet::OutgoingBalance</property>
-                                                                <text-property name="displayName">SaldoDataSet::OutgoingBalance</text-property>
-                                                                <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::OutgoingBalance"]</expression>
-                                                                <property name="dataType">string</property>
-                                                            </structure>
-                                                            <structure>
-                                                                <property name="name">SaldoDataSet::CurrentClaim</property>
-                                                                <text-property name="displayName">SaldoDataSet::CurrentClaim</text-property>
-                                                                <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::CurrentClaim"]</expression>
-                                                                <property name="dataType">string</property>
-                                                            </structure>
-                                                            <structure>
-                                                                <property name="name">SaldoDataSet::TransactionCategory</property>
-                                                                <text-property name="displayName">SaldoDataSet::TransactionCategory</text-property>
-                                                                <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::TransactionCategory"]</expression>
-                                                                <property name="dataType">string</property>
-                                                            </structure>
-                                                            <structure>
-                                                                <property name="name">SaldoDataSet::TotalAttachment</property>
-                                                                <text-property name="displayName">SaldoDataSet::TotalAttachment</text-property>
-                                                                <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::TotalAttachment"]</expression>
-                                                                <property name="dataType">string</property>
-                                                            </structure>
-                                                            <structure>
-                                                                <property name="name">SaldoDataSet::SumOfInGoingIBTrans</property>
-                                                                <text-property name="displayName">SaldoDataSet::SumOfInGoingIBTrans</text-property>
-                                                                <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::SumOfInGoingIBTrans"]</expression>
-                                                                <property name="dataType">string</property>
-                                                            </structure>
-                                                            <structure>
-                                                                <property name="name">SaldoDataSet::OrigDIAmountWithVat</property>
-                                                                <text-property name="displayName">SaldoDataSet::OrigDIAmountWithVat</text-property>
-                                                                <expression name="expression" type="javascript">dataSetRow["SaldoDataSet::OrigDIAmountWithVat"]</expression>
-                                                                <property name="dataType">string</property>
-                                                            </structure>
-                                                            <structure>
-                                                                <property name="name">Column Binding</property>
+                                                                <property name="name">OrigDIAmountWithVat</property>
                                                                 <text-property name="displayName">OrigDIAmountWithVat</text-property>
-                                                                <expression name="expression" type="javascript">if(null == dataSetRow["SaldoDataSet::TransactionCategory"] || dataSetRow["SaldoDataSet::TotalAttachment"] != vars["AttachmentIndex"]) {&#13;
-	'0.00';&#13;
-} else {&#13;
-formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#13;
-}</expression>
+                                                                <expression name="expression" type="javascript">dataSetRow["OrigDIAmountWithVat"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                            <structure>
+                                                                <property name="name">OrigDIAmountWithVat1</property>
+                                                                <text-property name="displayName">OrigDIAmountWithVat</text-property>
+                                                                <expression name="expression" type="javascript">formatMoney(dataSetRow["OrigDIAmountWithVat"], 2, '', '.', ',');</expression>
                                                                 <property name="dataType">string</property>
                                                                 <property name="allowExport">true</property>
                                                             </structure>
                                                         </list-property>
-                                                        <property name="resultSetColumn">Column Binding</property>
+                                                        <property name="resultSetColumn">OrigDIAmountWithVat1</property>
                                                     </data>
                                                 </cell>
                                             </row>
@@ -13074,7 +13069,7 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                                         <property name="fontSize">7pt</property>
                                                         <property name="fontStyle">italic</property>
                                                         <property name="textAlign">right</property>
-                                                        <property name="resultSetColumn">SaldoDataSet::SumOfOutGoingCurrentClaim</property>
+                                                        <property name="resultSetColumn">SumOfOutGoingCurrentClaim1</property>
                                                     </data>
                                                 </cell>
                                             </row>
@@ -13082,6 +13077,15 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                         <grid id="3952">
                                             <property name="fontSize">10pt</property>
                                             <property name="textAlign">left</property>
+                                            <property name="dataSet">SaldoDataSet</property>
+                                            <list-property name="boundDataColumns">
+                                                <structure>
+                                                    <property name="name">SumOfOutGoingCurrentClaim</property>
+                                                    <text-property name="displayName">SumOfOutGoingCurrentClaim</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["SumOfOutGoingCurrentClaim"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                            </list-property>
                                             <column id="3953">
                                                 <property name="textAlign">left</property>
                                                 <property name="whiteSpace">nowrap</property>
@@ -13107,7 +13111,7 @@ formatMoney(dataSetRow["SaldoDataSet::OrigDIAmountWithVat"], 2, '', '.', ',');&#
                                                         <list-property name="visibility">
                                                             <structure>
                                                                 <property name="format">all</property>
-                                                                <expression name="valueExpr" type="javascript">if(row["SaldoDataSet::SumOfOutGoingCurrentClaim"] == null || parseFloat(row["SaldoDataSet::SumOfOutGoingCurrentClaim"]) >= 0 ) {&#13;
+                                                                <expression name="valueExpr" type="javascript">if(row["SumOfOutGoingCurrentClaim"] == null || parseFloat(row["SumOfOutGoingCurrentClaim"]) >= 0 ) {&#13;
 false;&#13;
 }&#13;
 else&#13;
@@ -13132,7 +13136,7 @@ true;&#13;
                                                         <list-property name="visibility">
                                                             <structure>
                                                                 <property name="format">all</property>
-                                                                <expression name="valueExpr" type="javascript">if(row["SaldoDataSet::SumOfOutGoingCurrentClaim"] == null || parseFloat(row["SaldoDataSet::SumOfOutGoingCurrentClaim"]) >= 0 ) {&#13;
+                                                                <expression name="valueExpr" type="javascript">if(row["SumOfOutGoingCurrentClaim"] == null || parseFloat(row["SumOfOutGoingCurrentClaim"]) >= 0 ) {&#13;
 true;&#13;
 }&#13;
 else&#13;
