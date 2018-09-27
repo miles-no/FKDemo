@@ -431,7 +431,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                     }
                     stromAmount+=mapOfNameAndAmt.get(transactionName);
                     if(request.getEntity().getSystemBatchInput().getBrand().equals("TKAS")) {
-                        newTransaction.setTransactionCategory("Strøm fra Trondheim Kraft");
+                        newTransaction.setTransactionCategory("Strøm fra TrøndelagKraft");
                     }else {
                     newTransaction.setTransactionCategory("Strøm fra Fjordkraft");
                     }

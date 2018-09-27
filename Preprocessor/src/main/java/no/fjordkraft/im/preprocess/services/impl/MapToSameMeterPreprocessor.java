@@ -107,7 +107,10 @@ public class MapToSameMeterPreprocessor extends BasePreprocessor {
                attachmentFromMap.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getNetPrintet()
                + attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getNetPrintet());
         }
-        List<TransactionSummary> newTransactionSummaryToAdd = new ArrayList<>();
+        Map<Double,TransactionSummary> newTransactionSummaryToAdd = new HashMap<Double,TransactionSummary>();
+        for(TransactionSummary fromMapTranSummary :attachmentFromMap.getTransactionSummary())     {
+            newTransactionSummaryToAdd.put(fromMapTranSummary.getMvaValue(),fromMapTranSummary);
+        }
         for(TransactionSummary transactionSummaryFromMap : attachmentFromMap.getTransactionSummary()) {
             for(TransactionSummary transactionSummary : attachment.getTransactionSummary()) {
                 if(transactionSummaryFromMap.getMvaValue() == transactionSummary.getMvaValue()) {
@@ -116,13 +119,19 @@ public class MapToSameMeterPreprocessor extends BasePreprocessor {
                     transactionSummaryFromMap.setSumOfNettStrom(transactionSummaryFromMap.getSumOfNettStrom() + transactionSummary.getSumOfNettStrom()); // is amount on which to apply vatrate
                     //total vat for vat rate
                     transactionSummaryFromMap.setTotalVatAmount(transactionSummaryFromMap.getTotalVatAmount()+ transactionSummary.getTotalVatAmount());
+                    newTransactionSummaryToAdd.put(transactionSummaryFromMap.getMvaValue(),transactionSummaryFromMap);
                 } else {
-                    newTransactionSummaryToAdd.add(transactionSummary);
+                    if(!newTransactionSummaryToAdd.containsKey(transactionSummary.getMvaValue()))
+                    {
+                        newTransactionSummaryToAdd.put(transactionSummary.getMvaValue(),transactionSummary);
+                    }
                 }
             }
         }
 
-        for(TransactionSummary transactionSummary : newTransactionSummaryToAdd){
+        attachmentFromMap.setTransactionSummary(new ArrayList<TransactionSummary>());
+        for(TransactionSummary transactionSummary : newTransactionSummaryToAdd.values()){
+
             attachmentFromMap.getTransactionSummary().add(transactionSummary);
         }
     }
