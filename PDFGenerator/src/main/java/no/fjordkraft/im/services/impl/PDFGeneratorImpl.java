@@ -197,7 +197,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())   {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING.getStatus(), getCause(e).getMessage(), IMConstants.ERROR,statement.getLegalPartClass());
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus(), getCause(e).getMessage(), IMConstants.ERROR,statement.getLegalPartClass());
             }
             else
             {
@@ -208,6 +208,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         } catch (Exception e) {
             logger.error("Exception in PDF generation for statement" + statement.getId(), e);
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus(), getCause(e).getMessage(), IMConstants.ERROR,statement.getLegalPartClass());
         }
 
 
@@ -281,6 +282,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             //logger.debug("Time to generate PDF for statement id  " + statement.getId() + " "+(endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
             return baos.toByteArray();
         } catch (Exception e) {
+            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus(), getCause(e).getMessage(), IMConstants.ERROR,statement.getLegalPartClass());
             throw new PDFGeneratorException(e.getMessage());
         }
 
@@ -323,6 +325,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             }
         } catch (Exception e) {
             logger.error("exception in preview generation ",e);
+            auditLogService.saveAuditLog(null, StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus(), getCause(e).getMessage(), IMConstants.ERROR,null);
             throw new RuntimeException("Can not generate preview !");
         }
         return baos.toByteArray();
@@ -461,7 +464,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 }
 
             }
-            if(campaignImage==null)
+          /*  if(campaignImage==null)
             {
                 String path = basePathCampaign+brand+File.separator+brand.toLowerCase()+".jpg";
                 logger.debug(" reading campaign from FS for statement "+statement.getId() + " path is "+ path);
@@ -471,7 +474,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                     byte[] image = IOUtils.toByteArray(new FileInputStream(f));
                     campaignImage = Base64.encodeBase64String(image);
                 }
-            }
+            }*/
         }catch (Exception e) {
             logger.error("Error while getting default Campaign Image ",e);
             throw new PDFGeneratorException(e);
