@@ -451,9 +451,11 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                     mapOfTransaction.put(IMConstants.NETT,newTransaction);
                 }
                 if(mapOfNameAndVat.get(transactionName) == null) {
-                    newTransaction.setVatRate("");
+                    newTransaction.setVatRate("BLANK");
                 }else {
+                 if(newTransaction.getVatRate()==null || (newTransaction.getVatRate()!=null && !"BLANK".equals(newTransaction.getVatRate()))) {
                 newTransaction.setVatRate(String.valueOf(mapOfNameAndVat.get(transactionName)));
+                 }
                 }
             }
         }
