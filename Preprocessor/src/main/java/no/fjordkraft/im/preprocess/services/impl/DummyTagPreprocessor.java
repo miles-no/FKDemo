@@ -38,7 +38,7 @@ public class DummyTagPreprocessor extends BasePreprocessor {
             totalDummyTag = initialDummyTags + 4;
         }
 
-        logger.debug("in DummyTagPreprocessor ");
+       // logger.debug("in DummyTagPreprocessor ");
         Statement stmt = request.getStatement();
         int transactionsCount = 0;
 
@@ -52,10 +52,10 @@ public class DummyTagPreprocessor extends BasePreprocessor {
         List<Dummy> dummyList =  new ArrayList<>();
         Dummy d = new Dummy();
         d.setDummyId("");
-        logger.debug("in DummyTagPreprocessor transaction count "+ transactionsCount);
-        logger.debug("in DummyTagPreprocessor count "+ (totalDummyTag-transactionsCount));
+       // logger.debug("in DummyTagPreprocessor transaction count "+ transactionsCount);
+      //  logger.debug("in DummyTagPreprocessor count "+ (totalDummyTag-transactionsCount));
         for(int i = 0 ;i< (totalDummyTag-transactionsCount);i++ ) {
-            logger.debug("Adding dummy ");
+            //logger.debug("Adding dummy ");
             dummyList.add(d);
         }
         Dummies dummies = new Dummies();
