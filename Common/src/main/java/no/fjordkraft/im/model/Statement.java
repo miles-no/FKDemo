@@ -86,6 +86,18 @@ public class Statement {
     @Column(name="LEGAL_PART_CLASS")
     private String legalPartClass;
 
+    @Column(name="NO_OF_METER")
+    private int noOfMeter;
+
+    @Column(name="ACCOUNT_INVOICE_LAYOUT")
+    private String accountInvoiceLayout;
+
+    @Column(name="E2B_ATTACHMENT")
+    private boolean e2bAttachment = false;
+
+    @Column(name="EHF_ATTACHMENT")
+    private boolean ehfAttachment = false;
+
     @Transient
     private boolean isOnline = false;
 
@@ -312,5 +324,37 @@ public class Statement {
 
     public void setLegalPartClass(String legalPartClass) {
         this.legalPartClass = legalPartClass;
+    }
+
+    public String getAccountInvoiceLayout() {
+        return accountInvoiceLayout;
+    }
+
+    public void setAccountInvoiceLayout(String accountInvoiceLayout) {
+        this.accountInvoiceLayout = accountInvoiceLayout;
+    }
+
+    public int getNoOfMeter() {
+        return noOfMeter;
+    }
+
+    public void setNoOfMeter(int noOfMeter) {
+        this.noOfMeter = noOfMeter;
+    }
+
+    public boolean isE2bAttachment() {
+        return e2bAttachment;
+    }
+
+    public void setE2bAttachment(boolean e2bAttachment) {
+        this.e2bAttachment = e2bAttachment;
+    }
+
+    public boolean isEhfAttachment() {
+        return ehfAttachment;
+    }
+
+    public void setEhfAttachment(boolean ehfAttachment) {
+        this.ehfAttachment = ehfAttachment;
     }
 }

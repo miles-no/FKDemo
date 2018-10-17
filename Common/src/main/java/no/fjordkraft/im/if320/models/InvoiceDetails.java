@@ -71,4 +71,7 @@ public class InvoiceDetails {
         return this.baseItemDetails;
     }
 
+    public void setBaseItemDetails(List<BaseItemDetails> baseItemDetails) {
+        this.baseItemDetails = baseItemDetails;
+    }
 }

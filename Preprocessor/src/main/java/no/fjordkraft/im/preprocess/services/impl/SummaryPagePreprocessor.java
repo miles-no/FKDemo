@@ -5,6 +5,7 @@ import no.fjordkraft.im.if320.models.*;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.services.AuditLogService;
+import no.fjordkraft.im.services.StatementService;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
@@ -23,12 +24,15 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 @Service
-@PreprocessorInfo(order=21)
+@PreprocessorInfo(order=23)
 public class SummaryPagePreprocessor extends BasePreprocessor  {
     private static final Logger logger = LoggerFactory.getLogger(SummaryPagePreprocessor.class);
 
     @Autowired
     AuditLogService auditLogService;
+
+    @Autowired
+    StatementService statementService;
 
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request)
@@ -131,6 +135,8 @@ public class SummaryPagePreprocessor extends BasePreprocessor  {
                     logger.debug("No Need to show Summary page");
                     stmt.setShowMeterSummary(false);
                 }
+                request.getEntity().setNoOfMeter(attachmentList.size());
+               // statementService.updateStatement(request.getEntity());
             }
         }catch (Exception e)
         {

@@ -16,7 +16,7 @@ import java.util.List;
  * Created by bhavi on 6/12/2018.
  */
 @Service
-@PreprocessorInfo(order = 21)
+@PreprocessorInfo(order = 22)
 public class DummyTagPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(DummyTagPreprocessor.class);

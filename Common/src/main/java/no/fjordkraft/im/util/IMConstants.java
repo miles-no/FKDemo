@@ -13,7 +13,7 @@ public interface IMConstants {
     String NUM_OF_THREAD_FILESPLITTER ="num.thread.file.splitter";
     String NUM_OF_THREAD_PREPROCESSOR ="num.thread.preprocess";
     String NUM_OF_THREAD_PDFGENERATOR ="num.thread.pdf.generator";
-    String MAX_QUEUE_CAPACITY="500";
+    String MAX_QUEUE_CAPACITY="50";
     String BIRT_RPTDESIGN_PATH = "birt.layout.file.path";
     String SAMPLE_STATEMENT_FILE_PATH = "sample.statement.file.path";
     String SAMPLE_CAMPAIGN_IMAGE_PATH = "sample.campaign.image.path";
@@ -101,4 +101,6 @@ public interface IMConstants {
     static final String DELETE_STATEMENT_PAYLOAD_BEFORE_DAYS = "delete.statement.payload.before.days";
     static final String TRANSFERFILE_UPDATE_JOB_ACTIVE = "transferfile.update.job.active";
     static final String SUMMARY_PAGE_WITH_GREATER_OR_EQUAL_METER= "summary.page.with.greater.or.equal.meter";
+    static final String INVOICE_LAYOUT_DEFAULT = "DEFAULT";
+    static final String INVOICE_LAYOUT_WITHOUT_DETAILS = "WITHOUT_DETAILS";
 }

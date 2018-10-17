@@ -10,6 +10,7 @@ package no.fjordkraft.im.if320.models;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -77,7 +78,7 @@ public class Invoice {
     @XmlElement(name = "InvoiceHeader", required = true)
     protected InvoiceHeader invoiceHeader;
     @XmlElement(name = "InvoiceDetails", required = true)
-    protected InvoiceDetails invoiceDetails;
+    protected List<InvoiceDetails> invoiceDetails;
     @XmlElement(name = "InvoiceSummary", required = true)
     protected InvoiceSummary invoiceSummary;
     @XmlAttribute(name = "MessageOwner")
@@ -311,7 +312,7 @@ public class Invoice {
      *     {@link no.fjordkraft.im.if320.models.InvoiceDetails }
      *
      */
-    public InvoiceDetails getInvoiceDetails() {
+    public List<InvoiceDetails> getInvoiceDetails() {
         return invoiceDetails;
     }
 
@@ -323,7 +324,7 @@ public class Invoice {
      *     {@link no.fjordkraft.im.if320.models.InvoiceDetails }
      *
      */
-    public void setInvoiceDetails(InvoiceDetails value) {
+    public void setInvoiceDetails(List<InvoiceDetails> value) {
         this.invoiceDetails = value;
     }
 
@@ -427,4 +428,26 @@ public class Invoice {
   {
       return this.invoiceOrder.get(0);
   }
+
+    public InvoiceDetails getFirstInvoiceDetails()
+    {
+       return invoiceDetails.get(0);
+    }
+
+    public InvoiceDetails getConsolidatedInvoiceDetails() {
+        InvoiceDetails consolidatedInvoiceDetails = new InvoiceDetails();
+        List<BaseItemDetails> baseItemDetailsList = new ArrayList<BaseItemDetails>();
+        for(InvoiceDetails invoiceDetail: this.invoiceDetails) {
+            for(BaseItemDetails baseItemDetails :invoiceDetail.getBaseItemDetails()) {
+               if(baseItemDetails.getLevel()==2) {
+                   baseItemDetailsList.add(baseItemDetails);
+               }
+                if(baseItemDetails.getLevel()==0) {
+                    baseItemDetailsList.add(baseItemDetails);
+                }
+            }
+        }
+        consolidatedInvoiceDetails.setBaseItemDetails(baseItemDetailsList);
+        return consolidatedInvoiceDetails;
+    }
 }

@@ -38,6 +38,13 @@ public class PDFAttachmentExtractor extends BasePreprocessor {
                 invoicePdf.setStatement(request.getEntity());
                 invoicePdf = invoiceService.saveInvoicePdf(invoicePdf);
                 count++;
+                if(!request.getEntity().isE2bAttachment() && "PDFE2B".equals(attachment.getFAKTURA().getVEDLEGGFORMAT()))  {
+                    request.getEntity().setE2bAttachment(true);
+                }
+                if(!request.getEntity().isEhfAttachment() && "PDFEHF".equals(attachment.getFAKTURA().getVEDLEGGFORMAT()))  {
+                    request.getEntity().setEhfAttachment(true);
+                }
+
                 logger.debug("Save pdf of type "+invoicePdf.getType() + " with id "+invoicePdf.getId() + " statement id "+request.getEntity().getId() );
             }
         }

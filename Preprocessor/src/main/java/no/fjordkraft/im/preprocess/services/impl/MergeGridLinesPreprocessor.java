@@ -28,7 +28,7 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 @Service
-@PreprocessorInfo(order = 14)
+@PreprocessorInfo(order = 15)
 public class MergeGridLinesPreprocessor extends BasePreprocessor {
     private static final Logger logger = LoggerFactory.getLogger(MergeGridLinesPreprocessor.class);
 

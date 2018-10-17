@@ -16,7 +16,7 @@ import java.util.List;
  * Created by bhavi on 6/13/2018.
  */
 @Service
-@PreprocessorInfo(order=20)
+@PreprocessorInfo(order=21)
 public class SummaryLabelPreprocessor  extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(SummaryLabelPreprocessor.class);

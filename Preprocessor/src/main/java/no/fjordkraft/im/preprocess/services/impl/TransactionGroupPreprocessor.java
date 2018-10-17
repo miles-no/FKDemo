@@ -179,7 +179,7 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                                         }
                                                     }else if(IMConstants.PDFE2B.equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
 
-                                                        List<BaseItemDetails> baseItemDetailsList = attachment.getFAKTURA().getVedlegge2BObj().getInvoice().getInvoiceDetails().getBaseItemDetails();
+                                                        List<BaseItemDetails> baseItemDetailsList = attachment.getFAKTURA().getVedlegge2BObj().getInvoice().getConsolidatedInvoiceDetails().getBaseItemDetails();
                                                         XMLGregorianCalendar startDate = null;
                                                         XMLGregorianCalendar endDate = null;
                                                         if(null != baseItemDetailsList) {

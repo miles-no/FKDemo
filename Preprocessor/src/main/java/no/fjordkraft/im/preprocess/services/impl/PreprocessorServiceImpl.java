@@ -162,6 +162,9 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             }
             preprocessorEngine.execute(request);
             statement.setLayoutID(request.getEntity().getLayoutID());
+            statement.setNoOfMeter(request.getEntity().getNoOfMeter());
+            statement.setEhfAttachment(request.getEntity().isEhfAttachment());
+            statement.setE2bAttachment(request.getEntity().isE2bAttachment());
 
             if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
             {

@@ -9,6 +9,7 @@
 package no.fjordkraft.im.if320.models;
 
 import javax.xml.bind.annotation.*;
+import java.util.List;
 
 
 /**
@@ -32,13 +33,17 @@ import javax.xml.bind.annotation.*;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "invoiceTotals"
+    "invoiceTotals",
+    "vatTotalsInfo"
 })
 @XmlRootElement(name = "InvoiceSummary")
 public class InvoiceSummary {
 
     @XmlElement(name = "InvoiceTotals", required = true)
     protected InvoiceTotals invoiceTotals;
+
+    @XmlElement(name="VatTotalsInfo")
+    protected List<VatTotalsInfo> vatTotalsInfo;
 
     /**
      * Gets the value of the invoiceTotals property.
@@ -64,4 +69,11 @@ public class InvoiceSummary {
         this.invoiceTotals = value;
     }
 
+    public List<VatTotalsInfo> getVatTotalsInfo() {
+        return vatTotalsInfo;
+    }
+
+    public void setVatTotalsInfo(List<VatTotalsInfo> vatTotalsInfo) {
+        this.vatTotalsInfo = vatTotalsInfo;
+    }
 }

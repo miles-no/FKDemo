@@ -42,7 +42,7 @@ import java.util.*;
  * Created by miles on 9/8/2017.
  */
 @Service
-@PreprocessorInfo(order = 12)
+@PreprocessorInfo(order = 13)
 public class AttachmentPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(AttachmentPreprocessor.class);
@@ -117,7 +117,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
                         }
                     } else if (IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
-                        gridStartDate = gridAttachment.getFAKTURA().getVedlegge2BObj().getInvoice().getInvoiceDetails().getBaseItemDetails().get(0).getStartDate();
+                        gridStartDate = gridAttachment.getFAKTURA().getVedlegge2BObj().getInvoice().getConsolidatedInvoiceDetails().getBaseItemDetails().get(0).getStartDate();
                     }
 
                // logger.debug(" MeterId and month " + gridAttachment.getFAKTURA().getMAALEPUNKT() + "-" + gridStartDate.getMonth() + " invoice number " + invoicenumber);
@@ -768,57 +768,110 @@ public class AttachmentPreprocessor extends BasePreprocessor {
         nettleie.setMeterId(invoice.getInvoiceHeader().getEnergyHeader().getMeterId());
         nettleie.setAnnualConsumption(0);
         nettleie.setGridName(invoice.getInvoiceHeader().getEnergyHeader().getLdc1());
-        List<BaseItemDetails> baseItemDetailsList = invoice.getInvoiceDetails().getBaseItemDetails();
+        List<BaseItemDetails> baseItemDetailsList = new ArrayList<BaseItemDetails>();
+        if(invoice.getInvoiceDetails().size()>1) {
+            baseItemDetailsList=  invoice.getConsolidatedInvoiceDetails().getBaseItemDetails();
+        }
+        else {
+          baseItemDetailsList = invoice.getFirstInvoiceDetails().getBaseItemDetails();
+        }
             Map<Double,Double> mapOfVatSumOfGross = new HashMap<Double,Double>();
             double sumOfVatAmount = 0.0;
+            boolean isLevel2BaseItemDetails = false;
         XMLGregorianCalendar startDate = null;
+        double sumOfNetAmount = 0.0;
+        double sumOfGrossAmount = 0.0;
         for (BaseItemDetails baseItemDetails : baseItemDetailsList) {
             if(!"Beløpet overføres din Kraftleverandør".equals(baseItemDetails.getDescription().trim()))  {
-            List<Ref> refList = baseItemDetails.getRef();
-            baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
-            baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
-            if (null != refList) {
-                for (Ref ref : refList) {
-                    if (IMConstants.CODE_UNIT_PRICE_GROSS.equals(ref.getCode())) {
-                        baseItemDetails.setUnitPriceGross(Double.valueOf(ref.getText()));
+                if(baseItemDetails.getLevel()==2) {
+                    isLevel2BaseItemDetails = true;
+                }
+                List<Ref> refList = baseItemDetails.getRef();
+                baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
+                baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
+                if (null != refList) {
+                    for (Ref ref : refList) {
+                        if (IMConstants.CODE_UNIT_PRICE_GROSS.equals(ref.getCode())) {
+                            baseItemDetails.setUnitPriceGross(Double.valueOf(ref.getText()));
+                        }
+                    }
+                } else {
+                    if(baseItemDetails.getVatInfo()!=null ) {
+                        //IM-154 : In case of Ref tag is missing the UnitGrossPrice need to be calculated as <unitPrice>  + <unitprice>*<VatPercent>/100
+                        baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice() + (baseItemDetails.getUnitPrice()*baseItemDetails.getVatInfo().getVatPercent()/100));
                     }
                 }
-            } else {
-                if(baseItemDetails.getVatInfo()!=null ) {
-                //IM-154 : In case of Ref tag is missing the UnitGrossPrice need to be calculated as <unitPrice>  + <unitprice>*<VatPercent>/100
-                baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice() + (baseItemDetails.getUnitPrice()*baseItemDetails.getVatInfo().getVatPercent()/100));
+                if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
+                    baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(),baseItemDetails.getEndDate()));
                 }
-            }
-            if(null != baseItemDetails.getStartDate() && null != baseItemDetails.getEndDate()) {
-                baseItemDetails.setNoOfDays(getDays(baseItemDetails.getStartDate(),baseItemDetails.getEndDate()));
-            }
 
-            baseItemDetails.setVatRate(Double.valueOf(Math.round(baseItemDetails.getVatInfo().getVatAmount()/baseItemDetails.getLineItemAmount()*100)));
-            baseItemDetails.setLineExtensionAmount( Double.valueOf(baseItemDetails.getLineItemAmount()));
-            baseItemDetails.getVatInfo().setVatAmount(invoice.getInvoiceSummary().getInvoiceTotals().getVatTotalsAmount());
-            sumOfVatAmount+=baseItemDetails.getVatInfo().getVatAmount();
-            if(mapOfVatSumOfGross.containsKey(baseItemDetails.getVatRate()))
-            {
-                double lineExtensionAmt = mapOfVatSumOfGross.get(baseItemDetails.getVatRate());
-                lineExtensionAmt += baseItemDetails.getLineExtensionAmount();
-                mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),lineExtensionAmt);
-            } else {
-
-                mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),baseItemDetails.getLineExtensionAmount());
-            }
-            if (null == startDate && baseItemDetails.getStartDate()!=null ) {
-                startDate = baseItemDetails.getStartDate();
-            } else {
-                XMLGregorianCalendar startDate2 = baseItemDetails.getStartDate();
-                if (null != startDate2 && startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
-                    startDate = startDate2;
+                baseItemDetails.setVatRate(Double.valueOf(Math.round(baseItemDetails.getVatInfo().getVatAmount()/baseItemDetails.getLineItemAmount()*100)));
+                if(baseItemDetails.getLineItemAmount()==0.0 && baseItemDetails.getPriceDenomination().isEmpty() )
+                {
+                    baseItemDetails.setLineExtensionAmount(baseItemDetails.getLineItemGrossAmount());
+                }else
+                {
+                    baseItemDetails.setLineExtensionAmount( Double.valueOf(baseItemDetails.getLineItemAmount()));
                 }
+                baseItemDetails.getVatInfo().setVatAmount(invoice.getInvoiceSummary().getInvoiceTotals().getVatTotalsAmount());
+                sumOfVatAmount+=baseItemDetails.getVatInfo().getVatAmount();
+                if(mapOfVatSumOfGross.containsKey(baseItemDetails.getVatRate()))
+                {
+                    double lineExtensionAmt = mapOfVatSumOfGross.get(baseItemDetails.getVatRate());
+                    lineExtensionAmt += baseItemDetails.getLineExtensionAmount();
+                    sumOfNetAmount += baseItemDetails.getLineExtensionAmount();
+                    mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),lineExtensionAmt);
+                } else {
+                    sumOfNetAmount += baseItemDetails.getLineExtensionAmount();
+                    mapOfVatSumOfGross.put(baseItemDetails.getVatRate(),baseItemDetails.getLineExtensionAmount());
+                }
+                if (null == startDate && baseItemDetails.getStartDate()!=null ) {
+                    startDate = baseItemDetails.getStartDate();
+                } else {
+                    XMLGregorianCalendar startDate2 = baseItemDetails.getStartDate();
+                    if (null != startDate2 && startDate.toGregorianCalendar().compareTo(startDate2.toGregorianCalendar()) > 0) {
+                        startDate = startDate2;
+                    }
+                }
+               sumOfGrossAmount+= baseItemDetails.getLineItemGrossAmount();
             }
+        }
 
+        if(isLevel2BaseItemDetails) {
+            DecimalFormat df=new DecimalFormat("0.00");
+           double totalNetAmount =  invoice.getInvoiceSummary().getInvoiceTotals().getNetAmount();
+           double totalGrossAmount = invoice.getInvoiceSummary().getInvoiceTotals().getGrossAmount();
+           if(Double.valueOf(df.format(sumOfGrossAmount))!= totalGrossAmount || Double.valueOf(df.format(sumOfNetAmount)) != totalNetAmount) {
+               if(invoice.getInvoiceSummary().getVatTotalsInfo()!=null ) {
+               //In this case only create nettelie with vat and amount as per VatTotalInfo.
+               mapOfVatSumOfGross = new HashMap<>();
+               List<BaseItemDetails> baseItemDetails = new ArrayList<BaseItemDetails>();
+               for(VatTotalsInfo vatTotalsInfo:invoice.getInvoiceSummary().getVatTotalsInfo()) {
+                   BaseItemDetails baseItemDetail = new BaseItemDetails();
+                   baseItemDetail.setDescription("Nettleie");
+                   baseItemDetail.setVatRate(vatTotalsInfo.getVatPercent());
+                   baseItemDetail.setLineExtensionAmount(vatTotalsInfo.getVatAmount());
+                   mapOfVatSumOfGross.put(baseItemDetail.getVatRate(),baseItemDetail.getLineExtensionAmount());
+                   baseItemDetails.add(baseItemDetail);
+               }
+
+               nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
+               nettleie.setBaseItemDetails(baseItemDetails);
+               } else {
+                   nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
+                   nettleie.setBaseItemDetails(invoice.getConsolidatedInvoiceDetails().getBaseItemDetails());
+               }
+           }
+            else {
+               nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
+               nettleie.setBaseItemDetails(invoice.getConsolidatedInvoiceDetails().getBaseItemDetails());
+           }
         }
-        }
+        else {
+
         nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
-        nettleie.setBaseItemDetails(invoice.getInvoiceDetails().getBaseItemDetails());
+        nettleie.setBaseItemDetails(invoice.getConsolidatedInvoiceDetails().getBaseItemDetails());
+        }
         invoice.getInvoiceSummary().getInvoiceTotals().setOrigGrossAmount(invoice.getInvoiceSummary().getInvoiceTotals().getGrossAmount());
         nettleie.setInvoiceSummary(invoice.getInvoiceSummary());
         if(invoice.getInvoiceSummary().getInvoiceTotals().getLineItemTotalsAmount()!=0.0)
