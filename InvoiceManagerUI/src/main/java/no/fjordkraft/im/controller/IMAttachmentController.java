@@ -112,11 +112,11 @@ public class IMAttachmentController {
                     newAttachment.setAttachmentType(fileType);
                     newAttachment.setFileContent(template);
                     newAttachment.setFileExtension(fileExtension);
-                    logger.debug("Writing file.........");
+                   /* logger.debug("Writing file.........");
                     File testPDFFile = new File("E:/test/testPDF.pdf");
                     FileOutputStream fos = new FileOutputStream(testPDFFile);
                     fos.write(template.getBytes());
-                    fos.close();
+                    fos.close();*/
                    RestAttachment restAttachment =  attachmentService.saveAttachment(newAttachment,attachmentConfig);
                     if(restAttachment==null)
                     {
