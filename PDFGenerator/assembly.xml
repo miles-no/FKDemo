@@ -87,6 +87,24 @@
             </includes>
         </fileSet>
         <fileSet>
+            <directory>src/main/resources/templateResources/GEAS</directory>
+            <outputDirectory>/Layout</outputDirectory>
+            <includes>
+                <include>*.png</include>
+                <include>*.jpeg</include>
+                <include>*.jpg</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/resources/templateResources/DKAS</directory>
+            <outputDirectory>/Layout</outputDirectory>
+            <includes>
+                <include>*.png</include>
+                <include>*.jpeg</include>
+                <include>*.jpg</include>
+            </includes>
+        </fileSet>
+        <fileSet>
             <directory>src/main/resources/sampleFile/</directory>
             <outputDirectory>/sampleFile</outputDirectory>
             <includes>
