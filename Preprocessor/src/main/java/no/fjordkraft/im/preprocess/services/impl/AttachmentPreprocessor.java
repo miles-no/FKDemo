@@ -753,7 +753,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
             String seperator = "";
             if(note.contains(",")) {
                 seperator = ",";
-            } else if(note.contains("."))
+            }
+            if(note.contains("."))
             {
                 seperator = ".";
             }
