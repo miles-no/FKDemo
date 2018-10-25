@@ -240,6 +240,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleieList(null);
                     if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101()!=null) {
                         attachment.setDisplayStromData(true);
+                        attachment.setOnlyGrid(true);
                     }
                     attachmentList.add(attachment);
                     for (int i = 1; i < nettleieList.size(); i++) {
@@ -276,9 +277,11 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 double sumStrom = 0.0;
                 if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder()!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113()!=null)
                 {
-                    if(request.getStatement().getLegalPartClass().equals("Individual")) {
-                    sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
-                    totalStrom+= sumStrom;
+                    if(request.getStatement().getLegalPartClass().equals("Individual") ) {
+                        if(attachment.getDisplayStromData())  {
+                            sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getInvoiceOrderAmounts113().getGrossTotal();
+                            totalStrom+= sumStrom;
+                        }
                     }
                     else {
                         //sumStrom = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getNetPrintet();
@@ -289,8 +292,10 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 double sumNett = 0.0;
                 if( attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null) {
                     if(request.getStatement().getLegalPartClass().equals("Individual")) {
-                    sumNett = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getInvoiceSummary().getInvoiceTotals().getOrigGrossAmount();
-                    totalNett += sumNett;
+                        if(attachment.isOnlyGrid()) {
+                            sumNett = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getInvoiceSummary().getInvoiceTotals().getOrigGrossAmount();
+                            totalNett += sumNett;
+                        }
                     }
                     else {
                         sumNett = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getSumOfNettAmount();
@@ -411,6 +416,11 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                             nettleie.setMeterId(meterId);
                     } else
                     {
+                        //IM-177 : if invoiceLine-> cbc:Note is not present then meterID should be picked up from invoice.Notes.value
+                        if(creditNote.getNotes()!=null && !creditNote.getNotes().isEmpty() && creditNote.getNotes().get(0).getValue()!=null) {
+                            String meterId =  getmeterIdFromValue(creditNote.getNotes().get(0).getValue());
+                            nettleie.setMeterId(meterId);
+                        }
                        logger.debug("meterId is missing for " + pdfAttachment.getFAKTURA().getFAKTURANR());
                     }
                 }
@@ -590,6 +600,11 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                             nettleie.setMeterId(meterId);
                         } else
                         {
+                            //IM-177 : if invoiceLine-> cbc:Note is not present then meterID should be picked up from invoice.Notes.value
+                            if(invoice.getNotes()!=null && !invoice.getNotes().isEmpty() && invoice.getNotes().get(0).getValue()!=null)  {
+                                String  meterId = getmeterIdFromValue(invoice.getNotes().get(0).getValue());
+                                nettleie.setMeterId(meterId);
+                            }
                             logger.debug("meterId is missing for " + pdfAttachment.getFAKTURA().getFAKTURANR());
                         }
                     }
