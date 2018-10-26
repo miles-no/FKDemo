@@ -113,7 +113,9 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                     sumOfNettTrans = 0.0;
                                 }
                                 sumOfNettTrans +=tran.getAmount()*IMConstants.NEGATIVE;
+                                if(!"ADJUST".equals(tran.getDistributions().getDistribution().get(0).getName())) {
                                 sumOfNetts+=tran.getAmount()*IMConstants.NEGATIVE;
+                                }
                                 mapOfNameAndVat.put(nettName,vatAmount);
                                 mapOfNameAndAmt.put(nettName,sumOfNettTrans);
                             }
@@ -475,10 +477,22 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                             vatVsListOfTransactions.put(vatRate,list);
                             logger.debug("Adding Transaction"+ transaction.getFreeText() +" into vat Vs ListOfTransactions Map with Vat " + vatRate);
                         }
+                        else if(transaction.getTransactionCategory().toUpperCase().contains("NE;")) {
+                            logger.debug("Transaction is of type " + transaction.getDistributions().getDistribution().get(0).getName());
+                            List<Transaction> list = vatVsListOfTransactions.get(0.0);
+                            if(list ==null || list.isEmpty())
+                            {
+                                list = new ArrayList<Transaction>();
+                            }
+                            list.add(transaction);
+                            vatVsListOfTransactions.put(0.0,list);
+                        }
+                        else {
                         long vatRate = Math.round((transaction.getVatAmount()/transaction.getAmount())*100);
                         transaction.setVatRate(String.valueOf(vatRate));
                         listOfOtherTrans.add(transaction);
                         logger.debug("Adding Transaction"+ transaction.getFreeText() +" as other transaction ");
+                        }
                     }
                 }
                 else

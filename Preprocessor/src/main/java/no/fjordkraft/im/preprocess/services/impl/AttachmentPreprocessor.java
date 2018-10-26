@@ -822,7 +822,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 }
 
                 baseItemDetails.setVatRate(Double.valueOf(Math.round(baseItemDetails.getVatInfo().getVatAmount()/baseItemDetails.getLineItemAmount()*100)));
-                if(baseItemDetails.getLineItemAmount()==0.0 && baseItemDetails.getPriceDenomination().isEmpty() )
+                if(baseItemDetails.getLineItemAmount()==0.0 && (baseItemDetails.getPriceDenomination() ==null || (baseItemDetails.getPriceDenomination()!=null && baseItemDetails.getPriceDenomination().isEmpty()) ))
                 {
                     baseItemDetails.setLineExtensionAmount(baseItemDetails.getLineItemGrossAmount());
                 }else
