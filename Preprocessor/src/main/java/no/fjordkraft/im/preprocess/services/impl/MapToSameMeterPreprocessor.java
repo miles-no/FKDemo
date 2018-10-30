@@ -39,7 +39,7 @@ public class MapToSameMeterPreprocessor extends BasePreprocessor {
                         //copyStromInvoiceToAttachmentMap(attachmentFromMap, attachment);
                         addTransactionAmounts(attachmentFromMap, attachment);
                         combineNetteleie(attachmentFromMap, attachment);
-                        if (!attachment.isOnlyGrid()) {
+                        if (attachment.getDisplayStromData()) {
                             InvoiceOrder invoiceOrder = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder();
                             invoiceOrder.setTransactionName(attachment.getTransactionName());
                             invoiceOrder.setInvoiceNo(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getInvoiceNo());
@@ -60,7 +60,7 @@ public class MapToSameMeterPreprocessor extends BasePreprocessor {
                             null != attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder()) {
                         attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().clear();
                     }*/
-                        if (!attachment.isOnlyGrid()) {
+                        if (attachment.getDisplayStromData()) {
                             InvoiceOrder invoiceOrder = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder();
                             invoiceOrder.setTransactionName(attachment.getTransactionName());
                             invoiceOrder.setInvoiceNo(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101().getInvoiceNo());
