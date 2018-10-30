@@ -36,7 +36,7 @@ public class SummaryLabelPreprocessor  extends BasePreprocessor {
             List<Attachment> attachmentList = stmt.getAttachments().getAttachment();
 
             for(Attachment attachment: attachmentList) {
-                if(attachment.isOnlyGrid() == true ) {
+                if(attachment.isOnlyGrid() == true && !attachment.getDisplayStromData()) {
                     attachment.setLabelStromNetSummary("Sum nettleie");
                     continue;
                 }
