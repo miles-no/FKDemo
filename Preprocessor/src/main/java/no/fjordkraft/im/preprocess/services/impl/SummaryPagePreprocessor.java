@@ -97,7 +97,16 @@ public class SummaryPagePreprocessor extends BasePreprocessor  {
                             List<Nettleie> listOfNett =  attachment.getFAKTURA().getNettleieList();
 
                             MeterDetails nettMeterDetails = getMeterDetailOfNettleie(listOfNett,mapOfMvaVsBelop);
-                            nettMeterDetails.setMeterName("Nettleie fra "+attachment.getFAKTURA().getNettleieList().get(0).getGrid().getName());
+                            if(attachment.getFAKTURA().getNettleieList().get(0).getGrid().getName()==null ||
+                                    (attachment.getFAKTURA().getNettleieList().get(0).getGrid().getName()!=null &&
+                                     attachment.getFAKTURA().getNettleieList().get(0).getGrid().getName().isEmpty()))
+                            {
+                                nettMeterDetails.setMeterName("Nettleie fra netteier");
+                            } else
+                            {
+                                //If grid name is blank than in that case it should be "nettleie fra netteier".
+                                nettMeterDetails.setMeterName("Nettleie fra "+attachment.getFAKTURA().getNettleieList().get(0).getGrid().getName());
+                            }
                             nettMeterDetails.setStartDate(attachment.getFAKTURA().getNettleieList().get(0).getStartDate());
                             nettMeterDetails.setEndDate(attachment.getFAKTURA().getNettleieList().get(0).getEndDate());
                             sumOfNett+=nettMeterDetails.getBeløp();
