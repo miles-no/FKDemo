@@ -240,7 +240,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleieList(null);
                     if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getMainInvoiceInfo101()!=null) {
                         attachment.setDisplayStromData(true);
-                        attachment.setOnlyGrid(true);
+                        //attachment.setOnlyGrid(true);
                     }
                     attachmentList.add(attachment);
                     for (int i = 1; i < nettleieList.size(); i++) {
@@ -292,7 +292,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 double sumNett = 0.0;
                 if( attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie()!=null) {
                     if(request.getStatement().getLegalPartClass().equals("Individual")) {
-                        if(attachment.isOnlyGrid()) {
+                        if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getBaseItemDetails()!=null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getBaseItemDetails().size()>0) {
                             sumNett = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getInvoiceSummary().getInvoiceTotals().getOrigGrossAmount();
                             totalNett += sumNett;
                         }
