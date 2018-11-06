@@ -103,4 +103,6 @@ public interface IMConstants {
     static final String SUMMARY_PAGE_WITH_GREATER_OR_EQUAL_METER= "summary.page.with.greater.or.equal.meter";
     static final String INVOICE_LAYOUT_DEFAULT = "DEFAULT";
     static final String INVOICE_LAYOUT_WITHOUT_DETAILS = "WITHOUT_DETAILS";
+    static final String INVOICE_ATTACHMENT_TYPE_FOR_ACCOUNT = "ACCOUNT";
+    static final String INVOICE_ATTACHMENT_TYPE_FOR_CUSTOMER = "CUSTOMER";
 }

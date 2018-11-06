@@ -3,6 +3,7 @@ package no.fjordkraft.im.services.impl;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import no.fjordkraft.im.exceptions.PDFGeneratorException;
+import no.fjordkraft.im.model.AccountAttachmentMapping;
 import no.fjordkraft.im.model.Attachment;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.repository.StatementRepository;
@@ -83,6 +84,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
     @Autowired
     AttachmentConfigService attachmentConfigService;
+
+    @Autowired
+    AccountAttachmentService accountAttachmentService;
 
     private String outputDirectoryPath;
     private String pdfGeneratedFolderName;
@@ -239,7 +243,10 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             String campaignImage = null;
             logger.debug("readCampaignFilesystem " + readCampaignFilesystem);
             if (readCampaignFilesystem) {
+                campaignImage = getConsumerSpecificCampaignImage(statement.getAccountNumber(),statement.getCustomerId());
+                if(campaignImage ==null) {
                 campaignImage = getDefaultCampaignImage(statement);
+                }
             } else {
                 campaignImage = segmentFileService.getImageContent(accountNo, brand);
             }
@@ -287,6 +294,23 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         }
 
 
+    }
+
+    private String getConsumerSpecificCampaignImage(String accountNumber, String customerId) {
+        if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB) && readCampaignFilesystem) {
+           AccountAttachmentMapping foundAttachmentMapping = null;
+            foundAttachmentMapping = accountAttachmentService.getAttachmentForAccountNo(accountNumber, "IMAGE", true);
+            if(foundAttachmentMapping==null) {
+                foundAttachmentMapping = accountAttachmentService.getAttachmentForCustomerID(customerId,"IMAGE",true);
+            }
+            if(foundAttachmentMapping==null) {
+                return null;
+            }
+            else {
+               return foundAttachmentMapping.getAccountAttachment().getFileContent();
+            }
+        }
+        return null;  //To change body of created methods use File | Settings | File Templates.
     }
 
     @Override

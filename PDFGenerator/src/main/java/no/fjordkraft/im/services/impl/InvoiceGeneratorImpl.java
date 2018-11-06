@@ -3,10 +3,7 @@ package no.fjordkraft.im.services.impl;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import javafx.scene.transform.Rotate;
-import no.fjordkraft.im.model.Attachment;
-import no.fjordkraft.im.model.InvoicePdf;
-import no.fjordkraft.im.model.SegmentFile;
-import no.fjordkraft.im.model.Statement;
+import no.fjordkraft.im.model.*;
 import no.fjordkraft.im.repository.StatementRepository;
 import no.fjordkraft.im.services.*;
 import no.fjordkraft.im.statusEnum.AttachmentTypeEnum;
@@ -57,6 +54,10 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
 
     @Autowired
     AttachmentConfigService attachmentConfigService;
+
+
+    @Autowired
+    AccountAttachmentService accountAttachmentService;
 
     private String basePathCampaign;
 
@@ -124,14 +125,18 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             logger.debug("readAdvtPdfFileSystem " + readAdvtPdfFileSystem);
             if(readAdvtPdfFileSystem ) {
                 if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))  {
-                    pdfBytes = getDefaultSegmentFile(brand,attachmentConfigId);
-                }
-                if(pdfBytes==null) {
-                    if(statement.getLegalPartClass()==null ||statement.getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_INDIVIDUAL)) {
-                    pdfBytes = getSegmentFileFromFS(brand);
-                    } else {
-                        if(!(statement.getSystemBatchInput().getBrand().equals("FKAS")) && !(statement.getSystemBatchInput().getBrand().equals("TKAS"))) {
-                            pdfBytes = getSegmentFileFromFS(brand);
+                    String customerID = statement.getCustomerId();
+                    pdfBytes = getConsumerSpecificAttachment(accountNo,customerID);
+                    if(pdfBytes ==null) {
+                        pdfBytes = getDefaultSegmentFile(brand,attachmentConfigId);
+                    }
+                    if(pdfBytes==null) {
+                        if(statement.getLegalPartClass()==null ||statement.getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_INDIVIDUAL)) {
+                        pdfBytes = getSegmentFileFromFS(brand);
+                        } else {
+                            if(!(statement.getSystemBatchInput().getBrand().equals("FKAS")) && !(statement.getSystemBatchInput().getBrand().equals("TKAS"))) {
+                                pdfBytes = getSegmentFileFromFS(brand);
+                            }
                         }
                     }
                 }
@@ -184,6 +189,25 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             logger.error("Exception in pdf merging",ex);
             throw ex;
         }
+    }
+
+    private byte[] getConsumerSpecificAttachment(String accountNo, String customerID) {
+        //Account/Customer specific attachment if available use it or else get it from attachmentConfiguration.
+        byte[] pdfBytes = null;
+        AccountAttachmentMapping foundAttachment = accountAttachmentService.getAttachmentForAccountNo(accountNo,"PDF",true);
+        if(foundAttachment==null) {
+            logger.debug("Not Able to find attachment for and account " + accountNo);
+            accountAttachmentService.getAttachmentForCustomerID(customerID,"PDF",true);
+        }
+        if(foundAttachment==null) {
+            logger.debug("Not Able to find attachment for and customer " + accountNo);
+            return pdfBytes;
+        }
+        else {
+           String consumerFile = foundAttachment.getAccountAttachment().getFileContent();
+            pdfBytes =  org.apache.commons.codec.binary.Base64.decodeBase64(consumerFile);
+        }
+        return pdfBytes;  //To change body of created methods use File | Settings | File Templates.
     }
 
     private byte[] getSegmentFileFromFS(String brand) throws IOException, DocumentException {
