@@ -200,7 +200,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         AccountAttachmentMapping foundAttachment = accountAttachmentService.getAttachmentForAccountNo(accountNo,"PDF",true);
         if(foundAttachment==null) {
             logger.debug("Not Able to find attachment for and account " + accountNo);
-            accountAttachmentService.getAttachmentForCustomerID(customerID,"PDF",true);
+           foundAttachment = accountAttachmentService.getAttachmentForCustomerID(customerID,"PDF",true);
         }
         if(foundAttachment==null) {
             logger.debug("Not Able to find attachment for and customer " + accountNo);
