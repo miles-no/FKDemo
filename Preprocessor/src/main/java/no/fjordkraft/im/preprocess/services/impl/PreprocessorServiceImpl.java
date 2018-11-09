@@ -137,6 +137,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request = new PreprocessRequest();
             request.setStatement(if320statement);
             request.setEntity(statement);
+            if320statement.setOnline(statement.isOnline());
 
             //statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
          /*   preprocessorEngine.execute(request);
