@@ -10,7 +10,7 @@ import no.fjordkraft.im.statusEnum.AttachmentTypeEnum;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
 import no.fjordkraft.im.util.PDFUtil;
-import no.fjordkraft.im.util.SetInvoiceASOnline;
+//import no.fjordkraft.im.util.SetInvoiceASOnline;
 import org.apache.axis.encoding.Base64;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -80,7 +80,8 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         int attachmentConfigId = statement.getAttachmentConfigId();
         logger.debug("Attachment Config ID in invoice generator " + attachmentConfigId);
         String brand = null;//statement.getBrand();
-        if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+        //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+        if(!statement.isOnline())
         {
             brand = statement.getSystemBatchInput().getBrand();
         }
@@ -94,7 +95,8 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
 
         try {
             logger.info("Start of PDF merging for invoice number: " + statement.getInvoiceNumber() + " statement id "+ statement.getId());
-            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())   {
+            //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())   {
+            if(!statement.isOnline()) {
                 statement = statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSING);
             }
             else
@@ -161,7 +163,8 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                         "Attach_PDF not found", IMConstants.WARNING,statement.getLegalPartClass());
             }
             pdfCombine.close();
-            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            if(!statement.isOnline())
             {
                 StopWatch stopWatch1 = new StopWatch() ;
                 stopWatch1.start("Saving PDF in DB");

@@ -12,7 +12,7 @@ import no.fjordkraft.im.statusEnum.AttachmentTypeEnum;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.task.PDFGeneratorTask;
 import no.fjordkraft.im.util.IMConstants;
-import no.fjordkraft.im.util.SetInvoiceASOnline;
+//import no.fjordkraft.im.util.SetInvoiceASOnline;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -152,7 +152,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         String subFolderName = "";
         try {
             byte[] generatedPdf = null;
-            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            if(!statement.isOnline())
             {
                 systemBatchInputFileName = statement.getSystemBatchInput().getTransferFile().getFilename();
                 stopWatch.start("PDF generation for statement "+ statement.getId());
@@ -166,7 +167,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 systemBatchInputFileName = statement.getFileName();
                 generatedPdf =   birtEnginePDFGenerator(statement, systemBatchInputFileName, subFolderName);
             }
-            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            if(!statement.isOnline())
             {
                 statement = statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSED);
             }
@@ -183,7 +185,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             // auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             logger.debug("PDF generated for statement with statementId "+ statement.getId()+ "completed");
             String directoryPath = null;
-            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            if(!statement.isOnline())
             {
                 directoryPath = outputDirectoryPath+ File.separator + subFolderName + File.separator + statement.getInvoiceNumber();
             }
@@ -198,10 +201,11 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             logger.info(stopWatch.prettyPrint());
 
         } catch (PDFGeneratorException e) {
-            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())   {
-            logger.error("Exception in PDF generation for statement" + statement.getId(), e);
-            statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
-            auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus(), getCause(e).getMessage(), IMConstants.ERROR,statement.getLegalPartClass());
+            //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())   {
+            if(!statement.isOnline()) {
+                logger.error("Exception in PDF generation for statement" + statement.getId(), e);
+                statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
+                auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus(), getCause(e).getMessage(), IMConstants.ERROR,statement.getLegalPartClass());
             }
             else
             {
@@ -214,8 +218,6 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             statementService.updateStatement(statement, StatementStatusEnum.PDF_PROCESSING_FAILED);
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus(), getCause(e).getMessage(), IMConstants.ERROR,statement.getLegalPartClass());
         }
-
-
     }
 
     public byte[] birtEnginePDFGenerator(Statement statement, String outPutDirectoryPath, String statementFolderName) throws BirtException {
@@ -228,7 +230,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         ByteArrayOutputStream baos = null;
         try {
             String xmlFilePath = null;
-            if(SetInvoiceASOnline.get() ==null || !SetInvoiceASOnline.get())
+            //if(SetInvoiceASOnline.get() ==null || !SetInvoiceASOnline.get())
+            if(!statement.isOnline())
             {
                 String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + statement.getInvoiceNumber() + File.separator ;
                 xmlFilePath =  basePath + File.separator + IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME;
@@ -236,6 +239,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             else
             {
                 xmlFilePath = outPutDirectoryPath;
+                logger.debug("Online file path "+ xmlFilePath);
             }
             String reportDesignFilePath = birtRPTPath + File.separator + "statementReport.rptdesign";
 
@@ -404,7 +408,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         try {
 
             String brand =  null;
-            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            if(!statement.isOnline())
             {
                 brand = statement.getSystemBatchInput().getBrand();
             }
@@ -463,8 +467,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 logger.debug("Attachment Configuration ID " + attachmentConfigId + " For statement "+ statement.getStatementId() );
 
                 statement.setAttachmentConfigId(attachmentConfigId);
-                if(SetInvoiceASOnline.get() == null || !SetInvoiceASOnline.get()) {
-                statementService.updateStatement(statement);
+                if(!statement.isOnline()) {
+                    statementService.updateStatement(statement);
                 }
                 stopWatch = new StopWatch();
                 stopWatch.start("Attachment Config Query getAttachmentByBrandAndAttachmentName ");

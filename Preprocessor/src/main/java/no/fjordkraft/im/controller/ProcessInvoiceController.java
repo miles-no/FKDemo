@@ -8,7 +8,7 @@ import no.fjordkraft.im.preprocess.services.PreprocessorService;
 import no.fjordkraft.im.services.*;
 import no.fjordkraft.im.statusEnum.SystemBatchInputStatusEnum;
 import no.fjordkraft.im.util.IMConstants;
-import no.fjordkraft.im.util.SetInvoiceASOnline;
+//import no.fjordkraft.im.util.SetInvoiceASOnline;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +84,8 @@ public class ProcessInvoiceController {
                 File baseFile = new File(basePath +"Online"+ File.separator +filename+File.separator+ statement.getInvoiceNumber());
                 baseFile.mkdirs();
 
-                SetInvoiceASOnline.set(Boolean.TRUE);
+                //SetInvoiceASOnline.set(Boolean.TRUE);
+                statement.setOnline(Boolean.TRUE);
                 preprocessorService.preprocess(statement);
 
                 StreamResult streamResult = new StreamResult(new FileOutputStream(baseFile+File.separator +IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME));
@@ -95,7 +96,7 @@ public class ProcessInvoiceController {
                     streamResult.getOutputStream().close();
                 }
 
-                SetInvoiceASOnline.set(Boolean.TRUE);
+                //SetInvoiceASOnline.set(Boolean.TRUE);
                 logger.debug("Calling PDF Generator to generate PDF for Online file " + file.getOriginalFilename());
                 byte[] generatedPDF = pdfGenerator.generateInvoiceForSingleStatement(baseFile+File.separator +IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME,statement.getBrand(),statement.getLayoutID());
                 if(generatedPDF!=null )
@@ -104,7 +105,7 @@ public class ProcessInvoiceController {
                     headers.setContentType(MediaType.APPLICATION_PDF);
                     headers.setContentLength(generatedPDF.length);
                     headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=sample.pdf");
-                    SetInvoiceASOnline.unset();
+                    //SetInvoiceASOnline.unset();
                     stopWatch.stop();
                     logger.debug(stopWatch.prettyPrint());
                     return new ResponseEntity<byte[]>(generatedPDF, headers, HttpStatus.OK);
@@ -114,18 +115,17 @@ public class ProcessInvoiceController {
                     statement.getCreditLimit();
                     HttpHeaders headers = new HttpHeaders();
                     String message = "Not able to process online PDF for file "+file.getOriginalFilename();
-                    SetInvoiceASOnline.unset();
+                    //SetInvoiceASOnline.unset();
                     stopWatch.stop();
                     logger.debug(stopWatch.prettyPrint());
                     return new ResponseEntity<byte[]>(message.getBytes(), headers, HttpStatus.BAD_REQUEST);
                 }
             } catch (Exception e) {
-           SetInvoiceASOnline.unset();
+           //SetInvoiceASOnline.unset();
             String message = "Exception while processing online PDF " + e.getMessage();
-           logger.debug("exception while processing online file " + file.getOriginalFilename() ,e);
-           HttpHeaders headers = new HttpHeaders();
-           return new ResponseEntity<byte[]>(message.getBytes(), headers, HttpStatus.BAD_REQUEST);
-
+                logger.debug("exception while processing online file " + file.getOriginalFilename() ,e);
+                HttpHeaders headers = new HttpHeaders();
+                return new ResponseEntity<byte[]>(message.getBytes(), headers, HttpStatus.BAD_REQUEST);
             }
          // return null;
        }

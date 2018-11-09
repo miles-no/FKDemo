@@ -150,13 +150,21 @@
         owner=miles2
 
 
-
     -
       name: "{{app}}@{{inventory_hostname}} - Copying JVM config"
       template:
         src=templates/{{app}}/jvmconfig.conf
         dest="{{app_basedir}}/{{app}}/current/{{app}}.conf"
         owner=miles2
+      when: app != "im-pdfgenerator"
+
+    -
+      name: "{{app}}@{{inventory_hostname}} - Copying JVM config"
+      template:
+        src=templates/{{app}}/{{inventory_hostname}}/jvmconfig.conf
+        dest="{{app_basedir}}/{{app}}/current/{{app}}.conf"
+        owner=miles2
+      when: app == "im-pdfgenerator"
 
     -
       name: "{{app}}@{{inventory_hostname}} - Creating symlink for service"

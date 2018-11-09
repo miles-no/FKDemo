@@ -3,7 +3,7 @@ package no.fjordkraft.im.controller;
 import no.fjordkraft.im.exceptions.PDFGeneratorException;
 import no.fjordkraft.im.model.Statement;
 import no.fjordkraft.im.services.PDFGenerator;
-import no.fjordkraft.im.util.SetInvoiceASOnline;
+//import no.fjordkraft.im.util.SetInvoiceASOnline;
 import org.eclipse.birt.core.exception.BirtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,38 +72,34 @@ public class PDFController {
                 InputStream inputStream = new FileInputStream(processFilePath);
                 XMLInputFactory factory = XMLInputFactory.newInstance();
                 XMLEventReader eventReader = factory.createXMLEventReader(inputStream);
-                Statement statement =  new Statement();
+                Statement statement = new Statement();
 
-                Map<String,String> extractedValue = splitFileAndGetFirstStatement(eventReader);
-                if(extractedValue!=null && !extractedValue.isEmpty()) {
-                      statement.setAccountNumber(extractedValue.get("AccountNumber"));
-                      statement.setInvoiceNumber( extractedValue.get("InvoiceNumber"));
-                  }
+                Map<String, String> extractedValue = splitFileAndGetFirstStatement(eventReader);
+                if (extractedValue != null && !extractedValue.isEmpty()) {
+                    statement.setAccountNumber(extractedValue.get("AccountNumber"));
+                    statement.setInvoiceNumber(extractedValue.get("InvoiceNumber"));
+                }
                 statement.setOnline(Boolean.TRUE);
                 statement.setLayoutID(Long.valueOf(layoutId));
                 statement.setBrand(brand);
                 statement.setFileName(processFilePath);
-                SetInvoiceASOnline.set(true);
+                //SetInvoiceASOnline.set(true);
                 logger.debug("Generating PDF for Online invoice  " + statement.getInvoiceNumber());
 
                 pdfGenerator.generateInvoicePDFSingleStatement(statement);
                 byte[] generatedPDF = statement.getGeneratedPDF();
 
-                SetInvoiceASOnline.unset();
+                //SetInvoiceASOnline.unset();
                 return generatedPDF;
-              }
-              catch (PDFGeneratorException e) {
-
-                SetInvoiceASOnline.unset();
+           } catch (PDFGeneratorException e) {
+                //SetInvoiceASOnline.unset();
                 logger.error("Error in PDFController while processing online file " + processFilePath + e);
                 throw e;
-              }
-                catch (Exception e) {
-
-            SetInvoiceASOnline.unset();
-            logger.error("Error in PDFController while processing online file " + processFilePath + e);
-             throw e;
-        }
+            } catch (Exception e) {
+                //  SetInvoiceASOnline.unset();
+                logger.error("Error in PDFController while processing online file " + processFilePath + e);
+                throw e;
+            }
     }
 
     private Map<String,String> splitFileAndGetFirstStatement(XMLEventReader eventReader) throws XMLStreamException {

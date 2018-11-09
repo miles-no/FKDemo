@@ -1,6 +1,6 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
-import no.fjordkraft.im.util.SetInvoiceASOnline;
+//import no.fjordkraft.im.util.SetInvoiceASOnline;
 import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.if320.models.ToAddress;
 import no.fjordkraft.im.model.BrandConfig;
@@ -54,7 +54,8 @@ public class BarcodePreprocessor extends BasePreprocessor {
             toAddress.setRegion(brandConfig.getRegion());
             request.getStatement().setToAddress(toAddress);
         } else {
-            if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            if(!request.getStatement().isOnline())
             {
                 String errorMessage = "Brand not found";
                 auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING,statement.getLegalPartClass());

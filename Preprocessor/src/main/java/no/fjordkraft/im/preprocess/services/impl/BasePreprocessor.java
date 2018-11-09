@@ -6,7 +6,7 @@ import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.preprocess.services.Preprocessor;
 import no.fjordkraft.im.services.ConfigService;
 import no.fjordkraft.im.util.IMConstants;
-import no.fjordkraft.im.util.SetInvoiceASOnline;
+//import no.fjordkraft.im.util.SetInvoiceASOnline;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,20 +41,22 @@ public abstract class BasePreprocessor implements Preprocessor {
         String invoiceNumber = request.getEntity().getInvoiceNumber();
         String basePath = configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
         File baseFile = null;
-        if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())  {
+        //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())  {
+        if(!request.getStatement().isOnline()) {
             String baseFolder = request.getEntity().getSystemBatchInput().getTransferFile().getFilename();
             String folderName = baseFolder.substring(0, baseFolder.indexOf('.'));
             baseFile = new File(basePath + folderName + File.separator + invoiceNumber);
-        }
+        /*}
         else
         {
             baseFile =  new File(basePath + "Online" + File.separator+ invoiceNumber);
 
-        }
+        }*/
 
-        baseFile.mkdirs();
-        request.setPathToProcessedXml(baseFile.getAbsolutePath());
-        logger.debug("Generated base File "+ baseFile);
+            baseFile.mkdirs();
+            request.setPathToProcessedXml(baseFile.getAbsolutePath());
+            logger.debug("Generated base File " + baseFile);
+        }
     }
 
 }
