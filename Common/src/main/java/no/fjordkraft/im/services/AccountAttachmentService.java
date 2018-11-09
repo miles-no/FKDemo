@@ -40,4 +40,6 @@ public interface AccountAttachmentService {
     public void deleteMappingForAttachment(Long attachmentID);
 
     public void deleteAttachment(Long attachmentID);
+
+    public List<AccountAttachmentMapping> getAllMappings();
 }
