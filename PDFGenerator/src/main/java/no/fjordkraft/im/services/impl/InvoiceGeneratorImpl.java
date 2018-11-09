@@ -132,7 +132,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                     if(pdfBytes ==null) {
                         pdfBytes = getDefaultSegmentFile(brand,attachmentConfigId);
                     }
-                    if(pdfBytes==null) {
+                    /*if(pdfBytes==null) {
                         if(statement.getLegalPartClass()==null ||statement.getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_INDIVIDUAL)) {
                         pdfBytes = getSegmentFileFromFS(brand);
                         } else {
@@ -140,7 +140,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                                 pdfBytes = getSegmentFileFromFS(brand);
                             }
                         }
-                    }
+                    }*/
                 }
             } else {
                 pdfBytes = getSegmentFile(accountNo, brand);
@@ -203,7 +203,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
            foundAttachment = accountAttachmentService.getAttachmentForCustomerID(customerID,"PDF",true);
         }
         if(foundAttachment==null) {
-            logger.debug("Not Able to find attachment for and customer " + accountNo);
+            logger.debug("Not Able to find attachment for and customer " + customerID);
             return pdfBytes;
         }
         else {

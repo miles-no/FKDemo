@@ -246,6 +246,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
             String campaignImage = null;
             logger.debug("readCampaignFilesystem " + readCampaignFilesystem);
+            int attachmentConfigID = getAttachmentConfigID(statement.getCreditLimit(),statement.getLegalPartClass(),statement.getAccountNumber(),statement.getSystemBatchInput().getBrand());
+            statement.setAttachmentConfigId(attachmentConfigID);
             if (readCampaignFilesystem) {
                 campaignImage = getConsumerSpecificCampaignImage(statement.getAccountNumber(),statement.getCustomerId());
                 if(campaignImage ==null) {
@@ -298,6 +300,59 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         }
 
 
+    }
+
+    private int getAttachmentConfigID(double creditLimit,String legalPartClass,String accountNo,String brand) {
+
+        int attachmentConfigId = 0;
+        if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))
+        {
+            StopWatch stopWatch = new StopWatch();
+            stopWatch.start("Attachment Configuration Query getProcessedStatementByAccountNumber");
+
+            Long  countOfStatements = statementRepository.getProcessedStatementByAccountNumber(accountNo,StatementStatusEnum.INVOICE_PROCESSED.getStatus());
+            stopWatch.stop();
+            logger.info(stopWatch.prettyPrint());
+            if(legalPartClass==null || legalPartClass.equals(IMConstants.LEGAL_PART_CLASS_INDIVIDUAL) )
+            {
+                if(countOfStatements!=null && countOfStatements.intValue()==0) {
+                    if( !Double.valueOf(creditLimit).equals(Double.valueOf("0")))
+                    {
+                        attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();
+                    }
+                    else
+                    {
+                        attachmentConfigId = AttachmentTypeEnum.FIRST_TIME_ATTACHMENT.getStatus();
+                    }
+                }
+                else
+                {
+                    attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
+                }
+            }
+            else
+            {
+                if(brand.equals("FKAS") || brand.equals("TKAS")) {
+                    attachmentConfigId = AttachmentTypeEnum.ORGANIZATION.getStatus();
+                } else {
+                    if(countOfStatements!=null && countOfStatements.intValue()==0) {
+                        if( !Double.valueOf(creditLimit).equals(Double.valueOf("0")))
+                        {
+                            attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();
+                        }
+                        else
+                        {
+                            attachmentConfigId = AttachmentTypeEnum.FIRST_TIME_ATTACHMENT.getStatus();
+                        }
+                    }
+                    else
+                    {
+                        attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
+                    }
+                }
+            }
+        }
+        return attachmentConfigId;
     }
 
     private String getConsumerSpecificCampaignImage(String accountNumber, String customerId) {
@@ -416,8 +471,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             {
                 brand = statement.getBrand();
             }
-            int attachmentConfigId =0;
-            double creditLimit = statement.getCreditLimit();
+            StopWatch stopWatch = new StopWatch();
+            int attachmentConfigId =statement.getAttachmentConfigId();
+           /* double creditLimit = statement.getCreditLimit();
             if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))
             {
                 StopWatch stopWatch = new StopWatch();
@@ -466,7 +522,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 }
                 logger.debug("Attachment Configuration ID " + attachmentConfigId + " For statement "+ statement.getStatementId() );
 
-                statement.setAttachmentConfigId(attachmentConfigId);
+                statement.setAttachmentConfigId(attachmentConfigId);*/
                 if(!statement.isOnline()) {
                     statementService.updateStatement(statement);
                 }
@@ -491,7 +547,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                     }
                 }
 
-            }
+
           /*  if(campaignImage==null)
             {
                 String path = basePathCampaign+brand+File.separator+brand.toLowerCase()+".jpg";
