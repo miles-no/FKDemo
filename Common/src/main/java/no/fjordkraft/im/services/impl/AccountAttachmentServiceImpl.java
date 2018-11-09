@@ -35,7 +35,7 @@ public class AccountAttachmentServiceImpl implements AccountAttachmentService {
 
     @Override
     public AccountAttachmentMapping getAttachmentForCustomerID(String customerNo, String attachmentType, boolean isActive) {
-        return accountAttachmentMappingRepository.getAttachmentForAccountNo(customerNo, attachmentType, isActive);  //To change body of implemented methods use File | Settings | File Templates.
+        return accountAttachmentMappingRepository.getAttachmentForCustomerNo(customerNo, attachmentType, isActive);  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
@@ -72,6 +72,11 @@ public class AccountAttachmentServiceImpl implements AccountAttachmentService {
     @Override
     public void deleteAttachment(Long attachmentID) {
        accountAttachmentRepository.delete(attachmentID);
+    }
+
+    @Override
+    public List<AccountAttachmentMapping> getAllMappings() {
+        return accountAttachmentMappingRepository.findAll();
     }
 
     @Override
