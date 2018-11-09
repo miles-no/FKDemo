@@ -1,5 +1,6 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
+import no.fjordkraft.im.if320.models.Statement;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.services.Preprocessor;
 import no.fjordkraft.im.preprocess.services.PreprocessorEngine;
@@ -35,15 +36,17 @@ public class PreprocessorEngineImpl implements PreprocessorEngine {
 
     @Override
     public void registerPreprocessor() {
-
     }
 
     @Override
     public void execute(PreprocessRequest request) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
 
-          for(Preprocessor preprocessor:preprocessorList){
-              if(preprocessorMap==null || (preprocessorMap!=null && !preprocessorMap.containsKey(preprocessor)))
-                 preprocessor.preprocess(request);
+          for(Preprocessor preprocessor:preprocessorList) {
+              if(preprocessorMap != null && ((Statement)request.getStatement()).isOnline() &&  preprocessorMap.containsKey(preprocessor)) {
+                  continue;
+              } else {
+                  preprocessor.preprocess(request);
+              }
           }
     }
 
