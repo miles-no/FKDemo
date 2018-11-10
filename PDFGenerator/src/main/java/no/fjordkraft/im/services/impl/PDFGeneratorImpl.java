@@ -1,7 +1,5 @@
 package no.fjordkraft.im.services.impl;
 
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
 import no.fjordkraft.im.exceptions.PDFGeneratorException;
 import no.fjordkraft.im.model.AccountAttachmentMapping;
 import no.fjordkraft.im.model.Attachment;
@@ -12,16 +10,12 @@ import no.fjordkraft.im.statusEnum.AttachmentTypeEnum;
 import no.fjordkraft.im.statusEnum.StatementStatusEnum;
 import no.fjordkraft.im.task.PDFGeneratorTask;
 import no.fjordkraft.im.util.IMConstants;
-//import no.fjordkraft.im.util.SetInvoiceASOnline;
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.eclipse.birt.core.exception.BirtException;
 import org.eclipse.birt.report.engine.api.IReportEngine;
 import org.eclipse.birt.report.engine.api.IReportRunnable;
 import org.eclipse.birt.report.engine.api.IRunAndRenderTask;
 import org.eclipse.birt.report.engine.api.PDFRenderOption;
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -29,13 +23,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-//import org.springframework.core.task.TaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.util.StopWatch;
 
 import javax.annotation.PostConstruct;
@@ -101,7 +92,6 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
     private String customPdfFontPath;
     private String basePathCampaign;
     private boolean readCampaignFilesystem;
-    //private int attachmentConfigId;
 
     public PDFGeneratorImpl(ConfigService configService) {
         this.configService = configService;
@@ -179,10 +169,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             if(generatedPdf !=null && generatedPdf.length >0 ){
                 logger.debug("generated pdf bytes of length " + generatedPdf.length);
             }
-            //auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
+
             invoiceGenerator.mergeInvoice(statement, generatedPdf);
-            //statementService.updateStatement(statement, StatementStatusEnum.INVOICE_PROCESSED);
-            // auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.INVOICE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             logger.debug("PDF generated for statement with statementId "+ statement.getId()+ "completed");
             String directoryPath = null;
             //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
@@ -292,14 +280,11 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             task.close();
             stopWatch.stop();
             logger.info(stopWatch.prettyPrint());
-            //logger.debug("Time to generate PDF for statement id  " + statement.getId() + " "+(endTime - startTime) + " milli seconds " + (endTime - startTime) / 1000 + "  seconds ");
             return baos.toByteArray();
         } catch (Exception e) {
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus(), getCause(e).getMessage(), IMConstants.ERROR,statement.getLegalPartClass());
-            throw new PDFGeneratorException(e.getMessage());
+            throw new PDFGeneratorException(e);
         }
-
-
     }
 
     private int getAttachmentConfigID(double creditLimit,String legalPartClass,String accountNo,String brand) {
@@ -409,7 +394,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         } catch (Exception e) {
             logger.error("exception in preview generation ",e);
             auditLogService.saveAuditLog(null, StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus(), getCause(e).getMessage(), IMConstants.ERROR,null);
-            throw new RuntimeException("Can not generate preview !");
+            throw new RuntimeException("Can not generate preview !",e);
         }
         return baos.toByteArray();
     }
@@ -547,18 +532,6 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                     }
                 }
 
-
-          /*  if(campaignImage==null)
-            {
-                String path = basePathCampaign+brand+File.separator+brand.toLowerCase()+".jpg";
-                logger.debug(" reading campaign from FS for statement "+statement.getId() + " path is "+ path);
-                File f = new File(path);
-                if(f.exists()) {
-                    logger.debug(" reading campaign from FS file exists");
-                    byte[] image = IOUtils.toByteArray(new FileInputStream(f));
-                    campaignImage = Base64.encodeBase64String(image);
-                }
-            }*/
         }catch (Exception e) {
             logger.error("Error while getting default Campaign Image ",e);
             throw new PDFGeneratorException(e);
