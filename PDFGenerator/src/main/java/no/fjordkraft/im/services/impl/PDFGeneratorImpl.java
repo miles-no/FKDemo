@@ -234,12 +234,21 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
             String campaignImage = null;
             logger.debug("readCampaignFilesystem " + readCampaignFilesystem);
-            int attachmentConfigID = getAttachmentConfigID(statement.getCreditLimit(),statement.getLegalPartClass(),statement.getAccountNumber(),statement.getSystemBatchInput().getBrand());
+            logger.debug("getCreditLimit ",statement.getCreditLimit());
+            logger.debug("getLegalPartClass ",statement.getLegalPartClass());
+            logger.debug("account number is ",statement.getAccountNumber());
+            logger.debug("brand is ",brand);
+            int attachmentConfigID = -1;
+            if(!statement.isOnline()) {
+                attachmentConfigID = getAttachmentConfigID(statement.getCreditLimit(), statement.getLegalPartClass(), statement.getAccountNumber(), statement.getSystemBatchInput().getBrand());
+            } else {
+                attachmentConfigID = getAttachmentConfigID(statement.getCreditLimit(), statement.getLegalPartClass(), statement.getAccountNumber(), statement.getBrand());
+            }
             statement.setAttachmentConfigId(attachmentConfigID);
             if (readCampaignFilesystem) {
                 campaignImage = getConsumerSpecificCampaignImage(statement.getAccountNumber(),statement.getCustomerId());
                 if(campaignImage ==null) {
-                campaignImage = getDefaultCampaignImage(statement);
+                    campaignImage = getDefaultCampaignImage(statement);
                 }
             } else {
                 campaignImage = segmentFileService.getImageContent(accountNo, brand);
