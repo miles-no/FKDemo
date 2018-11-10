@@ -282,6 +282,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             logger.info(stopWatch.prettyPrint());
             return baos.toByteArray();
         } catch (Exception e) {
+            logger.error("Error in pdf generation  ",e);
             auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PDF_PROCESSING_FAILED.getStatus(), getCause(e).getMessage(), IMConstants.ERROR,statement.getLegalPartClass());
             throw new PDFGeneratorException(e);
         }
