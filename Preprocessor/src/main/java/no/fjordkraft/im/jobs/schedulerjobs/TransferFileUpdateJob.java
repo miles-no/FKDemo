@@ -45,7 +45,7 @@ public class TransferFileUpdateJob implements InterruptableJob{
     public void execute(Context context) throws Exception {
 
         if(configService.getBoolean(IMConstants.TRANSFERFILE_UPDATE_JOB_ACTIVE)) {
-            logger.info("TransferFileUpdateJob active and job invoked ");
+            //logger.info("TransferFileUpdateJob active and job invoked ");
             transferFileService.consolidateAndUpdateStatus();
         } else {
             logger.info("TransferFileUpdateJob job is inactive ");

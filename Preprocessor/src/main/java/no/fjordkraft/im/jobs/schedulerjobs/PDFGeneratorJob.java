@@ -38,7 +38,7 @@ public class PDFGeneratorJob implements InterruptableJob{
     PDFGenerator pdfGenerator;
 
     public void execute(Context context) throws InterruptedException {
-        logger.debug("PDFGenerator job invoked " );
+        //logger.debug("PDFGenerator job invoked " );
         List<Long> statementIdList = pdfGenerator.getStatementIDsForPDFGen();
         pdfGenerator.generateInvoicePDF(statementIdList);
     }

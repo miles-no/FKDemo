@@ -37,7 +37,7 @@ public class InvoiceFeedWatcherJob implements InterruptableJob {
     private static final Logger logger = LoggerFactory.getLogger(InvoiceFeedWatcherJob.class);
 
     public void execute(Context context) throws Exception {
-        logger.info("InvoiceFeedWatcher job invoked ");
+        //logger.info("InvoiceFeedWatcher job invoked ");
         transferFileService.fetchAndProcess();
     }
 

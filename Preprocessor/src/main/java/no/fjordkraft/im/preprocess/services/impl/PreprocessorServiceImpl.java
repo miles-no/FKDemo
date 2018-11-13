@@ -114,7 +114,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         for(no.fjordkraft.im.model.Statement statement:statementList) {
             statement.getSystemBatchInput().getTransferFile().getFilename();
             statement.getStatementPayload();
-
+            logger.debug("Statement with id "+ statement.getId() + " invoice number "+ statement.getInvoiceNumber() +" sent for preprocessing ");
             PreprocessorTask preprocessorTask = applicationContext.getBean(PreprocessorTask.class,statement);
             taskExecutor.execute(preprocessorTask);
         }
@@ -144,24 +144,25 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             statement.setLayoutID(request.getEntity().getLayoutID());
             statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);*/
             //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
-            if(!request.getStatement().isOnline())
-            {
-                 statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
+            logger.info(" is online statement id " + statement.getId() + " invoice number  "+ statement.getInvoiceNumber() + " online "+ statement.isOnline());
+            if(!request.getStatement().isOnline()) {
+                statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
+                logger.info(" is online statement id " + statement.getId() + " invoice number  "+ statement.getInvoiceNumber() + " online "+ statement.isOnline());
             }
             else
             {
                 statement.getSystemBatchInput().setBrand(statement.getBrand());
                 statement.setStatus(StatementStatusEnum.PRE_PROCESSING.getStatus());
-                    List<Preprocessor> preProcessorList = preprocessorEngine.getPreprocessorList();
+                List<Preprocessor> preProcessorList = preprocessorEngine.getPreprocessorList();
                 Map<Preprocessor,Boolean> preProcessorMap= new HashMap<Preprocessor,Boolean>();
-               for(Preprocessor preprocessor :preProcessorList)
-               {
-                   PreprocessorInfo annotationObj1 = preprocessor.getClass().getAnnotation(PreprocessorInfo.class);
+                for(Preprocessor preprocessor :preProcessorList)
+                {
+                    PreprocessorInfo annotationObj1 = preprocessor.getClass().getAnnotation(PreprocessorInfo.class);
                     if(annotationObj1.skipOnline()) {
-                     preProcessorMap.put(preprocessor,annotationObj1.skipOnline());
+                       preProcessorMap.put(preprocessor,annotationObj1.skipOnline());
                     }
-               }
-               preprocessorEngine.setPreprocessorMap(preProcessorMap);
+                }
+                preprocessorEngine.setPreprocessorMap(preProcessorMap);
             }
             preprocessorEngine.execute(request);
             statement.setLayoutID(request.getEntity().getLayoutID());
@@ -170,8 +171,8 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             statement.setE2bAttachment(request.getEntity().isE2bAttachment());
 
             //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
-            if(!request.getStatement().isOnline())
-            {
+            if (!request.getStatement().isOnline()) {
+                logger.info("Updating status of statement with id " + statement.getId() + " invoice number " + statement.getInvoiceNumber() + " to preprocessed ");
                 statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
             }
             else

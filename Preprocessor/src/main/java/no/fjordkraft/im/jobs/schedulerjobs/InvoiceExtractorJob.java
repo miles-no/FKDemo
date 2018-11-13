@@ -36,7 +36,7 @@ public class InvoiceExtractorJob  implements InterruptableJob {
     StatementService statementService;
 
     public void execute(Context context) {
-        logger.debug("InvoiceExtractor job invoked statementService.fetchAndSplit");
+        //logger.debug("InvoiceExtractor job invoked statementService.fetchAndSplit");
         // statementService.fetchAndSplit();
     }
 

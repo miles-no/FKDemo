@@ -55,7 +55,7 @@ public class ExtractBlanketNumberJob implements InterruptableJob {
 
     @Override
     public void execute(Context context) throws Exception {
-       logger.debug("ExtractBlanketInvoiceNumber job invoked ");
+       //logger.debug("ExtractBlanketInvoiceNumber job invoked ");
         Integer validityPeriod = configService.getInteger(IMConstants.BLANKETNUMBER_VALIDITY_PERIOD_MONTHS);
         blanketNumberService.extractBlanketNumber(validityPeriod);
 

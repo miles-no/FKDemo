@@ -95,7 +95,7 @@ public class TransferFileServiceImpl implements TransferFileService {
     public void consolidateAndUpdateStatus(){
         List<SystemBatchInput> systemBatchInputList =  systemBatchInputService.getAllByStatus(SystemBatchInputStatusEnum.PROCESSING.getStatus());
         for(SystemBatchInput systemBatchInput : systemBatchInputList){
-            logger.debug("Fetching status for "+systemBatchInput.getTransferFile().getFilename());
+            //logger.debug("Fetching status for "+systemBatchInput.getTransferFile().getFilename());
             Map<String, Integer> statusCountMap =  statementService.getStatementBySystemBatchId(systemBatchInput.getId());
             String status = computeTransferFileStatus(statusCountMap , systemBatchInput);
             if(!StringUtils.isEmpty(status)) {

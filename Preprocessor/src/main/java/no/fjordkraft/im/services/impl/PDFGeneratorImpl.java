@@ -65,7 +65,7 @@ public class PDFGeneratorImpl implements PDFGenerator {
             if(statementIdSet.contains(statement.getId())){
                 logger.debug("Statement with id "+ statement.getId() +  " already sent for pdf generation");
             }
-            logger.debug("Statement with id "+ statement.getId()+ " updated to SENT_FOR_PDF_PROCESSING ");
+            //logger.debug("Statement with id "+ statement.getId()+ " updated to SENT_FOR_PDF_PROCESSING ");
             try {
                 statementService.updateStatement(statement, StatementStatusEnum.SENT_FOR_PDF_PROCESSING);
             }catch (Exception e ){

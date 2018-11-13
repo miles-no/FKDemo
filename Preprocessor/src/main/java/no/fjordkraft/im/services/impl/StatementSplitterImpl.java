@@ -102,7 +102,7 @@ public class StatementSplitterImpl implements StatementSplitter {
                             writer.close();
                             writer = null;
                             //imStatement.setStatementType(brandCode);
-                            logger.debug("saving statement with ocr"+imStatement.getStatementId());
+                            //logger.debug("saving statement with ocr"+imStatement.getStatementId());
                             statementService.saveIMStatementinDB(stringOut.toString(), imStatement);
                             stringOut.getBuffer().setLength(0);
                             //stringOut = null;

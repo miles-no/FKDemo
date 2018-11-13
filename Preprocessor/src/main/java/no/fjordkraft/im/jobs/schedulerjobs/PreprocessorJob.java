@@ -44,7 +44,7 @@ public class PreprocessorJob implements InterruptableJob {
 
     @Override
     public void execute(Context context) throws Exception {
-        logger.debug("Preprocessor job invoked");
+        //logger.debug("Preprocessor job invoked");
         preprocessorService.preprocess();
     }
 }
