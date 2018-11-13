@@ -117,7 +117,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             statement.getStatementPayload();
 
             logger.debug("Statement with id "+ statement.getId() + " invoice number "+ statement.getInvoiceNumber() +" sent for preprocessing ");
-            PreprocessorTask preprocessorTask = applicationContext.getBean(PreprocessorTask.class,statement);
+            PreprocessorTask preprocessorTask = applicationContext.getBean(PreprocessorTask.class,statementService,statement);
             taskExecutor.execute(preprocessorTask);
         }
         stopwatch.stop();
