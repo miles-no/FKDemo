@@ -45,7 +45,7 @@ public class PDFAttachmentExtractor extends BasePreprocessor {
                     request.getEntity().setEhfAttachment(true);
                 }
 
-                logger.debug("Save pdf of type "+invoicePdf.getType() + " with id "+invoicePdf.getId() + " statement id "+request.getEntity().getId() );
+                //logger.debug("Save pdf of type "+invoicePdf.getType() + " with id "+invoicePdf.getId() + " statement id "+request.getEntity().getId() );
             }
         }
         request.getEntity().setPdfAttachment(count);

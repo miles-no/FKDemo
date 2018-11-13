@@ -112,8 +112,10 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             logger.debug("Processor Thread queue count " + executor.getThreadPoolExecutor().getQueue().size() +" active threads "+ executor.getActiveCount() + "max pool size "+executor.getMaxPoolSize()+ " :: "+executor.getThreadPoolExecutor().getActiveCount());
         }
         for(no.fjordkraft.im.model.Statement statement:statementList) {
+            statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
             statement.getSystemBatchInput().getTransferFile().getFilename();
             statement.getStatementPayload();
+
             logger.debug("Statement with id "+ statement.getId() + " invoice number "+ statement.getInvoiceNumber() +" sent for preprocessing ");
             PreprocessorTask preprocessorTask = applicationContext.getBean(PreprocessorTask.class,statement);
             taskExecutor.execute(preprocessorTask);
@@ -173,7 +175,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
             if (!request.getStatement().isOnline()) {
                 logger.info("Updating status of statement with id " + statement.getId() + " invoice number " + statement.getInvoiceNumber() + " to preprocessed ");
-                statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
+                //statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
             }
             else
             {
