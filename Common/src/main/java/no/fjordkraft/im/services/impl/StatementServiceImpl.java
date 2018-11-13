@@ -70,7 +70,12 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     public Statement updateStatement(Statement statement, StatementStatusEnum status){
         statement.setStatus(status.getStatus());
         statement.setUpdateTime(new Timestamp(System.currentTimeMillis()));
-        return statementRepository.saveAndFlush(statement);
+        Statement statement1 =  statementRepository.saveAndFlush(statement);
+        if(status == StatementStatusEnum.PRE_PROCESSING) {
+            statement1.getSystemBatchInput().getTransferFile().getFilename();
+            statement1.getStatementPayload();
+        }
+        return statement1;
     }
 
 
