@@ -112,7 +112,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             logger.debug("Processor Thread queue count " + executor.getThreadPoolExecutor().getQueue().size() +" active threads "+ executor.getActiveCount() + "max pool size "+executor.getMaxPoolSize()+ " :: "+executor.getThreadPoolExecutor().getActiveCount());
         }
         for(no.fjordkraft.im.model.Statement statement:statementList) {
-            statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
+            //statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
             statement.getSystemBatchInput().getTransferFile().getFilename();
             statement.getStatementPayload();
 
