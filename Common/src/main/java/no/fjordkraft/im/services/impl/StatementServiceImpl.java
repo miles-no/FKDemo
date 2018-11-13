@@ -71,10 +71,10 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
         statement.setStatus(status.getStatus());
         statement.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         Statement statement1 =  statementRepository.saveAndFlush(statement);
-        if(status == StatementStatusEnum.PRE_PROCESSING) {
+        /*if(status == StatementStatusEnum.PRE_PROCESSING) {
             statement1.getSystemBatchInput().getTransferFile().getFilename();
             statement1.getStatementPayload();
-        }
+        }*/
         return statement1;
     }
 
