@@ -38,7 +38,7 @@ public class PreprocessorTask implements Runnable{
     @Transactional
     public void run() {
             preprocessorService.preprocess(statement);
-            statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
+            //statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
     }
 
     public Statement getStatement() {
