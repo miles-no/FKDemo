@@ -246,7 +246,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             }
             statement.setAttachmentConfigId(attachmentConfigID);
             if (readCampaignFilesystem) {
-                campaignImage = getConsumerSpecificCampaignImage(statement.getAccountNumber(),statement.getCustomerId());
+                campaignImage = getConsumerSpecificCampaignImage(statement.getAccountNumber(),statement.getCustomerId(),statement.getSystemBatchInput().getBrand());
                 if(campaignImage ==null) {
                     campaignImage = getDefaultCampaignImage(statement);
                 }
@@ -350,7 +350,11 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         return attachmentConfigId;
     }
 
-    private String getConsumerSpecificCampaignImage(String accountNumber, String customerId) {
+    private String getConsumerSpecificCampaignImage(String accountNumber, String customerId,String brand) {
+        String brandlist = configService.getString("BRANDS_WITH_CUSTOMER_SPECIFIC_ATTACHMENT");
+        if(null != brandlist &&  brandlist.indexOf(brand) == -1) {
+            return null;
+        }
         if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB) && readCampaignFilesystem) {
            AccountAttachmentMapping foundAttachmentMapping = null;
             foundAttachmentMapping = accountAttachmentService.getAttachmentForAccountNo(accountNumber, "IMAGE", true);
@@ -518,9 +522,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 logger.debug("Attachment Configuration ID " + attachmentConfigId + " For statement "+ statement.getStatementId() );
 
                 statement.setAttachmentConfigId(attachmentConfigId);*/
-                if(!statement.isOnline()) {
+                /*if(!statement.isOnline()) {
                     statementService.updateStatement(statement);
-                }
+                }*/
                 stopWatch = new StopWatch();
                 stopWatch.start("Attachment Config Query getAttachmentByBrandAndAttachmentName ");
                 List<Attachment> listOfAttachments = attachmentConfigService.getAttachmentByBrandAndAttachmentName(brand,attachmentConfigId);

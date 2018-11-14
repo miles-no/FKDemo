@@ -78,7 +78,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
     public void mergeInvoice(Statement statement, byte[] generatedPdf) throws IOException, DocumentException {
         String accountNo = statement.getAccountNumber();
         int attachmentConfigId = statement.getAttachmentConfigId();
-        logger.debug("Attachment Config ID in invoice generator " + attachmentConfigId);
+        //logger.debug("Attachment Config ID in invoice generator " + attachmentConfigId + " for statement id "+ statement.getId() + " invoice number "+ statement.getInvoiceNumber());
         String brand = null;//statement.getBrand();
         //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
         if(!statement.isOnline())
@@ -128,7 +128,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             if(readAdvtPdfFileSystem ) {
                 if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))  {
                     String customerID = statement.getCustomerId();
-                    pdfBytes = getConsumerSpecificAttachment(accountNo,customerID);
+                    pdfBytes = getConsumerSpecificAttachment(accountNo,customerID,brand);
                     if(pdfBytes ==null) {
                         pdfBytes = getDefaultSegmentFile(brand,attachmentConfigId);
                     }
@@ -194,7 +194,12 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         }
     }
 
-    private byte[] getConsumerSpecificAttachment(String accountNo, String customerID) {
+    private byte[] getConsumerSpecificAttachment(String accountNo, String customerID, String brand) {
+
+        String brandlist = configService.getString("BRANDS_WITH_CUSTOMER_SPECIFIC_ATTACHMENT");
+        if(null != brandlist && brandlist.indexOf(brand) == -1) {
+            return null;
+        }
         //Account/Customer specific attachment if available use it or else get it from attachmentConfiguration.
         byte[] pdfBytes = null;
         AccountAttachmentMapping foundAttachment = accountAttachmentService.getAttachmentForAccountNo(accountNo,"PDF",true);
