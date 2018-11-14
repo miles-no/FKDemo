@@ -100,7 +100,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         }
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public void preprocess() throws IOException {
         StopWatch stopwatch = new StopWatch("Preprocessing");
         stopwatch.start();

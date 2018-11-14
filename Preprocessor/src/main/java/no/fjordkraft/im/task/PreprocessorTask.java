@@ -37,6 +37,7 @@ public class PreprocessorTask implements Runnable{
     @Override
     @Transactional
     public void run() {
+            //Statement statement1 = statementService.getStatement(statement.getId());
             preprocessorService.preprocess(statement);
             //statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
     }
