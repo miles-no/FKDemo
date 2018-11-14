@@ -173,9 +173,10 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             statement.setE2bAttachment(request.getEntity().isE2bAttachment());
 
             //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
+            logger.info("Updating status of statement with id " + statement.getId() + " invoice number " + statement.getInvoiceNumber() + " is online " + statement.isOnline() +" to preprocessed ");
             if (!request.getStatement().isOnline()) {
-                logger.info("Updating status of statement with id " + statement.getId() + " invoice number " + statement.getInvoiceNumber() + " to preprocessed ");
-                //statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
+                //logger.info("Updating status of statement with id " + statement.getId() + " invoice number " + statement.getInvoiceNumber() + " to preprocessed ");
+                statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
             }
             else
             {
