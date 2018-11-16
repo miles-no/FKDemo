@@ -132,17 +132,9 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                     if(pdfBytes ==null) {
                         pdfBytes = getDefaultSegmentFile(brand,attachmentConfigId);
                     }
-                    /*if(pdfBytes==null) {
-                        if(statement.getLegalPartClass()==null ||statement.getLegalPartClass().equals(IMConstants.LEGAL_PART_CLASS_INDIVIDUAL)) {
-                        pdfBytes = getSegmentFileFromFS(brand);
-                        } else {
-                            if(!(statement.getSystemBatchInput().getBrand().equals("FKAS")) && !(statement.getSystemBatchInput().getBrand().equals("TKAS"))) {
-                                pdfBytes = getSegmentFileFromFS(brand);
-                            }
-                        }
-                    }*/
                 }
             } else {
+                logger.debug("Search attachment pdf in segment table for statement id "+  statement.getId() + " accountNo " + accountNo + " brand "+ brand);
                 pdfBytes = getSegmentFile(accountNo, brand);
             }
 
@@ -267,24 +259,26 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
 
     private byte[] getSegmentFile(String accountNo, String brand) throws IOException, DocumentException {
         SegmentFile segmentFile = segmentFileService.getSegmentFile(accountNo, brand);
-        String basePath = configService.getString(IMConstants.CONTROL_FILE_PATH);
-        String fileName = segmentFile.getFileType()+ "_" +segmentFile.getId() + "_" + segmentFile.getChanged().getTime()+".pdf";
+        if(null != segmentFile ) {
+            String basePath = configService.getString(IMConstants.CONTROL_FILE_PATH);
+            String fileName = segmentFile.getFileType() + "_" + segmentFile.getId() + "_" + segmentFile.getChanged().getTime() + ".pdf";
 
-        synchronized (InvoiceGeneratorImpl.class) {
-            File f = new File(basePath + fileName);
-            logger.debug(" SegmentFile " + segmentFile.getId() + "file is "+ f.getAbsolutePath() + " exists "+ f.exists());
-            if (f.exists()) {
-                return IOUtils.toByteArray(new FileInputStream(f));
-            } else {
-                String attachPDF = segmentFileService.getPDFContent(accountNo, brand);
-                if (null != attachPDF) {
-                    byte[] pdfBytes = Base64.decode(attachPDF);
-                    pdfBytes = PDFUtil.merge(pdfBytes);
-                    pdfBytes = PDFUtil.rotator(pdfBytes);
-                    OutputStream oos = new FileOutputStream(f);
-                    oos.write(pdfBytes);
-                    oos.close();
-                    return pdfBytes;
+            synchronized (InvoiceGeneratorImpl.class) {
+                File f = new File(basePath + fileName);
+                logger.debug(" SegmentFile " + segmentFile.getId() + "file is " + f.getAbsolutePath() + " exists " + f.exists());
+                if (f.exists()) {
+                    return IOUtils.toByteArray(new FileInputStream(f));
+                } else {
+                    String attachPDF = segmentFileService.getPDFContent(accountNo, brand);
+                    if (null != attachPDF) {
+                        byte[] pdfBytes = Base64.decode(attachPDF);
+                        pdfBytes = PDFUtil.merge(pdfBytes);
+                        pdfBytes = PDFUtil.rotator(pdfBytes);
+                        OutputStream oos = new FileOutputStream(f);
+                        oos.write(pdfBytes);
+                        oos.close();
+                        return pdfBytes;
+                    }
                 }
             }
         }

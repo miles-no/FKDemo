@@ -233,11 +233,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
 
             String campaignImage = null;
-            logger.debug("readCampaignFilesystem " + readCampaignFilesystem);
-            logger.debug("getCreditLimit ",statement.getCreditLimit());
-            logger.debug("getLegalPartClass ",statement.getLegalPartClass());
-            logger.debug("account number is ",statement.getAccountNumber());
-            logger.debug("brand is ",brand);
+            logger.debug("readCampaignFilesystem " + readCampaignFilesystem + " getCreditLimit ",statement.getCreditLimit()+ " getLegalPartClass ",statement.getLegalPartClass() +
+                    " account number is ",statement.getAccountNumber() + " brand is ",brand );
+
             int attachmentConfigID = -1;
             if(!statement.isOnline()) {
                 attachmentConfigID = getAttachmentConfigID(statement.getCreditLimit(), statement.getLegalPartClass(), statement.getAccountNumber(), statement.getSystemBatchInput().getBrand());
@@ -251,6 +249,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                     campaignImage = getDefaultCampaignImage(statement);
                 }
             } else {
+                logger.debug("Search campaign inage in segment table for statement id "+  statement.getId() + " accountNo " + accountNo + " brand "+ brand);
                 campaignImage = segmentFileService.getImageContent(accountNo, brand);
             }
             if (null == campaignImage) {
@@ -262,7 +261,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             Boolean readFromFile =  configService.getBoolean("read.layout.from.file");
             String encoding = configService.getString("layout.encoding");
             encoding = encoding == null ? "UTF-8":encoding;
-            logger.debug("read layout from filesystem "+readFromFile+" encoding "+ encoding);
+            //logger.debug("read layout from filesystem "+readFromFile+" encoding "+ encoding);
             if(readFromFile ) {
                 runnable = reportEngine.openReportDesign(reportDesignFilePath);
             } else {
