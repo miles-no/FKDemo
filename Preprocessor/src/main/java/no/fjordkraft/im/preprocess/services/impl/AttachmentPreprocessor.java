@@ -866,7 +866,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                    BaseItemDetails baseItemDetail = new BaseItemDetails();
                    baseItemDetail.setDescription("Nettleie");
                    baseItemDetail.setVatRate(vatTotalsInfo.getVatPercent());
-                   baseItemDetail.setLineExtensionAmount(vatTotalsInfo.getVatAmount());
+                   baseItemDetail.setLineExtensionAmount(vatTotalsInfo.getVatBaseAmount());
                    mapOfVatSumOfGross.put(baseItemDetail.getVatRate(),baseItemDetail.getLineExtensionAmount());
                    baseItemDetails.add(baseItemDetail);
                }
