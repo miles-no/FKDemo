@@ -4846,7 +4846,7 @@ else &#13;
             <property name="backgroundRepeat">no-repeat</property>
             <property name="marginLeft">15mm</property>
             <property name="marginRight">12mm</property>
-            <property name="height">3.85in</property>
+            <property name="height">3.5in</property>
             <property name="width">7.21875in</property>
             <column id="770">
                 <property name="width">7.21875in</property>
@@ -4855,14 +4855,14 @@ else &#13;
                 <property name="backgroundPositionX">center</property>
                 <property name="backgroundPositionY">bottom</property>
                 <property name="backgroundRepeat">no-repeat</property>
-                <property name="height">67mm</property>
+                <property name="height">60mm</property>
                 <cell id="772">
                     <property name="paddingTop">0pt</property>
                     <property name="paddingLeft">0pt</property>
                     <property name="paddingBottom">0pt</property>
                     <property name="paddingRight">0pt</property>
                     <grid id="5">
-                        <property name="height">3.823in</property>
+                        <property name="height">3.5in</property>
                         <property name="width">7.166666666666667in</property>
                         <list-property name="boundDataColumns">
                             <structure>
@@ -4889,8 +4889,8 @@ else &#13;
                                 <property name="paddingBottom">0pt</property>
                                 <property name="paddingRight">0pt</property>
                                 <image id="1933">
-                                    <property name="height">0.7in</property>
-                                    <property name="width">2in</property>
+                                    <property name="height">0.84in</property>
+                                    <property name="width">1.5in</property>
                                     <property name="source">file</property>
                                     <expression name="uri" type="constant">GEAS_top_Left.png</expression>
                                 </image>
@@ -5119,7 +5119,7 @@ else &#13;
                             <cell id="139">
                                 <property name="colSpan">1</property>
                                 <property name="rowSpan">1</property>
-                                <property name="paddingTop">32pt</property>
+                                <property name="paddingTop">10pt</property>
                                 <property name="paddingBottom">1pt</property>
                                 <text id="111">
                                     <property name="fontFamily">cursive</property>
@@ -5831,8 +5831,20 @@ false; &#13;
                             <structure>
                                 <property name="name">Kontonummer</property>
                                 <text-property name="displayName">Kontonummer</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Kontonummer"]</expression>
+                                <expression name="expression" type="javascript">if(null !== dataSetRow["Kontonummer"])&#13;
+{&#13;
+var accountnum= dataSetRow["Kontonummer"]&#13;
+var res1 = accountnum.substring(0, 4);&#13;
+var res2 = accountnum.substring(4, 6);&#13;
+var res3 = accountnum.substring(6, 11);&#13;
+res1 + "." + res2 + "."+ res3 + " ";&#13;
+}&#13;
+else &#13;
+{&#13;
+" "&#13;
+}</expression>
                                 <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
                             </structure>
                             <structure>
                                 <property name="name">DirectDebit</property>
@@ -13836,8 +13848,8 @@ else&#13;
                                         <property name="paddingLeft">5pt</property>
                                         <property name="paddingRight">0pt</property>
                                         <image id="3931">
-                                            <property name="height">0.5in</property>
-                                            <property name="width">1.3in</property>
+                                            <property name="height">0.6in</property>
+                                            <property name="width">1in</property>
                                             <property name="source">file</property>
                                             <expression name="uri" type="constant">GEAS_GreyLogo.png</expression>
                                         </image>
@@ -13937,7 +13949,7 @@ måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <property name="fontSize">7pt</property>
                                             <property name="paddingTop">3pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Nettleien betaler vi videre til de som eier ledningsnettet der du bor – altså din netteier. Nettleien går blant annet til å dekke drift og vedlikehold av ledningsnettet i ditt område, samt offentlige avgifter</text-property>
+                                            <text-property name="text">Nettleien betaler vi videre til de som eier ledningsnettet der du bor – altså din netteier. Nettleien går blant annet til å dekke drift og vedlikehold av ledningsnettet i ditt område, samt offentlige avgifter.</text-property>
                                         </label>
                                         <label id="3944">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
@@ -13985,7 +13997,7 @@ måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <text-property name="text">Hvis det mot formodning skulle&#13;
 oppstå en konflikt som ikke kan løses&#13;
 direkte mellom deg og oss, kan du&#13;
-klage til Elklagenemnda.Elklagenemnda er opprettet av norske energibedrifter&#13;
+klage til Elklagenemnda. Elklagenemnda er opprettet av norske energibedrifter&#13;
 og Forbrukerrådet for å løse tvistesaker. Se elklagenemnda.no</text-property>
                                         </label>
                                         <label id="3949">
