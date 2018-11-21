@@ -7997,6 +7997,7 @@ else &#13;
                         <property name="fontSize">7pt</property>
                         <property name="fontStyle">normal</property>
                         <property name="marginTop">2pt</property>
+                        <property name="marginBottom">0pt</property>
                         <property name="paddingTop">3pt</property>
                         <property name="dataSet">PaymentInfo</property>
                         <list-property name="visibility">
@@ -8024,42 +8025,7 @@ else &#13;
                             </structure>
                         </list-property>
                         <property name="contentType">auto</property>
-                        <text-property name="content"><![CDATA[Som hovedregel blir tilgodebeløpet utbetalt på forfallsdato til kontonummeret dere sist betalte fra, forutsatt at det ikke finnes andre åpne krav. Dersom vi
-]]></text-property>
-                    </text>
-                    <text id="5765">
-                        <property name="fontFamily">"Museo Sans 300"</property>
-                        <property name="fontSize">7pt</property>
-                        <property name="fontStyle">normal</property>
-                        <property name="paddingTop">2pt</property>
-                        <property name="paddingBottom">0pt</property>
-                        <property name="dataSet">PaymentInfo</property>
-                        <list-property name="visibility">
-                            <structure>
-                                <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">if(parseFloat(row["CurrentClaim"]) > 0 || parseFloat(row["CurrentClaim"]) == 0)&#13;
-{true;&#13;
-}&#13;
-else &#13;
-{false;}</expression>
-                            </structure>
-                        </list-property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">CurrentClaim</property>
-                                <text-property name="displayName">CurrentClaim</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["CurrentClaim"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">DirectDebit</property>
-                                <text-property name="displayName">DirectDebit</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["DirectDebit"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                        <property name="contentType">auto</property>
-                        <text-property name="content"><![CDATA[mangler kontonummer blir tilgodebeløpet lagt til fratrekk på neste faktura.
+                        <text-property name="content"><![CDATA[Som hovedregel blir tilgodebeløpet utbetalt på forfallsdato til kontonummeret dere sist betalte fra, forutsatt at det ikke finnes andre åpne krav.
 ]]></text-property>
                     </text>
                     <grid id="7077">
@@ -8736,7 +8702,7 @@ dataSetRow["TransactionCategory"];&#13;
                             </structure>
                             <structure>
                                 <property name="name">VatRate1</property>
-                                <expression name="expression" type="javascript">if(dataSetRow["VatRate"] == null || BirtStr.trim(dataSetRow["VatRate"]) == "BLANK")&#13;
+                                <expression name="expression" type="javascript">if(dataSetRow["VatRate"] == null || BirtStr.trim(dataSetRow["VatRate"]) == "")&#13;
 {&#13;
 " "&#13;
 }&#13;
@@ -11044,7 +11010,7 @@ dataSetRow["TransactionCategory"];&#13;
                             </structure>
                             <structure>
                                 <property name="name">VatRate1</property>
-                                <expression name="expression" type="javascript">if(dataSetRow["VatRate"] == null || BirtStr.trim(dataSetRow["VatRate"]) == "BLANK")&#13;
+                                <expression name="expression" type="javascript">if(dataSetRow["VatRate"] == null || BirtStr.trim(dataSetRow["VatRate"]) == "")&#13;
 {&#13;
 " "&#13;
 }&#13;
@@ -13607,6 +13573,10 @@ else if(null != dataSetRow["TransactionName"] &amp;&amp; dataSetRow["Transaction
                                     <expression name="expression" type="javascript">if(dataSetRow["PriceDenomination"] !=null &amp;&amp; ('kr/mnd' == dataSetRow["PriceDenomination"] || 'kr/år' == dataSetRow["PriceDenomination"])) {&#13;
 dataSetRow["NoOfDays"] + " "+ 'dager'; &#13;
 }&#13;
+else if(dataSetRow["UnitOfMeasure"] == null &amp;&amp;  dataSetRow["QuantityInvoiced"] == 0.0){&#13;
+""&#13;
+}&#13;
+&#13;
 else if(dataSetRow["UnitOfMeasure"] == null) {&#13;
 truncateDecimal(dataSetRow["QuantityInvoiced"]) &#13;
 }&#13;
@@ -13641,6 +13611,11 @@ else if(null != dataSetRow["UnitOfMeasure"] &amp;&amp; dataSetRow["UnitOfMeasure
 		}&#13;
 &#13;
 } &#13;
+else if( dataSetRow["UnitOfMeasure"] == null &amp;&amp;  (dataSetRow["UnitPrice"] == null || dataSetRow["UnitPrice"] == 0 ||  dataSetRow["UnitPrice"] == 0.00) )&#13;
+{&#13;
+""&#13;
+}&#13;
+&#13;
 else {&#13;
 	if(null != dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"] &amp;&amp; dataSetRow["PriceDenomination"].toUpperCase() == 'NOK') {&#13;
 		formatMoney(dataSetRow["UnitPrice"], 2, '', ' ', ',') + " " + 'nok';&#13;
