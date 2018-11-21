@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">C:\Users\miles12\Downloads\713343460013-VKAS-Strfrisk.xml</property>
+            <property name="FILELIST">C:\Users\miles12\Desktop\Workspace\Files\processed_statement_2.xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -145,6 +145,16 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">CareOfName</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">Address1</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">Address1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Address2</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">Address2</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -232,6 +242,16 @@
                     <structure>
                         <property name="position">17</property>
                         <property name="name">CareOfName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">Address1</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">Address2</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -357,8 +377,22 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">Address1</property>
+                    <property name="nativeName">Address1</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">Address2</property>
+                    <property name="nativeName">Address2</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{Name;STRING;/Name},{Address;STRING;/Address},{PostCode;STRING;/PostCode},{City;STRING;/City},{AccountNumber;STRING;/AccountNumber},{SequenceNumber;STRING;/SequenceNumber},{NationalId;STRING;/NationalId},{StatementDate;STRING;/StatementDate},{DueDate;DATE;/DueDate},{StatementOcrNumber;STRING;/StatementOcrNumber},{DirectDebit;STRING;/DirectDebit},{Version;STRING;/Version},{TotalAttachment;STRING;/TotalAttachment},{LegalPartClass;STRING;/LegalPartClass},{Region;STRING;/Region},{Country;STRING;/Country},{CareOfName;STRING;/CareOfName}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement]#:#{Name;STRING;/Name},{Address;STRING;/Address},{PostCode;STRING;/PostCode},{City;STRING;/City},{AccountNumber;STRING;/AccountNumber},{SequenceNumber;STRING;/SequenceNumber},{NationalId;STRING;/NationalId},{StatementDate;STRING;/StatementDate},{DueDate;DATE;/DueDate},{StatementOcrNumber;STRING;/StatementOcrNumber},{DirectDebit;STRING;/DirectDebit},{Version;STRING;/Version},{TotalAttachment;STRING;/TotalAttachment},{LegalPartClass;STRING;/LegalPartClass},{Region;STRING;/Region},{Country;STRING;/Country},{CareOfName;STRING;/CareOfName},{Address1;STRING;/Address1},{Address2;STRING;/Address2}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -4944,15 +4978,73 @@ dataSetRow["CareOfName"];&#13;
                                                 <property name="textAlign">left</property>
                                                 <property name="lineHeight">7pt</property>
                                                 <property name="dataSet">MainInfo</property>
-                                                <list-property name="boundDataColumns">
+                                                <list-property name="visibility">
                                                     <structure>
-                                                        <property name="name">Address</property>
-                                                        <text-property name="displayName">Address</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["Address"]</expression>
-                                                        <property name="dataType">string</property>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">if(row["Address1"] == null || BirtStr.trim(row["Address1"]) == "")&#13;
+{&#13;
+true;&#13;
+}&#13;
+else &#13;
+{false;}</expression>
                                                     </structure>
                                                 </list-property>
-                                                <property name="resultSetColumn">Address</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Address1</property>
+                                                        <text-property name="displayName">Address1</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address1"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Column Binding</property>
+                                                        <text-property name="displayName">Address1</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address1"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Column Binding</property>
+                                            </data>
+                                            <data id="3918">
+                                                <property name="fontFamily">"Arial"</property>
+                                                <property name="fontSize">10pt</property>
+                                                <property name="fontWeight">normal</property>
+                                                <property name="color">#000000</property>
+                                                <property name="paddingTop">0pt</property>
+                                                <property name="paddingLeft">3.1pt</property>
+                                                <property name="paddingBottom">0pt</property>
+                                                <property name="paddingRight">0pt</property>
+                                                <property name="textAlign">left</property>
+                                                <property name="lineHeight">7pt</property>
+                                                <property name="dataSet">MainInfo</property>
+                                                <list-property name="visibility">
+                                                    <structure>
+                                                        <property name="format">all</property>
+                                                        <expression name="valueExpr" type="javascript">if(row["Address2"] == null || BirtStr.trim(row["Address2"]) == "")&#13;
+{&#13;
+true;&#13;
+}&#13;
+else &#13;
+{false;}</expression>
+                                                    </structure>
+                                                </list-property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Address2</property>
+                                                        <text-property name="displayName">Address2</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address2"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Column Binding</property>
+                                                        <text-property name="displayName">Address2</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Address2"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">Column Binding</property>
                                             </data>
                                             <data id="1887">
                                                 <property name="fontFamily">"Arial"</property>
