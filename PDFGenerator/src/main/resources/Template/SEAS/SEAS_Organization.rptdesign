@@ -866,7 +866,7 @@
                     <property name="operator">le</property>
                     <expression name="expr" type="javascript">row["TransactionSequence"]</expression>
                     <simple-property-list name="value1">
-                        <value>10</value>
+                        <value>8</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -2932,7 +2932,7 @@
                     <property name="operator">ge</property>
                     <expression name="expr" type="javascript">row["TransactionSequence"]</expression>
                     <simple-property-list name="value1">
-                        <value>11</value>
+                        <value>9</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -5488,7 +5488,7 @@ if(null == dataSetRow["StartDate"]) {&#13;
                             <structure>
                                 <property name="name">TotalTransactions</property>
                                 <text-property name="displayName">Total Claim</text-property>
-                                <expression name="expression" type="javascript">if(dataSetRow["TotalTransactions"] &lt;= 10 )&#13;
+                                <expression name="expression" type="javascript">if(dataSetRow["TotalTransactions"] &lt;= 8 )&#13;
 {&#13;
    if(parseFloat(dataSetRow["CurrentClaim"]) &lt; 0 )&#13;
    {&#13;
@@ -5718,7 +5718,7 @@ else&#13;
                                             <structure>
                                                 <property name="name">TotalVatAmount</property>
                                                 <text-property name="displayName">TotalVatAmount</text-property>
-                                                <expression name="expression" type="javascript">if(dataSetRow["TotalTransactions"] &lt;= 10)&#13;
+                                                <expression name="expression" type="javascript">if(dataSetRow["TotalTransactions"] &lt;= 8)&#13;
 "(Herav MVA " + formatMoney(dataSetRow["TotalVatAmount"], 2, '', '.', ',') + ")"</expression>
                                                 <property name="dataType">string</property>
                                                 <property name="allowExport">true</property>
@@ -5740,7 +5740,7 @@ else&#13;
                                             <structure>
                                                 <property name="name">CurrentClaim</property>
                                                 <text-property name="displayName">CurrentClaim</text-property>
-                                                <expression name="expression" type="javascript">if(dataSetRow["TotalTransactions"] &lt;= 10)&#13;
+                                                <expression name="expression" type="javascript">if(dataSetRow["TotalTransactions"] &lt;= 8)&#13;
 formatMoney(dataSetRow["CurrentClaim"], 2, '', '.', ',')</expression>
                                                 <property name="dataType">string</property>
                                                 <property name="allowExport">true</property>
