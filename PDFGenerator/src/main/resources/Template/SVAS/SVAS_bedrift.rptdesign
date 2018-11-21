@@ -10284,7 +10284,7 @@ false;&#13;
                                                         <property name="height">0.3333333333333333in</property>
                                                         <property name="width">2.28125in</property>
                                                         <column id="2689">
-                                                            <property name="width">0.3in</property>
+                                                            <property name="width">0.2in</property>
                                                         </column>
                                                         <column id="2690">
                                                             <property name="width">1.1041666666666667in</property>
@@ -10395,6 +10395,7 @@ else&#13;
                                                             </cell>
                                                             <cell id="2702">
                                                                 <data id="3917">
+                                                                    <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                                                     <property name="resultSetColumn">FAKTURA_MERKE_SO</property>
                                                                 </data>
                                                             </cell>
