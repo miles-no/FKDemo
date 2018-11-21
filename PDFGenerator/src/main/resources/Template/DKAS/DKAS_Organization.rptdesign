@@ -4797,7 +4797,7 @@
             </page-header>
             <page-footer>
                 <grid id="204">
-                    <property name="borderTopColor">#042643</property>
+                    <property name="borderTopColor">#006FA0</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">1px</property>
                     <property name="marginLeft">15mm</property>
@@ -4917,8 +4917,8 @@ else &#13;
                                 <property name="paddingBottom">0pt</property>
                                 <property name="paddingRight">0pt</property>
                                 <image id="1933">
-                                    <property name="height">0.7in</property>
-                                    <property name="width">2in</property>
+                                    <property name="height">0.6in</property>
+                                    <property name="width">2.8in</property>
                                     <property name="source">file</property>
                                     <expression name="uri" type="constant">DKAS_top_Left_logo.png</expression>
                                 </image>
@@ -5147,7 +5147,7 @@ else &#13;
                             <cell id="3923">
                                 <property name="colSpan">1</property>
                                 <property name="rowSpan">1</property>
-                                <property name="paddingTop">36pt</property>
+                                <property name="paddingTop">10pt</property>
                                 <property name="paddingBottom">1pt</property>
                                 <text id="3924">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -5159,7 +5159,7 @@ else &#13;
                                 <label id="3925">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
                                     <property name="fontSize">10.5pt</property>
-                                    <property name="color">#042643</property>
+                                    <property name="color">#006FA0</property>
                                     <property name="paddingTop">3pt</property>
                                     <property name="textAlign">right</property>
                                     <text-property name="text">Telefon kundeservice: 75 68 19 50</text-property>
@@ -5167,7 +5167,7 @@ else &#13;
                                 <label id="3926">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
                                     <property name="fontSize">10.5pt</property>
-                                    <property name="color">#042643</property>
+                                    <property name="color">#006FA0</property>
                                     <property name="paddingTop">3pt</property>
                                     <property name="textAlign">right</property>
                                     <text-property name="text">Mandag - fredag 09:00 – 15:00</text-property>
@@ -5175,7 +5175,7 @@ else &#13;
                                 <label id="3927">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
                                     <property name="fontSize">10.5pt</property>
-                                    <property name="color">#042643</property>
+                                    <property name="color">#006FA0</property>
                                     <property name="paddingTop">3pt</property>
                                     <property name="textAlign">right</property>
                                     <text-property name="text">Se forbruk og fakturaer på ms.dragefossen.no</text-property>
@@ -5396,7 +5396,7 @@ else &#13;
                     <property name="paddingBottom">0pt</property>
                     <property name="paddingRight">5.5pt</property>
                     <label id="4058">
-                        <property name="backgroundColor">#042643</property>
+                        <property name="backgroundColor">#006FA0</property>
                         <property name="marginTop">2pt</property>
                         <property name="paddingTop">3pt</property>
                         <property name="paddingLeft">5pt</property>
@@ -5946,8 +5946,20 @@ else &#13;
                             <structure>
                                 <property name="name">Kontonummer</property>
                                 <text-property name="displayName">Kontonummer</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Kontonummer"]</expression>
+                                <expression name="expression" type="javascript">if(null !== dataSetRow["Kontonummer"])&#13;
+{&#13;
+var accountnum= dataSetRow["Kontonummer"]&#13;
+var res1 = accountnum.substring(0, 4);&#13;
+var res2 = accountnum.substring(4, 6);&#13;
+var res3 = accountnum.substring(6, 11);&#13;
+res1 + "." + res2 + "."+ res3 + " ";&#13;
+}&#13;
+else &#13;
+{&#13;
+" "&#13;
+}</expression>
                                 <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
                             </structure>
                             <structure>
                                 <property name="name">DirectDebit</property>
@@ -14019,7 +14031,7 @@ else&#13;
                                         <property name="paddingRight">0pt</property>
                                         <image id="3958">
                                             <property name="height">0.3in</property>
-                                            <property name="width">1.2in</property>
+                                            <property name="width">1.5in</property>
                                             <property name="source">file</property>
                                             <expression name="uri" type="constant">DKAS_GreyPart_logo.png</expression>
                                         </image>
@@ -14112,21 +14124,21 @@ måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Som kunde hos Dragefossen Kraftanlegg AS får du strøm og nettleie på én regning  dersom Dragefossen Kraftanlegg AS har avtale om dette med din lokale netteier. </text-property>
+                                            <text-property name="text">Som kunde hos Dragefossen får du strøm og nettleie på én regning  dersom Dragefossen har avtale om dette med din lokale netteier. </text-property>
                                         </label>
                                         <label id="3970">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="paddingTop">3pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Nettleien betaler vi videre til de som eier ledningsnettet der du bor – altså din netteier. Nettleien går blant annet til å dekke drift og vedlikehold av ledningsnettet i ditt område, samt offentlige avgifter</text-property>
+                                            <text-property name="text">Nettleien betaler vi videre til de som eier ledningsnettet der du bor – altså din netteier. Nettleien går blant annet til å dekke drift og vedlikehold av ledningsnettet i ditt område, samt offentlige avgifter.</text-property>
                                         </label>
                                         <label id="3971">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
                                             <property name="fontSize">7pt</property>
                                             <property name="paddingTop">3pt</property>
                                             <property name="lineHeight">8pt</property>
-                                            <text-property name="text">Strøm kjøper du fra Dragefossen Kraftanlegg AS siden vi er din strømleverandør. Beløpet du betaler til oss styres først og fremst av strømpriser og av hvor mye strøm du bruker.</text-property>
+                                            <text-property name="text">Strøm kjøper du fra Dragefossen. Siden vi er din strømleverandør. Beløpet du betaler til oss styres først og fremst av strømpriser og av hvor mye strøm du bruker.</text-property>
                                         </label>
                                         <label id="3972">
                                             <property name="fontFamily">"Fjordkraft Neo Sans Medium"</property>
@@ -14167,7 +14179,7 @@ måleravlesninger, ta kontakt med din lokale netteier:</text-property>
                                             <text-property name="text">Hvis det mot formodning skulle&#13;
 oppstå en konflikt som ikke kan løses&#13;
 direkte mellom deg og oss, kan du&#13;
-klage til Elklagenemnda.Elklagenemnda er opprettet av norske energibedrifter&#13;
+klage til Elklagenemnda. Elklagenemnda er opprettet av norske energibedrifter&#13;
 og Forbrukerrådet for å løse tvistesaker. Se elklagenemnda.no</text-property>
                                         </label>
                                         <label id="3978">
