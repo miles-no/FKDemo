@@ -56,6 +56,14 @@
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
             <property name="FILELIST">C:\Users\miles12\Desktop\Workspace\Files\processed_statement_1.xml</property>
         </oda-data-source>
+        <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="TKAS1Report" id="5037">
+            <text-property name="displayName"></text-property>
+            <property name="FILELIST">processed_statement (91).xml</property>
+        </oda-data-source>
+        <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source1" id="5038">
+            <text-property name="displayName"></text-property>
+            <property name="FILELIST">processed_statement (83).xml</property>
+        </oda-data-source>
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.datatools.enablement.oda.xml.dataSet" name="MainInfo" id="114">
@@ -5819,9 +5827,6 @@ else &#13;
                                                         <property name="paddingBottom">0pt</property>
                                                         <property name="paddingRight">0pt</property>
                                                         <extended-item extensionName="BarcodeItem" id="2685">
-                                                            <property name="barcodeType" type="constant">CODE_128</property>
-                                                            <property name="encoding" type="constant">ISO-8859-1</property>
-                                                            <property name="content" type="javascript">row["Barcode"]</property>
                                                             <property name="paddingTop">15pt</property>
                                                             <property name="height">0.22in</property>
                                                             <property name="width">1.3in</property>
@@ -5834,12 +5839,15 @@ else &#13;
                                                                     <property name="dataType">string</property>
                                                                 </structure>
                                                             </list-property>
+                                                            <property name="barcodeType" type="constant">CODE_128</property>
+                                                            <property name="encoding" type="constant">ISO-8859-1</property>
+                                                            <property name="content" type="javascript">row["Barcode"]</property>
                                                         </extended-item>
                                                     </cell>
                                                 </row>
                                             </grid>
                                             <data id="1885">
-                                                <property name="fontFamily">"Museo Sans 700"</property>
+                                                <property name="fontFamily">"Arial"</property>
                                                 <property name="fontSize">10pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
@@ -5869,7 +5877,7 @@ dataSetRow["CareOfName"];&#13;
                                                 <property name="resultSetColumn">Name</property>
                                             </data>
                                             <data id="1886">
-                                                <property name="fontFamily">"Museo Sans 700"</property>
+                                                <property name="fontFamily">"Arial"</property>
                                                 <property name="fontSize">10pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
@@ -5909,7 +5917,7 @@ else &#13;
                                                 <property name="resultSetColumn">Column Binding</property>
                                             </data>
                                             <data id="5036">
-                                                <property name="fontFamily">"Museo Sans 700"</property>
+                                                <property name="fontFamily">"Arial"</property>
                                                 <property name="fontSize">10pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
@@ -5949,7 +5957,7 @@ else &#13;
                                                 <property name="resultSetColumn">Column Binding</property>
                                             </data>
                                             <data id="1887">
-                                                <property name="fontFamily">"Museo Sans 700"</property>
+                                                <property name="fontFamily">"Arial"</property>
                                                 <property name="fontSize">10pt</property>
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
@@ -5972,7 +5980,7 @@ else &#13;
                                                 <property name="resultSetColumn">City</property>
                                             </data>
                                             <data id="1888">
-                                                <property name="fontFamily">"Museo Sans 700"</property>
+                                                <property name="fontFamily">"Arial"</property>
                                                 <property name="paddingTop">0pt</property>
                                                 <property name="paddingLeft">3.1pt</property>
                                                 <property name="paddingBottom">0pt</property>
