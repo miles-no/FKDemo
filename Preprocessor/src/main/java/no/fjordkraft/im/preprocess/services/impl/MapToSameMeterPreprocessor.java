@@ -50,7 +50,7 @@ public class MapToSameMeterPreprocessor extends BasePreprocessor {
                     } else {
                         if (attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder() != null && attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceOrder().size() > 0) {
                             Nettleie nettleie = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie();
-                            if (nettleie != null && nettleie.getBaseItemDetails() != null && nettleie.getBaseItemDetails().size() > 0) {
+                            if (nettleie != null && nettleie.getFakturanr()!=null/*&& nettleie.getBaseItemDetails() != null && nettleie.getBaseItemDetails().size() > 0*/) {
                                 nettleie.setGrid(attachment.getFAKTURA().getGrid());
                                 attachment.getFAKTURA().getNettleieList().add(nettleie);
                                 attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(null);
