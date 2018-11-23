@@ -117,7 +117,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
                         }
                     } else if (IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT())) {
+                        if(gridAttachment.getFAKTURA().getVedlegge2BObj().getInvoice().getConsolidatedInvoiceDetails().getBaseItemDetails()!=null && gridAttachment.getFAKTURA().getVedlegge2BObj().getInvoice().getConsolidatedInvoiceDetails().getBaseItemDetails().size()>0)   {
                         gridStartDate = gridAttachment.getFAKTURA().getVedlegge2BObj().getInvoice().getConsolidatedInvoiceDetails().getBaseItemDetails().get(0).getStartDate();
+                        }
                     }
 
                // logger.debug(" MeterId and month " + gridAttachment.getFAKTURA().getMAALEPUNKT() + "-" + gridStartDate.getMonth() + " invoice number " + invoicenumber);
