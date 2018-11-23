@@ -105,4 +105,6 @@ public interface IMConstants {
     static final String INVOICE_LAYOUT_WITHOUT_DETAILS = "WITHOUT_DETAILS";
     static final String INVOICE_ATTACHMENT_TYPE_FOR_ACCOUNT = "ACCOUNT";
     static final String INVOICE_ATTACHMENT_TYPE_FOR_CUSTOMER = "CUSTOMER";
+    static final String INVOICE_LINE_TAG_DUMMY = "-DUM";
+    static final String INVOICE_GRID_DESCRIPTION_DUMMY = "DUMMY";
 }
