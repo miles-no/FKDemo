@@ -1,10 +1,7 @@
 package no.fjordkraft.im.preprocess.services.impl;
 
 import no.fjordkraft.im.exceptions.PreprocessorException;
-import no.fjordkraft.im.if320.models.Attachment;
-import no.fjordkraft.im.if320.models.BaseItemDetails;
-import no.fjordkraft.im.if320.models.InvoiceLine120;
-import no.fjordkraft.im.if320.models.Statement;
+import no.fjordkraft.im.if320.models.*;
 import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.services.AuditLogService;
@@ -38,35 +35,51 @@ public class InvoiceLineFilterPreprocessor  extends BasePreprocessor  {
     {
         try
         {
-
             Statement stmt = request.getStatement();
             List<Attachment> attachmentList = stmt.getAttachments().getAttachment();
+            logger.debug("LegalPartClass = " + stmt.getLegalPartClass());
             if(attachmentList!=null && attachmentList.size()>0)
             {
                 for(Attachment attachment: attachmentList)
                 {
                     if(IMConstants.EMUXML.equals(attachment.getFAKTURA().getVEDLEGGFORMAT()))
                     {
-                        List<InvoiceLine120> invoiceLine120List = new ArrayList<InvoiceLine120>();
+
+                        List<InvoiceOrder> invoiceOrders = new ArrayList<InvoiceOrder>();
                         no.fjordkraft.im.if320.models.Invoice invoice = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice();
-                        if(invoice.getInvoiceFinalOrder().getInvoiceLine120()!=null && invoice.getInvoiceFinalOrder().getInvoiceLine120().size() > 0)
+                        logger.debug("meter ID " + attachment.getFAKTURA().getMAALEPUNKT());
+                         //In case of Organization there could be multiple invoice orders.
+                        if(invoice.getInvoiceOrder()!=null && invoice.getInvoiceOrder().size() > 0)
                         {
-                            for (InvoiceLine120 invoiceLine120 : invoice.getInvoiceFinalOrder().getInvoiceLine120())
+                            logger.debug("No Of Invoice Orders " + invoice.getInvoiceOrder().size());
+                            for(InvoiceOrder invoiceOrder :invoice.getInvoiceOrder())
                             {
-                                if(invoiceLine120.getProdId()!=null && !invoiceLine120.getProdId().trim().contains(IMConstants.INVOICE_LINE_TAG_DUMMY))
+                                List<InvoiceLine120> invoiceLine120List = new ArrayList<InvoiceLine120>();
+                                if(invoiceOrder.getInvoiceLine120()!=null && invoiceOrder.getInvoiceLine120().size()>0)
                                 {
-                                    invoiceLine120List.add(invoiceLine120);
-                                } else if(invoiceLine120.getProdId().trim().contains(IMConstants.INVOICE_LINE_TAG_DUMMY))
-                                {
-                                    String description = attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getProductParameters118().getDescription();
-                                    logger.debug("Description for the invoice number " + request.getStatement().geteInvoiceId() + " is " + description) ;
-                                    if(description!=null && !description.isEmpty()&& description.toUpperCase().contains(IMConstants.INVOICE_GRID_DESCRIPTION_DUMMY)) {
-                                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getProductParameters118().setDescription(null);
+                                    logger.debug("No Of Invoice Lines before filtering " + invoiceOrder.getInvoiceLine120().size());
+                                    for (InvoiceLine120 invoiceLine120 : invoiceOrder.getInvoiceLine120())
+                                    {
+                                        if(invoiceLine120.getProdId()!=null && !invoiceLine120.getProdId().trim().contains(IMConstants.INVOICE_LINE_TAG_DUMMY))
+                                        {
+                                            invoiceLine120List.add(invoiceLine120);
+                                        } else if(invoiceLine120.getProdId().trim().contains(IMConstants.INVOICE_LINE_TAG_DUMMY))
+                                        {
+                                            String description = invoiceOrder.getProductParameters118().getDescription();
+                                            logger.debug("Description for the invoice number " + request.getStatement().geteInvoiceId() + " is " + description) ;
+                                            if(description!=null && !description.isEmpty()&& description.toUpperCase().contains(IMConstants.INVOICE_GRID_DESCRIPTION_DUMMY))
+                                            {
+                                                invoiceOrder.getProductParameters118().setDescription(null);
+                                            }
+                                        }
                                     }
+                                    logger.debug("No Of Invoice Lines after filtering " + invoiceLine120List.size());
+                                    invoiceOrder.setInvoiceLine120(invoiceLine120List);
                                 }
+                                invoiceOrders.add(invoiceOrder);
                             }
-                            logger.debug("");
-                            attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setInvoiceLine120(invoiceLine120List);
+                            logger.debug("No Of Invoice Orders " + invoiceOrders.size());
+                            attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().setInvoiceOrder(invoiceOrders);
                         }
                     }
                 }
