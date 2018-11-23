@@ -323,6 +323,10 @@ public class InvoiceOrder {
         this.productParameters118 = value;
     }
 
+    public void setInvoiceLine120(List<InvoiceLine120> invoiceLine120) {
+        this.invoiceLine120 = invoiceLine120;
+    }
+
     /**
      * Gets the value of the invoiceLine120 property.
      *
@@ -343,6 +347,7 @@ public class InvoiceOrder {
      * Objects of the following type(s) are allowed in the list
      * {@link no.fjordkraft.im.if320.models.InvoiceLine120 }
      *
+
      *
      */
     public List<InvoiceLine120> getInvoiceLine120() {
