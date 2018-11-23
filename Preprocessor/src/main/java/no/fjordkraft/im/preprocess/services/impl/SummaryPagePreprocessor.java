@@ -96,7 +96,6 @@ public class SummaryPagePreprocessor extends BasePreprocessor  {
                             logger.debug("Found nettleie attachment..");
                             List<Nettleie> listOfNett =  attachment.getFAKTURA().getNettleieList();
 
-
                             MeterDetails nettMeterDetails = getMeterDetailOfNettleie(listOfNett,mapOfMvaVsBelop);
                             if(listOfNett.size()>0 && listOfNett.get(0).getGrid().getName()==null ||
                                     (listOfNett.get(0).getGrid().getName()!=null &&
@@ -106,7 +105,7 @@ public class SummaryPagePreprocessor extends BasePreprocessor  {
                             } else if(listOfNett.size()>0)
                             {
                                 //If grid name is blank than in that case it should be "nettleie fra netteier".
-                                nettMeterDetails.setMeterName("Nettleie fra "+listOfNett.get(0).getGrid().getName());
+                                nettMeterDetails.setMeterName("Nettleie fra "+attachment.getFAKTURA().getNettleieList().get(0).getGrid().getName());
                             }
                             nettMeterDetails.setStartDate(attachment.getFAKTURA().getNettleieList().get(0).getStartDate());
                             nettMeterDetails.setEndDate(attachment.getFAKTURA().getNettleieList().get(0).getEndDate());
