@@ -42,7 +42,7 @@ public class InvoiceLineFilterPreprocessor  extends BasePreprocessor  {
             {
                 for(Attachment attachment: attachmentList)
                 {
-                    if(IMConstants.EMUXML.equals(attachment.getFAKTURA().getVEDLEGGFORMAT()))
+                    if(attachment.getFAKTURA()!=null && IMConstants.EMUXML.equals(attachment.getFAKTURA().getVEDLEGGFORMAT()))
                     {
 
                         List<InvoiceOrder> invoiceOrders = new ArrayList<InvoiceOrder>();
