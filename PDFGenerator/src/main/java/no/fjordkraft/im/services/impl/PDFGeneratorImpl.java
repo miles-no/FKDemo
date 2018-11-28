@@ -238,8 +238,10 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
             int attachmentConfigID = -1;
             if(!statement.isOnline()) {
+                brand = statement.getSystemBatchInput().getBrand();
                 attachmentConfigID = getAttachmentConfigID(statement.getCreditLimit(), statement.getLegalPartClass(), statement.getAccountNumber(), statement.getSystemBatchInput().getBrand());
             } else {
+                brand = statement.getBrand();
                 attachmentConfigID = getAttachmentConfigID(statement.getCreditLimit(), statement.getLegalPartClass(), statement.getAccountNumber(), statement.getBrand());
             }
             statement.setAttachmentConfigId(attachmentConfigID);
