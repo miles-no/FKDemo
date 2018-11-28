@@ -233,8 +233,8 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
 
 
             String campaignImage = null;
-            logger.debug("readCampaignFilesystem " + readCampaignFilesystem + " getCreditLimit ",statement.getCreditLimit()+ " getLegalPartClass ",statement.getLegalPartClass() +
-                    " account number is ",statement.getAccountNumber() + " brand is ",brand );
+            logger.debug("readCampaignFilesystem " + readCampaignFilesystem + " getCreditLimit "+statement.getCreditLimit()+ " getLegalPartClass "+statement.getLegalPartClass() +
+                    " account number is "+statement.getAccountNumber() + " brand is "+brand );
 
             int attachmentConfigID = -1;
             if(!statement.isOnline()) {
@@ -244,7 +244,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             }
             statement.setAttachmentConfigId(attachmentConfigID);
             if (readCampaignFilesystem) {
-                campaignImage = getConsumerSpecificCampaignImage(statement.getAccountNumber(),statement.getCustomerId(),statement.getSystemBatchInput().getBrand());
+                campaignImage = getConsumerSpecificCampaignImage(statement.getAccountNumber(),statement.getCustomerId(),brand);
                 if(campaignImage ==null) {
                     campaignImage = getDefaultCampaignImage(statement);
                 }
