@@ -17,7 +17,7 @@ import java.util.List;
  * Created by miles on 5/18/2017.
  */
 @Service
-@PreprocessorInfo(order=5)
+@PreprocessorInfo(order=20)
 public class ConsumptionsPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(ConsumptionsPreprocessor.class);

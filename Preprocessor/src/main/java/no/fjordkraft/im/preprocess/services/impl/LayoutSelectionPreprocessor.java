@@ -23,7 +23,7 @@ import java.util.List;
  * Created by miles on 6/19/2017.
  */
 @Service
-@PreprocessorInfo(order=10)
+@PreprocessorInfo(order=50)
 public class LayoutSelectionPreprocessor extends BasePreprocessor {
 
     @Autowired

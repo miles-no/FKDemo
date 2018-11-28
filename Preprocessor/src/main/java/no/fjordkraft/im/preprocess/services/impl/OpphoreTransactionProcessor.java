@@ -19,7 +19,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Service
-@PreprocessorInfo(order = 17)
+@PreprocessorInfo(order = 85)
 public class OpphoreTransactionProcessor  extends BasePreprocessor {
     @Override
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, InstantiationException {

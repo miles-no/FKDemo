@@ -23,7 +23,7 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 @Service
-@PreprocessorInfo(order=18,legalPartClass = "Organization")
+@PreprocessorInfo(order=90,legalPartClass = "Organization")
 public class TransactionSummaryPreprocessor extends BasePreprocessor {
     private static final Logger logger = LoggerFactory.getLogger(TransactionSummaryPreprocessor.class);
 

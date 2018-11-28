@@ -24,7 +24,7 @@ import java.util.*;
 
 
 @Service
-@PreprocessorInfo(order=4)
+@PreprocessorInfo(order=15)
 public class ExtractInvoiceOrderProcessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(ExtractInvoiceOrderProcessor.class);

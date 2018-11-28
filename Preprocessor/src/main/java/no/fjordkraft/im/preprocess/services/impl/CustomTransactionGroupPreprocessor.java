@@ -20,7 +20,7 @@ import java.util.*;
  * Created by miles on 5/23/2017.
  */
 @Service
-@PreprocessorInfo(order=8)
+@PreprocessorInfo(order=40)
 public class CustomTransactionGroupPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(CustomTransactionGroupPreprocessor.class);

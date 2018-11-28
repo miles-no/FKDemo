@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-@PreprocessorInfo(order=6)
+@PreprocessorInfo(order=25)
 public class BarcodePreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(BarcodePreprocessor.class);

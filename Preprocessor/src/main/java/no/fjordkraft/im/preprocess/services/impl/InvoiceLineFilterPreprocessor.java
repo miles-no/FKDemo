@@ -23,7 +23,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Service
-@PreprocessorInfo(order=24)
+@PreprocessorInfo(order=115)
 public class InvoiceLineFilterPreprocessor  extends BasePreprocessor  {
     private static final Logger logger = LoggerFactory.getLogger(InvoiceLineFilterPreprocessor.class);
 

@@ -14,7 +14,7 @@ import java.util.Iterator;
  * Created by bhavi on 5/8/2017.
  */
 
-@PreprocessorInfo(order=3)
+@PreprocessorInfo(order=10)
 @Service
 public class PDFAttachmentRemover extends BasePreprocessor {
 

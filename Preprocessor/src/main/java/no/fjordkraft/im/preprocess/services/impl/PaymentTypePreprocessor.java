@@ -12,7 +12,7 @@ import java.lang.reflect.InvocationTargetException;
  * Created by miles on 7/10/2017.
  */
 @Service
-@PreprocessorInfo(order=11)
+@PreprocessorInfo(order=55)
 public class PaymentTypePreprocessor extends BasePreprocessor {
 
     @Override

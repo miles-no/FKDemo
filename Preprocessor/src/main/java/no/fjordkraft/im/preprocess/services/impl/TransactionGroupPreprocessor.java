@@ -22,7 +22,7 @@ import java.util.*;
  * Created by miles on 5/19/2017.
  */
 @Service
-@PreprocessorInfo(order=7)
+@PreprocessorInfo(order=35)
 public class TransactionGroupPreprocessor extends BasePreprocessor {
 
     @Autowired

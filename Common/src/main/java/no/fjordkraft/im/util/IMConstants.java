@@ -107,4 +107,9 @@ public interface IMConstants {
     static final String INVOICE_ATTACHMENT_TYPE_FOR_CUSTOMER = "CUSTOMER";
     static final String INVOICE_LINE_TAG_DUMMY = "-DUM";
     static final String INVOICE_GRID_DESCRIPTION_DUMMY = "DUMMY";
+    static final String TRANSACTION_TYPE_USAGE_TRANSACTION = "UsageTransaction";
+    static final String READ_CAMPAIGN_IMAGE_FROM_DB="read.campaign.image.db";
+    static final String READ_ADVT_PDF_FROM_DB="read.advt.pdf.db";
+    static final String READ_ADVT_PDF_FROM_SEGMENT = "read.advt.pdf.segment";
+    static final String READ_CAMPAIGN_IMAGE_FROM_SEGMENT = "read.campaign.image.segment";
 }

@@ -26,7 +26,7 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 @Service
-@PreprocessorInfo(order = 16)
+@PreprocessorInfo(order = 80)
 public class SetGiroPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(SetGiroPreprocessor.class);

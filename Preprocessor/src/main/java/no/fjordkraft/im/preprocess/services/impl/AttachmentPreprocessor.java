@@ -42,7 +42,7 @@ import java.util.*;
  * Created by miles on 9/8/2017.
  */
 @Service
-@PreprocessorInfo(order = 13)
+@PreprocessorInfo(order = 65)
 public class AttachmentPreprocessor extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(AttachmentPreprocessor.class);

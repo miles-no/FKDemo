@@ -24,7 +24,7 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 @Service
-@PreprocessorInfo(order=23)
+@PreprocessorInfo(order=110)
 public class SummaryPagePreprocessor extends BasePreprocessor  {
     private static final Logger logger = LoggerFactory.getLogger(SummaryPagePreprocessor.class);
 

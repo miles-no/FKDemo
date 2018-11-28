@@ -23,7 +23,7 @@ import java.lang.reflect.InvocationTargetException;
  */
 
 @Service
-@PreprocessorInfo(order=12,legalPartClass = "Organization")
+@PreprocessorInfo(order=60,legalPartClass = "Organization")
 public class FetchInvoiceLayoutPreprocessor extends BasePreprocessor {
 
 private static final Logger logger = LoggerFactory.getLogger(FetchInvoiceLayoutPreprocessor.class);
