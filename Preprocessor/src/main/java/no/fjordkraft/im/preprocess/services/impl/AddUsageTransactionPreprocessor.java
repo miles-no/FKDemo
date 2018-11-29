@@ -31,7 +31,7 @@ public class AddUsageTransactionPreprocessor extends BasePreprocessor {
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request)
     {
         try {
-             String brand = request.getEntity().getBrand();
+             String brand = request.getEntity().getSystemBatchInput().getBrand();
             if("VKAS".equalsIgnoreCase(brand)) {
             List<Transaction> transactions = request.getStatement().getTransactions().getTransaction();
             List<Attachment> attachmentList = request.getStatement().getAttachments().getAttachment();
