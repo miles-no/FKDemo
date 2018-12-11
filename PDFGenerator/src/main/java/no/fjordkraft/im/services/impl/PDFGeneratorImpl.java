@@ -328,9 +328,9 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             }
             else
             {
-                if(brand.equals("FKAS") || brand.equals("TKAS")) {
+                //if(brand.equals("FKAS") || brand.equals("TKAS")) {
                     attachmentConfigId = AttachmentTypeEnum.ORGANIZATION.getStatus();
-                } else {
+                /*} else {
                     if(countOfStatements!=null && countOfStatements.intValue()==0) {
                         if( !Double.valueOf(creditLimit).equals(Double.valueOf("0")))
                         {
@@ -345,7 +345,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                     {
                         attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
                     }
-                }
+                }*/
             }
         }
         return attachmentConfigId;
