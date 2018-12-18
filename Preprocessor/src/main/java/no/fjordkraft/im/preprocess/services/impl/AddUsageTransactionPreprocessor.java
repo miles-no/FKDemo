@@ -6,6 +6,8 @@ import no.fjordkraft.im.preprocess.models.PreprocessRequest;
 import no.fjordkraft.im.preprocess.models.PreprocessorInfo;
 import no.fjordkraft.im.services.AuditLogService;
 import no.fjordkraft.im.util.IMConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,7 @@ import java.util.List;
 @Service
 @PreprocessorInfo(order=30)
 public class AddUsageTransactionPreprocessor extends BasePreprocessor {
+    private static final Logger logger = LoggerFactory.getLogger(AddUsageTransactionPreprocessor.class);
 
     @Autowired
     AuditLogService auditLogService;
@@ -33,12 +36,17 @@ public class AddUsageTransactionPreprocessor extends BasePreprocessor {
         try {
              String brand = request.getEntity().getSystemBatchInput().getBrand();
             if("VKAS".equalsIgnoreCase(brand)) {
+            logger.debug("In Add Usage Transaction preprocessor");
+            logger.debug("Brand = " + brand +" processing invoice number  " + request.getEntity().getInvoiceNumber());
+
             List<Transaction> transactions = request.getStatement().getTransactions().getTransaction();
             List<Attachment> attachmentList = request.getStatement().getAttachments().getAttachment();
             if(transactions!=null && transactions.size()>0) {
+                logger.debug("No Of Transactions " + transactions.size());
                 for(Transaction transaction: transactions) {
                     if(transaction.getTransactionType()!=null && transaction.getTransactionType().equalsIgnoreCase(IMConstants.TRANSACTION_TYPE_USAGE_TRANSACTION))
                     {
+                        logger.debug("Found transaction with UsageTransaction Type " + transaction.getTransactionId());
                         Distributions distributions = transaction.getDistributions();
                         if(distributions == null) {
                             distributions = new Distributions();
@@ -56,6 +64,7 @@ public class AddUsageTransactionPreprocessor extends BasePreprocessor {
                             }
                         }
                         else {
+                            logger.debug("Creating Distribution for transaction " + transaction.getTransactionId());
                             Distribution distribution = new Distribution();
                             distribution.setAmount(transaction.getAmountWithVat());
                             distribution.setName(IMConstants.KRAFT);
@@ -64,8 +73,10 @@ public class AddUsageTransactionPreprocessor extends BasePreprocessor {
                         distributions.setDistribution(distributionList);
                         transaction.setDistributions(distributions);
                         if(transaction.getFreeText()==null ||(transaction.getFreeText()!=null &&  transaction.getFreeText().isEmpty())) {
+
                             Attachment attachment = getAttachmentForTransaction(transaction.getReference(),attachmentList);
                             if(attachment!=null) {
+                                logger.debug("set transaction free text as "+ attachment.getLeveringsAdresse());
                                 transaction.setFreeText(attachment.getLeveringsAdresse());
                             }
                         }
