@@ -812,6 +812,9 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 }
                 List<Ref> refList = baseItemDetails.getRef();
                /* //IM-214 : if price is between <1 and >-1 then, it should be multiplied by 100.
+
+
+
                 if(baseItemDetails.getUnitPrice()>-1 && baseItemDetails.getUnitPrice()<1) {
                     baseItemDetails.setUnitPrice(baseItemDetails.getUnitPrice()/100);
                     baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice()/100);
