@@ -647,13 +647,13 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         baseItemDetails.setDescription(invoiceLineType.getItem().getName().getValue().toString());
                         baseItemDetails.setQuantityInvoiced(Double.valueOf(invoiceLineType.getInvoicedQuantity().getValue().toString()));
                         baseItemDetails.setUnitOfMeasure(invoiceLineType.getInvoicedQuantity().getUnitCode());
-                        /*//IM-207: if BasesQuantity is 100 then it should be devided by base quanitity.
+                       //IM-207: if BasesQuantity is 100 then it should be devided by base quanitity.
                         if(invoiceLineType.getPrice().getBaseQuantity()!=null && invoiceLineType.getPrice().getBaseQuantity().getValue()!=null &&
                                 invoiceLineType.getPrice().getBaseQuantity().getValue().intValue()==100) {
                             baseItemDetails.setUnitPrice(Double.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString())/100);
-                        } else {*/
+                        } else {
                         baseItemDetails.setUnitPrice(Double.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString()));
-                       // }
+                        }
                         baseItemDetails.setPriceDenomination(invoiceLineType.getPrice().getPriceAmount().getCurrencyID());
                         baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
 
@@ -811,17 +811,14 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     isLevel2BaseItemDetails = true;
                 }
                 List<Ref> refList = baseItemDetails.getRef();
-               /* //IM-214 : if price is between <1 and >-1 then, it should be multiplied by 100.
-
-
-
+                //IM-214 : if price is between <1 and >-1 then, it should be multiplied by 100.
                 if(baseItemDetails.getUnitPrice()>-1 && baseItemDetails.getUnitPrice()<1) {
                     baseItemDetails.setUnitPrice(baseItemDetails.getUnitPrice()/100);
                     baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice()/100);
                 }
-                else {*/
+                else {
                 baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
-                //}
+                }
                 baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
                 if (null != refList) {
                     for (Ref ref : refList) {
