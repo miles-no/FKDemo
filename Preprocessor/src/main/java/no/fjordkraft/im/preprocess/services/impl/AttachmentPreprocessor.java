@@ -888,7 +888,21 @@ public class AttachmentPreprocessor extends BasePreprocessor {
 
                nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
                nettleie.setBaseItemDetails(baseItemDetails);
-               } else {
+               }//IM-201 : added code to get value from InvoiceTotals if VatTotalsInfo is missing.
+               else if(invoice.getInvoiceSummary().getInvoiceTotals()!=null) {
+                   mapOfVatSumOfGross = new HashMap<>();
+                   List<BaseItemDetails> baseItemDetails = new ArrayList<BaseItemDetails>();
+                   BaseItemDetails baseItemDetail = new BaseItemDetails();
+                   baseItemDetail.setDescription("Nettleie");
+                   baseItemDetail.setVatRate(Double.valueOf(Math.round(invoice.getInvoiceSummary().getInvoiceTotals().getVatTotalsAmount()/invoice.getInvoiceSummary().getInvoiceTotals().getNetAmount()*100)));
+                   baseItemDetail.setLineExtensionAmount(invoice.getInvoiceSummary().getInvoiceTotals().getNetAmount());
+                   mapOfVatSumOfGross.put(baseItemDetail.getVatRate(),baseItemDetail.getLineExtensionAmount());
+                   baseItemDetails.add(baseItemDetail);
+
+                   nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
+                   nettleie.setBaseItemDetails(baseItemDetails);
+               }
+               else {
                    nettleie.setMapOfVatSumOfGross(mapOfVatSumOfGross);
                    nettleie.setBaseItemDetails(invoice.getConsolidatedInvoiceDetails().getBaseItemDetails());
                }
