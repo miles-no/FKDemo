@@ -64,14 +64,23 @@ public class TransactionGroupPreprocessor extends BasePreprocessor {
                                     if(null != invoiceLine120List) {
                                         for (InvoiceLine120 invoiceLine120 : invoiceLine120List) {
                                             if (null == startDate) {
+                                                //IM-226:If Dummy Prod ID then dont consider start and end date.
+                                                if(!invoiceLine120.getProdId().contains("DUM"))   {
                                                 startDate = invoiceLine120.getStartDate();
                                                 endDate = invoiceLine120.getEndDate();
+                                                }
                                             } else {
                                                 if (null != invoiceLine120.getStartDate() && startDate.toGregorianCalendar().compareTo(invoiceLine120.getStartDate().toGregorianCalendar()) > 0) {
-                                                    startDate = invoiceLine120.getStartDate();
+                                                    //IM-226:If Dummy Prod ID then dont consider start and end date.
+                                                    if(!invoiceLine120.getProdId().contains("DUM")) {
+                                                        startDate = invoiceLine120.getStartDate();
+                                                    }
                                                 }
                                                 if (null != endDate && null!=invoiceLine120.getEndDate() &&  endDate.toGregorianCalendar().compareTo(invoiceLine120.getEndDate().toGregorianCalendar()) < 0) {
+                                                    //IM-226:If Dummy Prod ID then dont consider start and end date.
+                                                    if(!invoiceLine120.getProdId().contains("DUM")) {
                                                     endDate = invoiceLine120.getEndDate();
+                                                    }
                                                 }
                                             }
                                             double vat =invoiceLine120.getVatRate();
