@@ -15,7 +15,7 @@ import java.sql.Timestamp;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name= "AFI_ACCOUNTDETAILS"/*,schema = "eacprod"*/)
+@Table(name= "AFI_ACCOUNTDETAILS",schema = "eacprod")
 public class AFIAccountDetails {
 
    @Id
