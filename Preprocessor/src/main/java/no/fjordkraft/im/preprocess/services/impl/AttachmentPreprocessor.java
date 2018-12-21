@@ -463,7 +463,15 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 {
                     baseItemDetails.setQuantityInvoiced(Double.valueOf(creditNoteLineType.getCreditedQuantity().getValue().toString()));
                 }
-                baseItemDetails.setUnitPrice(Double.valueOf(creditNoteLineType.getPrice().getPriceAmount().getValue().toString())* IMConstants.NEGATIVE);
+                //IM-224: if BasesQuantity is 100 then it should be devided by base quanitity.
+                if(creditNoteLineType.getPrice().getBaseQuantity()!=null && creditNoteLineType.getPrice().getBaseQuantity().getValue()!=null &&
+                        creditNoteLineType.getPrice().getBaseQuantity().getValue().intValue()!=0) {
+                    baseItemDetails.setUnitPrice(Double.valueOf(creditNoteLineType.getPrice().getPriceAmount().getValue().toString())/creditNoteLineType.getPrice().getBaseQuantity().getValue().intValue()* IMConstants.NEGATIVE);
+                } else {
+                    baseItemDetails.setUnitPrice(Double.valueOf(creditNoteLineType.getPrice().getPriceAmount().getValue().toString())* IMConstants.NEGATIVE);
+                }
+
+                //baseItemDetails.setUnitPrice(Double.valueOf(creditNoteLineType.getPrice().getPriceAmount().getValue().toString())* IMConstants.NEGATIVE);
                 baseItemDetails.setPriceDenomination(creditNoteLineType.getPrice().getPriceAmount().getCurrencyID());
                 baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
                 List<TaxCategoryType> categoryTypeList = creditNoteLineType.getItem().getClassifiedTaxCategories();
@@ -649,8 +657,8 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         baseItemDetails.setUnitOfMeasure(invoiceLineType.getInvoicedQuantity().getUnitCode());
                        //IM-207: if BasesQuantity is 100 then it should be devided by base quanitity.
                         if(invoiceLineType.getPrice().getBaseQuantity()!=null && invoiceLineType.getPrice().getBaseQuantity().getValue()!=null &&
-                                invoiceLineType.getPrice().getBaseQuantity().getValue().intValue()==100) {
-                            baseItemDetails.setUnitPrice(Double.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString())/100);
+                                invoiceLineType.getPrice().getBaseQuantity().getValue().intValue()!=0) {
+                            baseItemDetails.setUnitPrice(Double.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString())/invoiceLineType.getPrice().getBaseQuantity().getValue().intValue());
                         } else {
                         baseItemDetails.setUnitPrice(Double.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString()));
                         }
