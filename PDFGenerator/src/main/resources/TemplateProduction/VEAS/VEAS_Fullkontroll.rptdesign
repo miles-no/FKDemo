@@ -10955,6 +10955,13 @@ year = "Siste 12 mnd" + "";</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">ReferenceNumber1</property>
+                    <text-property name="displayName">ReferenceNumber1</text-property>
+                    <expression name="expression" type="javascript">row["ReferenceNumber"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <detail>
                 <grid id="782">
@@ -11597,7 +11604,7 @@ true;}</expression>
                                                             <structure>
                                                                 <property name="name">StromInfo::InvoiceNo</property>
                                                                 <text-property name="displayName">StromInfo::InvoiceNo</text-property>
-                                                                <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["StromInfo::InvoiceNo"]</expression>
+                                                                <expression name="expression" type="javascript">"Referansenummer: " + row._outer["InvoiceNo"]</expression>
                                                                 <property name="dataType">string</property>
                                                                 <property name="allowExport">true</property>
                                                             </structure>
@@ -11976,7 +11983,7 @@ else &#13;
                                                 <structure>
                                                     <property name="name">ReferenceNumber</property>
                                                     <text-property name="displayName">NettInfo::ReferenceNumber</text-property>
-                                                    <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["NettInfo::ReferenceNumber"]</expression>
+                                                    <expression name="expression" type="javascript">"Referansenummer: " + row._outer["ReferenceNumber1"]</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
