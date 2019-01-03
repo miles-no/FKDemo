@@ -54,11 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">C:\Users\miles12\Desktop\Workspace\Files\processed_statement_1.xml</property>
-        </oda-data-source>
-        <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="TKAS66" id="5013">
-            <text-property name="displayName"></text-property>
-            <property name="FILELIST">processed_statement (83).xml</property>
+            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement.xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -1268,6 +1264,11 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">isOnlyGrid</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">LeveringsAdresse</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">LeveringsAdresse</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -1350,6 +1351,11 @@
                     <structure>
                         <property name="position">16</property>
                         <property name="name">isOnlyGrid</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">LeveringsAdresse</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -1468,8 +1474,15 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">LeveringsAdresse</property>
+                    <property name="nativeName">LeveringsAdresse</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{Address1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/CustomerInfo-103/Address1},{Description;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Description},{MeterId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/MeterId},{ObjectId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/ObjectId},{AnnualConsumption;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/YearlyConsumption-123/AnnualConsumption},{InvoiceNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/MainInvoiceInfo-101/InvoiceNo},{FREE_TEXT;STRING;/FAKTURA/FREE_TEXT},{Name;STRING;/FAKTURA/GRID/Name},{Email;STRING;/FAKTURA/GRID/Email},{Telephone;STRING;/FAKTURA/GRID/Telephone},{StatementDate;STRING;../../StatementDate},{ReferenceNumber;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/ReferenceNumber},{InvoiceType;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/InvoiceType},{AttachmentNumber;STRING;/AttachmentNumber},{DisplayStromData;STRING;/DisplayStromData},{isOnlyGrid;STRING;/isOnlyGrid}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{Address1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/CustomerInfo-103/Address1},{Description;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Description},{MeterId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/MeterId},{ObjectId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/ObjectId},{AnnualConsumption;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/YearlyConsumption-123/AnnualConsumption},{InvoiceNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/MainInvoiceInfo-101/InvoiceNo},{FREE_TEXT;STRING;/FAKTURA/FREE_TEXT},{Name;STRING;/FAKTURA/GRID/Name},{Email;STRING;/FAKTURA/GRID/Email},{Telephone;STRING;/FAKTURA/GRID/Telephone},{StatementDate;STRING;../../StatementDate},{ReferenceNumber;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/ReferenceNumber},{InvoiceType;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/InvoiceType},{AttachmentNumber;STRING;/AttachmentNumber},{DisplayStromData;STRING;/DisplayStromData},{isOnlyGrid;STRING;/isOnlyGrid},{LeveringsAdresse;STRING;/LeveringsAdresse}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -4854,6 +4867,9 @@ else &#13;
                                                         <property name="paddingBottom">0pt</property>
                                                         <property name="paddingRight">0pt</property>
                                                         <extended-item extensionName="BarcodeItem" id="1884">
+                                                            <property name="barcodeType" type="constant">CODE_128</property>
+                                                            <property name="encoding" type="constant">ISO-8859-1</property>
+                                                            <property name="content" type="javascript">row["Barcode"]</property>
                                                             <property name="paddingTop">15pt</property>
                                                             <property name="height">0.22in</property>
                                                             <property name="width">1.3in</property>
@@ -4866,9 +4882,6 @@ else &#13;
                                                                     <property name="dataType">string</property>
                                                                 </structure>
                                                             </list-property>
-                                                            <property name="barcodeType" type="constant">CODE_128</property>
-                                                            <property name="encoding" type="constant">ISO-8859-1</property>
-                                                            <property name="content" type="javascript">row["Barcode"]</property>
                                                         </extended-item>
                                                     </cell>
                                                 </row>
@@ -10188,7 +10201,14 @@ if(null == dataSetRow["StartDate"]) {&#13;
                     <property name="name">Address1</property>
                     <text-property name="displayName">Leveringsadresse</text-property>
                     <expression name="expression" type="javascript">vars["AttachmentNumber"] = dataSetRow["AttachmentNumber"];&#13;
-dataSetRow["FREE_TEXT"]</expression>
+if(dataSetRow["LeveringsAdresse"]!=null)&#13;
+{&#13;
+dataSetRow["LeveringsAdresse"];&#13;
+}&#13;
+else&#13;
+{&#13;
+	dataSetRow["FREE_TEXT"];&#13;
+}</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
@@ -10337,6 +10357,19 @@ year = "Siste 12 mnd" + "";</expression>
                 <structure>
                     <property name="name">isOnlyGrid</property>
                     <expression name="expression" type="javascript">dataSetRow["isOnlyGrid"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ReferenceNumber_1</property>
+                    <text-property name="displayName">ReferenceNumber</text-property>
+                    <expression name="expression" type="javascript">row["ReferenceNumber"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">LeveringsAdresse</property>
+                    <text-property name="displayName">LeveringsAdresse</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["LeveringsAdresse"]</expression>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
@@ -10951,7 +10984,7 @@ true;}</expression>
                                                             <structure>
                                                                 <property name="name">StromInfo::InvoiceNo</property>
                                                                 <text-property name="displayName">StromInfo::InvoiceNo</text-property>
-                                                                <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["StromInfo::InvoiceNo"]</expression>
+                                                                <expression name="expression" type="javascript">"Referansenummer: " + row._outer["InvoiceNo"]</expression>
                                                                 <property name="dataType">string</property>
                                                                 <property name="allowExport">true</property>
                                                             </structure>
@@ -11339,7 +11372,7 @@ else &#13;
                                                 <structure>
                                                     <property name="name">ReferenceNumber</property>
                                                     <text-property name="displayName">NettInfo::ReferenceNumber</text-property>
-                                                    <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["NettInfo::ReferenceNumber"]</expression>
+                                                    <expression name="expression" type="javascript">"Referansenummer: " + row._outer["ReferenceNumber_1"]</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
@@ -11378,7 +11411,7 @@ else &#13;
                                                         <property name="marginLeft">0pt</property>
                                                         <property name="marginBottom">0pt</property>
                                                         <property name="marginRight">0pt</property>
-                                                        <property name="paddingTop">1pt</property>
+                                                        <property name="paddingTop">0pt</property>
                                                         <property name="paddingLeft">1pt</property>
                                                         <property name="paddingBottom">1pt</property>
                                                         <property name="paddingRight">1pt</property>
@@ -11401,6 +11434,7 @@ else &#13;
                                                     </label>
                                                 </cell>
                                                 <cell id="1018">
+                                                    <property name="paddingTop">0pt</property>
                                                     <data id="1057">
                                                         <property name="backgroundAttachment">scroll</property>
                                                         <property name="backgroundPositionX">0%</property>
@@ -11431,7 +11465,7 @@ else &#13;
                                                         <property name="marginLeft">0pt</property>
                                                         <property name="marginBottom">0pt</property>
                                                         <property name="marginRight">0pt</property>
-                                                        <property name="paddingTop">1pt</property>
+                                                        <property name="paddingTop">0pt</property>
                                                         <property name="paddingLeft">1pt</property>
                                                         <property name="paddingBottom">1pt</property>
                                                         <property name="paddingRight">1pt</property>
@@ -12070,18 +12104,36 @@ else&#13;
                                                                     <property name="fontFamily">"Museo Sans 500"</property>
                                                                     <property name="fontSize">7pt</property>
                                                                     <property name="paddingTop">10pt</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">true</expression>
+                                                                        </structure>
+                                                                    </list-property>
                                                                     <text-property name="text">Husk at du kan melde&#13;</text-property>
                                                                 </label>
                                                                 <label id="1913">
                                                                     <property name="fontFamily">"Museo Sans 500"</property>
                                                                     <property name="fontSize">7pt</property>
                                                                     <property name="paddingTop">2.3pt</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">true</expression>
+                                                                        </structure>
+                                                                    </list-property>
                                                                     <text-property name="text">inn målerstand så ofte</text-property>
                                                                 </label>
                                                                 <label id="1914">
                                                                     <property name="fontFamily">"Museo Sans 500"</property>
                                                                     <property name="fontSize">7pt</property>
                                                                     <property name="paddingTop">2.3pt</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">true</expression>
+                                                                        </structure>
+                                                                    </list-property>
                                                                     <text-property name="text">du ønsker til din netteier.&#13;</text-property>
                                                                 </label>
                                                             </cell>
