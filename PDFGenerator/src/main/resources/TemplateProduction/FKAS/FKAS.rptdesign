@@ -9868,6 +9868,13 @@ year = "Siste 12 mnd" + "";</expression>
                     <expression name="expression" type="javascript">dataSetRow["isOnlyGrid"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">ReferenceNumber1</property>
+                    <text-property name="displayName">ReferenceNumber1</text-property>
+                    <expression name="expression" type="javascript">row["ReferenceNumber"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <detail>
                 <grid id="782">
@@ -10466,7 +10473,7 @@ true;}</expression>
                                                             <structure>
                                                                 <property name="name">StromInfo::InvoiceNo</property>
                                                                 <text-property name="displayName">StromInfo::InvoiceNo</text-property>
-                                                                <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["StromInfo::InvoiceNo"]</expression>
+                                                                <expression name="expression" type="javascript">"Referansenummer: " + row._outer["InvoiceNo"]</expression>
                                                                 <property name="dataType">string</property>
                                                                 <property name="allowExport">true</property>
                                                             </structure>
@@ -10825,7 +10832,7 @@ else &#13;
                                     <property name="pageBreakAfter">avoid</property>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
-                                    <property name="height">0.19791666666666666in</property>
+                                    <property name="height">0.198in</property>
                                     <list-property name="visibility">
                                         <structure>
                                             <property name="format">all</property>
@@ -10847,7 +10854,7 @@ else &#13;
                                                 <structure>
                                                     <property name="name">ReferenceNumber</property>
                                                     <text-property name="displayName">NettInfo::ReferenceNumber</text-property>
-                                                    <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["NettInfo::ReferenceNumber"]</expression>
+                                                    <expression name="expression" type="javascript">"Referansenummer: " + row._outer["ReferenceNumber1"]</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
@@ -11567,16 +11574,34 @@ else&#13;
                                                                 <label id="1912">
                                                                     <property name="fontSize">7pt</property>
                                                                     <property name="paddingTop">10pt</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">true</expression>
+                                                                        </structure>
+                                                                    </list-property>
                                                                     <text-property name="text">Husk at du kan melde&#13;</text-property>
                                                                 </label>
                                                                 <label id="1913">
                                                                     <property name="fontSize">7pt</property>
                                                                     <property name="paddingTop">2.3pt</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">true</expression>
+                                                                        </structure>
+                                                                    </list-property>
                                                                     <text-property name="text">inn målerstand så ofte</text-property>
                                                                 </label>
                                                                 <label id="1914">
                                                                     <property name="fontSize">7pt</property>
                                                                     <property name="paddingTop">2.3pt</property>
+                                                                    <list-property name="visibility">
+                                                                        <structure>
+                                                                            <property name="format">all</property>
+                                                                            <expression name="valueExpr" type="javascript">true</expression>
+                                                                        </structure>
+                                                                    </list-property>
                                                                     <text-property name="text">du ønsker til din netteier.&#13;</text-property>
                                                                 </label>
                                                             </cell>
