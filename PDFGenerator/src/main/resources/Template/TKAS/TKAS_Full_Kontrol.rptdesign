@@ -56,14 +56,6 @@
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
             <property name="FILELIST">C:\Users\miles12\Desktop\Workspace\Files\processed_statement_1.xml</property>
         </oda-data-source>
-        <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="TKAS1Report" id="5037">
-            <text-property name="displayName"></text-property>
-            <property name="FILELIST">processed_statement (91).xml</property>
-        </oda-data-source>
-        <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source1" id="5038">
-            <text-property name="displayName"></text-property>
-            <property name="FILELIST">processed_statement (83).xml</property>
-        </oda-data-source>
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.datatools.enablement.oda.xml.dataSet" name="MainInfo" id="114">
@@ -5827,6 +5819,9 @@ else &#13;
                                                         <property name="paddingBottom">0pt</property>
                                                         <property name="paddingRight">0pt</property>
                                                         <extended-item extensionName="BarcodeItem" id="2685">
+                                                            <property name="barcodeType" type="constant">CODE_128</property>
+                                                            <property name="encoding" type="constant">ISO-8859-1</property>
+                                                            <property name="content" type="javascript">row["Barcode"]</property>
                                                             <property name="paddingTop">15pt</property>
                                                             <property name="height">0.22in</property>
                                                             <property name="width">1.3in</property>
@@ -5839,9 +5834,6 @@ else &#13;
                                                                     <property name="dataType">string</property>
                                                                 </structure>
                                                             </list-property>
-                                                            <property name="barcodeType" type="constant">CODE_128</property>
-                                                            <property name="encoding" type="constant">ISO-8859-1</property>
-                                                            <property name="content" type="javascript">row["Barcode"]</property>
                                                         </extended-item>
                                                     </cell>
                                                 </row>
@@ -8987,6 +8979,13 @@ year = "Siste 12 mnd" + "";</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">ReferenceNumber1</property>
+                    <text-property name="displayName">ReferenceNumber1</text-property>
+                    <expression name="expression" type="javascript">row["ReferenceNumber"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <detail>
                 <grid id="782">
@@ -9325,7 +9324,7 @@ else&#13;
                                     <property name="pageBreakAfter">avoid</property>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
-                                    <property name="height">0.19in</property>
+                                    <property name="height">0.198in</property>
                                     <list-property name="visibility">
                                         <structure>
                                             <property name="format">all</property>
@@ -9606,7 +9605,7 @@ true;}</expression>
                                                             <structure>
                                                                 <property name="name">StromInfo::InvoiceNo</property>
                                                                 <text-property name="displayName">StromInfo::InvoiceNo</text-property>
-                                                                <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["StromInfo::InvoiceNo"]</expression>
+                                                                <expression name="expression" type="javascript">"Referansenummer: " + row._outer["InvoiceNo"]</expression>
                                                                 <property name="dataType">string</property>
                                                                 <property name="allowExport">true</property>
                                                             </structure>
@@ -9984,7 +9983,7 @@ else &#13;
                                                 <structure>
                                                     <property name="name">ReferenceNumber</property>
                                                     <text-property name="displayName">NettInfo::ReferenceNumber</text-property>
-                                                    <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["NettInfo::ReferenceNumber"]</expression>
+                                                    <expression name="expression" type="javascript">"Referansenummer: " + row._outer["ReferenceNumber1"]</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>

@@ -54,7 +54,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.datatools.enablement.oda.xml" name="Data Source" id="113">
-            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement (80).xml</property>
+            <property name="FILELIST">C:\Users\miles12\Downloads\processed_statement (90).xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -1321,6 +1321,11 @@
                     <property name="analysis">dimension</property>
                     <text-property name="heading">Field2</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">ShowDetailsPage</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">ShowDetailsPage</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters"/>
             <structure name="cachedMetaData">
@@ -1433,6 +1438,11 @@
                     <structure>
                         <property name="position">22</property>
                         <property name="name">Field2</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">23</property>
+                        <property name="name">ShowDetailsPage</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -1593,8 +1603,15 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">23</property>
+                    <property name="name">ShowDetailsPage</property>
+                    <property name="nativeName">ShowDetailsPage</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{Address1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/CustomerInfo-103/Address1},{Description_1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Description},{MeterId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/MeterId},{ObjectId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/ObjectId},{AnnualConsumption;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/YearlyConsumption-123/AnnualConsumption},{InvoiceNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/MainInvoiceInfo-101/InvoiceNo},{FREE_TEXT;STRING;/FAKTURA/FREE_TEXT},{Name;STRING;/FAKTURA/GRID/Name},{Email;STRING;/FAKTURA/GRID/Email},{Telephone;STRING;/FAKTURA/GRID/Telephone},{StatementDate;STRING;../../StatementDate},{ReferenceNumber;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/ReferenceNumber},{InvoiceType;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/InvoiceType},{AttachmentNumber;STRING;/AttachmentNumber},{DisplayStromData;STRING;/DisplayStromData},{isOnlyGrid;STRING;/isOnlyGrid},{StreetNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/StreetNo},{Description;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/Description},{LeveringsAdresse;STRING;/LeveringsAdresse},{FAKTURA_MERKE_SO;STRING;/FAKTURA/FAKTURA_MERKE_SO},{TransactionName;STRING;/TransactionName},{Field2;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Field2}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
+            <xml-property name="queryText"><![CDATA[table0#-TNAME-#table0#:#[/Statement/Attachments/Attachment]#:#{Address1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/CustomerInfo-103/Address1},{Description_1;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Description},{MeterId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/MeterId},{ObjectId;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/ObjectId},{AnnualConsumption;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/YearlyConsumption-123/AnnualConsumption},{InvoiceNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/MainInvoiceInfo-101/InvoiceNo},{FREE_TEXT;STRING;/FAKTURA/FREE_TEXT},{Name;STRING;/FAKTURA/GRID/Name},{Email;STRING;/FAKTURA/GRID/Email},{Telephone;STRING;/FAKTURA/GRID/Telephone},{StatementDate;STRING;../../StatementDate},{ReferenceNumber;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/Nettleie/ReferenceNumber},{InvoiceType;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/InvoiceOrderInfo-110/InvoiceType},{AttachmentNumber;STRING;/AttachmentNumber},{DisplayStromData;STRING;/DisplayStromData},{isOnlyGrid;STRING;/isOnlyGrid},{StreetNo;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/StreetNo},{Description;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/SupplyPointInfo-117/Description},{LeveringsAdresse;STRING;/LeveringsAdresse},{FAKTURA_MERKE_SO;STRING;/FAKTURA/FAKTURA_MERKE_SO},{TransactionName;STRING;/TransactionName},{Field2;STRING;/FAKTURA/VEDLEGG_EMUXML/Invoice/InvoiceOrder/ProductParameters-118/Field2},{ShowDetailsPage;STRING;../../ShowDetailsPage}#:#<"ns6","urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";"ns5","urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";"ns7","urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2";"ns2","urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";"ns4","urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";"ns3","urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -8702,7 +8719,7 @@ dataSetRow["TransactionCategory"];&#13;
                             </structure>
                             <structure>
                                 <property name="name">VatRate1</property>
-                                <expression name="expression" type="javascript">if(dataSetRow["VatRate"] == null || BirtStr.trim(dataSetRow["VatRate"]) == "")&#13;
+                                <expression name="expression" type="javascript">if(dataSetRow["VatRate"] == null || BirtStr.trim(dataSetRow["VatRate"]) == "" || dataSetRow["VatRate"] == "BLANK")&#13;
 {&#13;
 " "&#13;
 }&#13;
@@ -8740,33 +8757,37 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                         <header>
                             <row id="5265">
                                 <cell id="5266">
+                                    <property name="paddingBottom">0pt</property>
                                     <data id="7088">
                                         <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginTop">1pt</property>
                                         <property name="marginLeft">2.5pt</property>
-                                        <property name="marginBottom">2pt</property>
+                                        <property name="marginBottom">0pt</property>
+                                        <property name="paddingTop">1pt</property>
                                         <property name="textAlign">left</property>
                                         <property name="resultSetColumn">LabelKraftNettSummary</property>
                                     </data>
                                 </cell>
                                 <cell id="5268">
                                     <property name="fontSize">8pt</property>
+                                    <property name="paddingBottom">0pt</property>
                                     <label id="5269">
                                         <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="marginTop">1pt</property>
-                                        <property name="marginBottom">2pt</property>
+                                        <property name="marginBottom">0pt</property>
                                         <text-property name="text">Mva</text-property>
                                     </label>
                                 </cell>
                                 <cell id="5270">
+                                    <property name="paddingBottom">0pt</property>
                                     <label id="5271">
                                         <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="marginTop">1pt</property>
-                                        <property name="marginBottom">2pt</property>
+                                        <property name="marginBottom">0pt</property>
                                         <property name="marginRight">1pt</property>
                                         <property name="textAlign">right</property>
                                         <text-property name="text">Beløp</text-property>
@@ -8781,6 +8802,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                         <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginLeft">2.5pt</property>
+                                        <property name="paddingTop">0pt</property>
                                         <property name="resultSetColumn">TranCategory</property>
                                     </data>
                                 </cell>
@@ -8788,6 +8810,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                     <data id="5276">
                                         <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
+                                        <property name="paddingTop">0pt</property>
                                         <property name="textAlign">center</property>
                                         <property name="resultSetColumn">VatRate1</property>
                                     </data>
@@ -8797,6 +8820,7 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                                         <property name="fontFamily">"Museo Sans 300"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginRight">1pt</property>
+                                        <property name="paddingTop">0pt</property>
                                         <property name="textAlign">right</property>
                                         <property name="resultSetColumn">Amount1</property>
                                     </data>
@@ -11010,7 +11034,7 @@ dataSetRow["TransactionCategory"];&#13;
                             </structure>
                             <structure>
                                 <property name="name">VatRate1</property>
-                                <expression name="expression" type="javascript">if(dataSetRow["VatRate"] == null || BirtStr.trim(dataSetRow["VatRate"]) == "")&#13;
+                                <expression name="expression" type="javascript">if(dataSetRow["VatRate"] == null || BirtStr.trim(dataSetRow["VatRate"]) == "" || dataSetRow["VatRate"] == "BLANK")&#13;
 {&#13;
 " "&#13;
 }&#13;
@@ -11042,33 +11066,36 @@ Math.abs(dataSetRow["VatRate"])+ ' %'&#13;
                         <header>
                             <row id="7116">
                                 <cell id="7117">
+                                    <property name="paddingBottom">0pt</property>
                                     <data id="7118">
                                         <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="marginTop">1pt</property>
                                         <property name="marginLeft">2.5pt</property>
-                                        <property name="marginBottom">2pt</property>
+                                        <property name="marginBottom">0pt</property>
                                         <property name="textAlign">left</property>
                                         <property name="resultSetColumn">LabelKraftNettSummary</property>
                                     </data>
                                 </cell>
                                 <cell id="7119">
                                     <property name="fontSize">8pt</property>
+                                    <property name="paddingBottom">0pt</property>
                                     <label id="7120">
                                         <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="marginTop">1pt</property>
-                                        <property name="marginBottom">2pt</property>
+                                        <property name="marginBottom">0pt</property>
                                         <text-property name="text">Mva</text-property>
                                     </label>
                                 </cell>
                                 <cell id="7121">
+                                    <property name="paddingBottom">0pt</property>
                                     <label id="7122">
                                         <property name="fontFamily">"Museo Sans 700"</property>
                                         <property name="fontSize">8pt</property>
                                         <property name="fontStyle">normal</property>
                                         <property name="marginTop">1pt</property>
-                                        <property name="marginBottom">2pt</property>
+                                        <property name="marginBottom">0pt</property>
                                         <property name="marginRight">1pt</property>
                                         <property name="textAlign">right</property>
                                         <text-property name="text">Beløp</text-property>
@@ -12200,6 +12227,19 @@ true;}</expression>
             <property name="pageBreakBefore">always</property>
             <property name="overflow">visible</property>
             <property name="dataSet">AttachmentHeaderInfo</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">if(row["ShowDetailsPage"] == "true")&#13;
+{&#13;
+false;&#13;
+}&#13;
+else &#13;
+{&#13;
+true;&#13;
+}</expression>
+                </structure>
+            </list-property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">Address1</property>
@@ -12421,6 +12461,30 @@ dataSetRow["TransactionName"];&#13;
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">ObjectId_1</property>
+                    <text-property name="displayName">ObjectId</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ObjectId"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">AnnualConsumption_1</property>
+                    <text-property name="displayName">AnnualConsumption</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["AnnualConsumption"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Name_1</property>
+                    <text-property name="displayName">Name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ShowDetailsPage</property>
+                    <text-property name="displayName">ShowDetailsPage</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ShowDetailsPage"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <detail>
                 <grid id="782">
@@ -12478,7 +12542,7 @@ dataSetRow["TransactionName"];&#13;
                                     <property name="pageBreakAfter">avoid</property>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
-                                    <property name="height">0.9in</property>
+                                    <property name="height">0.8in</property>
                                     <cell id="403">
                                         <property name="fontSize">8pt</property>
                                         <property name="paddingTop">0pt</property>
@@ -12548,20 +12612,26 @@ dataSetRow["TransactionName"];&#13;
                                                         </column>
                                                         <row id="5690">
                                                             <cell id="5691">
+                                                                <property name="paddingTop">0pt</property>
+                                                                <property name="paddingBottom">0pt</property>
                                                                 <property name="paddingRight">0pt</property>
                                                                 <label id="5692">
                                                                     <property name="fontFamily">"Museo Sans 700"</property>
                                                                     <property name="fontWeight">normal</property>
-                                                                    <property name="paddingBottom">0pt</property>
+                                                                    <property name="paddingTop">1pt</property>
+                                                                    <property name="paddingBottom">1pt</property>
                                                                     <property name="paddingRight">0pt</property>
                                                                     <text-property name="text">Målepunkt ID:</text-property>
                                                                 </label>
                                                             </cell>
                                                             <cell id="5693">
+                                                                <property name="paddingTop">0pt</property>
                                                                 <property name="paddingLeft">0pt</property>
+                                                                <property name="paddingBottom">0pt</property>
                                                                 <data id="5694">
                                                                     <property name="fontFamily">"Museo Sans 500"</property>
                                                                     <property name="marginBottom">0pt</property>
+                                                                    <property name="paddingTop">1pt</property>
                                                                     <property name="paddingLeft">0pt</property>
                                                                     <property name="resultSetColumn">ObjectId</property>
                                                                 </data>
@@ -12580,15 +12650,21 @@ dataSetRow["TransactionName"];&#13;
                                                         </column>
                                                         <row id="7743">
                                                             <cell id="7744">
+                                                                <property name="paddingTop">0pt</property>
+                                                                <property name="paddingBottom">0pt</property>
                                                                 <label id="7745">
                                                                     <property name="fontFamily">"Museo Sans 700"</property>
                                                                     <property name="fontWeight">normal</property>
+                                                                    <property name="paddingTop">0pt</property>
                                                                     <text-property name="text">Målernummer:</text-property>
                                                                 </label>
                                                             </cell>
                                                             <cell id="7746">
+                                                                <property name="paddingTop">0pt</property>
+                                                                <property name="paddingBottom">0pt</property>
                                                                 <data id="7747">
                                                                     <property name="fontFamily">"Museo Sans 500"</property>
+                                                                    <property name="paddingTop">0pt</property>
                                                                     <property name="resultSetColumn">MeterId1</property>
                                                                 </data>
                                                             </cell>
@@ -12607,19 +12683,24 @@ dataSetRow["TransactionName"];&#13;
                                                         </column>
                                                         <row id="7751">
                                                             <cell id="7752">
+                                                                <property name="paddingTop">0pt</property>
+                                                                <property name="paddingBottom">0pt</property>
                                                                 <property name="paddingRight">0pt</property>
                                                                 <label id="7753">
                                                                     <property name="fontFamily">"Museo Sans 700"</property>
                                                                     <property name="fontWeight">normal</property>
+                                                                    <property name="paddingTop">0pt</property>
                                                                     <property name="paddingRight">0pt</property>
                                                                     <text-property name="text">Forventet årsforbruk: </text-property>
                                                                 </label>
                                                             </cell>
                                                             <cell id="7754">
+                                                                <property name="paddingTop">0pt</property>
                                                                 <property name="paddingLeft">0pt</property>
+                                                                <property name="paddingBottom">0pt</property>
                                                                 <data id="7755">
                                                                     <property name="fontFamily">"Museo Sans 500"</property>
-                                                                    <property name="paddingTop">0.5pt</property>
+                                                                    <property name="paddingTop">0pt</property>
                                                                     <property name="paddingLeft">0pt</property>
                                                                     <property name="paddingBottom">0pt</property>
                                                                     <property name="resultSetColumn">AnnualConsumption</property>
@@ -12642,6 +12723,7 @@ dataSetRow["TransactionName"];&#13;
                                                         </column>
                                                         <row id="5698">
                                                             <cell id="5699">
+                                                                <property name="paddingBottom">0pt</property>
                                                                 <label id="5700">
                                                                     <property name="fontFamily">"Museo Sans 700"</property>
                                                                     <property name="fontWeight">normal</property>
@@ -12649,6 +12731,7 @@ dataSetRow["TransactionName"];&#13;
                                                                 </label>
                                                             </cell>
                                                             <cell id="5701">
+                                                                <property name="paddingBottom">0pt</property>
                                                                 <data id="5702">
                                                                     <property name="fontFamily">"Museo Sans 500"</property>
                                                                     <property name="resultSetColumn">Column Binding_3</property>
@@ -12669,17 +12752,23 @@ dataSetRow["TransactionName"];&#13;
                                                         </column>
                                                         <row id="5674">
                                                             <cell id="5675">
+                                                                <property name="paddingTop">0pt</property>
+                                                                <property name="paddingBottom">0pt</property>
                                                                 <label id="5676">
                                                                     <property name="fontFamily">"Museo Sans 700"</property>
                                                                     <property name="fontWeight">normal</property>
                                                                     <property name="marginBottom">0pt</property>
-                                                                    <property name="paddingBottom">1pt</property>
+                                                                    <property name="paddingTop">0pt</property>
+                                                                    <property name="paddingBottom">0pt</property>
                                                                     <text-property name="text">Anleggsnavn:</text-property>
                                                                 </label>
                                                             </cell>
                                                             <cell id="5677">
+                                                                <property name="paddingTop">0pt</property>
+                                                                <property name="paddingBottom">0pt</property>
                                                                 <data id="5678">
                                                                     <property name="fontFamily">"Museo Sans 500"</property>
+                                                                    <property name="paddingTop">0pt</property>
                                                                     <property name="paddingLeft">0pt</property>
                                                                     <property name="resultSetColumn">Column Binding_1</property>
                                                                 </data>
@@ -12699,17 +12788,23 @@ dataSetRow["TransactionName"];&#13;
                                                         </column>
                                                         <row id="5682">
                                                             <cell id="5683">
+                                                                <property name="paddingTop">0pt</property>
+                                                                <property name="paddingBottom">0pt</property>
                                                                 <label id="5684">
                                                                     <property name="fontFamily">"Museo Sans 700"</property>
                                                                     <property name="fontWeight">normal</property>
                                                                     <property name="marginBottom">0pt</property>
+                                                                    <property name="paddingTop">0pt</property>
                                                                     <property name="paddingBottom">0pt</property>
                                                                     <text-property name="text">Strømavtale:</text-property>
                                                                 </label>
                                                             </cell>
                                                             <cell id="5685">
+                                                                <property name="paddingTop">0pt</property>
+                                                                <property name="paddingBottom">0pt</property>
                                                                 <data id="5686">
                                                                     <property name="fontFamily">"Museo Sans 500"</property>
+                                                                    <property name="paddingTop">0pt</property>
                                                                     <property name="resultSetColumn">Column Binding_2</property>
                                                                 </data>
                                                             </cell>
