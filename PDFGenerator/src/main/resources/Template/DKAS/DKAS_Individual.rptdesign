@@ -4803,7 +4803,7 @@ else &#13;
     this.getStyle().display ="none"
 } ]]></method>
                     <column id="205">
-                        <property name="width">1.37in</property>
+                        <property name="width">0.3in</property>
                     </column>
                     <column id="206">
                         <property name="width">5.84in</property>
@@ -4819,7 +4819,7 @@ else &#13;
                                 <property name="paddingTop">5pt</property>
                                 <property name="paddingLeft">0pt</property>
                                 <property name="paddingRight">0pt</property>
-                                <text-property name="text">Dragefossen Kraftanlegg AS </text-property>
+                                <text-property name="text">Dragefossen AS</text-property>
                             </label>
                         </cell>
                         <cell id="209">
@@ -4952,7 +4952,7 @@ else &#13;
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
                                                 <property name="paddingTop">0pt</property>
-                                                <property name="paddingLeft">3.1pt</property>
+                                                <property name="paddingLeft">0pt</property>
                                                 <property name="paddingBottom">0pt</property>
                                                 <property name="paddingRight">0pt</property>
                                                 <property name="textAlign">left</property>
@@ -4983,7 +4983,7 @@ dataSetRow["CareOfName"];&#13;
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
                                                 <property name="paddingTop">0pt</property>
-                                                <property name="paddingLeft">3.1pt</property>
+                                                <property name="paddingLeft">0pt</property>
                                                 <property name="paddingBottom">0pt</property>
                                                 <property name="paddingRight">0pt</property>
                                                 <property name="textAlign">left</property>
@@ -5023,7 +5023,7 @@ else &#13;
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
                                                 <property name="paddingTop">0pt</property>
-                                                <property name="paddingLeft">3.1pt</property>
+                                                <property name="paddingLeft">0pt</property>
                                                 <property name="paddingBottom">0pt</property>
                                                 <property name="paddingRight">0pt</property>
                                                 <property name="textAlign">left</property>
@@ -5063,7 +5063,7 @@ else &#13;
                                                 <property name="fontWeight">normal</property>
                                                 <property name="color">#000000</property>
                                                 <property name="paddingTop">0pt</property>
-                                                <property name="paddingLeft">3.1pt</property>
+                                                <property name="paddingLeft">0pt</property>
                                                 <property name="paddingBottom">0pt</property>
                                                 <property name="paddingRight">0pt</property>
                                                 <property name="textAlign">left</property>
@@ -5083,7 +5083,7 @@ else &#13;
                                             <data id="1950">
                                                 <property name="fontFamily">"Arial"</property>
                                                 <property name="paddingTop">0pt</property>
-                                                <property name="paddingLeft">3.1pt</property>
+                                                <property name="paddingLeft">0pt</property>
                                                 <property name="paddingBottom">0pt</property>
                                                 <property name="paddingRight">0pt</property>
                                                 <property name="dataSet">MainInfo</property>
@@ -5363,7 +5363,7 @@ else &#13;
                 <property name="height">10mm</property>
                 <cell id="1708">
                     <property name="paddingTop">0pt</property>
-                    <property name="paddingLeft">6pt</property>
+                    <property name="paddingLeft">1pt</property>
                     <property name="paddingBottom">0pt</property>
                     <property name="paddingRight">5.5pt</property>
                     <label id="4058">
@@ -8142,7 +8142,7 @@ else &#13;
                         <column id="3440">
                             <property name="color">#000000</property>
                             <property name="textAlign">right</property>
-                            <property name="width">1.8in</property>
+                            <property name="width">1.38in</property>
                         </column>
                         <column id="3441">
                             <property name="width">6.5in</property>
@@ -8157,8 +8157,8 @@ else &#13;
                                     <property name="fontWeight">bold</property>
                                     <property name="paddingTop">5pt</property>
                                     <property name="paddingLeft">0pt</property>
-                                    <property name="paddingRight">0pt</property>
-                                    <text-property name="text">Dragefossen Kraftanlegg AS </text-property>
+                                    <property name="paddingRight">1pt</property>
+                                    <text-property name="text">Dragefossen AS</text-property>
                                 </label>
                             </cell>
                             <cell id="3445">
@@ -9080,7 +9080,14 @@ dataSetRow["Address"];&#13;
 {&#13;
 dataSetRow["City"];&#13;
 }&#13;
-&#13;
+else if(dataSetRow["City"] == null ||  BirtStr.trim(dataSetRow["City"]) == "")&#13;
+{&#13;
+"Postboks " + dataSetRow["PostCode"]&#13;
+}&#13;
+else if((dataSetRow["City"] == null ||  BirtStr.trim(dataSetRow["City"]) == "") &amp;&amp; (dataSetRow["PostCode"] == null || BirtStr.trim(dataSetRow["PostCode"]) == ""))&#13;
+{&#13;
+""&#13;
+}&#13;
 else&#13;
 {&#13;
 "Postboks " + dataSetRow["PostCode"] + " " + dataSetRow["City"];&#13;
@@ -10003,6 +10010,13 @@ year = "I år" + "";</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">ReferenceNumber1</property>
+                    <text-property name="displayName">ReferenceNumber1</text-property>
+                    <expression name="expression" type="javascript">row["ReferenceNumber"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <detail>
                 <grid id="782">
@@ -10643,7 +10657,7 @@ true;}</expression>
                                                             <structure>
                                                                 <property name="name">StromInfo::InvoiceNo</property>
                                                                 <text-property name="displayName">StromInfo::InvoiceNo</text-property>
-                                                                <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["StromInfo::InvoiceNo"]</expression>
+                                                                <expression name="expression" type="javascript">"Referansenummer: " + row._outer["InvoiceNo"]</expression>
                                                                 <property name="dataType">string</property>
                                                                 <property name="allowExport">true</property>
                                                             </structure>
@@ -11003,7 +11017,7 @@ else &#13;
                                     <property name="pageBreakAfter">avoid</property>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
-                                    <property name="height">0.19791666666666666in</property>
+                                    <property name="height">0.198in</property>
                                     <list-property name="visibility">
                                         <structure>
                                             <property name="format">all</property>
@@ -11025,7 +11039,7 @@ else &#13;
                                                 <structure>
                                                     <property name="name">ReferenceNumber</property>
                                                     <text-property name="displayName">NettInfo::ReferenceNumber</text-property>
-                                                    <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["NettInfo::ReferenceNumber"]</expression>
+                                                    <expression name="expression" type="javascript">"Referansenummer: " + row._outer["ReferenceNumber1"]</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
