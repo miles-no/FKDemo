@@ -107,14 +107,16 @@ public class MergeGridLinesPreprocessor extends BasePreprocessor {
 
     private Grid getGridConfigInfo(String ldc1, Long id) {
         Grid grid = new Grid();
-
-        GridConfig gridConfig = gridConfigService.getGridConfigByBrand(ldc1.toUpperCase());
+        GridConfig gridConfig = null;
+        if(ldc1!=null) {
+         gridConfig = gridConfigService.getGridConfigByBrand(ldc1.toUpperCase());
+        }
         if(null != gridConfig) {
             grid.setName(gridConfig.getGridLabel());
             grid.setEmail(gridConfig.getEmail());
             grid.setTelephone(gridConfig.getPhone());
         } else {
-            String errorMessage = "Grid config not found "+ldc1.toUpperCase();
+            String errorMessage = "Grid config not found "+ldc1;
             auditLogService.saveAuditLog(id, StatementStatusEnum.PRE_PROCESSING.getStatus(), errorMessage, IMConstants.WARNING,null);
         }
         return grid;
