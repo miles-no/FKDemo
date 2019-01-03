@@ -6002,7 +6002,7 @@ else &#13;
                                     <property name="color">#298F7E</property>
                                     <property name="paddingTop">3pt</property>
                                     <property name="textAlign">right</property>
-                                    <text-property name="text">Mandag - fredag 08:15 - 15:15</text-property>
+                                    <text-property name="text">Mandag - fredag 08:30 - 15:15</text-property>
                                 </label>
                                 <label id="718">
                                     <property name="fontFamily">"Fjordkraft Neo Sans Lt"</property>
@@ -12691,6 +12691,13 @@ year = "Siste 12 mnd" + "";</expression>
                     <expression name="expression" type="javascript">dataSetRow["SumOfOutGoingCurrentClaim"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">ReferenceNumber1</property>
+                    <text-property name="displayName">ReferenceNumber1</text-property>
+                    <expression name="expression" type="javascript">row["ReferenceNumber"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <detail>
                 <grid id="782">
@@ -13339,7 +13346,7 @@ true;}</expression>
                                                             <structure>
                                                                 <property name="name">StromInfo::InvoiceNo</property>
                                                                 <text-property name="displayName">StromInfo::InvoiceNo</text-property>
-                                                                <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["StromInfo::InvoiceNo"]</expression>
+                                                                <expression name="expression" type="javascript">"Referansenummer: " + row._outer["InvoiceNo"]</expression>
                                                                 <property name="dataType">string</property>
                                                                 <property name="allowExport">true</property>
                                                             </structure>
@@ -13696,7 +13703,7 @@ else &#13;
                                     <property name="pageBreakAfter">avoid</property>
                                     <property name="pageBreakBefore">avoid</property>
                                     <property name="pageBreakInside">avoid</property>
-                                    <property name="height">0.19791666666666666in</property>
+                                    <property name="height">0.198in</property>
                                     <list-property name="visibility">
                                         <structure>
                                             <property name="format">all</property>
@@ -13718,7 +13725,7 @@ else &#13;
                                                 <structure>
                                                     <property name="name">ReferenceNumber</property>
                                                     <text-property name="displayName">NettInfo::ReferenceNumber</text-property>
-                                                    <expression name="expression" type="javascript">"Referansenummer: " + dataSetRow["NettInfo::ReferenceNumber"]</expression>
+                                                    <expression name="expression" type="javascript">"Referansenummer: " + row._outer["ReferenceNumber1"]</expression>
                                                     <property name="dataType">string</property>
                                                     <property name="allowExport">true</property>
                                                 </structure>
@@ -16599,7 +16606,7 @@ else&#13;
                                             <property name="fontSize">8pt</property>
                                             <property name="fontWeight">normal</property>
                                             <property name="paddingTop">5pt</property>
-                                            <text-property name="text">(man-fre 08:15 -15:15)</text-property>
+                                            <text-property name="text">(man-fre 08:30 -15:15)</text-property>
                                         </label>
                                         <label id="817">
                                             <property name="fontFamily">"Fjordkraft Neo Sans"</property>
