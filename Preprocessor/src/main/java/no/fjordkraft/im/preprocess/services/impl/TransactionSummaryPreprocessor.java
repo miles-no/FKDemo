@@ -404,7 +404,11 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                                         transaction.getReference().equals(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getFakturanr()))
                                 {
                                     isAttachmentFound = true;
+                                    if(attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getGridName()!=null) {
                                     transaction.setTransactionName("Nettleie fra " +  attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().getGridName());
+                                    }else {
+                                        transaction.setTransactionName("Nettleie fra netteier");
+                                    }
                                     attachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getNettleie().setTransactionName(transaction.getTransactionCategory().substring(3));
                                     double transVat = Math.round(transaction.getVatAmount()/transaction.getAmount()*100);
                                     logger.debug("Transaction's vat Rate  " + transVat);
