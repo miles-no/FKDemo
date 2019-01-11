@@ -184,7 +184,7 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                              dummyStromAttachment.setOnlyGrid(true);
                              meterIdMapEMUXML.put(dummyStromAttachment.getFAKTURA().getMAALEPUNKT(),dummyStromAttachment);
                              logger.debug("No Strom attachment found then create a strom attachement and add nettleie to it ");
-                             logger.debug("Only Grid Case");
+                             logger.debug("Only Grid Case  ");
                          }
                          if(IMConstants.PDFE2B.equals(gridAttachment.getFAKTURA().getVEDLEGGFORMAT()))
                          {
