@@ -197,6 +197,10 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().getYearlyConsumption123().setAnnualConsumption(nettleie.getAnnualConsumption());
 
                              dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleie(nettleie);
+                             //IM-235 : added code to add nettelie into nettelie list
+                             ArrayList<Nettleie> listOfNettleie = new ArrayList<>();
+                             listOfNettleie.add(nettleie);
+                             dummyStromAttachment.getFAKTURA().getVEDLEGGEMUXML().getInvoice().getInvoiceFinalOrder().setNettleieList(listOfNettleie);
                              dummyStromAttachment.getFAKTURA().setFAKTURANR(null);
                              dummyStromAttachment.setDisplayStromData(false);
                              dummyStromAttachment.setOnlyGrid(true);
