@@ -246,8 +246,16 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             }
             statement.setAttachmentConfigId(attachmentConfigID);
             if (readCampaignFilesystem) {
-                campaignImage = getConsumerSpecificCampaignImage(statement.getAccountNumber(),statement.getCustomerId(),brand);
-                if(campaignImage ==null) {
+                boolean getDefaultImage = true;
+                AccountAttachmentMapping foundAccountAttachment = getConsumerSpecificCampaignImage(statement.getAccountNumber(),statement.getCustomerId(),brand);
+                if(foundAccountAttachment!=null) {
+                campaignImage = foundAccountAttachment.getAccountAttachment().getFileContent();
+                logger.debug("Attachment has show attachment = " + foundAccountAttachment.getAccountAttachment().getShowAttachment());
+                if(!foundAccountAttachment.getAccountAttachment().getShowAttachment()) {
+                     getDefaultImage = false;
+                }
+                }
+                if(getDefaultImage && campaignImage==null) {
                     campaignImage = getDefaultCampaignImage(statement);
                 }
             } else {
@@ -351,7 +359,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         return attachmentConfigId;
     }
 
-    private String getConsumerSpecificCampaignImage(String accountNumber, String customerId,String brand) {
+    private AccountAttachmentMapping getConsumerSpecificCampaignImage(String accountNumber, String customerId,String brand) {
         String brandlist = configService.getString("BRANDS_WITH_CUSTOMER_SPECIFIC_ATTACHMENT");
         if(null != brandlist &&  brandlist.indexOf(brand) == -1) {
             return null;
@@ -366,7 +374,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 return null;
             }
             else {
-               return foundAttachmentMapping.getAccountAttachment().getFileContent();
+               return foundAttachmentMapping;
             }
         }
         return null;  //To change body of created methods use File | Settings | File Templates.

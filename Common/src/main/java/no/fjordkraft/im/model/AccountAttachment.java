@@ -48,6 +48,9 @@ public class AccountAttachment {
     @Column(name="CREATED_BY")
     private String createdBy;
 
+    @Column(name="SHOW_ATTACHMENT")
+    private Boolean showAttachment;
+
     public Long getId() {
         return id;
     }
@@ -109,7 +112,7 @@ public class AccountAttachment {
     }
 
     public void setDescription(String description) {
-        description = description;
+        this.description= description;
     }
 
     public Timestamp getUpdateTime() {
@@ -126,5 +129,13 @@ public class AccountAttachment {
 
     public void setFileType(String fileType) {
         this.fileType = fileType;
+    }
+
+    public Boolean getShowAttachment() {
+        return showAttachment;
+    }
+
+    public void setShowAttachment(Boolean showAttachment) {
+        this.showAttachment = showAttachment;
     }
 }

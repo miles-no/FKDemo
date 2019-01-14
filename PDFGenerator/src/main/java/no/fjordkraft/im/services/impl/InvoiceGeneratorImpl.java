@@ -126,10 +126,19 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
             byte[] pdfBytes = null;
             logger.debug("readAdvtPdfFileSystem " + readAdvtPdfFileSystem);
             if(readAdvtPdfFileSystem ) {
+                boolean getDefaultPDF = true;
                 if(configService.getBoolean(IMConstants.READ_ATTACHMENT_FROM_DB))  {
                     String customerID = statement.getCustomerId();
-                    pdfBytes = getConsumerSpecificAttachment(accountNo,customerID,brand);
-                    if(pdfBytes ==null) {
+                    AccountAttachmentMapping foundAttachment = getConsumerSpecificAttachment(accountNo,customerID,brand);
+                    if(foundAttachment!=null) {
+                    String consumerFile = foundAttachment.getAccountAttachment().getFileContent();
+                    pdfBytes =  org.apache.commons.codec.binary.Base64.decodeBase64(consumerFile);
+                    if(!foundAttachment.getAccountAttachment().getShowAttachment()) {
+                        getDefaultPDF = false;
+                        }
+                    }
+                    if(getDefaultPDF && pdfBytes==null)
+                    {
                         pdfBytes = getDefaultSegmentFile(brand,attachmentConfigId);
                     }
                 }
@@ -186,7 +195,7 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         }
     }
 
-    private byte[] getConsumerSpecificAttachment(String accountNo, String customerID, String brand) {
+    private AccountAttachmentMapping getConsumerSpecificAttachment(String accountNo, String customerID, String brand) {
 
         String brandlist = configService.getString("BRANDS_WITH_CUSTOMER_SPECIFIC_ATTACHMENT");
         if(null != brandlist && brandlist.indexOf(brand) == -1) {
@@ -201,13 +210,13 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
         }
         if(foundAttachment==null) {
             logger.debug("Not Able to find attachment for and customer " + customerID);
-            return pdfBytes;
+            return null;
         }
         else {
            String consumerFile = foundAttachment.getAccountAttachment().getFileContent();
             pdfBytes =  org.apache.commons.codec.binary.Base64.decodeBase64(consumerFile);
         }
-        return pdfBytes;  //To change body of created methods use File | Settings | File Templates.
+        return foundAttachment;  //To change body of created methods use File | Settings | File Templates.
     }
 
     private byte[] getSegmentFileFromFS(String brand) throws IOException, DocumentException {
