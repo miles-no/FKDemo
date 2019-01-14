@@ -253,6 +253,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
                 logger.debug("Attachment has show attachment = " + foundAccountAttachment.getAccountAttachment().getShowAttachment());
                 if(!foundAccountAttachment.getAccountAttachment().getShowAttachment()) {
                      getDefaultImage = false;
+                     campaignImage = null;
                 }
                 }
                 if(getDefaultImage && campaignImage==null) {

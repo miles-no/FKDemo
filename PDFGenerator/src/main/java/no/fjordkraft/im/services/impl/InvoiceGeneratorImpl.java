@@ -135,7 +135,8 @@ public class InvoiceGeneratorImpl implements InvoiceGenerator {
                     pdfBytes =  org.apache.commons.codec.binary.Base64.decodeBase64(consumerFile);
                     if(!foundAttachment.getAccountAttachment().getShowAttachment()) {
                         getDefaultPDF = false;
-                        }
+                        pdfBytes = null;
+                    }
                     }
                     if(getDefaultPDF && pdfBytes==null)
                     {
