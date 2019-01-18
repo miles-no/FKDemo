@@ -2,6 +2,7 @@ package no.fjordkraft.im.repository;
 
 import no.fjordkraft.im.domain.RestInvoicePdf;
 import no.fjordkraft.im.model.Statement;
+import no.fjordkraft.im.model.StatusCount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -160,7 +161,20 @@ public class StatementDetailRepository {
                 .setParameter("invoiceNumber", (null == invoiceNumber?null:'%' + invoiceNumber + '%'))
                 .setParameter("transferFileName", (null == transferFileName?null:'%' + transferFileName + '%'));
 
+
         Long count = (Long) query.getSingleResult();
         return count;
     }
+
+
+    @Transactional
+    public List<Object[]> getStatementStatus() {
+        ArrayList<StatusCount> statusCounts = new ArrayList<StatusCount>();
+        StringBuffer selectQuery = new StringBuffer();
+        selectQuery.append("select /*+ parallel_index(im_statement,idx_statement_status,4) */ status as name, count(status) as value from im_statement group by status");
+        Query query = entityManager.createNativeQuery(selectQuery.toString()) ;
+       List<Object[]> countByStatus = (List <Object[]> )query.getResultList();
+        return countByStatus;
+    }
+
 }
