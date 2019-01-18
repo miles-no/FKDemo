@@ -32,4 +32,6 @@ public interface StatementService {
     void deleteStatementBySiId(Long siId);
 
     int updateStatementsBySiId(Long siId,StatementStatusEnum status);
+
+   List<Object[]> getStatementStatus();
 }

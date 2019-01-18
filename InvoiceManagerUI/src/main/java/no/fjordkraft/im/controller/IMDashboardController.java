@@ -6,6 +6,8 @@ import no.fjordkraft.im.statusEnum.UIStatementStatusEnum;
 
 import no.fjordkraft.im.ui.services.UIStatementService;
 import no.fjordkraft.im.util.IMConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +27,12 @@ public class IMDashboardController {
     @Autowired
     UIStatementService statementService;
 
+    private static final Logger logger = LoggerFactory.getLogger(IMDashboardController.class);
+
     @RequestMapping(value = "status", method = RequestMethod.GET)
     @ResponseBody
     public List<StatusCount> getStatementCountByStatus() {
+        logger.debug("in Get Statement count by status ");
         List<StatusCount> statusCounts = statementService.getStatementStatus();
         List<StatusCount> uiStatusCount = new ArrayList<StatusCount>();
         StatusCount status = null;

@@ -112,4 +112,5 @@ public interface IMConstants {
     static final String READ_ADVT_PDF_FROM_DB="read.advt.pdf.db";
     static final String READ_ADVT_PDF_FROM_SEGMENT = "read.advt.pdf.segment";
     static final String READ_CAMPAIGN_IMAGE_FROM_SEGMENT = "read.campaign.image.segment";
+    static final String SAVE_INVOICE_PDF_IN_DB = "save.invoice.pdf.in.db";
 }

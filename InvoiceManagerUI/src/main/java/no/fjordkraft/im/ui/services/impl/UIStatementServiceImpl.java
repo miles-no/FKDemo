@@ -48,7 +48,15 @@ public class UIStatementServiceImpl implements UIStatementService {
 
     @Override
     public List<StatusCount> getStatementStatus() {
-        return statementRepository.getStatementStatus();
+        List<StatusCount> listOfStatusCount = new ArrayList<StatusCount>();
+        List<Object[]> statusCounts = statementDetailRepository.getStatementStatus();
+        for(Object[] statusCount:statusCounts){
+             StatusCount statuscount = new StatusCount();
+            statuscount.setName(statusCount[0].toString());
+            statuscount.setValue(Long.valueOf(statusCount[1].toString()));
+            listOfStatusCount.add(statuscount);
+        }
+        return listOfStatusCount;
     }
 
     @Override
