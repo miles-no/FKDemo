@@ -167,7 +167,8 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
                     }
                 }
 
-                request.getStatement().getTransactionGroup().setTransactionSummary(new ArrayList(mapOfVatVsTransactionSummary.values()));
+                List<TransactionSummary> listOfTransactionSummary = combineAllTransactionSummary(mapOfVatVsTransactionSummary);
+                request.getStatement().getTransactionGroup().setTransactionSummary(listOfTransactionSummary);
         request.getStatement().getTransactionGroup().setSumOfTransactions(Double.valueOf(df.format(sumOfTransAmount)));
         Map<String,Transaction> mapOfTransaction = new HashMap<String,Transaction>();
         List<Transaction> processedTransaction = new ArrayList<Transaction>();
@@ -230,6 +231,29 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
             logger.error("Exception in Transaction Summary preprocessor",e);
             throw new PreprocessorException(e);
         }
+    }
+
+    private List<TransactionSummary> combineAllTransactionSummary(Map<Double,TransactionSummary> mapOfVatVsTransactionSummary) {
+        Map<Double,TransactionSummary> vatVsTranSummary = new HashMap<Double,TransactionSummary>();
+        if(mapOfVatVsTransactionSummary!=null && mapOfVatVsTransactionSummary.size()>1) {
+            for(Double vatRate : mapOfVatVsTransactionSummary.keySet()) {
+                if(vatRate!=0) {
+                TransactionSummary finalTransactionSummary =  vatVsTranSummary.get(25.0);
+                    TransactionSummary otherTransactionSummary = mapOfVatVsTransactionSummary.get(vatRate);
+                    if(finalTransactionSummary==null) {
+                        finalTransactionSummary = new TransactionSummary();
+                    }
+                    finalTransactionSummary.setSumOfNettStrom(finalTransactionSummary.getSumOfNettStrom()+otherTransactionSummary.getSumOfNettStrom());
+                    finalTransactionSummary.setSumOfBelop(finalTransactionSummary.getSumOfBelop()+otherTransactionSummary.getSumOfBelop());
+                    finalTransactionSummary.setMvaValue(25.0);
+                    vatVsTranSummary.put(25.0,finalTransactionSummary);
+                }
+                else{
+                    vatVsTranSummary.put(vatRate,mapOfVatVsTransactionSummary.get(vatRate));
+                }
+            }
+        }
+        return  new ArrayList(vatVsTranSummary.values());
     }
 
     private void addTransactionSummaryForAttachment(List<Attachment> attachments) {
