@@ -235,7 +235,7 @@ public class TransactionSummaryPreprocessor extends BasePreprocessor {
 
     private List<TransactionSummary> combineAllTransactionSummary(Map<Double,TransactionSummary> mapOfVatVsTransactionSummary) {
         Map<Double,TransactionSummary> vatVsTranSummary = new HashMap<Double,TransactionSummary>();
-        if(mapOfVatVsTransactionSummary!=null && mapOfVatVsTransactionSummary.size()>1) {
+        if(mapOfVatVsTransactionSummary!=null && mapOfVatVsTransactionSummary.size()>=1) {
             for(Double vatRate : mapOfVatVsTransactionSummary.keySet()) {
                 if(vatRate!=0) {
                 TransactionSummary finalTransactionSummary =  vatVsTranSummary.get(25.0);
