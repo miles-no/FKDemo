@@ -467,15 +467,18 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                 {
                     baseItemDetails.setQuantityInvoiced(Double.valueOf(creditNoteLineType.getCreditedQuantity().getValue().toString()));
                 }
-               /* //IM-224: if BasesQuantity is 100 then it should be devided by base quanitity.
+                //IM-224: if BasesQuantity is 100 then it should be devided by base quanitity.
                 if(creditNoteLineType.getPrice().getBaseQuantity()!=null && creditNoteLineType.getPrice().getBaseQuantity().getValue()!=null &&
                         creditNoteLineType.getPrice().getBaseQuantity().getValue().intValue()!=0) {
                     baseItemDetails.setUnitPrice(Double.valueOf(creditNoteLineType.getPrice().getPriceAmount().getValue().toString())/creditNoteLineType.getPrice().getBaseQuantity().getValue().intValue()* IMConstants.NEGATIVE);
+                    if(creditNoteLineType.getPrice().getBaseQuantity().getValue().intValue()==365) {
+                        baseItemDetails.setBaseQuantity(365);
+                    }
                 } else {
                     baseItemDetails.setUnitPrice(Double.valueOf(creditNoteLineType.getPrice().getPriceAmount().getValue().toString())* IMConstants.NEGATIVE);
                 }
-*/
-                baseItemDetails.setUnitPrice(Double.valueOf(creditNoteLineType.getPrice().getPriceAmount().getValue().toString())* IMConstants.NEGATIVE);
+
+              //  baseItemDetails.setUnitPrice(Double.valueOf(creditNoteLineType.getPrice().getPriceAmount().getValue().toString())* IMConstants.NEGATIVE);
                 baseItemDetails.setPriceDenomination(creditNoteLineType.getPrice().getPriceAmount().getCurrencyID());
                 baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
                 List<TaxCategoryType> categoryTypeList = creditNoteLineType.getItem().getClassifiedTaxCategories();
@@ -663,6 +666,10 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                         if(invoiceLineType.getPrice().getBaseQuantity()!=null && invoiceLineType.getPrice().getBaseQuantity().getValue()!=null &&
                                 invoiceLineType.getPrice().getBaseQuantity().getValue().intValue()!=0) {
                             baseItemDetails.setUnitPrice(Double.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString())/invoiceLineType.getPrice().getBaseQuantity().getValue().intValue());
+                            //IM-224 : if BaseQuantity is 365 then the antall value should be displayed as dager
+                            if(invoiceLineType.getPrice().getBaseQuantity().getValue().intValue()==365) {
+                                baseItemDetails.setBaseQuantity(365);
+                            }
                         } else {
                         baseItemDetails.setUnitPrice(Double.valueOf(invoiceLineType.getPrice().getPriceAmount().getValue().toString()));
                         }
@@ -823,15 +830,15 @@ public class AttachmentPreprocessor extends BasePreprocessor {
                     isLevel2BaseItemDetails = true;
                 }
                 List<Ref> refList = baseItemDetails.getRef();
-               /* //IM-214 : if price is between <1 and >-1 then, it should be multiplied by 100.
+               //IM-214 : if price is between <1 and >-1 then, it should be multiplied by 100.
                 if(baseItemDetails.getUnitPrice()>-1 && baseItemDetails.getUnitPrice()<1) {
                     baseItemDetails.setUnitPrice(baseItemDetails.getUnitPrice()/100);
                     baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice()/100);
                 }
                 else {
                 baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
-                }*/
-                baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
+                }
+               // baseItemDetails.setUnitPriceGross(baseItemDetails.getUnitPrice());
                 baseItemDetails.setAttachmentFormat(pdfAttachment.getFAKTURA().getVEDLEGGFORMAT());
                 if (null != refList) {
                     for (Ref ref : refList) {

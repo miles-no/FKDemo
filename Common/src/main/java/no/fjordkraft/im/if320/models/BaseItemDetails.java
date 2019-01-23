@@ -62,7 +62,8 @@ import java.util.List;
     "noOfDays",
     "attachmentFormat",
     "vatRate",
-    "lineExtensionAmount"
+    "lineExtensionAmount",
+    "baseQuantity"
 })
 @XmlRootElement(name = "BaseItemDetails")
 public class BaseItemDetails {
@@ -111,6 +112,8 @@ public class BaseItemDetails {
     @XmlElement(name = "LineExtensionAmount")
     protected double lineExtensionAmount;
 
+    @XmlElement(name="BaseQuantity")
+    protected int baseQuantity;
 
     /**
      * Gets the value of the level property.
@@ -398,5 +401,13 @@ public class BaseItemDetails {
 
     public void setLineExtensionAmount(double lineExtensionAmount) {
         this.lineExtensionAmount = lineExtensionAmount;
+    }
+
+    public int getBaseQuantity() {
+        return baseQuantity;
+    }
+
+    public void setBaseQuantity(int baseQuantity) {
+        this.baseQuantity = baseQuantity;
     }
 }
