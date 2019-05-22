@@ -1,6 +1,5 @@
 package no.fjordkraft.im.repository;
 
-import no.fjordkraft.im.if320.models.Transaction;
 import no.fjordkraft.im.model.InvoicePdf;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

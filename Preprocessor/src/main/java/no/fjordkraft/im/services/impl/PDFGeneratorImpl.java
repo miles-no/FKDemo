@@ -48,8 +48,8 @@ public class PDFGeneratorImpl implements PDFGenerator {
 
     private static Set<Long> statementIdSet = new HashSet<>();
 
-    @Autowired
-    InvoiceGeneratorPublisher invoiceGeneratorPublisher;
+   /* @Autowired
+    InvoiceGeneratorPublisher invoiceGeneratorPublisher;*/
 
 
     @Override
@@ -131,7 +131,7 @@ public class PDFGeneratorImpl implements PDFGenerator {
                 if (useKafkaForPDFProcessing) {
                     StatementsList statementsList = new StatementsList(list);
                     logger.debug("Sending statement to kafka size "+ list.size());
-                    invoiceGeneratorPublisher.publish(statementsList);
+                    //invoiceGeneratorPublisher.publish(statementsList);
                 } else {
                     pdfGeneratorClient.processStatement(list);
                 }

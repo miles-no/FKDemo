@@ -1,7 +1,6 @@
 package no.fjordkraft.im.controller;
 
 import no.fjordkraft.im.model.InvoicePdf;
-import no.fjordkraft.im.preprocess.services.impl.UtilityService;
 import no.fjordkraft.im.repository.InvoicePdfRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,20 +22,12 @@ public class PreprocessController {
 
     private static final Logger logger = LoggerFactory.getLogger(PreprocessController.class);
 
-    @Autowired
-    UtilityService utilityService;
+
 
     @Autowired
     InvoicePdfRepository invoicePdfRepository;
 
-    @RequestMapping(value = "/preprocess",method= RequestMethod.POST)
-    public void preprocessXml(@RequestParam("srcpath") String srcpath,@RequestParam(value = "destpath") String destPath){
-        try {
-            utilityService.decodeEHFE2B(srcpath,destPath);
-        } catch (Exception e) {
-            logger.debug("exception ",e);
-        }
-    }
+
 
     @RequestMapping(value = "/pdf/{id}", method = RequestMethod.GET)
     @ResponseBody

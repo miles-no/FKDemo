@@ -9,10 +9,10 @@ spring:
   #  password: miles123
 
   datasource:
-      driverClassName: oracle.jdbc.driver.OracleDriver
-      url: jdbc:oracle:thin:@localhost:1521:xe
-      username: bhavik
-      password: bhavik123
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: miles
+    password: miles123
 
 logging:
   level:
@@ -23,11 +23,11 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
   #file: /opt/app/invoice_manager/logs/application.log
-  file: D:/FuelKraft/invoice_manager/logs/im-preprocess.log
+  file: E:\test\logs\im-preprocess.log
 
 if320.skip.bytes: false
 spring.jackson.serialization.fail-on-empty-beans: false
 
 liquibase:
   context: dev
-  enabled: enable
+  enabled: enabled

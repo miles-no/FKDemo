@@ -53,14 +53,13 @@
         }
         img{
           width: auto;
-          height: 48px;
+          height: 55px;
           margin-top: -9px;
           cursor: pointer;
         }
         span {
           font-size: 44px;
           font-weight: bold;
-          padding: 1px;
           color: white;
         }
       }
@@ -128,8 +127,8 @@
                   height: 76px;
                   img {
                     height: 74px;
-                    width: 80px;
-                    margin: 12px 0 0 10px;
+                    width: 160px;
+                    margin: 8px 0 0 -8px;
                     display: inline;
                     outline: none;
                     float: left;
@@ -147,7 +146,7 @@
                 color: white;
                 display: inline;
                 width: 10%;
-                top: 25px;
+                top: 14px;
                 right: 25px;
                 position: absolute;
                 outline: none;
@@ -170,11 +169,11 @@
                 }
               }
               &:hover {
-                background: orange;
+                background: #AE200A;
                 text-decoration: none;
               }
               &.active {
-                background: orange;
+                background: #AE200A;
                 text-decoration: none;
               }
             }

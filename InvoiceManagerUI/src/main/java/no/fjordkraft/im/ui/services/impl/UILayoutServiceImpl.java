@@ -95,7 +95,9 @@ public class UILayoutServiceImpl implements UILayoutService {
                 restLayout.setVersion(layoutContent.getVersion());
                 restLayout.setActive(layoutContent.isActive());
                 restLayout.setLayoutRule(layoutRule);
+                if(layoutContent.getVersion()==2) {
                 restLayoutList.add(restLayout);
+                }
             }
         }
         return restLayoutList;

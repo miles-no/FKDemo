@@ -15,10 +15,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.task.TaskExecutor;
@@ -41,14 +43,16 @@ public class AppConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(AppConfig.class);
 
-    @Autowired
-    private DataSource dataSource;
+    /*@Autowired
+    private DataSource dataSource;*/
 
     private @Autowired
     AutowireCapableBeanFactory beanFactory;
 
     @Autowired
     private ConfigService configService;
+
+
 
 
     @Bean(name="PDFGeneratorExecutor")
@@ -66,11 +70,11 @@ public class AppConfig {
 
     @Bean(name="BirtEngine")
     public IReportEngine getBirtEngine(ConfigService configService) throws BirtException, MalformedURLException {
-        try {
+        /*try {
             dataSource.getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("Initializing Birt engine");
         String fontPath = configService.getString(IMConstants.CUSTOM_FONT_PATH);
@@ -102,18 +106,19 @@ public class AppConfig {
         return engine;
     }
 
-    @Bean
+   /* @Bean
     public FilterRegistrationBean myFilter() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         SecurityFilter securityFilter = new SecurityFilter();
         beanFactory.autowireBean(securityFilter);
         registration.setFilter(securityFilter);
-        registration.addUrlPatterns("/api/*");
+        //registration.addUrlPatterns("/api*//*");
+        registration.addUrlPatterns("/api*//**//*");
 
         return registration;
-    }
+    }*/
 
-    @Bean
+   /* @Bean
     @DependsOn("BirtEngine")
     public InvoiceConsumer kafkaConsumer(){
         logger.debug("java temp dir "+System.getProperty("java.io.tmpdir"));
@@ -125,5 +130,5 @@ public class AppConfig {
         } else {
             return null;
         }
-    }
+    }*/
 }

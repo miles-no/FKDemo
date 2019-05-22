@@ -16,9 +16,9 @@ import org.springframework.kafka.annotation.EnableKafka;
 @EnableJpaRepositories(basePackages = {"no.fjordkraft.im","no.fjordkraft.im.controller"})
 @SpringBootApplication
 @EnableEurekaClient
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @EnableFeignClients
-@EnableKafka
+//@EnableKafka
 public class PreprocessorApplication {
 
 	public static void main(String[] args) {

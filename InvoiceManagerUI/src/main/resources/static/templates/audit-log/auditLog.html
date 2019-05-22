@@ -3,9 +3,9 @@
     <div class="col-sm-12">
         <div class="col-sm-4">
             <div class="row form-group">
-                <label class="control-label col-sm-2">Invoice</label>
+                <label class="control-label col-sm-2">Statement</label>
                 <div class="col-sm-6">
-                    <input placeholder="Enter Invoice No." type="text" class="form-control" theme="bootstrap" ng-model="invoiceNo" ng-change="getLogs()">
+                    <input placeholder="Enter statement No." type="text" class="form-control" theme="bootstrap" ng-model="invoiceNo" ng-change="getLogs()">
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
         <table st-table="displayedCollection" st-safe-src="auditLog" class="table">
             <thead>
             <tr>
-                <th><span class="pointer">Invoice No</span></th>
+                <th><span class="pointer">Statement No</span></th>
                 <th><span class="pointer">Customer No</span></th>
                 <th><span class="pointer">Account No</span></th>
                 <th>Action</th>

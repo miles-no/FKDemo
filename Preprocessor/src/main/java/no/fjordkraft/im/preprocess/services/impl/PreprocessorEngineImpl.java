@@ -42,7 +42,7 @@ public class PreprocessorEngineImpl implements PreprocessorEngine {
     public void execute(PreprocessRequest request) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
 
           for(Preprocessor preprocessor:preprocessorList) {
-              if(preprocessorMap != null && ((Statement)request.getStatement()).isOnline() &&  preprocessorMap.containsKey(preprocessor)) {
+              if(preprocessorMap != null &&  preprocessorMap.containsKey(preprocessor)) {
                   continue;
               } else {
                   preprocessor.preprocess(request);

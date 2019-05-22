@@ -59,6 +59,7 @@ public class UILayoutContentServiceImpl implements UILayoutContentService {
         layoutContent.setVersion(IMConstants.ONE);
         layoutContent.setActive(Boolean.FALSE);
         layoutContent.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        layoutContent.setVersion(2);
         layoutContentRepository.saveAndFlush(layoutContent);
     }
 

@@ -7,12 +7,14 @@ import no.fjordkraft.im.util.IMConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -52,6 +54,18 @@ public class AppConfig {
 
     @Autowired
     private Environment env;
+
+    /*@Bean
+    @Primary
+    public DataSource dataSource() {
+        return DataSourceBuilder
+                .create()
+                .username("arpita")
+                .password("miles@123")
+                .url("jdbc:oracle:thin:@localhost:1521:xe")
+                .driverClassName("oracle.jdbc.driver.OracleDriver")
+                .build();
+    }*/
 
     @Bean(name="SpringSchedulerStarter")
     @DependsOn("liquibase")
@@ -106,6 +120,11 @@ public class AppConfig {
 
         // Locate change log file
         String changelogFile = "classpath:liquidbase/db-changelog.xml";
+        String context = env.getProperty("liquibase.context");
+
+        if("dev".equals(context)) {
+            changelogFile = "classpath:liquidbase/dev/db-changelog.xml";
+        }
         Resource resource = resourceLoader.getResource(changelogFile);
         Assert.state(resource.exists(), "Unable to find file: " + changelogFile);
 
@@ -117,7 +136,7 @@ public class AppConfig {
         if(null !=liquibaseStatus &&  "DISABLE".equalsIgnoreCase(liquibaseStatus.toUpperCase())) {
             liquibase.setShouldRun(false);
         }
-        String context = env.getProperty("liquibase.context");
+
         liquibase.setContexts(context);
 
         Map<String, String> params = new HashMap<String, String>();

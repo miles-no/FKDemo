@@ -1,25 +1,30 @@
 package no.fjordkraft.im.if320.models;
 
+/**
+ * Created with IntelliJ IDEA.
+ * User: hp
+ * Date: 2/5/19
+ * Time: 12:38 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
 import javax.xml.bind.annotation.*;
 import java.util.List;
 
-/**
- * Created by miles on 5/24/2017.
- */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "distribution"
-})
+        "detail"
+}  )
 @XmlRootElement(name = "PieChart")
 public class PieChart {
-    @XmlElement(name = "DistributionDetails", required = true)
-    protected List<DistributionDetails> distribution;
+    @XmlElement(name="Detail")
+    protected List<Detail> detail;
 
-    public List<DistributionDetails> getDistribution() {
-        return distribution;
+    public List<Detail> getDetail() {
+        return detail;
     }
 
-    public void setDistribution(List<DistributionDetails> distribution) {
-        this.distribution = distribution;
+    public void setDetail(List<Detail> detail) {
+        this.detail = detail;
     }
 }

@@ -15,7 +15,7 @@
         </md-card-content>    
         <md-card-actions layout="row" >
                 <md-card-title layout-align="end">
-                    <i ng-class="{'hide-link' : ($ctrl.processingState.label === 'Pending' || $ctrl.processingState.label === 'Preprocessing') }"  ng-click="($ctrl.processingState.label === 'Pending' || $ctrl.processingState.label === 'Preprocessing') || $ctrl.openDetailedView()" class="fa fa-external-link" uib-tooltip="View invoices which are {{$ctrl.processingState.label}}" tooltip-enable="$ctrl.processingState.label !== 'Pending' && $ctrl.processingState.label !== 'Preprocessing'" aria-hidden="true"></i>
+                    <i ng-class="{'hide-link' : ($ctrl.processingState.label === 'Pending' || $ctrl.processingState.label === 'Preprocessing') }"  ng-click="($ctrl.processingState.label === 'Pending' || $ctrl.processingState.label === 'Preprocessing') || $ctrl.openDetailedView()" class="fa fa-external-link" uib-tooltip="View statements which are {{$ctrl.processingState.label}}" tooltip-enable="$ctrl.processingState.label !== 'Pending' && $ctrl.processingState.label !== 'Preprocessing'" aria-hidden="true"></i>
                 </md-card-title>
         </md-card-actions>
     </md-card>

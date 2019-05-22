@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 
-@FeignClient(name="im-pdfgenerator",configuration = PDFGeneratorClient.ClientConfiguration.class)
+@FeignClient(name="im-pdfgenerator",url="http://localhost:8003/" ,configuration = PDFGeneratorClient.ClientConfiguration.class)
 public interface PDFGeneratorClient {
 
     @RequestMapping(method = RequestMethod.POST, value = "/pdf/{statementId}")

@@ -197,7 +197,7 @@ const listCtrl = ($scope,ModalService,$http) => {
     var version = layout.version;
     let qp = {layoutId: layoutId, version: version};
     $scope.loading = true
-    $http.get('/zuul/im-pdfgenerator/api/layout/preview',{params: qp,responseType: 'arraybuffer'}).success((response,status,headers) => {
+    $http.get('/im-pdfgenerator/api/layout/preview',{params: qp,responseType: 'arraybuffer'}).success((response,status,headers) => {
       $scope.loading = false
       var file = new Blob([response], {type: 'application/pdf'});
       var fileURL = URL.createObjectURL(file);

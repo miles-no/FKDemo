@@ -15,14 +15,14 @@ var multer  = require('multer')
 var upload = multer({dest :appConfig.tempFilePath});
 var fs = require('fs');
 
-const apiUrl = `${appConfig.api_server_host}:${appConfig.api_server_port}`;
+const apiUrl = `${appConfig.api_server_host}`;
 app.use('/',express.static('./'));
 app.use(bodyParser.json());
 app.listen(appConfig.application_port,function(){
   console.log('Started Express !!!',appConfig,apiUrl);
 });
 /*app.get('/',function(req,res){
- request({
+ request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
  url: apiUrl
  },function(error,response,body){
  console.log('in body');
@@ -36,7 +36,7 @@ app.put('/retry/statement',function(req,res){
   var qp = {
     statementId : req.query.statementId
   }
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/retry/statement`,
     qs: qp,
     method : 'PUT'
@@ -69,7 +69,7 @@ app.get('/statement/details', function(req, res) {
   }
 
   console.log(qp)
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/statement/details`,
   qs: qp
 },function(error,response,body){
@@ -84,7 +84,7 @@ console.log(res)
 app.get('/statement/pdf/:id', function(req, res) {
   var invoiceId = req.params.id;
   console.log(invoiceId)
-  /*request({
+  /*request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
    url: `${apiUrl}/statement/pdf/${invoiceId}`
    },function(error,response,body){
    console.log('Invoice Details PDF ',response.headers,response.headers['content-type'],response.headers['content-disposition'],response.headers['content-length']);
@@ -104,7 +104,7 @@ app.get('/statement/pdf/:id', function(req, res) {
 app.get('/layout/statement/xml/:id', function(req, res) {
   var invoiceId = req.params.id;
   console.log(invoiceId)
-  /*request({
+  /*request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
    url: `${apiUrl}/statement/pdf/${invoiceId}`
    },function(error,response,body){
    console.log('Invoice Details PDF ',response.headers,response.headers['content-type'],response.headers['content-disposition'],response.headers['content-length']);
@@ -122,7 +122,7 @@ app.get('/layout/statement/xml/:id', function(req, res) {
 
 
 app.get('/brand/config/brand', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/brand/config/brand`
 },function(error,response,body){
   console.log('/brand/config/brand ::',body);
@@ -131,7 +131,7 @@ app.get('/brand/config/brand', function(req, res) {
 });
 
 app.get('/brand/config', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/brand/config`
 },function(error,response,body){
   console.log('/brand/config',body);
@@ -140,7 +140,7 @@ app.get('/brand/config', function(req, res) {
 });
 
 app.get('/grid/config', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/grid/config`
 },function(error,response,body){
   console.log('/grid/config',body);
@@ -149,7 +149,7 @@ app.get('/grid/config', function(req, res) {
 });
 
 app.get('/grid/config/brand', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/grid/config/brand`
 },function(error,response,body){
   res.send(body);
@@ -159,7 +159,7 @@ app.get('/grid/config/brand', function(req, res) {
 app.get('/dashboard/all', function(req, res) {
   var fromTime = req.query.fromTime;
   var toTime = req.query.toTime;
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/dashboard/all`,
   qs: {
     fromTime:fromTime,
@@ -172,7 +172,7 @@ app.get('/dashboard/all', function(req, res) {
 });
 
 app.get('/dashboard/status', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/dashboard/status`
 },function(error,response,body){
   //console.log('Here in :: ',response.request.uri);
@@ -183,7 +183,7 @@ app.get('/dashboard/status', function(req, res) {
 /******Brand Crud*****/
 app.post('/brand/config',function(req,res,next){
   console.log('Here in POST /brand/config :: ',req.body);
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url :`${apiUrl}/brand/config`,
   method : 'POST',
     json : req.body
@@ -193,7 +193,7 @@ app.post('/brand/config',function(req,res,next){
 });
 app.put('/brand/config',function(req,res,next){
   console.log('Here in put update /brand/config :: ',req.body);
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url :`${apiUrl}/brand/config`,
   method : 'PUT',
     json : req.body
@@ -206,7 +206,7 @@ app.delete('/brand/config/:id',function(req,res,next){
   console.log('Here in delete /brand/config',req.params.id);
   var delId = req.params.id;
   console.log(delId);
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url :`${apiUrl}/brand/config/`+delId,
     method : 'DELETE'
 },function(error,response,body){
@@ -217,7 +217,7 @@ app.delete('/brand/config/:id',function(req,res,next){
 
 app.post('/grid/config',function(req,res,next){
   console.log('Here in POST /grid/config : ',req.body);
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url :`${apiUrl}/grid/config`,
     method : 'POST',
     json : req.body
@@ -230,7 +230,7 @@ app.post('/grid/config',function(req,res,next){
 
 app.put('/grid/config',function(req,res,next){
   console.log('Here in put update /grid/config :: ',req.body);
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url :`${apiUrl}/grid/config`,
     method : 'PUT',
     json : req.body
@@ -244,7 +244,7 @@ app.delete('/grid/config/:id',function(req,res,next){
   var delId = req.params.id;
   var uri = `${apiUrl}/grid/config/`+delId
   console.log(uri)
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url : uri,
     method : 'DELETE'
 },function(error,response,body){
@@ -255,7 +255,7 @@ app.delete('/grid/config/:id',function(req,res,next){
 /******State Config Crud*****/
 
 app.get('/config', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/config`
 },function(error,response,body){
   res.send(body);
@@ -264,7 +264,7 @@ app.get('/config', function(req, res) {
 
 app.post('/config', function(req, res) {
   console.log('In POST /config '+ JSON.stringify(req.query));
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/config`,
     qs : {
       key : req.query.key,
@@ -279,7 +279,7 @@ app.post('/config', function(req, res) {
 
 app.delete('/config/:id', function(req, res) {
   console.log(req.params)
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/config/`+req.params.id,
     method : 'DELETE'
 },function(error,response,body){
@@ -289,7 +289,7 @@ app.delete('/config/:id', function(req, res) {
 });
 
 app.put('/config/:name', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/config/`+req.params.name,
     qs:{
       value: req.query.value
@@ -303,7 +303,7 @@ app.put('/config/:name', function(req, res) {
 
 /******rule page*****/
 app.get('/layout/attribute', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/layout/attribute`
 },function(error,response,body){
   res.send(body);
@@ -311,7 +311,7 @@ app.get('/layout/attribute', function(req, res) {
 });
 
 app.delete('/layout/attribute/:id',function(req,res,next){
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url :`${apiUrl}/layout/attribute/`+req.params.id,
   method : 'DELETE'
 },function(error,response,body){
@@ -320,7 +320,7 @@ app.delete('/layout/attribute/:id',function(req,res,next){
 });
 
 app.post('/layout/attribute', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/layout/attribute`,
     method : 'POST',
     json : req.body,
@@ -331,7 +331,7 @@ app.post('/layout/attribute', function(req, res) {
 });
 
 app.put('/layout/attribute/:id', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/layout/attribute/`+req.params.id,
     json : req.body,
     method : 'PUT'
@@ -345,14 +345,14 @@ app.put('/layout/attribute/:id', function(req, res) {
 /******templates*****/
 
 app.get('/layout/list', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/layout/list`
 },function(error,response,body){
   res.send(body);
 })
 });
 app.get('/layout/template/all', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/layout/template/all`
 },function(error,response,body){
   console.log(' /layout/template/all Resp is ', body)
@@ -361,7 +361,7 @@ app.get('/layout/template/all', function(req, res) {
 });
 
 app.get('/layout/rules', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/layout/rules`
 },function(error,response,body){
   res.send(body);
@@ -369,14 +369,14 @@ app.get('/layout/rules', function(req, res) {
 });
 
 app.get('/layout/list', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/layout/list`
 },function(error,response,body){
   res.send(body);
 })
 });
 app.post('/layout/rule', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/layout/rule`,
     method : 'POST',
     json : req.body,
@@ -387,7 +387,7 @@ app.post('/layout/rule', function(req, res) {
 });
 
 app.put('/layout/rule/:id', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/layout/rule/`+req.params.id,
     json : req.body,
     method : 'PUT'
@@ -400,7 +400,7 @@ app.put('/layout/rule/:id', function(req, res) {
 app.put('/layout/activate/:id/:id1',function(req,res){
   var u1 = `${apiUrl}/layout/activate/`+req.params.id+`/`+req.params.id1
   console.log(u1);
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: u1,
     method : 'PUT'
   },function(error,response,body){
@@ -411,7 +411,7 @@ app.put('/layout/activate/:id/:id1',function(req,res){
 app.put('/layout/deActivate/:id/:id1',function(req,res){
   var u1 = `${apiUrl}/layout/deActivate/`+req.params.id+`/`+req.params.id1
   console.log(u1);
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: u1,
     method : 'PUT'
   },function(error,response,body){
@@ -420,7 +420,7 @@ app.put('/layout/deActivate/:id/:id1',function(req,res){
 })
 
 app.delete('/layout/template/:id',function(req,res){
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url :`${apiUrl}/layout/template/`+req.params.id,
     method : 'DELETE'
 },function(error,response,body){
@@ -437,7 +437,7 @@ app.post('/layout/template',upload.single('file'), function(req, res) {
     description : req.body.description,
     file :  fs.createReadStream(`${req.file.destination}${req.file.filename}`)
   }
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/layout/template`,
     method : 'POST',
     formData : formData
@@ -463,7 +463,7 @@ app.put('/layout/template/:id',upload.single('file'),function(req,res) {
     }
   }
   console.log(formData)
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/layout/template/`+req.params.id,
     method : 'PUT',
     formData : formData
@@ -479,7 +479,7 @@ app.get('/layout/preview', function(req, res) {
     version : req.query.version
   };
 
-  request({url : `${apiUrl}/layout/preview`,qs: qp}).pipe(res);
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},url : `${apiUrl}/layout/preview`,qs: qp}).pipe(res);
 });
 
 app.get('/layout/rptdesign', function(req, res) {
@@ -492,7 +492,7 @@ app.get('/layout/rptdesign', function(req, res) {
 /******plug call*****/
 
 app.post('/transferfile/process', function(req, res) {
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/transferfile/process`,
   method : 'POST'
 },function(error,response,body){
@@ -522,14 +522,14 @@ app.get('/auditRecord',function(req,res){
     accountNumber:accountNumber
   }
   console.log(qp)
-  request({url : `${apiUrl}/auditRecord`,qs: qp}).pipe(res);
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},url : `${apiUrl}/auditRecord`,qs: qp}).pipe(res);
 })
 
 
 /**********Custom Transaction Group*****/
 
 app.get('/custom/transaction/group/all',function(req,res){
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/custom/transaction/group/all`
 },function(error,response,body){
   res.send(body);
@@ -537,7 +537,7 @@ app.get('/custom/transaction/group/all',function(req,res){
 })
 
 app.get('/custom/transaction/category',function(req,res){
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/custom/transaction/category`
   },function(error,response,body){
   res.send(body)
@@ -556,7 +556,7 @@ app.post('/custom/transaction/group',function(req,res){
 })
 
 app.delete('/custom/transaction/group/:id',function(req,res){
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url :`${apiUrl}/custom/transaction/group/`+req.params.id,
       method : 'DELETE'
 },function(error,response,body){
@@ -565,7 +565,7 @@ app.delete('/custom/transaction/group/:id',function(req,res){
 })
 
 app.put('/custom/transaction/group/:id',function(req,res){
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url : `${apiUrl}/custom/transaction/group`+req.params.id,
     method: 'PUT',
     json : req.body
@@ -579,7 +579,7 @@ app.put('/custom/transaction/group/:id',function(req,res){
 /**********LogOff Express Script*****/
 
 app.get('/api/openrest/security/logoff',function(req,res){
-  request({
+  request({headers: {'Cookie' : 'AFI_SECURITY_TOKEN_V2=211df586-a654-4683-8ccf-be4a837c8f48'},
     url: `${apiUrl}/api/openrest/security/logoff`
 },function(error,response,body){
   res.send(body)

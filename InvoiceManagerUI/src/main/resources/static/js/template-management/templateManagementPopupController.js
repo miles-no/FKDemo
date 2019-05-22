@@ -169,7 +169,7 @@ const listPopupController = ($scope,options,close, $http,_) => {
         fd.append('description', $scope.template.desc)
         $scope.template.file ? fd.append('file', $scope.template.file) : '';
         $scope.loading = true;
-        $http.post('/zuul/invoicemanager/api/layout/template',fd,{
+        $http.post('/invoicemanager/api/layout/template',fd,{
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined}
         }).then((response) => {
@@ -189,7 +189,7 @@ const listPopupController = ($scope,options,close, $http,_) => {
         fd.append('name', $scope.template.name)
         fd.append('description', $scope.template.desc)
         $scope.template.file ? fd.append('file', $scope.template.file) : '';
-        $http.put('/zuul/invoicemanager/api/layout/template/'+$scope.templateInfo.layoutId , fd, {
+        $http.put('/invoicemanager/api/layout/template/'+$scope.templateInfo.layoutId , fd, {
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined}
         }).then((response) => {

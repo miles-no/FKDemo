@@ -1,8 +1,8 @@
 package no.fjordkraft.im;
 
-import no.fjordkraft.security.filter.SecurityFilter;
+/*import no.fjordkraft.security.filter.SecurityFilter;
 import no.fjordkraft.security.jpa.repository.UserRolesRepository;
-import no.fjordkraft.security.springmvc.AuthorizationInterceptor;
+import no.fjordkraft.security.springmvc.AuthorizationInterceptor;*/
 import org.springframework.core.env.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -20,8 +20,8 @@ import java.util.Arrays;
 @Configuration
 public class AppConfig extends WebMvcConfigurerAdapter {
 
-    @Autowired
-    private UserRolesRepository userRolesRepository;
+    /*@Autowired
+    private UserRolesRepository userRolesRepository;*/
 
     @Autowired
     private AutowireCapableBeanFactory beanFactory;
@@ -36,13 +36,13 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         }*/
     }
 
-    @Bean
+    /*@Bean
     public FilterRegistrationBean myFilter() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         SecurityFilter securityFilter = new SecurityFilter();
         beanFactory.autowireBean(securityFilter);
         registration.setFilter(securityFilter);
-        registration.addUrlPatterns("/api/*");
+        registration.addUrlPatterns("/api*//*");
         return registration;
-    }
+    }*/
 }

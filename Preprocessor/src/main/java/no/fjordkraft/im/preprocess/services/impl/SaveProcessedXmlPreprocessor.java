@@ -21,7 +21,7 @@ import java.io.FileOutputStream;
  * Created by bhavi on 5/15/2017.
  */
 @Service
-@PreprocessorInfo(order=999,skipOnline = true)
+@PreprocessorInfo(order=999,skipOnline = false)
 public class SaveProcessedXmlPreprocessor  extends BasePreprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(SaveProcessedXmlPreprocessor.class);
@@ -34,7 +34,26 @@ public class SaveProcessedXmlPreprocessor  extends BasePreprocessor {
     public void preprocess(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request) {
 
         try {
-            logger.debug("Credit limit for statement with statement id  "+request.getEntity().getId() + " is "+request.getStatement().getCreditLimit() + " AvailableCredit :" +request.getStatement().getAvailableCredit());
+            logger.debug("Credit limit for statement with statement id  "+request.getEntity().getId() + " is "+request.getStatement().getAccountStatement().getStatementSummary().getCreditAmount());
+
+            String invoiceNumber = request.getEntity().getAccountNumber();
+            String basePath = configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
+            File baseFile = null;
+            //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())  {
+            //if(!request.getStatement().isOnline()) {
+            String baseFolder = request.getEntity().getSystemBatchInput().getTransferFile().getFilename();
+            String folderName = baseFolder.substring(0, baseFolder.indexOf('.'));
+            baseFile = new File(basePath + folderName + File.separator + invoiceNumber);
+       /*}
+        else
+        {
+            baseFile =  new File(basePath + "Online" + File.separator+ invoiceNumber);
+
+        }*/
+
+            baseFile.mkdirs();
+            request.setPathToProcessedXml(baseFile.getAbsolutePath());
+            logger.debug("Generated base File " + baseFile);
             File file  = new File(request.getPathToProcessedXml());
             if(!file.exists()) {
                 logger.debug("file does not exists create directories" + file.getAbsolutePath());

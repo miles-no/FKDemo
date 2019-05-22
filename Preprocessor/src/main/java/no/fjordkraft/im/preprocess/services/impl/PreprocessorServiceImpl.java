@@ -132,6 +132,7 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
         try {
             logger.debug("Preprocessing statement with id " + statement.getId());
             String payload = statement.getStatementPayload().getPayload();
+            statement.setBrand(statement.getSystemBatchInput().getBrand());
             statement.getSystemBatchInput().getTransferFile().getFilename();
             if320statement = unmarshallStatement(new ByteArrayInputStream(payload.getBytes(StandardCharsets.ISO_8859_1)));
             getUpdatedStatementEntity(if320statement, statement);
@@ -139,20 +140,22 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
             PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request = new PreprocessRequest();
             request.setStatement(if320statement);
             request.setEntity(statement);
-            if320statement.setOnline(statement.isOnline());
+            //if320statement.setOnline(statement.isOnline());
 
-            //statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
-         /*   preprocessorEngine.execute(request);
+            statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
+            preprocessorEngine.execute(request);
             statement.setLayoutID(request.getEntity().getLayoutID());
-            statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);*/
+            statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
             //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
             logger.info(" is online statement id " + statement.getId() + " invoice number  "+ statement.getInvoiceNumber() + " online "+ statement.isOnline());
-            if(!request.getStatement().isOnline()) {
+           /* if(!request.getStatement().isOnline()) {
                 statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
                 logger.info(" is online statement id " + statement.getId() + " invoice number  "+ statement.getInvoiceNumber() + " online "+ statement.isOnline());
             }
             else
-            {
+            {*/
+               /* statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING);
+                logger.info(" is online statement id " + statement.getId() + " invoice number  "+ statement.getInvoiceNumber() + " online "+ statement.isOnline());
                 statement.getSystemBatchInput().setBrand(statement.getBrand());
                 statement.setStatus(StatementStatusEnum.PRE_PROCESSING.getStatus());
                 List<Preprocessor> preProcessorList = preprocessorEngine.getPreprocessorList();
@@ -165,8 +168,8 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
                     }
                 }
                 preprocessorEngine.setPreprocessorMap(preProcessorMap);
-            }
-            preprocessorEngine.execute(request);
+          //  }
+            preprocessorEngine.execute(request);*/
             statement.setLayoutID(request.getEntity().getLayoutID());
             statement.setNoOfMeter(request.getEntity().getNoOfMeter());
             statement.setEhfAttachment(request.getEntity().isEhfAttachment());
@@ -174,71 +177,72 @@ public class PreprocessorServiceImpl implements PreprocessorService,ApplicationC
 
             //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
             logger.info("Updating status of statement with id " + statement.getId() + " invoice number " + statement.getInvoiceNumber() + " is online " + statement.isOnline() +" to preprocessed ");
-            if (!request.getStatement().isOnline()) {
+           /* if (!request.getStatement().isOnline()) {
                 //logger.info("Updating status of statement with id " + statement.getId() + " invoice number " + statement.getInvoiceNumber() + " to preprocessed ");
                 statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
             }
             else
-            {
-                statement.setStatus(StatementStatusEnum.PRE_PROCESSED.getStatus());
-                setStatement(request.getStatement());
-            }
+            {*/
+            statement.setStatus(StatementStatusEnum.PRE_PROCESSED.getStatus());
+            statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSED);
+            setStatement(request.getStatement());
+            //  }
             //auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSED.getStatus(), null, IMConstants.SUCCESS);
             stopwatch.stop();
             logger.debug("Preprocessing completed for statement with id "+ statement.getId());
             logger.debug(stopwatch.prettyPrint());
         } catch (PreprocessorException ex) {
-           //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())    {
-            if(!if320statement.isOnline()) {
+            //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())    {
+           /* if(!if320statement.isOnline()) {
                 //SetInvoiceASOnline.unset();
                 logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), ex);
                 statement = statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);
                 auditLogService.saveAuditLog(statement.getId(), StatementStatusEnum.PRE_PROCESSING.getStatus(), ex.getMessage(), IMConstants.ERROR,statement.getLegalPartClass());
            }
             else
-           {
-               //SetInvoiceASOnline.unset();
-               logger.error("Exception in preprocessor task for Online file " + statement.getFileName(), ex);
-               statement.setStatus( StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus());
-               throw ex;
-           }
+           {*/
+            //SetInvoiceASOnline.unset();
+            logger.error("Exception in preprocessor task for Online file " + statement.getFileName(), ex);
+            statement.setStatus( StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus());
+            throw ex;
+            // }
         } catch (Exception e) {
             //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())   {
-            if(!if320statement.isOnline()) {
+          /*  if(!if320statement.isOnline()) {
                 logger.error("Exception in preprocessor task for statement with id " + statement.getId().toString(), e);
                 statementService.updateStatement(statement, StatementStatusEnum.PRE_PROCESSING_FAILED);
             }
             else
-            {
-                logger.error("Exception in preprocessor task for statement for Online file " + statement.getFileName(),e);
-                statement.setStatus(StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus());
+            {*/
+            logger.error("Exception in preprocessor task for statement for Online file " + statement.getFileName(),e);
+            statement.setStatus(StatementStatusEnum.PRE_PROCESSING_FAILED.getStatus());
 
-            }
+            // }
         }
 
     }
 
     public no.fjordkraft.im.model.Statement getUpdatedStatementEntity(Statement statement,no.fjordkraft.im.model.Statement statementEntity) {
-        Long statementOcr = statement.getStatementOcrNumber();
-        Integer customerId = statement.getNationalId();
-        Long accountNumber = statement.getAccountNumber();
-        String invoiceNumber = accountNumber + ""+ statement.getSequenceNumber();
-        Date invoiceDate = statement.getStatementDate().toGregorianCalendar().getTime();
-        Date dueDate = statement.getDueDate().toGregorianCalendar().getTime();
-        statementEntity.setStatementId(statementOcr.toString());
-        statementEntity.setCustomerId(customerId.toString());
+        //  Long statementOcr = statement.getStatementOcrNumber();
+        String customerId = statement.getCustomer().getCustomerID();
+        Long accountNumber = Long.valueOf(statement.getAccountDetails().getAccountNo());
+        String invoiceNumber = accountNumber + "3";
+        String invoiceDate = statement.getAccountDetails().getAccountOpenDate();
+        //  Date dueDate = statement.getDueDate().toGregorianCalendar().getTime();
+        statementEntity.setStatementId(statement.getAccountDetails().getAccountNo()+"");
+        statementEntity.setCustomerId(customerId);
         statementEntity.setAccountNumber(accountNumber.toString());
         statementEntity.setInvoiceNumber(invoiceNumber);
-        statementEntity.setCity(statement.getCity());
-        statementEntity.setVersion(statement.getVersion());
-        statementEntity.setDistributionMethod(statement.getDistributionMethod());
-        statementEntity.setAmount(statement.getCurrentClaim());
-        statementEntity.setInvoiceDate(invoiceDate);
-        statementEntity.setDueDate(dueDate);
-        statementEntity.setLegalPartClass(statement.getLegalPartClass());
+        statementEntity.setCity(statement.getBank().getCity());
+        statementEntity.setVersion(Byte.decode("1"));
+        statementEntity.setDistributionMethod("EMAIL");
+        //statementEntity.setAmount(Double.valueOf(statement.getAccountStatement().getStatementSummary().getClosingBalance()));
+        statementEntity.setInvoiceDate(new Date(statement.getAccountDetails().getAccountOpenDate()));
+        //statementEntity.setDueDate(dueDate);
+        statementEntity.setLegalPartClass(statement.getAccountDetails().getAccountStatus());
         statementEntity.setUpdateTime(new Timestamp(System.currentTimeMillis()));
-        statementEntity.setCreditLimit(statement.getCreditLimit());
-        logger.debug("updating statement  "+ statementEntity.getId() + " statementOcr " + statementOcr + " customerId " + customerId + " accountNumber "+ accountNumber + " invoiceNumber "+  invoiceNumber );
+        //statementEntity.setCreditLimit(statement.getAccountStatement().getStatementSummary().getCreditAmount());
+        logger.debug("updating statement  "+ statementEntity.getId()  + " customerId " + customerId + " accountNumber "+ accountNumber + " invoiceNumber "+  invoiceNumber );
         return statementEntity;
     }
 

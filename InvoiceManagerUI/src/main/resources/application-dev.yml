@@ -1,6 +1,6 @@
 server:
   port: 8804
-  contextPath: /invoicemanager
+  #contextPath: /invoicemanager
 
 spring:
   #datasource:
@@ -12,8 +12,8 @@ spring:
   datasource:
       driverClassName: oracle.jdbc.driver.OracleDriver
       url: jdbc:oracle:thin:@localhost:1521:xe
-      username: bhavik
-      password: bhavik123
+      username: miles
+      password: miles123
 
 logging:
   level:
@@ -23,7 +23,7 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
   #file: /opt/app/invoice_manager/logs/application.log
-  file: D:\FuelKraft\invoice_manager\logs\im-ui.log
+  file: E:\test\logs\im-ui.log
 
 if320.skip.bytes: false
 spring.jackson.serialization.fail-on-empty-beans: false
@@ -31,6 +31,10 @@ spring.jackson.serialization.fail-on-empty-beans: false
 
 #  context: dev
 #  enabled: disable
+
+liquibase:
+  context: dev
+  enabled: enabled
 
 
 eureka:
@@ -49,4 +53,4 @@ eureka:
 
 ribbon:
   eureka:
-    enabled: true
+    enabled: false

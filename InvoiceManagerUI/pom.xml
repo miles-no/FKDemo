@@ -161,12 +161,12 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>false</filtering>
-                <excludes>
+                <!--<excludes>
                     <exclude>static/node/**</exclude>
                     <exclude>static/node_modules/**</exclude>
                     <exclude>application-**.yml</exclude>
                     <exclude>application.yml</exclude>
-                </excludes>
+                </excludes>-->
             </resource>
         </resources>
     </build>

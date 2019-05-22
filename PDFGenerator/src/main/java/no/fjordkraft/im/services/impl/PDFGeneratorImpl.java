@@ -122,6 +122,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             logger.debug("PDF generation will start for statement with id "+ statement.getId());
             statementService.updateStatement(statement,StatementStatusEnum.PDF_PROCESSING);
             statement.getSystemBatchInput().getTransferFile().getFilename();
+            statement.setBrand(statement.getSystemBatchInput().getBrand());
         }
     }
 
@@ -143,20 +144,20 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         try {
             byte[] generatedPdf = null;
             //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
-            if(!statement.isOnline())
-            {
+           /* if(!statement.isOnline())
+            {*/
                 systemBatchInputFileName = statement.getSystemBatchInput().getTransferFile().getFilename();
                 stopWatch.start("PDF generation for statement "+ statement.getId());
                 subFolderName = systemBatchInputFileName.substring(0, systemBatchInputFileName.indexOf('.'));
 
                 generatedPdf = birtEnginePDFGenerator(statement, outputDirectoryPath, subFolderName);
-            }
+           /* }
             else
             {
                 stopWatch.start("Online PDF generation for invoice number "+ statement.getInvoiceNumber());
                 systemBatchInputFileName = statement.getFileName();
                 generatedPdf =   birtEnginePDFGenerator(statement, systemBatchInputFileName, subFolderName);
-            }
+            }*/
             //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())
             if(!statement.isOnline())
             {
@@ -214,15 +215,15 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("Birt report generation");
         String accountNo = statement.getAccountNumber();
-        String brand = statement.getBrand();
+        String brand = statement.getSystemBatchInput().getBrand();
         ByteArrayOutputStream baos = null;
         try {
             String xmlFilePath = null;
             //if(SetInvoiceASOnline.get() ==null || !SetInvoiceASOnline.get())
             if(!statement.isOnline())
             {
-                String basePath = outPutDirectoryPath + File.separator + statementFolderName + File.separator + statement.getInvoiceNumber() + File.separator ;
-                xmlFilePath =  basePath + File.separator + IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME;
+                String basePath = outPutDirectoryPath + statementFolderName + File.separator + statement.getAccountNumber() + File.separator ;
+                xmlFilePath =  basePath + IMConstants.PROCESSED_STATEMENT_XML_FILE_NAME;
             }
             else
             {
@@ -287,7 +288,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             }
             baos = new ByteArrayOutputStream();
             IRunAndRenderTask task  = reportEngine.createRunAndRenderTask(runnable);
-            task.setParameterValue("sourcexml", xmlFilePath);
+            task.setParameterValue("processedxml", xmlFilePath);
             task.setParameterValue("campaignImage", campaignImage);
             PDFRenderOption options = new PDFRenderOption();
             options.setEmbededFont(true);
@@ -339,22 +340,7 @@ public class PDFGeneratorImpl implements PDFGenerator,ApplicationContextAware {
             {
                 //if(brand.equals("FKAS") || brand.equals("TKAS")) {
                     attachmentConfigId = AttachmentTypeEnum.ORGANIZATION.getStatus();
-                /*} else {
-                    if(countOfStatements!=null && countOfStatements.intValue()==0) {
-                        if( !Double.valueOf(creditLimit).equals(Double.valueOf("0")))
-                        {
-                            attachmentConfigId = AttachmentTypeEnum.FULL_KONTROLL_ATTACHMENT.getStatus();
-                        }
-                        else
-                        {
-                            attachmentConfigId = AttachmentTypeEnum.FIRST_TIME_ATTACHMENT.getStatus();
-                        }
-                    }
-                    else
-                    {
-                        attachmentConfigId = AttachmentTypeEnum.OTHER_ATTACHMENT.getStatus();
-                    }
-                }*/
+
             }
         }
         return attachmentConfigId;

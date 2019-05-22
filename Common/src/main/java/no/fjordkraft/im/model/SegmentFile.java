@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 /**
  * Created by miles on 6/21/2017.
  */
-@Table(name="SEGMENTFILE",schema="eacprod")
+@Table(name="SEGMENTFILE")
 @Entity
 public class SegmentFile {
     @Column(name="ID")

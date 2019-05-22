@@ -38,25 +38,24 @@ public abstract class BasePreprocessor implements Preprocessor {
     }
 
     protected void createDirectories(PreprocessRequest<Statement, no.fjordkraft.im.model.Statement> request){
-        String invoiceNumber = request.getEntity().getInvoiceNumber();
+        String invoiceNumber = request.getEntity().getAccountNumber();
         String basePath = configService.getString(IMConstants.BASE_DESTINATION_FOLDER_PATH);
         File baseFile = null;
         //if(SetInvoiceASOnline.get()==null || !SetInvoiceASOnline.get())  {
-        if(!request.getStatement().isOnline()) {
-            String baseFolder = request.getEntity().getSystemBatchInput().getTransferFile().getFilename();
-            String folderName = baseFolder.substring(0, baseFolder.indexOf('.'));
-            baseFile = new File(basePath + folderName + File.separator + invoiceNumber);
-        /*}
+        //if(!request.getStatement().isOnline()) {
+        String baseFolder = request.getEntity().getSystemBatchInput().getTransferFile().getFilename();
+        String folderName = baseFolder.substring(0, baseFolder.indexOf('.'));
+        baseFile = new File(basePath + folderName + File.separator + invoiceNumber);
+       /*}
         else
         {
             baseFile =  new File(basePath + "Online" + File.separator+ invoiceNumber);
 
-        }*/
+        }*//*
 
             baseFile.mkdirs();
             request.setPathToProcessedXml(baseFile.getAbsolutePath());
             logger.debug("Generated base File " + baseFile);
-        }
+        } */
     }
-
 }

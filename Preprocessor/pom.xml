@@ -100,6 +100,11 @@
             <artifactId>common-spring-kafka</artifactId>
             <version>2.0.49-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.4</version>
+        </dependency>
 
     </dependencies>
 
@@ -137,10 +142,10 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>false</filtering>
-                <excludes>
+               <!-- <excludes>
                     <exclude>application.yml</exclude>
                     <exclude>application-**.yml</exclude>
-                </excludes>
+                </excludes>-->
             </resource>
         </resources>
     </build>

@@ -48,9 +48,9 @@ public class GenericPreprocessor extends BasePreprocessor {
             StopWatch stopWatch = new StopWatch();
             stopWatch.start("Unmarshall Attachments");
             //if(SetInvoiceASOnline.get() == null || !SetInvoiceASOnline.get()) {
-            if(!request.getStatement().isOnline()) {
+            /*if(!request.getStatement().isOnline()) {
                 createDirectories(request);
-            }
+            }*/
             unmarshallAttachments(request.getStatement());
             decodeAndUnmarshalEHFAttachment(request.getStatement());
             stopWatch.stop();
@@ -64,10 +64,10 @@ public class GenericPreprocessor extends BasePreprocessor {
 
 
 
-    public Statement unmarshallAttachments(Statement statement) throws IOException {
+    public Statement unmarshallAttachments(Statement statement) throws IOException {return statement;}/*{
         //String fileEncoding = configService.getString(IMConstants.FILE_ENCODING);
-        if(null != statement.getAttachments() && null != statement.getAttachments().getAttachmentList()) {
-            for (String data : statement.getAttachments().getAttachmentList()) {
+        if(null != statement.getAccountStatement() && null != statement.getAccountStatement().getStatementLine()) {
+            for (String data : statement.getAccountStatement().getStatementLine()) {
                 data = data.replaceAll("&lt;", "<");
                 data = data.replaceAll("&gt;", ">");
                 if(!data.contains("VEDLEGG_EHF")) {
@@ -86,9 +86,9 @@ public class GenericPreprocessor extends BasePreprocessor {
         }
 
         return statement;
-    }
+    }*/
 
-    public void decodeAndUnmarshalEHFAttachment(Statement statement) throws IOException {
+    public void decodeAndUnmarshalEHFAttachment(Statement statement) throws IOException{} /*{
         for(Attachment attachment : statement.getAttachments().getAttachment()){
             if("PDFEHF".equals(attachment.getFAKTURA().getVEDLEGGFORMAT())) {
                //String ehfEncoding =  configService.getString(IMConstants.EHF_FILE_ENCODING);
@@ -143,7 +143,7 @@ public class GenericPreprocessor extends BasePreprocessor {
                 }
             }
         }
-    }
+    }*/
 
     public void setUnMarshaller(Unmarshaller unMarshaller) {
         this.unMarshaller = unMarshaller;
