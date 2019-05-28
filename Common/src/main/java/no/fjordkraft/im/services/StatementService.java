@@ -34,4 +34,6 @@ public interface StatementService {
     int updateStatementsBySiId(Long siId,StatementStatusEnum status);
 
    List<Object[]> getStatementStatus();
+   
+   int updateAllStatementStatusToPending(StatementStatusEnum status);
 }

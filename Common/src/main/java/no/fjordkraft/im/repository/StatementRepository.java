@@ -59,5 +59,10 @@ public interface StatementRepository extends JpaRepository<Statement,Long> {
     @Transactional
     @Query("update Statement s set s.status = :status where s.systemBatchInput.id = :siId")
     int updateStatementsBySiId (@Param("siId")Long siId,@Param("status") String status);
+	
+	@Modifying
+    @Transactional
+    @Query("update Statement s set s.status = :status ")
+    int updateStatementsStatus (@Param("status") String status);
 
 }

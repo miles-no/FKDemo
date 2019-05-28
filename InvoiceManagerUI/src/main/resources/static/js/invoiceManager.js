@@ -24,6 +24,7 @@ import {customTransactionGroupController} from './custom-transaction-group/custo
 import {customTransactionGroupPopupCtrl} from './custom-transaction-group/customTransactionGroupPopupCtrl';
 import {attachmentManagerController} from './attachmentManager/attachmentManager'
 import {attachmentManagerPopupController} from './attachmentManager/attachmentManagerPopup'
+import {resetInvoiceController} from './resetInvoice/resetInvoice'
 // import {landingPageController} from './controller/landingPageController';
 // import {drillDownController} from './controller/drillDownController';
 // import {mainController} from './controller/mainController'
@@ -94,6 +95,7 @@ invoiceManager.controller('customTransactionGroupController',customTransactionGr
 invoiceManager.controller('customTransactionGroupPopupCtrl',customTransactionGroupPopupCtrl);
 invoiceManager.controller('attachmentManagerController',attachmentManagerController);
 invoiceManager.controller('attachmentManagerPopupController',attachmentManagerPopupController);
+invoiceManager.controller('resetInvoiceController',resetInvoiceController);
 
 // invoiceManager.controller('mainController',mainController);
 // invoiceManager.controller('landingPageController',landingPageController);
@@ -157,7 +159,10 @@ invoiceManager.config(function($stateProvider,$urlRouterProvider){
         }).state('attachmentManager',{
             url: '/attachmentManager',
             templateUrl: 'templates/attachmentManager/attachmentManager.html'
-        })
+        }).state('resetInvoice',{
+                      url: '/resetInvoice',
+                      templateUrl: 'templates/resetInvoice/resetInvoice.html'
+                  })
     $urlRouterProvider.otherwise('/home');
 });
 

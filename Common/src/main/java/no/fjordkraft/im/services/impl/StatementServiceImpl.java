@@ -154,5 +154,10 @@ public class StatementServiceImpl implements StatementService,ApplicationContext
     public List<Object[]> getStatementStatus() {
         return statementDetailRepository.getStatementStatus();  //To change body of implemented methods use File | Settings | File Templates.
     }
+	
+	 @Override
+    public int updateAllStatementStatusToPending(StatementStatusEnum status) {
+        return statementRepository.updateStatementsStatus(status.getStatus());
+    }
 
 }
